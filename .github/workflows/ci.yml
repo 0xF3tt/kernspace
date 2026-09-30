@@ -43,8 +43,8 @@ jobs:
           '
       - run: node app/render.test.mjs
       - run: node app/words.test.mjs
-      # a release tag is version.json in lowercase with hyphens: "Beta 1" -> beta-1
+      # a release tag is "v" + version.json: "1.0.0-beta.2" -> v1.0.0-beta.2
       - if: startsWith(github.ref, 'refs/tags/')
         run: |
-          want=$(node -p "require('./version.json').version.toLowerCase().replace(/\s+/g, '-')")
+          want=v$(node -p "require('./version.json').version")
           [ "$GITHUB_REF_NAME" = "$want" ] || { echo "tag $GITHUB_REF_NAME, but version.json says $want"; exit 1; }
