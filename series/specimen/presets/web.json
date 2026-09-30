@@ -1,0 +1,45 @@
+{
+  "series": "specimen",
+  "topic": "web",
+  "title": "Vol. 05 · Origin",
+  "ground": "dark",
+  "hero": "SOP",
+  "family": "Same-Origin Policy",
+  "class": "browser policy · origin · isolation",
+  "waterfall": {
+    "phrase": "A page reads only what its own origin allows.",
+    "roles": ["cross-site", "same-site", "same-origin", "extension", "browser"]
+  },
+  "charset": [
+    {"glyph": "200", "code": "§15.3.1"},
+    {"glyph": "201", "code": "§15.3.2"},
+    {"glyph": "204", "code": "§15.3.5"},
+    {"glyph": "301", "code": "§15.4.2"},
+    {"glyph": "302", "code": "§15.4.3"},
+    {"glyph": "304", "code": "§15.4.5"},
+    {"glyph": "400", "code": "§15.5.1"},
+    {"glyph": "401", "code": "§15.5.2"},
+    {"glyph": "403", "code": "§15.5.4"},
+    {"glyph": "404", "code": "§15.5.5"},
+    {"glyph": "405", "code": "§15.5.6"},
+    {"glyph": "409", "code": "§15.5.10"},
+    {"glyph": "410", "code": "§15.5.11"},
+    {"glyph": "413", "code": "§15.5.14"},
+    {"glyph": "415", "code": "§15.5.16"},
+    {"glyph": "421", "code": "§15.5.20"},
+    {"glyph": "500", "code": "§15.6.1"},
+    {"glyph": "502", "code": "§15.6.3"},
+    {"glyph": "503", "code": "§15.6.4"},
+    {"glyph": "504", "code": "§15.6.5"}
+  ],
+  "notdef": "306 (Unused)",
+  "confusables": [["o / о", "U+6F/U+43E"], ["s / ѕ", "U+73/U+455"]],
+  "matrix": {"axes": ["impact", "likelihood"], "cell": [3, 3], "rating": "33 · reflected origin"},
+  "test": "Sec-WebSocket-Accept: s3pPLMBiTxaQ9kYGzz…",
+  "notes": ["sending is not reading", "same-site ≠ same-origin", "CORS loosens, SOP guards"],
+  "label": "WEB SPECIMEN · VOL. 05 · ORIGIN",
+  "data": {"left": "3 origins · 2 sites · SOP holds", "right": "{handle} · git:(main) · blue builds"},
+  "phone": {
+    "data": {"left": "3 origins · 2 sites", "right": "{handle} · blue builds"}
+  }
+}

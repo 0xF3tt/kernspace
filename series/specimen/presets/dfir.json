@@ -1,0 +1,42 @@
+{
+  "series": "specimen",
+  "topic": "dfir",
+  "title": "Vol. 12 · Evidence",
+  "ground": "light",
+  "hero": "MFT",
+  "family": "Master File Table",
+  "class": "NTFS · $SI vs $FN · MACB",
+  "waterfall": {
+    "phrase": "Never touch the original; every copy must hash the same.",
+    "roles": ["bystander", "responder", "examiner", "custodian", "court order"]
+  },
+  "charset": [
+    {"glyph": "$SI", "code": "0x10"},
+    {"glyph": "$AL", "code": "0x20"},
+    {"glyph": "$FN", "code": "0x30"},
+    {"glyph": "$OID", "code": "0x40"},
+    {"glyph": "$SD", "code": "0x50"},
+    {"glyph": "$VN", "code": "0x60"},
+    {"glyph": "$VI", "code": "0x70"},
+    {"glyph": "$DATA", "code": "0x80"},
+    {"glyph": "$IR", "code": "0x90"},
+    {"glyph": "$IA", "code": "0xA0"},
+    {"glyph": "$BMP", "code": "0xB0"},
+    {"glyph": "$RP", "code": "0xC0"},
+    {"glyph": "$EAI", "code": "0xD0"},
+    {"glyph": "$EA", "code": "0xE0"},
+    {"glyph": "$LUS", "code": "0x100"},
+    {"glyph": "$MFT", "code": "rec 0"},
+    {"glyph": "$Boot", "code": "rec 7"}
+  ],
+  "notdef": "0xF0 (unused)",
+  "confusables": [["l / I", "U+6C/U+49"], ["o / о", "U+6F/U+43E"]],
+  "matrix": {"axes": ["impact", "likelihood"], "cell": [3, 3], "rating": "33 · timestomp"},
+  "test": "FILETIME(1970-01-01Z) = 116444736000000000",
+  "notes": ["volatile first · RFC 3227", "C ≠ Created · B = birth", "lessons learned → prep"],
+  "label": "DFIR SPECIMEN · VOL. 12 · EVIDENCE",
+  "data": {"left": "HASH MATCH · SHA-256 VERIFIED", "right": "{handle} · git:(main) · purple learns"},
+  "phone": {
+    "data": {"left": "HASH MATCH · SHA-256", "right": "{handle} · purple learns"}
+  }
+}

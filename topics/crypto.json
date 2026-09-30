@@ -16,6 +16,11 @@
         "slots": [
           "control"
         ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
       }
     },
     {
@@ -198,8 +203,15 @@
       "fame": "iconic",
       "reference": "",
       "series": [
-        "catalog-card"
-      ]
+        "catalog-card",
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "note"
+        ],
+        "as": "Kerckhoffs's principle"
+      }
     },
     {
       "text": "Public-key cryptography",
@@ -209,8 +221,14 @@
       "fame": "iconic",
       "reference": "",
       "series": [
-        "catalog-card"
-      ]
+        "catalog-card",
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
     },
     {
       "text": "Forward secrecy",
@@ -221,9 +239,16 @@
       "reference": "https://www.rfc-editor.org/info/rfc9846",
       "series": [
         "catalog-card",
-        "cutting-mat"
+        "cutting-mat",
+        "specimen"
       ],
       "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "forward secrecy"
+      },
+      "spec": {
         "slots": [
           "note"
         ],
@@ -244,6 +269,11 @@
       "mat": {
         "slots": [
           "control"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
         ]
       }
     },
@@ -370,7 +400,13 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "nonce reuse"
+      }
     },
     {
       "text": "Post-quantum cryptography",
@@ -382,7 +418,12 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
     },
     {
       "text": "ML-KEM-768 · FIPS 203",
@@ -428,8 +469,14 @@
       "fame": "iconic",
       "reference": "",
       "series": [
-        "catalog-card"
-      ]
+        "catalog-card",
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
     },
     {
       "text": "CSPRNG",
@@ -441,7 +488,13 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "weak PRNG"
+      }
     },
     {
       "text": "Side-channel attack",
@@ -523,8 +576,15 @@
       "reference": "",
       "series": [
         "catalog-card",
-        "galley-proof"
-      ]
+        "galley-proof",
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "padding oracle"
+      }
     },
     {
       "text": "RFC 8446 → RFC 9846",
@@ -590,7 +650,13 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "ChaCha20-Poly1305"
+      }
     },
     {
       "text": "HKDF · RFC 5869",
@@ -602,7 +668,13 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "HKDF"
+      }
     },
     {
       "text": "Argon2id · RFC 9106",
@@ -613,8 +685,15 @@
       "reference": "https://www.rfc-editor.org/info/rfc9106",
       "series": [
         "catalog-card",
-        "galley-proof"
-      ]
+        "galley-proof",
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "Argon2id"
+      }
     },
     {
       "text": "X25519 · RFC 7748",
@@ -625,7 +704,13 @@
       "reference": "https://www.rfc-editor.org/info/rfc7748",
       "series": [
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "X25519"
+      }
     },
     {
       "text": "Ed25519 · RFC 8032",
@@ -636,7 +721,13 @@
       "reference": "https://www.rfc-editor.org/info/rfc8032",
       "series": [
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "Ed25519"
+      }
     },
     {
       "text": "2^255 − 19",
@@ -923,7 +1014,12 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ]
+      }
     },
     {
       "text": "ECH · RFC 9849",
@@ -971,6 +1067,11 @@
         "specimen"
       ],
       "mat": {
+        "slots": [
+          "status"
+        ]
+      },
+      "spec": {
         "slots": [
           "status"
         ]
@@ -1094,8 +1195,15 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "catalog-card"
-      ]
+        "catalog-card",
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "note"
+        ],
+        "as": "nothing-up-my-sleeve number"
+      }
     },
     {
       "text": "Rubber-hose cryptanalysis",
@@ -1105,9 +1213,16 @@
       "fame": "niche",
       "reference": "",
       "series": [
-        "cutting-mat"
+        "cutting-mat",
+        "specimen"
       ],
       "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "rubber-hose cryptanalysis"
+      },
+      "spec": {
         "slots": [
           "note"
         ],
@@ -1140,8 +1255,15 @@
       "fame": "niche",
       "reference": "",
       "series": [
-        "catalog-card"
-      ]
+        "catalog-card",
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "length extension"
+      }
     },
     {
       "text": "Constant-time",
@@ -1253,7 +1375,12 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ]
+      }
     },
     {
       "text": "Wycheproof",
@@ -1286,6 +1413,376 @@
         "slots": [
           "control"
         ]
+      }
+    },
+    {
+      "text": "Encrypt then MAC",
+      "type": "term",
+      "code": "RFC 7366",
+      "meaning": "Authenticate the ciphertext and reject a bad tag before any decryption; RFC 7366 defines it for TLS and DTLS.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc7366",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Encrypt, then MAC, and verify the tag before you decrypt."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "A hash is not a signature",
+      "type": "term",
+      "code": "",
+      "meaning": "A bare hash has no key, so anyone can recompute it; who sent the bytes needs a MAC or a signature.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc2104",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "A hash proves the bytes match, never who sent them."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Passwords need a slow KDF",
+      "type": "term",
+      "code": "RFC 9106",
+      "meaning": "A fast hash lets attackers test guesses cheaply; derive keys from passwords with a memory-hard KDF such as Argon2id.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc9106",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Never derive a key from a password with a bare hash."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Key storage",
+      "type": "term",
+      "code": "",
+      "meaning": "The strongest cipher fails when its key sits in a repository, a log or a plain file; keep keys in an HSM, a KMS or a vault.",
+      "fame": "niche",
+      "reference": "https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "A key is only as safe as the place it is stored."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "GREASE 0x1A1A",
+      "type": "id",
+      "code": "0x1A1A",
+      "meaning": "TLS GREASE value: clients send reserved codes like this so servers learn to ignore what they do not know (RFC 8701).",
+      "fame": "niche",
+      "reference": "RFC 8701; IANA TLS Cipher Suites registry",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "SCSV 0x5600",
+      "type": "id",
+      "code": "0x5600",
+      "meaning": "TLS_FALLBACK_SCSV: a signaling value in the cipher list that marks a downgrade retry, not a real cipher suite (RFC 7507).",
+      "fame": "niche",
+      "reference": "RFC 7507; IANA TLS Cipher Suites registry",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "SCSV 0x00FF",
+      "type": "id",
+      "code": "0x00FF",
+      "meaning": "TLS_EMPTY_RENEGOTIATION_INFO_SCSV: a signaling value that says the client supports secure renegotiation, not a real cipher suite (RFC 5746).",
+      "fame": "niche",
+      "reference": "RFC 5746; IANA TLS Cipher Suites registry",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "e / е",
+      "type": "id",
+      "code": "U+65/U+435",
+      "meaning": "Latin e and Cyrillic ie look the same in most fonts; Unicode UTS #39 lists them as confusable, the basis of IDN homograph spoofing.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "p / р",
+      "type": "id",
+      "code": "U+70/U+440",
+      "meaning": "Latin p and Cyrillic er look the same in most fonts; Unicode UTS #39 lists them as confusable.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "c / с",
+      "type": "id",
+      "code": "U+63/U+441",
+      "meaning": "Latin c and Cyrillic es look the same in most fonts; Unicode UTS #39 lists them as confusable.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "i / і",
+      "type": "id",
+      "code": "U+69/U+456",
+      "meaning": "Latin i and Cyrillic Byelorussian-Ukrainian i look the same in most fonts; Unicode UTS #39 lists them as confusable.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "SHA-256 of the empty string",
+      "type": "snippet",
+      "code": "FIPS 180-4",
+      "meaning": "Known-answer test: the SHA-256 digest of a zero-length message, first 96 bits shown.",
+      "fame": "niche",
+      "reference": "NIST FIPS 180-4",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "SHA-256(\"\") = e3b0c44298fc1c149afbf4c8…"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "SHA-1 of \"abc\"",
+      "type": "snippet",
+      "code": "FIPS 180-4",
+      "meaning": "Known-answer test: the SHA-1 digest of \"abc\", first 96 bits shown; SHA-1 is retired but the vector still checks parsers.",
+      "fame": "niche",
+      "reference": "NIST FIPS 180-4",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "SHA-1(\"abc\") = a9993e364706816aba3e2571…"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "MD5 of the empty string",
+      "type": "snippet",
+      "code": "RFC 1321",
+      "meaning": "Known-answer test: the full MD5 digest of a zero-length message, from the RFC 1321 test suite.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc1321",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "MD5(\"\") = d41d8cd98f00b204e9800998ecf8427e"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "SHA3-256 of the empty string",
+      "type": "snippet",
+      "code": "FIPS 202",
+      "meaning": "Known-answer test: the SHA3-256 digest of a zero-length message, first 96 bits shown.",
+      "fame": "niche",
+      "reference": "NIST FIPS 202",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "SHA3-256(\"\") = a7ffc6f8bf1ed76651c14756…"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "HMAC-SHA-256 test case 2",
+      "type": "snippet",
+      "code": "RFC 4231",
+      "meaning": "Known-answer test: HMAC-SHA-256 with the key \"Jefe\" over \"what do ya want for nothing?\", first 96 bits shown.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc4231",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "RFC 4231 #2 = 5bdcc146bf60754e6a042426…"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "certificate_expired(45)",
+      "type": "status-line",
+      "code": "45",
+      "meaning": "TLS alert: a certificate in the chain has expired or is not valid yet.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc9846",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "status"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "bad_record_mac(20)",
+      "type": "status-line",
+      "code": "20",
+      "meaning": "TLS alert: a record failed its integrity check; a fatal alert, and never sent for padding errors.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc9846",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "status"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "unknown_ca(48)",
+      "type": "status-line",
+      "code": "48",
+      "meaning": "TLS alert: the chain is valid but the issuing certificate authority is not trusted.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc9846",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "status"
+        ]
+      },
+      "mat": {
+        "slots": []
       }
     },
     {

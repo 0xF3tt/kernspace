@@ -11,7 +11,13 @@
       "series": [
         "specimen",
         "cutting-mat"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "DFIR"
+      }
     },
     {
       "text": "Chain of Custody",
@@ -30,6 +36,12 @@
           "note"
         ],
         "as": "chain of custody"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "custody gap"
       }
     },
     {
@@ -318,7 +330,13 @@
         "specimen",
         "catalog-card",
         "galley-proof"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "log cleared"
+      }
     },
     {
       "text": "The Sleuth Kit · Autopsy",
@@ -364,6 +382,12 @@
         "slots": [
           "flow"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "KAPE"
       }
     },
     {
@@ -441,7 +465,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "anti-forensics"
+      }
     },
     {
       "text": "Timestomp · T1070.006",
@@ -488,6 +518,12 @@
       "mat": {
         "slots": [
           "source"
+        ],
+        "as": "patient zero"
+      },
+      "spec": {
+        "slots": [
+          "rating"
         ],
         "as": "patient zero"
       }
@@ -714,6 +750,12 @@
         "slots": [
           "flow"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "MACB"
       }
     },
     {
@@ -817,6 +859,12 @@
         "slots": [
           "flow"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "SRUM"
       }
     },
     {
@@ -853,7 +901,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "VSS"
+      }
     },
     {
       "text": "hiberfil.sys",
@@ -1022,7 +1076,13 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "VAD"
+      }
     },
     {
       "text": "malfind",
@@ -1276,6 +1336,9 @@
         "slots": [
           "status"
         ]
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -1321,6 +1384,244 @@
       "series": [
         "cutting-mat"
       ]
+    },
+    {
+      "text": "Work on the copy",
+      "type": "term",
+      "code": "Forensic Image",
+      "meaning": "Analysis runs on a verified image behind a write blocker.",
+      "fame": "niche",
+      "reference": "https://www.iso.org/standard/44381.html",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Work on the copy, never on the original."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Volatile evidence first",
+      "type": "term",
+      "code": "RFC 3227",
+      "meaning": "RFC 3227 order of volatility: registers and memory before disk.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc3227",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Collect the most volatile evidence first."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "If it is not written down",
+      "type": "term",
+      "code": "Chain of Custody",
+      "meaning": "Every transfer of evidence is logged, or the chain breaks.",
+      "fame": "niche",
+      "reference": "https://www.iso.org/standard/44381.html",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "If it is not documented, it did not happen."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "rec 12 empty",
+      "type": "status-line",
+      "code": "MFT",
+      "meaning": "NTFS MFT records 12 to 15 are marked in use but empty.",
+      "fame": "niche",
+      "reference": "https://flatcap.github.io/linux-ntfs/ntfs/files/index.html",
+      "series": [
+        "specimen"
+      ],
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "rec 16 free",
+      "type": "status-line",
+      "code": "MFT",
+      "meaning": "NTFS MFT records 16 to 23 are marked free and unused.",
+      "fame": "niche",
+      "reference": "https://flatcap.github.io/linux-ntfs/ntfs/files/index.html",
+      "series": [
+        "specimen"
+      ],
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "0xFFFFFFFF",
+      "type": "status-line",
+      "code": "MFT",
+      "meaning": "The four-byte end marker that closes an MFT record attribute list.",
+      "fame": "niche",
+      "reference": "https://flatcap.github.io/linux-ntfs/ntfs/attributes/index.html",
+      "series": [
+        "specimen"
+      ],
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "0 / O",
+      "type": "id",
+      "code": "U+30/U+4F",
+      "meaning": "Digit zero and Latin O.",
+      "fame": "niche",
+      "reference": "https://www.unicode.org/Public/security/latest/confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "1 / l",
+      "type": "id",
+      "code": "U+31/U+6C",
+      "meaning": "Digit one and lowercase L.",
+      "fame": "niche",
+      "reference": "https://www.unicode.org/Public/security/latest/confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "a / а",
+      "type": "id",
+      "code": "U+61/U+430",
+      "meaning": "Latin a and Cyrillic а.",
+      "fame": "niche",
+      "reference": "https://www.unicode.org/Public/security/latest/confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "e / е",
+      "type": "id",
+      "code": "U+65/U+435",
+      "meaning": "Latin e and Cyrillic е.",
+      "fame": "niche",
+      "reference": "https://www.unicode.org/Public/security/latest/confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "MD5 of the empty file",
+      "type": "snippet",
+      "code": "MD5",
+      "meaning": "Known-answer test: MD5 of zero bytes.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc1321",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "MD5(\"\") = d41d8cd98f00b204e9800998ecf8427e"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "SHA-1 of the empty file",
+      "type": "snippet",
+      "code": "SHA-1",
+      "meaning": "Known-answer test: SHA-1 of zero bytes, the value seen for empty files in the Amcache.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc3174",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "SHA-1(\"\") = da39a3ee5e6b4b0d3255bfef9560…"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Mac epoch as a Unix time",
+      "type": "snippet",
+      "code": "CFAbsoluteTime",
+      "meaning": "Known-answer test: 978307200 seconds after 1970-01-01 is the Mac absolute time epoch.",
+      "fame": "niche",
+      "reference": "https://developer.apple.com/documentation/corefoundation/cfabsolutetime",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "Unix 978307200 = 2001-01-01Z (Mac epoch)"
+      },
+      "mat": {
+        "slots": []
+      }
     }
   ]
 }

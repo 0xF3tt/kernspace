@@ -138,9 +138,14 @@ button { font: inherit; color: inherit; }
 }
 .stage-col { grid-area: stage; display: flex; flex-direction: column; min-width: 0; }
 .stage-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
-.series-now { display: flex; align-items: baseline; gap: 10px; font-size: var(--t-15); color: var(--ink-2); }
-.series-now b { font-weight: 560; color: var(--ink); }
-.series-now a { color: var(--ink-3); font-size: var(--t-13); }
+.series-now { display: flex; align-items: center; gap: 6px 16px; min-width: 0; font-size: var(--t-15); color: var(--ink-2); }
+.series-meta { display: flex; align-items: baseline; gap: 10px; }
+.series-meta a { color: var(--ink-3); font-size: var(--t-13); }
+/* the series switch: radios marked with registration brackets, never filled */
+.series-switch { display: flex; gap: 8px; }
+.sopt .bracket { position: relative; display: block; --bi: -1px; padding: 5px 12px; color: var(--ink-2); line-height: 1.3; transition: color .15s; }
+.sopt:hover .bracket, .sopt input:checked + .bracket { color: var(--ink); }
+.sopt input:focus-visible + .bracket { outline: 2px solid var(--pencil); outline-offset: 3px; border-radius: 4px; }
 
 .stage {
   position: relative; display: grid; place-items: center;
@@ -443,6 +448,9 @@ input:checked ~ .bracket::after, input:checked + .bracket::after { opacity: 1; t
 .sheetlet h3 { font-size: var(--t-21); letter-spacing: -.01em; line-height: 1.2; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .sheetlet p { color: var(--ink-2); font-size: var(--t-15); line-height: 1.45; }
 .sheetlet .origin { color: var(--ink-3); font-style: italic; }
+.sheetlet .use-series { align-self: flex-start; margin-top: 4px; }
+.sheetlet .art.bracket { --bi: -7px; }
+.sheetlet[data-current] .art.bracket::after { opacity: 1; transform: none; }
 
 /* colophon + sign-off */
 .colophon .wrap { padding-block: 72px 40px; }
@@ -625,7 +633,7 @@ body[data-editing] .ruler-y span::after { content: ""; position: absolute; top: 
   .studio .wrap { grid-template-columns: minmax(0, 1fr) 312px; gap: 0 32px; }
   .read-grid { grid-template-columns: minmax(0, 1fr); }
   .read-fig { position: relative; top: auto; }
-  .series-now { display: none; }
+  .series-meta { display: none; }
   .series-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .vol-name { font-size: 48px; }
 }
@@ -634,8 +642,10 @@ body[data-editing] .ruler-y span::after { content: ""; position: absolute; top: 
   .top .icon-btn, .vol-nav .icon-btn { width: 44px; height: 44px; }
   .brand { min-height: 44px; }
   .btn-sm, .who input { height: 44px; }
+  .stage-bar { flex-wrap: wrap; }
+  .sopt .bracket { padding-block: 11px; }
   .seg-view .opt { padding-block: 13px; }
-  .gcard .face.bracket::after { transform: none; }   /* the settle scale would push the last card past the screen */
+  .gcard .face.bracket::after, .sheetlet .art.bracket::after { transform: none; }   /* the settle scale would push the last card past the screen */
   .nav { display: none; }
   .intro .wrap, .sec-head { grid-template-columns: minmax(0, 1fr); }
   .intro .wrap { padding-block: 28px 20px; }
@@ -684,7 +694,7 @@ body[data-editing] .ruler-y span::after { content: ""; position: absolute; top: 
   .vol-name { font-size: 44px; }
   .strip { grid-auto-columns: 112px; }
   .hint-keys { display: none; }
-  .series-now { display: none; }
+  .series-now { width: 100%; }
   .stage-tools { width: 100%; justify-content: space-between; }
   .seg-view { width: 172px; }
   .gmeta .mono { display: none; }

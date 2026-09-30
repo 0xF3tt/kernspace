@@ -12,7 +12,13 @@
         "cutting-mat",
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "CTF"
+      }
     },
     {
       "text": "flag{...}",
@@ -67,13 +73,20 @@
       "reference": "https://help.hackthebox.com/en/articles/5200851-ctf-user-s-guide",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "specimen"
       ],
       "mat": {
         "slots": [
           "finding"
         ],
         "as": "first blood"
+      },
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Solve it before anyone else and the board remembers your team."
       }
     },
     {
@@ -122,6 +135,12 @@
         "slots": [
           "finding"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "PWN"
       }
     },
     {
@@ -134,7 +153,13 @@
       "series": [
         "cutting-mat",
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "REV"
+      }
     },
     {
       "text": "crypto",
@@ -158,7 +183,13 @@
       "series": [
         "cutting-mat",
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "WEB"
+      }
     },
     {
       "text": "forensics",
@@ -182,7 +213,13 @@
       "series": [
         "cutting-mat",
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "MISC"
+      }
     },
     {
       "text": "stego",
@@ -404,13 +441,20 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "specimen"
       ],
       "mat": {
         "slots": [
           "note"
         ],
         "as": "sanity check"
+      },
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "The first flag is free: read the rules and paste it in."
       }
     },
     {
@@ -518,12 +562,19 @@
       "reference": "https://2026.faustctf.net/information/basic-vulnbox-hosting/",
       "series": [
         "cutting-mat",
-        "catalog-card"
+        "catalog-card",
+        "specimen"
       ],
       "mat": {
         "slots": [
           "sink"
         ]
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "exposed Vulnbox"
       }
     },
     {
@@ -572,6 +623,11 @@
         "slots": [
           "flow"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ]
       }
     },
     {
@@ -583,12 +639,19 @@
       "reference": "https://2026.faustctf.net/information/rules/",
       "series": [
         "cutting-mat",
-        "catalog-card"
+        "catalog-card",
+        "specimen"
       ],
       "mat": {
         "slots": [
           "sink"
         ]
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "NOP team"
       }
     },
     {
@@ -722,8 +785,15 @@
       "fame": "niche",
       "reference": "",
       "series": [
-        "galley-proof"
-      ]
+        "galley-proof",
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Solve it after the clock stops and learn what you missed."
+      }
     },
     {
       "text": "Unintended",
@@ -733,8 +803,15 @@
       "fame": "niche",
       "reference": "",
       "series": [
-        "galley-proof"
-      ]
+        "galley-proof",
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Solve it a way the author never planned, then write it up."
+      }
     },
     {
       "text": "revenge",
@@ -767,8 +844,15 @@
       "fame": "niche",
       "reference": "",
       "series": [
-        "galley-proof"
-      ]
+        "galley-proof",
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "guessy challenge"
+      }
     },
     {
       "text": "picoCTF{...}",
@@ -821,7 +905,10 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "flower → Tulip",
@@ -1116,8 +1203,15 @@
       "reference": "https://2026.faustctf.net/information/rules/",
       "series": [
         "galley-proof",
-        "catalog-card"
-      ]
+        "catalog-card",
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "flag sharing"
+      }
     },
     {
       "text": "DC4 · 1996",
@@ -1153,6 +1247,296 @@
       "series": [
         "cutting-mat"
       ]
+    },
+    {
+      "text": "Lost flag",
+      "type": "term",
+      "code": "",
+      "meaning": "In Attack-Defense a rival team captured your flag during a tick, and the round costs you points.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "lost flag"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "nr 387–423",
+      "type": "status-line",
+      "code": "syscall_64.tbl",
+      "meaning": "The x86-64 syscall table carries the note \"don't use numbers 387 through 423\"; a call with such a number returns ENOSYS.",
+      "fame": "niche",
+      "reference": "https://github.com/torvalds/linux/blob/master/arch/x86/entry/syscalls/syscall_64.tbl",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "nr 473–511",
+      "type": "status-line",
+      "code": "syscall_64.tbl",
+      "meaning": "The x86-64 syscall table has no entry between 472 and 512; a call with such a number returns ENOSYS.",
+      "fame": "niche",
+      "reference": "https://github.com/torvalds/linux/blob/master/arch/x86/entry/syscalls/syscall_64.tbl",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "ENOSYS · 38",
+      "type": "status-line",
+      "code": "errno",
+      "meaning": "Linux errno 38, Function not implemented: what a syscall number without a handler returns.",
+      "fame": "niche",
+      "reference": "https://man7.org/linux/man-pages/man3/errno.3.html",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "1 / l",
+      "type": "id",
+      "code": "U+31/U+6C",
+      "meaning": "Latin digit 1 and l look the same in most fonts; Unicode UTS #39 lists them as confusable.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "S / Ѕ",
+      "type": "id",
+      "code": "U+53/U+405",
+      "meaning": "Latin capital S and Cyrillic capital dze look the same in most fonts; Unicode UTS #39 lists them as confusable.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "0 / O",
+      "type": "id",
+      "code": "U+30/U+4F",
+      "meaning": "Latin digit 0 and capital O look the same in most fonts; Unicode UTS #39 lists them as confusable.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "o / о",
+      "type": "id",
+      "code": "U+6F/U+43E",
+      "meaning": "Latin o and Cyrillic o look the same in most fonts; Unicode UTS #39 lists them as confusable.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "a / а",
+      "type": "id",
+      "code": "U+61/U+430",
+      "meaning": "Latin a and Cyrillic a look the same in most fonts; Unicode UTS #39 lists them as confusable.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "syscall and int 0x80",
+      "type": "snippet",
+      "code": "x86-64",
+      "meaning": "Known-answer test: the two ways into the Linux kernel on x86-64 are encoded 0F 05 (syscall) and CD 80 (int 0x80).",
+      "fame": "niche",
+      "reference": "https://www.felixcloutier.com/x86/syscall",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "syscall = 0F 05 · int 0x80 = CD 80"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "ELF magic",
+      "type": "snippet",
+      "code": "ELF",
+      "meaning": "Known-answer test: an ELF file starts with the four bytes 7F 45 4C 46, a DEL byte and the letters ELF.",
+      "fame": "niche",
+      "reference": "https://refspecs.linuxfoundation.org/elf/gabi4+/ch4.eheader.html",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "ELF magic = 7F 45 4C 46 · \"\\x7fELF\""
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "MD5 of \"abc\"",
+      "type": "snippet",
+      "code": "RFC 1321",
+      "meaning": "Known-answer test: the MD5 digest of \"abc\" from the RFC 1321 test suite, first 96 bits shown.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc1321",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "MD5(\"abc\") = 900150983cd24fb0d6963f7d…"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "base64 and ROT13 of flag{",
+      "type": "snippet",
+      "code": "",
+      "meaning": "Known-answer test: the two encodings a beginner meets first, base64 and ROT13, applied to the flag prefix flag{.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "base64(\"flag{\") = ZmxhZ3s= · ROT13 = synt{"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "tick 43 · SLA 100%",
+      "type": "status-line",
+      "code": "",
+      "meaning": "Status line of an Attack-Defense round: the checker passes and every service is up.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "status"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "tick 43 · first blood",
+      "type": "status-line",
+      "code": "",
+      "meaning": "Status line of a round in which one team took the first flag of the game.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "status"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
     }
   ]
 }

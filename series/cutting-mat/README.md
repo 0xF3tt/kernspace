@@ -45,7 +45,7 @@ Characters count as code points (`·` and `→` are one). Every character must e
 
 Fixed on every sheet: `ISB-01` / `ISB-02` and the signature. The `# whoami` box takes the viewer's handle (≤ 20) and line (≤ 40); the app asks for both before it lets anyone download, and puts them on one line, or on two when together they pass 48.
 
-The limits live in one place, `LIMITS` in [`app/check.js`](../../app/check.js), which the test and the app's word editor share.
+The limits live in one place, `LIMITS` in [`app/series/cutting-mat.rules.js`](../../app/series/cutting-mat.rules.js), which the test and the app's word editor share.
 
 ## Presets
 
@@ -57,7 +57,7 @@ To add a preset:
 2. Append its entry to `index.json`. `vol` continues the sequence (1, 2, 3…), `title` reads `Vol. NN · Name` with a name of 10 characters or fewer, and `ground` is `dark`, `mid` or `light`. One preset per topic.
 3. Run `node app/render.test.mjs` and `node app/words.test.mjs`. The first checks the index (keys, order, unique ids, a lexicon for every topic, no unlisted preset files), then every preset (known keys only, the limits above, glyph coverage), renders it in every palette, ground and format, and runs the overlap checker.
 
-The overlap checker ([`app/check.js`](../../app/check.js)) rebuilds a box for every text on each sheet (widths from the bundled fonts' own advances: JetBrains Mono at 0.6em per character, Nunito at the weight the sheet draws plus 0.1em for kerning; ink height from the fonts, label halos included, flows kept at their angle). It runs with no handle, a 7-character one and a 20-character one, and with the longest `# whoami` line, and fails with the slot and layout entry to move when:
+The overlap checker ([`app/series/cutting-mat.rules.js`](../../app/series/cutting-mat.rules.js), on the boxes and font metrics of [`app/boxes.js`](../../app/boxes.js); [`app/check.js`](../../app/check.js) dispatches to it) rebuilds a box for every text on each sheet (widths from the bundled fonts' own advances: JetBrains Mono at 0.6em per character, Nunito at the weight the sheet draws plus 0.1em for kerning; ink height from the fonts, label halos included, flows kept at their angle). It runs with no handle, a 7-character one and a 20-character one, and with the longest `# whoami` line, and fails with the slot and layout entry to move when:
 
 - two texts overlap, or a text overlaps a tape, a control square, the source or sink dot or a note tick;
 - a panel text does not fit its panel, or any other text runs under a panel or an ISB tag;

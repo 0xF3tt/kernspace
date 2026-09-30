@@ -1,0 +1,46 @@
+{
+  "series": "specimen",
+  "topic": "ctf",
+  "title": "Vol. 14 · Capture",
+  "ground": "dark",
+  "hero": "PWN",
+  "family": "Binary exploitation",
+  "class": "syscall · ROP · shellcode",
+  "waterfall": {
+    "phrase": "Defend yours, capture theirs: the flag is the only score.",
+    "roles": ["spectator", "rival team", "our team", "checker", "gamemaster"]
+  },
+  "charset": [
+    {"glyph": "read", "code": "0"},
+    {"glyph": "write", "code": "1"},
+    {"glyph": "open", "code": "2"},
+    {"glyph": "close", "code": "3"},
+    {"glyph": "mmap", "code": "9"},
+    {"glyph": "brk", "code": "12"},
+    {"glyph": "ioctl", "code": "16"},
+    {"glyph": "pipe", "code": "22"},
+    {"glyph": "dup2", "code": "33"},
+    {"glyph": "socket", "code": "41"},
+    {"glyph": "accept", "code": "43"},
+    {"glyph": "clone", "code": "56"},
+    {"glyph": "fork", "code": "57"},
+    {"glyph": "execve", "code": "59"},
+    {"glyph": "exit", "code": "60"},
+    {"glyph": "kill", "code": "62"},
+    {"glyph": "ptrace", "code": "101"},
+    {"glyph": "getuid", "code": "102"},
+    {"glyph": "setuid", "code": "105"},
+    {"glyph": "chroot", "code": "161"},
+    {"glyph": "openat", "code": "257"}
+  ],
+  "notdef": "nr 387–423",
+  "confusables": [["1 / l", "U+31/U+6C"], ["S / Ѕ", "U+53/U+405"]],
+  "matrix": {"axes": ["impact", "likelihood"], "cell": [3, 4], "rating": "34 · lost flag"},
+  "test": "syscall = 0F 05 · int 0x80 = CD 80",
+  "notes": ["SLA before first blood", "no flag sharing", "upsolve what you missed"],
+  "label": "CTF SPECIMEN · VOL. 14 · CAPTURE",
+  "data": {"left": "tick 42 · checker OK · 0 flags lost", "right": "{handle} · git:(main) · purple learns"},
+  "phone": {
+    "data": {"left": "tick 42 · checker OK", "right": "{handle} · purple learns"}
+  }
+}

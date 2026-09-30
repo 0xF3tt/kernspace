@@ -1,0 +1,45 @@
+{
+  "series": "specimen",
+  "topic": "red-team",
+  "title": "Vol. 07 · Emulate",
+  "ground": "dark",
+  "hero": "TTP",
+  "family": "Adversary emulation",
+  "class": "threat actor · ATT&CK group · G-ID",
+  "waterfall": {
+    "phrase": "Think like the adversary, but stay inside the rules.",
+    "roles": ["observer", "blue team", "operator", "red lead", "white cell"]
+  },
+  "charset": [
+    {"glyph": "Axiom", "code": "G0001"},
+    {"glyph": "APT1", "code": "G0006"},
+    {"glyph": "APT28", "code": "G0007"},
+    {"glyph": "Turla", "code": "G0010"},
+    {"glyph": "APT29", "code": "G0016"},
+    {"glyph": "Naikon", "code": "G0019"},
+    {"glyph": "APT3", "code": "G0022"},
+    {"glyph": "FIN6", "code": "G0037"},
+    {"glyph": "FIN7", "code": "G0046"},
+    {"glyph": "OilRig", "code": "G0049"},
+    {"glyph": "APT32", "code": "G0050"},
+    {"glyph": "FIN5", "code": "G0053"},
+    {"glyph": "FIN8", "code": "G0061"},
+    {"glyph": "APT33", "code": "G0064"},
+    {"glyph": "APT37", "code": "G0067"},
+    {"glyph": "APT19", "code": "G0073"},
+    {"glyph": "APT38", "code": "G0082"},
+    {"glyph": "APT39", "code": "G0087"},
+    {"glyph": "TA505", "code": "G0092"},
+    {"glyph": "APT41", "code": "G0096"}
+  ],
+  "notdef": "T1078 unseen",
+  "confusables": [["a / а", "U+61/U+430"], ["e / е", "U+65/U+435"]],
+  "matrix": {"axes": ["impact", "likelihood"], "cell": [4, 2], "rating": "42 · detection gap"},
+  "test": "NTOWFv1(\"Password\") = a4f49c406510bdca…",
+  "notes": ["assume breach", "roe signed · scope locked", "TTPs over tools"],
+  "label": "RED TEAM SPECIMEN · VOL. 07 · EMULATE",
+  "data": {"left": "[GAP] T1078 unseen · objective met", "right": "{handle} · git:(main) · red breaks"},
+  "phone": {
+    "data": {"left": "[GAP] T1078 · objective met", "right": "{handle} · red breaks"}
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "series": "specimen",
+  "topic": "mobile",
+  "title": "Vol. 04 · Device",
+  "ground": "light",
+  "hero": "TEE",
+  "family": "Trusted Execution",
+  "class": "hardware root · key custody · chip",
+  "waterfall": {
+    "phrase": "Trust the chip, not the phone.",
+    "roles": ["phone thief", "other app", "own app", "system", "secure world"]
+  },
+  "charset": [
+    {"glyph": "4.3", "code": "API 18"},
+    {"glyph": "4.4", "code": "API 19"},
+    {"glyph": "5.0", "code": "API 21"},
+    {"glyph": "5.1", "code": "API 22"},
+    {"glyph": "6.0", "code": "API 23"},
+    {"glyph": "7.0", "code": "API 24"},
+    {"glyph": "7.1", "code": "API 25"},
+    {"glyph": "8.0", "code": "API 26"},
+    {"glyph": "8.1", "code": "API 27"},
+    {"glyph": "9", "code": "API 28"},
+    {"glyph": "10", "code": "API 29"},
+    {"glyph": "11", "code": "API 30"},
+    {"glyph": "12", "code": "API 31"},
+    {"glyph": "12L", "code": "API 32"},
+    {"glyph": "13", "code": "API 33"},
+    {"glyph": "14", "code": "API 34"},
+    {"glyph": "15", "code": "API 35"},
+    {"glyph": "16", "code": "API 36"}
+  ],
+  "notdef": "API 10000",
+  "confusables": [["e / е", "U+65/U+435"], ["c / с", "U+63/U+441"]],
+  "matrix": {"axes": ["impact", "likelihood"], "cell": [4, 2], "rating": "42 · token theft"},
+  "test": "TOTP(SHA-1, t=59, 8 digits) = 94287082",
+  "notes": ["assume the phone is lost", "the sandbox is not enough", "the server checks the chip"],
+  "label": "MOBILE SPECIMEN · VOL. 04 · DEVICE",
+  "data": {"left": "verdict: MEETS_STRONG_INTEGRITY", "right": "{handle} · git:(main) · blue builds"},
+  "phone": {
+    "data": {"left": "MEETS_STRONG_INTEGRITY", "right": "{handle} · blue builds"}
+  }
+}

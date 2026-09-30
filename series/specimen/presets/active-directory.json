@@ -1,0 +1,45 @@
+{
+  "series": "specimen",
+  "topic": "active-directory",
+  "title": "Vol. 06 · Forest",
+  "ground": "mid",
+  "hero": "TGT",
+  "family": "Ticket-Granting Ticket",
+  "class": "Kerberos · krbtgt · tier 0",
+  "waterfall": {
+    "phrase": "The forest is the security boundary, not the domain.",
+    "roles": ["anonymous", "domain user", "local admin", "domain admin", "krbtgt"]
+  },
+  "charset": [
+    {"glyph": "World", "code": "S-1-1-0"},
+    {"glyph": "Anon", "code": "S-1-5-7"},
+    {"glyph": "AuthU", "code": "S-1-5-11"},
+    {"glyph": "System", "code": "S-1-5-18"},
+    {"glyph": "NetSvc", "code": "S-1-5-20"},
+    {"glyph": "Admin", "code": "RID 500"},
+    {"glyph": "Guest", "code": "RID 501"},
+    {"glyph": "krbtgt", "code": "RID 502"},
+    {"glyph": "DA", "code": "RID 512"},
+    {"glyph": "DU", "code": "RID 513"},
+    {"glyph": "DComp", "code": "RID 515"},
+    {"glyph": "DCs", "code": "RID 516"},
+    {"glyph": "CertP", "code": "RID 517"},
+    {"glyph": "Schema", "code": "RID 518"},
+    {"glyph": "EA", "code": "RID 519"},
+    {"glyph": "GPCO", "code": "RID 520"},
+    {"glyph": "RODCs", "code": "RID 521"},
+    {"glyph": "ProtU", "code": "RID 525"},
+    {"glyph": "KeyAd", "code": "RID 526"},
+    {"glyph": "RAS", "code": "RID 553"}
+  ],
+  "notdef": "S-1-5-8 Proxy",
+  "confusables": [["A / А", "U+41/U+410"], ["K / К", "U+4B/U+41A"]],
+  "matrix": {"axes": ["impact", "likelihood"], "cell": [4, 3], "rating": "43 · Kerberoasting"},
+  "test": "NT(\"password\") = 8846f7eaee8fb117ad06…",
+  "notes": ["clock skew <= 5 min", "tier 0 logs on to tier 0", "krbtgt signs every ticket"],
+  "label": "AD SPECIMEN · VOL. 06 · FOREST",
+  "data": {"left": "[PASS] 0 paths · domain user → tier 0", "right": "{handle} · git:(main) · blue builds"},
+  "phone": {
+    "data": {"left": "[PASS] 0 paths → tier 0", "right": "{handle} · blue builds"}
+  }
+}

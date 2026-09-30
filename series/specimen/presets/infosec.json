@@ -1,0 +1,44 @@
+{
+  "series": "specimen",
+  "topic": "infosec",
+  "title": "Vol. 15 · Trust",
+  "ground": "mid",
+  "hero": "CIA",
+  "family": "The security triad",
+  "class": "triad · AAA · least privilege",
+  "waterfall": {
+    "phrase": "Never trust, always verify: deny by default, grant the least.",
+    "roles": ["stranger", "user", "admin", "CISO", "board"]
+  },
+  "charset": [
+    {"glyph": "Risk", "code": "GV.RM"},
+    {"glyph": "Roles", "code": "GV.RR"},
+    {"glyph": "Policy", "code": "GV.PO"},
+    {"glyph": "Supply", "code": "GV.SC"},
+    {"glyph": "Org", "code": "GV.OC"},
+    {"glyph": "Assets", "code": "ID.AM"},
+    {"glyph": "Assess", "code": "ID.RA"},
+    {"glyph": "Improv", "code": "ID.IM"},
+    {"glyph": "Access", "code": "PR.AA"},
+    {"glyph": "Train", "code": "PR.AT"},
+    {"glyph": "Data", "code": "PR.DS"},
+    {"glyph": "Resil", "code": "PR.IR"},
+    {"glyph": "Monit", "code": "DE.CM"},
+    {"glyph": "Events", "code": "DE.AE"},
+    {"glyph": "Manage", "code": "RS.MA"},
+    {"glyph": "Report", "code": "RS.CO"},
+    {"glyph": "Mitig", "code": "RS.MI"},
+    {"glyph": "Recov", "code": "RC.RP"},
+    {"glyph": "Comms", "code": "RC.CO"}
+  ],
+  "notdef": "PR.AC → PR.AA",
+  "confusables": [["x / х", "U+78/U+445"], ["y / у", "U+79/U+443"]],
+  "matrix": {"axes": ["impact", "likelihood"], "cell": [3, 3], "rating": "33 · implicit trust"},
+  "test": "EICAR = 68 bytes · MD5 44d88612fea8a8f3…",
+  "notes": ["no read up · no write down", "open design, secret keys", "deny by default"],
+  "label": "INFOSEC SPECIMEN · VOL. 15 · TRUST",
+  "data": {"left": "CSF 2.0 · GV · ID · [PR] · DE · RS · RC", "right": "{handle} · git:(main) · purple learns"},
+  "phone": {
+    "data": {"left": "GV · ID · [PR] · DE · RS", "right": "{handle} · purple learns"}
+  }
+}
