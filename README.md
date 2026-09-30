@@ -13,9 +13,9 @@
 
 Original visual resources for the cybersecurity and geek community: wallpapers first, more later. No hoodies, no green rain, no padlocks, no skulls. Every element on a sheet means something real in security, and every word is checked.
 
-This is a proposal, not a rule: a different way cyber could look.
+A proposal, not a rule: a different way cyber could look.
 
-> **Status:** 1.0.0-beta.2. A web app renders Cutting Mat wallpapers in your browser: pick a preset, a palette, one of its three grounds and a format, swap any word for another from the topic's lexicon, fill in your `# whoami` (a handle and a line of your own, both needed to download), then download PNG or SVG. Your edits stay in your browser.
+> **Status:** 1.0.0-beta.2. A web app renders Cutting Mat and Specimen wallpapers in your browser: pick a series, a preset, a palette, one of its three grounds and a format, swap any word for another from the topic's lexicon, fill in your `# whoami` (a handle and a line of your own, both needed to download), then download PNG or SVG. Your edits stay in your browser.
 
 ## How it works
 
@@ -23,8 +23,8 @@ Every piece is a combination of four things:
 
 | Axis | What it is | Today |
 |---|---|---|
-| **Series** | A layout borrowed from graphic design, where each element carries a security meaning | `cutting-mat` (15 presets) · `specimen` · `galley-proof` · `catalog-card` (concepts) |
-| **Topic** | A researched lexicon of one field's real vocabulary | 15 topics · 1,329 verified terms |
+| **Series** | A layout borrowed from graphic design, where each element carries a security meaning | `cutting-mat` (15 presets) · `specimen` (15 presets) · `galley-proof` · `catalog-card` (concepts) |
+| **Topic** | A researched lexicon of one field's real vocabulary | 15 topics · 1,527 verified terms |
 | **Palette** | A color system with three grounds, contrast-checked (WCAG) and color-vision checked | `purple` · `green` · `red` · `blue` |
 | **Format** | Output size | `desktop` 3840×2160 · `wide` 3840×2400 (16:10) · `phone` 1290×2796 |
 
@@ -57,7 +57,7 @@ node app/render.test.mjs
 node app/words.test.mjs
 ```
 
-The first renders every preset in every palette, ground and format and runs the overlap checker; the second takes a sample of the words the editor offers, applies them and runs the same checker on each result.
+The first renders every preset of both series in every palette, ground and format and runs each series' overlap checker (and checks that the checker fires on broken sheets); the second takes a sample of the words the editor offers for each series, applies them and runs the same checker on each result.
 
 ## Deploy
 
@@ -89,8 +89,9 @@ git tag -s v1.0.0-beta.2 -m "1.0.0-beta.2" && git push origin v1.0.0-beta.2
 2. ~~Topic lexicons (15)~~
 3. ~~Web app (Beta 1): Cutting Mat, 3 presets, 4 palettes, 3 formats, custom handle~~
 4. ~~Cutting Mat presets for all 15 topics~~
-5. New series: Specimen, Galley Proof, Catalog Card
-6. Lint for lexicons, palettes and presets in CI
+5. ~~Specimen series: renderer, series switch and all 15 topics~~
+6. New series: Galley Proof, Catalog Card
+7. Lint for lexicons, palettes and presets in CI
 
 ## How it's made
 

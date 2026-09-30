@@ -12,9 +12,10 @@ By opening a pull request or submitting content, you confirm that you have the r
 ## Proposing Terms for Topics
 We welcome contributions to existing topic lexicons (`topics/<topic>.json`):
 1. **Verifiable sources:** Every canonical ID, number, or standard must cite an official reference (e.g. RFC, OWASP, MITRE CWE/ATT&CK, NIST).
-2. **Field lengths:** Character limits are enforced by the sheet geometry (max 38 characters for `text`, max 120 for `meaning`).
-3. **No sensitive data:** Public terminology only. Never include real personal emails, internal hostnames, credentials, or private keys.
-4. **Validation:** Always run the test suite locally before opening a pull request:
+2. **Series hints:** a term can say where it reads right on each series (`mat`, `spec`); see [`topics/README.md`](topics/README.md).
+3. **Field lengths:** Character limits are enforced by the sheet geometry (max 38 characters for `text`, max 120 for `meaning`).
+4. **No sensitive data:** Public terminology only. Never include real personal emails, internal hostnames, credentials, or private keys.
+5. **Validation:** Always run the test suite locally before opening a pull request:
    ```sh
    node app/render.test.mjs
    node app/words.test.mjs

@@ -45,8 +45,11 @@ Each topic file (`<slug>.json`) holds a list of terms:
 | `reference` | Official source for IDs and numbers |
 | `series` | Which series it suits: `cutting-mat`, `specimen`, `galley-proof`, `catalog-card` |
 | `mat` | Optional. Where the term reads right on a Cutting Mat: `slots` (any of `source`, `sink`, `control`, `flow`, `finding`, `note`, `status`) and `as`, the form it takes there when that differs from `text` |
+| `spec` | Optional. The same for a Specimen sheet: `slots` (any of `hero`, `family`, `class`, `phrase`, `notdef`, `confusable`, `rating`, `test`, `note`, `status`) and `as`, the sheet form when it differs from `text` (a test line, say, or a hero shortened to 4 characters). A confusable pair takes its second half from `code` |
 
-The word editor offers a term with a `mat` hint first, under *Suggested*, in its `as` form; terms without one are offered by `type` further down. `node app/words.test.mjs` checks every `mat` hint and every `phrase`.
+The word editor offers a term with a hint for the series on the sheet first, under *Suggested*, in its `as` form; terms without one are offered by `type` further down (a hero, a waterfall phrase, a confusable pair and a rating are offered only through a `spec` hint). `node app/words.test.mjs` checks every `mat` and `spec` hint and every `phrase`.
+
+Two conventions keep the series apart. A term written for one series only carries an empty hint for the other (`"mat": {"slots": []}` on a Specimen-only term), so the other series does not offer it by type. A status line too long for a phone prompt beside a 20-character handle carries an empty hint for that series too (`"spec": {"slots": []}`).
 
 ## Trademarks and References
 

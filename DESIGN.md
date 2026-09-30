@@ -19,7 +19,7 @@ Every color is a token on `:root`. Dark is the default; light redefines the same
 | `--control` | `#6A6383` | `#8E88A6` | Input and track edges, 3:1 against the ground |
 | `--ink` | `#EDEAF6` | `#16122A` | Text; the one filled button |
 | `--ink-2`, `--ink-3` | `#ADA7C2`, `#948EAB` | `#4A445F`, `#686280` | Secondary and tertiary text |
-| `--pencil` | `#7FCBDA` | `#1A6B80` | Annotation only: selection, focus, the marks in *Read the mat* |
+| `--pencil` | `#7FCBDA` | `#1A6B80` | Annotation only: selection, focus, the marks in *Read the mat* / *Read the specimen* |
 | `--pencil-sheet` | `#8FD6E4` | same | Pencil drawn over a sheet, in both themes |
 | `--rubric` | `#F2939C` | `#B42A2A` | Errors, and why a word doesn't fit |
 | `--tape` | ink at 8% | ink at 6% | Hover wash |
@@ -38,6 +38,7 @@ Scale, in px: 12 · 13 · 15 · 17 (body, line height 1.5) · 21 · 28 · 40 · 
 ## Elements
 
 - **Registration brackets.** The one selection mark, drawn in pencil at the four corners: the current volume, ground, slot and option. A selection is never a filled block.
+- **The series switch.** The stage bar names the series as two radio options, and the selected one takes the registration brackets, never a fill. The Live cards in *Series* use the same brackets for the series in the studio; each card's button switches to it.
 - **The stage.** The sheet in its well, with rulers in sheet pixels along the top and left. In the word editor the rulers follow the zoom.
 - **One filled button per screen.** *Download PNG*, in ink. Every other button is outlined.
 - **The slip.** The only toast: bottom center, one line of what happened, an undo when there is one.
@@ -48,7 +49,7 @@ Scale, in px: 12 · 13 · 15 · 17 (body, line height 1.5) · 21 · 28 · 40 · 
 Content runs to 1440px with a 32px gutter (16px on phones). Breakpoints at 1180, 860 and 560px.
 
 - **Wide:** the stage on the left, the inspector (344px) on the right.
-- **1180px and below:** the inspector narrows to 312px; *Read the mat* stacks, and picking a line from its key scrolls the sheet into view.
+- **1180px and below:** the inspector narrows to 312px; *Read the mat* (or *Read the specimen*) stacks, and picking a line from its key scrolls the sheet into view.
 - **860px and below:** one column. Downloads sit in a bar pinned to the bottom. In the word editor the stage, the slot rail and the edit bar stay pinned while the options scroll.
 
 ## Motion
@@ -57,7 +58,7 @@ One orchestrated moment: the zoom to a slot in the word editor (380ms, ease-out 
 
 ## Words
 
-Sentence case and plain verbs. An action keeps its name through the flow: *Download PNG* is followed by *Saved*. An error says what failed and what to do next (*The PNG could not be drawn in this browser. Download the SVG instead*). Marks on a sheet are named for what they show, and the key in *Read the mat* says what each one means in the threat model.
+Sentence case and plain verbs. An action keeps its name through the flow: *Download PNG* is followed by *Saved*. An error says what failed and what to do next (*The PNG could not be drawn in this browser. Download the SVG instead*). Marks on a sheet are named for what they show, and the key in *Read the mat* (*Read the specimen* on a Specimen sheet) says what each one means in the threat model. The section's name and intro come from the series.
 
 ## Rules
 
