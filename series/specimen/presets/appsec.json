@@ -1,0 +1,45 @@
+{
+  "series": "specimen",
+  "topic": "appsec",
+  "title": "Vol. 01 · Design",
+  "ground": "mid",
+  "hero": "DFD",
+  "family": "Data flow diagram",
+  "class": "threat model · STRIDE · design",
+  "waterfall": {
+    "phrase": "Design the control in before the first line is written.",
+    "roles": ["anonymous", "authed user", "owner", "admin", "service acct"]
+  },
+  "charset": [
+    {"glyph": "XSS", "code": "CWE-79"},
+    {"glyph": "SQLi", "code": "CWE-89"},
+    {"glyph": "CSRF", "code": "CWE-352"},
+    {"glyph": "AuthZ", "code": "CWE-862"},
+    {"glyph": "OOBW", "code": "CWE-787"},
+    {"glyph": "Path", "code": "CWE-22"},
+    {"glyph": "UAF", "code": "CWE-416"},
+    {"glyph": "OOBR", "code": "CWE-125"},
+    {"glyph": "OSCmd", "code": "CWE-78"},
+    {"glyph": "CodeI", "code": "CWE-94"},
+    {"glyph": "BOF", "code": "CWE-120"},
+    {"glyph": "Upload", "code": "CWE-434"},
+    {"glyph": "NPD", "code": "CWE-476"},
+    {"glyph": "Deser", "code": "CWE-502"},
+    {"glyph": "Input", "code": "CWE-20"},
+    {"glyph": "Access", "code": "CWE-284"},
+    {"glyph": "Leak", "code": "CWE-200"},
+    {"glyph": "AuthN", "code": "CWE-306"},
+    {"glyph": "SSRF", "code": "CWE-918"},
+    {"glyph": "IDOR", "code": "CWE-639"}
+  ],
+  "notdef": "level: none",
+  "confusables": [["p / р", "U+70/U+440"], ["c / с", "U+63/U+441"]],
+  "matrix": {"axes": ["impact", "likelihood"], "cell": [4, 3], "rating": "43 · broken access"},
+  "test": "TOTP(SHA-1, T=59, 8 digits) = 94287082",
+  "notes": ["what can go wrong?", "least privilege by default", "complete mediation"],
+  "label": "APPSEC SPECIMEN · VOL. 01 · DESIGN",
+  "data": {"left": "dfd · 2 boundaries · 2 controls", "right": "{handle} · git:(main) · blue builds"},
+  "phone": {
+    "data": {"left": "dfd · 2 boundaries", "right": "{handle} · blue builds"}
+  }
+}

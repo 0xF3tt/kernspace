@@ -1,0 +1,48 @@
+{
+  "series": "specimen",
+  "topic": "crypto",
+  "title": "Vol. 09 · Key",
+  "ground": "dark",
+  "hero": "IND",
+  "family": "Indistinguishability",
+  "class": "security game · IND-CPA · IND-CCA2",
+  "waterfall": {
+    "phrase": "Ciphertext reveals nothing about the plaintext, not one bit.",
+    "roles": ["eavesdropper", "proxy", "endpoint", "key admin", "keyholder"]
+  },
+  "charset": [
+    {"glyph": "A128", "code": "0x1301"},
+    {"glyph": "A256", "code": "0x1302"},
+    {"glyph": "C20P", "code": "0x1303"},
+    {"glyph": "CCM", "code": "0x1304"},
+    {"glyph": "CCM8", "code": "0x1305"},
+    {"glyph": "P-256", "code": "0x0017"},
+    {"glyph": "P-384", "code": "0x0018"},
+    {"glyph": "P-521", "code": "0x0019"},
+    {"glyph": "x25519", "code": "0x001D"},
+    {"glyph": "x448", "code": "0x001E"},
+    {"glyph": "XMLK", "code": "0x11EC"},
+    {"glyph": "FF2K", "code": "0x0100"},
+    {"glyph": "FF3K", "code": "0x0101"},
+    {"glyph": "FF4K", "code": "0x0102"},
+    {"glyph": "RS256", "code": "0x0401"},
+    {"glyph": "ES256", "code": "0x0403"},
+    {"glyph": "ES384", "code": "0x0503"},
+    {"glyph": "ES512", "code": "0x0603"},
+    {"glyph": "PS256", "code": "0x0804"},
+    {"glyph": "PS384", "code": "0x0805"},
+    {"glyph": "PS512", "code": "0x0806"},
+    {"glyph": "Ed255", "code": "0x0807"},
+    {"glyph": "Ed448", "code": "0x0808"}
+  ],
+  "notdef": "GREASE 0x0A0A",
+  "confusables": [["a / а", "U+61/U+430"], ["o / ο", "U+6F/U+3BF"]],
+  "matrix": {"axes": ["impact", "likelihood"], "cell": [4, 2], "rating": "42 · HNDL exposure"},
+  "test": "SHA-256(\"abc\") = ba7816bf8f01cfea414140de…",
+  "notes": ["don't roll your own crypto", "attacks always get better", "crypto means cryptography"],
+  "label": "CRYPTO SPECIMEN · VOL. 09 · KEY",
+  "data": {"left": "Verify return code: 0 (ok)", "right": "{handle} · git:(main) · blue builds"},
+  "phone": {
+    "data": {"left": "Verify return code: 0 (ok)", "right": "{handle} · blue builds"}
+  }
+}

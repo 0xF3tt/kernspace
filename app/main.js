@@ -2,12 +2,11 @@
 // Data (presets, palettes, fonts, lexicons) loads from this site; the page builds its nodes with the DOM (strings
 // become text, never markup) and sets styles through CSSOM, so the CSP needs no inline styles or scripts.
 import { FORMATS, HANDLE, MOTTO, validHandle, validMotto } from './render.js';
-import { render } from './series/cutting-mat.js';
-import { LIMITS, advances, family, get, glyphs, hull, len, overlaps, prepare, slotRules, useMetrics } from './check.js';
-import { FMTS, LABEL, changedSlots, fixedOf, guard, linkedNote, lockOf, nameOf, options as wordOptions, plain, pool, put, same, slotsOf, usedStrings } from './words.js';
+import { SERIES } from './series/index.js';
+import { DEFAULT, migrate } from './store.js';
+import { advances, family, get, glyphs, hull, len, overlaps, prepare, slotRules, useMetrics } from './check.js';
+import { FMTS, changedSlots, guard, linkedNote, options as wordOptions, plain, pool, put, same, slotsOf } from './words.js';
 
-const SERIES = 'cutting-mat';
-const PRESET_DIR = `series/${SERIES}/presets`;     // index.json lists the presets, in volume order
 const PALS = ['purple', 'green', 'red', 'blue'];
 const ROLES = ['dark', 'mid', 'light'];
 const PRESET_ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;    // ids become file paths and form values
@@ -32,9 +31,8 @@ const NOTES = {
   whiteprint: 'The diazo copy people marked up.',
 };
 const TOPIC = { appsec: 'AppSec', programming: 'Programming', pentest: 'Pentest', mobile: 'Mobile', web: 'Web', 'active-directory': 'Active Directory', 'red-team': 'Red team', 'blue-team': 'Blue team', crypto: 'Crypto', cloud: 'Cloud', reversing: 'Reversing', dfir: 'DFIR', 'ai-security': 'AI security', ctf: 'CTF', infosec: 'InfoSec' };
-const BAR = ['bg', 'major', 'angle', 'text', 'tb', 'chip1', 'chip2', 'chip3'];
+const TOTAL = Object.keys(TOPIC).length;       // volumes a full series holds
 const FMT_NAME = { desktop: 'Desktop', wide: 'Wide', phone: 'Phone' };
-const WHO_NOTE = 'Your handle goes in the whoami box and in the prompt under the sheet; your line follows it. The signature stays 0xF3tt.';
 
 // ---------- small DOM helpers
 
@@ -78,9 +76,16 @@ function swap(img, url) {
 
 // ---------- data
 
-const data = { index: [], presets: {}, palettes: {}, fonts: null, lex: {}, skipped: new Set() };
+const data = { series: {}, palettes: {}, fonts: null, lex: {} };     // series[s] = { index, presets, skipped }; lexicons are shared
 const lexLoads = {};
-const state = { i: 0, ink: 'purple', role: 'mid', format: 'desktop', view: 'sheet', handle: '', motto: '', mark: 'taint', edits: {}, ver: {} };
+const lastVol = {};                                      // the volume each series was left on
+const state = { series: DEFAULT, i: 0, ink: 'purple', role: 'mid', format: 'desktop', view: 'sheet', handle: '', motto: '', mark: 'taint', edits: {}, ver: {} };
+let S = SERIES[state.series];                       // the series on the stage: its renderer, slot table and marks
+const D = () => data.series[state.series];
+const E = (s = state.series) => (state.edits[s] ??= {});     // edited presets by id
+const vkey = (id, s = state.series) => `${s}:${id}`;         // ids repeat across series: version counters, undo stacks, caches
+const ver = (id) => state.ver[vkey(id)] ?? 0;
+function useSeries(s) { state.series = s; S = SERIES[s]; state.mark = S.READ.mark; }
 const asset = (p) => new URL(`../${p}`, import.meta.url);
 
 async function json(p) {
@@ -117,18 +122,23 @@ function readIndex(list) {
   return out;
 }
 // a preset that fails to load leaves the strip instead of taking the studio down
-async function loadPresets() {
-  const entries = readIndex(await json(`${PRESET_DIR}/index.json`));
-  const got = await Promise.allSettled(entries.map((e) => json(`${PRESET_DIR}/${e.id}.json`)));
-  data.index = entries.filter((e, i) => {
+async function loadPresets(s = state.series) {
+  const dir = SERIES[s].dir, d = { index: [], presets: {}, skipped: new Set() };   // index.json lists the presets, in volume order
+  const entries = readIndex(await json(`${dir}/index.json`));
+  const got = await Promise.allSettled(entries.map((e) => json(`${dir}/${e.id}.json`)));
+  d.index = entries.filter((e, i) => {
     const p = got[i].value;
-    if (p?.layout && Array.isArray(p.phrase)) { data.presets[e.id] = p; return true; }
+    if (SERIES[s].valid(p)) { d.presets[e.id] = p; return true; }
     console.error(`preset ${e.id}: skipped`, got[i].reason ?? 'malformed');
-    data.skipped.add(e.id);
+    d.skipped.add(e.id);
     return false;
   });
-  if (!data.index.length) throw new Error('no preset could be loaded');
+  if (!d.index.length) throw new Error('no preset could be loaded');
+  data.series[s] = d;
 }
+// a series' presets, fetched once (the boot series comes with the page); a failed fetch may be tried again
+const loads = {}, restores = {};
+const loadOnce = (s) => (loads[s] ??= loadPresets(s).catch((e) => { delete loads[s]; throw e; }));
 async function load() {
   const [fonts, palettes] = await Promise.all([
     Promise.all(['fonts/nunito/Nunito-Variable.ttf', 'fonts/jetbrains-mono/JetBrainsMono-Variable.ttf'].map(fontFile)),
@@ -136,7 +146,7 @@ async function load() {
     loadPresets(),
   ]);
   PALS.forEach((p, i) => { data.palettes[p] = palettes[i]; });
-  useMetrics({ nunito: advances(fonts[0].buf, { wght: 300 }), mono: advances(fonts[1].buf) });   // .ph draws at 300
+  useMetrics({ nunito: Object.fromEntries([200, 300, 400, 600, 800].map((wght) => [wght, advances(fonts[0].buf, { wght })])), mono: advances(fonts[1].buf) });   // Cutting Mat's .ph draws at 300, Specimen at all five
   data.fonts = { nunito: fonts[0].url, jbm: fonts[1].url };
 }
 // a volume's lexicon, fetched once when the editor or a saved word needs it
@@ -145,14 +155,14 @@ function lexicon(topic) {
   return lexLoads[topic];
 }
 
-const vol = () => data.index[state.i];
-const shipped = () => data.presets[vol().id];
-const preset = () => state.edits[vol().id] ?? shipped();
+const vol = () => D().index[state.i];
+const shipped = () => D().presets[vol().id];
+const preset = () => E()[vol().id] ?? shipped();
 function ground(ink, role) {
   const [slug, g] = Object.entries(data.palettes[ink].grounds).find(([, x]) => x.role === role);
   return { slug, colors: g.colors };
 }
-const draw = (p, ink, role, format, fonts) => render({ preset: p, colors: ground(ink, role).colors, format, handle: state.handle, motto: state.motto, fonts });
+const draw = (p, ink, role, format, fonts, R = S) => R.render({ preset: p, colors: ground(ink, role).colors, format, handle: state.handle, motto: state.motto, fonts });
 
 // ---------- the page's fixed parts, built once the data is in
 
@@ -163,7 +173,7 @@ const el = {
 };
 
 function buildStrip() {
-  el.strip.replaceChildren(h('legend', { class: 'sr' }, 'Volume'), ...data.index.map((e, i) => h('label', { class: 'pick frame' },
+  el.strip.replaceChildren(h('legend', { class: 'sr' }, 'Volume'), ...D().index.map((e, i) => h('label', { class: 'pick frame' },
     h('input', { type: 'radio', name: 'volume', value: String(i), id: `vol-${e.id}`, checked: i === state.i }),
     h('span', { class: 'face bracket' }, h('img', { alt: '', width: 3840, height: 2160 })),
     h('span', { class: 'cap' }, h('span', { class: 'mono' }, pad2(e.vol)), volName(e)))));
@@ -189,10 +199,36 @@ function buildInkRows() {
       const g = ground(p, r);
       return h('button', { type: 'button', class: 'gcard', dataset: { ink: p, role: r }, 'aria-pressed': 'false' },
         h('span', { class: 'face bracket' }, h('img', { alt: '', width: 3840, height: 2160 })),
-        h('span', { class: 'colorbar', 'aria-hidden': 'true' }, BAR.map((k) => h('i', { style: { background: g.colors[k] } }))),
+        h('span', { class: 'colorbar', 'aria-hidden': 'true' }, S.BAR.map((k) => h('i', { style: { background: g.colors[k] } }))),
         h('span', { class: 'gmeta' }, h('b', {}, nice(g.slug)), h('span', { class: 'mono' }, `${r} ${g.colors.bg}`)),
         h('span', { class: 'gnote' }, NOTES[g.slug] ?? ''));
     })))));
+}
+
+// the series switch: one radio per registered series, marked with brackets
+function buildSwitch() {
+  $('#series-switch').replaceChildren(...Object.entries(SERIES).map(([s, R]) => h('label', { class: 'pick sopt' },
+    h('input', { type: 'radio', name: 'series', value: s, id: `series-${s}` }),
+    h('span', { class: 'bracket' }, R.name))));
+  syncSwitch();
+}
+const syncSwitch = () => document.querySelectorAll('input[name="series"]').forEach((r) => { r.checked = r.value === state.series; });
+// everything on the page that names the series: the switch's count, "Read the …", the fixed list, the Series cards
+function paintSeries() {
+  const R = S.READ, n = D().index.length;
+  syncSwitch();
+  $('#series-count').textContent = n === TOTAL ? `${TOTAL} volumes` : `${n} of ${TOTAL} volumes`;
+  $('#nav-read').textContent = R.nav;
+  $('#read-title').textContent = R.title;
+  $('#read-intro').textContent = R.intro;
+  $('#legend-head').replaceChildren(...R.legendHead.map((t) => h('span', {}, t)));
+  $('#fixed-ul').replaceChildren(...S.FIXED_LIST.map(([name, does]) => h('li', {}, h('b', {}, `${name}.`), ` ${does}`)));
+  document.querySelectorAll('.sheetlet[data-series]').forEach((card) => {
+    const on = card.dataset.series === state.series, b = card.querySelector('.use-series');
+    card.toggleAttribute('data-current', on);
+    b.textContent = on ? 'In the studio' : 'Use in the studio';
+    if (on) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+  });
 }
 
 // ---------- the studio
@@ -200,17 +236,17 @@ function buildInkRows() {
 const thumbKeys = new Map();
 function paintStrip() {
   el.strip.querySelectorAll('.frame').forEach((lab, i) => {
-    const e = data.index[i], role = i === state.i ? state.role : e.ground, key = `${state.ink}:${role}:${state.ver[e.id] ?? 0}:${state.handle}:${state.motto}`;
-    lab.classList.toggle('edited', !!state.edits[e.id]);
+    const e = D().index[i], role = i === state.i ? state.role : e.ground, key = `${state.series}:${state.ink}:${role}:${ver(e.id)}:${state.handle}:${state.motto}`;
+    lab.classList.toggle('edited', !!E()[e.id]);
     if (thumbKeys.get(i) === key) return;
     thumbKeys.set(i, key);
-    swap(lab.querySelector('img'), blobUrl(draw(state.edits[e.id] ?? data.presets[e.id], state.ink, role, 'desktop', null)));
+    swap(lab.querySelector('img'), blobUrl(draw(E()[e.id] ?? D().presets[e.id], state.ink, role, 'desktop', null)));
   });
 }
 let inkKey = '';
 function paintInks() {
   el.inks.querySelectorAll('.gcard').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.ink === state.ink && b.dataset.role === state.role)));
-  const k = `${state.i}:${state.ver[vol().id] ?? 0}:${state.handle}:${state.motto}`;
+  const k = `${state.series}:${state.i}:${ver(vol().id)}:${state.handle}:${state.motto}`;
   if (inkKey === k) return;
   inkKey = k;
   el.inks.querySelectorAll('.gcard').forEach((b) => swap(b.querySelector('img'), blobUrl(draw(preset(), b.dataset.ink, b.dataset.role, 'desktop', null))));
@@ -243,7 +279,7 @@ function rulers() {
 let current = null, ticket = 0, drawing = Promise.resolve();
 function fileName(e, g) {
   const { w, h: H } = FORMATS[state.format];
-  return `kernspace_${SERIES}_${e.id}${state.edits[e.id] ? '_edited' : ''}_${state.ink}-${g.slug}_${w}x${H}`;
+  return `kernspace_${state.series}_${e.id}${E()[e.id] ? '_edited' : ''}_${state.ink}-${g.slug}_${w}x${H}`;
 }
 async function drawSheet() {
   const t = ++ticket, e = vol(), g = ground(state.ink, state.role), { w, h: H } = FORMATS[state.format];
@@ -256,7 +292,7 @@ async function drawSheet() {
     if (t !== ticket) return URL.revokeObjectURL(url);
     current = { svg: text, name, w, h: H };
     swap(el.img, url);
-    el.img.alt = `Cutting Mat, ${e.title}: ${data.palettes[state.ink].name} ink on the ${nice(g.slug)} ground, ${w} by ${H} pixels.`;
+    el.img.alt = `${S.name}, ${e.title}: ${data.palettes[state.ink].name} ink on the ${nice(g.slug)} ground, ${w} by ${H} pixels.`;
   } catch (err) {
     URL.revokeObjectURL(url);
     if (t === ticket) { current = null; tell('This sheet could not be drawn.', 'Try another ink or format.', false); console.error(err); }
@@ -278,11 +314,11 @@ function update() {
   $('#vol-no').textContent = `Vol. ${pad2(e.vol)}`;
   $('#vol-name').textContent = volName(e);
   const changed = changedSlots(p, shipped()).length;
-  fill($('#vol-line'), `${TOPIC[e.topic] ?? e.topic}. `, h('em', {}, `“${p.phrase.join(' ')}”`),
+  fill($('#vol-line'), `${TOPIC[e.topic] ?? e.topic}. `, h('em', {}, `“${S.lineOf(p)}”`),
     changed ? h('span', { class: 'tape tape-pencil' }, `${changed} ${changed === 1 ? 'word' : 'words'} changed`) : null);
-  $('#findings').replaceChildren(...(p.findings ?? []).map((f, k) => h('li', { class: 'tape', style: { '--c': g.colors[`chip${k + 1}`] } }, h('i'), f)));
+  $('#findings').replaceChildren(...S.chipsOf(p, g.colors).map((c) => h('li', { class: 'tape', style: { '--c': c.color } }, h('i'), c.text)));
   $('#prev').disabled = state.i === 0;
-  $('#next').disabled = state.i === data.index.length - 1;
+  $('#next').disabled = state.i === D().index.length - 1;
   $('#ink-val').textContent = data.palettes[state.ink].name;
   el.dd.querySelectorAll('.dd-ink').forEach((s) => s.classList.toggle('on', s.dataset.ink === state.ink));
   el.dd.querySelectorAll('.dd-row small').forEach((s) => { s.hidden = s.parentElement.dataset.row !== e.ground; });
@@ -306,13 +342,25 @@ function paintBelow() {
   swap($('#read-img'), blobUrl(draw(p, state.ink, state.role, 'desktop', data.fonts)));
   paintLegend();
   paintInks();
-  swap($('#series-live'), blobUrl(draw(p, state.ink, state.role, 'desktop', null)));
+  paintLive();
+}
+// each Live card shows its series on the current ink and ground; a series still loading waits for its presets
+function paintLive() {
+  document.querySelectorAll('img[data-live]').forEach((img) => {
+    const s = img.dataset.live, d = data.series[s];
+    if (!d) return;
+    const cur = s === state.series, e = cur ? vol() : d.index[Math.min(lastVol[s] ?? 0, d.index.length - 1)], p = cur ? preset() : E(s)[e.id] ?? d.presets[e.id];
+    const k = `${e.id}:${state.ver[vkey(e.id, s)] ?? 0}:${state.ink}:${state.role}:${state.handle}:${state.motto}`;
+    if (img.dataset.k === k) return;
+    img.dataset.k = k;
+    swap(img, blobUrl(draw(p, state.ink, state.role, 'desktop', null, SERIES[s])));
+  });
 }
 function goVol(i, reveal) {
-  if (i < 0 || i >= data.index.length) return;
+  if (i < 0 || i >= D().index.length) return;
   if (el.slip.dataset.vol) hideSlip();
   state.i = i;
-  state.role = data.index[i].ground;          // each volume starts on its own ground
+  state.role = D().index[i].ground;          // each volume starts on its own ground
   update();
   if (ed.on && !data.lex[vol().topic]) {   // editing, and this volume's words aren't in yet
     const id = vol().id;
@@ -320,6 +368,49 @@ function goVol(i, reveal) {
       () => tell('The words for this volume could not be loaded.', 'Check your connection and try again.', false));
   }
   if (reveal) el.strip.querySelector(`input[value="${i}"]`)?.closest('label').scrollIntoView({ block: 'nearest', inline: 'nearest' });
+}
+
+// change series: load it once (its presets, then the words saved for it), leave the editor, land on the volume it was
+// left on. Only the latest choice counts; a series that won't load leaves the studio as it was.
+let choice = 0;
+async function chooseSeries(s) {
+  const t = ++choice;
+  if (!SERIES[s] || s === state.series) { el.stage.setAttribute('aria-busy', 'false'); return syncSwitch(); }
+  el.stage.setAttribute('aria-busy', 'true');
+  let dropped = 0;
+  try {
+    await loadOnce(s);
+    if (t === choice) dropped = await (restores[s] ??= restoreLate(s));
+  } catch (err) {
+    console.error(err);
+    if (t !== choice) return;
+    el.stage.setAttribute('aria-busy', 'false');
+    syncSwitch();
+    return tell('This series could not be loaded.', 'Check your connection and try again.', false);
+  }
+  if (t !== choice) return;
+  restores[s] = Promise.resolve(0);          // the note below is said once
+  closeEdit();
+  hideSlip();
+  lastVol[state.series] = state.i;
+  useSeries(s);
+  state.i = Math.min(lastVol[s] ?? 0, D().index.length - 1);
+  state.role = vol().ground;
+  inkKey = ''; thumbKeys.clear(); cache.clear();
+  buildStrip(); buildInkRows(); paintSeries(); readWho();
+  el.strip.scrollLeft = 0;
+  update();
+  persist();
+  announce(`${S.name}, ${D().index.length} ${D().index.length === 1 ? 'volume' : 'volumes'}. ${vol().title}.`);
+  if (Object.keys(unchecked[s] ?? {}).length) tell('Some saved words could not be checked.', 'They stay saved: reload the page to bring them back.', false);
+  else if (dropped) tell(`${dropped} saved ${dropped === 1 ? 'word was' : 'words were'} left out.`, 'They are no longer in the lexicon or no longer fit. Your other words are back.', false);
+}
+// a series that was not loaded at start: its saved words come back the first time it is chosen
+async function restoreLate(s) {
+  const saved = unchecked[s];
+  if (!saved) return 0;
+  delete unchecked[s];
+  try { return await restoreSeries(s, saved, whoFits()); } catch (err) { console.error(err); unchecked[s] = saved; delete restores[s]; return 0; }
 }
 
 // ---------- your whoami: handle and line, both needed to download
@@ -338,8 +429,8 @@ function readWho() {
   el.motto.setAttribute('aria-invalid', String(!mOk));
   el.who.classList.toggle('bad', !hOk || !mOk);
   const msg = !hOk ? 'Your handle can use letters, digits, dots, dashes and underscores, up to 20.'
-    : !mOk ? (validMotto(mv) ? 'Your line uses a character the sheet’s font doesn’t have.' : `Your line can be up to ${LIMITS.motto} characters.`)
-    : WHO_NOTE;
+    : !mOk ? (validMotto(mv) ? 'Your line uses a character the sheet’s font doesn’t have.' : `Your line can be up to ${S.LIMITS.motto} characters.`)
+    : S.READ.who;
   el.whoNote.classList.toggle('err', !hOk || !mOk);
   if (el.whoNote.textContent !== msg) el.whoNote.textContent = msg;   // live region: write only on change
   const next = { handle: hOk ? hv : state.handle, motto: mOk ? mv : state.motto };
@@ -431,53 +522,19 @@ themeBtn.addEventListener('click', () => {
   labelTheme();
 });
 
-// ---------- read the mat: the desktop sheet's geometry, from the renderer's grid (U 80, origin 240/160)
+// ---------- read the sheet: the series' marks over its desktop sheet (geometry and copy in its rules module)
 
-const gx = (c) => 240 + c * 80, gy = (r) => 160 + r * 80;
-const ray = (deg) => { const t = Math.tan((deg * Math.PI) / 180), xt = 240 + 1760 / t; return xt <= 3600 ? [xt, 160] : [3600, 1920 - 3360 * t]; };
-const L = (x1, y1, x2, y2) => `<line class="mk-line mk-draw" pathLength="1" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`;
-const R = (x, y, w, H) => `<rect class="mk" x="${x}" y="${y}" width="${w}" height="${H}" rx="10"/>`;
-const C = (x, y, r) => `<circle class="mk" cx="${x}" cy="${y}" r="${r}"/>`;
-const GLYPH = {
-  rulers: '<path d="M3 7h18M5 7v4M9 7v2.5M13 7v4M17 7v2.5M21 7v4M3 14h7M3 18h5"/>',
-  taint: '<path d="M4 20 20 4"/><circle cx="7" cy="17" r="1.8" fill="currentColor"/><circle cx="17" cy="7" r="1.8" fill="currentColor"/>',
-  tb: '<path d="M2 8h20M2 16h20" stroke-dasharray="3 2.4"/>',
-  ctrl: '<rect x="6" y="6" width="12" height="12"/><rect x="10" y="10" width="4" height="4" fill="currentColor"/>',
-  flows: '<path d="M3 21 11 4M3 21 20 9M3 21l18-5" stroke-dasharray="2.5 2"/>',
-  tape: '<rect x="3" y="6" width="12" height="4" rx="2" fill="currentColor" stroke="none"/><rect x="17" y="6" width="4" height="12" rx="2" fill="currentColor" stroke="none"/><rect x="4" y="14" width="6" height="6" fill="currentColor" stroke="none"/>',
-  notes: '<path d="M6 7v10M9 12h12"/>',
-  term: '<rect x="3" y="5" width="18" height="14" rx="1"/><path d="M6 9h6M6 12h10M6 15h8"/>',
-  phrase: '<rect x="3" y="6" width="18" height="12" rx="1"/><path d="M8 11h8M9 14h6"/>',
-  whoami: '<rect x="3" y="6" width="18" height="12" rx="1"/><path d="M7 10h3M7 13h10"/>',
-  status: '<path d="M3 17h8M14 17h7M3 6h18"/>',
-};
-function marks(p) {
-  const lay = p.layout.desktop, [[hc, hr], [vc, vr], [qc, qr]] = lay.chips, [nc, nr] = lay.notes[0];
-  const sw = (s) => len(s ?? '') * 20 * 0.64, right = (p.data?.right ?? '').replaceAll('{handle}', state.handle || HANDLE);
-  const noteBoxes = lay.notes.map(([c, r], i) => (p.notes?.[i] == null ? '' : R(gx(c) - 16, gy(r) - 34, len(p.notes[i]) * 12.4 + 44, 68))).join('');
-  return [
-    { id: 'rulers', term: 'Rulers on three edges', mean: 'Hex offsets along the top, memory addresses down the left, line numbers down the right.', svg: R(236, 100, 3368, 56) + R(120, 156, 116, 1768) + R(3606, 156, 96, 1768), pin: [1920, 50] },
-    { id: 'taint', term: 'The 45° cutting line', mean: `The taint path: untrusted data from the source (${p.source}) to the sink (${p.sink}).`, svg: L(240, 1920, 2000, 160) + C(480, 1680, 34) + C(1840, 320, 34), pin: [1240, 1060] },
-    { id: 'tb', term: 'Two dashed rules', mean: 'Trust boundaries, tagged ISB-01 and ISB-02.', svg: L(240, 1520, 3600, 1520) + L(240, 560, 3600, 560) + R(3455, 1498, 132, 44) + R(3455, 538, 132, 44), pin: [2700, 1450] },
-    { id: 'ctrl', term: 'Where the cut crosses a rule', mean: `One control per boundary: ${(p.controls ?? []).join(' and ')}.`, svg: R(598, 1478, 84, 84) + R(1558, 518, 84, 84), pin: [900, 1600] },
-    { id: 'flows', term: 'Angle lines at 60°, 30° and 15°', mean: 'Other data flows through the system, each one labeled.', svg: [60, 30, 15].map((d) => L(240, 1920, ...ray(d))).join(''), pin: [2500, 1300] },
-    { id: 'tape', term: 'Bits of tape', mean: `Findings: ${(p.findings ?? []).join(', ')}.`, svg: R(gx(hc) - 4, gy(hr) + 18, 168, 44) + R(gx(vc) + 18, gy(vr) - 4, 44, 168) + R(gx(qc) + 10, gy(qr) + 10, 60, 60), pin: [gx(hc) + 80, gy(hr) - 30] },
-    { id: 'notes', term: 'Measurement ticks', mean: 'Margin notes from the review.', svg: noteBoxes, pin: [gx(nc) + 160, gy(nr) - 70] },
-    { id: 'term', term: 'The top panel', mean: `The artifact under review, here ${p.panel?.title ?? 'a snippet'}.`, svg: R(2150, 230, 660, 260), pin: [2480, 540] },
-    { id: 'phrase', term: 'The center panel', mean: `The principle, in one line: “${p.phrase.join(' ')}”`, svg: R(1510, 870, 820, 340), pin: [1920, 1260] },
-    { id: 'whoami', term: 'The label corner', mean: 'Your handle and your line, in the # whoami box.', svg: R(2710, 1590, 820, 260), pin: [3120, 1540] },
-    { id: 'status', term: 'Lines under the frame', mean: `The status of the review (${p.data?.left}) and your prompt.`, svg: R(228, 1950, sw(p.data?.left) + 24, 44) + R(3588 - sw(right), 1950, sw(right) + 24, 44), pin: [1920, 2080] },
-  ];
-}
+let keyList = [];
 function paintLegend() {
-  const list = marks(preset());
-  el.legend.replaceChildren(...list.map((m) => h('li', {}, h('button', { type: 'button', dataset: { mark: m.id }, 'aria-current': String(m.id === state.mark) },
-    svg(GLYPH[m.id], { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': '1.5', 'aria-hidden': 'true' }),
+  keyList = S.marks(preset(), state.handle);
+  el.legend.replaceChildren(...keyList.map((m) => h('li', {}, h('button', { type: 'button', dataset: { mark: m.id }, 'aria-current': String(m.id === state.mark) },
+    svg(S.GLYPH[m.id], { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': '1.5', 'aria-hidden': 'true' }),
     h('span', { class: 'term' }, m.term), h('span', { class: 'mean' }, m.mean)))));
-  showMark(list);
+  showMark();
 }
-function showMark(list = marks(preset())) {
-  const m = list.find((x) => x.id === state.mark);
+function showMark() {
+  const m = keyList.find((x) => x.id === state.mark) ?? keyList[0];
+  state.mark = m.id;
   $('#read-marks').innerHTML = m.svg;
   $('#read-pins').replaceChildren(h('span', { class: 'pin', style: { left: `${m.pin[0] / 38.4}%`, top: `${m.pin[1] / 21.6}%` } }, m.term));
   $('#read-img').classList.add('dim');
@@ -503,40 +560,26 @@ const norm = (x) => x.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 // scenes and option lists, rebuilt after every edit
 const cache = new Map();
 const memo = (k, f) => { if (!cache.has(k)) cache.set(k, f()); return cache.get(k); };
-const tag = () => `${vol().id}:${state.ver[vol().id] ?? 0}`;
+const tag = () => `${vkey(vol().id)}:${ver(vol().id)}`;
 const prepared = (fmt) => memo(`${tag()}:prep:${fmt}`, () => prepare(preset(), fmt));
 function options(key) {
   return memo(`${tag()}:opts:${key}`, () => {
     const e = vol(), T = TOPIC[e.topic] ?? e.topic;
-    const rows = wordOptions({ entry: e, key, shipped: shipped(), current: preset(), lexicon: data.lex[e.topic], index: data.index, presets: data.presets, prepared });
+    const rows = wordOptions({ entry: e, key, shipped: shipped(), current: preset(), lexicon: data.lex[e.topic], index: D().index, presets: D().presets, prepared });
     const suggested = rows.some((r) => r.group === 'suggested');
     const names = { shipped: 'As shipped', suggested: 'Suggested', more: suggested ? `More from ${T}` : `From ${T}`, lexicon: `From the ${T} lexicon`, volumes: 'Other volumes' };
-    return { rows, lock: lockOf(key, shipped()), now: get(preset(), key), names };
+    return { rows, lock: S.lockOf(key, shipped()), now: get(preset(), key), names };
   });
 }
 
 // one box per slot: its text plus the mark it belongs to, in sheet px
 function slotBox(key, fmt = state.format) {
-  const { s } = prepared(fmt), p = preset(), [a, b] = key.split('.'), i = +b, qs = [];
-  if (key === 'phrase') qs.push(s.panels[0].q);
-  else if (key === 'whoami') qs.push(s.panels[1].q);
-  else if (key === 'label') qs.push(s.panels[2].q);
-  else if (a === 'panel') qs.push(s.panels[3].q);
-  else {
-    const t = s.texts.find((x) => x.slot === key);
-    if (t) qs.push(t.q);
-    const mark = a === 'source' ? s.marks.find((m) => m.name === 'the source dot')
-      : a === 'sink' ? s.marks.find((m) => m.name === 'the sink dot')
-      : a === 'controls' ? s.marks.filter((m) => m.control)[i]
-      : a === 'findings' ? s.chips.find((c) => c.tape === i)
-      : a === 'notes' ? s.ticks[(p.notes ?? []).slice(0, i).filter((v) => v != null).length] : null;
-    if (mark) qs.push(mark.q);
-  }
+  const qs = S.slotQuads(prepared(fmt).s, preset(), key);
   return qs.length ? hull(qs.flat()) : null;
 }
 function hitAt(x, y, pad) {
   let best = null, area = Infinity;
-  for (const key of [...slotsOf(preset()), 'label', 'panel', 'data.right']) {
+  for (const key of [...slotsOf(preset()), ...Object.keys(S.FIXED)]) {
     const b = slotBox(key);
     if (!b || x < b.x0 - pad || x > b.x1 + pad || y < b.y0 - pad || y > b.y1 + pad) continue;
     const a = (b.x1 - b.x0) * (b.y1 - b.y0);
@@ -552,7 +595,7 @@ function renderLive() {
   liveQueued = 0;
   if (!ed.on) return;
   const p = ed.preview ? put(preset(), ed.key, ed.preview.value, shipped()) : preset();
-  const text = render({ preset: p, colors: ground(state.ink, state.role).colors, format: state.format, handle: state.handle, motto: state.motto, fonts: null });
+  const text = S.render({ preset: p, colors: ground(state.ink, state.role).colors, format: state.format, handle: state.handle, motto: state.motto, fonts: null });
   liveCss.replaceSync(text.match(/<style>(.*?)<\/style>/s)?.[1] ?? '');
   liveRoot.innerHTML = text.replace(/<style>.*?<\/style>/s, '').replace(/<title>.*?<\/title>/s, '');
   const s = liveRoot.firstElementChild;
@@ -560,7 +603,7 @@ function renderLive() {
   s.setAttribute('height', '100%');
   s.setAttribute('preserveAspectRatio', 'xMidYMid meet');
   const cur = ed.key === 'whoami' ? `${state.handle || HANDLE} · ${state.motto || MOTTO}` : plain(get(preset(), ed.key));
-  live.setAttribute('aria-label', `${FMT_NAME[state.format]} sheet, ${ed.overview ? 'whole sheet, editing' : 'zoomed to'} ${nameOf(ed.key)}: ${cur}${ed.preview ? `, previewing ${plain(ed.preview.value)}` : ''}`);
+  live.setAttribute('aria-label', `${FMT_NAME[state.format]} sheet, ${ed.overview ? 'whole sheet, editing' : 'zoomed to'} ${S.nameOf(ed.key)}: ${cur}${ed.preview ? `, previewing ${plain(ed.preview.value)}` : ''}`);
   applyView();
 }
 const queueLive = () => { if (!liveQueued) liveQueued = requestAnimationFrame(renderLive); };
@@ -583,12 +626,12 @@ function fullView(fmt = state.format) {
 }
 // zoom so the slot and every option that fits stay in frame, never below 14 CSS px text (12 on phones), never past 1:1
 function viewFor(key, fmt = state.format) {
-  const { w: W, h: H } = FORMATS[fmt], U = fmt === 'phone' ? 60 : 80;
+  const { w: W, h: H } = FORMATS[fmt], U = S.GEOM.U(fmt);
   let b = slotBox(key, fmt);
   if (!b) return fullView(fmt);
   if (key !== 'whoami') for (const r of options(key).rows) if (r.ok && r.per[fmt].box) b = union(b, r.per[fmt].box);
   b = { x0: b.x0 - U, y0: b.y0 - U, x1: b.x1 + U, y1: b.y1 + U };
-  const px = key === 'phrase' ? (fmt === 'phone' ? 70 : 92) : fmt === 'phone' ? 16 : 20;   // drawn text size, as in cutting-mat.js
+  const px = S.GEOM.px(key, fmt);   // drawn text size
   const floor = (isNarrow() ? 12 : 14) / px, full = Math.min(ed.win.w / W, ed.win.h / H);
   const s = Math.max(full, Math.min(1, Math.max(floor, Math.min(ed.win.w / (b.x1 - b.x0), ed.win.h / (b.y1 - b.y0)))));
   const w = ed.win.w / s, hh = ed.win.h / s;
@@ -600,7 +643,7 @@ function moveView(to, done) {
   cancelAnimationFrame(ed.anim);
   const from = ed.view ?? to, t0 = performance.now(), D = reduced() ? 0 : 380, ease = (k) => 1 - (1 - k) ** 3;
   const step = (t) => {
-    const k = D ? Math.min(1, (t - t0) / D) : 1, e = ease(k);
+    const k = D ? Math.max(0, Math.min(1, (t - t0) / D)) : 1, e = ease(k);   // a frame stamped before t0 must not overshoot backwards
     ed.view = { x: from.x + (to.x - from.x) * e, y: from.y + (to.y - from.y) * e, w: from.w + (to.w - from.w) * e, h: from.h + (to.h - from.h) * e };
     applyView();
     if (k < 1) ed.anim = requestAnimationFrame(step); else done?.();
@@ -638,7 +681,7 @@ function drawOverlay() {
   if (hit?.box) out += rect(hit.box, hit.what === 'clock' ? 'clock' : 'obst');
   const box = ed.preview ? union(slotBox(ed.key), per?.box) : slotBox(ed.key);
   if (box && !ed.overview) out += brackets(box, s, ed.preview ? 'br dash' : 'br');
-  if (ed.hover && ed.hover !== ed.key) { const b = slotBox(ed.hover); if (b) out += brackets(b, s, fixedOf(ed.hover) ? 'br fixed' : 'br dash'); }
+  if (ed.hover && ed.hover !== ed.key) { const b = slotBox(ed.hover); if (b) out += brackets(b, s, S.fixedOf(ed.hover) ? 'br fixed' : 'br dash'); }
   ov.innerHTML = out;
 }
 
@@ -655,12 +698,12 @@ function sheetPoint(ev) {
 }
 function setHover(key, pt) {
   ed.hover = key ?? '';
-  el.sheet.classList.toggle('can-edit', !!key && !fixedOf(key));
+  el.sheet.classList.toggle('can-edit', !!key && !S.fixedOf(key));
   if (!key || (ed.on && key === ed.key)) { pin.hidden = true; if (ed.on) drawOverlay(); else ov.replaceChildren(); return; }
-  const b = slotBox(key), fx = fixedOf(key);
+  const b = slotBox(key), fx = S.fixedOf(key);
   if (ed.on) drawOverlay();
   else { ov.setAttribute('viewBox', `${pt.v.x} ${pt.v.y} ${pt.v.w} ${pt.v.h}`); ov.innerHTML = brackets(b, pt.s, fx ? 'br fixed' : 'br'); }
-  pin.textContent = fx ? `${fx[0]}: fixed, it ${fx[1]}` : `${nameOf(key)} · change`;
+  pin.textContent = fx ? `${fx[0]}: fixed, it ${fx[1]}` : `${S.nameOf(key)} · change`;
   pin.classList.toggle('fixed', !!fx);
   pin.style.setProperty('left', `${((b.x0 + b.x1) / 2 - pt.v.x) * pt.s}px`);
   pin.style.setProperty('top', `${Math.max(14, (b.y0 - pt.v.y) * pt.s - 12)}px`);
@@ -673,6 +716,7 @@ async function enterEdit(key) {
   if (ed.opening) return;
   ed.opening = true;
   setHover(null);
+  const s0 = state.series;
   try {
     // the volume can change while its words load: load until they match
     for (let t; t !== vol().topic;) { t = vol().topic; await Promise.all([lexicon(t), liveFonts()]); }
@@ -680,6 +724,7 @@ async function enterEdit(key) {
     console.error(err);
     return tell('The words for this volume could not be loaded.', 'Check your connection and try again.', false);
   } finally { ed.opening = false; }
+  if (state.series !== s0) return;   // the series changed while the words loaded
   cache.clear();
   ed.on = true; ed.opener = document.activeElement; ed.prevView = state.view; ed.overview = false; ed.preview = null;
   if (state.view !== 'sheet') { $('#view-sheet').checked = true; state.view = 'sheet'; el.stage.dataset.view = 'sheet'; }
@@ -707,6 +752,16 @@ function exitEdit() {
     back.focus();
   });
 }
+// leave the editor at once, without the zoom out (a series switch changes the volumes under it)
+function closeEdit() {
+  if (!ed.on) return;
+  cancelAnimationFrame(ed.anim);
+  ed.on = ed.leaving = false; ed.preview = null; ed.hover = ''; pin.hidden = true;
+  delete document.body.dataset.editing;
+  document.body.removeAttribute('data-unpinned');
+  if (ed.prevView !== 'sheet') { $(`#view-${ed.prevView}`).checked = true; state.view = ed.prevView; el.stage.dataset.view = ed.prevView; }
+  ov.replaceChildren(); ov.removeAttribute('viewBox'); liveRoot.replaceChildren();
+}
 function openSlot(key) {
   ed.leaving = false;
   ed.key = key; ed.preview = null; ed.query = ''; ed.showBad = false; ed.active = -1; ed.linked = ''; ed.overview = false;
@@ -719,7 +774,7 @@ function openSlot(key) {
 function stepSlot(d, say) {
   const keys = slotsOf(preset()), i = keys.indexOf(ed.key), k = keys[(i + d + keys.length) % keys.length];
   openSlot(k);
-  if (say) announce(`${LABEL[k]}, ${keys.indexOf(k) + 1} of ${keys.length}: ${k === 'whoami' ? state.handle || HANDLE : plain(get(preset(), k))}`);
+  if (say) announce(`${S.LABEL[k]}, ${keys.indexOf(k) + 1} of ${keys.length}: ${k === 'whoami' ? state.handle || HANDLE : plain(get(preset(), k))}`);
 }
 function toggleOverview() {
   ed.leaving = false;
@@ -730,8 +785,8 @@ function toggleOverview() {
 }
 function labels() {
   const keys = slotsOf(preset()), e = vol();
-  $('#crumb').replaceChildren(h('span', {}, `Vol. ${pad2(e.vol)} · ${volName(e)}`), h('span', { 'aria-hidden': 'true' }, '›'), h('b', {}, LABEL[ed.key]));
-  $('#eb-label').replaceChildren(`${LABEL[ed.key]} `, h('span', { class: 'mono' }, `${keys.indexOf(ed.key) + 1}/${keys.length}`));
+  $('#crumb').replaceChildren(h('span', {}, `Vol. ${pad2(e.vol)} · ${volName(e)}`), h('span', { 'aria-hidden': 'true' }, '›'), h('b', {}, S.LABEL[ed.key]));
+  $('#eb-label').replaceChildren(`${S.LABEL[ed.key]} `, h('span', { class: 'mono' }, `${keys.indexOf(ed.key) + 1}/${keys.length}`));
 }
 function editRefresh() {
   if (ed.leaving) return;
@@ -745,10 +800,10 @@ function buildRail() {
   const p = preset(), g = ground(state.ink, state.role).colors, keys = slotsOf(p), had = rail.contains(document.activeElement);
   rail.replaceChildren(...keys.map((k) => {
     const edited = k === 'whoami' ? !!(state.handle || state.motto) : !same(get(p, k), get(shipped(), k));
-    const t = k.startsWith('findings.') ? +k.split('.')[1] : -1;
+    const sw = S.swatch(k, g);
     return h('button', { type: 'button', role: 'tab', class: `rchip bracket${edited ? ' edited' : ''}`, dataset: { key: k }, id: `tab-${k.replace('.', '-')}`,
-      'aria-selected': String(k === ed.key), tabindex: k === ed.key ? '0' : '-1', 'aria-controls': 'ep', 'aria-label': `${LABEL[k]}${edited ? ', edited' : ''}` },
-    t >= 0 ? h('i', { class: `sw ${'hvq'[t]}`, style: { '--c': g[`chip${t + 1}`] } }) : null, h('span', {}, LABEL[k]));
+      'aria-selected': String(k === ed.key), tabindex: k === ed.key ? '0' : '-1', 'aria-controls': 'ep', 'aria-label': `${S.LABEL[k]}${edited ? ', edited' : ''}` },
+    sw ? h('i', { class: `sw ${sw.cls}`, style: { '--c': sw.color } }) : null, h('span', {}, S.LABEL[k]));
   }));
   const on = rail.querySelector('[aria-selected="true"]');
   if (on && had) on.focus({ preventScroll: true });
@@ -757,11 +812,11 @@ function buildRail() {
 
 // the copy desk: one slot's options
 function renderPanel() {
-  const key = ed.key, who = key === 'whoami', st = ed.stacks[vol().id], was = document.activeElement;
-  $('#ep-title').textContent = LABEL[key];
+  const key = ed.key, who = key === 'whoami', st = ed.stacks[vkey(vol().id)], was = document.activeElement;
+  $('#ep-title').textContent = S.LABEL[key];
   $('#undo').disabled = !st?.undo.length;
   $('#redo').disabled = !st?.redo.length;
-  $('#restore').disabled = !state.edits[vol().id];
+  $('#restore').disabled = !E()[vol().id];
   if (was?.disabled) (['#undo', '#redo'].map($).find((b) => b !== was && !b.disabled) ?? list).focus();
   $('#ep-linked').hidden = !ed.linked;
   $('#ep-linked').textContent = ed.linked;
@@ -775,15 +830,15 @@ function renderPanel() {
     return;
   }
   const o = options(key), a = family(key), fits = o.rows.filter((r) => r.ok).length;
-  const now = a === 'data' ? preset().phone?.data?.[key.slice(5)] ?? o.now : o.now, max = a === 'data' ? LIMITS.phone : limitText(key);
+  const now = a === 'data' ? preset().phone?.data?.[key.slice(5)] ?? o.now : o.now, max = a === 'data' ? S.LIMITS.phone : S.limitOf(key);
   fill($('#ep-meta'),
     o.lock ? h('span', { class: 'tape tape-pencil', title: 'Set by the volume' }, o.lock.trim()) : null,
     h('span', {}, `${fits} ${fits === 1 ? 'option fits' : 'options fit'}`),
-    h('span', { class: 'mono' }, a === 'phrase' ? `${LIMITS.phrase} per line` : `${len(now)}/${max}${a === 'data' ? ' on the phone' : ''}`));
+    h('span', { class: 'mono' }, a === 'phrase' ? `${S.LIMITS.phrase} per line` : Array.isArray(now) ? now.map((v, i) => `${len(v)}/${S.limitOf(key, i)}`).join(' · ')   // a pair: text, code
+      : `${len(now)}/${max}${a === 'data' ? ' on the phone' : ''}`));
   $('#ep-search-wrap').hidden = !(o.rows.length > 12 && a !== 'phrase' && a !== 'data');
   paintList();
 }
-const limitText = (key) => { const [a, b] = key.split('.'); return a === 'findings' ? LIMITS.findings[+b] : LIMITS[a]; };
 function paintList() {
   const o = options(ed.key), q = norm(ed.query.trim()), match = (r) => !q || r.search.includes(q);
   const good = o.rows.filter((r) => (r.ok || r.applied || r.where) && match(r));
@@ -817,8 +872,9 @@ function group(id, title, rs) {
 }
 function row(r) {
   const i = ed.shown.push(r) - 1, lock = options(ed.key).lock, dis = !r.ok && !r.applied;
-  const body = Array.isArray(r.value)
-    ? h('span', { class: 'ot ph', id: `ot-${i}` }, r.value.flatMap((l, k) => (k ? [h('br'), l] : [l])))
+  const body = Array.isArray(r.value)   // the phrase's lines, or a pair (text, code)
+    ? ed.key === 'phrase' ? h('span', { class: 'ot ph', id: `ot-${i}` }, r.value.flatMap((l, k) => (k ? [h('br'), l] : [l])))
+      : h('span', { class: 'ot', id: `ot-${i}` }, r.value[0], ' ', h('span', { class: 'lk' }, r.value[1]))
     : h('span', { class: 'ot', id: `ot-${i}` }, lock && r.value.startsWith(lock) ? [h('span', { class: 'lk' }, lock), r.value.slice(lock.length)] : r.value);
   const fmts = r.per && !r.ok ? h('span', { class: 'fmts', 'aria-hidden': 'true' }, FMTS.map((f) => h('i', { class: `${f[0]}${r.per[f].ok ? '' : ' bad'}` }))) : null;
   return h('div', { role: 'option', class: 'orow', id: `opt-${i}`, dataset: { i: String(i) }, 'aria-selected': String(r.applied), 'aria-disabled': dis ? 'true' : null, 'aria-labelledby': `ot-${i}`, 'aria-describedby': `optd-${i}` },
@@ -853,12 +909,12 @@ function apply(r) {
   const bad = guard(next, state.handle, state.motto);
   if (bad.length) { tell('That word does not fit.', bad[0], false); return; }
   const key = ed.key;
-  commit(next, `${LABEL[key]} changed`, before);
+  commit(next, `${S.LABEL[key]} changed`, before);
   ed.linked = linkedNote({ key, before, after: preset(), shipped: shipped(), entry: vol(), value: r.value });
   renderPanel();
 }
 function commit(next, msg, before = preset()) {
-  const st = (ed.stacks[vol().id] ??= { undo: [], redo: [] });
+  const st = (ed.stacks[vkey(vol().id)] ??= { undo: [], redo: [] });
   st.undo.push({ before, after: next, msg });
   st.redo = [];
   setPreset(next);
@@ -866,17 +922,17 @@ function commit(next, msg, before = preset()) {
 }
 function setPreset(p) {
   const id = vol().id;
-  if (same(p, data.presets[id])) delete state.edits[id]; else state.edits[id] = p;
-  delete unchecked[id];
-  state.ver[id] = (state.ver[id] ?? 0) + 1;
+  if (same(p, D().presets[id])) delete E()[id]; else E()[id] = p;
+  delete unchecked[state.series]?.[id];
+  state.ver[vkey(id)] = ver(id) + 1;
   cache.clear();
   ed.preview = null; ed.active = -1;
   update();
   persist();
   if (ed.on && [list, $('#ep-search')].includes(document.activeElement)) setActive(ed.shown.findIndex((r) => r.applied), { preview: false });
 }
-function undo() { const st = ed.stacks[vol().id], x = st?.undo.pop(); if (!x) return; st.redo.push(x); ed.linked = ''; setPreset(x.before); tell('Undone', x.msg); }
-function redo() { const st = ed.stacks[vol().id], x = st?.redo.pop(); if (!x) return; st.undo.push(x); ed.linked = ''; setPreset(x.after); tell('Redone', x.msg); }
+function undo() { const st = ed.stacks[vkey(vol().id)], x = st?.undo.pop(); if (!x) return; st.redo.push(x); ed.linked = ''; setPreset(x.before); tell('Undone', x.msg); }
+function redo() { const st = ed.stacks[vkey(vol().id)], x = st?.redo.pop(); if (!x) return; st.undo.push(x); ed.linked = ''; setPreset(x.after); tell('Redone', x.msg); }
 function tellUndo(msg) {
   announce(msg);
   el.slip.replaceChildren(slipIcon(), h('span', {}, h('b', {}, msg)), h('button', { type: 'button', class: 'linkbtn', id: 'slip-undo' }, 'Undo'));
@@ -924,50 +980,67 @@ function editKeys(ev) {
 
 const STORE = 'ks-edits';
 const canStore = (() => { try { localStorage.setItem('ks-probe', '1'); localStorage.removeItem('ks-probe'); return true; } catch { return false; } })();
-// saved words for volumes that could not be checked this time (a failed fetch); kept until that volume is edited
+// saved words that could not be checked this time, by series and id: a volume whose fetch failed (kept until that
+// volume is edited) or a series that is not loaded (kept as saved)
 const unchecked = {};
 function persist() {
   if (!canStore) return;
-  const edits = { ...unchecked };
-  for (const [id, p] of Object.entries(state.edits)) {
-    const s0 = data.presets[id], diff = {};
+  const edits = {};
+  for (const [s, byId] of Object.entries(unchecked)) if (Object.keys(byId).length) edits[s] = { ...byId };
+  for (const [s, byId] of Object.entries(state.edits)) for (const [id, p] of Object.entries(byId)) {
+    const s0 = data.series[s].presets[id], diff = {};
     for (const k of changedSlots(p, s0)) diff[k] = get(p, k);
-    if (Object.keys(diff).length) edits[id] = diff;
+    if (Object.keys(diff).length) (edits[s] ??= {})[id] = diff;
   }
   try {
-    if (Object.keys(edits).length || state.handle || state.motto) localStorage.setItem(STORE, JSON.stringify({ v: 1, edits, handle: state.handle, motto: state.motto }));
+    if (Object.keys(edits).length || state.handle || state.motto || state.series !== DEFAULT) localStorage.setItem(STORE, JSON.stringify({ v: 2, series: state.series, edits, handle: state.handle, motto: state.motto }));
     else localStorage.removeItem(STORE);
   } catch {}
 }
+function readSaved() {
+  try { return canStore ? migrate(JSON.parse(localStorage.getItem(STORE) ?? 'null')) : null; } catch { return null; }
+}
 // a saved word comes back only if the editor would offer it today: from the lexicon, within the slot rules,
 // not repeating another word on the sheet, clear of every mark. Returns how many were left out.
-async function restoreSaved() {
-  let saved = null;
-  try { saved = JSON.parse(localStorage.getItem(STORE) ?? 'null'); } catch {}
-  if (!saved || saved.v !== 1 || typeof saved.edits !== 'object' || !saved.edits) return 0;
+async function restoreSaved(saved) {
+  if (!saved) return 0;
   // what the viewer typed while the page loaded wins over what was saved
   if (typeof saved.handle === 'string' && validHandle(saved.handle) && !el.handle.value.trim()) { state.handle = saved.handle; el.handle.value = saved.handle; }
   if (typeof saved.motto === 'string' && validMotto(saved.motto) && glyphs('mono', saved.motto) && !el.motto.value.trim()) { state.motto = saved.motto; el.motto.value = saved.motto; }
+  const fits = whoFits();
   let dropped = 0;
+  for (const [s, byId] of Object.entries(saved.edits)) {
+    if (!byId || typeof byId !== 'object') continue;
+    if (data.series[s]) dropped += await restoreSeries(s, byId, fits); else unchecked[s] = { ...byId };
+  }
+  return dropped;
+}
+// does a sheet clear every mark with the viewer's own whoami box?
+function whoFits() {
   const who = { handles: [...new Set(['', state.handle])], mottos: [...new Set(['', state.motto])] };
-  const fits = (q) => FMTS.every((f) => !guardOne(q, f, who));
-  for (const [id, slots] of Object.entries(saved.edits)) {
-    const e = data.index.find((x) => x.id === id), s0 = data.presets[id];
+  return (q) => FMTS.every((f) => !guardOne(q, f, who));
+}
+// one series' saved words, back onto its presets. Returns how many were left out.
+async function restoreSeries(s, saved, fits) {
+  const R = SERIES[s], { index, presets, skipped } = data.series[s];
+  let dropped = 0;
+  for (const [id, slots] of Object.entries(saved)) {
+    const e = index.find((x) => x.id === id), s0 = presets[id];
     if (!slots || typeof slots !== 'object') continue;
-    if (!e) { if (data.skipped.has(id)) unchecked[id] = slots; continue; }
+    if (!e) { if (skipped.has(id)) (unchecked[s] ??= {})[id] = slots; continue; }
     let lex = null;
-    try { lex = await lexicon(e.topic); } catch { unchecked[id] = slots; continue; }
+    try { lex = await lexicon(e.topic); } catch { (unchecked[s] ??= {})[id] = slots; continue; }
     let p = s0, kept = [];
     for (const [key, value] of Object.entries(slots)) {
       const ok = slotsOf(s0).includes(key) && key !== 'whoami'
-        && pool({ entry: e, key, shipped: s0, lexicon: lex, index: data.index, presets: data.presets }).some((r) => same(r.value, value))
+        && pool({ entry: e, key, shipped: s0, lexicon: lex, index, presets }).some((r) => same(r.value, value))
         && !breaksRules(p, key, value, s0);
       if (ok) { p = put(p, key, value, s0); kept.push([key, value]); } else dropped++;
     }
     // no word twice, judged on the whole sheet (a later slot may have given its word away), and clear of every
     // mark. A dropped word gives its slot back the shipped one, so check again; each pass only drops, so it ends.
     for (;;) {
-      const dup = kept.filter(([key, value]) => [value].flat().some((l) => usedStrings(p, key).has(l)));
+      const dup = kept.filter(([key, value]) => [value].flat().some((l) => R.usedStrings(p, key).has(l)));
       if (dup.length) {
         dropped += dup.length;
         kept = kept.filter((x) => !dup.includes(x));
@@ -978,7 +1051,7 @@ async function restoreSaved() {
       p = s0;   // rare: something no longer fits, so find it one word at a time
       kept = kept.filter(([key, value]) => { const q = put(p, key, value, s0); if (!fits(q)) { dropped++; return false; } p = q; return true; });
     }
-    if (!same(p, s0)) { state.edits[id] = p; state.ver[id] = 1; }
+    if (!same(p, s0)) { E(s)[id] = p; state.ver[vkey(id, s)] = 1; }
   }
   return dropped;
 }
@@ -993,6 +1066,7 @@ function wire() {
   el.form.addEventListener('change', (ev) => {
     const t = ev.target;
     if (t.name === 'volume') goVol(+t.value, true);
+    else if (t.name === 'series') chooseSeries(t.value);
     else if (t.name === 'ground') {
       const [ink, role] = t.value.split(':');
       if (PALS.includes(ink) && ROLES.includes(role)) { state.ink = ink; state.role = role; update(); }
@@ -1016,6 +1090,14 @@ function wire() {
     $('#studio').scrollIntoView({ block: 'start' });
     $(`#g-${state.ink}-${state.role}`)?.focus({ preventScroll: true });
   });
+  $('#series').addEventListener('click', async (ev) => {      // a Live card: use that series in the studio
+    const b = ev.target.closest('.use-series');
+    if (!b) return;
+    await chooseSeries(b.dataset.use);
+    if (b.dataset.use !== state.series) return;
+    $('#studio').scrollIntoView({ block: 'start' });
+    $(`#series-${state.series}`)?.focus({ preventScroll: true });
+  });
   el.legend.addEventListener('pointerover', pickMark);
   el.legend.addEventListener('focusin', pickMark);
   el.legend.addEventListener('click', pickMark);
@@ -1036,7 +1118,7 @@ function wire() {
   el.sheet.addEventListener('pointerleave', () => { cancelAnimationFrame(hoverRaf); if (ed.hover) setHover(null); });
   el.sheet.addEventListener('click', (ev) => {
     if (state.view !== 'sheet' || ev.target.closest('.ruler') || !data.fonts) return;
-    const pt = sheetPoint(ev), key = hitAt(pt.x, pt.y, (fine() ? 8 : 44) / pt.s), fx = fixedOf(key);
+    const pt = sheetPoint(ev), key = hitAt(pt.x, pt.y, (fine() ? 8 : 44) / pt.s), fx = S.fixedOf(key);
     if (fx) { tell(`The ${fx[0].toLowerCase()} is fixed`, `It ${fx[1]}.`, false); return; }
     if (!ed.on) { if (key) enterEdit(key); return; }
     if (key && (key !== ed.key || ed.overview)) openSlot(key);
@@ -1067,8 +1149,8 @@ function wire() {
   $('#ep-bad').addEventListener('click', () => { ed.showBad = !ed.showBad; paintList(); });
   $('#undo').addEventListener('click', undo);
   $('#redo').addEventListener('click', redo);
-  $('#restore').addEventListener('click', () => { if (state.edits[vol().id]) { ed.linked = ''; commit(data.presets[vol().id], 'All words restored'); } });
-  $('#edit-open').addEventListener('click', () => enterEdit('phrase'));
+  $('#restore').addEventListener('click', () => { if (E()[vol().id]) { ed.linked = ''; commit(D().presets[vol().id], 'All words restored'); } });
+  $('#edit-open').addEventListener('click', () => enterEdit());
   $('#edit-done').addEventListener('click', exitEdit);
   $('#eb-done').addEventListener('click', exitEdit);
   $('#eb-prev').addEventListener('click', () => stepSlot(-1, true));
@@ -1090,23 +1172,29 @@ async function start() {
   json('version.json').then((v) => document.querySelectorAll('[data-version]').forEach((n) => { n.textContent = v.version; }), () => {});
   $('#ep-saved').textContent = canStore ? 'Saved in this browser only.' : 'This browser blocks storage, so your words last until you reload.';
   el.stage.setAttribute('aria-busy', 'true');
-  try {
-    await load();
-  } catch (err) {
-    console.error(err);
+  const saved = readSaved();
+  if (SERIES[saved?.series]) useSeries(saved.series);        // the last series viewed
+  const boot = () => load().then(() => true, (err) => { console.error(err); return false; });
+  let ok = await boot();
+  if (!ok && state.series !== DEFAULT) { useSeries(DEFAULT); ok = await boot(); }   // the saved series would not load: start on the first
+  if (!ok) {
     el.stage.setAttribute('aria-busy', 'false');
     return tell('The wallpaper data could not be loaded.', 'Check your connection and reload the page.', false);
   }
-  state.role = data.index[0].ground;
-  buildStrip(); buildDrawdown(); buildInkRows();
-  const dropped = canStore ? await restoreSaved() : 0;
+  loads[state.series] = restores[state.series] = Promise.resolve(0);
+  state.role = D().index[0].ground;
+  buildSwitch(); buildStrip(); buildDrawdown(); buildInkRows(); paintSeries();
+  const dropped = await restoreSaved(saved);
   booted = true;
   readWho();
   update();
-  if (Object.keys(unchecked).length) tell('Some saved words could not be checked.', 'They stay saved: reload the page to bring them back.', false);
+  if (Object.keys(unchecked[state.series] ?? {}).length) tell('Some saved words could not be checked.', 'They stay saved: reload the page to bring them back.', false);
   else if (dropped) tell(`${dropped} saved ${dropped === 1 ? 'word was' : 'words were'} left out.`, 'They are no longer in the lexicon or no longer fit. Your other words are back.', false);
   if (canStore) persist();
-  (window.requestIdleCallback ?? ((f) => setTimeout(f, 1200)))(() => { liveFonts(); lexicon(vol().topic).catch(() => {}); });
+  (window.requestIdleCallback ?? ((f) => setTimeout(f, 1200)))(() => {
+    liveFonts(); lexicon(vol().topic).catch(() => {});
+    for (const s of Object.keys(SERIES)) loadOnce(s).then(paintLive, () => {});      // the other series' card, and a quick switch
+  });
 }
 
 start();

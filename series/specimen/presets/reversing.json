@@ -1,0 +1,46 @@
+{
+  "series": "specimen",
+  "topic": "reversing",
+  "title": "Vol. 11 · Unpack",
+  "ground": "mid",
+  "hero": "OEP",
+  "family": "Original Entry Point",
+  "class": "unpacking · tail jump · PE",
+  "waterfall": {
+    "phrase": "The binary never lies; it only hides until it runs.",
+    "roles": ["sample", "user mode", "admin", "driver", "hypervisor"]
+  },
+  "charset": [
+    {"glyph": "NOP", "code": "0x90"},
+    {"glyph": "INT3", "code": "0xCC"},
+    {"glyph": "RET", "code": "0xC3"},
+    {"glyph": "CALL", "code": "0xE8"},
+    {"glyph": "JMP", "code": "0xE9"},
+    {"glyph": "JZ", "code": "0x74"},
+    {"glyph": "JNZ", "code": "0x75"},
+    {"glyph": "PUSH", "code": "0x68"},
+    {"glyph": "MOV", "code": "0x8B"},
+    {"glyph": "LEA", "code": "0x8D"},
+    {"glyph": "XOR", "code": "0x33"},
+    {"glyph": "INT", "code": "0xCD"},
+    {"glyph": "HLT", "code": "0xF4"},
+    {"glyph": "LEAVE", "code": "0xC9"},
+    {"glyph": "CMP", "code": "0x3B"},
+    {"glyph": "TEST", "code": "0x85"},
+    {"glyph": "SUB", "code": "0x2B"},
+    {"glyph": "ADD", "code": "0x03"},
+    {"glyph": "XCHG", "code": "0x87"},
+    {"glyph": "CDQ", "code": "0x99"},
+    {"glyph": "LOOP", "code": "0xE2"}
+  ],
+  "notdef": "0x06 #UD x64",
+  "confusables": [["0 / O", "U+30/U+4F"], ["1 / l", "U+31/U+6C"]],
+  "matrix": {"axes": ["impact", "likelihood"], "cell": [4, 3], "rating": "43 · process hollowing"},
+  "test": "55 8B EC = push ebp; mov ebp, esp",
+  "notes": ["hit F5, then doubt it", "a thin IAT is a clue", "static first, then dynamic"],
+  "label": "REVERSING SPECIMEN · VOL. 11 · UNPACK",
+  "data": {"left": "PE32+ 0x20b · 0x8664 AMD64 · UPX", "right": "{handle} · git:(main) · purple learns"},
+  "phone": {
+    "data": {"left": "PE32+ 0x20b · AMD64", "right": "{handle} · purple learns"}
+  }
+}

@@ -33,6 +33,12 @@
         "slots": [
           "finding"
         ]
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "AS-REP roasting"
       }
     },
     {
@@ -51,6 +57,12 @@
         "slots": [
           "finding"
         ]
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "golden ticket"
       }
     },
     {
@@ -120,6 +132,12 @@
         "slots": [
           "finding"
         ]
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "DCSync"
       }
     },
     {
@@ -263,6 +281,12 @@
         "slots": [
           "finding"
         ]
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "Zerologon"
       }
     },
     {
@@ -667,6 +691,12 @@
           "control",
           "sink"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "KDC"
       }
     },
     {
@@ -679,7 +709,13 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "PAC"
+      }
     },
     {
       "text": "SPN",
@@ -691,7 +727,13 @@
       "series": [
         "specimen",
         "cutting-mat"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "SPN"
+      }
     },
     {
       "text": "NTLM",
@@ -709,6 +751,12 @@
           "flow",
           "finding"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "NTLM"
       }
     },
     {
@@ -721,7 +769,13 @@
       "series": [
         "specimen",
         "cutting-mat"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "FSMO"
+      }
     },
     {
       "text": "PDC Emulator",
@@ -844,6 +898,12 @@
         "slots": [
           "flow"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "GPO"
       }
     },
     {
@@ -1356,6 +1416,260 @@
       "series": [
         "cutting-mat"
       ]
+    },
+    {
+      "text": "Whoever signs tickets rules",
+      "type": "term",
+      "code": "KRBTGT",
+      "meaning": "The krbtgt account key signs every TGT; its theft is the Golden Ticket.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-identifiers",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Whoever holds the krbtgt key can sign any ticket."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Tier 0 stays at tier 0",
+      "type": "term",
+      "code": "Tier 0",
+      "meaning": "Tier 0 accounts log on only to tier 0 systems.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/security/privileged-access-workstations/privileged-access-access-model",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Tier 0 credentials never touch a lower tier."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Lower tiers do not log up",
+      "type": "term",
+      "code": "Tier model",
+      "meaning": "A credential typed on a weaker system can be stolen there.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/security/privileged-access-workstations/privileged-access-access-model",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Never log on to a lower tier with a higher tier account."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "etype 4 rsvd",
+      "type": "status-line",
+      "code": "RFC 3961",
+      "meaning": "Kerberos encryption type 4 is Reserved in the IANA registry.",
+      "fame": "niche",
+      "reference": "https://www.iana.org/assignments/kerberos-parameters/kerberos-parameters.xhtml",
+      "series": [
+        "specimen"
+      ],
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "etype 6 rsvd",
+      "type": "status-line",
+      "code": "RFC 3961",
+      "meaning": "Kerberos encryption type 6 is Reserved in the IANA registry.",
+      "fame": "niche",
+      "reference": "https://www.iana.org/assignments/kerberos-parameters/kerberos-parameters.xhtml",
+      "series": [
+        "specimen"
+      ],
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "etype 8 (n/a)",
+      "type": "status-line",
+      "code": "IANA",
+      "meaning": "Kerberos encryption type 8 is Unassigned in the IANA registry.",
+      "fame": "niche",
+      "reference": "https://www.iana.org/assignments/kerberos-parameters/kerberos-parameters.xhtml",
+      "series": [
+        "specimen"
+      ],
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "a / а",
+      "type": "id",
+      "code": "U+61/U+430",
+      "meaning": "Latin a and Cyrillic а, a homoglyph in account names.",
+      "fame": "niche",
+      "reference": "https://www.unicode.org/Public/security/latest/confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "e / е",
+      "type": "id",
+      "code": "U+65/U+435",
+      "meaning": "Latin e and Cyrillic е.",
+      "fame": "niche",
+      "reference": "https://www.unicode.org/Public/security/latest/confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "M / М",
+      "type": "id",
+      "code": "U+4D/U+41C",
+      "meaning": "Latin M and Cyrillic М.",
+      "fame": "niche",
+      "reference": "https://www.unicode.org/Public/security/latest/confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "H / Н",
+      "type": "id",
+      "code": "U+48/U+41D",
+      "meaning": "Latin H and Cyrillic Н.",
+      "fame": "niche",
+      "reference": "https://www.unicode.org/Public/security/latest/confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "NT hash of the empty string",
+      "type": "snippet",
+      "code": "MD4",
+      "meaning": "Known-answer test: MD4 of zero bytes of UTF-16LE, the hash of an empty password.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-nlmp/",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "NT(\"\") = 31d6cfe0d16ae931b73c59d7e0c089c0"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "LM hash of the empty string",
+      "type": "snippet",
+      "code": "LM",
+      "meaning": "Known-answer test: Each half is DES(\"KGS!@#$%\") under a zero key, the legacy empty LM hash.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-nlmp/",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "LM(\"\") = aad3b435b51404eeaad3b435b51404ee"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "[FAIL] 2 paths → tier 0",
+      "type": "status-line",
+      "code": "",
+      "meaning": "A failing path check: two attack paths reach tier 0.",
+      "fame": "niche",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "status"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "[PASS] krbtgt reset x2",
+      "type": "status-line",
+      "code": "",
+      "meaning": "A passing krbtgt rotation check: reset twice.",
+      "fame": "niche",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "status"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
     }
   ]
 }

@@ -61,6 +61,11 @@
         "slots": [
           "flow"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ]
       }
     },
     {
@@ -101,7 +106,12 @@
       "reference": "",
       "series": [
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ]
+      }
     },
     {
       "text": "APT",
@@ -118,6 +128,11 @@
         "slots": [
           "source"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ]
       }
     },
     {
@@ -130,7 +145,12 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ]
+      }
     },
     {
       "text": "Adversary Emulation",
@@ -260,7 +280,8 @@
       "series": [
         "cutting-mat",
         "galley-proof",
-        "catalog-card"
+        "catalog-card",
+        "specimen"
       ],
       "mat": {
         "slots": [
@@ -268,6 +289,12 @@
           "note"
         ],
         "as": "deconfliction"
+      },
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Tell the trusted agent before you touch anything critical."
       }
     },
     {
@@ -649,6 +676,12 @@
           "sink"
         ],
         "as": "LSASS memory"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "LSASS memory"
       }
     },
     {
@@ -668,6 +701,12 @@
           "finding"
         ],
         "as": "T1078"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "valid accounts"
       }
     },
     {
@@ -685,6 +724,12 @@
       "mat": {
         "slots": [
           "finding"
+        ],
+        "as": "MFA fatigue"
+      },
+      "spec": {
+        "slots": [
+          "rating"
         ],
         "as": "MFA fatigue"
       }
@@ -705,6 +750,12 @@
         "slots": [
           "finding"
         ]
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "phishing"
       }
     },
     {
@@ -1240,6 +1291,239 @@
       "series": [
         "cutting-mat"
       ]
+    },
+    {
+      "text": "Behavior over tools",
+      "type": "term",
+      "code": "TTP",
+      "meaning": "Emulation reproduces what an adversary does, their tactics, techniques and procedures, rather than the exact tools they run.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/resources/adversary-emulation-plans/",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Emulate the behavior of the adversary, not just their tools."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Scope discipline",
+      "type": "term",
+      "code": "ROE",
+      "meaning": "The rules of engagement bind the operator even where a path is open: what is out of scope stays untouched.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Stay inside the rules, even when the path ahead is open."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "T1071 unseen",
+      "type": "status-line",
+      "code": "T1071",
+      "meaning": "Detection gap: technique T1071 ran and no rule raised an alert, so the blue team never saw it.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/techniques/T1071/",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "T1566 unseen",
+      "type": "status-line",
+      "code": "T1566",
+      "meaning": "Detection gap: technique T1566 ran and no rule raised an alert, so the blue team never saw it.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/techniques/T1566/",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "T1055 unseen",
+      "type": "status-line",
+      "code": "T1055",
+      "meaning": "Detection gap: technique T1055 ran and no rule raised an alert, so the blue team never saw it.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/techniques/T1055/",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "o / о",
+      "type": "id",
+      "code": "U+6F/U+43E",
+      "meaning": "Latin o and Cyrillic o look the same in most fonts; Unicode UTS #39 lists them as confusable, a trick for masquerading names.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "p / р",
+      "type": "id",
+      "code": "U+70/U+440",
+      "meaning": "Latin p and Cyrillic er look the same in most fonts; Unicode UTS #39 lists them as confusable.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "c / с",
+      "type": "id",
+      "code": "U+63/U+441",
+      "meaning": "Latin c and Cyrillic es look the same in most fonts; Unicode UTS #39 lists them as confusable.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "l / I",
+      "type": "id",
+      "code": "U+6C/U+49",
+      "meaning": "Lowercase Latin l and capital I look the same in many sans-serif fonts; Unicode UTS #39 lists them as confusable.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "NT hash of the empty string",
+      "type": "snippet",
+      "code": "RFC 1320",
+      "meaning": "Known-answer test: MD4 of the empty message, which is also the NT hash of an empty password, first 96 bits shown.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc1320",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "NTOWFv1(\"\") = 31d6cfe0d16ae931b73c59d7…"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "MD4 of \"abc\"",
+      "type": "snippet",
+      "code": "RFC 1320",
+      "meaning": "Known-answer test: the MD4 digest of \"abc\" from the RFC 1320 test suite, first 96 bits shown.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc1320",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "MD4(\"abc\") = a448017aaf21d8525fc10ae8…"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "HMAC-MD5 test case 1",
+      "type": "snippet",
+      "code": "RFC 2202",
+      "meaning": "Known-answer test: HMAC-MD5 with a 16-byte 0x0b key over \"Hi There\", the first case of RFC 2202; first 64 bits shown.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc2202",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "HMAC-MD5 RFC 2202 #1 = 9294727a3638bb1c…"
+      },
+      "mat": {
+        "slots": []
+      }
     }
   ]
 }

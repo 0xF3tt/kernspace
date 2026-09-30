@@ -1,0 +1,45 @@
+{
+  "series": "specimen",
+  "topic": "programming",
+  "title": "Vol. 02 · Code",
+  "ground": "light",
+  "hero": "NULL",
+  "family": "Null pointer",
+  "class": "pointer · CWE-476 · undefined",
+  "waterfall": {
+    "phrase": "Every input is hostile until you have validated it.",
+    "roles": ["untrusted", "user", "process", "root", "kernel"]
+  },
+  "charset": [
+    {"glyph": "1", "code": "EPERM"},
+    {"glyph": "2", "code": "ENOENT"},
+    {"glyph": "3", "code": "ESRCH"},
+    {"glyph": "4", "code": "EINTR"},
+    {"glyph": "5", "code": "EIO"},
+    {"glyph": "7", "code": "E2BIG"},
+    {"glyph": "9", "code": "EBADF"},
+    {"glyph": "10", "code": "ECHILD"},
+    {"glyph": "12", "code": "ENOMEM"},
+    {"glyph": "13", "code": "EACCES"},
+    {"glyph": "14", "code": "EFAULT"},
+    {"glyph": "16", "code": "EBUSY"},
+    {"glyph": "17", "code": "EEXIST"},
+    {"glyph": "21", "code": "EISDIR"},
+    {"glyph": "22", "code": "EINVAL"},
+    {"glyph": "24", "code": "EMFILE"},
+    {"glyph": "28", "code": "ENOSPC"},
+    {"glyph": "32", "code": "EPIPE"},
+    {"glyph": "33", "code": "EDOM"},
+    {"glyph": "34", "code": "ERANGE"}
+  ],
+  "notdef": "errno 4095",
+  "confusables": [["; / ;", "U+3B/U+37E"], ["1 / l", "U+31/U+6C"]],
+  "matrix": {"axes": ["impact", "likelihood"], "cell": [3, 4], "rating": "34 · unchecked errno"},
+  "test": "CRC-32(\"123456789\") = 0xCBF43926",
+  "notes": ["validate input, encode out", "never trust the client", "A05:2025 · injection"],
+  "label": "PROGRAMMING SPECIMEN · VOL. 02 · CODE",
+  "data": {"left": "Ln 42, Col 80 · UTF-8 · LF", "right": "{handle} · git:(main) · purple learns"},
+  "phone": {
+    "data": {"left": "Ln 42, Col 80 · UTF-8", "right": "{handle} · purple learns"}
+  }
+}

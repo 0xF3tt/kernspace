@@ -28,6 +28,12 @@
         "slots": [
           "sink"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "SIEM"
       }
     },
     {
@@ -45,6 +51,12 @@
         "slots": [
           "control"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "EDR"
       }
     },
     {
@@ -56,7 +68,13 @@
       "reference": "",
       "series": [
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "XDR"
+      }
     },
     {
       "text": "SOAR",
@@ -164,7 +182,13 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "YARA"
+      }
     },
     {
       "text": "Sysmon",
@@ -301,7 +325,13 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "IOC"
+      }
     },
     {
       "text": "True Positive",
@@ -349,6 +379,12 @@
           "finding"
         ],
         "as": "alert fatigue"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "alert fatigue"
       }
     },
     {
@@ -383,6 +419,12 @@
           "note"
         ],
         "as": "dwell time"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "long dwell time"
       }
     },
     {
@@ -620,7 +662,13 @@
       "reference": "https://learn.microsoft.com/powershell/scripting/security/security-features",
       "series": [
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "AMSI"
+      }
     },
     {
       "text": "Benign Positive",
@@ -725,6 +773,12 @@
           "finding"
         ],
         "as": "beaconing"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "C2 beaconing"
       }
     },
     {
@@ -1025,7 +1079,13 @@
       "reference": "https://github.com/palantir/alerting-detection-strategy-framework",
       "series": [
         "galley-proof"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "blind spots"
+      }
     },
     {
       "text": "STIX 2.1 · TAXII 2.1",
@@ -1084,6 +1144,230 @@
       "series": [
         "cutting-mat"
       ]
+    },
+    {
+      "text": "Log it or lose it",
+      "type": "term",
+      "code": "Detection",
+      "meaning": "Detection starts with telemetry: no log source, no rule.",
+      "fame": "niche",
+      "reference": "https://www.microsoft.com/en-us/security/blog/",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "You cannot alert on what you do not log."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Noisy rules protect nothing",
+      "type": "term",
+      "code": "Alert fatigue",
+      "meaning": "Alert fatigue makes analysts ignore real detections.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "A rule that fires on everything protects nothing."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Hunt, then detect",
+      "type": "term",
+      "code": "Threat Hunting",
+      "meaning": "A hunt that finds something ends as a permanent rule.",
+      "fame": "niche",
+      "reference": "https://www.sans.org/white-papers/",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Hunt from a hypothesis, then turn it into a detection."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Logon Type 1",
+      "type": "status-line",
+      "code": "4624",
+      "meaning": "Logon type 1 is not in the documented 4624 logon type table.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4624",
+      "series": [
+        "specimen"
+      ],
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Logon Type 14",
+      "type": "status-line",
+      "code": "4624",
+      "meaning": "Logon type 14 is not in the documented 4624 logon type table.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4624",
+      "series": [
+        "specimen"
+      ],
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "a / а",
+      "type": "id",
+      "code": "U+61/U+430",
+      "meaning": "Latin a and Cyrillic а, a homoglyph in look-alike domains.",
+      "fame": "niche",
+      "reference": "https://www.unicode.org/Public/security/latest/confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "o / ο",
+      "type": "id",
+      "code": "U+6F/U+3BF",
+      "meaning": "Latin o and Greek ο.",
+      "fame": "niche",
+      "reference": "https://www.unicode.org/Public/security/latest/confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "l / I",
+      "type": "id",
+      "code": "U+6C/U+49",
+      "meaning": "Lowercase L and capital i.",
+      "fame": "niche",
+      "reference": "https://www.unicode.org/Public/security/latest/confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "j / ј",
+      "type": "id",
+      "code": "U+6A/U+458",
+      "meaning": "Latin j and Cyrillic ј.",
+      "fame": "niche",
+      "reference": "https://www.unicode.org/Public/security/latest/confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "MD5 of the EICAR test file",
+      "type": "snippet",
+      "code": "EICAR",
+      "meaning": "Known-answer test: The 68-byte EICAR string hashes to 44d88612fea8a8f36de82e1278abb02f.",
+      "fame": "niche",
+      "reference": "https://www.eicar.org/download-anti-malware-testfile/",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "MD5(EICAR) = 44d88612fea8a8f36de82e12…"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "MZ as a YARA condition",
+      "type": "snippet",
+      "code": "YARA",
+      "meaning": "Known-answer test: The bytes 4D 5A read as a little-endian word are 0x5A4D.",
+      "fame": "niche",
+      "reference": "https://yara.readthedocs.io/en/stable/writingrules.html",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "uint16(0) == 0x5A4D  // \"MZ\""
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "PowerShell -enc of IEX",
+      "type": "snippet",
+      "code": "UTF-16LE",
+      "meaning": "Known-answer test: The three characters IEX as UTF-16LE encode to SQBFAFgA.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/powershell/scripting/",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "base64(UTF-16LE \"IEX\") = SQBFAFgA"
+      },
+      "mat": {
+        "slots": []
+      }
     }
   ]
 }

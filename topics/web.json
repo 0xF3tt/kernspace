@@ -48,6 +48,11 @@
         "slots": [
           "control"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ]
       }
     },
     {
@@ -65,6 +70,12 @@
       "mat": {
         "slots": [
           "control"
+        ],
+        "as": "CSP"
+      },
+      "spec": {
+        "slots": [
+          "hero"
         ],
         "as": "CSP"
       }
@@ -85,6 +96,12 @@
         "slots": [
           "finding"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "XSS"
       }
     },
     {
@@ -114,6 +131,12 @@
         "slots": [
           "finding"
         ]
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "CSRF on settings"
       }
     },
     {
@@ -218,6 +241,12 @@
       "mat": {
         "slots": [
           "control"
+        ],
+        "as": "HSTS"
+      },
+      "spec": {
+        "slots": [
+          "hero"
         ],
         "as": "HSTS"
       }
@@ -647,6 +676,12 @@
         "slots": [
           "finding"
         ]
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "CSWSH"
       }
     },
     {
@@ -665,6 +700,12 @@
         "slots": [
           "finding"
         ]
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "permissive CORS"
       }
     },
     {
@@ -718,6 +759,12 @@
           "finding"
         ],
         "as": "web cache poisoning"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "cache poisoning"
       }
     },
     {
@@ -1164,6 +1211,259 @@
       "series": [
         "cutting-mat"
       ]
+    },
+    {
+      "text": "Reading needs consent",
+      "type": "term",
+      "code": "SOP",
+      "meaning": "SOP lets any page send a cross-origin request but hides the response unless the other origin opts in with CORS.",
+      "fame": "iconic",
+      "reference": "https://fetch.spec.whatwg.org/#http-cors-protocol",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Any page may send a request; the origin decides who reads."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "A cookie follows the site",
+      "type": "term",
+      "code": "",
+      "meaning": "Cookies ignore port and, by default, the scheme, so a site and its subdomains share them; SameSite and the __Host- prefix narrow that.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc6265",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "A cookie follows the site, not the origin, so scope it tight."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Encode output first",
+      "type": "term",
+      "code": "",
+      "meaning": "Escaping on output stops XSS at its source; a Content-Security-Policy only limits the damage when escaping fails.",
+      "fame": "niche",
+      "reference": "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Encode on output first; a CSP is the second wall, not the first."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "418 (Unused)",
+      "type": "status-line",
+      "code": "RFC 9110 §15.5.19",
+      "meaning": "Status 418 is reserved in the IANA registry as (Unused), so a client must treat it as an unknown code.",
+      "fame": "niche",
+      "reference": "https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "427 Unassigned",
+      "type": "status-line",
+      "code": "IANA",
+      "meaning": "Status 427 has no assignment in the IANA registry; a client meets it as an unknown code and falls back to its class, 4xx.",
+      "fame": "niche",
+      "reference": "https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "509 Unassigned",
+      "type": "status-line",
+      "code": "IANA",
+      "meaning": "Status 509 has no assignment in the IANA registry; a client meets it as an unknown code and falls back to its class, 5xx.",
+      "fame": "niche",
+      "reference": "https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "a / а",
+      "type": "id",
+      "code": "U+61/U+430",
+      "meaning": "Latin a and Cyrillic a look the same in most fonts; Unicode UTS #39 lists them as confusable.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "e / е",
+      "type": "id",
+      "code": "U+65/U+435",
+      "meaning": "Latin e and Cyrillic ie look the same in most fonts; Unicode UTS #39 lists them as confusable.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "p / р",
+      "type": "id",
+      "code": "U+70/U+440",
+      "meaning": "Latin p and Cyrillic er look the same in most fonts; Unicode UTS #39 lists them as confusable.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "c / с",
+      "type": "id",
+      "code": "U+63/U+441",
+      "meaning": "Latin c and Cyrillic es look the same in most fonts; Unicode UTS #39 lists them as confusable.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "SRI hash of the empty string",
+      "type": "snippet",
+      "code": "SRI",
+      "meaning": "Known-answer test: the integrity attribute value for a zero-length resource, first 20 base64 characters shown.",
+      "fame": "niche",
+      "reference": "https://www.w3.org/TR/SRI/",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "integrity=\"sha256-47DEQpj8HBSa+/TImW+5…\""
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Percent-encoding a reserved set",
+      "type": "snippet",
+      "code": "RFC 3986",
+      "meaning": "Known-answer test: encodeURIComponent turns a space into %20 and & into %26.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc3986",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "encodeURIComponent(\"a b&c\") = a%20b%26c"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Base64url of the JWT header",
+      "type": "snippet",
+      "code": "RFC 7515",
+      "meaning": "Known-answer test: the header {\"alg\":\"HS256\",\"typ\":\"JWT\"} encodes to the string every JWT tutorial starts with.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc7515",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "JWT header = eyJhbGciOiJIUzI1NiIsInR5cCI6…"
+      },
+      "mat": {
+        "slots": []
+      }
     }
   ]
 }

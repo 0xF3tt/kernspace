@@ -54,6 +54,11 @@
           "status",
           "note"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ]
       }
     },
     {
@@ -77,7 +82,12 @@
       "series": [
         "galley-proof",
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ]
+      }
     },
     {
       "text": "TODO · FIXME",
@@ -96,6 +106,12 @@
           "finding",
           "note"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "TODO"
       }
     },
     {
@@ -213,7 +229,12 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ]
+      }
     },
     {
       "text": "0.1 + 0.2 = 0.30000000000000004",
@@ -224,7 +245,12 @@
       "reference": "https://standards.ieee.org/ieee/754/6210/",
       "series": [
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ]
+      }
     },
     {
       "text": "1970-01-01T00:00:00Z",
@@ -572,6 +598,9 @@
         "slots": [
           "status"
         ]
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -701,7 +730,13 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "borrow after move"
+      }
     },
     {
       "text": "SC2086 · quote your variables",
@@ -886,7 +921,13 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "lost encoding"
+      }
     },
     {
       "text": "U+003B ; vs U+037E ;",
@@ -978,7 +1019,13 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "Y2038 overflow"
+      }
     },
     {
       "text": "127 · command not found",
@@ -1198,6 +1245,279 @@
       "series": [
         "cutting-mat"
       ]
+    },
+    {
+      "text": "Float rounding",
+      "type": "term",
+      "code": "IEEE 754-2019",
+      "meaning": "Binary floating point cannot store 0.1 or 0.2 exactly, so their sum differs from 0.3 in the last bit.",
+      "fame": "iconic",
+      "reference": "https://standards.ieee.org/ieee/754/6210/",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "float rounding"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Parse into types",
+      "type": "term",
+      "code": "",
+      "meaning": "Turn raw input into a specific type once, at the edge; everything past that point relies on the type instead of re-checking.",
+      "fame": "niche",
+      "reference": "https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Parse input into a type once, then let the type carry the proof."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Check every return value",
+      "type": "term",
+      "code": "",
+      "meaning": "A call that can fail reports it through a return value or errno; an ignored one hides the failure until it becomes a bug.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/252.html",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Check every return value; an ignored error is a bug in waiting."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Validate at the boundary",
+      "type": "term",
+      "code": "",
+      "meaning": "Check data where it enters the program, then let inner code trust what the boundary accepted.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Validate at the boundary, then trust the type inside."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "errno 0",
+      "type": "status-line",
+      "code": "errno",
+      "meaning": "errno 0 is never set by a failing call, so a nonzero return with errno 0 means the error was lost.",
+      "fame": "niche",
+      "reference": "https://man7.org/linux/man-pages/man3/errno.3.html",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "undefined",
+      "type": "status-line",
+      "code": "ECMA-262",
+      "meaning": "The ECMAScript value of a variable that was never assigned; a check that only tests for null misses it.",
+      "fame": "niche",
+      "reference": "https://tc39.es/ecma262/",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "nullptr",
+      "type": "status-line",
+      "code": "C++11",
+      "meaning": "The C++ null pointer literal; dereferencing it is undefined behavior.",
+      "fame": "niche",
+      "reference": "https://en.cppreference.com/w/cpp/language/nullptr",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "0 / O",
+      "type": "id",
+      "code": "U+30/U+4F",
+      "meaning": "The digit zero and capital Latin O look the same in many fonts; Unicode UTS #39 lists them as confusable.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "l / I",
+      "type": "id",
+      "code": "U+6C/U+49",
+      "meaning": "Lowercase Latin l and capital I look the same in many sans-serif fonts; Unicode UTS #39 lists them as confusable.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "o / о",
+      "type": "id",
+      "code": "U+6F/U+43E",
+      "meaning": "Latin o and Cyrillic o look the same in most fonts; Unicode UTS #39 lists them as confusable; a Trojan Source trick in identifiers.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "a / а",
+      "type": "id",
+      "code": "U+61/U+430",
+      "meaning": "Latin a and Cyrillic a look the same in most fonts; Unicode UTS #39 lists them as confusable, so two identifiers can differ unseen.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "CRC-32 of the empty string",
+      "type": "snippet",
+      "code": "CRC-32/ISO-HDLC",
+      "meaning": "Known-answer test: the CRC-32 (zlib, PNG, gzip) of a zero-length message is zero.",
+      "fame": "niche",
+      "reference": "https://reveng.sourceforge.io/crc-catalogue/all.htm#crc.cat.crc-32-iso-hdlc",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "CRC-32(\"\") = 0x00000000"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Adler-32 of \"Wikipedia\"",
+      "type": "snippet",
+      "code": "RFC 1950",
+      "meaning": "Known-answer test: the Adler-32 checksum used by zlib for the nine bytes of \"Wikipedia\".",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc1950",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "Adler-32(\"Wikipedia\") = 0x11E60398"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "UTF-8 of the euro sign",
+      "type": "snippet",
+      "code": "RFC 3629",
+      "meaning": "Known-answer test: U+20AC takes three bytes in UTF-8.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc3629",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "UTF-8(\"€\") = E2 82 AC"
+      },
+      "mat": {
+        "slots": []
+      }
     }
   ]
 }

@@ -1,0 +1,45 @@
+{
+  "series": "specimen",
+  "topic": "ai-security",
+  "title": "Vol. 13 · Prompt",
+  "ground": "mid",
+  "hero": "LLM",
+  "family": "Prompt injection",
+  "class": "LLM01:2026 · CWE-1427 · ATLAS",
+  "waterfall": {
+    "phrase": "Data is not instructions: treat retrieved text as untrusted.",
+    "roles": ["anonymous", "end user", "plugin", "agent", "operator"]
+  },
+  "charset": [
+    {"glyph": "SUPPLY", "code": "AML.T0010"},
+    {"glyph": "MANIP", "code": "AML.T0018"},
+    {"glyph": "POISON", "code": "AML.T0020"},
+    {"glyph": "EXFIL", "code": "AML.T0024"},
+    {"glyph": "DoS", "code": "AML.T0029"},
+    {"glyph": "COST", "code": "AML.T0034"},
+    {"glyph": "ADV", "code": "AML.T0043"},
+    {"glyph": "INJECT", "code": "AML.T0051"},
+    {"glyph": "INVOKE", "code": "AML.T0053"},
+    {"glyph": "JAIL", "code": "AML.T0054"},
+    {"glyph": "SYSP", "code": "AML.T0056"},
+    {"glyph": "LEAK", "code": "AML.T0057"},
+    {"glyph": "SLOP", "code": "AML.T0060"},
+    {"glyph": "OBFU", "code": "AML.T0068"},
+    {"glyph": "RAG", "code": "AML.T0070"},
+    {"glyph": "CTX", "code": "AML.T0080"},
+    {"glyph": "CHAT", "code": "AML.T0092"},
+    {"glyph": "HOST", "code": "AML.T0105"},
+    {"glyph": "RUG", "code": "AML.T0109"},
+    {"glyph": "TPOIS", "code": "AML.T0110"}
+  ],
+  "notdef": "AML.T0045 gap",
+  "confusables": [["i / і", "U+69/U+456"], ["s / ѕ", "U+73/U+455"]],
+  "matrix": {"axes": ["impact", "likelihood"], "cell": [4, 3], "rating": "43 · indirect injection"},
+  "test": "FGSM ε=.007 · panda 57.7% → gibbon 99.3%",
+  "notes": ["grant least agency", "system prompt is not authz", "remember Tay · AML.CS0009"],
+  "label": "AISEC SPECIMEN · VOL. 13 · PROMPT",
+  "data": {"left": "TOOL CALL HELD · AWAITING HUMAN", "right": "{handle} · git:(main) · purple learns"},
+  "phone": {
+    "data": {"left": "TOOL CALL HELD · HITL", "right": "{handle} · purple learns"}
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "series": "specimen",
+  "topic": "blue-team",
+  "title": "Vol. 08 · Detect",
+  "ground": "light",
+  "hero": "SOC",
+  "family": "Detection Engineering",
+  "class": "telemetry · rules · triage",
+  "waterfall": {
+    "phrase": "Nothing moves unseen while the logs are kept and read.",
+    "roles": ["intruder", "employee", "analyst", "engineer", "SIEM admin"]
+  },
+  "charset": [
+    {"glyph": "1102", "code": "LogClear"},
+    {"glyph": "4624", "code": "Logon"},
+    {"glyph": "4625", "code": "LogonFail"},
+    {"glyph": "4634", "code": "Logoff"},
+    {"glyph": "4648", "code": "ExplicitCr"},
+    {"glyph": "4657", "code": "RegMod"},
+    {"glyph": "4663", "code": "ObjAccess"},
+    {"glyph": "4672", "code": "SpecPriv"},
+    {"glyph": "4688", "code": "NewProc"},
+    {"glyph": "4697", "code": "SvcInstall"},
+    {"glyph": "4698", "code": "TaskNew"},
+    {"glyph": "4719", "code": "AuditPol"},
+    {"glyph": "4720", "code": "UserNew"},
+    {"glyph": "4724", "code": "PwReset"},
+    {"glyph": "4732", "code": "LocalGrp"},
+    {"glyph": "4738", "code": "UserMod"},
+    {"glyph": "4740", "code": "Lockout"},
+    {"glyph": "4768", "code": "TGT"},
+    {"glyph": "4769", "code": "TGS"},
+    {"glyph": "4771", "code": "PreAuthFl"},
+    {"glyph": "4776", "code": "NTLM"},
+    {"glyph": "5140", "code": "ShareAcc"}
+  ],
+  "notdef": "Logon Type 6",
+  "confusables": [["S / Ѕ", "U+53/U+405"], ["i / і", "U+69/U+456"]],
+  "matrix": {"axes": ["impact", "likelihood"], "cell": [3, 4], "rating": "34 · password spray"},
+  "test": "SHA-256(EICAR) = 275a021bbfb6489e54d4…",
+  "notes": ["eyes on glass · 24/7", "climb the pyramid of pain", "tune it, don't mute it"],
+  "label": "BLUE TEAM SPECIMEN · VOL. 08 · DETECT",
+  "data": {"left": "[TP] · MTTD 4m · MTTR 31m", "right": "{handle} · git:(main) · blue builds"},
+  "phone": {
+    "data": {"left": "[TP] · MTTD 4m · MTTR 31m", "right": "{handle} · blue builds"}
+  }
+}

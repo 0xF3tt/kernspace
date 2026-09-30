@@ -17,6 +17,12 @@
         "slots": [
           "sink"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "CIA"
       }
     },
     {
@@ -70,6 +76,11 @@
         "slots": [
           "control"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ]
       }
     },
     {
@@ -81,13 +92,20 @@
       "reference": "https://csrc.nist.gov/glossary/term/defense_in_depth",
       "series": [
         "cutting-mat",
-        "catalog-card"
+        "catalog-card",
+        "specimen"
       ],
       "mat": {
         "slots": [
           "note"
         ],
         "as": "defense in depth"
+      },
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Layer the controls so no single failure opens the whole door."
       }
     },
     {
@@ -118,8 +136,15 @@
       "reference": "The Protection of Information in Computer Systems (1975)",
       "series": [
         "catalog-card",
-        "galley-proof"
-      ]
+        "galley-proof",
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "When in doubt, deny: access needs explicit permission."
+      }
     },
     {
       "text": "Complete mediation",
@@ -129,8 +154,15 @@
       "fame": "niche",
       "reference": "The Protection of Information in Computer Systems (1975)",
       "series": [
-        "catalog-card"
-      ]
+        "catalog-card",
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Check every access to every object, every single time."
+      }
     },
     {
       "text": "Open design",
@@ -141,8 +173,15 @@
       "reference": "The Protection of Information in Computer Systems (1975)",
       "series": [
         "catalog-card",
-        "galley-proof"
-      ]
+        "galley-proof",
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "The design is public; only the keys stay secret."
+      }
     },
     {
       "text": "Psychological acceptability",
@@ -165,7 +204,8 @@
       "series": [
         "galley-proof",
         "catalog-card",
-        "cutting-mat"
+        "cutting-mat",
+        "specimen"
       ],
       "mat": {
         "slots": [
@@ -173,6 +213,12 @@
           "note"
         ],
         "as": "myth · obscurity"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "obscurity as control"
       }
     },
     {
@@ -232,12 +278,19 @@
       "reference": "",
       "series": [
         "galley-proof",
-        "cutting-mat"
+        "cutting-mat",
+        "specimen"
       ],
       "mat": {
         "slots": [
           "finding",
           "note"
+        ],
+        "as": "security theater"
+      },
+      "spec": {
+        "slots": [
+          "rating"
         ],
         "as": "security theater"
       }
@@ -252,7 +305,12 @@
       "series": [
         "specimen",
         "galley-proof"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ]
+      }
     },
     {
       "text": "Layer 8",
@@ -270,6 +328,12 @@
           "source",
           "finding"
         ]
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "layer 8 error"
       }
     },
     {
@@ -315,11 +379,18 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "catalog-card"
+        "catalog-card",
+        "specimen"
       ],
       "mat": {
         "slots": [
           "source"
+        ],
+        "as": "script kiddie"
+      },
+      "spec": {
+        "slots": [
+          "rating"
         ],
         "as": "script kiddie"
       }
@@ -545,6 +616,11 @@
       "mat": {
         "slots": [
           "source"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
         ]
       }
     },
@@ -804,8 +880,15 @@
       "reference": "https://certcc.github.io/CERT-Guide-to-CVD/",
       "series": [
         "galley-proof",
-        "catalog-card"
-      ]
+        "catalog-card",
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "CVD"
+      }
     },
     {
       "text": "allowlist / denylist",
@@ -990,7 +1073,12 @@
         "galley-proof",
         "catalog-card",
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
+      }
     },
     {
       "text": "CSF 1.1 → CSF 2.0",
@@ -1243,7 +1331,10 @@
       "reference": "https://csrc.nist.gov/files/pubs/conference/1998/10/08/proceedings-of-the-21st-nissc-1998/final/docs/early-cs-papers/dod85.pdf",
       "series": [
         "cutting-mat"
-      ]
+      ],
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "Oh no — pwned!",
@@ -1265,7 +1356,10 @@
       "reference": "https://haveibeenpwned.com/",
       "series": [
         "cutting-mat"
-      ]
+      ],
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "Trust is a vulnerability",
@@ -1321,6 +1415,258 @@
       "series": [
         "cutting-mat"
       ]
+    },
+    {
+      "text": "Implicit trust",
+      "type": "term",
+      "code": "NIST SP 800-207",
+      "meaning": "A device or user is trusted because of where it sits on the network, not because it proved anything: the gap zero trust removes.",
+      "fame": "niche",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/207/final",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "implicit trust"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "ID.BE → GV.OC",
+      "type": "id",
+      "code": "GV.OC",
+      "meaning": "CSF 1.1 Category ID.BE (Business Environment) was withdrawn and moved into GV.OC.",
+      "fame": "niche",
+      "reference": "https://www.nist.gov/system/files/documents/2024/03/25/The_NIST_CSF_2-0_Core_With_Withdrawn_CSF_1-1_Elements.pdf",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "ID.RM → GV.RM",
+      "type": "id",
+      "code": "GV.RM",
+      "meaning": "CSF 1.1 Category ID.RM (Risk Management Strategy) was withdrawn and moved into GV.RM.",
+      "fame": "niche",
+      "reference": "https://www.nist.gov/system/files/documents/2024/03/25/The_NIST_CSF_2-0_Core_With_Withdrawn_CSF_1-1_Elements.pdf",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "RS.RP → RS.MA",
+      "type": "id",
+      "code": "RS.MA",
+      "meaning": "CSF 1.1 Category RS.RP (Response Planning) was withdrawn and moved into RS.MA.",
+      "fame": "niche",
+      "reference": "https://www.nist.gov/system/files/documents/2024/03/25/The_NIST_CSF_2-0_Core_With_Withdrawn_CSF_1-1_Elements.pdf",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "x / х",
+      "type": "id",
+      "code": "U+78/U+445",
+      "meaning": "Latin x and Cyrillic ha look the same in most fonts; Unicode UTS #39 lists them as confusable.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "y / у",
+      "type": "id",
+      "code": "U+79/U+443",
+      "meaning": "Latin y and Cyrillic u look the same in most fonts; Unicode UTS #39 lists them as confusable.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "a / а",
+      "type": "id",
+      "code": "U+61/U+430",
+      "meaning": "Latin a and Cyrillic a look the same in most fonts; Unicode UTS #39 lists them as confusable.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "e / е",
+      "type": "id",
+      "code": "U+65/U+435",
+      "meaning": "Latin e and Cyrillic ie look the same in most fonts; Unicode UTS #39 lists them as confusable.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "o / о",
+      "type": "id",
+      "code": "U+6F/U+43E",
+      "meaning": "Latin o and Cyrillic o look the same in most fonts; Unicode UTS #39 lists them as confusable.",
+      "fame": "niche",
+      "reference": "Unicode UTS #39, confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "EICAR test file",
+      "type": "snippet",
+      "code": "EICAR",
+      "meaning": "Known-answer test: the 68-byte antivirus test file, harmless text every scanner flags; MD5 first 64 bits shown.",
+      "fame": "niche",
+      "reference": "https://www.eicar.org/download-anti-malware-testfile/",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "EICAR = 68 bytes · MD5 44d88612fea8a8f3…"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "EICAR SHA-256",
+      "type": "snippet",
+      "code": "EICAR",
+      "meaning": "Known-answer test: the SHA-256 of the 68-byte EICAR test file, first 96 bits shown.",
+      "fame": "niche",
+      "reference": "https://www.eicar.org/download-anti-malware-testfile/",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "EICAR SHA-256 = 275a021bbfb6489e54d47189…"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "HOTP at counter 1",
+      "type": "snippet",
+      "code": "RFC 4226",
+      "meaning": "Known-answer test: 6-digit HOTP for counter 1 with the RFC 4226 Appendix D key.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc4226",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "HOTP(RFC 4226, count 1) = 287082"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "TOTP at T=59",
+      "type": "snippet",
+      "code": "RFC 6238",
+      "meaning": "Known-answer test: 8-digit TOTP with HMAC-SHA-1, the RFC 6238 Appendix B key and Unix time 59.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc6238",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "TOTP(SHA-1, T=59) = 94287082"
+      },
+      "mat": {
+        "slots": []
+      }
     }
   ]
 }

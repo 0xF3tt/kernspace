@@ -1,0 +1,42 @@
+{
+  "series": "specimen",
+  "topic": "cloud",
+  "title": "Vol. 10 · Posture",
+  "ground": "light",
+  "hero": "CSPM",
+  "family": "Posture management",
+  "class": "CSPM · CIEM · CWPP · CNAPP",
+  "waterfall": {
+    "phrase": "Shrink the blast radius: least privilege, short-lived keys.",
+    "roles": ["anonymous", "service acct", "developer", "cloud admin", "root user"]
+  },
+  "charset": [
+    {"glyph": "Audit", "code": "A&A"},
+    {"glyph": "API", "code": "AIS"},
+    {"glyph": "Resil", "code": "BCR"},
+    {"glyph": "Change", "code": "CCC"},
+    {"glyph": "Crypto", "code": "CEK"},
+    {"glyph": "DC", "code": "DCS"},
+    {"glyph": "Data", "code": "DSP"},
+    {"glyph": "Govern", "code": "GRC"},
+    {"glyph": "HR", "code": "HRS"},
+    {"glyph": "Access", "code": "IAM"},
+    {"glyph": "Port", "code": "IPY"},
+    {"glyph": "Infra", "code": "IVS"},
+    {"glyph": "Logs", "code": "LOG"},
+    {"glyph": "IR", "code": "SEF"},
+    {"glyph": "Supply", "code": "STA"},
+    {"glyph": "Threat", "code": "TVM"},
+    {"glyph": "Device", "code": "UEM"}
+  ],
+  "notdef": "NOT_AVAILABLE",
+  "confusables": [["0 / O", "U+30/U+4F"], ["e / е", "U+65/U+435"]],
+  "matrix": {"axes": ["impact", "likelihood"], "cell": [3, 4], "rating": "34 · public bucket"},
+  "test": "Secret · base64(\"admin\") = YWRtaW4=",
+  "notes": ["shared responsibility", "drift is a finding", "break-glass stays sealed"],
+  "label": "CLOUD SPECIMEN · VOL. 10 · POSTURE",
+  "data": {"left": "[PASSED] EC2.8 · S3.1 · IAM.4", "right": "{handle} · git:(main) · blue builds"},
+  "phone": {
+    "data": {"left": "[PASSED] EC2.8 · S3.1", "right": "{handle} · blue builds"}
+  }
+}

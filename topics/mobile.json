@@ -622,7 +622,13 @@
         "specimen",
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "FBE"
+      }
     },
     {
       "text": "EncryptedSharedPreferences",
@@ -729,6 +735,12 @@
           "control",
           "sink"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "SEP"
       }
     },
     {
@@ -747,6 +759,12 @@
         "slots": [
           "note"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "ATS"
       }
     },
     {
@@ -934,7 +952,13 @@
         "cutting-mat",
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "MIE"
+      }
     },
     {
       "text": "Code signing",
@@ -1250,6 +1274,12 @@
           "note"
         ],
         "as": "certificate pinning"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "pinning bypass"
       }
     },
     {
@@ -1286,6 +1316,12 @@
           "flow"
         ],
         "as": "sideloading"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "sideloaded app"
       }
     },
     {
@@ -1304,6 +1340,12 @@
           "finding"
         ],
         "as": "repackaging"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "app repackaging"
       }
     },
     {
@@ -1321,6 +1363,12 @@
         "slots": [
           "control"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "RASP"
       }
     },
     {
@@ -1337,6 +1385,12 @@
       "mat": {
         "slots": [
           "finding"
+        ],
+        "as": "tapjacking"
+      },
+      "spec": {
+        "slots": [
+          "rating"
         ],
         "as": "tapjacking"
       }
@@ -1427,6 +1481,250 @@
       "series": [
         "cutting-mat"
       ]
+    },
+    {
+      "text": "Keys stay in the chip",
+      "type": "term",
+      "code": "StrongBox",
+      "meaning": "The point of Keystore and Secure Enclave: keys are used, never exported.",
+      "fame": "niche",
+      "reference": "https://developer.android.com/privacy-and-security/keystore",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "A key that never leaves the chip cannot be copied off it."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Pin what you must trust",
+      "type": "term",
+      "code": "MASVS-NETWORK-2",
+      "meaning": "Certificate pinning narrows trust from any CA to the expected key.",
+      "fame": "niche",
+      "reference": "https://mas.owasp.org/MASVS/controls/MASVS-NETWORK-2/",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Pin the server key, do not trust every certificate authority."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "One app, one sandbox",
+      "type": "term",
+      "code": "Application Sandbox",
+      "meaning": "Android gives every app its own UID; iOS confines apps to a container.",
+      "fame": "niche",
+      "reference": "https://source.android.com/docs/security/app-sandbox",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Each app runs as its own user, so a bug stays in its box."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "UNKNOWN (-2)",
+      "type": "status-line",
+      "code": "KeyProperties",
+      "meaning": "KeyProperties.SECURITY_LEVEL_UNKNOWN = -2: no statement can be made about where a key lives.",
+      "fame": "niche",
+      "reference": "https://developer.android.com/reference/android/security/keystore/KeyProperties",
+      "series": [
+        "specimen"
+      ],
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "UNK_SECURE -1",
+      "type": "status-line",
+      "code": "KeyProperties",
+      "meaning": "KeyProperties.SECURITY_LEVEL_UNKNOWN_SECURE = -1: at least as strong as a TEE, exact level unknown.",
+      "fame": "niche",
+      "reference": "https://developer.android.com/reference/android/security/keystore/KeyProperties",
+      "series": [
+        "specimen"
+      ],
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "a / а",
+      "type": "id",
+      "code": "U+61/U+430",
+      "meaning": "Latin a and Cyrillic а, the classic lookalike in fake package names.",
+      "fame": "niche",
+      "reference": "https://www.unicode.org/Public/security/latest/confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "o / о",
+      "type": "id",
+      "code": "U+6F/U+43E",
+      "meaning": "Latin o and Cyrillic о.",
+      "fame": "niche",
+      "reference": "https://www.unicode.org/Public/security/latest/confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "p / р",
+      "type": "id",
+      "code": "U+70/U+440",
+      "meaning": "Latin p and Cyrillic р.",
+      "fame": "niche",
+      "reference": "https://www.unicode.org/Public/security/latest/confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "x / х",
+      "type": "id",
+      "code": "U+78/U+445",
+      "meaning": "Latin x and Cyrillic х.",
+      "fame": "niche",
+      "reference": "https://www.unicode.org/Public/security/latest/confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "TOTP RFC 6238 test vector",
+      "type": "snippet",
+      "code": "RFC 6238",
+      "meaning": "Known-answer test: SHA-1 secret \"12345678901234567890\" at Unix time 59 gives 94287082.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc6238",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "TOTP(SHA-1, t=59, 8 digits) = 94287082"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "HOTP RFC 4226 test vector",
+      "type": "snippet",
+      "code": "RFC 4226",
+      "meaning": "Known-answer test: SHA-1 secret \"12345678901234567890\" at counter 0 gives 755224.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc4226",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "HOTP(RFC 4226, counter 0) = 755224"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "PBKDF2 RFC 6070 vector",
+      "type": "snippet",
+      "code": "RFC 6070",
+      "meaning": "Known-answer test: One iteration of PBKDF2-HMAC-SHA1 over \"password\" and \"salt\", 20 bytes.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc6070",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "PBKDF2-SHA1(password,salt,1) = 0c60c80f96…"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Pin digest of the empty string",
+      "type": "snippet",
+      "code": "SHA-256",
+      "meaning": "Known-answer test: Base64 of SHA-256 of zero bytes, the value pin-set examples start from.",
+      "fame": "niche",
+      "reference": "https://developer.android.com/privacy-and-security/security-config",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "<pin digest=\"SHA-256\">47DEQpj8HBSa+/TI…"
+      },
+      "mat": {
+        "slots": []
+      }
     }
   ]
 }

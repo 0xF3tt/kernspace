@@ -97,7 +97,13 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "UPX"
+      }
     },
     {
       "text": "Portable Executable",
@@ -108,7 +114,13 @@
       "reference": "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format",
       "series": [
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "PE"
+      }
     },
     {
       "text": "ELF",
@@ -126,6 +138,12 @@
         "slots": [
           "source"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "ELF"
       }
     },
     {
@@ -174,6 +192,12 @@
         "slots": [
           "sink"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "IAT"
       }
     },
     {
@@ -191,6 +215,12 @@
         "slots": [
           "sink"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "OEP"
       }
     },
     {
@@ -232,6 +262,12 @@
           "finding"
         ],
         "as": "software packing"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "software packing"
       }
     },
     {
@@ -243,7 +279,13 @@
       "reference": "https://attack.mitre.org/techniques/T1497/",
       "series": [
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "sandbox evasion"
+      }
     },
     {
       "text": "T1027 Obfuscated Files or Information",
@@ -519,6 +561,12 @@
           "finding"
         ],
         "as": "debugger evasion"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "debugger evasion"
       }
     },
     {
@@ -633,6 +681,12 @@
         "slots": [
           "flow",
           "finding"
+        ],
+        "as": "API hashing"
+      },
+      "spec": {
+        "slots": [
+          "rating"
         ],
         "as": "API hashing"
       }
@@ -1013,7 +1067,13 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "FLIRT"
+      }
     },
     {
       "text": "F5",
@@ -1160,7 +1220,10 @@
       "reference": "https://github.com/x64dbg/x64dbg/blob/development/src/dbg/debugger.cpp",
       "series": [
         "cutting-mat"
-      ]
+      ],
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "AU: idle",
@@ -1204,7 +1267,10 @@
       "reference": "https://docs.clamav.net/manual/Signatures/AllowLists.html",
       "series": [
         "cutting-mat"
-      ]
+      ],
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "Reflections on Trusting Trust",
@@ -1238,6 +1304,230 @@
       "series": [
         "cutting-mat"
       ]
+    },
+    {
+      "text": "Packed code must unpack",
+      "type": "term",
+      "code": "UPX",
+      "meaning": "A packer cannot hide code from the CPU, only from the analyst.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/techniques/T1027/002/",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Packed code must unpack itself before it can run."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Break at the tail jump",
+      "type": "term",
+      "code": "OEP",
+      "meaning": "The jump to the original entry point ends the unpacking stub.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/techniques/T1027/002/",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Break where the unpacked code takes over: the tail jump."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Read strings and imports first",
+      "type": "term",
+      "code": "IAT",
+      "meaning": "Static triage: strings, the import table and section entropy.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Strings, imports and entropy talk before the code does."
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "0x27 #UD x64",
+      "type": "status-line",
+      "code": "DAA",
+      "meaning": "Opcode 0x27 (DAA) is invalid in 64-bit mode.",
+      "fame": "niche",
+      "reference": "https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html",
+      "series": [
+        "specimen"
+      ],
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "0x60 #UD x64",
+      "type": "status-line",
+      "code": "PUSHA",
+      "meaning": "Opcode 0x60 (PUSHA) is invalid in 64-bit mode.",
+      "fame": "niche",
+      "reference": "https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html",
+      "series": [
+        "specimen"
+      ],
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "l / I",
+      "type": "id",
+      "code": "U+6C/U+49",
+      "meaning": "Lowercase L and capital i.",
+      "fame": "niche",
+      "reference": "https://www.unicode.org/Public/security/latest/confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "O / О",
+      "type": "id",
+      "code": "U+4F/U+41E",
+      "meaning": "Latin O and Cyrillic О.",
+      "fame": "niche",
+      "reference": "https://www.unicode.org/Public/security/latest/confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "B / 8",
+      "type": "id",
+      "code": "U+42/U+38",
+      "meaning": "Latin B and digit eight.",
+      "fame": "niche",
+      "reference": "https://www.unicode.org/Public/security/latest/confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "5 / S",
+      "type": "id",
+      "code": "U+35/U+53",
+      "meaning": "Digit five and Latin S.",
+      "fame": "niche",
+      "reference": "https://www.unicode.org/Public/security/latest/confusables.txt",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "confusable"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "CRC-32 check value",
+      "type": "snippet",
+      "code": "CRC-32",
+      "meaning": "Known-answer test: The standard CRC-32 check value.",
+      "fame": "niche",
+      "reference": "https://reveng.sourceforge.io/crc-catalogue/all.htm",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "CRC-32(\"123456789\") = 0xCBF43926"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "xor eax, eax",
+      "type": "snippet",
+      "code": "x86",
+      "meaning": "Known-answer test: The two bytes 33 C0 disassemble to xor eax,eax.",
+      "fame": "niche",
+      "reference": "https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "33 C0 = xor eax, eax"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "call $+5",
+      "type": "snippet",
+      "code": "x86",
+      "meaning": "Known-answer test: A call with a zero displacement, the get-PC idiom.",
+      "fame": "niche",
+      "reference": "https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "E8 00 00 00 00 = call $+5"
+      },
+      "mat": {
+        "slots": []
+      }
     }
   ]
 }

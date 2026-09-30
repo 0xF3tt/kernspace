@@ -38,7 +38,7 @@
     <span class="tape" data-version></span>
     <nav class="nav" aria-label="Sections">
       <a href="#studio">Studio</a>
-      <a href="#read">Read the mat</a>
+      <a href="#read" id="nav-read">Read the mat</a>
       <a href="#inks">Inks</a>
       <a href="#series">Series</a>
     </nav>
@@ -58,8 +58,8 @@
   <section class="intro" aria-labelledby="intro-title">
     <div class="wrap">
       <h1 id="intro-title">Cybersecurity, typeset.</h1>
-      <p>Wallpapers for the security community, drawn with the tools of print. Every mark on a sheet stands for something real: a taint path, a trust boundary, a finding.
-        <span class="aside">Every word is checked before it goes to press.</span></p>
+      <p>Drawn with the tools of print. Every mark on a sheet stands for something real: a taint path, a trust boundary, a finding.
+        <span class="aside">Everything means something.</span></p>
     </div>
   </section>
 
@@ -67,7 +67,10 @@
     <form class="wrap" id="form" novalidate>
       <div class="stage-col">
         <div class="stage-bar">
-          <p class="series-now"><b>Cutting Mat</b> <span>15 volumes</span> <a href="#series">3 more series in pencil</a></p>
+          <div class="series-now">
+            <div class="series-switch" id="series-switch" role="radiogroup" aria-label="Series"></div>
+            <p class="series-meta"><span id="series-count">15 volumes</span> <a href="#series">2 more series in pencil</a></p>
+          </div>
           <div class="stage-tools">
             <div class="seg seg-view" role="radiogroup" aria-label="Preview">
               <label><input type="radio" name="view" value="sheet" id="view-sheet" checked><span class="opt"><span class="name">Sheet</span></span></label>
@@ -208,13 +211,7 @@
           </div>
           <details class="fixed-list">
             <summary>Fixed on this sheet</summary>
-            <ul>
-              <li><b>Side label.</b> It names the volume.</li>
-              <li><b>Terminal panel.</b> Its title and lines tell one story.</li>
-              <li><b>Signature.</b> The author credit, 0xF3tt.</li>
-              <li><b>Prompt line.</b> Your handle and the volume’s side of the loop.</li>
-              <li><b>Flow angles and ISB tags.</b> Set by their position.</li>
-            </ul>
+            <ul id="fixed-ul"></ul>
           </details>
         </div>
         <p class="ep-keys" aria-hidden="true"><kbd>[</kbd><kbd>]</kbd><span>word</span><kbd>Z</kbd><span>whole sheet</span><kbd>Esc</kbd><span>done</span></p>
@@ -239,7 +236,7 @@
     <div class="wrap">
       <div class="sec-head">
         <h2 id="read-title">Read the mat.</h2>
-        <p>The self-healing cutting mat on a designer's desk, printed as a threat model. Pick a line from the key to find its mark on the sheet.</p>
+        <p id="read-intro">The self-healing cutting mat on a designer's desk, printed as a threat model. Pick a line from the key to find its mark on the sheet.</p>
       </div>
       <div class="read-grid">
         <figure class="read-fig" id="read-fig">
@@ -248,7 +245,7 @@
           <span id="read-pins"></span>
         </figure>
         <div>
-          <div class="legend-head" aria-hidden="true"><span></span><span>On the mat</span><span>In the threat model</span></div>
+          <div class="legend-head" id="legend-head" aria-hidden="true"><span></span><span>On the mat</span><span>In the threat model</span></div>
           <ul class="legend" id="legend"></ul>
         </div>
       </div>
@@ -268,31 +265,23 @@
   <section class="sec" id="series" aria-labelledby="series-title">
     <div class="wrap">
       <div class="sec-head">
-        <h2 id="series-title">Cutting Mat is the first series.</h2>
-        <p>Three more are drawn in pencil and waiting for press. Each borrows a layout from graphic design and gives every element on it a security meaning.</p>
+        <h2 id="series-title">Two series are on press.</h2>
+        <p>Two more are drawn in pencil and waiting for press. Each borrows a layout from graphic design and gives every element on it a security meaning.</p>
       </div>
       <div class="series-grid">
-        <article class="sheetlet">
-          <div class="art"><img id="series-live" alt="" width="3840" height="2160"></div>
+        <article class="sheetlet" data-series="cutting-mat">
+          <div class="art bracket"><img id="series-live" data-live="cutting-mat" alt="" width="3840" height="2160"></div>
           <h3>Cutting Mat <span class="tape">Live</span></h3>
           <p>A designer's cutting mat, read as a threat model: rulers, a taint path, trust boundaries and tape.</p>
           <p class="origin">The self-healing mat on every design desk.</p>
+          <button class="btn btn-sm use-series" type="button" data-use="cutting-mat">Use in the studio</button>
         </article>
-        <article class="sheetlet">
-          <div class="art concept">
-            <svg viewBox="0 0 320 200" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-              <text x="14" y="76" font-family="Newsreader, serif" font-size="78" stroke-width="1.1" letter-spacing="-2">SID</text>
-              <path d="M14 96h96M14 112h120M14 126h140M14 138h150M14 148h150" stroke-width="3" stroke-linecap="round" opacity=".7"/>
-              <path d="M170 90v68" stroke-dasharray="2 3"/>
-              <g stroke-width="1.1"><path d="M196 18h108v96H196zM223 18v96M250 18v96M277 18v96M196 42h108M196 66h108M196 90h108"/></g>
-              <rect x="251" y="67" width="25" height="22" stroke-dasharray="3 2" stroke-width="1.8"/>
-              <path d="M196 132h40v40h-40zM204 164l6-8 6 4 8-12" stroke-width="1.1"/>
-              <path d="M250 144h54M250 156h40M250 168h48" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <h3>Specimen <span class="tape tape-pencil">Concept</span></h3>
+        <article class="sheetlet" data-series="specimen">
+          <div class="art bracket"><img id="series-live-specimen" data-live="specimen" alt="" width="3840" height="2160"></div>
+          <h3>Specimen <span class="tape">Live</span></h3>
           <p>A foundry type specimen. The field's core primitive is set as a typeface, with the one unhandled case left as an empty box.</p>
           <p class="origin">Caslon's specimen broadside, 1734.</p>
+          <button class="btn btn-sm use-series" type="button" data-use="specimen">Use in the studio</button>
         </article>
         <article class="sheetlet">
           <div class="art concept">
@@ -339,7 +328,7 @@
         <div>
           <h2 id="colo-title">Colophon</h2>
           <p>Set in Newsreader and JetBrains Mono. The sheets themselves use Nunito for the phrase and JetBrains Mono for everything else, with ligatures off so code reads as typed.</p>
-          <p class="colo-aside">No hoodies, no green rain, no padlocks, no skulls.</p>
+          <p class="colo-aside">A proposal, not a rule: a different way cyber could look.</p>
         </div>
         <div>
           <h2>How it's made</h2>
