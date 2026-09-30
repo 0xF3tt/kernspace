@@ -1,6 +1,6 @@
 # Cutting Mat
 
-> Status: **live in Beta 1** — presets listed in [`presets/index.json`](presets/index.json), rendered by [`app/series/cutting-mat.js`](../../app/series/cutting-mat.js) as pure SVG in three formats: `desktop` 3840×2160, `wide` 3840×2400 (16:10) and `phone` 1290×2796.
+> Status: **live in the web app** — presets listed in [`presets/index.json`](presets/index.json), rendered by [`app/series/cutting-mat.js`](../../app/series/cutting-mat.js) as pure SVG in three formats: `desktop` 3840×2160, `wide` 3840×2400 (16:10) and `phone` 1290×2796.
 
 ## Design origin
 
