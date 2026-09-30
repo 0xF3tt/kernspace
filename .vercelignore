@@ -3,9 +3,6 @@
 research/
 .github/
 DESIGN.md
-TODO.md
-AUDIT_REPORT.md
-ACTION_PLAN.md
 CONTRIBUTING.md
 .git*
 .DS_Store
@@ -16,3 +13,4 @@ fonts/licensed/
 _tmp_*.html
 __pycache__/
 
+.claude/

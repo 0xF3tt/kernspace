@@ -13,3 +13,6 @@ _tmp_*.html
 
 # Private or licensed fonts
 fonts/licensed/
+
+# Local Claude Code config (agents, launch.json)
+.claude/
