@@ -1,0 +1,49 @@
+name: Propose / Correct Lexicon Term
+description: Suggest a new verified term or fix an existing definition in topics/
+title: "lexicon: "
+labels: ["lexicon", "enhancement"]
+body:
+  - type: dropdown
+    id: topic
+    attributes:
+      label: Topic
+      description: Which topic lexicon does this belong to?
+      options:
+        - active-directory
+        - ai-security
+        - appsec
+        - blue-team
+        - cloud
+        - crypto
+        - ctf
+        - dfir
+        - infosec
+        - mobile
+        - pentest
+        - programming
+        - red-team
+        - reversing
+        - web
+    validations:
+      required: true
+  - type: input
+    id: term_text
+    attributes:
+      label: Term Text
+      description: Exact text (max 38 characters)
+    validations:
+      required: true
+  - type: input
+    id: meaning
+    attributes:
+      label: Meaning / Definition
+      description: One-line explanation of the term (max 120 characters)
+    validations:
+      required: true
+  - type: input
+    id: reference
+    attributes:
+      label: Official Reference / Source
+      description: Link to RFC, OWASP, CWE, ATT&CK or standard specification
+    validations:
+      required: true

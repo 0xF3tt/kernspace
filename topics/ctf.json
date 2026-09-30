@@ -1,0 +1,1158 @@
+{
+  "topic": "ctf",
+  "terms": [
+    {
+      "text": "Capture The Flag",
+      "type": "term",
+      "code": "CTF",
+      "meaning": "Security contest where teams solve challenges to recover secret strings, called flags, for points.",
+      "fame": "iconic",
+      "reference": "https://defcon.org/html/links/dc-ctf-history.html",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "flag{...}",
+      "type": "snippet",
+      "code": "",
+      "meaning": "Generic flag format: the secret wrapped in a prefix and braces; each event states its own in the rules.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "sink",
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "Jeopardy",
+      "type": "framework",
+      "code": "Jeopardy",
+      "meaning": "Format with a board of standalone challenges by category and points; solve any, in any order.",
+      "fame": "iconic",
+      "reference": "https://ctftime.org/event/3205/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Attack-Defense",
+      "type": "framework",
+      "code": "A/D",
+      "meaning": "Format where each team defends its own vulnerable services and captures flags from rivals' copies.",
+      "fame": "iconic",
+      "reference": "https://2026.faustctf.net/information/rules/",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "First blood",
+      "type": "term",
+      "code": "",
+      "meaning": "First team to solve a challenge; announced live, and on some platforms worth bonus points.",
+      "fame": "iconic",
+      "reference": "https://help.hackthebox.com/en/articles/5200851-ctf-user-s-guide",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "first blood"
+      }
+    },
+    {
+      "text": "Scoreboard",
+      "type": "term",
+      "code": "",
+      "meaning": "Live ranking of teams by points, with solve time breaking ties; the main screen of any CTF.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "sink",
+          "flow"
+        ],
+        "as": "scoreboard"
+      }
+    },
+    {
+      "text": "Writeup",
+      "type": "artifact",
+      "code": "",
+      "meaning": "Post-event walkthrough of how a challenge was solved; CTFtime archives them per task.",
+      "fame": "iconic",
+      "reference": "https://ctftime.org/faq/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "pwn",
+      "type": "term",
+      "code": "pwn",
+      "meaning": "Binary exploitation category, also called pwnable; picoCTF labels it Binary Exploitation.",
+      "fame": "iconic",
+      "reference": "https://primer.picoctf.org/",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "rev",
+      "type": "term",
+      "code": "rev",
+      "meaning": "Reverse engineering category: work out what a compiled program does to recover the flag.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ]
+    },
+    {
+      "text": "crypto",
+      "type": "term",
+      "code": "crypto",
+      "meaning": "Cryptography category: find weaknesses in custom or misused ciphers and protocols.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ]
+    },
+    {
+      "text": "web",
+      "type": "term",
+      "code": "web",
+      "meaning": "Web exploitation category: flaws in web apps, APIs and browsers.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ]
+    },
+    {
+      "text": "forensics",
+      "type": "term",
+      "code": "forensics",
+      "meaning": "Recover evidence from disk images, memory dumps, packet captures and odd files.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ]
+    },
+    {
+      "text": "misc",
+      "type": "term",
+      "code": "misc",
+      "meaning": "Catch-all category for challenges that fit nowhere else, from trivia to esoteric languages.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ]
+    },
+    {
+      "text": "stego",
+      "type": "term",
+      "code": "stego",
+      "meaning": "Steganography category: data hidden inside images, audio or other innocent-looking files.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "DEF CON CTF",
+      "type": "term",
+      "code": "",
+      "meaning": "One of the oldest running CTFs, at DEF CON since DEF CON 4 in 1996; DEF CON 34 finals ran in August 2026.",
+      "fame": "iconic",
+      "reference": "https://defcon.org/html/links/dc-ctf.html",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "CTFtime",
+      "type": "tool",
+      "code": "",
+      "meaning": "Community hub that lists CTF events, archives writeups and ranks teams by yearly rating.",
+      "fame": "iconic",
+      "reference": "https://ctftime.org/faq/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "CTFd",
+      "type": "tool",
+      "code": "CTFd 3.8.7",
+      "meaning": "Open-source CTF platform under Apache-2.0; release 3.8.7 shipped in August 2026.",
+      "fame": "iconic",
+      "reference": "https://github.com/CTFd/CTFd/releases",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "picoCTF",
+      "type": "term",
+      "code": "",
+      "meaning": "Carnegie Mellon's free CTF for students; first run in 2013, designed by PPP and Team Osiris.",
+      "fame": "iconic",
+      "reference": "https://www.cmu.edu/news/stories/archives/2013/march/march13_computercontest.html",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Hack The Box",
+      "type": "tool",
+      "code": "HTB",
+      "meaning": "Training platform with machines, challenges and CTF events; its common flag format is HTB{...}.",
+      "fame": "iconic",
+      "reference": "https://help.hackthebox.com/en/articles/5200851-ctf-user-s-guide",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "TryHackMe",
+      "type": "tool",
+      "code": "THM",
+      "meaning": "Browser-based training platform organized into guided rooms and learning paths.",
+      "fame": "iconic",
+      "reference": "https://tryhackme.com",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "OverTheWire",
+      "type": "tool",
+      "code": "",
+      "meaning": "Community wargame site; Bandit, its entry game, teaches the basics to absolute beginners.",
+      "fame": "iconic",
+      "reference": "https://overthewire.org/wargames/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "pwntools",
+      "type": "tool",
+      "code": "4.15.0",
+      "meaning": "Python CTF framework and exploit development library; latest stable release 4.15.0.",
+      "fame": "iconic",
+      "reference": "https://github.com/Gallopsled/pwntools/releases",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "source",
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "Ghidra",
+      "type": "tool",
+      "code": "12.1.4",
+      "meaning": "NSA's open-source software reverse engineering suite; release 12.1.4 in September 2026.",
+      "fame": "iconic",
+      "reference": "https://github.com/NationalSecurityAgency/ghidra/releases",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "IDA Pro",
+      "type": "tool",
+      "code": "",
+      "meaning": "Hex-Rays' commercial disassembler and decompiler, a long-standing reversing standard.",
+      "fame": "iconic",
+      "reference": "https://hex-rays.com/ida-pro",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "CyberChef",
+      "type": "tool",
+      "code": "v11.5.0",
+      "meaning": "GCHQ's browser tool for encoding, decoding and data transforms; release v11.5.0 in September 2026.",
+      "fame": "iconic",
+      "reference": "https://github.com/gchq/CyberChef/releases",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "flag.txt",
+      "type": "filename",
+      "code": "",
+      "meaning": "The classic file that holds the flag on a challenge host.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ]
+      }
+    },
+    {
+      "text": "user.txt",
+      "type": "filename",
+      "code": "",
+      "meaning": "HTB machine flag in the user's home directory, captured after initial access.",
+      "fame": "iconic",
+      "reference": "https://help.hackthebox.com/en/articles/5307061-machine-submission-requirements",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ]
+      }
+    },
+    {
+      "text": "root.txt",
+      "type": "filename",
+      "code": "",
+      "meaning": "HTB machine flag in /root (Administrator's desktop on Windows), captured at full privilege.",
+      "fame": "iconic",
+      "reference": "https://help.hackthebox.com/en/articles/5307061-machine-submission-requirements",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ]
+      }
+    },
+    {
+      "text": "Sanity check",
+      "type": "term",
+      "code": "",
+      "meaning": "Free warm-up challenge, often a flag posted in the rules or Discord, to test submission.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "sanity check"
+      }
+    },
+    {
+      "text": "Quals",
+      "type": "term",
+      "code": "",
+      "meaning": "Qualifier round; top teams earn finals slots. DEF CON 34 CTF Quals ran May 22-24, 2026.",
+      "fame": "iconic",
+      "reference": "https://defcon.org/html/links/dc-ctf.html",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Plaid Parliament of Pwning",
+      "type": "term",
+      "code": "PPP",
+      "meaning": "Carnegie Mellon's CTF team; runs PlaidCTF and co-designed the first picoCTF.",
+      "fame": "iconic",
+      "reference": "https://ctftime.org/team/284",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Google CTF",
+      "type": "term",
+      "code": "",
+      "meaning": "Google's yearly CTF: an online qualification stage, then an on-site final for selected teams.",
+      "fame": "iconic",
+      "reference": "https://capturetheflag.withgoogle.com/rules",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "CSAW CTF",
+      "type": "term",
+      "code": "CSAW",
+      "meaning": "Entry-level Jeopardy CTF of NYU Tandon's student-run CSAW games, formed in 2003.",
+      "fame": "iconic",
+      "reference": "https://csaw.io/competition/capture-the-flag",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Attack-Defence / Attack-Defense",
+      "type": "term",
+      "code": "A/D",
+      "meaning": "One format, two spellings: CTFtime's FAQ and filter say Attack-Defence; its event lists say Attack-Defense.",
+      "fame": "niche",
+      "reference": "https://ctftime.org/faq/",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Hack quest",
+      "type": "framework",
+      "code": "",
+      "meaning": "CTFtime's third format label beside Jeopardy and Attack-Defense; its filter spells it Hack-quest.",
+      "fame": "niche",
+      "reference": "https://ctftime.org/event/list/upcoming",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "King of the Hill",
+      "type": "framework",
+      "code": "KoH",
+      "meaning": "Service type where teams compete for the best solution; DEF CON 27 CTF finals scored it beside A/D.",
+      "fame": "niche",
+      "reference": "https://oooverflow.io/dc-ctf-2019-finals/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "LiveCTF",
+      "type": "term",
+      "code": "",
+      "meaning": "Live-streamed mini-tournament played as a challenge inside DEF CON CTF, first at the 2022 finals.",
+      "fame": "niche",
+      "reference": "https://livectf.com/2022.html",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Vulnbox",
+      "type": "term",
+      "code": "",
+      "meaning": "A team's own VM in Attack-Defense, running the vulnerable services it must patch and keep up.",
+      "fame": "niche",
+      "reference": "https://2026.faustctf.net/information/basic-vulnbox-hosting/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ]
+      }
+    },
+    {
+      "text": "Checker",
+      "type": "term",
+      "code": "",
+      "meaning": "A/D gameserver script that tests each service once per tick and plants a new flag.",
+      "fame": "niche",
+      "reference": "https://2026.faustctf.net/information/rules/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ],
+        "as": "checker"
+      }
+    },
+    {
+      "text": "Tick",
+      "type": "term",
+      "code": "",
+      "meaning": "One A/D round; at FAUST CTF 2026 a tick lasts three minutes and flags stay valid five ticks.",
+      "fame": "niche",
+      "reference": "https://2026.faustctf.net/information/rules/",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ]
+    },
+    {
+      "text": "SLA",
+      "type": "term",
+      "code": "SLA",
+      "meaning": "A/D score for keeping services up and correct, scored beside Offense and Defense.",
+      "fame": "niche",
+      "reference": "https://2026.faustctf.net/information/rules/",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "NOP team",
+      "type": "term",
+      "code": "",
+      "meaning": "Passive reference team in A/D; at FAUST CTF, flags taken from it earn no offense points.",
+      "fame": "niche",
+      "reference": "https://2026.faustctf.net/information/rules/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ]
+      }
+    },
+    {
+      "text": "OK · DOWN · FAULTY · RECOVERING",
+      "type": "status-line",
+      "code": "CheckResult",
+      "meaning": "Checker verdicts in FAUST ctf-gameserver; the fifth is FLAG_NOT_FOUND.",
+      "fame": "niche",
+      "reference": "https://github.com/fausecteam/ctf-gameserver/blob/master/src/ctf_gameserver/lib/checkresult.py",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Correct / Incorrect",
+      "type": "status-line",
+      "code": "",
+      "meaning": "CTFd's default replies to a flag submission.",
+      "fame": "niche",
+      "reference": "https://github.com/CTFd/CTFd/blob/master/CTFd/plugins/challenges/logic.py",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "status"
+        ],
+        "as": "Correct"
+      }
+    },
+    {
+      "text": "Correct but you already solved this",
+      "type": "status-line",
+      "code": "already_solved",
+      "meaning": "CTFd reply when a team resubmits a flag it already scored.",
+      "fame": "niche",
+      "reference": "https://github.com/CTFd/CTFd/blob/master/CTFd/api/v1/challenges.py",
+      "series": [
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Correct but more flags are required",
+      "type": "status-line",
+      "code": "partial",
+      "meaning": "CTFd partial reply when a challenge needs several flags.",
+      "fame": "niche",
+      "reference": "https://github.com/CTFd/CTFd/blob/master/CTFd/plugins/challenges/logic.py",
+      "series": [
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "You're submitting flags too fast.",
+      "type": "status-line",
+      "code": "ratelimited",
+      "meaning": "Opening of CTFd's rate-limit reply to rapid flag attempts.",
+      "fame": "niche",
+      "reference": "https://github.com/CTFd/CTFd/blob/master/CTFd/api/v1/challenges.py",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Freeze Time",
+      "type": "term",
+      "code": "freeze",
+      "meaning": "CTFd setting: solves after this timestamp are no longer shown to users on the scoreboard.",
+      "fame": "niche",
+      "reference": "https://github.com/CTFd/CTFd/blob/master/CTFd/themes/admin/templates/configs/time.html",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "View After CTF",
+      "type": "term",
+      "code": "view_after_ctf",
+      "meaning": "CTFd option to keep challenges visible after End Time; no new submissions are recorded.",
+      "fame": "niche",
+      "reference": "https://github.com/CTFd/CTFd/blob/master/CTFd/themes/admin/templates/configs/time.html",
+      "series": [
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Dynamic scoring",
+      "type": "term",
+      "code": "dynamic",
+      "meaning": "Points fall as solves rise; CTFd's dynamic type uses initial, decay and minimum values.",
+      "fame": "niche",
+      "reference": "https://github.com/CTFd/CTFd/blob/master/CTFd/plugins/dynamic_challenges/decay.py",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Weight",
+      "type": "term",
+      "code": "",
+      "meaning": "CTFtime per-event value, set by team votes or admins, that scales the rating points earned.",
+      "fame": "niche",
+      "reference": "https://ctftime.org/faq/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Pre-2017 formula → 2017+ formula",
+      "type": "term",
+      "code": "",
+      "meaning": "CTFtime once summed every event played; since 2017 only a team's 10 best results count.",
+      "fame": "niche",
+      "reference": "https://ctftime.org/rating-formula/",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Upsolve",
+      "type": "term",
+      "code": "",
+      "meaning": "Solving a challenge after the event ends, usually with writeups, to learn what you missed.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Unintended",
+      "type": "term",
+      "code": "",
+      "meaning": "A solve path the author never planned; often patched and re-released.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "revenge",
+      "type": "term",
+      "code": "",
+      "meaning": "Name suffix for a patched re-release of a challenge after an unintended solve.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "baby",
+      "type": "term",
+      "code": "",
+      "meaning": "Name prefix marking the easy entry in a challenge series.",
+      "fame": "niche",
+      "reference": "https://archive.ooo/",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Guessy",
+      "type": "term",
+      "code": "",
+      "meaning": "Complaint for a challenge that needs guesswork rather than skill.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "picoCTF{...}",
+      "type": "snippet",
+      "code": "",
+      "meaning": "picoCTF's flag format: the answer wrapped in picoCTF and braces.",
+      "fame": "niche",
+      "reference": "https://primer.picoctf.org/",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "sink",
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "picoGym",
+      "type": "tool",
+      "code": "",
+      "meaning": "picoCTF's year-round practice platform with new and archived challenges.",
+      "fame": "niche",
+      "reference": "https://www.cylab.cmu.edu/news/2026/02/26-picoctf.html",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "PPC",
+      "type": "term",
+      "code": "PPC",
+      "meaning": "Programming category: challenges solved by writing fast, correct code.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Earlier last flag wins the tie",
+      "type": "status-line",
+      "code": "",
+      "meaning": "Google CTF 2025 official rules: on equal points, the team that submitted its last flag earlier wins.",
+      "fame": "niche",
+      "reference": "https://capturetheflag.withgoogle.com/rules",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "flower → Tulip",
+      "type": "tool",
+      "code": "",
+      "meaning": "Tulip, the A/D flow analyzer Team Europe built for the first ICC, is a fork of flower.",
+      "fame": "niche",
+      "reference": "https://github.com/OpenAttackDefenseTools/tulip",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Root Fu",
+      "type": "term",
+      "code": "",
+      "meaning": "DEF CON CTF game title run by Ghetto Hackers, 2002-2004.",
+      "fame": "niche",
+      "reference": "https://defcon.org/html/links/dc-ctf-history.html",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "War Gamez",
+      "type": "term",
+      "code": "",
+      "meaning": "DEF CON CTF game title run by Kenshoto, 2005-2008.",
+      "fame": "niche",
+      "reference": "https://defcon.org/html/links/dc-ctf-history.html",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Binjitsu",
+      "type": "term",
+      "code": "",
+      "meaning": "DEF CON CTF game title of the DDTek era, 2009-2011 in DEF CON's history table.",
+      "fame": "niche",
+      "reference": "https://defcon.org/html/links/dc-ctf-history.html",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "DDTek",
+      "type": "term",
+      "code": "",
+      "meaning": "DEF CON CTF organizers 2009-2012, who ran DEF CON 17's game from a team table in disguise.",
+      "fame": "niche",
+      "reference": "https://defcon.org/html/links/dc-ctf.html",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Order of the Overflow",
+      "type": "term",
+      "code": "OOO",
+      "meaning": "DEF CON CTF organizers 2018-2021; succeeded by Nautilus Institute.",
+      "fame": "niche",
+      "reference": "https://defcon.org/html/links/dc-ctf.html",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Nautilus Institute → BBB",
+      "type": "term",
+      "code": "",
+      "meaning": "DEF CON CTF organizers: Nautilus Institute ran 2022-2025; Benevolent Bureau of Birds from 2026.",
+      "fame": "niche",
+      "reference": "https://defcon.org/html/links/dc-ctf.html",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Benevolent Bureau of Birds",
+      "type": "term",
+      "code": "BBB",
+      "meaning": "DEF CON CTF organizers from DEF CON 34 (2026), announced 3 March 2026; the MMM group turned hosts.",
+      "fame": "niche",
+      "reference": "https://defcon.org/html/links/dc-ctf.html",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Maple Mallard Magistrates",
+      "type": "term",
+      "code": "MMM",
+      "meaning": "PPP, The Duck and Maple Bacon's alliance; won DEF CON CTF four years running, DEF CON 30 to 33.",
+      "fame": "niche",
+      "reference": "https://www.gatech.edu/news/2026/08/19/georgia-tech-students-claim-victory-def-cons-elite-hacking-competition",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Blue Water",
+      "type": "term",
+      "code": "",
+      "meaning": "Winner of the DEF CON 34 CTF Finals in August 2026; runner-up in 2023 and 2024.",
+      "fame": "niche",
+      "reference": "https://www.gatech.edu/news/2026/08/19/georgia-tech-students-claim-victory-def-cons-elite-hacking-competition",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "iCTF",
+      "type": "term",
+      "code": "iCTF",
+      "meaning": "UCSB's International CTF, organized by Shellphish; first wide-area edition in December 2003.",
+      "fame": "niche",
+      "reference": "https://ictf.cs.ucsb.edu/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "FAUST CTF",
+      "type": "term",
+      "code": "",
+      "meaning": "Attack-Defense CTF by the FAU Security Team (FAUST), Erlangen; 2026 edition held 26 September.",
+      "fame": "niche",
+      "reference": "https://2026.faustctf.net/information/rules/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "DEF CON 28 Safe Mode",
+      "type": "term",
+      "code": "DC28",
+      "meaning": "2020's online DEF CON; its CTF was won by the team A*0*E.",
+      "fame": "niche",
+      "reference": "https://defcon.org/html/links/dc-ctf.html",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Cyber Grand Challenge",
+      "type": "term",
+      "code": "CGC",
+      "meaning": "DARPA's all-machine CTF, 4 Aug 2016 in Las Vegas just before DEF CON 24; won by ForAllSecure's Mayhem.",
+      "fame": "niche",
+      "reference": "https://www.darpa.mil/news/2016/mayhem-winner-cyber-grand-challenge",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "FLARE-On 13",
+      "type": "term",
+      "code": "13",
+      "meaning": "The 13th FLARE-On, a single-player reverse engineering CTF; opened 25 Sept 2026 for four weeks.",
+      "fame": "niche",
+      "reference": "https://security.googlecloudcommunity.com/community-blog-42/announcing-the-13th-flare-on-challenge-8279",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "ECSC",
+      "type": "term",
+      "code": "ECSC",
+      "meaning": "European Cybersecurity Challenge by ENISA; first in 2014, 11th edition in Warsaw, 6-9 Oct 2025.",
+      "fame": "niche",
+      "reference": "https://ecsc.eu/past-editions/2025",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "ICC",
+      "type": "term",
+      "code": "ICC",
+      "meaning": "International Cybersecurity Challenge by ENISA; first held in Athens, June 2022, won by Team Europe.",
+      "fame": "niche",
+      "reference": "https://icc.ecsc.eu/past-editions/2022",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "0CTF/TCTF → 0CTF",
+      "type": "term",
+      "code": "0CTF",
+      "meaning": "0ops (SJTU) CTF, run with Tencent eee as 0CTF/TCTF to 2023, as 0CTF since 2024. First char is a zero.",
+      "fame": "niche",
+      "reference": "https://ctftime.org/team/4419",
+      "series": [
+        "specimen",
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "kCTF",
+      "type": "tool",
+      "code": "v1.8.1",
+      "meaning": "Google's open-source, Kubernetes-based infrastructure for CTF competitions; latest release v1.8.1.",
+      "fame": "niche",
+      "reference": "https://github.com/google/kctf",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "redpwn/rctf → otter-sec/rctf",
+      "type": "tool",
+      "code": "rCTF",
+      "meaning": "rCTF, redpwn's CTF platform, is no longer maintained there; issues now go to otter-sec/rctf.",
+      "fame": "niche",
+      "reference": "https://github.com/redpwn/rctf",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Volatility 2 → Volatility 3",
+      "type": "tool",
+      "code": "",
+      "meaning": "The original Volatility memory-forensics repo is archived and points to Volatility 3.",
+      "fame": "niche",
+      "reference": "https://github.com/volatilityfoundation/volatility",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Binwalk v2 → Binwalk v3",
+      "type": "tool",
+      "code": "v3.1.0",
+      "meaning": "Binwalk v3 is the Rust rewrite of the firmware and embedded-file analysis tool.",
+      "fame": "niche",
+      "reference": "https://github.com/ReFirmLabs/binwalk",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Instancer",
+      "type": "term",
+      "code": "",
+      "meaning": "Service that spins up a private per-team copy of a challenge on demand.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control",
+          "flow"
+        ],
+        "as": "instancer"
+      }
+    },
+    {
+      "text": "Flag sharing",
+      "type": "term",
+      "code": "",
+      "meaning": "Passing flags or solution details between teams; banned in rules such as FAUST CTF's.",
+      "fame": "niche",
+      "reference": "https://2026.faustctf.net/information/rules/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "DC4 · 1996",
+      "type": "number",
+      "code": "DC4",
+      "meaning": "DEF CON 4, 1996: the first formal Capture The Flag contest at DEF CON.",
+      "fame": "niche",
+      "reference": "https://defcon.org/html/links/dc-ctf.html",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Don’t panic! Don’t give up!",
+      "type": "phrase",
+      "code": "",
+      "meaning": "OverTheWire's advice on the Bandit page to beginners stuck on a level: the game exists to teach the basics, so keep going.",
+      "fame": "niche",
+      "reference": "https://overthewire.org/wargames/bandit/",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Learn to Hack!",
+      "type": "phrase",
+      "code": "",
+      "meaning": "pwn.college's tagline, the headline of its dojo, where learners solve flag-based challenges to build core security skills hands-on.",
+      "fame": "niche",
+      "reference": "https://pwn.college/",
+      "series": [
+        "cutting-mat"
+      ]
+    }
+  ]
+}

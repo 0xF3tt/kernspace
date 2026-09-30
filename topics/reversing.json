@@ -1,0 +1,1243 @@
+{
+  "topic": "reversing",
+  "terms": [
+    {
+      "text": "Ghidra",
+      "type": "tool",
+      "code": "12.1.4",
+      "meaning": "NSA's open-source reverse-engineering suite, public since RSA Conference 2019; 12.1.4 shipped Sept 2026.",
+      "fame": "iconic",
+      "reference": "https://github.com/NationalSecurityAgency/ghidra/releases",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "IDA Pro",
+      "type": "tool",
+      "code": "9.4",
+      "meaning": "Hex-Rays' interactive disassembler, first released 1991; since 9.0 one binary handles 32- and 64-bit code.",
+      "fame": "iconic",
+      "reference": "https://docs.hex-rays.com/release-notes",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Binary Ninja",
+      "type": "tool",
+      "code": "",
+      "meaning": "Vector 35's reversing platform, built on its BNIL family of lifted intermediate languages.",
+      "fame": "iconic",
+      "reference": "https://docs.binary.ninja/dev/bnil-overview.html",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "x64dbg",
+      "type": "tool",
+      "code": "",
+      "meaning": "Open-source user-mode debugger for Windows, optimized for reverse engineering and malware analysis.",
+      "fame": "iconic",
+      "reference": "https://github.com/x64dbg/x64dbg",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "WinDbg",
+      "type": "tool",
+      "code": "",
+      "meaning": "Microsoft's debugger for crash dumps and live user- or kernel-mode code, with Time Travel Debugging built in.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "radare2",
+      "type": "tool",
+      "code": "r2",
+      "meaning": "UNIX-like reverse-engineering framework and command-line toolset, known as r2; Rizin is its fork.",
+      "fame": "iconic",
+      "reference": "https://github.com/radareorg/radare2",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "VirusTotal",
+      "type": "tool",
+      "code": "",
+      "meaning": "Service that scans files and URLs with many antivirus engines and shows hashes such as imphash and ssdeep.",
+      "fame": "iconic",
+      "reference": "https://www.virustotal.com",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "UPX",
+      "type": "tool",
+      "code": "F0001.008",
+      "meaning": "The Ultimate Packer for eXecutables, the classic open-source packer; MBC method F0001.008. Current: 5.2.1.",
+      "fame": "iconic",
+      "reference": "https://github.com/upx/upx",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Portable Executable",
+      "type": "term",
+      "code": "PE32/PE32+",
+      "meaning": "Windows image format for EXE, DLL and SYS files; optional-header magic 0x10b is PE32, 0x20b is PE32+.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "ELF",
+      "type": "term",
+      "code": "7F 45 4C 46",
+      "meaning": "Executable and Linkable Format of Unix-like systems; every file opens with byte 0x7F then 'E', 'L', 'F'.",
+      "fame": "iconic",
+      "reference": "https://man7.org/linux/man-pages/man5/elf.5.html",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "source"
+        ]
+      }
+    },
+    {
+      "text": "Mach-O",
+      "type": "term",
+      "code": "0xfeedfacf",
+      "meaning": "Apple's executable format; MH_MAGIC_64 is 0xfeedfacf and 32-bit MH_MAGIC is 0xfeedface.",
+      "fame": "iconic",
+      "reference": "https://github.com/apple-oss-distributions/xnu/blob/main/EXTERNAL_HEADERS/mach-o/loader.h",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "source"
+        ]
+      }
+    },
+    {
+      "text": "This program cannot be run in DOS mode",
+      "type": "artifact",
+      "code": "MS-DOS stub",
+      "meaning": "Message printed by the default MS-DOS stub the linker places at the front of a PE image; /STUB can swap it.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "IAT",
+      "type": "term",
+      "code": "IAT",
+      "meaning": "Import Address Table: the PE data directory the loader fills with resolved API addresses.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ]
+      }
+    },
+    {
+      "text": "OEP",
+      "type": "term",
+      "code": "OEP",
+      "meaning": "Original Entry Point: where a packed program's real code begins once the unpacking stub hands over.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ]
+      }
+    },
+    {
+      "text": "NOP · 0x90",
+      "type": "id",
+      "code": "0x90",
+      "meaning": "x86 one-byte no-operation opcode; the most recognizable byte in any hex dump.",
+      "fame": "iconic",
+      "reference": "https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "INT3 · 0xCC",
+      "type": "id",
+      "code": "0xCC",
+      "meaning": "x86 one-byte breakpoint opcode behind software breakpoints; MBC lists it under B0001.025.",
+      "fame": "iconic",
+      "reference": "https://github.com/MBCProject/mbc-markdown/blob/main/anti-behavioral-analysis/debugger-detection.md",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "T1027.002 Software Packing",
+      "type": "id",
+      "code": "T1027.002",
+      "meaning": "ATT&CK sub-technique: compressing or encrypting an executable to conceal its code.",
+      "fame": "iconic",
+      "reference": "https://attack.mitre.org/techniques/T1027/002/",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "software packing"
+      }
+    },
+    {
+      "text": "T1497 Virtualization/Sandbox Evasion",
+      "type": "id",
+      "code": "T1497",
+      "meaning": "ATT&CK technique: checking for VM or sandbox artifacts and changing behavior when found.",
+      "fame": "iconic",
+      "reference": "https://attack.mitre.org/techniques/T1497/",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "T1027 Obfuscated Files or Information",
+      "type": "id",
+      "code": "T1027",
+      "meaning": "ATT&CK parent technique for making files hard to discover or analyze; 18 sub-techniques in v19.",
+      "fame": "iconic",
+      "reference": "https://attack.mitre.org/techniques/T1027/",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "T1055.012 Process Hollowing",
+      "type": "id",
+      "code": "T1055.012",
+      "meaning": "ATT&CK sub-technique name for running code inside a hollowed-out legitimate process.",
+      "fame": "iconic",
+      "reference": "https://attack.mitre.org/techniques/T1055/012/",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "process hollowing"
+      }
+    },
+    {
+      "text": "Stuxnet · S0603",
+      "type": "id",
+      "code": "S0603",
+      "meaning": "First publicly reported malware built to target industrial control system devices; discovered in 2010.",
+      "fame": "iconic",
+      "reference": "https://attack.mitre.org/software/S0603/",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "source",
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "WannaCry · S0366",
+      "type": "id",
+      "code": "S0366",
+      "meaning": "Ransomware with worm features, first seen in a global attack in May 2017 hitting 150+ countries.",
+      "fame": "iconic",
+      "reference": "https://attack.mitre.org/software/S0366/",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "NotPetya · S0368",
+      "type": "id",
+      "code": "S0368",
+      "meaning": "Destructive malware posing as ransomware; its worldwide attack began June 27, 2017.",
+      "fame": "iconic",
+      "reference": "https://attack.mitre.org/software/S0368/",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "Conficker · S0608",
+      "type": "id",
+      "code": "S0608",
+      "meaning": "Windows worm first detected in 2008 that spread via MS08-067; also tracked as Kido and Downadup.",
+      "fame": "iconic",
+      "reference": "https://attack.mitre.org/software/S0608/",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "Emotet · S0367",
+      "type": "id",
+      "code": "S0367",
+      "meaning": "Modular malware used mainly as a downloader for other families such as TrickBot and IcedID.",
+      "fame": "iconic",
+      "reference": "https://attack.mitre.org/software/S0367/",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "source",
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "ILOVEYOU (2000)",
+      "type": "term",
+      "code": "2000",
+      "meaning": "VBScript mass-mailing worm released May 4, 2000 that infected tens of millions of Windows PCs.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Brain (1986)",
+      "type": "term",
+      "code": "1986",
+      "meaning": "Boot-sector virus from January 1986, considered the first virus for the IBM PC and compatibles.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Creeper (1971)",
+      "type": "term",
+      "code": "1971",
+      "meaning": "Experimental program that moved between TENEX machines on ARPANET in 1971; a founding tale of malware.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Code Red (2001)",
+      "type": "term",
+      "code": "2001",
+      "meaning": "Worm observed July 15, 2001 that attacked Microsoft IIS web servers.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "SQL Slammer (2003)",
+      "type": "term",
+      "code": "2003",
+      "meaning": "2003 worm that hit Microsoft SQL Server hosts, infecting most of its ~75,000 victims within 10 minutes.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Crackme",
+      "type": "term",
+      "code": "",
+      "meaning": "Small program written to be reverse engineered for practice, usually hiding a check to defeat.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "source"
+        ],
+        "as": "crackme"
+      }
+    },
+    {
+      "text": "Decompilation",
+      "type": "term",
+      "code": "",
+      "meaning": "Recovering C-like source from machine code; lossy, so names, types and comments must be rebuilt.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "EICAR test file",
+      "type": "artifact",
+      "code": "68 bytes",
+      "meaning": "EICAR Standard Anti-Virus Test File: 68 printable ASCII bytes, not a virus, for testing scanners.",
+      "fame": "iconic",
+      "reference": "https://www.eicar.org/download-anti-malware-testfile/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "source"
+        ]
+      }
+    },
+    {
+      "text": "T1045 → T1027.002",
+      "type": "id",
+      "code": "T1027.002",
+      "meaning": "Software Packing's old ID T1045 is revoked; it lives on as sub-technique T1027.002.",
+      "fame": "niche",
+      "reference": "https://github.com/mitre-attack/attack-stix-data",
+      "series": [
+        "cutting-mat",
+        "galley-proof",
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "T1093 → T1055.012",
+      "type": "id",
+      "code": "T1055.012",
+      "meaning": "Process Hollowing's old ID T1093 is revoked; the current entry is Process Injection sub-technique T1055.012.",
+      "fame": "niche",
+      "reference": "https://github.com/mitre-attack/attack-stix-data",
+      "series": [
+        "galley-proof",
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "Time Based Evasion → Time Based Checks",
+      "type": "id",
+      "code": "T1497.003",
+      "meaning": "ATT&CK v18 renamed sub-technique T1497.003 from 'Time Based Evasion' to 'Time Based Checks'.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/techniques/T1497/003/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "T1622 Debugger Evasion",
+      "type": "id",
+      "code": "T1622",
+      "meaning": "ATT&CK technique for detecting and dodging debuggers; listed under Stealth and Discovery.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/techniques/T1622/",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "debugger evasion"
+      }
+    },
+    {
+      "text": "T1027.007 Dynamic API Resolution",
+      "type": "id",
+      "code": "T1027.007",
+      "meaning": "ATT&CK sub-technique for resolving API functions at runtime so the import table reveals little.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/techniques/T1027/007/",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "T1480.001 Environmental Keying",
+      "type": "id",
+      "code": "T1480.001",
+      "meaning": "ATT&CK sub-technique: a payload that only decrypts or runs where the environment matches a key.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/techniques/T1480/001/",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "environmental keying"
+      }
+    },
+    {
+      "text": "MBC · Malware Behavior Catalog",
+      "type": "framework",
+      "code": "v3.2",
+      "meaning": "MITRE's malware-analysis catalog; adds two objectives ATT&CK lacks: OB0001 Anti-Behavioral, OB0002 Anti-Static.",
+      "fame": "niche",
+      "reference": "https://github.com/MBCProject/mbc-markdown/releases",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "B0001 Debugger Detection",
+      "type": "id",
+      "code": "B0001",
+      "meaning": "MBC behavior: malware checks whether it runs inside a debugger; lookalike of B0002.",
+      "fame": "niche",
+      "reference": "https://github.com/MBCProject/mbc-markdown/blob/main/anti-behavioral-analysis/debugger-detection.md",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "B0002 Debugger Evasion",
+      "type": "id",
+      "code": "B0002",
+      "meaning": "MBC behavior: malware foils a debugger to avoid analysis; lookalike of B0001 Debugger Detection.",
+      "fame": "niche",
+      "reference": "https://github.com/MBCProject/mbc-markdown/blob/main/anti-behavioral-analysis/debugger-evasion.md",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "B0009 Virtual Machine Detection",
+      "type": "id",
+      "code": "B0009",
+      "meaning": "MBC behavior for spotting a VM through files, registry, processes, devices or instructions.",
+      "fame": "niche",
+      "reference": "https://github.com/MBCProject/mbc-markdown/blob/main/anti-behavioral-analysis/virtual-machine-detection.md",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "SIDT (red pill) · B0009.030",
+      "type": "id",
+      "code": "B0009.030",
+      "meaning": "MBC method 'Instruction Testing - SIDT (red pill)': VM detection known in the field as red pill.",
+      "fame": "niche",
+      "reference": "https://github.com/MBCProject/mbc-markdown/blob/main/anti-behavioral-analysis/virtual-machine-detection.md",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "SIDT (red pill)"
+      }
+    },
+    {
+      "text": "B0032.001 API Hashing",
+      "type": "id",
+      "code": "B0032.001",
+      "meaning": "MBC method: API names stored as hashes instead of in the import table, resolved at runtime.",
+      "fame": "niche",
+      "reference": "https://github.com/MBCProject/mbc-markdown/blob/main/anti-static-analysis/executable-code-obfuscation.md",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow",
+          "finding"
+        ],
+        "as": "API hashing"
+      }
+    },
+    {
+      "text": "B0032.017 Stack Strings",
+      "type": "id",
+      "code": "B0032.017",
+      "meaning": "MBC method: strings built on the stack at each use, invisible to a plain strings dump.",
+      "fame": "niche",
+      "reference": "https://github.com/MBCProject/mbc-markdown/blob/main/anti-static-analysis/executable-code-obfuscation.md",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow",
+          "finding"
+        ],
+        "as": "stack strings"
+      }
+    },
+    {
+      "text": "B0032.019 Opaque Predicate",
+      "type": "id",
+      "code": "B0032.019",
+      "meaning": "MBC method: a branch whose outcome is fixed but looks conditional, hiding dead or junk code.",
+      "fame": "niche",
+      "reference": "https://github.com/MBCProject/mbc-markdown/blob/main/anti-static-analysis/executable-code-obfuscation.md",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "opaque predicate"
+      }
+    },
+    {
+      "text": "B0003.012 API Hammering",
+      "type": "id",
+      "code": "B0003.012",
+      "meaning": "MBC method: a flood of harmless API calls used as an extended sleep to outlast sandboxes.",
+      "fame": "niche",
+      "reference": "https://github.com/MBCProject/mbc-markdown/blob/main/anti-behavioral-analysis/dynamic-analysis-evasion.md",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow",
+          "finding"
+        ],
+        "as": "API hammering"
+      }
+    },
+    {
+      "text": "B0001.029 TLS Callbacks",
+      "type": "id",
+      "code": "B0001.029",
+      "meaning": "MBC anti-debug method; PE TLS callbacks run before the entry point, where many first breakpoints sit.",
+      "fame": "niche",
+      "reference": "https://github.com/MBCProject/mbc-markdown/blob/main/anti-behavioral-analysis/debugger-detection.md",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow",
+          "finding"
+        ],
+        "as": "TLS callbacks"
+      }
+    },
+    {
+      "text": "F0001.010 VMProtect",
+      "type": "id",
+      "code": "F0001.010",
+      "meaning": "MBC Software Packing method for samples protected with VMProtect; related Unprotect entry U1410.",
+      "fame": "niche",
+      "reference": "https://github.com/MBCProject/mbc-markdown/blob/main/anti-static-analysis/software-packing.md",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "UPX0 · UPX1",
+      "type": "artifact",
+      "code": "UPX0/UPX1",
+      "meaning": "Section names UPX writes into packed PE files; a third is kept as .rsrc or named UPX2.",
+      "fame": "niche",
+      "reference": "https://github.com/upx/upx",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "PE32 0x10b · PE32+ 0x20b",
+      "type": "id",
+      "code": "0x10b/0x20b",
+      "meaning": "Optional-header magic lookalike pair: 0x10b marks PE32, 0x20b marks 64-bit PE32+ (0x107 is ROM).",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "0x8664 AMD64 · 0xAA64 ARM64",
+      "type": "id",
+      "code": "0x8664/0xaa64",
+      "meaning": "PE Machine field lookalikes: IMAGE_FILE_MACHINE_AMD64 and IMAGE_FILE_MACHINE_ARM64.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "0xfeedfacf · 0xcffaedfe",
+      "type": "id",
+      "code": "MH_MAGIC_64",
+      "meaning": "MH_MAGIC_64 and byte-swapped twin MH_CIGAM_64; CIGAM is MAGIC spelled backwards.",
+      "fame": "niche",
+      "reference": "https://github.com/apple-oss-distributions/xnu/blob/main/EXTERNAL_HEADERS/mach-o/loader.h",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "PE\\0\\0",
+      "type": "id",
+      "code": "PE signature",
+      "meaning": "4-byte PE signature: 'P', 'E', then two null bytes, at the file offset stored at 0x3C.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "e_lfanew @ 0x3C",
+      "type": "id",
+      "code": "0x3C",
+      "meaning": "DOS-header field at offset 0x3C that holds the file offset of the PE signature.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Rich header",
+      "type": "term",
+      "code": "",
+      "meaning": "Undocumented linker metadata between the DOS stub and PE header, used to fingerprint build toolchains.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "DYNAMIC_BASE 0x0040",
+      "type": "id",
+      "code": "0x0040",
+      "meaning": "PE DllCharacteristics flag: image can be relocated at load time, the ASLR opt-in.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ],
+        "as": "DYNAMIC_BASE"
+      }
+    },
+    {
+      "text": "ET_DYN = 3",
+      "type": "id",
+      "code": "ET_DYN",
+      "meaning": "ELF e_type for shared objects; position-independent executables carry it too.",
+      "fame": "niche",
+      "reference": "https://github.com/bminor/glibc/blob/master/elf/elf.h",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "LC_UNIXTHREAD → LC_MAIN",
+      "type": "id",
+      "code": "LC_MAIN",
+      "meaning": "Mach-O load commands: loader.h labels LC_MAIN the replacement for LC_UNIXTHREAD.",
+      "fame": "niche",
+      "reference": "https://github.com/apple-oss-distributions/xnu/blob/main/EXTERNAL_HEADERS/mach-o/loader.h",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": ".idb → .i64",
+      "type": "filename",
+      "code": ".i64",
+      "meaning": "IDA 9.0 converts legacy .idb databases to the .i64 format transparently on open.",
+      "fame": "niche",
+      "reference": "https://docs.hex-rays.com/release-notes/9_0",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "WinDbg Preview → WinDbg",
+      "type": "tool",
+      "code": "WinDbg",
+      "meaning": "The debugger once shipped as 'WinDbg Preview' is now just WinDbg; the older one is 'WinDbg (classic)'.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "PEiD → Detect It Easy",
+      "type": "tool",
+      "code": "DiE",
+      "meaning": "DiE identifies packers and compilers today; it bundles PEiD rules for compatibility with the old-school detector.",
+      "fame": "niche",
+      "reference": "https://github.com/horsicq/Detect-It-Easy",
+      "series": [
+        "cutting-mat",
+        "galley-proof",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "Cuckoo 2.x → CAPEv2",
+      "type": "tool",
+      "code": "CAPEv2",
+      "meaning": "Cuckoo 2.x is unmaintained, repo archived April 2021; CAPE (Config And Payload Extraction) derives from Cuckoo v1.",
+      "fame": "niche",
+      "reference": "https://github.com/kevoreilly/CAPEv2",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "dnSpy → dnSpyEx",
+      "type": "tool",
+      "code": "dnSpyEx",
+      "meaning": "The .NET debugger/decompiler dnSpy was archived Dec 21, 2020; the dnSpyEx fork continues it (v6.6.0).",
+      "fame": "niche",
+      "reference": "https://github.com/dnSpyEx/dnSpy",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "YARA → YARA-X",
+      "type": "tool",
+      "code": "YARA-X 1.0.0",
+      "meaning": "YARA-X 1.0.0 went stable June 4, 2025; original YARA now gets only critical fixes. Current: 1.20.0.",
+      "fame": "niche",
+      "reference": "https://virustotal.github.io/yara-x/blog/yara-x-is-stable/",
+      "series": [
+        "cutting-mat",
+        "galley-proof",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ],
+        "as": "YARA-X"
+      }
+    },
+    {
+      "text": "FLOSS · FLARE Obfuscated String Solver",
+      "type": "tool",
+      "code": "FLOSS",
+      "meaning": "Extracts static, stack, tight and decoded strings; the acronym once began 'FireEye Labs'.",
+      "fame": "niche",
+      "reference": "https://github.com/mandiant/flare-floss",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "capa",
+      "type": "tool",
+      "code": "v9.4.0",
+      "meaning": "FLARE tool that detects capabilities in executables and maps them to ATT&CK and MBC.",
+      "fame": "niche",
+      "reference": "https://github.com/mandiant/capa",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "imphash",
+      "type": "term",
+      "code": "",
+      "meaning": "MD5 of a PE's ordered, lowercased import list; introduced by Mandiant on January 23, 2014.",
+      "fame": "niche",
+      "reference": "https://cloud.google.com/blog/topics/threat-intelligence/tracking-malware-import-hashing/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "ssdeep · CTPH",
+      "type": "tool",
+      "code": "CTPH",
+      "meaning": "Context triggered piecewise hashing: fuzzy hashes that match files sharing ordered byte runs.",
+      "fame": "niche",
+      "reference": "https://ssdeep-project.github.io/ssdeep/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "TLSH",
+      "type": "term",
+      "code": "TLSH",
+      "meaning": "Trend Micro Locality Sensitive Hash, a fuzzy similarity hash; default mode needs at least 50 bytes.",
+      "fame": "niche",
+      "reference": "https://github.com/trendmicro/tlsh",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "FLIRT",
+      "type": "term",
+      "code": "FLIRT",
+      "meaning": "IDA's signature technology for recognizing standard library functions so analysts can skip them.",
+      "fame": "niche",
+      "reference": "https://docs.hex-rays.com/core/flirt",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "F5",
+      "type": "term",
+      "code": "F5",
+      "meaning": "IDA hotkey that opens the decompiler's pseudocode view; among reversers, 'hit F5' means decompile it.",
+      "fame": "niche",
+      "reference": "https://docs.hex-rays.com/core/decompiler/get-started",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "SLEIGH · P-code",
+      "type": "term",
+      "code": "P-code",
+      "meaning": "Ghidra's processor specification language, and the register transfer language instructions lift into.",
+      "fame": "niche",
+      "reference": "https://ghidra.re/ghidra_docs/languages/html/sleigh.html",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "LLIL · MLIL · HLIL",
+      "type": "term",
+      "code": "BNIL",
+      "meaning": "Binary Ninja's low-, medium- and high-level intermediate languages, together called BNIL.",
+      "fame": "niche",
+      "reference": "https://docs.binary.ninja/dev/bnil-overview.html",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Type:Platform/Family.Variant!Suffixes",
+      "type": "term",
+      "code": "CARO",
+      "meaning": "Microsoft's malware name format, based on the CARO naming scheme.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/defender-xdr/malware-naming",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "D3-FCR File Content Rules",
+      "type": "id",
+      "code": "D3-FCR",
+      "meaning": "D3FEND technique: a pattern-matching rule language over file content; synonyms File Signatures, File Content Signatures.",
+      "fame": "niche",
+      "reference": "https://d3fend.mitre.org/technique/d3f:FileContentRules/",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ],
+        "as": "D3-FCR"
+      }
+    },
+    {
+      "text": "Flame · S0143 · sKyWIper",
+      "type": "id",
+      "code": "S0143",
+      "meaning": "Info-collection toolkit used since at least 2010, largely against Middle East targets; also tracked as sKyWIper, Flamer.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/software/S0143/",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "Elk Cloner (1982)",
+      "type": "term",
+      "code": "1982",
+      "meaning": "Apple II program written around 1982 that spread by floppy disk; one of the first microcomputer viruses in the wild.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "I'M THE CREEPER : CATCH ME IF YOU CAN",
+      "type": "status-line",
+      "code": "Creeper",
+      "meaning": "Message printed by the 1971 Creeper program as it moved between ARPANET machines.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "galley-proof",
+        "specimen"
+      ]
+    },
+    {
+      "text": "Flare-On",
+      "type": "term",
+      "code": "2014",
+      "meaning": "The FLARE team's annual single-player reverse-engineering CTF, held every fall since Flare-On 1 in 2014.",
+      "fame": "niche",
+      "reference": "https://flare-on.com/",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Control-flow flattening",
+      "type": "term",
+      "code": "",
+      "meaning": "Obfuscation that routes all basic blocks through one dispatcher loop, hiding the original flow graph.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "uint16(0) == 0x5A4D",
+      "type": "snippet",
+      "code": "0x5A4D",
+      "meaning": "Defensive YARA condition: DOS-header magic at offset 0, the usual first test for PE files.",
+      "fame": "niche",
+      "reference": "https://virustotal.github.io/yara-x/",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "System breakpoint reached!",
+      "type": "status-line",
+      "code": "x64dbg",
+      "meaning": "x64dbg log line printed when a new debuggee stops at the Windows loader's system breakpoint, before any of its own code runs.",
+      "fame": "niche",
+      "reference": "https://github.com/x64dbg/x64dbg/blob/development/src/dbg/debugger.cpp",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "AU: idle",
+      "type": "status-line",
+      "code": "AU",
+      "meaning": "IDA's analysis indicator in the status bar: autoanalysis is finished and the database is ready to read.",
+      "fame": "niche",
+      "reference": "https://docs.hex-rays.com/ida-actions/options",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "call analysis failed",
+      "type": "status-line",
+      "code": "Hex-Rays",
+      "meaning": "Hex-Rays decompiler graceful failure: it could not determine a call's calling convention and parameters. Its docs call it the most painful error message.",
+      "fame": "niche",
+      "reference": "https://docs.hex-rays.com/core/decompiler/failures",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Trace/breakpoint trap",
+      "type": "status-line",
+      "code": "SIGTRAP",
+      "meaning": "The description of SIGTRAP, printed when a process hits an INT3 (0xCC) with no debugger attached.",
+      "fame": "niche",
+      "reference": "https://man7.org/linux/man-pages/man7/signal.7.html",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Win.Test.EICAR_HDB-1 FOUND",
+      "type": "status-line",
+      "code": "Win.Test.EICAR_HDB-1",
+      "meaning": "ClamAV clamscan verdict for the EICAR test file: signature name followed by FOUND.",
+      "fame": "niche",
+      "reference": "https://docs.clamav.net/manual/Signatures/AllowLists.html",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Reflections on Trusting Trust",
+      "type": "phrase",
+      "code": "",
+      "meaning": "Ken Thompson's 1984 Turing Award lecture: a trojaned compiler binary plants a backdoor that no source-level review can find. Its moral: you can't trust code you did not totally create yourself.",
+      "fame": "iconic",
+      "reference": "https://dl.acm.org/doi/10.1145/358198.358210",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "WYSINWYX",
+      "type": "phrase",
+      "code": "",
+      "meaning": "'What You See Is Not What You eXecute' (Balakrishnan and Reps): source code can hide behavior the compiled machine code has, so analyze the binary.",
+      "fame": "niche",
+      "reference": "https://research.cs.wisc.edu/wpis/papers/wysinwyx.final.pdf",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "mov is Turing-complete",
+      "type": "phrase",
+      "code": "",
+      "meaning": "Title and result of Stephen Dolan's 2013 paper: x86 mov, plus one jmp back to the start, can simulate any Turing machine. It inspired the movfuscator, a compiler that emits only mov instructions to defeat reverse engineering.",
+      "fame": "niche",
+      "reference": "https://github.com/xoreaxeaxeax/movfuscator",
+      "series": [
+        "cutting-mat"
+      ]
+    }
+  ]
+}

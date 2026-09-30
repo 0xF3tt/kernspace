@@ -1,0 +1,35 @@
+name: Bug Report
+description: Report a bug or rendering issue in kernspace
+title: "fix: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting an issue! If you found a security vulnerability, please report it privately via [GitHub Advisories](https://github.com/0xF3tt/kernspace/security/advisories/new).
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: What browser and operating system were you using?
+      placeholder: e.g. Safari 18 on macOS Sequoia, Firefox 130 on Ubuntu 24.04
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the problem clearly.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce this?
+      placeholder: |
+        1. Go to studio
+        2. Pick volume 'AppSec'
+        3. Switch to format 'Phone'
+    validations:
+      required: true

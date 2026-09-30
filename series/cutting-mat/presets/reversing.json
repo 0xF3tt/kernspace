@@ -1,0 +1,26 @@
+{
+  "series": "cutting-mat",
+  "topic": "reversing",
+  "title": "Vol. 11 · Unpack",
+  "ground": "mid",
+  "phrase": ["The binary", "never lies."],
+  "label": "REVERSING CUTTING MAT · VOL. 11 · UNPACK",
+  "source": "sample · packed PE32+",
+  "sink": "sink · hollowed image",
+  "controls": ["debugger check", "env keying"],
+  "flows": ["60° · TLS callbacks", "30° · stack strings", "15° · API hashing"],
+  "findings": ["packer · UPX0/UPX1", "anti-vm · red pill", "T1055.012"],
+  "panel": {
+    "title": "triage.md",
+    "lines": ["packer: F0001.008 · UPX → OEP found", "ISB-01: B0001 · debugger detection", "ISB-02: T1480.001 · keyed to target", "sink: T1055.012 · process hollowing", "rule: YARA-X · D3-FCR [SHIPPED]"]
+  },
+  "notes": ["hit F5, then doubt it", "a thin IAT is a clue", "static first, then dynamic"],
+  "data": {"left": "PE32+ 0x20b · 0x8664 AMD64 · UPX", "right": "{handle} · git:(main) · purple learns"},
+  "phone": {
+    "data": {"left": "PE32+ 0x20b · 0x8664 AMD64", "right": "{handle} · purple learns"}
+  },
+  "layout": {
+    "desktop": {"chips": [[33, 7], [37, 14], [7, 11]], "notes": [[2, 2], [27, 16], [12, 20]]},
+    "phone": {"chips": [[12, 16], [13, 24], [8, 35]], "notes": [[4, 21], [12, 34], [12, 18]]}
+  }
+}

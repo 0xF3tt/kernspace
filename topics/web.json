@@ -1,0 +1,1169 @@
+{
+  "topic": "web",
+  "terms": [
+    {
+      "text": "Same-Origin Policy",
+      "type": "term",
+      "code": "SOP",
+      "meaning": "Browser rule: a page may not read data from another origin unless that origin opts in.",
+      "fame": "iconic",
+      "reference": "https://www.rfc-editor.org/rfc/rfc6454",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ],
+        "as": "SOP"
+      }
+    },
+    {
+      "text": "Origin = scheme + host + port",
+      "type": "term",
+      "code": "RFC 6454",
+      "meaning": "The triple that defines an origin; change any one part and it is a different origin.",
+      "fame": "iconic",
+      "reference": "https://www.rfc-editor.org/rfc/rfc6454",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "CORS",
+      "type": "framework",
+      "code": "CORS",
+      "meaning": "Cross-Origin Resource Sharing: headers that let a server relax SOP for chosen origins. Defined in WHATWG Fetch.",
+      "fame": "iconic",
+      "reference": "https://fetch.spec.whatwg.org/#http-cors-protocol",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "Content-Security-Policy",
+      "type": "framework",
+      "code": "CSP",
+      "meaning": "Response header that allowlists where scripts, styles and frames may load from. Current draft: CSP Level 3.",
+      "fame": "iconic",
+      "reference": "https://www.w3.org/TR/CSP3/",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ],
+        "as": "CSP"
+      }
+    },
+    {
+      "text": "XSS · CWE-79",
+      "type": "id",
+      "code": "CWE-79",
+      "meaning": "Cross-site scripting: untrusted input rendered as script in a page. Ranked #1 in the 2025 CWE Top 25.",
+      "fame": "iconic",
+      "reference": "https://cwe.mitre.org/data/definitions/79.html",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "SQL Injection · CWE-89",
+      "type": "id",
+      "code": "CWE-89",
+      "meaning": "Untrusted input changes the meaning of an SQL command. Ranked #2 in the 2025 CWE Top 25.",
+      "fame": "iconic",
+      "reference": "https://cwe.mitre.org/data/definitions/89.html",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "CSRF · CWE-352",
+      "type": "id",
+      "code": "CWE-352",
+      "meaning": "Cross-Site Request Forgery: another site makes the browser send an unwanted authenticated request. #3 in 2025.",
+      "fame": "iconic",
+      "reference": "https://cwe.mitre.org/data/definitions/352.html",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "SSRF · CWE-918",
+      "type": "id",
+      "code": "CWE-918",
+      "meaning": "Server-Side Request Forgery: the server fetches a URL the user controls. Also API7:2023.",
+      "fame": "iconic",
+      "reference": "https://cwe.mitre.org/data/definitions/918.html",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "IDOR · CWE-639",
+      "type": "id",
+      "code": "CWE-639",
+      "meaning": "Insecure Direct Object Reference; closest CWE: Authorization Bypass Through User-Controlled Key. WSTG-ATHZ-04.",
+      "fame": "iconic",
+      "reference": "https://cwe.mitre.org/data/definitions/639.html",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "Path Traversal · CWE-22",
+      "type": "id",
+      "code": "CWE-22",
+      "meaning": "Input escapes the intended directory. Ranked #6 in the 2025 CWE Top 25.",
+      "fame": "iconic",
+      "reference": "https://cwe.mitre.org/data/definitions/22.html",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Open Redirect · CWE-601",
+      "type": "id",
+      "code": "CWE-601",
+      "meaning": "URL Redirection to Untrusted Site. Mapped to A01:2025 Broken Access Control.",
+      "fame": "iconic",
+      "reference": "https://cwe.mitre.org/data/definitions/601.html",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "XXE · CWE-611",
+      "type": "id",
+      "code": "CWE-611",
+      "meaning": "XML External Entity: Improper Restriction of XML External Entity Reference.",
+      "fame": "iconic",
+      "reference": "https://cwe.mitre.org/data/definitions/611.html",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "Clickjacking · CAPEC-103",
+      "type": "id",
+      "code": "CAPEC-103",
+      "meaning": "UI redressing: a framed page tricks a user into clicking. Weakness: CWE-1021.",
+      "fame": "iconic",
+      "reference": "https://capec.mitre.org/data/definitions/103.html",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "HSTS · RFC 6797",
+      "type": "id",
+      "code": "RFC 6797",
+      "meaning": "HTTP Strict Transport Security: tells the browser to reach a host over HTTPS only.",
+      "fame": "iconic",
+      "reference": "https://www.rfc-editor.org/rfc/rfc6797",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ],
+        "as": "HSTS"
+      }
+    },
+    {
+      "text": "Set-Cookie · RFC 6265",
+      "type": "id",
+      "code": "RFC 6265",
+      "meaning": "HTTP State Management Mechanism (2011), still the cookie standard; successor draft RFC 6265bis pending.",
+      "fame": "iconic",
+      "reference": "https://www.rfc-editor.org/rfc/rfc6265",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ],
+        "as": "Set-Cookie"
+      }
+    },
+    {
+      "text": "HttpOnly",
+      "type": "term",
+      "code": "CWE-1004",
+      "meaning": "Cookie attribute that hides the cookie from scripts. Missing it: CWE-1004.",
+      "fame": "iconic",
+      "reference": "https://cwe.mitre.org/data/definitions/1004.html",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "SameSite=Lax",
+      "type": "snippet",
+      "code": "CWE-1275",
+      "meaning": "Cookie withheld on cross-site subrequests, sent on top-level GET navigations. Chrome's default since v80.",
+      "fame": "iconic",
+      "reference": "https://www.chromium.org/updates/same-site/",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "JWT · RFC 7519",
+      "type": "id",
+      "code": "RFC 7519",
+      "meaning": "JSON Web Token, the compact signed claims format common in API auth. Best practices: RFC 8725.",
+      "fame": "iconic",
+      "reference": "https://www.rfc-editor.org/rfc/rfc7519",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow",
+          "source"
+        ]
+      }
+    },
+    {
+      "text": "OAuth 2.0 · RFC 6749",
+      "type": "id",
+      "code": "RFC 6749",
+      "meaning": "The OAuth 2.0 Authorization Framework (2012); obsoletes OAuth 1.0 (RFC 5849).",
+      "fame": "iconic",
+      "reference": "https://www.rfc-editor.org/rfc/rfc6749",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ],
+        "as": "OAuth 2.0"
+      }
+    },
+    {
+      "text": "A05:2025 Injection",
+      "type": "id",
+      "code": "A05:2025",
+      "meaning": "OWASP Top 10:2025 category covering XSS and SQL injection among 37 mapped CWEs.",
+      "fame": "iconic",
+      "reference": "https://top10.owasp.org/2025/A05_2025-Injection/",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "OWASP API Security Top 10",
+      "type": "framework",
+      "code": "2023",
+      "meaning": "Top 10 risks for APIs; current edition 2023 (previous 2019).",
+      "fame": "iconic",
+      "reference": "https://api-security.owasp.org/editions/2023/en/0x11-t10/",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "API1:2023 · BOLA",
+      "type": "id",
+      "code": "API1:2023",
+      "meaning": "Broken Object Level Authorization: the API returns objects without checking ownership. Cites CWE-285, CWE-639.",
+      "fame": "iconic",
+      "reference": "https://api-security.owasp.org/editions/2023/en/0x11-t10/",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "API2:2023",
+      "type": "id",
+      "code": "API2:2023",
+      "meaning": "Broken Authentication, #2 in the OWASP API Security Top 10 2023.",
+      "fame": "niche",
+      "reference": "https://api-security.owasp.org/editions/2023/en/0x11-t10/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "401 Unauthorized",
+      "type": "status-line",
+      "code": "RFC 9110 §15.5.2",
+      "meaning": "Means 'not authenticated' despite the name. Lookalike: 403.",
+      "fame": "iconic",
+      "reference": "https://www.rfc-editor.org/rfc/rfc9110#section-15.5.2",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "403 Forbidden",
+      "type": "status-line",
+      "code": "RFC 9110 §15.5.4",
+      "meaning": "Authenticated or not, the server refuses. Lookalike: 401.",
+      "fame": "iconic",
+      "reference": "https://www.rfc-editor.org/rfc/rfc9110#section-15.5.4",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "Burp Suite",
+      "type": "tool",
+      "code": "",
+      "meaning": "PortSwigger's intercepting proxy and testing toolkit, the web tester's workbench.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "OWASP Juice Shop",
+      "type": "tool",
+      "code": "",
+      "meaning": "Deliberately insecure web app from OWASP, used for training and CTFs.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "WAF",
+      "type": "term",
+      "code": "WAF",
+      "meaning": "Web Application Firewall: filters HTTP traffic in front of an app. A layer, not a fix.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "Little Bobby Tables",
+      "type": "term",
+      "code": "xkcd 327",
+      "meaning": "Character from xkcd #327 'Exploits of a Mom', the in-joke for SQL injection.",
+      "fame": "iconic",
+      "reference": "https://xkcd.com/327/",
+      "series": [
+        "cutting-mat",
+        "galley-proof",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "Parameterized query",
+      "type": "term",
+      "code": "",
+      "meaning": "Defensive idiom: send SQL and data separately so input is never parsed as code.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "parameterized query"
+      }
+    },
+    {
+      "text": "API3:2023",
+      "type": "id",
+      "code": "API3:2023",
+      "meaning": "Broken Object Property Level Authorization; merges 2019's Excessive Data Exposure and Mass Assignment.",
+      "fame": "niche",
+      "reference": "https://api-security.owasp.org/editions/2023/en/0x11-t10/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "API4:2023",
+      "type": "id",
+      "code": "API4:2023",
+      "meaning": "Unrestricted Resource Consumption; maps to CWE-770, CWE-400 and CWE-799.",
+      "fame": "niche",
+      "reference": "https://api-security.owasp.org/editions/2023/en/0x11-t10/",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "API5:2023",
+      "type": "id",
+      "code": "API5:2023",
+      "meaning": "Broken Function Level Authorization (BFLA). Lookalike of API1 BOLA: function vs object.",
+      "fame": "niche",
+      "reference": "https://api-security.owasp.org/editions/2023/en/0x11-t10/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "API6:2023",
+      "type": "id",
+      "code": "API6:2023",
+      "meaning": "Unrestricted Access to Sensitive Business Flows: automation abusing a legitimate flow.",
+      "fame": "niche",
+      "reference": "https://api-security.owasp.org/editions/2023/en/0x11-t10/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "API7:2023",
+      "type": "id",
+      "code": "API7:2023",
+      "meaning": "Server Side Request Forgery, the API edition of CWE-918.",
+      "fame": "niche",
+      "reference": "https://api-security.owasp.org/editions/2023/en/0x11-t10/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "API8:2023",
+      "type": "id",
+      "code": "API8:2023",
+      "meaning": "Security Misconfiguration in the API stack.",
+      "fame": "niche",
+      "reference": "https://api-security.owasp.org/editions/2023/en/0x11-t10/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "API9:2023",
+      "type": "id",
+      "code": "API9:2023",
+      "meaning": "Improper Inventory Management: forgotten hosts, old versions, undocumented endpoints.",
+      "fame": "niche",
+      "reference": "https://api-security.owasp.org/editions/2023/en/0x11-t10/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "API10:2023",
+      "type": "id",
+      "code": "API10:2023",
+      "meaning": "Unsafe Consumption of APIs: trusting third-party API data too much.",
+      "fame": "niche",
+      "reference": "https://api-security.owasp.org/editions/2023/en/0x11-t10/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Request Smuggling · CWE-444",
+      "type": "id",
+      "code": "CWE-444",
+      "meaning": "Front end and back end disagree on where an HTTP request ends. Attack pattern: CAPEC-33.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/444.html",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "CL.TE · TE.CL · H2.CL",
+      "type": "term",
+      "code": "CWE-444",
+      "meaning": "Desync family labels naming which length header the front end and back end each trust.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/444.html",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Prototype Pollution · CWE-1321",
+      "type": "id",
+      "code": "CWE-1321",
+      "meaning": "Improperly Controlled Modification of Object Prototype Attributes; CWE lists JavaScript as its platform.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/1321.html",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "SSTI · CWE-1336",
+      "type": "id",
+      "code": "CWE-1336",
+      "meaning": "Server-side template injection: Improper Neutralization of Special Elements Used in a Template Engine.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/1336.html",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "CSWSH · CWE-1385",
+      "type": "id",
+      "code": "CWE-1385",
+      "meaning": "Cross-Site WebSocket Hijacking; CWE-1385 Missing Origin Validation in WebSockets.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/1385.html",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "CWE-942",
+      "type": "id",
+      "code": "CWE-942",
+      "meaning": "Permissive Cross-domain Security Policy with Untrusted Domains: the CORS misconfiguration weakness.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/942.html",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "XSS / XSSI / XS-Leaks",
+      "type": "term",
+      "code": "",
+      "meaning": "Lookalike trio: script injection, cross-site script inclusion, cross-site side-channel leaks.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "CSRF / SSRF",
+      "type": "term",
+      "code": "CWE-352 / CWE-918",
+      "meaning": "Lookalike pair: one forges the user's browser request, the other the server's.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Web Cache Deception",
+      "type": "term",
+      "code": "",
+      "meaning": "Tricking a cache into storing a private page. Lookalike: Web Cache Poisoning.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Web Cache Poisoning",
+      "type": "term",
+      "code": "",
+      "meaning": "Getting a harmful response cached and served to others. Lookalike: Web Cache Deception.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "web cache poisoning"
+      }
+    },
+    {
+      "text": "DOM clobbering",
+      "type": "term",
+      "code": "",
+      "meaning": "Named HTML elements overwrite global JavaScript variables.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "mXSS",
+      "type": "term",
+      "code": "",
+      "meaning": "Mutation XSS: markup that changes meaning after the browser re-parses sanitized HTML.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Self-XSS",
+      "type": "term",
+      "code": "",
+      "meaning": "XSS that fires only in the reporter's own session; often out of scope in bug bounty programs.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "COOP · COEP · CORP",
+      "type": "term",
+      "code": "",
+      "meaning": "Cross-Origin Opener, Embedder and Resource Policy headers; COOP plus COEP enable cross-origin isolation.",
+      "fame": "niche",
+      "reference": "https://html.spec.whatwg.org/multipage/browsers.html",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Sec-Fetch-Site",
+      "type": "term",
+      "code": "Fetch Metadata",
+      "meaning": "Request header telling the server if a call is same-origin, same-site, cross-site or none.",
+      "fame": "niche",
+      "reference": "https://www.w3.org/TR/fetch-metadata/",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "require-trusted-types-for 'script'",
+      "type": "snippet",
+      "code": "Trusted Types",
+      "meaning": "CSP directive that turns on Trusted Types: DOM XSS sinks accept only policy-approved values.",
+      "fame": "niche",
+      "reference": "https://www.w3.org/TR/trusted-types/",
+      "series": [
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "SRI",
+      "type": "framework",
+      "code": "SRI",
+      "meaning": "Subresource Integrity: a hash on a script or stylesheet tag; SHA-256, SHA-384 or SHA-512.",
+      "fame": "niche",
+      "reference": "https://www.w3.org/TR/SRI/",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "__Host-",
+      "type": "term",
+      "code": "RFC 6265bis",
+      "meaning": "Cookie name prefix: requires Secure, Path=/ and no Domain attribute.",
+      "fame": "niche",
+      "reference": "https://datatracker.ietf.org/doc/draft-ietf-httpbis-rfc6265bis/",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "eTLD+1",
+      "type": "term",
+      "code": "",
+      "meaning": "Registrable domain per the Public Suffix List; with the scheme, it is the 'site' in same-site.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "'strict-dynamic'",
+      "type": "snippet",
+      "code": "CSP3",
+      "meaning": "CSP keyword: scripts allowed by nonce or hash may load more scripts via non-parser-inserted elements.",
+      "fame": "niche",
+      "reference": "https://www.w3.org/TR/CSP3/",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "X-Content-Type-Options: nosniff",
+      "type": "snippet",
+      "code": "",
+      "meaning": "Header that stops browsers from MIME-sniffing a response into something executable. Defined in Fetch.",
+      "fame": "niche",
+      "reference": "https://fetch.spec.whatwg.org/#x-content-type-options-header",
+      "series": [
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "strict-origin-when-cross-origin",
+      "type": "snippet",
+      "code": "Referrer-Policy",
+      "meaning": "Default in the Referrer Policy editor's draft: full URL same-origin, only the origin cross-origin.",
+      "fame": "niche",
+      "reference": "https://w3c.github.io/webappsec-referrer-policy/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Vary: Origin",
+      "type": "snippet",
+      "code": "",
+      "meaning": "Header that keeps caches from serving one origin's CORS answer to another.",
+      "fame": "niche",
+      "reference": "https://fetch.spec.whatwg.org/#cors-protocol-and-http-caches",
+      "series": [
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Referer [sic]",
+      "type": "term",
+      "code": "RFC 9110 §10.1.3",
+      "meaning": "The header name is misspelled and stays that way; RFC 9110 marks it [sic]. Stet.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/rfc/rfc9110#section-10.1.3",
+      "series": [
+        "cutting-mat",
+        "galley-proof",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "flow",
+          "source",
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "429 Too Many Requests",
+      "type": "status-line",
+      "code": "RFC 6585",
+      "meaning": "Rate limit reached. The polite face of API4:2023.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/rfc/rfc6585",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "PKCE · RFC 7636",
+      "type": "id",
+      "code": "RFC 7636",
+      "meaning": "Proof Key for Code Exchange, pronounced 'pixy'; binds an OAuth code to the client that asked for it.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/rfc/rfc7636",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ],
+        "as": "PKCE"
+      }
+    },
+    {
+      "text": "WSTG-INPV-01",
+      "type": "id",
+      "code": "WSTG-INPV-01",
+      "meaning": "OWASP WSTG v4.2 test ID: Testing for Reflected Cross Site Scripting.",
+      "fame": "niche",
+      "reference": "https://wstg.owasp.org/v4.2/",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "HTTP/2 Rapid Reset",
+      "type": "id",
+      "code": "CVE-2023-44487",
+      "meaning": "2023 HTTP/2 DoS through fast stream cancellation; in CISA KEV.",
+      "fame": "niche",
+      "reference": "https://nvd.nist.gov/vuln/detail/CVE-2023-44487",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "OWASP ZAP → ZAP",
+      "type": "term",
+      "code": "",
+      "meaning": "Not an OWASP project since August 2023; the correct name is 'ZAP' or 'ZAP by Checkmarx'.",
+      "fame": "niche",
+      "reference": "https://www.zaproxy.org/docs/nowaspzap/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Feature-Policy → Permissions-Policy",
+      "type": "term",
+      "code": "",
+      "meaning": "The W3C spec and header were renamed; Feature-Policy is the old name.",
+      "fame": "niche",
+      "reference": "https://www.w3.org/TR/permissions-policy/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "X-Frame-Options → frame-ancestors",
+      "type": "term",
+      "code": "RFC 7034",
+      "meaning": "CSP frame-ancestors overrides X-Frame-Options when enforced (CSP3 §6.4.2.2).",
+      "fame": "niche",
+      "reference": "https://www.w3.org/TR/CSP3/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "report-uri → report-to",
+      "type": "snippet",
+      "code": "CSP3",
+      "meaning": "CSP3: report-uri is deprecated in favor of report-to and the Reporting API.",
+      "fame": "niche",
+      "reference": "https://www.w3.org/TR/CSP3/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "X-XSS-Protection → CSP",
+      "type": "term",
+      "code": "",
+      "meaning": "Deprecated, non-standard header for legacy IE, Chrome and Safari XSS filters. Use CSP instead.",
+      "fame": "niche",
+      "reference": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-XSS-Protection",
+      "series": [
+        "cutting-mat",
+        "galley-proof",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "CORB → ORB",
+      "type": "term",
+      "code": "",
+      "meaning": "Opaque Response Blocking ('CORB++'), CORB's successor, is still being upstreamed into the Fetch Standard.",
+      "fame": "niche",
+      "reference": "https://github.com/annevk/orb",
+      "series": [
+        "specimen",
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "PNA → LNA",
+      "type": "term",
+      "code": "Chrome 142",
+      "meaning": "Private Network Access was put on hold; Local Network Access replaces it, with a prompt in Chrome 142.",
+      "fame": "niche",
+      "reference": "https://developer.chrome.com/blog/local-network-access",
+      "series": [
+        "specimen",
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Implicit grant → Code + PKCE",
+      "type": "term",
+      "code": "RFC 9700",
+      "meaning": "OAuth BCP: SHOULD NOT use the implicit grant; use the authorization code grant with PKCE.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/rfc/rfc9700",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "RFC 7231 → RFC 9110",
+      "type": "id",
+      "code": "RFC 9110",
+      "meaning": "HTTP Semantics moved to RFC 9110 in June 2022; RFCs 7230-7235 are now obsolete.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/rfc/rfc9110",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "A10:2021 SSRF → A01:2025",
+      "type": "id",
+      "code": "A01:2025",
+      "meaning": "SSRF lost its own Top 10 slot and was rolled into Broken Access Control.",
+      "fame": "niche",
+      "reference": "https://top10.owasp.org/2025/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "A06:2021 → A03:2025",
+      "type": "id",
+      "code": "A03:2025",
+      "meaning": "Vulnerable and Outdated Components grew into Software Supply Chain Failures.",
+      "fame": "niche",
+      "reference": "https://top10.owasp.org/2025/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "A7:2017 XSS → Injection",
+      "type": "id",
+      "code": "A03:2021",
+      "meaning": "XSS lost its own slot in 2021 and joined Injection (now A05:2025).",
+      "fame": "niche",
+      "reference": "https://top10.owasp.org/2021/A03_2021-Injection/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "API6:2019 → API3:2023",
+      "type": "id",
+      "code": "API3:2023",
+      "meaning": "Mass Assignment merged with Excessive Data Exposure into Broken Object Property Level Authorization.",
+      "fame": "niche",
+      "reference": "https://api-security.owasp.org/editions/2023/en/0x11-t10/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Filter Input, Escape Output",
+      "type": "phrase",
+      "code": "",
+      "meaning": "Web-app security maxim (FIEO) from a 2005 post, whose premise is that most vulnerabilities trace back to failing to filter input or escape output.",
+      "fame": "niche",
+      "reference": "https://shiflett.org/blog/2005/filter-input-escape-output",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Minimize user data",
+      "type": "phrase",
+      "code": "",
+      "meaning": "W3C TAG Web Platform Design Principle 1.10: design features to work with the minimum data needed for users' goals, which limits disclosure and misuse.",
+      "fame": "niche",
+      "reference": "https://www.w3.org/TR/design-principles/#data-minimization",
+      "series": [
+        "cutting-mat"
+      ]
+    }
+  ]
+}

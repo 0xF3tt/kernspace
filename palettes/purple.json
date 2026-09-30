@@ -1,0 +1,67 @@
+{
+  "slug": "purple",
+  "name": "Purple",
+  "story": "Purple is the series' home color and the mix of red and blue, attack and defense on one sheet. Its grounds are now named, like its siblings, after a material that really was purple in the history of print and copying. ANILINE (dark) is the dense violet-black dye layer of a spirit-duplicator master. Aniline dyes (methyl and crystal violet, descendants of Perkin's 1856 mauveine) were the ink of ditto masters and copying pencils. INDIGO (mid) keeps its name: the deep blue-violet dye and the band Newton placed between blue and violet. DITTO (light) is the copy that came off the drum, pale paper with violet type, the purple handout of the pre-photocopier office and classroom. Together they form one process (dye layer, dye, copy), in the same way as OXIDE/RUBRIC/GALLEY and IRON GALL/CYANOTYPE/WHITEPRINT. The ramp is a single hue family (OKLCH h 284-301), with lightness steps 0.15 and 0.28 for the grounds and 0.21/0.35/0.42/0.53/0.66/0.77/0.85/0.92 for the inks. Two accents sit on top: a mulberry (h 344-346) for trust boundaries, sinks and the first finding on the dark and light grounds, and a cyan (#70BECD, h 211) as the one cool counter-note. Purple is the reference role-reuse pattern the other palettes copy: on ANILINE tb=sink=chip1 and frame=rule=chip2; on INDIGO data=tb=sink=chip1 in cyan; on DITTO text=diag, text2=data, tb=sink=chip1 (and now angle=rule=chip2). Verification used WCAG 2.x relative luminance (rgba grid colors composited over bg first), Machado 2009 protan/deutan/tritan simulation and CIEDE2000. The original values failed four text roles (ABISMO angle 3.56; LUNA angle 2.50, rule 4.36, tb 3.83). They also failed the chip bar of ΔE00 ≥ 10 on all three grounds; INDIGO's cyan and lavender chips collapsed to ΔE00 2.3 under deuteranopia. Every fix is a lightness move in OKLCH with hue held within 3 degrees: ANILINE angle #8A6BBB and accent #B5799C; INDIGO chip3 set to #E6E2F3, the lightest step already in the ramp; DITTO angle=rule=chip2 #7556A5 and accent #974174. After the fixes every text role is at least 4.55:1, every meaningful mark at least 4.55:1, and every chip pair at least ΔE00 10.0 in normal vision and all three simulated dichromacies.",
+  "grounds": {
+    "aniline": {
+      "role": "dark",
+      "colors": {
+        "bg": "#0B081B",
+        "minor": "rgba(92,53,142,.38)",
+        "major": "#5C358E",
+        "angle": "#8A6BBB",
+        "frame": "#9A86C8",
+        "rule": "#9A86C8",
+        "diag": "#E6E2F3",
+        "text": "#E6E2F3",
+        "text2": "#BAACDA",
+        "data": "#BAACDA",
+        "tb": "#B5799C",
+        "sink": "#B5799C",
+        "chip1": "#B5799C",
+        "chip2": "#9A86C8",
+        "chip3": "#70BECD"
+      }
+    },
+    "indigo": {
+      "role": "mid",
+      "colors": {
+        "bg": "#2A1D57",
+        "minor": "rgba(120,89,168,.45)",
+        "major": "#7859A8",
+        "angle": "#9A86C8",
+        "frame": "#BAACDA",
+        "rule": "#BAACDA",
+        "diag": "#E6E2F3",
+        "text": "#E6E2F3",
+        "text2": "#D2C9E8",
+        "data": "#70BECD",
+        "tb": "#70BECD",
+        "sink": "#70BECD",
+        "chip1": "#70BECD",
+        "chip2": "#9A86C8",
+        "chip3": "#E6E2F3"
+      }
+    },
+    "ditto": {
+      "role": "light",
+      "colors": {
+        "bg": "#E6E2F3",
+        "minor": "rgba(154,134,200,.34)",
+        "major": "#9A86C8",
+        "angle": "#7556A5",
+        "frame": "#5C358E",
+        "rule": "#7556A5",
+        "diag": "#170E40",
+        "text": "#170E40",
+        "text2": "#41296D",
+        "data": "#41296D",
+        "tb": "#974174",
+        "sink": "#974174",
+        "chip1": "#974174",
+        "chip2": "#7556A5",
+        "chip3": "#41296D"
+      }
+    }
+  }
+}

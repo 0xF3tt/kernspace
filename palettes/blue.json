@@ -1,0 +1,67 @@
+{
+  "slug": "blue",
+  "name": "Blue",
+  "story": "BLUE is the defender's drawing set, told through the blueprint's own history. Blue team work is threat modeling, architecture review and keeping records, which is drafting-office work, so the palette uses print chemistry rather than a stock \"cyber blue\". CYANOTYPE (mid) is Herschel's 1842 iron-salt process that gave us the blueprint: a Prussian-blue ground with the paper left white. It pairs with Vol. 01 Design, where \"blue builds\". WHITEPRINT (light) is the diazo print that replaced the blueprint: dark blue lines on pale paper, the copy people actually marked up. IRON GALL (dark) is the blue-black archival ink used for ledgers and signed records, standing in for the blue team's evidence and audit trail. For the accents: trust boundaries, sinks and the first finding are drawn in REDLINE, the red pencil a reviewer uses on a blueprint. Red marks on a blue print complete the red + blue = purple story inside one image. The third chip is amber or ochre, as in amber phosphor terminals and yellow drafting pencil. Together the chips form a red / blue / yellow drafting triad that stays apart in hue. Why it is a sibling and not a cliché: the neutral ramp reuses purple's OKLCH lightness steps at every level, moved to hue ~250, which is Prussian blue with a slight green lean. Chroma is capped at 0.035 to 0.09, which keeps it away from saturated corporate #0066FF-style blues and gradients. The role mapping follows purple's pattern (in mid, data takes the accent; chip2 reuses frame on the dark and mid grounds; text equals diag). Chip separation uses CIEDE2000 including Machado deuteranopia/protanopia/tritanopia simulation. The minimum red-vs-amber ΔE00 under deutan is 13.0 to 15.6; for comparison, the original purple INDIGO reached only 2.3 before its fix. Method: Python, WCAG 2.x relative luminance, with rgba grid colors blended over bg before measuring. All 14 roles on all 3 BLUE grounds pass, with every text role at least 4.84:1 and every meaningful mark at least 3.26:1. An independent re-check confirmed every ratio; no BLUE color needed a change. Previews were rendered with the existing build() of render_desktop.py.",
+  "grounds": {
+    "iron-gall": {
+      "role": "dark",
+      "colors": {
+        "bg": "#06111F",
+        "minor": "rgba(39,85,130,.38)",
+        "major": "#275582",
+        "angle": "#5B84AE",
+        "frame": "#88A8C9",
+        "rule": "#88A8C9",
+        "diag": "#DEE7F1",
+        "text": "#DEE7F1",
+        "text2": "#9EB9D5",
+        "data": "#9EB9D5",
+        "tb": "#D37E6A",
+        "sink": "#D37E6A",
+        "chip1": "#D37E6A",
+        "chip2": "#88A8C9",
+        "chip3": "#EFC880"
+      }
+    },
+    "cyanotype": {
+      "role": "mid",
+      "colors": {
+        "bg": "#092F52",
+        "minor": "rgba(70,114,158,.45)",
+        "major": "#46729E",
+        "angle": "#88A8C9",
+        "frame": "#9EB9D5",
+        "rule": "#9EB9D5",
+        "diag": "#E9EFF6",
+        "text": "#E9EFF6",
+        "text2": "#C0D2E5",
+        "data": "#F2CB83",
+        "tb": "#E18A79",
+        "sink": "#E18A79",
+        "chip1": "#E18A79",
+        "chip2": "#9EB9D5",
+        "chip3": "#F2CB83"
+      }
+    },
+    "whiteprint": {
+      "role": "light",
+      "colors": {
+        "bg": "#E0E9F1",
+        "minor": "rgba(115,151,190,.34)",
+        "major": "#7397BE",
+        "angle": "#3B6692",
+        "frame": "#275582",
+        "rule": "#305E8B",
+        "diag": "#051A36",
+        "text": "#051A36",
+        "text2": "#173F65",
+        "data": "#173F65",
+        "tb": "#9D3725",
+        "sink": "#9D3725",
+        "chip1": "#9D3725",
+        "chip2": "#46729E",
+        "chip3": "#A47726"
+      }
+    }
+  }
+}

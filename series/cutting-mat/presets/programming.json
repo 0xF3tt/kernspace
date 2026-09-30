@@ -1,0 +1,26 @@
+{
+  "series": "cutting-mat",
+  "topic": "programming",
+  "title": "Vol. 02 · Code",
+  "ground": "light",
+  "phrase": ["Every input", "is hostile."],
+  "label": "APPSEC CUTTING MAT · VOL. 02 · CODE",
+  "source": "source · req.query.id",
+  "sink": "sink · orders.find(id)",
+  "controls": ["safeParse()", "assertOwner()"],
+  "flows": ["60° · res.json(order)", "30° · logger.info(id)", "15° · cache.get(key)"],
+  "findings": ["sast · CWE-862", "high · CWE-639", "A01:2025"],
+  "panel": {
+    "title": "orders.ts",
+    "lines": ["order = orders.find(req.query.id)", "if (order.owner_id !== user.id)", "  return res.status(403).end()", "// fixes #0001 · fail closed", "sast: taint source → sink [FIXED]"]
+  },
+  "notes": ["validate input, encode out", "never trust the client", "A05:2025 · injection"],
+  "data": {"left": "Ln 42, Col 80 · UTF-8 · LF", "right": "{handle} · git:(main) · purple learns"},
+  "phone": {
+    "data": {"left": "Ln 42, Col 80 · UTF-8 · LF", "right": "{handle} · purple learns"}
+  },
+  "layout": {
+    "desktop": {"chips": [[33, 7], [37, 9], [8, 20]], "notes": [[2, 2], [27, 16], [14, 21]]},
+    "phone": {"chips": [[12, 16], [13, 24], [14, 34]], "notes": [[4, 21], [10, 35], [12, 18]]}
+  }
+}

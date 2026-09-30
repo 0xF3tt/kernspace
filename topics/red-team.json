@@ -1,0 +1,1245 @@
+{
+  "topic": "red-team",
+  "terms": [
+    {
+      "text": "MITRE ATT&CK",
+      "type": "framework",
+      "code": "",
+      "meaning": "Knowledge base of adversary tactics and techniques; backbone of adversary emulation. Current edition v19.2.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK v19.2 (Apr 28, 2026)",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "Cyber Kill Chain",
+      "type": "framework",
+      "code": "",
+      "meaning": "Seven-stage intrusion model: recon, weaponization, delivery, exploitation, installation, C2, actions on objectives.",
+      "fame": "iconic",
+      "reference": "Lockheed Martin Cyber Kill Chain",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "Unified Kill Chain",
+      "type": "framework",
+      "code": "",
+      "meaning": "18-phase model extending the Cyber Kill Chain and ATT&CK, grouped as getting in, through, and out.",
+      "fame": "niche",
+      "reference": "Unified Kill Chain",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "C2",
+      "type": "term",
+      "code": "",
+      "meaning": "Command and control: the channel an operator uses to task an implant and receive its output. Hero token.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "TTP",
+      "type": "term",
+      "code": "",
+      "meaning": "Tactics, techniques, and procedures: the behavioral fingerprint of an adversary that emulation reproduces.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "OPSEC",
+      "type": "term",
+      "code": "",
+      "meaning": "Operational security: protecting an operation's details and footprint from the defenders looking for it.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "IOA",
+      "type": "term",
+      "code": "",
+      "meaning": "Indicator of attack: intent-based behavioral signal, contrasted with the static IOC. Lookalike of IOC.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "APT",
+      "type": "term",
+      "code": "",
+      "meaning": "Advanced persistent threat: a resourced, patient adversary; the model red teams emulate.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "source"
+        ]
+      }
+    },
+    {
+      "text": "ROE",
+      "type": "term",
+      "code": "",
+      "meaning": "Rules of engagement: the agreed scope, timing, and limits that authorize the operation.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Adversary Emulation",
+      "type": "term",
+      "code": "",
+      "meaning": "Reproducing a specific threat actor's known TTPs to test detection and response.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "adversary emulation"
+      }
+    },
+    {
+      "text": "Adversary Simulation",
+      "type": "term",
+      "code": "",
+      "meaning": "Broader threat-representative testing not tied to one named actor's TTPs. Lookalike of emulation.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Threat-Informed Defense",
+      "type": "term",
+      "code": "",
+      "meaning": "Prioritizing defenses using real adversary behavior; the doctrine behind ATT&CK-driven emulation.",
+      "fame": "niche",
+      "reference": "MITRE Center for Threat-Informed Defense",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "threat-informed defense"
+      }
+    },
+    {
+      "text": "Red Team",
+      "type": "term",
+      "code": "",
+      "meaning": "Team emulating an adversary end-to-end to test people, process, and technology.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "source"
+        ],
+        "as": "red team"
+      }
+    },
+    {
+      "text": "Purple Team",
+      "type": "term",
+      "code": "",
+      "meaning": "Red and blue working together in the open to improve detection iteratively; mandatory under TIBER-EU.",
+      "fame": "iconic",
+      "reference": "ECB TIBER-EU (Feb 2025)",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "purple team"
+      }
+    },
+    {
+      "text": "Assume Breach",
+      "type": "term",
+      "code": "",
+      "meaning": "Starting an exercise from a foothold already inside, rather than testing the perimeter alone.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "assume breach"
+      }
+    },
+    {
+      "text": "Crown Jewels",
+      "type": "term",
+      "code": "",
+      "meaning": "The high-value assets an emulation is scoped to reach as its objective.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ],
+        "as": "crown jewels"
+      }
+    },
+    {
+      "text": "Deconfliction",
+      "type": "term",
+      "code": "",
+      "meaning": "Confirming whether an observed event is the red team or a real intruder, via the few insiders in the know.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "galley-proof",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow",
+          "note"
+        ],
+        "as": "deconfliction"
+      }
+    },
+    {
+      "text": "Get-Out-of-Jail-Free Letter",
+      "type": "term",
+      "code": "",
+      "meaning": "Signed authorization an operator carries proving the activity is sanctioned.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Trusted Agent",
+      "type": "term",
+      "code": "",
+      "meaning": "One of the few insiders aware of the test who handle deconfliction; the blue team is not told.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Control Team",
+      "type": "term",
+      "code": "",
+      "meaning": "TIBER-EU term for the entity-side team steering the test; renamed from White Team in the Feb 2025 update.",
+      "fame": "niche",
+      "reference": "ECB TIBER-EU (Feb 2025)",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "TIBER-EU",
+      "type": "framework",
+      "code": "",
+      "meaning": "European threat intelligence-based ethical red-teaming framework; updated Feb 2025 to align with DORA TLPT.",
+      "fame": "niche",
+      "reference": "ECB TIBER-EU (Feb 2025)",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "DORA TLPT",
+      "type": "framework",
+      "code": "",
+      "meaning": "Threat-led penetration testing required of EU financial entities selected under Regulation (EU) 2022/2554.",
+      "fame": "niche",
+      "reference": "Reg. (EU) 2022/2554; Del. Reg. (EU) 2025/1190",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "CA-8(2) Red Team Exercises",
+      "type": "id",
+      "code": "CA-8(2)",
+      "meaning": "NIST SP 800-53 control enhancement under CA-8 Penetration Testing that calls for red team exercises.",
+      "fame": "niche",
+      "reference": "NIST SP 800-53 Rev. 5 (5.2.0)",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "CA-8(2)"
+      }
+    },
+    {
+      "text": "Adversary Emulation Library",
+      "type": "artifact",
+      "code": "",
+      "meaning": "Open CTID repository of full and micro emulation plans (APT29, FIN6, Sandworm, Turla, and more).",
+      "fame": "niche",
+      "reference": "MITRE Center for Threat-Informed Defense",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Emulation Plan",
+      "type": "artifact",
+      "code": "",
+      "meaning": "A step-ordered scenario that reproduces one actor's TTPs for a repeatable exercise.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "source"
+        ],
+        "as": "emulation plan"
+      }
+    },
+    {
+      "text": "Micro Emulation Plan",
+      "type": "artifact",
+      "code": "",
+      "meaning": "Small, behavior-focused plan (e.g. Process Injection, Log Clearing) instead of a full actor chain.",
+      "fame": "niche",
+      "reference": "MITRE Center for Threat-Informed Defense",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Initial Access · TA0001",
+      "type": "id",
+      "code": "TA0001",
+      "meaning": "Tactic: techniques that get an adversary a first foothold in the target environment.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "TA0001"
+      }
+    },
+    {
+      "text": "Execution · TA0002",
+      "type": "id",
+      "code": "TA0002",
+      "meaning": "Tactic: running adversary-controlled code on a local or remote system.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Persistence · TA0003",
+      "type": "id",
+      "code": "TA0003",
+      "meaning": "Tactic: keeping access across reboots, credential changes, and other interruptions.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Privilege Escalation · TA0004",
+      "type": "id",
+      "code": "TA0004",
+      "meaning": "Tactic: gaining higher-level permissions on a system or network.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "TA0004"
+      }
+    },
+    {
+      "text": "Stealth · TA0005",
+      "type": "id",
+      "code": "TA0005",
+      "meaning": "Tactic: hiding actions and appearing as normal behavior. Took over TA0005 when v19 split Defense Evasion.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen",
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Defense Impairment · TA0112",
+      "type": "id",
+      "code": "TA0112",
+      "meaning": "New v19 tactic: breaking security tooling and pipelines so defenders can't see or trust events.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Credential Access · TA0006",
+      "type": "id",
+      "code": "TA0006",
+      "meaning": "Tactic: stealing account names, passwords, hashes, or tickets.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Lateral Movement · TA0008",
+      "type": "id",
+      "code": "TA0008",
+      "meaning": "Tactic: moving through an environment from one system to the next.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Command and Control · TA0011",
+      "type": "id",
+      "code": "TA0011",
+      "meaning": "Tactic: communicating with compromised systems to control them.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Exfiltration · TA0010",
+      "type": "id",
+      "code": "TA0010",
+      "meaning": "Tactic: stealing data out of the target network.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "flow",
+          "finding"
+        ],
+        "as": "exfiltration"
+      }
+    },
+    {
+      "text": "Resource Development · TA0042",
+      "type": "id",
+      "code": "TA0042",
+      "meaning": "Tactic: standing up infrastructure, accounts, and capabilities before an operation.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Reconnaissance · TA0043",
+      "type": "id",
+      "code": "TA0043",
+      "meaning": "Tactic: gathering information to plan targeting.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Kerberoasting · T1558.003",
+      "type": "id",
+      "code": "T1558.003",
+      "meaning": "Credential Access sub-technique aimed at service-account credentials via Kerberos service tickets.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "AS-REP Roasting · T1558.004",
+      "type": "id",
+      "code": "T1558.004",
+      "meaning": "Sub-technique aimed at accounts with Kerberos pre-authentication disabled. Lookalike of Kerberoasting.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Pass the Hash · T1550.002",
+      "type": "id",
+      "code": "T1550.002",
+      "meaning": "Lateral Movement sub-technique: authenticating with a password hash instead of the plaintext password.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Pass the Ticket · T1550.003",
+      "type": "id",
+      "code": "T1550.003",
+      "meaning": "Lateral Movement sub-technique: reusing a stolen Kerberos ticket. Lookalike of Pass the Hash.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Golden Ticket · T1558.001",
+      "type": "id",
+      "code": "T1558.001",
+      "meaning": "Forged Kerberos ticket-granting ticket that grants domain-wide access. Lookalike of Silver Ticket.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Silver Ticket · T1558.002",
+      "type": "id",
+      "code": "T1558.002",
+      "meaning": "Forged service ticket scoped to one service. Lookalike of the broader Golden Ticket.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "DCSync · T1003.006",
+      "type": "id",
+      "code": "T1003.006",
+      "meaning": "Credential dumping by posing as a domain controller and requesting password data via directory replication.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "LSASS Memory · T1003.001",
+      "type": "id",
+      "code": "T1003.001",
+      "meaning": "Credential dumping from Local Security Authority Subsystem Service process memory.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ],
+        "as": "LSASS memory"
+      }
+    },
+    {
+      "text": "Valid Accounts · T1078",
+      "type": "id",
+      "code": "T1078",
+      "meaning": "Abusing legitimate credentials; spans Initial Access, Persistence, Privilege Escalation, and Stealth.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "T1078"
+      }
+    },
+    {
+      "text": "MFA Fatigue",
+      "type": "term",
+      "code": "T1621",
+      "meaning": "Bombarding a user with MFA prompts until one is accepted; ATT&CK T1621 MFA Request Generation.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "MFA fatigue"
+      }
+    },
+    {
+      "text": "Phishing · T1566",
+      "type": "id",
+      "code": "T1566",
+      "meaning": "Sending deceptive messages to gain access; a primary initial-access technique.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "Spearphishing",
+      "type": "term",
+      "code": "",
+      "meaning": "Targeted phishing tailored to a specific person or role.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "source",
+          "finding"
+        ],
+        "as": "spearphishing"
+      }
+    },
+    {
+      "text": "Process Injection · T1055",
+      "type": "id",
+      "code": "T1055",
+      "meaning": "Running code inside another live process; mapped to both Stealth and Privilege Escalation.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Application Layer Protocol · T1071",
+      "type": "id",
+      "code": "T1071",
+      "meaning": "C2 that blends into web, DNS, mail, file-transfer, or publish/subscribe protocols.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "T1071"
+      }
+    },
+    {
+      "text": "Multi-hop Proxy · T1090.003",
+      "type": "id",
+      "code": "T1090.003",
+      "meaning": "Chaining proxies (Tor, ORB networks) to disguise the source of C2 traffic.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ],
+        "as": "multi-hop proxy"
+      }
+    },
+    {
+      "text": "Remote Access Tools · T1219",
+      "type": "id",
+      "code": "T1219",
+      "meaning": "Abusing legitimate remote-access tools for C2. Renamed from Remote Access Software in v17.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Disable or Modify Tools · T1685",
+      "type": "id",
+      "code": "T1685",
+      "meaning": "New v19 technique under Defense Impairment; revokes Impair Defenses (T1562).",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen",
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Beacon",
+      "type": "term",
+      "code": "",
+      "meaning": "Implant that periodically calls back to C2 for tasking rather than holding a live session.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ],
+        "as": "beacon"
+      }
+    },
+    {
+      "text": "Implant",
+      "type": "term",
+      "code": "",
+      "meaning": "The agent an operator runs on a compromised host to maintain access and control.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "source"
+        ],
+        "as": "implant"
+      }
+    },
+    {
+      "text": "Stager",
+      "type": "term",
+      "code": "",
+      "meaning": "Small first-stage loader that pulls down the full implant.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ],
+        "as": "stager"
+      }
+    },
+    {
+      "text": "Redirector",
+      "type": "term",
+      "code": "",
+      "meaning": "Front-line relay that hides the true C2 server behind disposable infrastructure.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ],
+        "as": "redirector"
+      }
+    },
+    {
+      "text": "Malleable C2 Profile",
+      "type": "artifact",
+      "code": "",
+      "meaning": "Config that reshapes C2 traffic to mimic benign services and blend in.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Domain Fronting · T1090.004",
+      "type": "id",
+      "code": "T1090.004",
+      "meaning": "Hiding C2 behind a trusted CDN domain; many major CDN providers have since blocked it.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ],
+        "as": "domain fronting"
+      }
+    },
+    {
+      "text": "Sleep Obfuscation",
+      "type": "term",
+      "code": "",
+      "meaning": "Encrypting an implant's in-memory footprint while it idles between check-ins.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "sleep obfuscation"
+      }
+    },
+    {
+      "text": "Jitter",
+      "type": "term",
+      "code": "",
+      "meaning": "Randomized delay added to beacon intervals so call-backs aren't perfectly periodic.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Kill Date",
+      "type": "term",
+      "code": "",
+      "meaning": "OPSEC safety setting that makes an implant stop running after a set date.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "kill date"
+      }
+    },
+    {
+      "text": "Living off the Land",
+      "type": "term",
+      "code": "",
+      "meaning": "Using built-in, signed system tools instead of custom malware to stay quiet.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding",
+          "note"
+        ],
+        "as": "living off the land"
+      }
+    },
+    {
+      "text": "LOLBin",
+      "type": "term",
+      "code": "",
+      "meaning": "A legitimate signed binary abused for malicious ends (living-off-the-land binary).",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "sink",
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "Cobalt Strike · S0154",
+      "type": "tool",
+      "code": "S0154",
+      "meaning": "Commercial tool billed as adversary simulation software; its C2 is also widely abused by real actors.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Mimikatz · S0002",
+      "type": "tool",
+      "code": "S0002",
+      "meaning": "Windows credential dumper; the classic red-team utility.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "BloodHound · S0521",
+      "type": "tool",
+      "code": "S0521",
+      "meaning": "Active Directory reconnaissance tool that reveals hidden relationships and attack paths.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Sliver · S0633",
+      "type": "tool",
+      "code": "S0633",
+      "meaning": "Open-source cross-platform red team C2 framework written in Go.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Mythic · S0699",
+      "type": "tool",
+      "code": "S0699",
+      "meaning": "Open-source, cross-platform post-exploitation and C2 platform with plug-in agents.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Brute Ratel C4 · S1063",
+      "type": "tool",
+      "code": "S1063",
+      "meaning": "Commercial red-team C2 built to evade EDR and AV; a cracked copy leaked in September 2022.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Impacket · S0357",
+      "type": "tool",
+      "code": "S0357",
+      "meaning": "Open-source Python modules for building and manipulating network protocols; AD tradecraft staple.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Rubeus · S1071",
+      "type": "tool",
+      "code": "S1071",
+      "meaning": "C# toolset for raw Kerberos interaction.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "SolarWinds Compromise · C0024",
+      "type": "id",
+      "code": "C0024",
+      "meaning": "ATT&CK campaign: Orion supply-chain compromise (Aug 2019-Jan 2021) attributed to APT29.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "APT29 · G0016",
+      "type": "id",
+      "code": "G0016",
+      "meaning": "Group attributed to Russia's SVR; subject of a full CTID adversary emulation plan.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "source",
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "Sandworm Team · G0034",
+      "type": "id",
+      "code": "G0034",
+      "meaning": "Destructive threat group; subject of a full CTID adversary emulation plan.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "LLM Prompt Injection · AML.T0051",
+      "type": "id",
+      "code": "AML.T0051",
+      "meaning": "ATLAS technique: malicious prompts that cause an LLM to act in unintended ways.",
+      "fame": "niche",
+      "reference": "MITRE ATLAS 2026.09",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Defense Evasion → Stealth",
+      "type": "term",
+      "code": "TA0005",
+      "meaning": "Deprecated tactic name: v19 split Defense Evasion into Stealth (keeps TA0005) and Defense Impairment.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Impair Defenses → T1685",
+      "type": "term",
+      "code": "T1685",
+      "meaning": "Deprecated: Impair Defenses (T1562) revoked in v19, superseded by Disable or Modify Tools (T1685).",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v19.2",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "PowerShell T1086 → T1059.001",
+      "type": "term",
+      "code": "T1059.001",
+      "meaning": "Deprecated: standalone PowerShell (T1086) revoked in v7, now a sub-technique of T1059.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v7",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Man-in-the-Middle → AiTM",
+      "type": "term",
+      "code": "T1557",
+      "meaning": "Renamed in v10 to Adversary-in-the-Middle (T1557) to be more inclusive.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v10",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "PRE-ATT&CK → TA0043 + TA0042",
+      "type": "term",
+      "code": "",
+      "meaning": "Deprecated: PRE-ATT&CK domain removed in v8; replaced by Reconnaissance and Resource Development.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK v8",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "BEACON · CHECK-IN 60s",
+      "type": "status-line",
+      "code": "",
+      "meaning": "Illustrative operator status label for an implant call-back cadence.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "ROE SIGNED · SCOPE LOCKED",
+      "type": "status-line",
+      "code": "",
+      "meaning": "Illustrative pre-flight status: rules of engagement authorized and target scope fixed.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "Offense informs defense",
+      "type": "phrase",
+      "code": "",
+      "meaning": "The first of the five critical tenets behind the CIS Controls: use what is known about real attacks that compromised systems to build practical defenses. It is the case for red and purple teaming.",
+      "fame": "niche",
+      "reference": "https://cas.docs.cisecurity.org/en/latest/source/About%20the%20CIS%20Controls/",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Attackers don't care",
+      "type": "phrase",
+      "code": "",
+      "meaning": "Law 4 of Microsoft's ten laws of cybersecurity risk: attackers use any available access path, so defenses must remove the cheapest paths, not only guard the obvious ones.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/security/zero-trust/security-adoption-discipline-architecture-tips",
+      "series": [
+        "cutting-mat"
+      ]
+    }
+  ]
+}

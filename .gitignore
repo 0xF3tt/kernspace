@@ -1,0 +1,15 @@
+# OS junk
+.DS_Store
+**/.DS_Store
+Thumbs.db
+
+# Internal workspace, planning, and raw research
+.internal/
+
+# Temporary / cache files
+__pycache__/
+_tmp_*.html
+.vercel/
+
+# Private or licensed fonts
+fonts/licensed/

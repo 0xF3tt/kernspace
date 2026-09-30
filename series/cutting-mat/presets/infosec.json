@@ -1,0 +1,26 @@
+{
+  "series": "cutting-mat",
+  "topic": "infosec",
+  "title": "Vol. 15 · Trust",
+  "ground": "mid",
+  "phrase": ["Never trust,", "always verify."],
+  "label": "INFOSEC CUTTING MAT · VOL. 15 · TRUST",
+  "source": "subject · Layer 8",
+  "sink": "object · CIA triad",
+  "controls": ["authn · IA-2", "authz · AC-6"],
+  "flows": ["60° · break glass", "30° · accounting", "15° · TLP:RED"],
+  "findings": ["gap · implicit trust", "myth · obscurity", "PR.AA-05"],
+  "panel": {
+    "title": "rmf.md",
+    "lines": ["SC = {(C,HIGH),(I,MODERATE),(A,LOW)}", "categorize: high water mark → HIGH", "select: IA-2 · AC-6 · AU-2", "implement: zero trust · SP 800-207", "assess: [PASS] defense in depth"]
+  },
+  "notes": ["no read up · no write down", "open design, secret keys", "deny by default"],
+  "data": {"left": "CSF 2.0 · GV · ID · [PR] · DE · RS · RC", "right": "{handle} · git:(main) · purple learns"},
+  "phone": {
+    "data": {"left": "GV · ID · [PR] · DE · RS · RC", "right": "{handle} · purple learns"}
+  },
+  "layout": {
+    "desktop": {"chips": [[33, 7], [37, 14], [21, 19]], "notes": [[2, 2], [27, 16], [12, 20]]},
+    "phone": {"chips": [[12, 16], [13, 24], [14, 34]], "notes": [[4, 21], [10, 35], [12, 18]]}
+  }
+}

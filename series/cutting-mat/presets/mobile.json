@@ -1,0 +1,26 @@
+{
+  "series": "cutting-mat",
+  "topic": "mobile",
+  "title": "Vol. 04 · Device",
+  "ground": "light",
+  "phrase": ["Trust the chip,", "not the phone."],
+  "label": "MOBILE CUTTING MAT · VOL. 04 · DEVICE",
+  "source": "actor · phone thief",
+  "sink": "asset · refresh token",
+  "controls": ["biometric auth", "hw-bound key"],
+  "flows": ["60° · app switcher", "30° · auto backup", "15° · logcat"],
+  "findings": ["threat · token theft", "profile · MAS-L2", "MASVS-STORAGE-1"],
+  "panel": {
+    "title": "key-policy.yml",
+    "lines": ["asset: refresh token · M9 (2024)", "key: StrongBox · Secure Enclave", "unlock: BiometricPrompt · per use", "invalidate: new biometric enrolled", "export: never · excluded from backup"]
+  },
+  "notes": ["assume the phone is lost", "the sandbox is not enough", "the server checks the chip"],
+  "data": {"left": "verdict: MEETS_STRONG_INTEGRITY", "right": "{handle} · git:(main) · blue builds"},
+  "phone": {
+    "data": {"left": "MEETS_STRONG_INTEGRITY", "right": "{handle} · blue builds"}
+  },
+  "layout": {
+    "desktop": {"chips": [[33, 7], [37, 14], [21, 19]], "notes": [[2, 2], [27, 16], [12, 20]]},
+    "phone": {"chips": [[12, 16], [13, 24], [14, 34]], "notes": [[4, 21], [9, 35], [12, 18]]}
+  }
+}

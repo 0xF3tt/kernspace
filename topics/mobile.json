@@ -1,0 +1,1432 @@
+{
+  "topic": "mobile",
+  "terms": [
+    {
+      "text": "OWASP MASVS v2",
+      "type": "framework",
+      "code": "MASVS v2.1.0",
+      "meaning": "Mobile Application Security Verification Standard; current release (Jan 2024), 8 control groups incl. PRIVACY.",
+      "fame": "iconic",
+      "reference": "https://github.com/OWASP/masvs/releases/tag/v2.1.0",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "OWASP MASTG",
+      "type": "framework",
+      "code": "MASTG v2.0.0",
+      "meaning": "Mobile Application Security Testing Guide; first stable v2 (June 30, 2026): atomic tests, demos, best practices.",
+      "fame": "iconic",
+      "reference": "https://github.com/OWASP/mastg/releases/tag/v2.0.0",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "OWASP MASWE",
+      "type": "framework",
+      "code": "MASWE v1.0.0",
+      "meaning": "Mobile Application Security Weakness Enumeration; first stable release (Aug 2026): 78 weaknesses, stable IDs.",
+      "fame": "niche",
+      "reference": "https://github.com/OWASP/maswe/releases/tag/v1.0.0",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "OWASP Mobile Top 10 2024",
+      "type": "framework",
+      "code": "Mobile Top 10:2024",
+      "meaning": "Current OWASP list of top mobile app risks, from M1 Improper Credential Usage to M10 Insufficient Cryptography.",
+      "fame": "iconic",
+      "reference": "https://owasp.org/www-project-mobile-top-10/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "M2:2016 → M9:2024",
+      "type": "id",
+      "code": "M9",
+      "meaning": "Insecure Data Storage was M2 in the 2016 Mobile Top 10; the 2024 edition lists it as M9.",
+      "fame": "niche",
+      "reference": "https://owasp.org/www-project-mobile-top-10/2023-risks/",
+      "series": [
+        "specimen",
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "MAS-L1",
+      "type": "id",
+      "code": "MAS-L1",
+      "meaning": "Essential Security profile: trusts OS controls; other apps on the device are the adversary.",
+      "fame": "niche",
+      "reference": "https://mas.owasp.org/Profiles/MAS-L1/",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding",
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "MAS-L2",
+      "type": "id",
+      "code": "MAS-L2",
+      "meaning": "Advanced Security profile: the OS can't be trusted; attackers may have physical access.",
+      "fame": "niche",
+      "reference": "https://mas.owasp.org/Profiles/MAS-L2/",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding",
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "MAS-R",
+      "type": "id",
+      "code": "MAS-R",
+      "meaning": "Resilient Security profile vs reverse engineering and tampering; the device user is the adversary.",
+      "fame": "niche",
+      "reference": "https://mas.owasp.org/Profiles/MAS-R/",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding",
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "MAS-EUDIW",
+      "type": "id",
+      "code": "MAS-EUDIW",
+      "meaning": "MAS profile for EU Digital Identity Wallet instances; mapped to the EUDI Wallet risk register, (EU) 2024/2981.",
+      "fame": "niche",
+      "reference": "https://mas.owasp.org/Profiles/MAS-EUDIW/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "MASVS L1/L2/R → MAS Profiles",
+      "type": "term",
+      "code": "MAS Testing Profiles",
+      "meaning": "MASVS v2.0.0 dropped per-control levels; L1, L2 and R now live as MAS Testing Profiles in the MASTG.",
+      "fame": "niche",
+      "reference": "https://github.com/OWASP/masvs/releases/tag/v2.0.0",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "MASVS-STORAGE-1",
+      "type": "id",
+      "code": "MASVS-STORAGE-1",
+      "meaning": "Control: The app securely stores sensitive data.",
+      "fame": "niche",
+      "reference": "https://mas.owasp.org/MASVS/controls/MASVS-STORAGE-1/",
+      "series": [
+        "specimen",
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "MASVS-NETWORK-2",
+      "type": "id",
+      "code": "MASVS-NETWORK-2",
+      "meaning": "Control: The app performs identity pinning for all remote endpoints under the developer's control.",
+      "fame": "niche",
+      "reference": "https://mas.owasp.org/MASVS/controls/MASVS-NETWORK-2/",
+      "series": [
+        "specimen",
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "MASVS-RESILIENCE-1",
+      "type": "id",
+      "code": "MASVS-RESILIENCE-1",
+      "meaning": "Control: The app validates the integrity of the platform.",
+      "fame": "niche",
+      "reference": "https://mas.owasp.org/MASVS/controls/MASVS-RESILIENCE-1/",
+      "series": [
+        "specimen",
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "MASVS-PRIVACY-1",
+      "type": "id",
+      "code": "MASVS-PRIVACY-1",
+      "meaning": "Control: The app minimizes access to sensitive data and resources.",
+      "fame": "niche",
+      "reference": "https://mas.owasp.org/MASVS/controls/MASVS-PRIVACY-1/",
+      "series": [
+        "specimen",
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "MSTG-NETWORK-4 → MASVS-NETWORK-2",
+      "type": "id",
+      "code": "MASVS-NETWORK-2",
+      "meaning": "MASVS v1 pinning requirement ID and its MASVS v2 successor control (mapped via MASWE-0028).",
+      "fame": "niche",
+      "reference": "https://mas.owasp.org/MASWE/MASVS-NETWORK/MASWE-0028/",
+      "series": [
+        "specimen",
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "MASWE-0039",
+      "type": "id",
+      "code": "MASWE-0039",
+      "meaning": "App Vulnerable to Overlay Attacks (MASVS-PLATFORM); maps to CWE-1021.",
+      "fame": "niche",
+      "reference": "https://mas.owasp.org/MASWE/MASVS-PLATFORM/MASWE-0039/",
+      "series": [
+        "specimen",
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "MASWE-0051",
+      "type": "id",
+      "code": "MASWE-0051",
+      "meaning": "Root/Jailbreak Detection Not Implemented (MASVS-RESILIENCE); applies to MAS-R.",
+      "fame": "niche",
+      "reference": "https://mas.owasp.org/MASWE/MASVS-RESILIENCE/MASWE-0051/",
+      "series": [
+        "specimen",
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "MASWE-0001 (beta) → MASWE-0005",
+      "type": "id",
+      "code": "MASWE-0005",
+      "meaning": "Insertion of Sensitive Data into Logs was MASWE-0001 in the beta; MASWE v1.0.0 renumbered it 0005.",
+      "fame": "niche",
+      "reference": "https://mas.owasp.org/MASWE/MASVS-STORAGE/MASWE-0005/",
+      "series": [
+        "specimen",
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "MASTG-TEST-0039 → MASTG-TEST-0226",
+      "type": "id",
+      "code": "MASTG-TEST-0226",
+      "meaning": "Deprecated v1 test 'Testing whether the App is Debuggable'; v2 covers it with 0226 (debuggable flag) and 0227.",
+      "fame": "niche",
+      "reference": "https://mas.owasp.org/MASTG/tests/android/MASVS-RESILIENCE/MASTG-TEST-0039/",
+      "series": [
+        "specimen",
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "MAS Checklist",
+      "type": "artifact",
+      "code": "",
+      "meaning": "Spreadsheet checklist removed as a release artifact in MASTG v2; the MAS website and repos are authoritative.",
+      "fame": "niche",
+      "reference": "https://mas.owasp.org/news/2026/07/14/checklists-removal/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "OWASP MSTG → MASTG",
+      "type": "term",
+      "code": "MASTG",
+      "meaning": "Mobile Security Testing Guide renamed Mobile Application Security Testing Guide in the 2022 OWASP MAS rebrand.",
+      "fame": "niche",
+      "reference": "https://mas.owasp.org/news/2022/08/23/project-rebranding-to-owasp-mas/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Android Keystore",
+      "type": "term",
+      "code": "",
+      "meaning": "Platform key store that keeps key material out of the app process, optionally bound to TEE or StrongBox.",
+      "fame": "iconic",
+      "reference": "https://developer.android.com/privacy-and-security/keystore",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "StrongBox",
+      "type": "term",
+      "code": "StrongBox",
+      "meaning": "Keystore backed by an embedded secure element (Android 9+); attestation securityLevel 'StrongBox'.",
+      "fame": "niche",
+      "reference": "https://source.android.com/docs/security/features/keystore/attestation",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control",
+          "sink"
+        ]
+      }
+    },
+    {
+      "text": "Keymaster → KeyMint",
+      "type": "term",
+      "code": "KeyMint",
+      "meaning": "Android 12 replaced the Keymaster HAL with the KeyMint HAL; the keystore daemon was rewritten in Rust.",
+      "fame": "niche",
+      "reference": "https://source.android.com/docs/security/features/keystore",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "androidboot.verifiedbootstate=green",
+      "type": "status-line",
+      "code": "AVB",
+      "meaning": "Verified Boot state: locked, no custom root of trust. yellow = custom root of trust, orange = unlocked.",
+      "fame": "niche",
+      "reference": "https://source.android.com/docs/security/features/verifiedboot/boot-flow",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "SELinux: Enforcing",
+      "type": "status-line",
+      "code": "SELinux",
+      "meaning": "Mandatory access control mode where denials are logged and enforced; fully enforcing since Android 5.0.",
+      "fame": "iconic",
+      "reference": "https://source.android.com/docs/security/features/selinux",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "Network Security Config",
+      "type": "term",
+      "code": "network_security_config.xml",
+      "meaning": "Android XML config for trust anchors, pinning and cleartext policy, declared per app or per domain.",
+      "fame": "iconic",
+      "reference": "https://developer.android.com/privacy-and-security/security-config",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "<pin digest=\"SHA-256\">",
+      "type": "snippet",
+      "code": "pin-set",
+      "meaning": "Network Security Config pin inside <pin-set>: base64 SHA-256 of a SubjectPublicKeyInfo.",
+      "fame": "niche",
+      "reference": "https://developer.android.com/privacy-and-security/security-config",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "certificateTransparency",
+      "type": "term",
+      "code": "",
+      "meaning": "NSC element: CT opt-in on Android 16 (API 36); on by default for apps targeting Android 17 (API 37).",
+      "fame": "niche",
+      "reference": "https://developer.android.com/privacy-and-security/security-config",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "usesCleartextTraffic",
+      "type": "term",
+      "code": "android:usesCleartextTraffic",
+      "meaning": "Manifest flag planned for deprecation (Android 17 notice); cleartext rules move to Network Security Config.",
+      "fame": "niche",
+      "reference": "https://developer.android.com/about/versions/17/behavior-changes-all",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "android:exported=\"false\"",
+      "type": "snippet",
+      "code": "android:exported",
+      "meaning": "Explicit export flag, mandatory for components with intent filters in apps targeting Android 12+.",
+      "fame": "iconic",
+      "reference": "https://developer.android.com/about/versions/12/behavior-changes-12",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "android:debuggable=\"false\"",
+      "type": "snippet",
+      "code": "android:debuggable",
+      "meaning": "Release-build manifest setting; a debuggable app is flagged by MASTG-TEST-0226.",
+      "fame": "iconic",
+      "reference": "https://mas.owasp.org/MASTG/tests/android/MASVS-RESILIENCE/MASTG-TEST-0226/",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "protectionLevel=\"signature\"",
+      "type": "snippet",
+      "code": "android:protectionLevel",
+      "meaning": "Permission granted only to apps signed with the declaring app's cert; 'signatureOrSystem' deprecated in API 23.",
+      "fame": "niche",
+      "reference": "https://developer.android.com/guide/topics/manifest/permission-element",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "FLAG_SECURE",
+      "type": "snippet",
+      "code": "WindowManager.LayoutParams",
+      "meaning": "Window flag marking content secure: kept out of screenshots and off non-secure displays.",
+      "fame": "iconic",
+      "reference": "https://developer.android.com/reference/android/view/WindowManager.LayoutParams",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "FingerprintManager → BiometricPrompt",
+      "type": "term",
+      "code": "BiometricPrompt",
+      "meaning": "FingerprintManager was deprecated in API 28; BiometricPrompt (API 28) provides the system biometric dialog.",
+      "fame": "iconic",
+      "reference": "https://developer.android.com/reference/android/hardware/biometrics/BiometricPrompt",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "setInvalidatedByBiometricEnrollment",
+      "type": "snippet",
+      "code": "KeyGenParameterSpec.Builder",
+      "meaning": "Keystore key option (API 24) that invalidates a key when new biometrics are enrolled.",
+      "fame": "niche",
+      "reference": "https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.Builder",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "SafetyNet → Play Integrity API",
+      "type": "term",
+      "code": "Play Integrity API",
+      "meaning": "SafetyNet Attestation, deprecated in 2022, was turned down in Jan 2025; Play Integrity API replaces it.",
+      "fame": "iconic",
+      "reference": "https://developer.android.com/privacy-and-security/safetynet/deprecation-timeline",
+      "series": [
+        "galley-proof",
+        "catalog-card",
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "MEETS_STRONG_INTEGRITY",
+      "type": "status-line",
+      "code": "deviceRecognitionVerdict",
+      "meaning": "Opt-in Play Integrity label: genuine certified device with recent security updates.",
+      "fame": "niche",
+      "reference": "https://developer.android.com/google/play/integrity/verdicts",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "v1 JAR signing → v2+ APK signing",
+      "type": "term",
+      "code": "APK Signature Scheme v2",
+      "meaning": "v1 signatures leave ZIP metadata unprotected; v2 (Android 7.0), v3 (9) and v3.1 (13) sign the whole APK.",
+      "fame": "niche",
+      "reference": "https://source.android.com/docs/security/features/apksigning",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "APK Signature Scheme v3.2",
+      "type": "term",
+      "code": "v3.2",
+      "meaning": "Android 17 (API 37) hybrid APK signing: one classical signer plus one PQC signer (ML-DSA-65 or ML-DSA-87).",
+      "fame": "niche",
+      "reference": "https://source.android.com/docs/security/features/apksigning/v3-2",
+      "series": [
+        "specimen",
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "FDE → FBE",
+      "type": "term",
+      "code": "FBE",
+      "meaning": "Full-disk encryption is not allowed on new devices with Android 10+; file-based encryption (Android 7.0+) replaces it.",
+      "fame": "niche",
+      "reference": "https://source.android.com/docs/security/features/encryption",
+      "series": [
+        "specimen",
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "EncryptedSharedPreferences",
+      "type": "term",
+      "code": "androidx.security:security-crypto",
+      "meaning": "Jetpack Security Crypto API; all APIs deprecated since 1.1.0-alpha07 (Apr 2025) for platform APIs and Keystore.",
+      "fame": "niche",
+      "reference": "https://developer.android.com/jetpack/androidx/releases/security",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Google Sign-In → Credential Manager",
+      "type": "term",
+      "code": "Credential Manager",
+      "meaning": "Google Sign-In for Android is deprecated; Credential Manager unifies passkeys, passwords and federated sign-in.",
+      "fame": "niche",
+      "reference": "https://developer.android.com/identity/sign-in/legacy-gsi-migration",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Android developer verification",
+      "type": "term",
+      "code": "",
+      "meaning": "Developer identity verification for apps on certified devices; first regional deadline Sep 30, 2026.",
+      "fame": "niche",
+      "reference": "https://developer.android.com/developer-verification",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "assetlinks.json",
+      "type": "filename",
+      "code": "Digital Asset Links",
+      "meaning": "Digital Asset Links file that lets Android verify App Links (autoVerify) for a website.",
+      "fame": "niche",
+      "reference": "https://developer.android.com/training/app-links/verify-android-applinks",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "Application Sandbox",
+      "type": "term",
+      "code": "",
+      "meaning": "Android isolates each app under its own Linux UID, with SELinux and seccomp adding layers.",
+      "fame": "iconic",
+      "reference": "https://source.android.com/docs/security/app-sandbox",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "application sandbox"
+      }
+    },
+    {
+      "text": "Keychain",
+      "type": "term",
+      "code": "Keychain Services",
+      "meaning": "iOS encrypted store for small secrets such as passwords and keys, with per-item accessibility classes.",
+      "fame": "iconic",
+      "reference": "https://developer.apple.com/documentation/security/keychain-services",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "sink",
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "Secure Enclave",
+      "type": "term",
+      "code": "SEP",
+      "meaning": "Dedicated secure subsystem in Apple SoCs that isolates keys and biometric data from the main processor.",
+      "fame": "iconic",
+      "reference": "https://support.apple.com/guide/security/secure-enclave-sec59b0b31ff/web",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control",
+          "sink"
+        ]
+      }
+    },
+    {
+      "text": "App Transport Security",
+      "type": "term",
+      "code": "ATS",
+      "meaning": "iOS networking policy requiring secure HTTPS connections by default; configured under NSAppTransportSecurity.",
+      "fame": "iconic",
+      "reference": "https://developer.apple.com/documentation/bundleresources/information-property-list/nsapptransportsecurity",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "NSAllowsArbitraryLoads",
+      "type": "snippet",
+      "code": "NSAppTransportSecurity",
+      "meaning": "Info.plist Boolean that disables ATS restrictions for all network connections (iOS 9+).",
+      "fame": "iconic",
+      "reference": "https://developer.apple.com/documentation/bundleresources/information-property-list/nsapptransportsecurity/nsallowsarbitraryloads",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "NSPinnedDomains",
+      "type": "snippet",
+      "code": "NSAppTransportSecurity",
+      "meaning": "ATS key (iOS 14+) declaring the public-key identities expected for named domains.",
+      "fame": "niche",
+      "reference": "https://developer.apple.com/documentation/bundleresources/information-property-list/nsapptransportsecurity/nspinneddomains",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "NSFileProtectionComplete",
+      "type": "snippet",
+      "code": "Class A",
+      "meaning": "Data Protection Class A: file unreadable while the device is locked; key tied to passcode and device UID.",
+      "fame": "niche",
+      "reference": "https://support.apple.com/guide/security/data-protection-classes-secb010e978a/web",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "kSecAttrAccessibleAlways",
+      "type": "snippet",
+      "code": "kSecAttrAccessible",
+      "meaning": "Keychain accessibility deprecated in iOS 12; Apple suggests kSecAttrAccessibleAfterFirstUnlock instead.",
+      "fame": "niche",
+      "reference": "https://developer.apple.com/documentation/security/ksecattraccessiblealways",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "App Attest",
+      "type": "term",
+      "code": "DCAppAttestService",
+      "meaning": "DeviceCheck service (iOS 14+) that lets a server validate the app instance running on a device.",
+      "fame": "niche",
+      "reference": "https://developer.apple.com/documentation/devicecheck/dcappattestservice",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "PrivacyInfo.xcprivacy",
+      "type": "filename",
+      "code": "Privacy manifest",
+      "meaning": "Privacy manifest: collected data, tracking domains, required reason APIs (reasons required since May 1, 2024).",
+      "fame": "niche",
+      "reference": "https://developer.apple.com/documentation/bundleresources/privacy-manifest-files",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "get-task-allow",
+      "type": "snippet",
+      "code": "entitlement",
+      "meaning": "Debug entitlement; if enabled in a release build it is flagged by MASTG-TEST-0261.",
+      "fame": "niche",
+      "reference": "https://mas.owasp.org/MASTG/tests/ios/MASVS-RESILIENCE/MASTG-TEST-0261/",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "UIWebView → WKWebView",
+      "type": "term",
+      "code": "WKWebView",
+      "meaning": "UIWebView was deprecated in iOS 12; Apple's documentation says to use WKWebView instead.",
+      "fame": "iconic",
+      "reference": "https://developer.apple.com/documentation/uikit/uiwebview",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Lockdown Mode",
+      "type": "term",
+      "code": "",
+      "meaning": "Optional extreme protection (iOS 16+): blocks most message attachments and certain complex web technologies.",
+      "fame": "iconic",
+      "reference": "https://support.apple.com/en-us/105120",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "BlastDoor",
+      "type": "term",
+      "code": "",
+      "meaning": "Messages and IDS mitigation (iOS 14+) using sandbox restrictions and memory-safe validation.",
+      "fame": "niche",
+      "reference": "https://support.apple.com/guide/security/blastdoor-for-messages-and-ids-secd3c881cee/web",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "PPL → SPTM",
+      "type": "term",
+      "code": "SPTM",
+      "meaning": "On A15+/M2+ chips, Secure Page Table Monitor with TXM replaces the Page Protection Layer.",
+      "fame": "niche",
+      "reference": "https://support.apple.com/guide/security/operating-system-integrity-sec8b776536b/web",
+      "series": [
+        "specimen",
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Memory Integrity Enforcement",
+      "type": "term",
+      "code": "MIE",
+      "meaning": "Always-on memory safety built on EMTE in all iPhone 17 and iPhone Air models (announced Sep 2025).",
+      "fame": "niche",
+      "reference": "https://security.apple.com/blog/memory-integrity-enforcement/",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Code signing",
+      "type": "term",
+      "code": "",
+      "meaning": "Signature proving an app's origin and integrity; iOS runs only code signed with an Apple-issued certificate.",
+      "fame": "iconic",
+      "reference": "https://support.apple.com/guide/security/app-code-signing-process-sec7c917bf14/web",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ],
+        "as": "code signing"
+      }
+    },
+    {
+      "text": "Stagefright · CVE-2015-1538",
+      "type": "id",
+      "code": "CVE-2015-1538",
+      "meaning": "2015 Android media library (libstagefright) bug family; this integer overflow is one of its CVEs.",
+      "fame": "iconic",
+      "reference": "https://www.cve.org/CVERecord?id=CVE-2015-1538",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "CVE-2015-1538"
+      }
+    },
+    {
+      "text": "Trident · CVE-2016-4657",
+      "type": "id",
+      "code": "CVE-2016-4657",
+      "meaning": "2016 chain of three iOS zero-days (WebKit + kernel) used by Pegasus spyware; fixed in iOS 9.3.5.",
+      "fame": "iconic",
+      "reference": "https://www.cve.org/CVERecord?id=CVE-2016-4657",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "FORCEDENTRY · CVE-2021-30860",
+      "type": "id",
+      "code": "CVE-2021-30860",
+      "meaning": "2021 zero-click iMessage exploit; CoreGraphics integer overflow via crafted PDF, fixed in iOS 14.8.",
+      "fame": "iconic",
+      "reference": "https://www.cve.org/CVERecord?id=CVE-2021-30860",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "CVE-2021-30860"
+      }
+    },
+    {
+      "text": "Operation Triangulation",
+      "type": "term",
+      "code": "CVE-2023-38606",
+      "meaning": "2023 zero-click iOS spyware chain; CVE-2023-38606 let an app modify sensitive kernel state.",
+      "fame": "niche",
+      "reference": "https://www.cve.org/CVERecord?id=CVE-2023-38606",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "checkm8 · CVE-2019-8900",
+      "type": "id",
+      "code": "CVE-2019-8900",
+      "meaning": "Public exploit for a 2019 SecureROM (bootrom) use-after-free in Apple A5-A11; needs physical access, DFU mode.",
+      "fame": "iconic",
+      "reference": "https://www.cve.org/CVERecord?id=CVE-2019-8900",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "Janus · CVE-2017-13156",
+      "type": "id",
+      "code": "CVE-2017-13156",
+      "meaning": "2017 Android flaw hitting APKs signed only with v1 JAR signing; v2 signatures are not affected.",
+      "fame": "niche",
+      "reference": "https://www.cve.org/CVERecord?id=CVE-2017-13156",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "StrandHogg 2.0 · CVE-2020-0096",
+      "type": "id",
+      "code": "CVE-2020-0096",
+      "meaning": "2020 Android task-hijacking flaw: confused deputy in startActivities, a local privilege escalation.",
+      "fame": "niche",
+      "reference": "https://www.cve.org/CVERecord?id=CVE-2020-0096",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "CVE-2020-0096"
+      }
+    },
+    {
+      "text": "Frida",
+      "type": "tool",
+      "code": "MASTG-TOOL-0031",
+      "meaning": "Dynamic instrumentation toolkit; the workhorse of runtime mobile app testing.",
+      "fame": "iconic",
+      "reference": "https://mas.owasp.org/MASTG/tools/generic/MASTG-TOOL-0031/",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "source"
+        ]
+      }
+    },
+    {
+      "text": "objection",
+      "type": "tool",
+      "code": "MASTG-TOOL-0038",
+      "meaning": "Runtime mobile exploration toolkit built on Frida.",
+      "fame": "iconic",
+      "reference": "https://mas.owasp.org/MASTG/tools/generic/MASTG-TOOL-0038/",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "source"
+        ]
+      }
+    },
+    {
+      "text": "MobSF",
+      "type": "tool",
+      "code": "MASTG-TOOL-0035",
+      "meaning": "Mobile Security Framework: automated static and dynamic analysis for Android and iOS apps.",
+      "fame": "iconic",
+      "reference": "https://mas.owasp.org/MASTG/tools/generic/MASTG-TOOL-0035/",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "jadx",
+      "type": "tool",
+      "code": "MASTG-TOOL-0018",
+      "meaning": "Dex-to-Java decompiler for reading Android app code.",
+      "fame": "iconic",
+      "reference": "https://mas.owasp.org/MASTG/tools/android/MASTG-TOOL-0018/",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "flow",
+          "source"
+        ]
+      }
+    },
+    {
+      "text": "Apktool",
+      "type": "tool",
+      "code": "MASTG-TOOL-0011",
+      "meaning": "Decodes APK resources and smali and rebuilds packages.",
+      "fame": "iconic",
+      "reference": "https://mas.owasp.org/MASTG/tools/android/MASTG-TOOL-0011/",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "flow",
+          "source"
+        ]
+      }
+    },
+    {
+      "text": "Magisk",
+      "type": "tool",
+      "code": "MASTG-TOOL-0021",
+      "meaning": "Systemless root suite for Android, widely used to root test devices.",
+      "fame": "iconic",
+      "reference": "https://mas.owasp.org/MASTG/tools/android/MASTG-TOOL-0021/",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "finding",
+          "source"
+        ]
+      }
+    },
+    {
+      "text": "drozer",
+      "type": "tool",
+      "code": "MASTG-TOOL-0015",
+      "meaning": "Android security assessment framework for probing app IPC surfaces.",
+      "fame": "niche",
+      "reference": "https://mas.owasp.org/MASTG/tools/android/MASTG-TOOL-0015/",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "source"
+        ]
+      }
+    },
+    {
+      "text": "Corellium",
+      "type": "tool",
+      "code": "MASTG-TOOL-0108",
+      "meaning": "Virtualized Arm devices (iOS and Android) used for mobile security research and testing.",
+      "fame": "niche",
+      "reference": "https://mas.owasp.org/MASTG/tools/generic/MASTG-TOOL-0108/",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "source"
+        ]
+      }
+    },
+    {
+      "text": "UnCrackable L1",
+      "type": "artifact",
+      "code": "MASTG-APP-0003",
+      "meaning": "OWASP MAS Android crackme, level 1 of the UnCrackable reverse-engineering challenges.",
+      "fame": "niche",
+      "reference": "https://mas.owasp.org/MASTG/apps/android/MASTG-APP-0003/",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ]
+      }
+    },
+    {
+      "text": "Certificate pinning",
+      "type": "term",
+      "code": "MASVS-NETWORK-2",
+      "meaning": "Trusting only pre-defined server certs or keys; MASVS calls it identity pinning.",
+      "fame": "iconic",
+      "reference": "https://mas.owasp.org/MASVS/controls/MASVS-NETWORK-2/",
+      "series": [
+        "cutting-mat",
+        "galley-proof",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "certificate pinning"
+      }
+    },
+    {
+      "text": "Rootless jailbreak",
+      "type": "term",
+      "code": "",
+      "meaning": "Modern iOS jailbreak style that leaves the sealed system volume untouched; files live under /var/jb.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding",
+          "note"
+        ],
+        "as": "rootless jailbreak"
+      }
+    },
+    {
+      "text": "Sideloading",
+      "type": "term",
+      "code": "",
+      "meaning": "Installing apps from outside the official app store.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "source",
+          "flow"
+        ],
+        "as": "sideloading"
+      }
+    },
+    {
+      "text": "Repackaging",
+      "type": "term",
+      "code": "MASVS-RESILIENCE-2",
+      "meaning": "Unpacking, modifying and re-signing an app; countered by anti-tampering and attestation.",
+      "fame": "iconic",
+      "reference": "https://mas.owasp.org/MASVS/controls/MASVS-RESILIENCE-2/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "repackaging"
+      }
+    },
+    {
+      "text": "RASP",
+      "type": "term",
+      "code": "MASTG-BEST-0029",
+      "meaning": "Runtime Application Self-Protection: in-app signals that detect a hostile environment and react.",
+      "fame": "iconic",
+      "reference": "https://mas.owasp.org/MASTG/best-practices/MASTG-BEST-0029/",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "Tapjacking",
+      "type": "term",
+      "code": "MASWE-0039",
+      "meaning": "Overlay attack where a malicious window hides the real UI to capture the user's taps.",
+      "fame": "iconic",
+      "reference": "https://developer.android.com/privacy-and-security/risks/tapjacking",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "tapjacking"
+      }
+    },
+    {
+      "text": "NIST SP 800-163 Rev. 1",
+      "type": "id",
+      "code": "SP 800-163r1",
+      "meaning": "NIST 'Vetting the Security of Mobile Applications' (April 2019).",
+      "fame": "niche",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/163/r1/final",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "RFC 8252",
+      "type": "id",
+      "code": "RFC 8252",
+      "meaning": "OAuth 2.0 for Native Apps (Oct 2017, Best Current Practice): external user-agents, not embedded ones.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/rfc/rfc8252",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "CWE-926",
+      "type": "id",
+      "code": "CWE-926",
+      "meaning": "Improper Export of Android Application Components.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/926.html",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "CWE-295",
+      "type": "id",
+      "code": "CWE-295",
+      "meaning": "Improper Certificate Validation; MASWE-0027 (validation) and MASWE-0028 (pinning) map to it.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/295.html",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "ADA MASA",
+      "type": "framework",
+      "code": "MASA",
+      "meaning": "App Defense Alliance Mobile Application Security Assessment, a certification built on OWASP MASVS.",
+      "fame": "niche",
+      "reference": "https://www.appdefensealliance.org/standards/masa",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "Set a Telco PIN.",
+      "type": "phrase",
+      "code": "",
+      "meaning": "CISA mobile guidance, general recommendation 5: add a carrier account PIN so that number porting and SIM swaps need it.",
+      "fame": "niche",
+      "reference": "https://www.cisa.gov/sites/default/files/2025-12/guidance-mobile-communications-best-practices_508c.pdf",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Enable Lockdown Mode.",
+      "type": "phrase",
+      "code": "",
+      "meaning": "CISA mobile guidance, first iPhone-specific recommendation: turn on Lockdown Mode to shrink the attack surface for highly targeted people.",
+      "fame": "niche",
+      "reference": "https://www.cisa.gov/sites/default/files/2025-12/guidance-mobile-communications-best-practices_508c.pdf",
+      "series": [
+        "cutting-mat"
+      ]
+    }
+  ]
+}

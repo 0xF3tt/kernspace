@@ -1,0 +1,26 @@
+{
+  "series": "cutting-mat",
+  "topic": "web",
+  "title": "Vol. 05 · Origin",
+  "ground": "dark",
+  "phrase": ["Mind", "the origin."],
+  "label": "WEB CUTTING MAT · VOL. 05 · ORIGIN",
+  "source": "source · evil.example",
+  "sink": "sink · response body",
+  "controls": ["SameSite=Lax", "CORS allowlist"],
+  "flows": ["60° · POST /settings", "30° · postMessage()", "15° · wss:// upgrade"],
+  "findings": ["CSRF · CWE-352", "CSWSH · CWE-1385", "CWE-942"],
+  "panel": {
+    "title": "cross-origin.yml",
+    "lines": ["cookie: __Host-sid · SameSite=Lax", "cors:   allow https://app.example.com", "fetch:  cross-site subresource → 403", "origin: checked on ws + postMessage", "verify: [TODO] ASVS 5.0 V3.5"]
+  },
+  "notes": ["sending is not reading", "same-site ≠ same-origin", "CORS loosens, SOP guards"],
+  "data": {"left": "3 origins · 2 sites · SOP holds", "right": "{handle} · git:(main) · blue builds"},
+  "phone": {
+    "data": {"left": "3 origins · 2 sites", "right": "{handle} · blue builds"}
+  },
+  "layout": {
+    "desktop": {"chips": [[33, 7], [37, 14], [21, 19]], "notes": [[2, 2], [27, 16], [12, 20]]},
+    "phone": {"chips": [[12, 16], [13, 24], [14, 34]], "notes": [[4, 21], [10, 35], [12, 18]]}
+  }
+}

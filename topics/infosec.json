@@ -1,0 +1,1326 @@
+{
+  "topic": "infosec",
+  "terms": [
+    {
+      "text": "CIA triad",
+      "type": "term",
+      "code": "CIA",
+      "meaning": "Confidentiality, integrity, availability: the three goals in the US legal definition of infosec (44 U.S.C. 3552).",
+      "fame": "iconic",
+      "reference": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title44-section3552&num=0&edition=prelim",
+      "series": [
+        "specimen",
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ]
+      }
+    },
+    {
+      "text": "Confidentiality",
+      "type": "term",
+      "code": "C",
+      "meaning": "Preserving authorized restrictions on access and disclosure, incl. personal privacy and proprietary information.",
+      "fame": "iconic",
+      "reference": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title44-section3552&num=0&edition=prelim",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "Integrity",
+      "type": "term",
+      "code": "I",
+      "meaning": "Guarding against improper modification or destruction; includes nonrepudiation and authenticity.",
+      "fame": "iconic",
+      "reference": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title44-section3552&num=0&edition=prelim",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "Availability",
+      "type": "term",
+      "code": "A",
+      "meaning": "Ensuring timely and reliable access to and use of information.",
+      "fame": "iconic",
+      "reference": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title44-section3552&num=0&edition=prelim",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "AAA",
+      "type": "term",
+      "code": "AAA",
+      "meaning": "Authentication, authorization, accounting: who you are, what you may do, and a record of what you did.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "Defense in depth",
+      "type": "term",
+      "code": "",
+      "meaning": "Layering independent controls so that the failure of any single one does not lead to compromise.",
+      "fame": "iconic",
+      "reference": "https://csrc.nist.gov/glossary/term/defense_in_depth",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "defense in depth"
+      }
+    },
+    {
+      "text": "Least Privilege · AC-6",
+      "type": "id",
+      "code": "AC-6",
+      "meaning": "Grant only the access a task needs; a 1975 design principle and control AC-6 in NIST SP 800-53 Rev. 5.",
+      "fame": "iconic",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "least privilege · AC-6"
+      }
+    },
+    {
+      "text": "Fail-safe defaults",
+      "type": "term",
+      "code": "",
+      "meaning": "Base access on explicit permission, not exclusion: the default answer is deny. A 1975 design principle.",
+      "fame": "niche",
+      "reference": "The Protection of Information in Computer Systems (1975)",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Complete mediation",
+      "type": "term",
+      "code": "",
+      "meaning": "Check every access to every object for authority, not just the first one. A 1975 design principle.",
+      "fame": "niche",
+      "reference": "The Protection of Information in Computer Systems (1975)",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Open design",
+      "type": "term",
+      "code": "",
+      "meaning": "The design should not be secret; security rests on protected keys, not on attackers' ignorance. 1975 principle.",
+      "fame": "niche",
+      "reference": "The Protection of Information in Computer Systems (1975)",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Psychological acceptability",
+      "type": "term",
+      "code": "",
+      "meaning": "Protection must be easy to use so people apply it routinely and correctly. A 1975 design principle.",
+      "fame": "niche",
+      "reference": "The Protection of Information in Computer Systems (1975)",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Security through obscurity",
+      "type": "term",
+      "code": "",
+      "meaning": "Relying on secrecy of design or implementation as the main defense; corrected by the open design principle.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "galley-proof",
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding",
+          "note"
+        ],
+        "as": "myth · obscurity"
+      }
+    },
+    {
+      "text": "Zero Trust Architecture",
+      "type": "framework",
+      "code": "NIST SP 800-207",
+      "meaning": "NIST model (Aug 2020): no implicit trust from network location; every access is authenticated and authorized.",
+      "fame": "iconic",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/207/final",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "zero trust · SP 800-207"
+      }
+    },
+    {
+      "text": "Castle-and-moat → zero trust",
+      "type": "term",
+      "code": "",
+      "meaning": "Perimeter model (trusted inside, hostile outside) that zero trust drops: location grants no trust (SP 800-207).",
+      "fame": "niche",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/207/final",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Break glass",
+      "type": "term",
+      "code": "",
+      "meaning": "Pre-approved emergency access account or procedure, used only when normal access fails, and always audited.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ],
+        "as": "break glass"
+      }
+    },
+    {
+      "text": "Security theater",
+      "type": "term",
+      "code": "",
+      "meaning": "Visible measures that make people feel safer without materially reducing risk.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding",
+          "note"
+        ],
+        "as": "security theater"
+      }
+    },
+    {
+      "text": "FUD",
+      "type": "term",
+      "code": "FUD",
+      "meaning": "Fear, uncertainty and doubt: selling security by scaring buyers instead of informing them.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Layer 8",
+      "type": "term",
+      "code": "",
+      "meaning": "Jargon for the human user, one layer above the seven of the OSI model; blamed for many incidents.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "source",
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "0day",
+      "type": "term",
+      "code": "0day",
+      "meaning": "A vulnerability unknown to the vendor or with no fix yet: defenders have had zero days to respond.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "pwned",
+      "type": "term",
+      "code": "",
+      "meaning": "Hacker and gamer slang for 'owned': compromised or thoroughly defeated.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "Script kiddie",
+      "type": "term",
+      "code": "",
+      "meaning": "Unskilled attacker who runs tools written by others without understanding them.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "source"
+        ],
+        "as": "script kiddie"
+      }
+    },
+    {
+      "text": "1337",
+      "type": "term",
+      "code": "1337",
+      "meaning": "Leetspeak for 'elite': letters swapped for lookalike digits (1 for l, 3 for E, 7 for T).",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "White hat · Grey hat · Black hat",
+      "type": "term",
+      "code": "",
+      "meaning": "Hacker ethics spectrum: authorized defender, unauthorized but not malicious, and malicious attacker.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "source"
+        ],
+        "as": "black hat"
+      }
+    },
+    {
+      "text": "Red team · Blue team · Purple team",
+      "type": "term",
+      "code": "",
+      "meaning": "Adversary emulation, defense, and both working together to improve detection and response.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "source"
+        ],
+        "as": "red team"
+      }
+    },
+    {
+      "text": "hacker ≠ cracker",
+      "type": "term",
+      "code": "",
+      "meaning": "The Jargon File reserves 'cracker' (coined ca. 1985) for one who breaks security; a hacker is an enthusiast.",
+      "fame": "niche",
+      "reference": "http://www.catb.org/jargon/html/C/cracker.html",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Hacker ethic",
+      "type": "term",
+      "code": "",
+      "meaning": "Culture of sharing, openness, decentralization and hands-on curiosity from early computing labs.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "cDc",
+      "type": "term",
+      "code": "cDc",
+      "meaning": "Cult of the Dead Cow: hacker group and ezine founded June 1984 in Lubbock, Texas; a member coined 'hacktivism' (1996).",
+      "fame": "niche",
+      "reference": "https://cultdeadcow.com",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "source"
+        ]
+      }
+    },
+    {
+      "text": "Jargon File 4.4.7",
+      "type": "artifact",
+      "code": "4.4.7",
+      "meaning": "Hacker lexicon begun in 1975; last version 4.4.7 dated Dec 29, 2003. In print: The New Hacker's Dictionary.",
+      "fame": "niche",
+      "reference": "http://www.catb.org/jargon/",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "Phrack",
+      "type": "artifact",
+      "code": "",
+      "meaning": "Hacker ezine first published Nov 17, 1985; issue #72 (Aug 19, 2025) is its 40th-anniversary edition.",
+      "fame": "iconic",
+      "reference": "https://phrack.org",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "The Conscience of a Hacker",
+      "type": "artifact",
+      "code": "Phrack v1 i7 phile 3",
+      "meaning": "The 'Hacker Manifesto', written Jan 8, 1986; Phrack Volume One, Issue 7 (Sept 25, 1986), Phile 3 of 10.",
+      "fame": "iconic",
+      "reference": "https://phrack.org/issues/7/hackers-manifesto.html",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "2600: The Hacker Quarterly",
+      "type": "artifact",
+      "code": "2600",
+      "meaning": "Hacker magazine launched January 1984, named after the 2600 Hz long-distance trunk tone.",
+      "fame": "iconic",
+      "reference": "https://www.2600.com",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "2600 Hz",
+      "type": "number",
+      "code": "2600 Hz",
+      "meaning": "In-band trunk tone whose 1960s discovery gave access to 'operator mode'; the emblem of phone phreaking.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "PoC||GTFO 0x00",
+      "type": "artifact",
+      "code": "0x00",
+      "meaning": "Zine of proof-of-concept hacking; issue 0x00 is dated Aug 5, 2013. Known for polyglot PDF issues.",
+      "fame": "niche",
+      "reference": "https://archive.org/details/International_Journal_of_PoC_2013_08_05",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "Datenschleuder",
+      "type": "artifact",
+      "code": "",
+      "meaning": "'Data slingshot': the Chaos Computer Club's magazine, published since 1984.",
+      "fame": "niche",
+      "reference": "https://ds.ccc.de",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "CCC",
+      "type": "term",
+      "code": "CCC",
+      "meaning": "Chaos Computer Club, hacker association founded Sept 12, 1981 in West Berlin.",
+      "fame": "iconic",
+      "reference": "https://www.ccc.de",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "source"
+        ]
+      }
+    },
+    {
+      "text": "39C3 · Power Cycles",
+      "type": "id",
+      "code": "39C3",
+      "meaning": "39th Chaos Communication Congress, Dec 27–30, 2025, Congress Center Hamburg. First Congress: 1984.",
+      "fame": "niche",
+      "reference": "https://events.ccc.de/congress/2025/",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "DEF CON 34",
+      "type": "id",
+      "code": "DC34",
+      "meaning": "Aug 6–9, 2026, Las Vegas Convention Center West Hall. The first DEF CON was held June 9–11, 1993.",
+      "fame": "iconic",
+      "reference": "https://defcon.org/html/defcon-34/dc-34-index.html",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "Hacker summer camp",
+      "type": "term",
+      "code": "",
+      "meaning": "Nickname for the August week in Las Vegas that bundles Black Hat, BSides Las Vegas and DEF CON.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "hacker summer camp"
+      }
+    },
+    {
+      "text": "Black badge",
+      "type": "term",
+      "code": "",
+      "meaning": "DEF CON's highest honor, won in select contests such as its CTF; grants free entry for life.",
+      "fame": "niche",
+      "reference": "https://defcon.org",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "Black Badge"
+      }
+    },
+    {
+      "text": "Wall of Sheep",
+      "type": "term",
+      "code": "",
+      "meaning": "Display of partly masked credentials seen in cleartext on the con network; at DEF CON since 2002.",
+      "fame": "niche",
+      "reference": "https://www.wallofsheep.com",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ]
+      }
+    },
+    {
+      "text": "BSides",
+      "type": "term",
+      "code": "",
+      "meaning": "Community-run security conferences, born in 2009 from talks Black Hat USA's CFP had no room for.",
+      "fame": "iconic",
+      "reference": "https://www.securitybsides.com",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "RSA Conference → RSAC Conference",
+      "type": "term",
+      "code": "RSAC",
+      "meaning": "Renamed in early 2025; the added C stands for community. Flagship event held yearly in San Francisco.",
+      "fame": "niche",
+      "reference": "https://www.rsaconference.com",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Chatham House Rule",
+      "type": "term",
+      "code": "",
+      "meaning": "Use what is said, but reveal neither the identity nor the affiliation of speakers or participants. Since 1927.",
+      "fame": "niche",
+      "reference": "https://www.chathamhouse.org/about-us/chatham-house-rule",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "TLP:WHITE → TLP:CLEAR",
+      "type": "id",
+      "code": "TLP:CLEAR",
+      "meaning": "TLP 2.0 (Aug 2022) renamed WHITE to CLEAR: recipients can spread it to the world, no limit on disclosure.",
+      "fame": "niche",
+      "reference": "https://www.first.org/tlp/",
+      "series": [
+        "galley-proof",
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "TLP:AMBER+STRICT",
+      "type": "id",
+      "code": "TLP:AMBER+STRICT",
+      "meaning": "TLP 2.0 label that restricts sharing to the recipient's organization only.",
+      "fame": "niche",
+      "reference": "https://www.first.org/tlp/",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "TLP:RED",
+      "type": "id",
+      "code": "TLP:RED",
+      "meaning": "For the eyes and ears of individual recipients only, no further disclosure.",
+      "fame": "niche",
+      "reference": "https://www.first.org/tlp/",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "flow",
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "CERT/CC",
+      "type": "id",
+      "code": "CERT/CC",
+      "meaning": "CERT Coordination Center, created Nov 1988 at Carnegie Mellon's SEI in response to the Internet worm.",
+      "fame": "iconic",
+      "reference": "https://www.sei.cmu.edu/about/divisions/cert/",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "CSIRT, not CERT",
+      "type": "term",
+      "code": "CSIRT",
+      "meaning": "Generic name for an incident response team; 'CERT' is a registered mark of Carnegie Mellon University.",
+      "fame": "niche",
+      "reference": "https://certcc.github.io/CERT-Guide-to-CVD/",
+      "series": [
+        "galley-proof",
+        "specimen"
+      ]
+    },
+    {
+      "text": "Patch Tuesday",
+      "type": "term",
+      "code": "",
+      "meaning": "Microsoft's monthly security release on the second Tuesday, formalized Oct 2003; also called Update Tuesday.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "flow",
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "/.well-known/security.txt",
+      "type": "filename",
+      "code": "RFC 9116",
+      "meaning": "File telling researchers how to report vulnerabilities (Apr 2022); Contact and Expires fields are required.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/rfc/rfc9116",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ],
+        "as": "security.txt"
+      }
+    },
+    {
+      "text": "Coordinated vulnerability disclosure",
+      "type": "term",
+      "code": "CVD",
+      "meaning": "Finders and vendors coordinate a fix before publication; the neutral name for what was 'responsible disclosure'.",
+      "fame": "niche",
+      "reference": "https://certcc.github.io/CERT-Guide-to-CVD/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "allowlist / denylist",
+      "type": "term",
+      "code": "",
+      "meaning": "Replacements for 'whitelist' and 'blacklist'; OWASP cheat sheets use them ('Allowlist vs Denylist').",
+      "fame": "niche",
+      "reference": "https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "RFC 4949",
+      "type": "id",
+      "code": "RFC 4949",
+      "meaning": "Internet Security Glossary, Version 2 (Aug 2007); obsoletes RFC 2828.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/rfc/rfc4949",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "RFC 2196",
+      "type": "id",
+      "code": "RFC 2196",
+      "meaning": "Site Security Handbook (FYI 8, Sept 1997); obsoletes RFC 1244.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/rfc/rfc2196",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "RFC 3514",
+      "type": "id",
+      "code": "RFC 3514",
+      "meaning": "The Security Flag in the IPv4 Header: April 1, 2003 joke RFC defining the 'evil bit'.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/rfc/rfc3514",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "control",
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "There's no place like 127.0.0.1",
+      "type": "status-line",
+      "code": "127.0.0.1",
+      "meaning": "Classic geek joke: the loopback address is home.",
+      "fame": "iconic",
+      "reference": "https://www.rfc-editor.org/rfc/rfc6890",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Orange Book",
+      "type": "artifact",
+      "code": "DoD 5200.28-STD",
+      "meaning": "TCSEC, 1985 edition; centerpiece of the Rainbow Series, canceled Oct 24, 2002. Succeeded by Common Criteria.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "D · C1 · C2 · B1 · B2 · B3 · A1",
+      "type": "id",
+      "code": "TCSEC",
+      "meaning": "Orange Book evaluation classes, from minimal protection (D) to verified design (A1).",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Common Criteria · EAL1–EAL7",
+      "type": "framework",
+      "code": "ISO/IEC 15408",
+      "meaning": "Evaluation standard (CC:2022 Release 1; ISO/IEC 15408) with seven assurance levels, EAL1 to EAL7.",
+      "fame": "niche",
+      "reference": "https://www.commoncriteriaportal.org/cc/",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "No read up · No write down",
+      "type": "term",
+      "code": "",
+      "meaning": "Classic multilevel confidentiality rules: the simple security property and the *-property.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "no read up · no write down"
+      }
+    },
+    {
+      "text": "No read down · No write up",
+      "type": "term",
+      "code": "",
+      "meaning": "Mirror-image rules of classic multilevel integrity models; the lookalike twin of the confidentiality rules.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "no read down · no write up"
+      }
+    },
+    {
+      "text": "NIST CSF 2.0",
+      "type": "framework",
+      "code": "NIST CSWP 29",
+      "meaning": "Cybersecurity Framework, Feb 26, 2024: 6 Functions, 22 Categories, 106 Subcategories.",
+      "fame": "iconic",
+      "reference": "https://doi.org/10.6028/NIST.CSWP.29",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "GV · ID · PR · DE · RS · RC",
+      "type": "id",
+      "code": "CSF 2.0 Functions",
+      "meaning": "The six CSF 2.0 Functions: Govern, Identify, Protect, Detect, Respond, Recover. Govern is new in 2.0.",
+      "fame": "niche",
+      "reference": "https://doi.org/10.6028/NIST.CSWP.29",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "PR.AC → PR.AA",
+      "type": "id",
+      "code": "PR.AA",
+      "meaning": "CSF 1.1 access control Category withdrawn and moved to PR.AA (Identity Mgmt, Authentication, Access Control).",
+      "fame": "niche",
+      "reference": "https://www.nist.gov/system/files/documents/2024/03/25/The_NIST_CSF_2-0_Core_With_Withdrawn_CSF_1-1_Elements.pdf",
+      "series": [
+        "galley-proof",
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "CSF 1.1 → CSF 2.0",
+      "type": "framework",
+      "code": "NIST CSWP 29",
+      "meaning": "1.1 (Apr 2018) was 'Framework for Improving Critical Infrastructure Cybersecurity'; 2.0 is for all organizations.",
+      "fame": "niche",
+      "reference": "https://www.nist.gov/cyberframework",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "ISO/IEC 27001:2022",
+      "type": "framework",
+      "code": "ISO/IEC 27001:2022",
+      "meaning": "ISMS requirements, Oct 2022; Annex A has 93 controls. All 2013-edition certificates expired Oct 31, 2025.",
+      "fame": "iconic",
+      "reference": "https://www.iso.org/standard/27001",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "ISO/IEC 27001:2022/Amd 1:2024",
+      "type": "id",
+      "code": "Amd 1:2024",
+      "meaning": "Climate action changes (Feb 2024): clause 4.1 now asks whether climate change is a relevant issue for the ISMS.",
+      "fame": "niche",
+      "reference": "https://www.iso.org/standard/88435.html",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "ISO/IEC 27002:2022",
+      "type": "framework",
+      "code": "ISO/IEC 27002:2022",
+      "meaning": "Control guidance: 93 controls in 4 themes: organizational 37, people 8, physical 14, technological 34.",
+      "fame": "iconic",
+      "reference": "https://www.iso.org/standard/75652.html",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "A.5 · A.6 · A.7 · A.8",
+      "type": "id",
+      "code": "Annex A",
+      "meaning": "ISO/IEC 27001:2022 Annex A themes: organizational, people, physical and technological controls.",
+      "fame": "niche",
+      "reference": "https://www.iso.org/standard/27001",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "114 → 93 controls",
+      "type": "number",
+      "code": "Annex A",
+      "meaning": "Annex A went from 114 controls in 14 clauses (2013) to 93 controls in 4 themes (2022), 11 of them new.",
+      "fame": "niche",
+      "reference": "https://www.iso.org/standard/75652.html",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Statement of Applicability",
+      "type": "term",
+      "code": "SoA",
+      "meaning": "ISO/IEC 27001 clause 6.1.3 d): lists necessary controls, why each is included or excluded, and its status.",
+      "fame": "niche",
+      "reference": "https://www.iso.org/standard/27001",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "ISO/IEC 27000:2026",
+      "type": "id",
+      "code": "ISO/IEC 27000:2026",
+      "meaning": "Sixth edition (July 3, 2026): title now ends 'Overview', no longer 'Overview and vocabulary'; replaces 27000:2018.",
+      "fame": "niche",
+      "reference": "https://www.iso.org/standard/84257.html",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "High water mark",
+      "type": "term",
+      "code": "FIPS 200",
+      "meaning": "A system's impact level is the highest of its confidentiality, integrity and availability impact values.",
+      "fame": "niche",
+      "reference": "https://doi.org/10.6028/NIST.FIPS.200",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "SP 800-53 Rev. 5",
+      "type": "framework",
+      "code": "NIST SP 800-53r5",
+      "meaning": "NIST security and privacy control catalog in 20 families; Release 5.2.0 issued Aug 27, 2025.",
+      "fame": "iconic",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "AC AT AU CA CM CP IA IR MA MP",
+      "type": "id",
+      "code": "SP 800-53 families 1–10",
+      "meaning": "First ten SP 800-53 Rev. 5 control family IDs, Access Control through Media Protection.",
+      "fame": "niche",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "PE PL PM PS PT RA SA SC SI SR",
+      "type": "id",
+      "code": "SP 800-53 families 11–20",
+      "meaning": "Last ten family IDs, Physical and Environmental Protection through Supply Chain Risk Management.",
+      "fame": "niche",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "SP 800-53 ≠ SP 800-63",
+      "type": "id",
+      "code": "",
+      "meaning": "Lookalikes: 800-53 is the control catalog; 800-63-4 (July 2025) is the Digital Identity Guidelines.",
+      "fame": "niche",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/63/4/final",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "CIS Controls v8",
+      "type": "framework",
+      "code": "CIS Controls v8.1",
+      "meaning": "18 Controls; the 56 Safeguards of IG1 define essential cyber hygiene. v8.1 added a Govern function.",
+      "fame": "niche",
+      "reference": "https://www.cisecurity.org/controls/v8-1",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "(ISC)² → ISC2",
+      "type": "term",
+      "code": "ISC2",
+      "meaning": "The certification body dropped the parentheses and superscript on Aug 17, 2023.",
+      "fame": "niche",
+      "reference": "https://www.isc2.org/Insights/2023/08/cybersecurity-is-evolving-so-are-we",
+      "series": [
+        "galley-proof",
+        "specimen"
+      ]
+    },
+    {
+      "text": "CISSP",
+      "type": "id",
+      "code": "CISSP",
+      "meaning": "ISC2 certification in 8 domains, from Security and Risk Management to Software Development Security.",
+      "fame": "iconic",
+      "reference": "https://www.isc2.org/certifications/cissp/cissp-certification-exam-outline",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "source"
+        ]
+      }
+    },
+    {
+      "text": "Setec Astronomy",
+      "type": "term",
+      "code": "",
+      "meaning": "Codename in the 1992 film Sneakers; an anagram of 'too many secrets'.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "other than satisfied (O)",
+      "type": "status-line",
+      "code": "SP 800-53A Rev. 5",
+      "meaning": "SP 800-53A Rev. 5 finding for one determination statement: potential anomalies in the control, or too little information to decide. The other finding is satisfied (S).",
+      "fame": "niche",
+      "reference": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53Ar5.pdf",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Authorization to Operate",
+      "type": "status-line",
+      "code": "ATO",
+      "meaning": "RMF authorization decision (SP 800-37 Rev. 2, Task R-4 and Appendix F): the authorizing official accepts the risk and the system may operate.",
+      "fame": "niche",
+      "reference": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "DIVISION D: MINIMAL PROTECTION",
+      "type": "status-line",
+      "code": "TCSEC D",
+      "meaning": "Orange Book division for systems that were evaluated but failed to meet a higher class. It was TCSEC's failing grade.",
+      "fame": "niche",
+      "reference": "https://csrc.nist.gov/files/pubs/conference/1998/10/08/proceedings-of-the-21st-nissc-1998/final/docs/early-cs-papers/dod85.pdf",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Oh no — pwned!",
+      "type": "status-line",
+      "code": "HIBP",
+      "meaning": "The Have I Been Pwned result when a searched email address appears in the data breaches it has loaded.",
+      "fame": "iconic",
+      "reference": "https://haveibeenpwned.com/",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Good news — no pwnage found!",
+      "type": "status-line",
+      "code": "HIBP",
+      "meaning": "The Have I Been Pwned result when a searched email address is in none of the data breaches it has loaded.",
+      "fame": "iconic",
+      "reference": "https://haveibeenpwned.com/",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Trust is a vulnerability",
+      "type": "phrase",
+      "code": "",
+      "meaning": "The belief Forrester founded zero trust on in 2009: trust itself is the weakness, so never trust and always verify.",
+      "fame": "niche",
+      "reference": "https://www.forrester.com/blogs/a-look-back-at-zero-trust-never-trust-always-verify/",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Verify explicitly",
+      "type": "phrase",
+      "code": "",
+      "meaning": "The first of Microsoft's three Zero Trust principles (with least privilege access and assume breach): authenticate and authorize every request using all available signals.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Separation of privilege",
+      "type": "phrase",
+      "code": "",
+      "meaning": "A 1975 design principle: where feasible, a mechanism that needs two keys to unlock is more robust and flexible than one that needs only one.",
+      "fame": "niche",
+      "reference": "https://web.mit.edu/Saltzer/www/publications/protection/Basic.html",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "All information should be free.",
+      "type": "phrase",
+      "code": "",
+      "meaning": "A tenet of the Hacker Ethic as written down in Hackers: Heroes of the Computer Revolution (1984).",
+      "fame": "iconic",
+      "reference": "https://www.gutenberg.org/ebooks/729",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Technology is not a panacea.",
+      "type": "phrase",
+      "code": "",
+      "meaning": "Law #10 of Microsoft's Ten Immutable Laws of Security: no product delivers security by itself.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/archive/blogs/rhalbheer/ten-immutable-laws-of-security-version-2-0",
+      "series": [
+        "cutting-mat"
+      ]
+    }
+  ]
+}

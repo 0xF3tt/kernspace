@@ -1,0 +1,17 @@
+[
+  {"id": "appsec", "vol": 1, "title": "Vol. 01 · Design", "topic": "appsec", "ground": "mid"},
+  {"id": "programming", "vol": 2, "title": "Vol. 02 · Code", "topic": "programming", "ground": "light"},
+  {"id": "pentest", "vol": 3, "title": "Vol. 03 · Break", "topic": "pentest", "ground": "dark"},
+  {"id": "mobile", "vol": 4, "title": "Vol. 04 · Device", "topic": "mobile", "ground": "light"},
+  {"id": "web", "vol": 5, "title": "Vol. 05 · Origin", "topic": "web", "ground": "dark"},
+  {"id": "active-directory", "vol": 6, "title": "Vol. 06 · Forest", "topic": "active-directory", "ground": "mid"},
+  {"id": "red-team", "vol": 7, "title": "Vol. 07 · Emulate", "topic": "red-team", "ground": "dark"},
+  {"id": "blue-team", "vol": 8, "title": "Vol. 08 · Detect", "topic": "blue-team", "ground": "light"},
+  {"id": "crypto", "vol": 9, "title": "Vol. 09 · Key", "topic": "crypto", "ground": "dark"},
+  {"id": "cloud", "vol": 10, "title": "Vol. 10 · Posture", "topic": "cloud", "ground": "light"},
+  {"id": "reversing", "vol": 11, "title": "Vol. 11 · Unpack", "topic": "reversing", "ground": "mid"},
+  {"id": "dfir", "vol": 12, "title": "Vol. 12 · Evidence", "topic": "dfir", "ground": "light"},
+  {"id": "ai-security", "vol": 13, "title": "Vol. 13 · Prompt", "topic": "ai-security", "ground": "mid"},
+  {"id": "ctf", "vol": 14, "title": "Vol. 14 · Capture", "topic": "ctf", "ground": "dark"},
+  {"id": "infosec", "vol": 15, "title": "Vol. 15 · Trust", "topic": "infosec", "ground": "mid"}
+]

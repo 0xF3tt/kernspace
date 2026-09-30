@@ -1,0 +1,26 @@
+{
+  "series": "cutting-mat",
+  "topic": "appsec",
+  "title": "Vol. 01 · Design",
+  "ground": "mid",
+  "phrase": ["Secure", "by design."],
+  "label": "APPSEC CUTTING MAT · VOL. 01 · DESIGN",
+  "source": "actor · authed user",
+  "sink": "store · orders table",
+  "controls": ["authn · verify", "authz · owner"],
+  "flows": ["60° · GET /me", "30° · POST /login", "15° · GET /export"],
+  "findings": ["threat · BOLA", "STRIDE · EoP", "CWE-862"],
+  "panel": {
+    "title": "threat-model.md",
+    "lines": ["asset: order · owner-scoped", "crosses: ISB-01 → ISB-02", "threat: EoP · CWE-639 (BOLA)", "control: authz · check owner_id", "verify: [TODO] ASVS V8 · swap id"]
+  },
+  "notes": ["what can go wrong?", "least privilege by default", "complete mediation"],
+  "data": {"left": "dfd · 2 boundaries · 2 controls", "right": "{handle} · git:(main) · blue builds"},
+  "phone": {
+    "data": {"left": "dfd · 2 boundaries", "right": "{handle} · blue builds"}
+  },
+  "layout": {
+    "desktop": {"chips": [[33, 7], [37, 14], [21, 19]], "notes": [[2, 2], [27, 16], [12, 20]]},
+    "phone": {"chips": [[12, 16], [13, 24], [14, 34]], "notes": [[4, 21], [10, 35], [12, 18]]}
+  }
+}

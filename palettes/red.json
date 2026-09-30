@@ -1,0 +1,67 @@
+{
+  "slug": "red",
+  "name": "Red",
+  "story": "Red is used here as ink, not as an alarm. The palette treats red the way print and early computing did: iron oxide on tape and floppy media, rubricated headings, and the proofreader's red pencil on a galley. Across all three grounds the taint path (diag) is the red-pencil mark, the attack line an editor draws across the page. The red team is marking up the system, not bleeding over it. Trust boundaries use a second ink that changes with the ground: safelight amber on OXIDE, gilt on RUBRIC and blue pencil on REDLINE. On paper, red pencil plus blue pencil plus carbon type is the classic proof markup. Chip3 is always a non-photo-blue family color, the pre-press guide ink. It does the job purple's cyan does, a single cool note that keeps the page from turning into one red wash. There is no pure #FF0000 anywhere. The reds lean vermilion/cinnabar (orange side) or oxblood/madder (brown side), and the neutrals are bone and newsprint rather than white. The result reads as a printed object, not an error-state UI or a blood/danger cliché. Ground names: OXIDE (dark) is the ferric-oxide coating of magnetic tape and floppy disks, the physical substrate where bits actually lived. RUBRIC (mid) is the red-letter rubrication of manuscripts and early print, and a rubric is literally a set of rules, a nod to rules of engagement. REDLINE (light) is the galley proof that gets marked in red pencil before a run. All ratios come from a Python WCAG 2.x relative-luminance script. minor is composited over bg, and minor/major are reported but not held to a threshold, same as purple. Every text role is at least 4.88:1 and every meaningful mark at least 3.48:1. Chip separation in CIEDE2000: OXIDE 24.9 / 51.7 / 35.4, RUBRIC 25.0 / 44.6 / 32.7, REDLINE 28.7 / 45.0 / 43.6. Red against amber/ochre is the pair deuteranopes merge. Under Machado 2009 simulation every chip pair holds ΔE00 10 or more (OXIDE 10.2, RUBRIC 10.2, REDLINE 10.0, all worst-case deutan chip1-chip2). That took two lightness-only nudges of the red chip: OXIDE chip1 = diag went from #E65A40 to #E2573D, and RUBRIC chip1 from #F28A70 to #E98268. The chips also differ in shape (horizontal pill, vertical pill, square) and lightness. Previews were rendered with the real build() via headless Chrome and checked visually.",
+  "grounds": {
+    "oxide": {
+      "role": "dark",
+      "colors": {
+        "bg": "#150B0A",
+        "minor": "rgba(122,46,38,.40)",
+        "major": "#6B2A22",
+        "angle": "#C4826F",
+        "frame": "#B28A80",
+        "rule": "#C09A90",
+        "diag": "#E2573D",
+        "text": "#F1E6E0",
+        "text2": "#D6BCB3",
+        "data": "#D6BCB3",
+        "tb": "#D9A15F",
+        "sink": "#D9A15F",
+        "chip1": "#E2573D",
+        "chip2": "#D9A15F",
+        "chip3": "#9FCFDC"
+      }
+    },
+    "rubric": {
+      "role": "mid",
+      "colors": {
+        "bg": "#481A18",
+        "minor": "rgba(170,78,66,.42)",
+        "major": "#944539",
+        "angle": "#E7A496",
+        "frame": "#E3C2B8",
+        "rule": "#E3C2B8",
+        "diag": "#F4EAE4",
+        "text": "#F4EAE4",
+        "text2": "#EDD5CD",
+        "data": "#EBC27E",
+        "tb": "#EBC27E",
+        "sink": "#EBC27E",
+        "chip1": "#E98268",
+        "chip2": "#EBC27E",
+        "chip3": "#A9D6E3"
+      }
+    },
+    "redline": {
+      "role": "light",
+      "colors": {
+        "bg": "#F3E9E3",
+        "minor": "rgba(196,130,116,.30)",
+        "major": "#D5A497",
+        "angle": "#A34A3C",
+        "frame": "#6E2820",
+        "rule": "#8E3F33",
+        "diag": "#B3261E",
+        "text": "#2A0E0B",
+        "text2": "#5A241E",
+        "data": "#5A241E",
+        "tb": "#2E5E78",
+        "sink": "#2E5E78",
+        "chip1": "#B3261E",
+        "chip2": "#A6721C",
+        "chip3": "#2E5E78"
+      }
+    }
+  }
+}

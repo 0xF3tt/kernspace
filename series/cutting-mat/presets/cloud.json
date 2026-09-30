@@ -1,0 +1,26 @@
+{
+  "series": "cutting-mat",
+  "topic": "cloud",
+  "title": "Vol. 10 · Posture",
+  "ground": "light",
+  "phrase": ["Shrink the", "blast radius."],
+  "label": "CLOUD CUTTING MAT · VOL. 10 · POSTURE",
+  "source": "process · ec2 workload",
+  "sink": "store · s3 · pii",
+  "controls": ["IMDSv2 · token", "iam · scoped"],
+  "flows": ["60° · ci → oidc → sts", "30° · tfstate → s3", "15° · CloudTrail logs"],
+  "findings": ["cspm · EC2.8", "ciem · excess perms", "T1552.005"],
+  "panel": {
+    "title": "cspm-finding.yaml",
+    "lines": ["resource: AwsEc2Instance · us-east-1", "control: EC2.8 · IMDSv2 required", "remediation: {HttpTokens: required}", "compliance: FAILED → PASSED", "workflow: NEW → NOTIFIED → RESOLVED"]
+  },
+  "notes": ["shared responsibility", "drift is a finding", "break-glass stays sealed"],
+  "data": {"left": "[PASSED] EC2.8 · S3.1 · IAM.4", "right": "{handle} · git:(main) · blue builds"},
+  "phone": {
+    "data": {"left": "[PASSED] EC2.8 · S3.1 · IAM.4", "right": "{handle} · blue builds"}
+  },
+  "layout": {
+    "desktop": {"chips": [[33, 7], [37, 14], [21, 19]], "notes": [[2, 2], [27, 16], [12, 20]]},
+    "phone": {"chips": [[12, 16], [13, 24], [14, 34]], "notes": [[4, 21], [10, 35], [12, 18]]}
+  }
+}

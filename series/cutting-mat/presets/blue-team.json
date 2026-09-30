@@ -1,0 +1,26 @@
+{
+  "series": "cutting-mat",
+  "topic": "blue-team",
+  "title": "Vol. 08 · Detect",
+  "ground": "light",
+  "phrase": ["Nothing moves", "unseen."],
+  "label": "BLUE TEAM CUTTING MAT · VOL. 08 · DETECT",
+  "source": "src_ip · 203.0.113.7",
+  "sink": "sink · lsass.exe",
+  "controls": ["D3-UBA · 4624", "D3-PLA · EID 1"],
+  "flows": ["60° · eve.json alerts", "30° · zeek weird.log", "15° · beaconing · 60s"],
+  "findings": ["TP · spray → RDP", "EID 10 · lsass", "T1110.003"],
+  "panel": {
+    "title": "mr_spray_to_rdp.yml",
+    "lines": ["title: 4625 burst → 4624 type 10", "correlation: temporal_ordered", "group-by: IpAddress · timespan: 1h", "falsepositives: stale saved passwords", "status: experimental → test → stable"]
+  },
+  "notes": ["eyes on glass · 24/7", "climb the pyramid of pain", "tune it, don't mute it"],
+  "data": {"left": "[TP] · MTTD 4m · MTTR 31m", "right": "{handle} · git:(main) · blue builds"},
+  "phone": {
+    "data": {"left": "[TP] · MTTD 4m · MTTR 31m", "right": "{handle} · blue builds"}
+  },
+  "layout": {
+    "desktop": {"chips": [[33, 7], [37, 14], [21, 19]], "notes": [[2, 2], [27, 16], [12, 20]]},
+    "phone": {"chips": [[12, 16], [13, 24], [14, 34]], "notes": [[4, 21], [8, 35], [12, 18]]}
+  }
+}

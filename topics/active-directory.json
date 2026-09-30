@@ -1,0 +1,1361 @@
+{
+  "topic": "active-directory",
+  "terms": [
+    {
+      "text": "Kerberoasting",
+      "type": "id",
+      "code": "T1558.003",
+      "meaning": "Request service tickets for SPN accounts to crack offline; named MITRE technique.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK T1558.003",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "AS-REP Roasting",
+      "type": "id",
+      "code": "T1558.004",
+      "meaning": "Crackable AS-REP from accounts with Kerberos pre-auth disabled; named technique.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK T1558.004",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "Golden Ticket",
+      "type": "id",
+      "code": "T1558.001",
+      "meaning": "Forged TGT signed with the krbtgt key granting domain-wide access.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK T1558.001",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "Silver Ticket",
+      "type": "id",
+      "code": "T1558.002",
+      "meaning": "Forged service ticket (TGS) signed with a service account key.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK T1558.002",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "Pass-the-Hash",
+      "type": "id",
+      "code": "T1550.002",
+      "meaning": "Authenticate with an NT hash instead of a plaintext password.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK T1550.002",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "Pass-the-Ticket",
+      "type": "id",
+      "code": "T1550.003",
+      "meaning": "Reuse a stolen Kerberos ticket to move laterally.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK T1550.003",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "DCSync",
+      "type": "id",
+      "code": "T1003.006",
+      "meaning": "Impersonate a DC and pull password hashes via directory replication.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK T1003.006",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "NTDS credential theft",
+      "type": "id",
+      "code": "T1003.003",
+      "meaning": "Dumping secrets from the NTDS directory store; named MITRE technique.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK T1003.003",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "NTDS · T1003.003"
+      }
+    },
+    {
+      "text": "DCShadow",
+      "type": "id",
+      "code": "T1207",
+      "meaning": "Register a rogue DC to inject replicated changes into AD.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK T1207",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "SID-History injection",
+      "type": "id",
+      "code": "T1134.005",
+      "meaning": "Add privileged SIDs to an account's SID-History for stealth escalation.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK T1134.005",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "T1134.005"
+      }
+    },
+    {
+      "text": "Domain Trust Discovery",
+      "type": "id",
+      "code": "T1482",
+      "meaning": "Enumerating domain/forest trust relationships for lateral movement.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK T1482",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "T1482"
+      }
+    },
+    {
+      "text": "Group Policy Modification",
+      "type": "id",
+      "code": "T1484.001",
+      "meaning": "Alter GPOs to push tasks or change policy; named MITRE technique.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK T1484.001",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "T1484.001"
+      }
+    },
+    {
+      "text": "Steal or Forge Auth Certs",
+      "type": "id",
+      "code": "T1649",
+      "meaning": "Steal or forge authentication certificates for lateral movement.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK T1649",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "T1649"
+      }
+    },
+    {
+      "text": "NR Poisoning + SMB Relay",
+      "type": "id",
+      "code": "T1557.001",
+      "meaning": "Name-resolution poisoning with SMB relay (formerly LLMNR/NBT-NS).",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK T1557.001 (v19.2)",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "T1557.001"
+      }
+    },
+    {
+      "text": "Zerologon",
+      "type": "id",
+      "code": "CVE-2020-1472",
+      "meaning": "Netlogon (MS-NRPC) elevation of privilege; resets a DC machine password.",
+      "fame": "iconic",
+      "reference": "CVE-2020-1472",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "noPac",
+      "type": "id",
+      "code": "CVE-2021-42278",
+      "meaning": "sAMAccountName spoofing chain (with CVE-2021-42287) to impersonate a DC.",
+      "fame": "niche",
+      "reference": "CVE-2021-42278 / CVE-2021-42287",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "PetitPotam",
+      "type": "id",
+      "code": "CVE-2021-36942",
+      "meaning": "Windows LSA/EFSRPC coercion of DC authentication; often relayed to AD CS.",
+      "fame": "niche",
+      "reference": "CVE-2021-36942; MS KB5005413",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "Bronze Bit",
+      "type": "id",
+      "code": "CVE-2020-17049",
+      "meaning": "Kerberos KDC security-feature bypass in constrained delegation (KCD).",
+      "fame": "niche",
+      "reference": "CVE-2020-17049",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "MS14-068",
+      "type": "id",
+      "code": "CVE-2014-6324",
+      "meaning": "Kerberos PAC signature forgery elevating a domain user to domain admin.",
+      "fame": "niche",
+      "reference": "CVE-2014-6324; MS14-068",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Certifried",
+      "type": "id",
+      "code": "CVE-2022-26923",
+      "meaning": "AD CS certificate-based EoP via a machine's dNSHostName.",
+      "fame": "niche",
+      "reference": "CVE-2022-26923",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "ESC1",
+      "type": "term",
+      "code": "",
+      "meaning": "AD CS template flaw: requester-supplied SAN plus a client-auth EKU.",
+      "fame": "niche",
+      "reference": "MS Defender for Identity security assessments",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "ESC8",
+      "type": "term",
+      "code": "",
+      "meaning": "NTLM relay to AD CS web enrollment (CES/Certsrv) HTTP endpoints.",
+      "fame": "niche",
+      "reference": "MS Defender for Identity security assessments",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "Shadow Credentials",
+      "type": "term",
+      "code": "",
+      "meaning": "Abuse of msDS-KeyCredentialLink to add key-based cert authentication.",
+      "fame": "niche",
+      "reference": "MS Learn msDS-KeyCredentialLink",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "Skeleton Key",
+      "type": "term",
+      "code": "",
+      "meaning": "In-memory patch on a DC adding a universal master password.",
+      "fame": "niche",
+      "reference": "MITRE ATT&CK S0007",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "Overpass-the-Hash",
+      "type": "term",
+      "code": "",
+      "meaning": "Use an NT hash as a Kerberos key to request a TGT (pass-the-key).",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "Unconstrained delegation",
+      "type": "term",
+      "code": "",
+      "meaning": "Account trusted to delegate to any service; caches users' TGTs.",
+      "fame": "niche",
+      "reference": "MS Learn userAccountControl",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "RBCD",
+      "type": "term",
+      "code": "",
+      "meaning": "Resource-Based Constrained Delegation via msDS-AllowedToActOnBehalfOf.",
+      "fame": "niche",
+      "reference": "MS Learn Kerberos constrained delegation",
+      "series": [
+        "specimen",
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "S4U2Self / S4U2Proxy",
+      "type": "term",
+      "code": "",
+      "meaning": "Kerberos Service-for-User delegation extensions defined in MS-SFU.",
+      "fame": "niche",
+      "reference": "[MS-SFU]",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Mimikatz",
+      "type": "tool",
+      "code": "S0002",
+      "meaning": "Credential- and ticket-manipulation tool catalogued by MITRE.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK S0002 (Tool)",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "BloodHound",
+      "type": "tool",
+      "code": "S0521",
+      "meaning": "Graphs Active Directory attack paths; catalogued by MITRE.",
+      "fame": "iconic",
+      "reference": "MITRE ATT&CK S0521 (Tool)",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "SharpHound",
+      "type": "tool",
+      "code": "",
+      "meaning": "Data collector that feeds AD relationships into BloodHound.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "Rubeus",
+      "type": "tool",
+      "code": "",
+      "meaning": "Toolkit for Kerberos ticket handling and abuse research.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "Impacket",
+      "type": "tool",
+      "code": "",
+      "meaning": "Python library implementing Windows network protocols; used in AD tooling.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "Responder",
+      "type": "tool",
+      "code": "",
+      "meaning": "LLMNR/NBT-NS poisoning and credential-capture tool.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "Certipy",
+      "type": "tool",
+      "code": "",
+      "meaning": "Tool for enumerating and abusing AD CS misconfigurations.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "NTDS.dit",
+      "type": "filename",
+      "code": "",
+      "meaning": "The Active Directory database file on DCs; holds all domain secrets.",
+      "fame": "iconic",
+      "reference": "MS Learn AD DS",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ]
+      }
+    },
+    {
+      "text": "SYSVOL",
+      "type": "artifact",
+      "code": "",
+      "meaning": "Replicated share on every DC holding GPOs and logon scripts.",
+      "fame": "iconic",
+      "reference": "MS Learn",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "flow",
+          "sink"
+        ]
+      }
+    },
+    {
+      "text": "KRBTGT",
+      "type": "id",
+      "code": "RID 502",
+      "meaning": "KDC service account (RID 502); its key signs every Kerberos ticket.",
+      "fame": "iconic",
+      "reference": "MS Learn well-known SIDs",
+      "series": [
+        "specimen",
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ],
+        "as": "krbtgt"
+      }
+    },
+    {
+      "text": "TGT",
+      "type": "term",
+      "code": "",
+      "meaning": "Ticket-Granting Ticket issued by the KDC at logon.",
+      "fame": "iconic",
+      "reference": "RFC 4120",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "TGS",
+      "type": "term",
+      "code": "",
+      "meaning": "Ticket-Granting Service exchange yielding a per-service ticket.",
+      "fame": "iconic",
+      "reference": "RFC 4120",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "KDC",
+      "type": "term",
+      "code": "",
+      "meaning": "Key Distribution Center: the AD Kerberos ticket service on DCs.",
+      "fame": "iconic",
+      "reference": "RFC 4120",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "control",
+          "sink"
+        ]
+      }
+    },
+    {
+      "text": "PAC",
+      "type": "artifact",
+      "code": "",
+      "meaning": "Privilege Attribute Certificate: SIDs and group authz data inside a ticket.",
+      "fame": "iconic",
+      "reference": "[MS-PAC]",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "SPN",
+      "type": "term",
+      "code": "",
+      "meaning": "Service Principal Name mapping a service instance to an account.",
+      "fame": "iconic",
+      "reference": "MS Learn",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "NTLM",
+      "type": "term",
+      "code": "",
+      "meaning": "Legacy challenge/response auth; deprecated in favor of Negotiate/Kerberos.",
+      "fame": "iconic",
+      "reference": "[MS-NLMP]; MS deprecated features",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "flow",
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "FSMO",
+      "type": "term",
+      "code": "",
+      "meaning": "Flexible Single Master Operations: the five unique DC roles.",
+      "fame": "iconic",
+      "reference": "MS Learn FSMO roles",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "PDC Emulator",
+      "type": "term",
+      "code": "",
+      "meaning": "FSMO role: password/lockout authority and forest time source.",
+      "fame": "iconic",
+      "reference": "MS Learn FSMO roles",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ]
+      }
+    },
+    {
+      "text": "RID Master",
+      "type": "term",
+      "code": "",
+      "meaning": "FSMO role: allocates RID pools so each principal gets a unique SID.",
+      "fame": "niche",
+      "reference": "MS Learn FSMO roles",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ]
+      }
+    },
+    {
+      "text": "Schema Master",
+      "type": "term",
+      "code": "",
+      "meaning": "Forest FSMO role: only DC that can modify the AD schema.",
+      "fame": "niche",
+      "reference": "MS Learn FSMO roles",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ]
+      }
+    },
+    {
+      "text": "Domain Naming Master",
+      "type": "term",
+      "code": "",
+      "meaning": "Forest FSMO role: adds or removes domains and directory partitions.",
+      "fame": "niche",
+      "reference": "MS Learn FSMO roles",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Infrastructure Master",
+      "type": "term",
+      "code": "",
+      "meaning": "Domain FSMO role: updates cross-domain object references.",
+      "fame": "niche",
+      "reference": "MS Learn FSMO roles",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "RODC",
+      "type": "term",
+      "code": "",
+      "meaning": "Read-Only Domain Controller; caches no secrets by default.",
+      "fame": "niche",
+      "reference": "MS Learn",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "Global Catalog",
+      "type": "term",
+      "code": "",
+      "meaning": "Forest-wide partial replica; LDAP on 3268 and 3269 (SSL).",
+      "fame": "iconic",
+      "reference": "MS Learn",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "flow",
+          "sink"
+        ],
+        "as": "global catalog"
+      }
+    },
+    {
+      "text": "GPO",
+      "type": "term",
+      "code": "",
+      "meaning": "Group Policy Object applied via gPLink to sites, domains, and OUs.",
+      "fame": "iconic",
+      "reference": "MS Learn",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "AdminSDHolder",
+      "type": "artifact",
+      "code": "",
+      "meaning": "Template object whose ACL is stamped onto protected groups by SDProp.",
+      "fame": "niche",
+      "reference": "MS Learn Appendix C",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control",
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "adminCount = 1",
+      "type": "number",
+      "code": "1",
+      "meaning": "Attribute set to 1 on principals protected by AdminSDHolder/SDProp.",
+      "fame": "niche",
+      "reference": "MS Learn",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding",
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "gMSA",
+      "type": "term",
+      "code": "",
+      "meaning": "Group Managed Service Account: DC-managed, auto-rotated password.",
+      "fame": "niche",
+      "reference": "MS Learn",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "dMSA",
+      "type": "term",
+      "code": "",
+      "meaning": "Delegated Managed Service Account (WS2025); machine-bound randomized keys.",
+      "fame": "niche",
+      "reference": "MS Learn dMSA overview",
+      "series": [
+        "specimen",
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Protected Users",
+      "type": "id",
+      "code": "RID 525",
+      "meaning": "Group forcing AES-only Kerberos, no NTLM/delegation, 4-hour TGT.",
+      "fame": "iconic",
+      "reference": "MS Learn; well-known SID RID 525",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Domain Admins · 512",
+      "type": "id",
+      "code": "S-1-5-21-<domain>-512",
+      "meaning": "Domain-wide administrators global group (RID 512).",
+      "fame": "iconic",
+      "reference": "MS Learn well-known SIDs",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Enterprise Admins · 519",
+      "type": "id",
+      "code": "S-1-5-21-<root>-519",
+      "meaning": "Forest-wide admins in the root domain (RID 519).",
+      "fame": "iconic",
+      "reference": "MS Learn well-known SIDs",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "S-1-5-32-544",
+      "type": "id",
+      "code": "S-1-5-32-544",
+      "meaning": "Built-in Administrators alias (RID 544).",
+      "fame": "iconic",
+      "reference": "MS Learn well-known SIDs",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Administrator · RID 500",
+      "type": "id",
+      "code": "S-1-5-21-<domain>-500",
+      "meaning": "Built-in domain Administrator; cannot be locked out or deleted.",
+      "fame": "iconic",
+      "reference": "MS Learn well-known SIDs",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "RC4-HMAC · etype 23",
+      "type": "number",
+      "code": "23",
+      "meaning": "Legacy Kerberos encryption type 23; deprecated, phased out through 2026.",
+      "fame": "iconic",
+      "reference": "RFC 4757; RFC 8429",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "AES256-CTS-HMAC-SHA1-96 · 18",
+      "type": "number",
+      "code": "18",
+      "meaning": "Kerberos encryption type 18 (AES-256), the modern default.",
+      "fame": "niche",
+      "reference": "RFC 3962",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Kerberos · TCP/UDP 88",
+      "type": "number",
+      "code": "88",
+      "meaning": "KDC service listens on port 88.",
+      "fame": "iconic",
+      "reference": "RFC 4120",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ],
+        "as": "Kerberos · 88"
+      }
+    },
+    {
+      "text": "LDAP 389 / LDAPS 636",
+      "type": "number",
+      "code": "389",
+      "meaning": "Directory ports: 389 cleartext, 636 over TLS.",
+      "fame": "iconic",
+      "reference": "MS Learn AD ports",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "MachineAccountQuota = 10",
+      "type": "number",
+      "code": "10",
+      "meaning": "ms-DS-MachineAccountQuota default: any user may join 10 computers.",
+      "fame": "niche",
+      "reference": "MS Learn; KB243327",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "Clock skew <= 5 min",
+      "type": "number",
+      "code": "5",
+      "meaning": "Kerberos max clock skew; exceeding it raises KRB_AP_ERR_SKEW (37).",
+      "fame": "niche",
+      "reference": "RFC 4120; MS SkewTime",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "clock skew <= 5 min"
+      }
+    },
+    {
+      "text": "UAC 0x400000",
+      "type": "id",
+      "code": "0x400000",
+      "meaning": "DONT_REQ_PREAUTH flag; marks an AS-REP-roastable account.",
+      "fame": "niche",
+      "reference": "MS Learn userAccountControl",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "UAC 0x80000",
+      "type": "id",
+      "code": "0x80000",
+      "meaning": "TRUSTED_FOR_DELEGATION flag; enables unconstrained delegation.",
+      "fame": "niche",
+      "reference": "MS Learn userAccountControl",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "LmCompatibilityLevel = 5",
+      "type": "number",
+      "code": "5",
+      "meaning": "Send NTLMv2 only; refuse LM and NTLM (hardened setting).",
+      "fame": "niche",
+      "reference": "MS Learn security baseline",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "MS-DRSR / GetNCChanges",
+      "type": "id",
+      "code": "[MS-DRSR]",
+      "meaning": "Directory Replication Service RPC; the mechanism DCSync abuses.",
+      "fame": "niche",
+      "reference": "[MS-DRSR]",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Default Domain Policy GUID",
+      "type": "id",
+      "code": "31B2F340-016D-11D2-945F-00C04FB984F9",
+      "meaning": "Fixed GUID of the Default Domain Policy GPO.",
+      "fame": "niche",
+      "reference": "MS Learn (rebuild SYSVOL)",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "DFL/FFL 2025 = level 10",
+      "type": "number",
+      "code": "10",
+      "meaning": "Windows Server 2025 functional level maps to DomainLevel/ForestLevel 10.",
+      "fame": "niche",
+      "reference": "MS Learn WS2025 what's new",
+      "series": [
+        "galley-proof",
+        "specimen"
+      ]
+    },
+    {
+      "text": "DefaultDomainSupportedEncTypes",
+      "type": "snippet",
+      "code": "0x18",
+      "meaning": "KDC registry value 0x18 = AES-only, disables RC4 (defensive).",
+      "fame": "niche",
+      "reference": "MS Learn detect/remediate RC4",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "krbtgt reset x2",
+      "type": "status-line",
+      "code": "",
+      "meaning": "Reset the krbtgt password twice, 10h apart, to invalidate Golden Tickets.",
+      "fame": "niche",
+      "reference": "MS Learn forest recovery",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note",
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "Tier 0",
+      "type": "term",
+      "code": "",
+      "meaning": "Highest-trust control plane: DCs, AD, and identity systems.",
+      "fame": "iconic",
+      "reference": "MS Learn tier model / EAM",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Red Forest (ESAE) -> EAM",
+      "type": "term",
+      "code": "",
+      "meaning": "Legacy hardened admin forest replaced by the Enterprise Access Model.",
+      "fame": "niche",
+      "reference": "MS Learn ESAE retirement",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "AD tier model -> EAM",
+      "type": "term",
+      "code": "",
+      "meaning": "Legacy tiering superseded by the Enterprise Access Model.",
+      "fame": "niche",
+      "reference": "MS Learn enterprise access model",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "ATA -> Defender for Identity",
+      "type": "term",
+      "code": "",
+      "meaning": "Advanced Threat Analytics reached end of life Jan 2026; migrate to MDI.",
+      "fame": "niche",
+      "reference": "MS Learn MDI FAQ; ATA 1.X lifecycle",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Azure AD -> Microsoft Entra ID",
+      "type": "term",
+      "code": "",
+      "meaning": "Cloud directory renamed July 2023; on-prem AD name unchanged.",
+      "fame": "iconic",
+      "reference": "MS Learn new name for Azure AD",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "RC4 -> AES-SHA1 (2026)",
+      "type": "term",
+      "code": "CVE-2026-20833",
+      "meaning": "Kerberos RC4 default disabled on DCs by mid-2026 hardening.",
+      "fame": "niche",
+      "reference": "MS Learn; CVE-2026-20833",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "NTLMv1 removed (24H2/WS2025)",
+      "type": "term",
+      "code": "",
+      "meaning": "NTLMv1 removed in Windows 11 24H2 and Windows Server 2025.",
+      "fame": "niche",
+      "reference": "MS Learn removed features",
+      "series": [
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "DES removed (WS2025)",
+      "type": "term",
+      "code": "",
+      "meaning": "DES Kerberos encryption removed in Windows Server 2025.",
+      "fame": "niche",
+      "reference": "MS Learn removed features",
+      "series": [
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "legacy LAPS -> Windows LAPS",
+      "type": "term",
+      "code": "",
+      "meaning": "Legacy MSI LAPS deprecated; native Windows LAPS is the replacement.",
+      "fame": "niche",
+      "reference": "MS Learn Windows LAPS",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "LAPS",
+      "type": "term",
+      "code": "",
+      "meaning": "Local Admin Password Solution: rotates unique local-admin passwords.",
+      "fame": "iconic",
+      "reference": "MS Learn Windows LAPS",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "GPP cpassword removed",
+      "type": "id",
+      "code": "CVE-2014-1812",
+      "meaning": "MS14-025 removed GPP password push; cpassword in SYSVOL was decryptable.",
+      "fame": "niche",
+      "reference": "CVE-2014-1812; MS14-025",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "SID filtering",
+      "type": "term",
+      "code": "",
+      "meaning": "Trust protection that drops foreign SIDs to block SID-History abuse.",
+      "fame": "niche",
+      "reference": "MS Learn forest trusts",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "The forest is the boundary",
+      "type": "quote",
+      "code": "",
+      "meaning": "Security tenet: the forest, not the domain, is the trust boundary.",
+      "fame": "iconic",
+      "reference": "MS security guidance",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Attackers think in graphs.",
+      "type": "phrase",
+      "code": "",
+      "meaning": "From the 2015 essay 'Defenders think in lists. Attackers think in graphs. As long as this is true, attackers win.' Defenders manage lists of assets, while attackers follow the graph of logons, credentials and admin rights across a Windows/AD network.",
+      "fame": "iconic",
+      "reference": "https://github.com/JohnLaTwC/Shared/blob/master/Defenders%20think%20in%20lists.%20Attackers%20think%20in%20graphs.%20As%20long%20as%20this%20is%20true%2C%20attackers%20win.md",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Six Degrees of Domain Admin",
+      "type": "phrase",
+      "code": "",
+      "meaning": "BloodHound's tagline and the title of its DEF CON 24 (2016) launch talk. Any user sits a few hops of sessions, group memberships and admin rights away from Domain Admin, and graphing those attack paths shows them.",
+      "fame": "iconic",
+      "reference": "https://github.com/SpecterOps/BloodHound",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Clean source principle",
+      "type": "phrase",
+      "code": "",
+      "meaning": "Microsoft privileged-access principle: every security dependency must be as trustworthy as the object it secures, since whoever controls anything that controls a target controls the target. The source of access must be trusted at least as much as the destination.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/security/privileged-access-workstations/privileged-access-success-criteria#clean-source-principle",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Keep Tier 0 tightly scoped",
+      "type": "phrase",
+      "code": "",
+      "meaning": "AD DS tier model rule: keep Tier 0 as small as possible, because every extra account, server or application in it widens the attack surface of the identity control plane.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/tier-model#keep-tier-0-tightly-scoped",
+      "series": [
+        "cutting-mat"
+      ]
+    }
+  ]
+}

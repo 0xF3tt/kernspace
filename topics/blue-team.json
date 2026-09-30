@@ -1,0 +1,1089 @@
+{
+  "topic": "blue-team",
+  "terms": [
+    {
+      "text": "SOC",
+      "type": "term",
+      "code": "",
+      "meaning": "Security Operations Center: the team that monitors, triages and responds to security alerts around the clock.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ]
+    },
+    {
+      "text": "SIEM",
+      "type": "term",
+      "code": "",
+      "meaning": "Security Information and Event Management: collects, normalizes, correlates and alerts on log data.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ]
+      }
+    },
+    {
+      "text": "EDR",
+      "type": "term",
+      "code": "",
+      "meaning": "Endpoint Detection and Response: host telemetry, detection and containment via an agent. Lookalike of XDR.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "XDR",
+      "type": "term",
+      "code": "",
+      "meaning": "Extended Detection and Response: correlates endpoint, identity, email and cloud signals. Lookalike of EDR.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "SOAR",
+      "type": "term",
+      "code": "",
+      "meaning": "Security Orchestration, Automation and Response: runs playbooks that automate triage and response.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "UEBA",
+      "type": "term",
+      "code": "D3-UBA",
+      "meaning": "User and Entity Behavior Analytics: baselines normal behavior, flags deviations. D3FEND: D3-UBA User Behavior Analysis.",
+      "fame": "iconic",
+      "reference": "https://d3fend.mitre.org/technique/d3f:UserBehaviorAnalysis/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Blue Team",
+      "type": "term",
+      "code": "",
+      "meaning": "The defenders who monitor, detect, harden and respond, as opposed to the red team that emulates adversaries.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Threat Hunting",
+      "type": "term",
+      "code": "",
+      "meaning": "Proactive, hypothesis-led search for adversary activity that existing alerts missed.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "threat hunting"
+      }
+    },
+    {
+      "text": "Detection Engineering",
+      "type": "term",
+      "code": "",
+      "meaning": "Discipline of designing, testing, versioning and tuning detection rules like software.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "detection engineering"
+      }
+    },
+    {
+      "text": "Pyramid of Pain",
+      "type": "framework",
+      "code": "",
+      "meaning": "2013 model ranking indicator types by the pain their denial causes adversaries: hashes at base, TTPs at top.",
+      "fame": "iconic",
+      "reference": "https://detect-respond.blogspot.com/2013/03/the-pyramid-of-pain.html",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "Sigma specification",
+      "type": "framework",
+      "code": "v2.1.0",
+      "meaning": "Generic YAML signature format for log detections; specification v2.1.0 released 2025-08-02.",
+      "fame": "iconic",
+      "reference": "https://github.com/SigmaHQ/sigma-specification",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "YARA",
+      "type": "tool",
+      "code": "",
+      "meaning": "Pattern-matching rule language for classifying files and memory; the classic 4.x line is in maintenance mode.",
+      "fame": "iconic",
+      "reference": "https://github.com/VirusTotal/yara",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Sysmon",
+      "type": "tool",
+      "code": "v15.22",
+      "meaning": "Sysinternals System Monitor: service and driver logging process, network, file and registry activity.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control",
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "Event ID 4624",
+      "type": "id",
+      "code": "4624",
+      "meaning": "Windows Security: \"An account was successfully logged on.\" Lookalike of 4625.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4624",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding",
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "4625 · An account failed to log on.",
+      "type": "status-line",
+      "code": "4625",
+      "meaning": "Windows Security failed-logon event; staple of brute-force and password-spraying detections.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4625",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "4625 · failed logon"
+      }
+    },
+    {
+      "text": "4688 · A new process has been created.",
+      "type": "status-line",
+      "code": "4688",
+      "meaning": "Windows Security process-creation event; the command line field stays empty until a Group Policy setting enables it.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4688",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "4688 · new process"
+      }
+    },
+    {
+      "text": "1102 · The audit log was cleared.",
+      "type": "status-line",
+      "code": "1102",
+      "meaning": "Windows Security event logged when the Security log is cleared; maps to ATT&CK T1685.005.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-1102",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "1102 · log cleared"
+      }
+    },
+    {
+      "text": "Event ID 4104",
+      "type": "id",
+      "code": "4104",
+      "meaning": "PowerShell Script Block Logging event in Microsoft-Windows-PowerShell/Operational; records script content.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/powershell/module/microsoft.powershell.core/about/about_logging?view=powershell-5.1",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding",
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "Sysmon EID 1 · Process creation",
+      "type": "id",
+      "code": "1",
+      "meaning": "Sysmon process-create event with full command line, hashes and ProcessGuid for correlation.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ],
+        "as": "Sysmon EID 1"
+      }
+    },
+    {
+      "text": "IOC",
+      "type": "term",
+      "code": "",
+      "meaning": "Indicator of Compromise: an observable such as a hash, IP or domain tied to malicious activity.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "True Positive",
+      "type": "term",
+      "code": "",
+      "meaning": "Alert verdict: real suspicious activity, correctly detected. Sentinel label: \"suspicious activity\".",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/azure/sentinel/incident-navigate-triage",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "status"
+        ],
+        "as": "true positive"
+      }
+    },
+    {
+      "text": "False Positive",
+      "type": "term",
+      "code": "",
+      "meaning": "Alert verdict: the rule fired on benign activity; Sentinel splits it into incorrect alert logic or incorrect data.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/azure/sentinel/incident-navigate-triage",
+      "series": [
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Alert fatigue",
+      "type": "term",
+      "code": "",
+      "meaning": "Desensitization from high alert volume and noise that leads analysts to miss or dismiss real threats.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "note",
+          "finding"
+        ],
+        "as": "alert fatigue"
+      }
+    },
+    {
+      "text": "MTTD · MTTR",
+      "type": "term",
+      "code": "",
+      "meaning": "Mean Time to Detect and Mean Time to Respond: the two clocks on every SOC dashboard.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "Dwell time",
+      "type": "term",
+      "code": "",
+      "meaning": "Time an intruder remains in an environment before being detected.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "dwell time"
+      }
+    },
+    {
+      "text": "KQL",
+      "type": "tool",
+      "code": "",
+      "meaning": "Kusto Query Language, used for hunting and analytics in Microsoft Sentinel and Defender XDR. Lookalike of SPL.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/kusto/query/",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "SPL",
+      "type": "tool",
+      "code": "",
+      "meaning": "Search Processing Language: Splunk's pipe-based query language. Lookalike of KQL.",
+      "fame": "iconic",
+      "reference": "https://docs.splunk.com/Documentation/Splunk/latest/Search/Aboutthesearchlanguage",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Suricata",
+      "type": "tool",
+      "code": "",
+      "meaning": "Open-source IDS/IPS and network security monitoring engine maintained by OISF.",
+      "fame": "iconic",
+      "reference": "https://suricata.io/",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "control",
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "Playbook",
+      "type": "term",
+      "code": "",
+      "meaning": "Documented response workflow for an alert type; in SOAR it runs automatically.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "MITRE D3FEND",
+      "type": "framework",
+      "code": "1.6.0",
+      "meaning": "Defensive ontology, 1.6.0 (2026-08-31). Tactics: Model, Harden, Detect, Isolate, Deceive, Evict, Restore.",
+      "fame": "niche",
+      "reference": "https://d3fend.mitre.org/version/",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Hash Values · Trivial",
+      "type": "term",
+      "code": "",
+      "meaning": "Base of the Pyramid of Pain: hash indicators are trivial for adversaries to change.",
+      "fame": "niche",
+      "reference": "https://detect-respond.blogspot.com/2013/03/the-pyramid-of-pain.html",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "TTPs · Tough!",
+      "type": "term",
+      "code": "",
+      "meaning": "Apex of the Pyramid of Pain: denying tactics, techniques and procedures is tough on adversaries.",
+      "fame": "niche",
+      "reference": "https://detect-respond.blogspot.com/2013/03/the-pyramid-of-pain.html",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "Event ID 4768",
+      "type": "id",
+      "code": "4768",
+      "meaning": "\"A Kerberos authentication ticket (TGT) was requested.\" Lookalike of 4769.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4768",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Event ID 4769",
+      "type": "id",
+      "code": "4769",
+      "meaning": "\"A Kerberos service ticket was requested.\" Core Kerberoasting telemetry. Lookalike of 4768.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4769",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Logon Type 3 · Network",
+      "type": "id",
+      "code": "3",
+      "meaning": "4624 logon type for network access, such as a mapped share. Lookalike of type 10.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4624",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Logon Type 10 · RemoteInteractive",
+      "type": "id",
+      "code": "10",
+      "meaning": "4624 logon type for Remote Desktop / Terminal Services sessions.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4624",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "logon type 10"
+      }
+    },
+    {
+      "text": "0xC000006A",
+      "type": "number",
+      "code": "0xC000006A",
+      "meaning": "4625 status: \"User logon with misspelled or bad password\". Lookalike of 0xC0000064.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4625",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "0xC0000064",
+      "type": "number",
+      "code": "0xC0000064",
+      "meaning": "4625 status: \"User logon with misspelled or bad user account\"; bursts hint at user enumeration.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4625",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Ticket Encryption Type 0x17",
+      "type": "number",
+      "code": "0x17",
+      "meaning": "RC4-HMAC in Kerberos events 4768/4769; AES256-CTS-HMAC-SHA1-96 is 0x12. Lookalike pair.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4769",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "etype 0x17"
+      }
+    },
+    {
+      "text": "Sysmon EID 10 · ProcessAccess",
+      "type": "id",
+      "code": "10",
+      "meaning": "Sysmon event for one process opening another; the classic LSASS-access signal.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "Sysmon EID 10"
+      }
+    },
+    {
+      "text": "Microsoft-Windows-Sysmon/Operational",
+      "type": "artifact",
+      "code": "",
+      "meaning": "Event log channel where Sysmon writes its events on Windows.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "ProcessCreationIncludeCmdLine_Enabled",
+      "type": "snippet",
+      "code": "",
+      "meaning": "Registry value behind the policy \"Include command line in process creation events\" (4688).",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/windows/client-management/mdm/policy-csp-admx-auditsettings",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "AMSI",
+      "type": "term",
+      "code": "",
+      "meaning": "Antimalware Scan Interface: lets PowerShell and other hosts pass content to the AV engine for scanning.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/powershell/scripting/security/security-features",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Benign Positive",
+      "type": "status-line",
+      "code": "",
+      "meaning": "Sentinel close reason: suspicious but expected, such as sanctioned admin activity or a test.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/azure/sentinel/incident-navigate-triage",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "status"
+        ],
+        "as": "benign positive"
+      }
+    },
+    {
+      "text": "Undetermined",
+      "type": "status-line",
+      "code": "",
+      "meaning": "Sentinel close classification when evidence cannot settle true or false positive.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/azure/sentinel/incident-navigate-triage",
+      "series": [
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Eyes on glass",
+      "type": "term",
+      "code": "",
+      "meaning": "SOC slang for analysts actively watching consoles and queues in real time.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "eyes on glass"
+      }
+    },
+    {
+      "text": "Single pane of glass",
+      "type": "term",
+      "code": "",
+      "meaning": "Vendor promise of one console for all telemetry; a running joke among analysts.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "single pane of glass"
+      }
+    },
+    {
+      "text": "Detection-as-Code",
+      "type": "term",
+      "code": "",
+      "meaning": "Detections kept in version control with tests, peer review and CI/CD deployment.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Stack counting",
+      "type": "term",
+      "code": "",
+      "meaning": "Hunting method: count an attribute across hosts and inspect the rare long tail.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Beaconing",
+      "type": "term",
+      "code": "",
+      "meaning": "Periodic callback pattern of implants to command-and-control; hunted through connection regularity.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "flow",
+          "finding"
+        ],
+        "as": "beaconing"
+      }
+    },
+    {
+      "text": "Decoy User Credential · D3-DUC",
+      "type": "id",
+      "code": "D3-DUC",
+      "meaning": "D3FEND Deceive technique: a credential created to deceive an adversary; the honeytoken idea.",
+      "fame": "niche",
+      "reference": "https://d3fend.mitre.org/technique/d3f:DecoyUserCredential/",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "D3-PSA · Process Spawn Analysis",
+      "type": "id",
+      "code": "D3-PSA",
+      "meaning": "D3FEND Detect technique: analyzing spawn arguments or attributes to find unauthorized processes.",
+      "fame": "niche",
+      "reference": "https://d3fend.mitre.org/technique/d3f:ProcessSpawnAnalysis/",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "D3-PLA · Process Lineage Analysis",
+      "type": "id",
+      "code": "D3-PLA",
+      "meaning": "D3FEND child of D3-PSA: examines a process's ancestry and siblings to spot suspicious execution.",
+      "fame": "niche",
+      "reference": "https://d3fend.mitre.org/technique/d3f:ProcessLineageAnalysis/",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "DET0157 · Kerberoasting",
+      "type": "id",
+      "code": "DET0157",
+      "meaning": "ATT&CK Detection Strategy \"Detect Kerberoasting Attempts (T1558.003)\".",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/detectionstrategies/DET0157/",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "Defense Evasion → Stealth · TA0005",
+      "type": "id",
+      "code": "TA0005",
+      "meaning": "ATT&CK v19 split Defense Evasion: TA0005 is now Stealth; defense-breaking moved to TA0112.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/tactics/TA0005/",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "T1070.001 → T1685.005",
+      "type": "id",
+      "code": "T1685.005",
+      "meaning": "Clear Windows Event Logs moved from Indicator Removal to Disable or Modify Tools in ATT&CK v19.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/techniques/T1685/005/",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Data Sources → Detection Strategies",
+      "type": "term",
+      "code": "",
+      "meaning": "ATT&CK v18 (Oct 2025) deprecated Data Sources; Detection Strategies (DET) and Analytics (AN) replaced detections.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/resources/updates/updates-october-2025/",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "sigmac → pySigma",
+      "type": "tool",
+      "code": "",
+      "meaning": "Legacy Sigma converter sigmac is unmaintained; replaced by the pySigma library and sigma-cli.",
+      "fame": "niche",
+      "reference": "https://github.com/SigmaHQ/legacy-sigmatools",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Bro → Zeek",
+      "type": "tool",
+      "code": "",
+      "meaning": "The Bro network security monitor was renamed Zeek on 11 Oct 2018.",
+      "fame": "niche",
+      "reference": "https://zeek.org/2018/10/renaming-the-bro-project/",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Azure Sentinel → Microsoft Sentinel",
+      "type": "tool",
+      "code": "",
+      "meaning": "Microsoft's cloud SIEM, renamed in 2021; Azure portal support ends after 31 Mar 2027 (Defender portal only).",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/azure/sentinel/overview",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "MITRE Shield → MITRE Engage",
+      "type": "framework",
+      "code": "",
+      "meaning": "MITRE retired Shield in favor of Engage, its framework for denial, deception and adversary engagement.",
+      "fame": "niche",
+      "reference": "https://shield.mitre.org/",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "SP 800-61 Rev. 2 → Rev. 3",
+      "type": "framework",
+      "code": "SP 800-61r3",
+      "meaning": "NIST incident response guidance; Rev. 3 (Apr 2025) is a CSF 2.0 Community Profile superseding Rev. 2 (2012).",
+      "fame": "niche",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "DE.AE · Adverse Event Analysis",
+      "type": "id",
+      "code": "DE.AE",
+      "meaning": "CSF 2.0 Detect category, called Anomalies and Events in CSF 1.1; 2.0 dropped DE.DP Detection Processes.",
+      "fame": "niche",
+      "reference": "https://doi.org/10.6028/NIST.CSWP.29",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "RC4-HMAC → AES-SHA1",
+      "type": "term",
+      "code": "",
+      "meaning": "Kerberos default shift: AES-SHA1 in 2022 updates (CVE-2022-37966); DCs stop assuming RC4 in 2026 (CVE-2026-20833).",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/windows-server/security/kerberos/detect-remediate-rc4-kerberos",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "weird.log",
+      "type": "filename",
+      "code": "",
+      "meaning": "Zeek log of traffic its protocol analyzers could not make sense of; noisy, but sometimes the first clue.",
+      "fame": "niche",
+      "reference": "https://github.com/zeek/zeek-docs/blob/master/logs/weird-and-notice.rst",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "eve.json",
+      "type": "filename",
+      "code": "",
+      "meaning": "Suricata's EVE JSON output: alerts, flows and protocol metadata in one stream.",
+      "fame": "niche",
+      "reference": "https://docs.suricata.io/en/latest/output/eve/eve-json-output.html",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "SecurityEvent | where EventID == 4625",
+      "type": "snippet",
+      "code": "",
+      "meaning": "Benign KQL starter query in Sentinel: failed Windows logons from the SecurityEvent table.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/azure/azure-monitor/reference/tables/securityevent",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ]
+    },
+    {
+      "text": "status: experimental",
+      "type": "snippet",
+      "code": "",
+      "meaning": "Sigma rule status that may be noisy; the others are stable, test, deprecated and unsupported.",
+      "fame": "niche",
+      "reference": "https://github.com/SigmaHQ/sigma-specification",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "type: obsolete",
+      "type": "snippet",
+      "code": "",
+      "meaning": "Sigma related-rule type: this rule obsoletes the referenced rule, which is no longer used.",
+      "fame": "niche",
+      "reference": "https://github.com/SigmaHQ/sigma-specification",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "condition: uint16(0) == 0x5A4D",
+      "type": "snippet",
+      "code": "",
+      "meaning": "Common YARA idiom that limits a rule to Windows PE files by checking the MZ header.",
+      "fame": "niche",
+      "reference": "https://yara.readthedocs.io/",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "HM0–HM4",
+      "type": "framework",
+      "code": "HM0–HM4",
+      "meaning": "Hunting Maturity Model levels: Initial, Minimal, Procedural, Innovative, Leading.",
+      "fame": "niche",
+      "reference": "https://www.threathunting.net/files/The%20Threat%20Hunting%20Reference%20Model%20Part%201_%20Measuring%20Hunting%20Maturity%20_%20Sqrrl.pdf",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "PEAK",
+      "type": "framework",
+      "code": "",
+      "meaning": "Prepare, Execute, and Act with Knowledge: 2023 hunting framework with hypothesis, baseline and M-ATH hunts.",
+      "fame": "niche",
+      "reference": "https://www.splunk.com/en_us/blog/security/peak-threat-hunting-framework.html",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "TaHiTI",
+      "type": "framework",
+      "code": "",
+      "meaning": "Targeted Hunting integrating Threat Intelligence: threat hunting methodology from the Dutch financial sector.",
+      "fame": "niche",
+      "reference": "https://www.betaalvereniging.nl/wp-content/uploads/2026/03/TaHiTI-Threat-Hunting-Methodology-whitepaper.pdf",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Blind Spots and Assumptions",
+      "type": "term",
+      "code": "",
+      "meaning": "Section of the Alerting and Detection Strategy (ADS) template stating what a rule cannot see.",
+      "fame": "niche",
+      "reference": "https://github.com/palantir/alerting-detection-strategy-framework",
+      "series": [
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "STIX 2.1 · TAXII 2.1",
+      "type": "framework",
+      "code": "2.1",
+      "meaning": "OASIS standards (2021) for expressing and exchanging cyber threat intelligence.",
+      "fame": "niche",
+      "reference": "https://www.oasis-open.org/2021/06/23/stix-v2-1-and-taxii-v2-1-oasis-standards-are-published/",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "The Cuckoo's Egg · 1989",
+      "type": "artifact",
+      "code": "",
+      "meaning": "1989 book on tracing an intruder from a tiny accounting discrepancy; a blue-team origin story.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "SUNBURST · 2020",
+      "type": "artifact",
+      "code": "",
+      "meaning": "Backdoor in trojanized SolarWinds Orion updates, disclosed Dec 2020; a landmark supply-chain detection case.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Enumerating Goodness",
+      "type": "phrase",
+      "code": "",
+      "meaning": "The cure, in the 2005 essay 'The Six Dumbest Ideas in Computer Security', for 'Enumerating Badness', the idea behind anti-virus and intrusion detection: track the few programs you need and deny everything else.",
+      "fame": "niche",
+      "reference": "https://www.ranum.com/security/computer_security/editorials/dumb/",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "The Defender's Advantage",
+      "type": "phrase",
+      "code": "",
+      "meaning": "Title of a Google Cloud (Mandiant) guide: organizations facing adversaries in their own environment have a fundamental defender's advantage, which security teams capitalize on by controlling the landscape where they meet attackers, through six critical security functions.",
+      "fame": "niche",
+      "reference": "https://cloud.google.com/security/resources/defenders-advantage",
+      "series": [
+        "cutting-mat"
+      ]
+    }
+  ]
+}

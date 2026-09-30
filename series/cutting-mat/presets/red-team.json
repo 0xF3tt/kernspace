@@ -1,0 +1,26 @@
+{
+  "series": "cutting-mat",
+  "topic": "red-team",
+  "title": "Vol. 07 · Emulate",
+  "ground": "dark",
+  "phrase": ["Think like", "the adversary."],
+  "label": "RED TEAM CUTTING MAT · VOL. 07 · EMULATE",
+  "source": "source · emulation plan",
+  "sink": "sink · crown jewels",
+  "controls": ["authn · mfa", "authz · tier 0"],
+  "flows": ["60° · beacon · jitter", "30° · C2 · redirector", "15° · deconfliction"],
+  "findings": ["undetected · T1078", "detected · T1071", "CA-8(2)"],
+  "panel": {
+    "title": "emulation-plan.md",
+    "lines": ["objective: crown jewels · read-only", "tactics: ISB-01 TA0001 · ISB-02 TA0004", "safety: kill date set · no impact", "deconflict: trusted agent on call", "debrief: [GAP] T1078 → new detection"]
+  },
+  "notes": ["assume breach", "roe signed · scope locked", "TTPs over tools"],
+  "data": {"left": "[GAP] T1078 unseen · objective met", "right": "{handle} · git:(main) · red breaks"},
+  "phone": {
+    "data": {"left": "[GAP] T1078 · objective met", "right": "{handle} · red breaks"}
+  },
+  "layout": {
+    "desktop": {"chips": [[33, 7], [37, 13], [7, 11]], "notes": [[2, 2], [27, 16], [12, 20]]},
+    "phone": {"chips": [[12, 16], [13, 24], [8, 35]], "notes": [[4, 21], [12, 34], [12, 18]]}
+  }
+}

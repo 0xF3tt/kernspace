@@ -1,0 +1,26 @@
+{
+  "series": "cutting-mat",
+  "topic": "ctf",
+  "title": "Vol. 14 · Capture",
+  "ground": "dark",
+  "phrase": ["Defend yours,", "capture theirs."],
+  "label": "CTF CUTTING MAT · VOL. 14 · CAPTURE",
+  "source": "source · rival team",
+  "sink": "sink · placed flag",
+  "controls": ["user login", "owner check"],
+  "flows": ["60° · checker → flag", "30° · pcap → Tulip", "15° · SLA → score"],
+  "findings": ["flag lost · tick 41", "notes · IDOR", "CWE-639"],
+  "panel": {
+    "title": "writeup.md",
+    "lines": ["service: notes · on our Vulnbox", "tick 41 → flag lost to a rival team", "cause: CWE-639 · user-controlled key", "tick 42 → owner check · checker OK", "lesson: keep SLA while you patch"]
+  },
+  "notes": ["SLA before first blood", "no flag sharing", "upsolve what you missed"],
+  "data": {"left": "tick 42 · checker OK · 0 flags lost", "right": "{handle} · git:(main) · purple learns"},
+  "phone": {
+    "data": {"left": "tick 42 · checker OK", "right": "{handle} · purple learns"}
+  },
+  "layout": {
+    "desktop": {"chips": [[33, 7], [37, 14], [21, 19]], "notes": [[2, 2], [27, 16], [12, 20]]},
+    "phone": {"chips": [[12, 16], [13, 24], [14, 34]], "notes": [[4, 21], [10, 35], [12, 18]]}
+  }
+}

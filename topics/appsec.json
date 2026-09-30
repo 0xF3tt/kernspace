@@ -1,0 +1,1276 @@
+{
+  "topic": "appsec",
+  "terms": [
+    {
+      "text": "OWASP Top 10:2025",
+      "type": "framework",
+      "code": "OWASP Top 10:2025",
+      "meaning": "Current edition of OWASP's awareness list of the ten most critical web application security risks.",
+      "fame": "iconic",
+      "reference": "https://top10.owasp.org/2025/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "A01:2025 Broken Access Control",
+      "type": "id",
+      "code": "A01:2025",
+      "meaning": "#1 risk in OWASP Top 10:2025, keeping the top spot it first took in 2021.",
+      "fame": "iconic",
+      "reference": "https://top10.owasp.org/2025/0x00_2025-Introduction/",
+      "series": [
+        "specimen",
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "A01:2025"
+      }
+    },
+    {
+      "text": "Security Misconfiguration",
+      "type": "id",
+      "code": "A02:2025",
+      "meaning": "A02 in OWASP Top 10:2025, up from #5 in the 2021 edition.",
+      "fame": "iconic",
+      "reference": "https://top10.owasp.org/2025/0x00_2025-Introduction/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "A02:2025"
+      }
+    },
+    {
+      "text": "Software Supply Chain Failures",
+      "type": "id",
+      "code": "A03:2025",
+      "meaning": "New A03:2025; broadens 2021's outdated-components risk to compromises across the software ecosystem.",
+      "fame": "niche",
+      "reference": "https://top10.owasp.org/2025/0x00_2025-Introduction/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "A03:2025"
+      }
+    },
+    {
+      "text": "A06:2025 Insecure Design",
+      "type": "id",
+      "code": "A06:2025",
+      "meaning": "Risks from missing or ineffective security design rather than implementation bugs; introduced in 2021.",
+      "fame": "iconic",
+      "reference": "https://top10.owasp.org/2025/",
+      "series": [
+        "specimen",
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "A06:2025"
+      }
+    },
+    {
+      "text": "Mishandling of Exceptional Conditions",
+      "type": "id",
+      "code": "A10:2025",
+      "meaning": "New in Top 10:2025: improper error handling, logical errors, failing open and related scenarios.",
+      "fame": "niche",
+      "reference": "https://top10.owasp.org/2025/0x00_2025-Introduction/",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "A10:2025"
+      }
+    },
+    {
+      "text": "A09: Monitoring → Alerting Failures",
+      "type": "id",
+      "code": "A09:2025",
+      "meaning": "2021's 'Security Logging and Monitoring Failures' renamed 'Security Logging and Alerting Failures' in 2025.",
+      "fame": "niche",
+      "reference": "https://top10.owasp.org/2025/0x00_2025-Introduction/",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Vulnerable and Outdated Components",
+      "type": "id",
+      "code": "A06:2021",
+      "meaning": "Retired 2021 category; expanded into A03:2025 Software Supply Chain Failures.",
+      "fame": "niche",
+      "reference": "https://top10.owasp.org/2025/0x00_2025-Introduction/",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "OWASP ASVS 5.0",
+      "type": "framework",
+      "code": "ASVS 5.0.0",
+      "meaning": "Application Security Verification Standard: about 350 requirements in 17 chapters; released May 30, 2025.",
+      "fame": "iconic",
+      "reference": "https://github.com/OWASP/ASVS/releases",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "ASVS 4.0.3 → 5.0.0",
+      "type": "id",
+      "code": "ASVS 4.0.3",
+      "meaning": "4.0.3 is superseded by 5.0.0; a two-way v4.0/v5.0 mapping is provided to ease migration.",
+      "fame": "niche",
+      "reference": "https://github.com/OWASP/ASVS/releases",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "L1 · L2 · L3",
+      "type": "id",
+      "code": "ASVS L1–L3",
+      "meaning": "ASVS levels: L1 first layer of defense, L2 standard security practices, L3 advanced high-assurance.",
+      "fame": "niche",
+      "reference": "https://github.com/OWASP/ASVS/tree/v5.0.0/5.0/en",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "OWASP SAMM v2",
+      "type": "framework",
+      "code": "SAMM 2.2.0",
+      "meaning": "Software Assurance Maturity Model: 5 business functions, 15 security practices; v2.2.0 tagged Jul 6, 2026.",
+      "fame": "niche",
+      "reference": "https://github.com/owaspsamm/core/releases/tag/v2.2.0",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "CWE Top 25 (2025)",
+      "type": "framework",
+      "code": "CWE-1435",
+      "meaning": "MITRE ranking of the most dangerous software weaknesses, released Dec 11, 2025; CWE view 1435.",
+      "fame": "iconic",
+      "reference": "https://cwe.mitre.org/top25/archive/2025/2025_cwe_top25.html",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "CWE-787 Out-of-bounds Write",
+      "type": "id",
+      "code": "CWE-787",
+      "meaning": "Writes data past the end, or before the start, of the intended buffer; #5 on the 2025 CWE Top 25.",
+      "fame": "iconic",
+      "reference": "https://cwe.mitre.org/data/definitions/787.html",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "CWE-416 Use After Free",
+      "type": "id",
+      "code": "CWE-416",
+      "meaning": "Memory is reused or referenced after it has been freed; #7 on the 2025 CWE Top 25.",
+      "fame": "iconic",
+      "reference": "https://cwe.mitre.org/data/definitions/416.html",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "CWE-20 Improper Input Validation",
+      "type": "id",
+      "code": "CWE-20",
+      "meaning": "Input is not validated, or is validated incorrectly, before it is processed; #18 on the 2025 Top 25.",
+      "fame": "iconic",
+      "reference": "https://cwe.mitre.org/data/definitions/20.html",
+      "series": [
+        "specimen",
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "CWE-20"
+      }
+    },
+    {
+      "text": "CWE-798 Use of Hard-coded Credentials",
+      "type": "id",
+      "code": "CWE-798",
+      "meaning": "Product contains hard-coded credentials. Children: CWE-259 hard-coded password, CWE-321 hard-coded key.",
+      "fame": "iconic",
+      "reference": "https://cwe.mitre.org/data/definitions/798.html",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "Violation of Secure Design Principles",
+      "type": "id",
+      "code": "CWE-657",
+      "meaning": "CWE class for design-principle violations; parent of CWE-250, CWE-636, CWE-638, CWE-656 and more.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/657.html",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Not Failing Securely ('Failing Open')",
+      "type": "id",
+      "code": "CWE-636",
+      "meaning": "On error or failure, the design falls back to a less secure state than others available. Child of CWE-657.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/636.html",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Reliance on Security Through Obscurity",
+      "type": "id",
+      "code": "CWE-656",
+      "meaning": "Protection whose strength depends mainly on its obscurity; knowing how it works defeats it. Child of CWE-657.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/656.html",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "CWE-1395 · vulnerable dependency",
+      "type": "id",
+      "code": "CWE-1395",
+      "meaning": "'Dependency on Vulnerable Third-Party Component': a dependency has one or more known vulnerabilities.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/1395.html",
+      "series": [
+        "specimen",
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "CWE-1395"
+      }
+    },
+    {
+      "text": "CWE ≠ CVE",
+      "type": "term",
+      "code": "",
+      "meaning": "A weakness type (CWE) vs one published vulnerability instance (CVE): the classic lookalike mix-up.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Secure SDLC",
+      "type": "term",
+      "code": "",
+      "meaning": "Software development life cycle with security activities built into every phase, requirements to release.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "secure SDLC"
+      }
+    },
+    {
+      "text": "Microsoft SDL",
+      "type": "framework",
+      "code": "SDL",
+      "meaning": "Security Development Lifecycle; an integral part of Microsoft's development process since 2004.",
+      "fame": "iconic",
+      "reference": "https://www.microsoft.com/en-us/securityengineering/sdl/about",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "SP 800-218 · SSDF",
+      "type": "framework",
+      "code": "NIST SP 800-218",
+      "meaning": "NIST Secure Software Development Framework v1.1, published Feb 2022; the current final SSDF.",
+      "fame": "niche",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/218/final",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "PO · PS · PW · RV",
+      "type": "id",
+      "code": "SSDF practice groups",
+      "meaning": "SSDF groups: Prepare the Organization, Protect the Software, Produce Well-Secured Software, Respond to Vulnerabilities.",
+      "fame": "niche",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/218/final",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "PW.3 → Moved to PW.4",
+      "type": "id",
+      "code": "SSDF PW.3",
+      "meaning": "SSDF 1.1: 'Verify Third-Party Software Complies with Security Requirements' was moved to PW.4.",
+      "fame": "niche",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/218/final",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "SP 800-64 Rev. 2 → SP 800-160 Vol. 1",
+      "type": "id",
+      "code": "NIST SP 800-64 Rev. 2",
+      "meaning": "'Security Considerations in the SDLC' withdrawn May 31, 2019; NIST points to SP 800-160 Vol. 1.",
+      "fame": "niche",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/64/r2/final",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "EO 14028",
+      "type": "id",
+      "code": "EO 14028",
+      "meaning": "US order 'Improving the Nation's Cybersecurity' (May 12, 2021); drove NIST's SSDF and SBOM guidance.",
+      "fame": "niche",
+      "reference": "https://www.nist.gov/itl/executive-order-14028-improving-nations-cybersecurity",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Regulation (EU) 2024/2847",
+      "type": "id",
+      "code": "CRA",
+      "meaning": "EU Cyber Resilience Act: reporting duties from 11 Sep 2026, main obligations from 11 Dec 2027.",
+      "fame": "niche",
+      "reference": "https://eur-lex.europa.eu/eli/reg/2024/2847/oj",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "Threat modeling",
+      "type": "term",
+      "code": "",
+      "meaning": "Structured analysis of a system to find what can go wrong and decide what to do about it.",
+      "fame": "iconic",
+      "reference": "https://www.threatmodelingmanifesto.org/",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "threat modeling"
+      }
+    },
+    {
+      "text": "STRIDE",
+      "type": "framework",
+      "code": "STRIDE",
+      "meaning": "Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "DREAD",
+      "type": "framework",
+      "code": "DREAD",
+      "meaning": "Legacy threat risk-rating mnemonic: Damage, Reproducibility, Exploitability, Affected users, Discoverability.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "LINDDUN",
+      "type": "framework",
+      "code": "LINDDUN",
+      "meaning": "Privacy threat types: Linking, Identifying, Non-repudiation, Detecting, Data Disclosure, Unawareness, Non-compliance.",
+      "fame": "niche",
+      "reference": "https://linddun.org/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "PASTA",
+      "type": "framework",
+      "code": "PASTA",
+      "meaning": "Process for Attack Simulation and Threat Analysis: a seven-stage, risk-centric threat modeling method.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "What can go wrong?",
+      "type": "quote",
+      "code": "",
+      "meaning": "Second of the four key questions in the Threat Modeling Manifesto.",
+      "fame": "iconic",
+      "reference": "https://www.threatmodelingmanifesto.org/",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "what can go wrong?"
+      }
+    },
+    {
+      "text": "Hero Threat Modeler",
+      "type": "term",
+      "code": "",
+      "meaning": "Threat Modeling Manifesto anti-pattern: depending on one gifted person instead of a shared practice.",
+      "fame": "niche",
+      "reference": "https://www.threatmodelingmanifesto.org/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Data Flow Diagram (DFD)",
+      "type": "artifact",
+      "code": "DFD",
+      "meaning": "Model of processes, data stores, external entities and data flows; the usual base for a threat model.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "data flow diagram (DFD)"
+      }
+    },
+    {
+      "text": "Trust boundary",
+      "type": "term",
+      "code": "",
+      "meaning": "Line in a system model where trust level changes; threats cluster where data flows cross it.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "trust boundary"
+      }
+    },
+    {
+      "text": "Attack surface",
+      "type": "term",
+      "code": "",
+      "meaning": "All the points where an attacker can try to enter data into or extract data from a system.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "attack surface"
+      }
+    },
+    {
+      "text": "Abuse case",
+      "type": "term",
+      "code": "",
+      "meaning": "Scenario describing how a feature could be misused, written alongside ordinary use cases.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "abuse case"
+      }
+    },
+    {
+      "text": "Elevation of Privilege (card game)",
+      "type": "tool",
+      "code": "",
+      "meaning": "Microsoft's threat modeling card game, with suits based on the STRIDE categories.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Least privilege",
+      "type": "term",
+      "code": "CWE-250",
+      "meaning": "Grant only the privileges needed; violated by CWE-250 'Execution with Unnecessary Privileges'.",
+      "fame": "iconic",
+      "reference": "https://cwe.mitre.org/data/definitions/250.html",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "least privilege"
+      }
+    },
+    {
+      "text": "Secure by default",
+      "type": "term",
+      "code": "SSDF PW.9",
+      "meaning": "Ship with secure settings on; SSDF PW.9: 'Configure Software to Have Secure Settings by Default'.",
+      "fame": "iconic",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/218/final",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "secure by default"
+      }
+    },
+    {
+      "text": "Economy of mechanism",
+      "type": "term",
+      "code": "CWE-637",
+      "meaning": "Keep protection simple; violated by CWE-637 'Unnecessary Complexity in Protection Mechanism'.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/637.html",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "SAST",
+      "type": "term",
+      "code": "SAST",
+      "meaning": "Static Application Security Testing: analyzes source code or binaries without running them.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "DAST",
+      "type": "term",
+      "code": "DAST",
+      "meaning": "Dynamic Application Security Testing: probes a running application from the outside.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "SCA",
+      "type": "term",
+      "code": "SCA",
+      "meaning": "Software Composition Analysis: inventories third-party components and flags known vulnerabilities.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "IAST",
+      "type": "term",
+      "code": "IAST",
+      "meaning": "Interactive Application Security Testing: instruments the running app to observe flaws during tests.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Fuzzing",
+      "type": "term",
+      "code": "",
+      "meaning": "Feeding generated or malformed inputs to find crashes and bugs; also an OpenSSF Scorecard check.",
+      "fame": "iconic",
+      "reference": "https://github.com/ossf/scorecard/blob/main/docs/checks.md",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "fuzzing"
+      }
+    },
+    {
+      "text": "source → sanitizer → sink",
+      "type": "term",
+      "code": "",
+      "meaning": "Taint-analysis model: untrusted data from a source must be sanitized before it reaches a sensitive sink.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Reachability analysis",
+      "type": "term",
+      "code": "",
+      "meaning": "SCA technique that checks whether vulnerable code in a dependency is actually called by the app.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "SARIF 2.1.0",
+      "type": "id",
+      "code": "SARIF v2.1.0",
+      "meaning": "Static Analysis Results Interchange Format; OASIS Standard since March 27, 2020.",
+      "fame": "niche",
+      "reference": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/sarif-v2.1.0.html",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "CodeQL",
+      "type": "tool",
+      "code": "",
+      "meaning": "GitHub's semantic code analysis engine that lets you query code as if it were data.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "Semgrep",
+      "type": "tool",
+      "code": "",
+      "meaning": "Pattern-based static analysis tool whose rules look like the code they match.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "OWASP ZAP → ZAP by Checkmarx",
+      "type": "tool",
+      "code": "ZAP",
+      "meaning": "DAST tool that left OWASP in Sep 2023; known as 'ZAP by Checkmarx' since Sep 24, 2024; still open source.",
+      "fame": "niche",
+      "reference": "https://www.zaproxy.org/docs/zap-ownership/",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "SBOM",
+      "type": "artifact",
+      "code": "SBOM",
+      "meaning": "Software Bill of Materials: a nested inventory of the components that make up a piece of software.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "CycloneDX",
+      "type": "framework",
+      "code": "ECMA-424",
+      "meaning": "OWASP bill-of-materials standard; v1.7 released Oct 21, 2025; standardized by Ecma as ECMA-424.",
+      "fame": "niche",
+      "reference": "https://cyclonedx.org/specification/overview/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "SPDX 3.0",
+      "type": "framework",
+      "code": "SPDX 3.0",
+      "meaning": "Linux Foundation SBOM standard; current version 3.0. SPDX 2.2.1 was published as ISO/IEC 5962:2021.",
+      "fame": "niche",
+      "reference": "https://spdx.dev/use/specifications/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "VEX",
+      "type": "term",
+      "code": "VEX",
+      "meaning": "Vulnerability Exploitability eXchange: states whether a product is affected by a given vulnerability.",
+      "fame": "niche",
+      "reference": "https://github.com/openvex/spec/blob/main/OPENVEX-SPEC.md",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "not_affected",
+      "type": "status-line",
+      "code": "not_affected",
+      "meaning": "VEX status: no remediation required; must say why, via a justification label or an impact statement.",
+      "fame": "niche",
+      "reference": "https://github.com/openvex/spec/blob/main/OPENVEX-SPEC.md",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "vulnerable_code_not_in_execute_path",
+      "type": "status-line",
+      "code": "vulnerable_code_not_in_execute_path",
+      "meaning": "VEX justification: the vulnerable code is present but is not called or used by the product.",
+      "fame": "niche",
+      "reference": "https://github.com/openvex/spec/blob/main/OPENVEX-SPEC.md",
+      "series": [
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "PURL (ECMA-427)",
+      "type": "id",
+      "code": "ECMA-427",
+      "meaning": "Package-URL: ecosystem-neutral package identifier; ECMA-427 1st edition published December 2025.",
+      "fame": "niche",
+      "reference": "https://ecma-international.org/publications-and-standards/standards/ecma-427/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "SLSA",
+      "type": "framework",
+      "code": "SLSA 1.2",
+      "meaning": "Supply-chain Levels for Software Artifacts; v1.2 is the current approved spec, with Build and Source tracks.",
+      "fame": "iconic",
+      "reference": "https://slsa.dev/spec/v1.2/",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "SLSA v0.1 Level 4 → deferred",
+      "type": "id",
+      "code": "SLSA v1.0",
+      "meaning": "v1.0 kept v0.1's Level 1–3 build and provenance requirements, deferring Level 4 and source requirements.",
+      "fame": "niche",
+      "reference": "https://slsa.dev/spec/v1.0/whats-new",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Cosign · Fulcio · Rekor",
+      "type": "tool",
+      "code": "Sigstore",
+      "meaning": "Sigstore trio: signing client, code-signing certificate authority, append-only transparency log.",
+      "fame": "niche",
+      "reference": "https://docs.sigstore.dev/about/overview/",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "OpenSSF Scorecard",
+      "type": "tool",
+      "code": "",
+      "meaning": "Automated checks such as Pinned-Dependencies and Token-Permissions that score a project's security habits.",
+      "fame": "niche",
+      "reference": "https://github.com/ossf/scorecard/blob/main/docs/checks.md",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "CII → OpenSSF Best Practices Badge",
+      "type": "id",
+      "code": "",
+      "meaning": "Renamed from 'CII Best Practices badge' on 2021-12-24; the Scorecard check is still CII-Best-Practices.",
+      "fame": "niche",
+      "reference": "https://www.bestpractices.dev/en",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "SBOM Minimum Elements 2021 → 2026",
+      "type": "id",
+      "code": "",
+      "meaning": "CISA-led 2026 Minimum Elements (Jul 29, 2026) update and replace NTIA's 2021 SBOM minimum elements.",
+      "fame": "niche",
+      "reference": "https://www.cisa.gov/resources-tools/resources/2026-minimum-elements-software-bill-materials-sbom",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Log4Shell · CVE-2021-44228",
+      "type": "id",
+      "code": "CVE-2021-44228",
+      "meaning": "Critical Apache Log4j 2 flaw disclosed Dec 2021; the defining case for SCA and SBOM programs.",
+      "fame": "iconic",
+      "reference": "https://nvd.nist.gov/vuln/detail/CVE-2021-44228",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "CVE-2021-44228"
+      }
+    },
+    {
+      "text": "xz utils · CVE-2024-3094",
+      "type": "id",
+      "code": "CVE-2024-3094",
+      "meaning": "Backdoor found in xz release tarballs in March 2024; a landmark open source supply chain case.",
+      "fame": "iconic",
+      "reference": "https://nvd.nist.gov/vuln/detail/CVE-2024-3094",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "CVE-2024-3094"
+      }
+    },
+    {
+      "text": "left-pad (2016)",
+      "type": "artifact",
+      "code": "",
+      "meaning": "Tiny npm package whose March 2016 removal broke builds worldwide; a lesson in dependency fragility.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "CVSS Temporal → Threat",
+      "type": "id",
+      "code": "CVSS v4.0",
+      "meaning": "v4.0 renamed the v3.1 Temporal metric group to the Threat metric group and simplified its metrics.",
+      "fame": "niche",
+      "reference": "https://www.first.org/cvss/v4-0/",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Shift left",
+      "type": "term",
+      "code": "",
+      "meaning": "Move security activities earlier in the life cycle, closer to design and coding.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "shift left"
+      }
+    },
+    {
+      "text": "Security champion",
+      "type": "term",
+      "code": "",
+      "meaning": "Developer embedded in a team who advocates for and coordinates security work.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "security champion"
+      }
+    },
+    {
+      "text": "Paved road",
+      "type": "term",
+      "code": "",
+      "meaning": "Well-supported default tooling and patterns that make the secure path the easy path.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "paved road"
+      }
+    },
+    {
+      "text": "Security bug bar",
+      "type": "term",
+      "code": "",
+      "meaning": "SDL severity criteria for rating security bugs and setting the minimum quality bar for release.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/security/engineering/security-bug-bar-sample",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Risk accepted",
+      "type": "status-line",
+      "code": "",
+      "meaning": "Triage outcome: the finding is real, but its owner formally accepts the residual risk.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "# nosec",
+      "type": "snippet",
+      "code": "",
+      "meaning": "Bandit inline comment that suppresses findings on a line; can name specific test IDs.",
+      "fame": "niche",
+      "reference": "https://bandit.readthedocs.io/en/latest/config.html",
+      "series": [
+        "galley-proof",
+        "specimen"
+      ]
+    },
+    {
+      "text": "whitelist → allowlist",
+      "type": "term",
+      "code": "",
+      "meaning": "Terminology shift: 'allowlist' and 'denylist' replace the older terms in docs and tools.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "permissions: {}",
+      "type": "snippet",
+      "code": "",
+      "meaning": "GitHub Actions line that disables all GITHUB_TOKEN permissions; grant back only what a job needs.",
+      "fame": "niche",
+      "reference": "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#permissions",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "0 critical · 0 high",
+      "type": "status-line",
+      "code": "",
+      "meaning": "Scanner summary line a release gate hopes to read before shipping.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "What are we working on?",
+      "type": "phrase",
+      "code": "",
+      "meaning": "First of the four key questions in the Threat Modeling Manifesto; model the system before asking what can go wrong.",
+      "fame": "iconic",
+      "reference": "https://www.threatmodelingmanifesto.org/",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Secure the Weakest Link",
+      "type": "phrase",
+      "code": "",
+      "meaning": "Security principle: software is only as resilient as its weakest component, so find and fix the most serious risks first. It is Principle 1 in Viega and McGraw's Building Secure Software and a heading in the OWASP Developer Guide.",
+      "fame": "iconic",
+      "reference": "https://devguide.owasp.org/en/02-foundations/03-security-principles/",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Minimize attack surface area",
+      "type": "phrase",
+      "code": "",
+      "meaning": "First of OWASP's Security by Design Principles: every feature adds risk, so keep the exposed surface as small as possible.",
+      "fame": "iconic",
+      "reference": "https://wiki.owasp.org/index.php/Security_by_Design_Principles",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Be Reluctant to Trust",
+      "type": "phrase",
+      "code": "",
+      "meaning": "Principle 9 in Viega and McGraw's Building Secure Software (2001): assume the environment is hostile and give trust sparingly.",
+      "fame": "niche",
+      "reference": "https://www.pearson.de/media/muster/toc/toc_9780672334061.pdf",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Least common mechanism",
+      "type": "phrase",
+      "code": "",
+      "meaning": "Saltzer and Schroeder (1975) design principle g: minimize the mechanism that more than one user shares and every user depends on.",
+      "fame": "niche",
+      "reference": "https://web.mit.edu/Saltzer/www/publications/protection/Basic.html",
+      "series": [
+        "cutting-mat"
+      ]
+    }
+  ]
+}

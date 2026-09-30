@@ -1,0 +1,1326 @@
+{
+  "topic": "dfir",
+  "terms": [
+    {
+      "text": "DFIR",
+      "type": "term",
+      "code": "",
+      "meaning": "Digital Forensics and Incident Response: investigating, containing and learning from security incidents.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Chain of Custody",
+      "type": "term",
+      "code": "",
+      "meaning": "Unbroken, documented record of who collected, held, moved and examined each item of evidence, and when.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "chain of custody"
+      }
+    },
+    {
+      "text": "Order of Volatility",
+      "type": "framework",
+      "code": "RFC 3227 §2.1",
+      "meaning": "Collect the most volatile first: registers and cache, memory, temp file systems, disk, remote logs, archival media.",
+      "fame": "iconic",
+      "reference": "https://www.rfc-editor.org/rfc/rfc3227",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "order of volatility"
+      }
+    },
+    {
+      "text": "RFC 3227 · BCP 55",
+      "type": "id",
+      "code": "RFC 3227",
+      "meaning": "Guidelines for Evidence Collection and Archiving (IETF, February 2002).",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/rfc/rfc3227",
+      "series": [
+        "specimen",
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note",
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "NIST SP 800-61 Rev. 3",
+      "type": "id",
+      "code": "SP 800-61r3",
+      "meaning": "NIST's incident response guide recast as a CSF 2.0 Community Profile (April 2025); supersedes Rev. 2.",
+      "fame": "iconic",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "NIST SP 800-61 Rev. 2",
+      "type": "id",
+      "code": "SP 800-61r2",
+      "meaning": "Computer Security Incident Handling Guide (Aug 2012). Withdrawn April 3, 2025; superseded by Rev. 3.",
+      "fame": "iconic",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "PICERL",
+      "type": "framework",
+      "code": "",
+      "meaning": "Preparation, Identification, Containment, Eradication, Recovery, Lessons Learned: the classic six-step IR cycle.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "Containment",
+      "type": "term",
+      "code": "",
+      "meaning": "IR phase that stops an incident from spreading while preserving evidence for analysis.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ],
+        "as": "containment"
+      }
+    },
+    {
+      "text": "Lessons Learned",
+      "type": "term",
+      "code": "",
+      "meaning": "Final IR phase: a post-incident review whose fixes feed back into preparation.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Write Blocker",
+      "type": "artifact",
+      "code": "",
+      "meaning": "Hardware or software gate that lets an examiner read a drive while blocking every write to it.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ],
+        "as": "write blocker"
+      }
+    },
+    {
+      "text": "Forensic Image",
+      "type": "artifact",
+      "code": "",
+      "meaning": "Bit-for-bit copy of a storage device, verified by hash, so analysis never touches the original.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "sink",
+          "flow"
+        ],
+        "as": "forensic image"
+      }
+    },
+    {
+      "text": "MD5 · RFC 1321",
+      "type": "id",
+      "code": "RFC 1321",
+      "meaning": "Legacy 128-bit evidence hash; no longer collision-resistant, so it is logged beside SHA-256, not alone.",
+      "fame": "iconic",
+      "reference": "https://www.rfc-editor.org/rfc/rfc1321",
+      "series": [
+        "galley-proof",
+        "specimen"
+      ]
+    },
+    {
+      "text": "Super Timeline",
+      "type": "term",
+      "code": "",
+      "meaning": "One merged, time-sorted view of file system, registry, log and browser events from a system.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "sink",
+          "flow"
+        ],
+        "as": "super timeline"
+      }
+    },
+    {
+      "text": "Volatility 3",
+      "type": "tool",
+      "code": "v2.26.0",
+      "meaning": "Open-source memory forensics framework; its parity release v2.26.0 (May 2025) deprecated Volatility 2.",
+      "fame": "iconic",
+      "reference": "https://volatilityfoundation.org/announcing-the-official-parity-release-of-volatility-3/",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Triage",
+      "type": "term",
+      "code": "",
+      "meaning": "Fast, targeted collection and review of high-value artifacts to decide where to dig deeper.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ],
+        "as": "triage"
+      }
+    },
+    {
+      "text": "$MFT",
+      "type": "artifact",
+      "code": "MFT record 0",
+      "meaning": "NTFS Master File Table: one record per file, holding names, timestamps and data locations.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/en-us/windows/win32/devnotes/file-record-segment-header",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "Prefetch",
+      "type": "artifact",
+      "code": ".pf",
+      "meaning": "Windows files that record application launches; a classic evidence-of-execution source.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ],
+        "as": "prefetch"
+      }
+    },
+    {
+      "text": "NTUSER.DAT",
+      "type": "filename",
+      "code": "",
+      "meaning": "Per-user registry hive holding that account's settings, recent files and activity traces.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "EVTX",
+      "type": "filename",
+      "code": ".evtx",
+      "meaning": "Windows XML event log format introduced with Windows Vista; the core of Windows log forensics.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/en-us/windows/win32/eventlog/about-event-logging",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "Event ID 1102",
+      "type": "id",
+      "code": "1102",
+      "meaning": "Windows Security event: The audit log was cleared. A classic anti-forensics red flag.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-1102",
+      "series": [
+        "specimen",
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "The Sleuth Kit · Autopsy",
+      "type": "tool",
+      "code": "",
+      "meaning": "Open-source disk forensics toolkit and its graphical front end for file system analysis.",
+      "fame": "iconic",
+      "reference": "https://www.sleuthkit.org/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "log2timeline / Plaso",
+      "type": "tool",
+      "code": "",
+      "meaning": "Open-source engine that parses artifacts into a super timeline; Plaso replaced the legacy Perl log2timeline.",
+      "fame": "iconic",
+      "reference": "https://plaso.readthedocs.io/",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "KAPE",
+      "type": "tool",
+      "code": "",
+      "meaning": "Kroll Artifact Parser and Extractor: triage tool that collects and parses targeted Windows artifacts.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "Velociraptor",
+      "type": "tool",
+      "code": "",
+      "meaning": "Open-source endpoint collection and forensic triage platform that scales across a fleet.",
+      "fame": "iconic",
+      "reference": "https://docs.velociraptor.app/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "E01",
+      "type": "filename",
+      "code": "EWF",
+      "meaning": "EnCase evidence file based on the Expert Witness format: segmented, compressed, with embedded hashes.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "sink",
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "File Carving",
+      "type": "term",
+      "code": "",
+      "meaning": "Recovering files from raw data by their headers and footers, without file system metadata.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Unallocated Space",
+      "type": "term",
+      "code": "",
+      "meaning": "Disk area not assigned to any live file, where deleted data often survives until overwritten.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "unallocated space"
+      }
+    },
+    {
+      "text": "Anti-forensics",
+      "type": "term",
+      "code": "",
+      "meaning": "Efforts to destroy, hide or falsify evidence, such as wiping, log clearing or timestamp tampering.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Timestomp · T1070.006",
+      "type": "id",
+      "code": "T1070.006",
+      "meaning": "ATT&CK sub-technique of T1070 Indicator Removal: altering file timestamps so files blend in.",
+      "fame": "iconic",
+      "reference": "https://attack.mitre.org/techniques/T1070/006/",
+      "series": [
+        "specimen",
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Live Response",
+      "type": "term",
+      "code": "",
+      "meaning": "Collecting volatile data from a running system before shutdown, following the order of volatility.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ],
+        "as": "live response"
+      }
+    },
+    {
+      "text": "Patient Zero",
+      "type": "term",
+      "code": "",
+      "meaning": "The first compromised system or account in an incident; where the timeline begins.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "source"
+        ],
+        "as": "patient zero"
+      }
+    },
+    {
+      "text": "TLP:CLEAR",
+      "type": "id",
+      "code": "TLP 2.0",
+      "meaning": "FIRST Traffic Light Protocol label for information that may be shared publicly; replaced TLP:WHITE.",
+      "fame": "iconic",
+      "reference": "https://www.first.org/tlp/",
+      "series": [
+        "specimen",
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "Evidence of Execution",
+      "type": "term",
+      "code": "",
+      "meaning": "DFIR shorthand for artifacts indicating a program ran, such as Prefetch, Amcache, UserAssist and SRUM.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "evidence of execution"
+      }
+    },
+    {
+      "text": "GDPR Art. 33 · 72 hours",
+      "type": "id",
+      "code": "GDPR Art. 33",
+      "meaning": "EU breach notice to the supervisory authority without undue delay, where feasible within 72 hours.",
+      "fame": "iconic",
+      "reference": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "The Cuckoo's Egg",
+      "type": "term",
+      "code": "",
+      "meaning": "1989 book recounting a 1986 intrusion hunt at a US national lab; an origin story of incident response.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "CSF 2.0 · RS.AN-03",
+      "type": "id",
+      "code": "RS.AN-03",
+      "meaning": "Analysis is performed to establish what has taken place during an incident and the root cause of the incident.",
+      "fame": "niche",
+      "reference": "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "CSF 2.0 · RS.AN-07",
+      "type": "id",
+      "code": "RS.AN-07",
+      "meaning": "Incident data and metadata are collected, and their integrity and provenance are preserved.",
+      "fame": "niche",
+      "reference": "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "CSF 1.1 · RS.AN-3",
+      "type": "id",
+      "code": "RS.AN-3",
+      "meaning": "CSF 1.1 \"Forensics are performed\". CSF 2.0 rescoped it into RS.AN-03 (analysis) and RS.AN-06 (records).",
+      "fame": "niche",
+      "reference": "https://www.nist.gov/document/csf-11-csf-20-core-transition-changes",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "ISO/IEC 27037:2012",
+      "type": "id",
+      "code": "ISO/IEC 27037:2012",
+      "meaning": "Guidelines for identification, collection, acquisition and preservation of digital evidence.",
+      "fame": "niche",
+      "reference": "https://www.iso.org/standard/44381.html",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "ISO/IEC 27035-1:2023",
+      "type": "id",
+      "code": "ISO/IEC 27035-1:2023",
+      "meaning": "Information security incident management, Part 1: Principles and process. 2nd edition, replacing 2016.",
+      "fame": "niche",
+      "reference": "https://www.iso.org/standard/78973.html",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "NIST SP 800-86",
+      "type": "id",
+      "code": "SP 800-86",
+      "meaning": "Guide to Integrating Forensic Techniques into Incident Response (Aug 2006): collect, examine, analyze, report.",
+      "fame": "niche",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/86/final",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "NIST IR 8428",
+      "type": "id",
+      "code": "NIST IR 8428",
+      "meaning": "Digital Forensics and Incident Response (DFIR) Framework for Operational Technology (OT), June 2022.",
+      "fame": "niche",
+      "reference": "https://doi.org/10.6028/NIST.IR.8428",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "NSRL RDSv3",
+      "type": "id",
+      "code": "RDSv3",
+      "meaning": "NIST reference hash set of known software, now published only as SQLite; RDS 2.xx text files retired.",
+      "fame": "niche",
+      "reference": "https://www.nist.gov/itl/ssd/software-quality-group/national-software-reference-library-nsrl",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "De-NIST",
+      "type": "term",
+      "code": "",
+      "meaning": "Removing known, unaltered software files from review by matching their hashes against the NSRL.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ],
+        "as": "de-NIST"
+      }
+    },
+    {
+      "text": "FRE 902(14)",
+      "type": "id",
+      "code": "FRE 902(14)",
+      "meaning": "US Federal Rule of Evidence: Certified Data Copied from an Electronic Device, Storage Medium, or File.",
+      "fame": "niche",
+      "reference": "https://www.law.cornell.edu/rules/fre/rule_902",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "TLP:WHITE",
+      "type": "id",
+      "code": "TLP 1.0",
+      "meaning": "Deprecated TLP 1.0 label; replaced by TLP:CLEAR when TLP 2.0 took effect in August 2022.",
+      "fame": "niche",
+      "reference": "https://www.first.org/newsroom/releases/20220805",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "MACB",
+      "type": "term",
+      "code": "",
+      "meaning": "Modified, Accessed, Changed (metadata), Born: the four timestamps read in every timeline.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "$SI ≠ $FN",
+      "type": "artifact",
+      "code": "0x10 / 0x30",
+      "meaning": "NTFS keeps times in $STANDARD_INFORMATION (0x10) and $FILE_NAME (0x30); odd gaps hint at timestomping.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/windows/win32/devnotes/attribute-record-header",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "FILE",
+      "type": "artifact",
+      "code": "MFT record signature",
+      "meaning": "Signature that opens every NTFS file record segment in the Master File Table.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/windows/win32/devnotes/file-record-segment-header",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "$UsnJrnl:$J",
+      "type": "artifact",
+      "code": "",
+      "meaning": "NTFS change journal stream logging file creates, renames and deletes, even after the file is gone.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "Amcache.hve",
+      "type": "filename",
+      "code": "",
+      "meaning": "Registry-format hive recording programs present or run on Windows, often with SHA-1 hashes.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "Shimcache",
+      "type": "artifact",
+      "code": "AppCompatCache",
+      "meaning": "Compatibility cache in the SYSTEM hive listing executables the OS has seen; not proof of execution alone.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "ShellBags",
+      "type": "artifact",
+      "code": "",
+      "meaning": "Registry records of folders a user browsed in Explorer; they persist after the folder is deleted.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "SRUM",
+      "type": "artifact",
+      "code": "SRUDB.dat",
+      "meaning": "System Resource Usage Monitor database: per-app network and resource use over recent weeks.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "UserAssist · ROT13",
+      "type": "artifact",
+      "code": "",
+      "meaning": "Registry key tracking GUI program launches; its value names are ROT13-encoded.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "$I / $R",
+      "type": "artifact",
+      "code": "$Recycle.Bin",
+      "meaning": "Recycle Bin pair: $I holds original path, size and deletion time; $R holds the file's content.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Volume Shadow Copy",
+      "type": "artifact",
+      "code": "VSS",
+      "meaning": "Point-in-time snapshots preserving earlier versions of files; often deleted during ransomware attacks.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "hiberfil.sys",
+      "type": "filename",
+      "code": "",
+      "meaning": "Windows hibernation file holding a compressed copy of RAM; a memory source on a powered-off box.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "regf",
+      "type": "artifact",
+      "code": "hive signature",
+      "meaning": "Four-byte signature at the start of every Windows registry hive file.",
+      "fame": "niche",
+      "reference": "https://github.com/libyal/libregf/blob/main/documentation/Windows%20NT%20Registry%20File%20(REGF)%20format.asciidoc",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "528 → 4624",
+      "type": "id",
+      "code": "4624",
+      "meaning": "Legacy Windows XP/2003 logon events 528 and 540 became 4624 from Vista and Server 2008 on.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": ".evt → .evtx",
+      "type": "filename",
+      "code": ".evtx",
+      "meaning": "Binary XP/2003 event logs gave way to XML-based EVTX when Windows Vista redesigned event logging.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/windows/win32/eventlog/about-event-logging",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Logon Type 10",
+      "type": "id",
+      "code": "RemoteInteractive",
+      "meaning": "Event 4624 logon type for sessions over Terminal Services or Remote Desktop.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4624",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "source",
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "EnableScriptBlockLogging=1",
+      "type": "snippet",
+      "code": "",
+      "meaning": "Preparation-phase policy value: turns on PowerShell script block logging, leaving Event ID 4104 for investigators.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logging_windows",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "TZ=UTC",
+      "type": "snippet",
+      "code": "",
+      "meaning": "Normalize every timestamp to UTC before building a timeline; mixed local times breed errors.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "FILETIME · 1601-01-01",
+      "type": "number",
+      "code": "FILETIME",
+      "meaning": "Windows timestamps: 64-bit count of 100-nanosecond intervals since January 1, 1601 (UTC).",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/windows/win32/api/minwinbase/ns-minwinbase-filetime",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Mac Absolute Time · 2001-01-01",
+      "type": "number",
+      "code": "CFAbsoluteTime",
+      "meaning": "Apple CFAbsoluteTime counts seconds from 1 Jan 2001 00:00:00 GMT, not from the 1970 Unix epoch.",
+      "fame": "niche",
+      "reference": "https://developer.apple.com/documentation/corefoundation/cfabsolutetime",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "C ≠ Created",
+      "type": "term",
+      "code": "",
+      "meaning": "Lookalike trap: in MACB and Unix ctime, C means metadata changed, not created; B is birth.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "EPROCESS",
+      "type": "artifact",
+      "code": "",
+      "meaning": "Windows kernel structure representing a process; memory analysis walks and scans for them.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "VAD Tree",
+      "type": "artifact",
+      "code": "VAD",
+      "meaning": "Virtual Address Descriptor tree describing a process's memory regions; key to spotting injected code.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "malfind",
+      "type": "tool",
+      "code": "",
+      "meaning": "Volatility plugin that flags memory regions with traits of injected code for analyst review.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "ISF",
+      "type": "term",
+      "code": "Intermediate Symbol Format",
+      "meaning": "JSON symbol tables Volatility 3 uses in place of Volatility 2 profiles to map kernel structures.",
+      "fame": "niche",
+      "reference": "https://volatility3.readthedocs.io/en/latest/symbol-tables.html",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "LiME / AVML",
+      "type": "tool",
+      "code": "",
+      "meaning": "Linux memory acquisition tools: Linux Memory Extractor and Acquire Volatile Memory for Linux.",
+      "fame": "niche",
+      "reference": "https://github.com/microsoft/avml",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "AFF4",
+      "type": "filename",
+      "code": "AFF4",
+      "meaning": "Advanced Forensic Format v4: open, container-based format for disk and memory images.",
+      "fame": "niche",
+      "reference": "https://github.com/aff4/Standard",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "sink",
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "Plaso Langar Að Safna Öllu",
+      "type": "term",
+      "code": "",
+      "meaning": "Icelandic backronym behind the name of the Plaso super-timeline engine.",
+      "fame": "niche",
+      "reference": "https://plaso.readthedocs.io/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "MailItemsAccessed",
+      "type": "id",
+      "code": "MailItemsAccessed",
+      "meaning": "Microsoft 365 mailbox audit action (sync and bind) used to scope which mail an intruder touched.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/purview/audit-log-investigate-accounts",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "FSEvents",
+      "type": "artifact",
+      "code": "",
+      "meaning": "macOS file system event logs recording creates, renames and deletes by path.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "Legal Hold",
+      "type": "term",
+      "code": "",
+      "meaning": "Order to preserve all potentially relevant data, suspending routine deletion for the case.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "control",
+          "note"
+        ],
+        "as": "legal hold"
+      }
+    },
+    {
+      "text": "Hot Wash",
+      "type": "term",
+      "code": "",
+      "meaning": "Immediate, informal debrief right after an incident or exercise, before the formal report.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Lethal Forensicator",
+      "type": "term",
+      "code": "",
+      "meaning": "SANS DFIR coin won in timed hands-on challenges on the last day of select forensics courses.",
+      "fame": "niche",
+      "reference": "https://www.sans.org/digital-forensics-incident-response/coins",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "GCFA",
+      "type": "id",
+      "code": "GCFA",
+      "meaning": "GIAC Certified Forensic Analyst, the certification aligned with SANS FOR508.",
+      "fame": "iconic",
+      "reference": "https://www.giac.org/certifications/certified-forensic-analyst-gcfa/",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "CERT/CC · 1988",
+      "type": "id",
+      "code": "CERT/CC",
+      "meaning": "Coordination center set up at the Software Engineering Institute in 1988 after the first major internet worm.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "CWE-778",
+      "type": "id",
+      "code": "CWE-778",
+      "meaning": "Insufficient Logging: security-critical events go unrecorded or lack key details, leaving forensics blind.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/778.html",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "HASH MATCH · SHA-256 VERIFIED",
+      "type": "status-line",
+      "code": "",
+      "meaning": "Acquisition log line confirming the image hash equals the source hash.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "WRITE-BLOCK ENGAGED",
+      "type": "status-line",
+      "code": "",
+      "meaning": "Pre-acquisition check that the source drive is protected from any writes.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "EVIDENCE SEALED · COC SIGNED",
+      "type": "status-line",
+      "code": "",
+      "meaning": "Item bagged in tamper-evident packaging with its chain-of-custody form signed.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "Every contact leaves a trace.",
+      "type": "phrase",
+      "code": "",
+      "meaning": "Locard's exchange principle, the founding maxim of forensic science: any contact leaves evidence behind. In DFIR it means every intruder action leaves artifacts.",
+      "fame": "iconic",
+      "reference": "https://nij.ojp.gov/nij-hosted-online-training-courses/types-of-evidence/collecting-dna-evidence-at-property-crime-scenes/evidence-found-crime-scenes",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Where is the evidence?",
+      "type": "phrase",
+      "code": "",
+      "meaning": "First collection step in RFC 3227 §3.2: list the systems involved in the incident and the ones evidence will be collected from.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/rfc/rfc3227.html#section-3.2",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Document each step.",
+      "type": "phrase",
+      "code": "",
+      "meaning": "RFC 3227 §3.2 collection step: record every action taken on the evidence so the process can be reproduced and defended.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/rfc/rfc3227.html#section-3.2",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Be methodical.",
+      "type": "phrase",
+      "code": "",
+      "meaning": "RFC 3227 §2 guiding principle for evidence collection: follow tested, repeatable procedures step by step, even in a crisis.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/rfc/rfc3227.html#section-2",
+      "series": [
+        "cutting-mat"
+      ]
+    }
+  ]
+}

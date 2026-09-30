@@ -1,0 +1,50 @@
+name: tests
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    tags: ['*']
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+      - name: Validate JSON syntax
+        run: |
+          node -e '
+            const fs = require("fs"), path = require("path");
+            let count = 0;
+            function scan(dir) {
+              for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+                const p = path.join(dir, e.name);
+                if (e.isDirectory() && !e.name.startsWith(".") && e.name !== "node_modules") scan(p);
+                else if (e.isFile() && e.name.endsWith(".json")) {
+                  JSON.parse(fs.readFileSync(p, "utf8"));
+                  count++;
+                }
+              }
+            }
+            scan(".");
+            console.log(`Validated ${count} JSON files successfully.`);
+          '
+      - run: node app/render.test.mjs
+      - run: node app/words.test.mjs
+      # a release tag is version.json in lowercase with hyphens: "Beta 1" -> beta-1
+      - if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          want=$(node -p "require('./version.json').version.toLowerCase().replace(/\s+/g, '-')")
+          [ "$GITHUB_REF_NAME" = "$want" ] || { echo "tag $GITHUB_REF_NAME, but version.json says $want"; exit 1; }

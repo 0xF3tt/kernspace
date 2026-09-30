@@ -1,0 +1,1203 @@
+{
+  "topic": "programming",
+  "terms": [
+    {
+      "text": "Hello, World!",
+      "type": "term",
+      "code": "",
+      "meaning": "Traditional first program output, printed when trying a new language, compiler or toolchain.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "foo · bar · baz",
+      "type": "term",
+      "code": "RFC 3092",
+      "meaning": "Metasyntactic placeholder names; their etymology is the subject of the April 1 RFC 3092 (2001).",
+      "fame": "iconic",
+      "reference": "https://www.rfc-editor.org/info/rfc3092",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "SemVer 2.0.0",
+      "type": "framework",
+      "code": "SemVer 2.0.0",
+      "meaning": "MAJOR.MINOR.PATCH: major for incompatible API changes, minor for compatible features, patch for fixes.",
+      "fame": "iconic",
+      "reference": "https://semver.org/spec/v2.0.0.html",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "LGTM",
+      "type": "term",
+      "code": "",
+      "meaning": "Looks Good To Me: the reviewer's approval shorthand on a pull request or patch.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "galley-proof",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "status",
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "nit:",
+      "type": "term",
+      "code": "",
+      "meaning": "Prefix for a minor, non-blocking review comment: naming, spacing, typos.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "WIP",
+      "type": "term",
+      "code": "",
+      "meaning": "Work In Progress: marks a pull request or commit as not ready to merge.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "galley-proof",
+        "specimen"
+      ]
+    },
+    {
+      "text": "TODO · FIXME",
+      "type": "term",
+      "code": "",
+      "meaning": "Comment tags for unfinished work and known-broken code; linters and IDEs index them.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "galley-proof",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "finding",
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "Pull request · PR",
+      "type": "term",
+      "code": "",
+      "meaning": "A proposed change set opened for review and discussion before it is merged.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "<<<<<<< ======= >>>>>>>",
+      "type": "snippet",
+      "code": "git merge",
+      "meaning": "Git conflict markers: ours above the equals line, theirs below; diff3 style adds a ||||||| base.",
+      "fame": "iconic",
+      "reference": "https://git-scm.com/docs/git-merge#_how_conflicts_are_presented",
+      "series": [
+        "galley-proof",
+        "specimen"
+      ]
+    },
+    {
+      "text": "detached HEAD",
+      "type": "term",
+      "code": "",
+      "meaning": "Git state where HEAD points straight at a commit instead of at a branch.",
+      "fame": "iconic",
+      "reference": "https://git-scm.com/docs/git-checkout#_detached_head",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "master → main",
+      "type": "term",
+      "code": "",
+      "meaning": "GitHub's default branch for new repos became main on 2020-10-01; Git 3.0 plans the same default.",
+      "fame": "iconic",
+      "reference": "https://github.blog/changelog/2020-10-01-the-default-branch-for-newly-created-repositories-is-now-main/",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Traceback (most recent call last):",
+      "type": "status-line",
+      "code": "",
+      "meaning": "Header line of every uncaught Python exception report.",
+      "fame": "iconic",
+      "reference": "https://docs.python.org/3/library/traceback.html",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Segmentation fault (core dumped)",
+      "type": "status-line",
+      "code": "SIGSEGV",
+      "meaning": "The shell's report when a process is killed by SIGSEGV after an invalid memory access.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "404 Not Found",
+      "type": "id",
+      "code": "RFC 9110 §15.5.5",
+      "meaning": "HTTP status: the origin server found no current representation for the target resource.",
+      "fame": "iconic",
+      "reference": "https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "418 I'm a teapot",
+      "type": "id",
+      "code": "RFC 2324",
+      "meaning": "April Fools HTCPCP status (1998); RFC 9110 lists 418 as (Unused) and keeps it reserved.",
+      "fame": "iconic",
+      "reference": "https://www.rfc-editor.org/rfc/rfc9110.html#name-418-unused",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "0xDEADBEEF",
+      "type": "number",
+      "code": "",
+      "meaning": "Classic hexspeak value written into memory so uninitialized or freed data is easy to spot.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "NaN",
+      "type": "term",
+      "code": "IEEE 754-2019",
+      "meaning": "Not a Number: the floating-point value that compares unequal to everything, itself included.",
+      "fame": "iconic",
+      "reference": "https://standards.ieee.org/ieee/754/6210/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "0.1 + 0.2 = 0.30000000000000004",
+      "type": "number",
+      "code": "IEEE 754-2019 binary64",
+      "meaning": "Binary floating-point rounding in action; the first surprise of nearly every new programmer.",
+      "fame": "iconic",
+      "reference": "https://standards.ieee.org/ieee/754/6210/",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "1970-01-01T00:00:00Z",
+      "type": "number",
+      "code": "Unix epoch",
+      "meaning": "Unix time zero: POSIX timestamps count seconds since this instant, in UTC.",
+      "fame": "iconic",
+      "reference": "https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap04.html",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Y2K",
+      "type": "term",
+      "code": "",
+      "meaning": "Year 2000 problem: two-digit years rolling over from 99 to 00.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "Off-by-one error",
+      "type": "term",
+      "code": "",
+      "meaning": "A bound or index wrong by exactly one; its sibling is the fencepost error.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "galley-proof",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "off-by-one error"
+      }
+    },
+    {
+      "text": "Heisenbug",
+      "type": "term",
+      "code": "Jargon File",
+      "meaning": "A bug that disappears or changes behavior when you try to observe or debug it.",
+      "fame": "iconic",
+      "reference": "http://www.catb.org/jargon/html/H/heisenbug.html",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Rubber duck debugging",
+      "type": "term",
+      "code": "",
+      "meaning": "Explaining code line by line to a toy duck until the bug becomes obvious.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Yak shaving",
+      "type": "term",
+      "code": "",
+      "meaning": "A chain of prerequisite chores you must finish before the task you actually wanted.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Works on my machine",
+      "type": "status-line",
+      "code": "",
+      "meaning": "The classic reply when a bug won't reproduce locally; reproducible builds are the cure.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "galley-proof",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "note",
+          "status"
+        ],
+        "as": "works on my machine"
+      }
+    },
+    {
+      "text": "vi vs Emacs",
+      "type": "tool",
+      "code": "",
+      "meaning": "Hacker culture's classic editor holy war: modal vi against endlessly extensible Emacs.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "DRY · KISS · YAGNI",
+      "type": "framework",
+      "code": "",
+      "meaning": "Don't Repeat Yourself, Keep It Simple, You Aren't Gonna Need It: core design maxims.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "camelCase · snake_case",
+      "type": "term",
+      "code": "",
+      "meaning": "Identifier casing styles, alongside PascalCase, kebab-case and SCREAMING_SNAKE_CASE.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Tabs vs spaces",
+      "type": "term",
+      "code": "",
+      "meaning": "The indentation war: PEP 8 prefers 4 spaces; Linux kernel style uses 8-column tabs.",
+      "fame": "iconic",
+      "reference": "https://www.kernel.org/doc/html/latest/process/coding-style.html",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "PEP 8",
+      "type": "id",
+      "code": "PEP 8",
+      "meaning": "Style Guide for Python Code: 4 spaces per indentation level, lines of at most 79 characters.",
+      "fame": "iconic",
+      "reference": "https://peps.python.org/pep-0008/",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "Python 2.7 → Python 3",
+      "type": "term",
+      "code": "",
+      "meaning": "Python 2 reached end of life on 2020-01-01; all development continues on Python 3.",
+      "fame": "iconic",
+      "reference": "https://www.python.org/doc/sunset-python-2/",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "RTFM",
+      "type": "term",
+      "code": "",
+      "meaning": "Read The Fine Manual: a terse pointer to the documentation before asking again.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "galley-proof",
+        "specimen"
+      ]
+    },
+    {
+      "text": "#! shebang",
+      "type": "snippet",
+      "code": "",
+      "meaning": "Two characters opening a script's first line to name the interpreter that runs it.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Undefined behavior",
+      "type": "term",
+      "code": "ISO/IEC 9899:2024",
+      "meaning": "Constructs the C standard imposes no requirements on; compilers may assume they never happen.",
+      "fame": "iconic",
+      "reference": "https://www.open-std.org/jtc1/sc22/wg14/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "undefined behavior"
+      }
+    },
+    {
+      "text": "Magic number",
+      "type": "term",
+      "code": "",
+      "meaning": "An unexplained literal in code (name it as a constant), or the signature bytes opening a file format.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "Nasal demons",
+      "type": "term",
+      "code": "Jargon File",
+      "meaning": "comp.std.c joke: undefined behavior may legally make demons fly out of your nose.",
+      "fame": "niche",
+      "reference": "http://www.catb.org/jargon/html/N/nasal-demons.html",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "nasal demons"
+      }
+    },
+    {
+      "text": "Bikeshedding",
+      "type": "term",
+      "code": "",
+      "meaning": "Debating trivial details at length while complex parts go unreviewed; see the FreeBSD FAQ.",
+      "fame": "iconic",
+      "reference": "https://docs.freebsd.org/en/books/faq/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "PTAL",
+      "type": "term",
+      "code": "",
+      "meaning": "Please Take A Look: asks reviewers to (re)review once new changes are pushed.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "galley-proof",
+        "specimen"
+      ]
+    },
+    {
+      "text": "Code-Review +2",
+      "type": "id",
+      "code": "Gerrit Code-Review label",
+      "meaning": "Gerrit vote meaning looks good to me, approved; +2 enables submit, any -2 blocks it.",
+      "fame": "niche",
+      "reference": "https://gerrit-review.googlesource.com/Documentation/config-labels.html",
+      "series": [
+        "cutting-mat",
+        "galley-proof",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "control",
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "Signed-off-by:",
+      "type": "id",
+      "code": "DCO 1.1",
+      "meaning": "Commit trailer certifying the Developer Certificate of Origin 1.1; required on Linux kernel patches.",
+      "fame": "niche",
+      "reference": "https://www.kernel.org/doc/html/latest/process/submitting-patches.html",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "[PATCH v2 1/3]",
+      "type": "id",
+      "code": "Linux kernel submitting-patches",
+      "meaning": "Mailing-list subject prefix: second revision of a patch series, part 1 of 3.",
+      "fame": "niche",
+      "reference": "https://www.kernel.org/doc/html/latest/process/submitting-patches.html",
+      "series": [
+        "galley-proof",
+        "specimen"
+      ]
+    },
+    {
+      "text": "BREAKING CHANGE:",
+      "type": "id",
+      "code": "Conventional Commits 1.0.0",
+      "meaning": "Commit footer (or ! before the colon) marking an incompatible API change, i.e. a SemVer major.",
+      "fame": "niche",
+      "reference": "https://www.conventionalcommits.org/en/v1.0.0/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "feat: · fix:",
+      "type": "id",
+      "code": "Conventional Commits 1.0.0",
+      "meaning": "The two commit types the spec defines: feat correlates with MINOR, fix with PATCH.",
+      "fame": "niche",
+      "reference": "https://www.conventionalcommits.org/en/v1.0.0/",
+      "series": [
+        "galley-proof",
+        "specimen"
+      ]
+    },
+    {
+      "text": "\\ No newline at end of file",
+      "type": "status-line",
+      "code": "GNU diff",
+      "meaning": "diff's note that the last line lacks a trailing newline; pycodestyle flags it as W292.",
+      "fame": "niche",
+      "reference": "https://www.gnu.org/software/diffutils/manual/html_node/Incomplete-Lines.html",
+      "series": [
+        "cutting-mat",
+        "galley-proof",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "@@ -1,4 +1,5 @@",
+      "type": "snippet",
+      "code": "unified diff",
+      "meaning": "Hunk header: old file start line and count, then new file start line and count.",
+      "fame": "niche",
+      "reference": "https://www.gnu.org/software/diffutils/manual/html_node/Detailed-Unified.html",
+      "series": [
+        "galley-proof",
+        "specimen"
+      ]
+    },
+    {
+      "text": "Keep a Changelog 1.1.0",
+      "type": "framework",
+      "code": "Keep a Changelog 1.1.0",
+      "meaning": "Changelog convention: Added, Changed, Deprecated, Removed, Fixed, Security; an Unreleased section on top.",
+      "fame": "niche",
+      "reference": "https://keepachangelog.com/en/1.1.0/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "MUST · SHOULD · MAY",
+      "type": "framework",
+      "code": "BCP 14 (RFC 2119, RFC 8174)",
+      "meaning": "Requirement key words for specs; per RFC 8174 they carry that meaning only in UPPERCASE.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc8174",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "SyntaxError: not a chance",
+      "type": "status-line",
+      "code": "",
+      "meaning": "CPython easter egg raised when you try to import braces from __future__.",
+      "fame": "niche",
+      "reference": "https://github.com/python/cpython/blob/main/Python/future.c",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "PEP 404",
+      "type": "id",
+      "code": "PEP 404",
+      "meaning": "Python 2.8 Un-release Schedule: the official word that Python 2.8 will never ship.",
+      "fame": "niche",
+      "reference": "https://peps.python.org/pep-0404/",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "error: externally-managed-environment",
+      "type": "status-line",
+      "code": "PEP 668",
+      "meaning": "pip refusing to install into an OS-managed Python (PEP 668 marker); use a virtual environment.",
+      "fame": "niche",
+      "reference": "https://peps.python.org/pep-0668/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "egg → wheel",
+      "type": "term",
+      "code": "PEP 427 / PEP 715",
+      "meaning": "PyPI rejected new .egg uploads from 2023-08-01; the wheel (.whl) is the built package format.",
+      "fame": "niche",
+      "reference": "https://blog.pypi.org/posts/2023-06-26-deprecate-egg-uploads/",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "PEP 703 · GIL optional",
+      "type": "id",
+      "code": "PEP 703 / PEP 779",
+      "meaning": "Free-threaded CPython; PEP 779 made the no-GIL build officially supported in Python 3.14.",
+      "fame": "niche",
+      "reference": "https://peps.python.org/pep-0779/",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "E501 line too long",
+      "type": "id",
+      "code": "pycodestyle E501",
+      "meaning": "Linter code for lines past PEP 8's limit, reported as (82 > 79 characters).",
+      "fame": "niche",
+      "reference": "https://pycodestyle.pycqa.org/en/latest/intro.html#error-codes",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "TS2322 · not assignable",
+      "type": "id",
+      "code": "TS2322",
+      "meaning": "TypeScript: Type '{0}' is not assignable to type '{1}'. The error every TS developer knows.",
+      "fame": "niche",
+      "reference": "https://github.com/microsoft/TypeScript/blob/v5.8.3/src/compiler/diagnosticMessages.json",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "E0382 · borrow of moved value",
+      "type": "id",
+      "code": "rustc E0382",
+      "meaning": "Rust compile error: a variable was used after its contents were moved elsewhere.",
+      "fame": "niche",
+      "reference": "https://doc.rust-lang.org/error_codes/E0382.html",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "SC2086 · quote your variables",
+      "type": "id",
+      "code": "ShellCheck SC2086",
+      "meaning": "ShellCheck warning: Double quote to prevent globbing and word splitting.",
+      "fame": "niche",
+      "reference": "https://www.shellcheck.net/wiki/SC2086",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "== → ===",
+      "type": "id",
+      "code": "ESLint eqeqeq",
+      "meaning": "Lint rule requiring === and !== instead of type-coercing loose equality in JavaScript.",
+      "fame": "niche",
+      "reference": "https://eslint.org/docs/latest/rules/eqeqeq",
+      "series": [
+        "cutting-mat",
+        "galley-proof",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control",
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "#![forbid(unsafe_code)]",
+      "type": "snippet",
+      "code": "rustc lint unsafe_code",
+      "meaning": "Crate-level attribute rejecting any unsafe code; forbid, unlike deny, can't be overridden by an inner allow.",
+      "fame": "niche",
+      "reference": "https://doc.rust-lang.org/rustc/lints/levels.html",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "gets() → fgets()",
+      "type": "term",
+      "code": "C11 · CERT MSC24-C",
+      "meaning": "gets() was deprecated in C99 TC3 and removed in C11: it has no way to bound its input.",
+      "fame": "niche",
+      "reference": "https://en.cppreference.com/w/c/io/gets",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "auto_ptr → unique_ptr",
+      "type": "term",
+      "code": "C++11 / C++17",
+      "meaning": "std::auto_ptr was deprecated in C++11 and removed in C++17; std::unique_ptr replaces it.",
+      "fame": "niche",
+      "reference": "https://en.cppreference.com/w/cpp/memory/auto_ptr",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "NULL → nullptr",
+      "type": "term",
+      "code": "C23 · ISO/IEC 9899:2024",
+      "meaning": "C23 adopts the nullptr constant from C++11 and makes bool, true and false keywords.",
+      "fame": "niche",
+      "reference": "https://en.cppreference.com/w/c/23",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "??= trigraphs",
+      "type": "term",
+      "code": "C++17 / C23",
+      "meaning": "Nine ??-sequences that stood in for symbols like #; removed in C++17 and in C23.",
+      "fame": "niche",
+      "reference": "https://en.cppreference.com/w/c/language/operator_alternative",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "strlcpy · strlcat",
+      "type": "id",
+      "code": "POSIX.1-2024 (Issue 8)",
+      "meaning": "Size-bounded string copy and concatenation, first standardized in IEEE Std 1003.1-2024.",
+      "fame": "niche",
+      "reference": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/strlcpy.html",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "random → secrets",
+      "type": "term",
+      "code": "PEP 506",
+      "meaning": "Python 3.6 added secrets for tokens and keys; random is built for modelling, not security.",
+      "fame": "niche",
+      "reference": "https://docs.python.org/3/library/secrets.html",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "SPDX-License-Identifier: MIT",
+      "type": "snippet",
+      "code": "SPDX",
+      "meaning": "One-line, machine-readable license tag placed at the top of a source file.",
+      "fame": "niche",
+      "reference": "https://spdx.org/licenses/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "GPL-2.0 → GPL-2.0-only",
+      "type": "id",
+      "code": "SPDX License List 3.0",
+      "meaning": "SPDX deprecated bare GPL-2.0 in list v3.0; write GPL-2.0-only or GPL-2.0-or-later.",
+      "fame": "niche",
+      "reference": "https://spdx.org/licenses/GPL-2.0.html",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "RFC 4122 → RFC 9562",
+      "type": "id",
+      "code": "RFC 9562",
+      "meaning": "UUID spec replaced in May 2024; adds UUIDv6, time-ordered UUIDv7, UUIDv8 and the Max UUID.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc9562",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "U+FFFD �",
+      "type": "id",
+      "code": "U+FFFD",
+      "meaning": "REPLACEMENT CHARACTER: what decoders emit for invalid bytes; the calling card of mojibake.",
+      "fame": "niche",
+      "reference": "https://www.unicode.org/charts/PDF/UFFF0.pdf",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "U+003B ; vs U+037E ;",
+      "type": "id",
+      "code": "U+037E",
+      "meaning": "GREEK QUESTION MARK looks like a semicolon and canonically decomposes to U+003B.",
+      "fame": "niche",
+      "reference": "https://www.unicode.org/charts/PDF/U0370.pdf",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "0 vs O · 1 vs l vs I",
+      "type": "term",
+      "code": "",
+      "meaning": "Glyph pairs a coding font must separate, via slashed or dotted zero and distinct 1, l, I.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "CRLF vs LF",
+      "type": "id",
+      "code": "U+000D U+000A",
+      "meaning": "Windows ends lines with CR LF (0x0D 0x0A), Unix with LF alone; mixed files make noisy diffs.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "0x7F 'ELF'",
+      "type": "number",
+      "code": "ELF e_ident",
+      "meaning": "The bytes 0x7F 'E' 'L' 'F' that open every ELF executable and shared object.",
+      "fame": "niche",
+      "reference": "https://refspecs.linuxfoundation.org/elf/gabi4+/ch4.eheader.html",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "0xCAFEBABE",
+      "type": "number",
+      "code": "JVMS §4.1",
+      "meaning": "The magic item that opens every Java class file.",
+      "fame": "niche",
+      "reference": "https://docs.oracle.com/javase/specs/jvms/se25/html/jvms-4.html",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "0xCDCDCDCD",
+      "type": "number",
+      "code": "MSVC CRT debug heap",
+      "meaning": "Debug-heap fill for fresh allocations; freed blocks get 0xDD and guard bytes 0xFD.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/cpp/c-runtime-library/crt-debug-heap-details",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "0x5F3759DF",
+      "type": "number",
+      "code": "",
+      "meaning": "Magic constant in Quake III Arena's fast inverse square root; its source was GPL'd in 2005.",
+      "fame": "niche",
+      "reference": "https://github.com/id-Software/Quake-III-Arena/blob/master/code/game/q_math.c",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "2038-01-19T03:14:07Z",
+      "type": "number",
+      "code": "Y2038",
+      "meaning": "Last second a signed 32-bit time_t can count (2^31 − 1); the next one wraps around.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "127 · command not found",
+      "type": "number",
+      "code": "Bash exit status",
+      "meaning": "Bash: not found gives 127, not executable 126, and death by signal N gives 128+N.",
+      "fame": "niche",
+      "reference": "https://www.gnu.org/software/bash/manual/html_node/Exit-Status.html",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "Ariane 5 · Flight 501",
+      "type": "term",
+      "code": "",
+      "meaning": "Lost on 1996-06-04 after a 64-bit float to 16-bit signed integer conversion overflowed.",
+      "fame": "niche",
+      "reference": "https://www.esa.int/Newsroom/Press_Releases/Ariane_501_-_Presentation_of_Inquiry_Board_report",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "Mark II moth · 1947",
+      "type": "artifact",
+      "code": "",
+      "meaning": "1947-09-09: a moth taped into the Harvard Mark II log as the \"First actual case of bug being found.\"",
+      "fame": "niche",
+      "reference": "https://www.computerhistory.org/tdih/september/9/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding",
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "left-pad → String.prototype.padStart",
+      "type": "term",
+      "code": "ES2017",
+      "meaning": "left-pad's unpublish broke npm builds on 2016-03-22; ES2017 made string padding native.",
+      "fame": "niche",
+      "reference": "https://blog.npmjs.org/post/141577284765/kik-left-pad-and-npm",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "JDK 25 · LTS",
+      "type": "framework",
+      "code": "Java SE 25",
+      "meaning": "Current Java LTS, GA 2025-09-16; JDK 27 (GA 2026-09-15) is non-LTS; the next LTS is 29.",
+      "fame": "niche",
+      "reference": "https://openjdk.org/projects/jdk/25/",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "Ferris",
+      "type": "term",
+      "code": "",
+      "meaning": "The crab that serves as Rust's unofficial mascot; Rust users call themselves Rustaceans.",
+      "fame": "niche",
+      "reference": "https://rustacean.net/",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "C23 · ISO/IEC 9899:2024",
+      "type": "framework",
+      "code": "ISO/IEC 9899:2024",
+      "meaning": "Current C standard, adopted by ISO and IEC in 2024; supersedes C17 (ISO/IEC 9899:2018).",
+      "fame": "niche",
+      "reference": "https://www.open-std.org/jtc1/sc22/wg14/",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "C++23 · ISO/IEC 14882:2024",
+      "type": "framework",
+      "code": "ISO/IEC 14882:2024",
+      "meaning": "The C++ standard published in 2024; WG21 technically finalized its successor, C++26, in March 2026.",
+      "fame": "niche",
+      "reference": "https://www.iso.org/standard/83626.html",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "ECMAScript 2026",
+      "type": "framework",
+      "code": "ECMA-262 17th edition",
+      "meaning": "JavaScript language standard approved by Ecma's General Assembly on 2026-06-30.",
+      "fame": "niche",
+      "reference": "https://ecma-international.org/news/ecma-international-approves-new-standards-14/",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Language Server Protocol",
+      "type": "framework",
+      "code": "Language Server Protocol 3.18",
+      "meaning": "Editor-agnostic protocol for completion, diagnostics and go-to-definition; 3.18 is current.",
+      "fame": "niche",
+      "reference": "https://microsoft.github.io/language-server-protocol/specifications/lsp/3.18/specification/",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": ".env in .gitignore",
+      "type": "filename",
+      "code": "",
+      "meaning": "Habit: keep local secrets in an untracked env file, never committed to the repository.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "galley-proof",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "Borrow checker",
+      "type": "term",
+      "code": "",
+      "meaning": "The rustc analysis enforcing ownership and borrowing rules, checking memory safety at compile time.",
+      "fame": "niche",
+      "reference": "https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ],
+        "as": "borrow checker"
+      }
+    },
+    {
+      "text": "Parse, don’t validate",
+      "type": "phrase",
+      "code": "",
+      "meaning": "Type-driven design: turn untrusted input into a type that makes invalid states impossible, instead of checking it and throwing the proof away. It is the principle behind Vol. 02's safeParse().",
+      "fame": "niche",
+      "reference": "https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Heed compiler warnings.",
+      "type": "phrase",
+      "code": "",
+      "meaning": "Practice 2 of the SEI CERT Top 10 Secure Coding Practices: compile at the highest warning level and fix the code rather than silencing the warning.",
+      "fame": "niche",
+      "reference": "https://wiki.sei.cmu.edu/confluence/display/seccode/Top+10+Secure+Coding+Practices",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Errors are values.",
+      "type": "phrase",
+      "code": "",
+      "meaning": "Rob Pike's Go maxim: errors are ordinary values to be checked and handled explicitly, never ignored, which is the habit behind failing closed.",
+      "fame": "niche",
+      "reference": "https://go.dev/blog/errors-are-values",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Readability counts.",
+      "type": "phrase",
+      "code": "",
+      "meaning": "An aphorism from The Zen of Python (PEP 20): code is read far more than it is written, and readable code is code a reviewer can actually check.",
+      "fame": "iconic",
+      "reference": "https://peps.python.org/pep-0020/",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Crash Early",
+      "type": "phrase",
+      "code": "",
+      "meaning": "The Pragmatic Programmer, Tip 38: a dead program normally does a lot less damage than a crippled one. Stop on the impossible state instead of carrying on corrupted.",
+      "fame": "niche",
+      "reference": "https://pragprog.com/tips/",
+      "series": [
+        "cutting-mat"
+      ]
+    }
+  ]
+}

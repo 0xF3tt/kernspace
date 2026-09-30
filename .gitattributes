@@ -1,0 +1,13 @@
+# Normalización universal de saltos de línea
+* text=auto eol=lf
+
+# Fuentes binarias TrueType
+*.ttf binary
+
+# Archivos de datos JSON y código
+*.json text eol=lf
+*.js text eol=lf
+*.mjs text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.md text eol=lf

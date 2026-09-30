@@ -1,0 +1,26 @@
+{
+  "series": "cutting-mat",
+  "topic": "dfir",
+  "title": "Vol. 12 · Evidence",
+  "ground": "light",
+  "phrase": ["Never touch", "the original."],
+  "label": "DFIR CUTTING MAT · VOL. 12 · EVIDENCE",
+  "source": "source · patient zero",
+  "sink": "sink · super timeline",
+  "controls": ["write blocker", "CoC · signed"],
+  "flows": ["60° · RAM → malfind", "30° · $MFT → MACB", "15° · Amcache → SHA-1"],
+  "findings": ["1102 · log cleared", "$SI ≠ $FN · stomped", "T1070.006"],
+  "panel": {
+    "title": "timeline.csv",
+    "lines": ["02:14:07Z · 4624 · type 10 · carved", "02:19:52Z · prefetch · first run", "02:21:30Z · $FN birth · $SI says 2019", "02:47:15Z · 1102 · audit log cleared"]
+  },
+  "notes": ["volatile first · RFC 3227", "C ≠ Created · B = birth", "lessons learned → prep"],
+  "data": {"left": "HASH MATCH · SHA-256 VERIFIED", "right": "{handle} · git:(main) · purple learns"},
+  "phone": {
+    "data": {"left": "HASH MATCH · SHA-256 VERIFIED", "right": "{handle} · purple learns"}
+  },
+  "layout": {
+    "desktop": {"chips": [[33, 7], [37, 14], [21, 19]], "notes": [[2, 2], [27, 16], [12, 20]]},
+    "phone": {"chips": [[12, 16], [13, 24], [14, 34]], "notes": [[4, 21], [10, 35], [12, 18]]}
+  }
+}

@@ -1,0 +1,1307 @@
+{
+  "topic": "cloud",
+  "terms": [
+    {
+      "text": "Shared Responsibility Model",
+      "type": "term",
+      "code": "",
+      "meaning": "Provider secures the underlying cloud; the customer secures what they deploy and configure on it.",
+      "fame": "iconic",
+      "reference": "https://aws.amazon.com/compliance/shared-responsibility-model/",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "shared responsibility"
+      }
+    },
+    {
+      "text": "Security \"of\" vs \"in\" the Cloud",
+      "type": "quote",
+      "code": "",
+      "meaning": "AWS wording of the split: AWS owns Security \"of\" the Cloud, the customer Security \"in\" the Cloud.",
+      "fame": "iconic",
+      "reference": "https://aws.amazon.com/compliance/shared-responsibility-model/",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "Security \"in\" the Cloud"
+      }
+    },
+    {
+      "text": "IaaS · PaaS · SaaS",
+      "type": "term",
+      "code": "NIST SP 800-145",
+      "meaning": "Service models defined in NIST SP 800-145 (2011); the customer's security share shrinks toward SaaS.",
+      "fame": "iconic",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/145/final",
+      "series": [
+        "specimen",
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "Blast radius",
+      "type": "term",
+      "code": "",
+      "meaning": "How far one compromised identity, key or account can reach; guardrails exist to shrink it.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "blast radius"
+      }
+    },
+    {
+      "text": "A02:2025 Security Misconfiguration",
+      "type": "id",
+      "code": "A02:2025",
+      "meaning": "OWASP Top 10:2025 category for insecure settings, defaults and permissions across the stack.",
+      "fame": "iconic",
+      "reference": "https://top10.owasp.org/2025/",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "A02:2025"
+      }
+    },
+    {
+      "text": "IAM",
+      "type": "term",
+      "code": "",
+      "meaning": "Identity and Access Management: who can do what to which cloud resource, under which conditions.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "IMDS",
+      "type": "term",
+      "code": "",
+      "meaning": "Instance Metadata Service: per-VM endpoint that serves configuration and temporary role credentials.",
+      "fame": "iconic",
+      "reference": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html",
+      "series": [
+        "specimen",
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ]
+      }
+    },
+    {
+      "text": "IMDSv1 → IMDSv2",
+      "type": "term",
+      "code": "EC2.8",
+      "meaning": "Session-oriented IMDSv2 is preferred over request/response IMDSv1; Security Hub CSPM EC2.8 checks for it.",
+      "fame": "iconic",
+      "reference": "https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html",
+      "series": [
+        "catalog-card",
+        "galley-proof",
+        "specimen"
+      ]
+    },
+    {
+      "text": "Capital One 2019",
+      "type": "term",
+      "code": "",
+      "meaning": "High-profile cloud breach that ATT&CK cites as a metadata API abuse case under T1552.005.",
+      "fame": "iconic",
+      "reference": "https://attack.mitre.org/techniques/T1552/005/",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Public S3 bucket",
+      "type": "term",
+      "code": "S3.2",
+      "meaning": "The emblematic cloud leak: object storage anyone can read. Security Hub CSPM S3.2 flags public read.",
+      "fame": "iconic",
+      "reference": "https://docs.aws.amazon.com/securityhub/latest/userguide/s3-controls.html",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "public S3 bucket"
+      }
+    },
+    {
+      "text": "0.0.0.0/0",
+      "type": "snippet",
+      "code": "EC2.13",
+      "meaning": "CIDR for any IPv4 address; as an SSH ingress source it fails Security Hub CSPM EC2.13.",
+      "fame": "iconic",
+      "reference": "https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "CSPM",
+      "type": "term",
+      "code": "",
+      "meaning": "Cloud Security Posture Management: continuous checks of cloud configuration against benchmarks and policy.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/azure/defender-for-cloud/defender-for-cloud-introduction",
+      "series": [
+        "specimen",
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "CNAPP",
+      "type": "term",
+      "code": "",
+      "meaning": "Cloud Native Application Protection Platform: one platform unifying CSPM, CWPP and code-to-cloud checks.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/azure/defender-for-cloud/defender-for-cloud-introduction",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "K8s",
+      "type": "term",
+      "code": "",
+      "meaning": "Numeronym for Kubernetes: K, eight letters, s. The container orchestrator everyone has to secure.",
+      "fame": "iconic",
+      "reference": "https://kubernetes.io/",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "RBAC",
+      "type": "term",
+      "code": "",
+      "meaning": "Role-Based Access Control: Kubernetes authorizes API verbs on resources via Roles and RoleBindings.",
+      "fame": "iconic",
+      "reference": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "cluster-admin",
+      "type": "id",
+      "code": "cluster-admin",
+      "meaning": "Default Kubernetes ClusterRole allowing super-user access to any action on any resource.",
+      "fame": "iconic",
+      "reference": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "PSP → PSA",
+      "type": "term",
+      "code": "",
+      "meaning": "PodSecurityPolicy, deprecated in v1.21 and removed in v1.25, gave way to built-in Pod Security Admission.",
+      "fame": "iconic",
+      "reference": "https://kubernetes.io/docs/concepts/security/pod-security-policy/",
+      "series": [
+        "specimen",
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "privileged: true",
+      "type": "snippet",
+      "code": "",
+      "meaning": "Container setting that disables most security mechanisms; the Baseline Pod Security Standard disallows it.",
+      "fame": "iconic",
+      "reference": "https://kubernetes.io/docs/concepts/security/pod-security-standards/",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "etcd",
+      "type": "term",
+      "code": "",
+      "meaning": "Key-value store holding all Kubernetes cluster state, Secrets included; default ports 2379-2380.",
+      "fame": "iconic",
+      "reference": "https://kubernetes.io/docs/reference/networking/ports-and-protocols/",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ]
+      }
+    },
+    {
+      "text": "base64 ≠ encryption",
+      "type": "term",
+      "code": "",
+      "meaning": "Reminder that Kubernetes Secrets are stored unencrypted in etcd by default; turn on encryption at rest.",
+      "fame": "iconic",
+      "reference": "https://kubernetes.io/docs/concepts/configuration/secret/",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "IaC",
+      "type": "term",
+      "code": "",
+      "meaning": "Infrastructure as Code: cloud resources declared in files and reviewed, versioned and scanned like code.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Policy as code",
+      "type": "term",
+      "code": "",
+      "meaning": "Guardrails written as versioned, testable rules (Rego, CEL) and enforced automatically in pipelines.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "control",
+          "note"
+        ],
+        "as": "policy as code"
+      }
+    },
+    {
+      "text": "CIS AWS Foundations Benchmark",
+      "type": "framework",
+      "code": "v7.0.0",
+      "meaning": "Current CIS Amazon Web Services Foundations Benchmark: baseline account hardening checks.",
+      "fame": "iconic",
+      "reference": "https://www.cisecurity.org/benchmark/amazon_web_services",
+      "series": [
+        "catalog-card",
+        "cutting-mat",
+        "specimen"
+      ]
+    },
+    {
+      "text": "CIS Kubernetes Benchmark",
+      "type": "framework",
+      "code": "v2.0.1",
+      "meaning": "Current CIS Kubernetes Benchmark: hardening checks for control plane, worker nodes and policies.",
+      "fame": "iconic",
+      "reference": "https://www.cisecurity.org/benchmark/kubernetes",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "Azure AD → Microsoft Entra ID",
+      "type": "term",
+      "code": "",
+      "meaning": "Azure Active Directory was renamed Microsoft Entra ID (announced July 11, 2023); capabilities unchanged.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/entra/fundamentals/new-name",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "~/.kube/config",
+      "type": "filename",
+      "code": "",
+      "meaning": "Default kubeconfig kubectl reads: clusters, users and credentials. Guard it like a key.",
+      "fame": "iconic",
+      "reference": "https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ]
+      }
+    },
+    {
+      "text": "~/.aws/credentials",
+      "type": "filename",
+      "code": "",
+      "meaning": "Local file where the AWS CLI stores profile credentials; short-lived sessions beat stored keys.",
+      "fame": "iconic",
+      "reference": "https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "Cryptojacking",
+      "type": "term",
+      "code": "T1496.001",
+      "meaning": "Hijacking cloud compute to mine cryptocurrency; ATT&CK Resource Hijacking: Compute Hijacking.",
+      "fame": "iconic",
+      "reference": "https://attack.mitre.org/techniques/T1496/001/",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "cryptojacking"
+      }
+    },
+    {
+      "text": "CloudTrail",
+      "type": "tool",
+      "code": "CloudTrail.1",
+      "meaning": "AWS API activity log; CloudTrail.1 wants a multi-Region trail with read and write management events.",
+      "fame": "iconic",
+      "reference": "https://docs.aws.amazon.com/securityhub/latest/userguide/cloudtrail-controls.html",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control",
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "Root user",
+      "type": "term",
+      "code": "IAM.4",
+      "meaning": "The all-powerful account owner identity: MFA on, no access keys (Security Hub CSPM IAM.4), used rarely.",
+      "fame": "iconic",
+      "reference": "https://docs.aws.amazon.com/securityhub/latest/userguide/iam-controls.html",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "root user"
+      }
+    },
+    {
+      "text": "us-east-1",
+      "type": "term",
+      "code": "",
+      "meaning": "Region code for AWS US East (N. Virginia); the default in countless examples and outage jokes.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ]
+    },
+    {
+      "text": "ClickOps",
+      "type": "term",
+      "code": "",
+      "meaning": "Jargon for changing cloud resources by hand in the console instead of through reviewed IaC.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "flow",
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "Drift",
+      "type": "term",
+      "code": "",
+      "meaning": "Gap between the IaC-declared state and what actually runs; detect it, then reconcile or codify.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "drift"
+      }
+    },
+    {
+      "text": "Break-glass account",
+      "type": "term",
+      "code": "",
+      "meaning": "Emergency admin identity kept sealed and closely monitored, used only when normal access fails.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "break-glass account"
+      }
+    },
+    {
+      "text": "Toxic combination",
+      "type": "term",
+      "code": "",
+      "meaning": "CNAPP jargon: individually moderate risks on one asset that together open a critical attack path.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "iam:PassRole",
+      "type": "id",
+      "code": "iam:PassRole",
+      "meaning": "IAM permission to hand a role to an AWS service; a key checkpoint in any privilege review.",
+      "fame": "niche",
+      "reference": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "\"Version\": \"2012-10-17\"",
+      "type": "snippet",
+      "code": "2012-10-17",
+      "meaning": "Current IAM policy language version; 2008-10-17 is the older one and lacks policy variables.",
+      "fame": "niche",
+      "reference": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_version.html",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "\"Principal\": \"*\"",
+      "type": "snippet",
+      "code": "",
+      "meaning": "Wildcard principal in a resource policy: with no limiting Condition it means anyone. Reviewers strike it first.",
+      "fame": "niche",
+      "reference": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html",
+      "series": [
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "\"Effect\": \"Deny\"",
+      "type": "snippet",
+      "code": "",
+      "meaning": "In IAM evaluation an explicit deny overrides any allow; the guardrail line reviewers insert.",
+      "fame": "niche",
+      "reference": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "SCP · RCP",
+      "type": "term",
+      "code": "",
+      "meaning": "AWS Organizations guardrails: SCPs cap what principals can do; RCPs (Nov 2024) cap access to resources.",
+      "fame": "niche",
+      "reference": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps.html",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Workload identity federation",
+      "type": "term",
+      "code": "",
+      "meaning": "Swap an external OIDC token for short-lived cloud credentials, so no static keys are stored.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "AKIA · ASIA",
+      "type": "id",
+      "code": "AKIA/ASIA",
+      "meaning": "AWS access key ID prefixes: AKIA marks a long-term access key, ASIA a temporary STS key.",
+      "fame": "niche",
+      "reference": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html",
+      "series": [
+        "specimen"
+      ]
+    },
+    {
+      "text": "HttpTokens: required",
+      "type": "status-line",
+      "code": "",
+      "meaning": "EC2 metadata option that turns IMDSv1 off and requires IMDSv2 session tokens.",
+      "fame": "niche",
+      "reference": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "status",
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "HttpPutResponseHopLimit: 2",
+      "type": "status-line",
+      "code": "",
+      "meaning": "IMDSv2 hop limit AWS recommends when containers on the instance need metadata access.",
+      "fame": "niche",
+      "reference": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "status",
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "T1552.005 Cloud Instance Metadata API",
+      "type": "id",
+      "code": "T1552.005",
+      "meaning": "ATT&CK v19 sub-technique of Unsecured Credentials: credentials exposed via the metadata service.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/techniques/T1552/005/",
+      "series": [
+        "catalog-card",
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "T1552.005"
+      }
+    },
+    {
+      "text": "GKE metadata concealment",
+      "type": "term",
+      "code": "",
+      "meaning": "Beta GKE node metadata filter, superseded: Google says use Workload Identity Federation for GKE.",
+      "fame": "niche",
+      "reference": "https://docs.cloud.google.com/kubernetes-engine/docs/how-to/protecting-cluster-metadata",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "T1078.004 Cloud Accounts",
+      "type": "id",
+      "code": "T1078.004",
+      "meaning": "ATT&CK Valid Accounts: Cloud Accounts, where stolen or misused cloud identities are the way in.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/techniques/T1078/004/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "T1530 Data from Cloud Storage",
+      "type": "id",
+      "code": "T1530",
+      "meaning": "ATT&CK technique for collecting data from cloud object storage.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/techniques/T1530/",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "T1530"
+      }
+    },
+    {
+      "text": "T1611 Escape to Host",
+      "type": "id",
+      "code": "T1611",
+      "meaning": "ATT&CK technique for breaking out of a container onto the underlying node.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/techniques/T1611/",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "T1562.008 → T1685.002",
+      "type": "id",
+      "code": "T1685.002",
+      "meaning": "Cloud log tampering moved to Defense Impairment (TA0112) under a new ID in ATT&CK v19.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/techniques/T1685/002/",
+      "series": [
+        "catalog-card",
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "T1535 Unused/Unsupported Cloud Regions",
+      "type": "id",
+      "code": "T1535",
+      "meaning": "ATT&CK technique: activity in regions an org never uses, where monitoring is often thinner.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/techniques/T1535/",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "T1535"
+      }
+    },
+    {
+      "text": "TeamTNT · G0139",
+      "type": "id",
+      "code": "G0139",
+      "meaning": "ATT&CK group that has primarily targeted cloud and container environments to deploy cryptominers.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/groups/G0139/",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "CWE-732",
+      "type": "id",
+      "code": "CWE-732",
+      "meaning": "Incorrect Permission Assignment for Critical Resource: the weakness behind world-readable storage.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/732.html",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "CWE-1188",
+      "type": "id",
+      "code": "CWE-1188",
+      "meaning": "Initialization of a Resource with an Insecure Default: open-by-default services and settings.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/1188.html",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "CWE-16 Configuration",
+      "type": "id",
+      "code": "CWE-16",
+      "meaning": "Obsolete CWE category, mapping prohibited; map the real weakness, e.g. a descendant of CWE-284.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/16.html",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "system:masters",
+      "type": "id",
+      "code": "system:masters",
+      "meaning": "Kubernetes group bound to cluster-admin by the default bindings: super-user by membership.",
+      "fame": "niche",
+      "reference": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "Privileged · Baseline · Restricted",
+      "type": "framework",
+      "code": "",
+      "meaning": "The three Pod Security Standards profiles, from unrestricted to heavily hardened.",
+      "fame": "niche",
+      "reference": "https://kubernetes.io/docs/concepts/security/pod-security-standards/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "enforce: restricted",
+      "type": "status-line",
+      "code": "",
+      "meaning": "Short for the pod-security.kubernetes.io/enforce label set to restricted: failing pods are rejected.",
+      "fame": "niche",
+      "reference": "https://kubernetes.io/docs/concepts/security/pod-security-admission/",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "status",
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "runAsNonRoot: true",
+      "type": "snippet",
+      "code": "",
+      "meaning": "securityContext field the Restricted profile requires: containers must not run as root.",
+      "fame": "niche",
+      "reference": "https://kubernetes.io/docs/concepts/security/pod-security-standards/",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "automountServiceAccountToken: false",
+      "type": "snippet",
+      "code": "",
+      "meaning": "Pod or ServiceAccount field that stops Kubernetes from auto-injecting API credentials.",
+      "fame": "niche",
+      "reference": "https://kubernetes.io/docs/concepts/security/service-accounts/",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "ValidatingAdmissionPolicy",
+      "type": "term",
+      "code": "",
+      "meaning": "In-tree Kubernetes admission policy written in CEL; stable since v1.30.",
+      "fame": "niche",
+      "reference": "https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "10250",
+      "type": "number",
+      "code": "10250",
+      "meaning": "Default TCP port of the kubelet API on every node; it should never face the internet.",
+      "fame": "niche",
+      "reference": "https://kubernetes.io/docs/reference/networking/ports-and-protocols/",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "Bound service account token",
+      "type": "term",
+      "code": "",
+      "meaning": "Short-lived, auto-rotating TokenRequest token; since v1.22 it replaces static Secret-based tokens in pods.",
+      "fame": "niche",
+      "reference": "https://kubernetes.io/docs/concepts/security/service-accounts/",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "K08: Cluster To Cloud Lateral Movement",
+      "type": "id",
+      "code": "K08",
+      "meaning": "OWASP Kubernetes Top 10 (2025 edition) risk: pivoting from a cluster into the surrounding cloud account.",
+      "fame": "niche",
+      "reference": "https://kubernetes-top10.owasp.org/2025/en/src/K08-Cluster-To-Cloud-Lateral-Movement.html",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "CVE-2018-1002105",
+      "type": "id",
+      "code": "CVE-2018-1002105",
+      "meaning": "kube-apiserver flaw in proxied upgrade request handling; CVSS 9.8, fixed in v1.10.11, v1.11.5, v1.12.3.",
+      "fame": "niche",
+      "reference": "https://www.cve.org/CVERecord?id=CVE-2018-1002105",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "CVE-2025-1974 IngressNightmare",
+      "type": "id",
+      "code": "CVE-2025-1974",
+      "meaning": "ingress-nginx admission controller flaw reachable from the pod network; CVSS 9.8, published March 2025.",
+      "fame": "niche",
+      "reference": "https://www.cve.org/CVERecord?id=CVE-2025-1974",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "CVE-2025-1974"
+      }
+    },
+    {
+      "text": "CVE-2021-38647 OMIGOD",
+      "type": "id",
+      "code": "CVE-2021-38647",
+      "meaning": "Remote code execution in Open Management Infrastructure (OMI), an agent used by Azure VM extensions; CVSS 9.8.",
+      "fame": "niche",
+      "reference": "https://www.cve.org/CVERecord?id=CVE-2021-38647",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "CWPP",
+      "type": "term",
+      "code": "",
+      "meaning": "Cloud Workload Protection Platform: runtime protection for VMs, containers and serverless.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/azure/defender-for-cloud/defender-for-cloud-introduction",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "CIEM",
+      "type": "term",
+      "code": "",
+      "meaning": "Cloud Infrastructure Entitlement Management: finds unused and excessive cloud permissions. Not SIEM.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "NEW · NOTIFIED · RESOLVED · SUPPRESSED",
+      "type": "status-line",
+      "code": "",
+      "meaning": "Security Hub CSPM finding workflow statuses: the review state, separate from the compliance result.",
+      "fame": "niche",
+      "reference": "https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_Workflow.html",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "status"
+        ],
+        "as": "NEW → NOTIFIED → RESOLVED"
+      }
+    },
+    {
+      "text": "EC2.8",
+      "type": "id",
+      "code": "EC2.8",
+      "meaning": "Security Hub CSPM control: EC2 instances should use Instance Metadata Service Version 2 (IMDSv2).",
+      "fame": "niche",
+      "reference": "https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "control",
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "S3.1",
+      "type": "id",
+      "code": "S3.1",
+      "meaning": "Security Hub CSPM: S3 general purpose buckets should have block public access settings enabled (account-level).",
+      "fame": "niche",
+      "reference": "https://docs.aws.amazon.com/securityhub/latest/userguide/s3-controls.html",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "control",
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "IAM.4",
+      "type": "id",
+      "code": "IAM.4",
+      "meaning": "Security Hub CSPM control: IAM root user access key should not exist.",
+      "fame": "niche",
+      "reference": "https://docs.aws.amazon.com/securityhub/latest/userguide/iam-controls.html",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "control",
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "terraform.tfstate",
+      "type": "filename",
+      "code": "",
+      "meaning": "Terraform's default local state file; it can hold sensitive values, so keep it in a secured backend.",
+      "fame": "niche",
+      "reference": "https://developer.hashicorp.com/terraform/language/state",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
+    },
+    {
+      "text": "tfsec → Trivy",
+      "type": "tool",
+      "code": "",
+      "meaning": "Aqua folded tfsec's Terraform scanning into Trivy and encourages the community to migrate.",
+      "fame": "niche",
+      "reference": "https://github.com/aquasecurity/tfsec",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Checkov",
+      "type": "tool",
+      "code": "",
+      "meaning": "Open-source static analysis scanner for IaC such as Terraform, CloudFormation and Kubernetes manifests.",
+      "fame": "niche",
+      "reference": "https://github.com/bridgecrewio/checkov",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "kube-bench",
+      "type": "tool",
+      "code": "",
+      "meaning": "Open-source tool that checks a cluster against the CIS Kubernetes Benchmark.",
+      "fame": "niche",
+      "reference": "https://github.com/aquasecurity/kube-bench",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "CIS Azure Foundations Benchmark",
+      "type": "framework",
+      "code": "v6.0.0",
+      "meaning": "Current CIS benchmark for baseline Microsoft Azure hardening.",
+      "fame": "niche",
+      "reference": "https://www.cisecurity.org/benchmark/azure",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "CSA CCM",
+      "type": "framework",
+      "code": "CCM v4.1",
+      "meaning": "Cloud Security Alliance Cloud Controls Matrix: 207 controls across 17 security domains.",
+      "fame": "niche",
+      "reference": "https://cloudsecurityalliance.org/artifacts/cloud-controls-matrix-v4-1",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "NIST SP 800-190",
+      "type": "id",
+      "code": "SP 800-190",
+      "meaning": "NIST Application Container Security Guide (September 2017): container risks and countermeasures.",
+      "fame": "niche",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/190/final",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "ISO/IEC 27017",
+      "type": "framework",
+      "code": "ISO/IEC 27017",
+      "meaning": "ISO/IEC standard of information security controls for cloud services, built on ISO/IEC 27002.",
+      "fame": "niche",
+      "reference": "https://www.iso.org/standard/43757.html",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "BlockPublicAcls: true",
+      "type": "status-line",
+      "code": "",
+      "meaning": "One of four S3 Block Public Access settings: calls that set a public ACL on a bucket or object fail.",
+      "fame": "niche",
+      "reference": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "status",
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "iam.disableServiceAccountKeyCreation",
+      "type": "id",
+      "code": "iam.disableServiceAccountKeyCreation",
+      "meaning": "Legacy managed Google Cloud constraint blocking service account key creation; Google recommends iam.managed.*",
+      "fame": "niche",
+      "reference": "https://docs.cloud.google.com/resource-manager/docs/organization-policy/restricting-service-accounts",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Keep people away from data",
+      "type": "phrase",
+      "code": "",
+      "meaning": "AWS Well-Architected security design principle: use mechanisms and tools to reduce or remove direct human access to data, which lowers the risk of mishandling and human error.",
+      "fame": "niche",
+      "reference": "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/security.html",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Maintain traceability",
+      "type": "phrase",
+      "code": "",
+      "meaning": "AWS Well-Architected security design principle: monitor, alert on and audit actions and changes in real time, and feed logs into automated investigation. Older editions worded it 'Enable traceability'.",
+      "fame": "niche",
+      "reference": "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/security.html",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Apply security at all layers",
+      "type": "phrase",
+      "code": "",
+      "meaning": "AWS Well-Architected security design principle: defense in depth across the edge, VPC, load balancing, compute, OS, application and code.",
+      "fame": "niche",
+      "reference": "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/security.html",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Prepare for security events",
+      "type": "phrase",
+      "code": "",
+      "meaning": "AWS Well-Architected security design principle: have incident management in place, run response simulations and automate detection, investigation and recovery.",
+      "fame": "niche",
+      "reference": "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/security.html",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Security is job zero",
+      "type": "phrase",
+      "code": "",
+      "meaning": "AWS culture maxim: security comes before any number-one priority. AWS repeats it across its blogs and talks.",
+      "fame": "iconic",
+      "reference": "https://aws.amazon.com/blogs/publicsector/twitch-episode-1-getting-started-with-secure-app-dev-job-0/",
+      "series": [
+        "cutting-mat"
+      ]
+    }
+  ]
+}

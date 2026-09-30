@@ -1,0 +1,26 @@
+{
+  "series": "cutting-mat",
+  "topic": "ai-security",
+  "title": "Vol. 13 · Prompt",
+  "ground": "mid",
+  "phrase": ["Data is not", "instructions."],
+  "label": "AISEC CUTTING MAT · VOL. 13 · PROMPT",
+  "source": "source · RAG chunk",
+  "sink": "sink · send_email tool",
+  "controls": ["spotlighting", "hitl · approve"],
+  "flows": ["60° · user prompt", "30° · system prompt", "15° · MCP server"],
+  "findings": ["ASI01 · goal hijack", "excessive agency", "AML.T0051.001"],
+  "panel": {
+    "title": "ai-red-team.md",
+    "lines": ["vector: RAG chunk · indirect injection", "class: LLM01:2026 · CWE-1427", "risk: lethal trifecta · data egress", "fix: spotlighting · HITL (AML.M0029)", "retest: garak · tool call held [FIXED]"]
+  },
+  "notes": ["grant least agency", "system prompt is not authz", "remember Tay · AML.CS0009"],
+  "data": {"left": "TOOL CALL HELD · AWAITING HUMAN", "right": "{handle} · git:(main) · purple learns"},
+  "phone": {
+    "data": {"left": "TOOL CALL HELD · HITL", "right": "{handle} · purple learns"}
+  },
+  "layout": {
+    "desktop": {"chips": [[33, 7], [37, 14], [21, 19]], "notes": [[2, 2], [27, 16], [12, 20]]},
+    "phone": {"chips": [[12, 16], [13, 24], [14, 34]], "notes": [[4, 21], [9, 35], [12, 18]]}
+  }
+}

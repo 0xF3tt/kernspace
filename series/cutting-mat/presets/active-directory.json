@@ -1,0 +1,26 @@
+{
+  "series": "cutting-mat",
+  "topic": "active-directory",
+  "title": "Vol. 06 · Forest",
+  "ground": "mid",
+  "phrase": ["The forest is", "the boundary."],
+  "label": "AD CUTTING MAT · VOL. 06 · FOREST",
+  "source": "source · domain user",
+  "sink": "tier 0 · krbtgt key",
+  "controls": ["KDC · AES-only", "authz · PAC"],
+  "flows": ["60° · LDAPS · 636", "30° · SYSVOL · GPO", "15° · DC ↔ DC · DRSR"],
+  "findings": ["SPN · RC4 · etype 23", "Kerberoasting", "T1558.003"],
+  "panel": {
+    "title": "tier0-baseline.cfg",
+    "lines": ["DefaultDomainSupportedEncTypes = 0x18", "SPN accounts → gMSA · auto-rotated", "tier 0 groups → no SPN accounts", "tier 0 admins → Protected Users", "krbtgt → reset x2 · 10h apart"]
+  },
+  "notes": ["clock skew <= 5 min", "tier 0 logs on to tier 0", "krbtgt signs every ticket"],
+  "data": {"left": "[PASS] 0 paths · domain user → tier 0", "right": "{handle} · git:(main) · blue builds"},
+  "phone": {
+    "data": {"left": "[PASS] 0 paths → tier 0", "right": "{handle} · blue builds"}
+  },
+  "layout": {
+    "desktop": {"chips": [[33, 7], [37, 14], [10, 8]], "notes": [[2, 2], [27, 16], [12, 20]]},
+    "phone": {"chips": [[12, 16], [13, 24], [14, 34]], "notes": [[4, 21], [10, 35], [12, 18]]}
+  }
+}
