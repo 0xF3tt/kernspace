@@ -205,11 +205,13 @@ function buildInkRows() {
     })))));
 }
 
-// the series switch: one radio per registered series, marked with brackets
+// the series switch: one radio per registered series, each with its own glyph; the bracket slides to the checked one (.seg)
 function buildSwitch() {
-  $('#series-switch').replaceChildren(...Object.entries(SERIES).map(([s, R]) => h('label', { class: 'pick sopt' },
+  const sw = $('#series-switch'), all = Object.entries(SERIES);
+  sw.style.setProperty('--n', all.length);
+  sw.replaceChildren(...all.map(([s, R]) => h('label', { title: R.name },
     h('input', { type: 'radio', name: 'series', value: s, id: `series-${s}` }),
-    h('span', { class: 'bracket' }, R.name))));
+    h('span', { class: 'opt' }, svg(R.glyph, { viewBox: '0 0 18 18', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.4, 'aria-hidden': 'true' }), h('span', { class: 'name' }, R.name)))));
   syncSwitch();
 }
 const syncSwitch = () => document.querySelectorAll('input[name="series"]').forEach((r) => { r.checked = r.value === state.series; });
@@ -551,6 +553,15 @@ const pickMark = (ev) => {
 
 // ---------- the word editor
 
+// the preview switch: off shows the sheet alone, on shows it on a screen
+function setView(v) { state.view = v; el.stage.dataset.view = v; $('#view-screen').checked = v === 'screen'; }
+const flips = [];
+function flip() {
+  const t = performance.now();
+  flips.push(t);
+  while (t - flips[0] > 3000) flips.shift();
+  if (flips.length >= 5) { flips.length = 0; tell('Hello, friend.', 'eps1.0_hellofriend.mov'); }
+}
 const ed = { on: false, leaving: false, key: 'phrase', view: null, win: { w: 800, h: 450 }, anim: 0, overview: false, preview: null, active: -1, shown: [], query: '', showBad: false, linked: '', stacks: {}, opener: null, prevView: 'sheet', hover: '', opening: false };
 const live = $('#live'), liveRoot = live.attachShadow({ mode: 'open' }), liveCss = new CSSStyleSheet(), ov = $('#ov'), pin = $('#sheet-pin'), list = $('#ep-list'), rail = $('#rail');
 liveRoot.adoptedStyleSheets = [liveCss];         // the sheet's own rules, set through CSSOM: no inline <style>
@@ -727,7 +738,7 @@ async function enterEdit(key) {
   if (state.series !== s0) return;   // the series changed while the words loaded
   cache.clear();
   ed.on = true; ed.opener = document.activeElement; ed.prevView = state.view; ed.overview = false; ed.preview = null;
-  if (state.view !== 'sheet') { $('#view-sheet').checked = true; state.view = 'sheet'; el.stage.dataset.view = 'sheet'; }
+  setView('sheet');
   document.body.dataset.editing = '';
   $(`#ef-${state.format}`).checked = true;
   fitEdit();
@@ -745,7 +756,7 @@ function exitEdit() {
     ed.leaving = false; ed.on = false;
     delete document.body.dataset.editing;
     document.body.removeAttribute('data-unpinned');
-    if (ed.prevView !== 'sheet') { $(`#view-${ed.prevView}`).checked = true; state.view = ed.prevView; el.stage.dataset.view = ed.prevView; }
+    setView(ed.prevView);
     ov.replaceChildren(); ov.removeAttribute('viewBox'); liveRoot.replaceChildren();
     update();
     const back = ed.opener && document.contains(ed.opener) && ed.opener !== document.body ? ed.opener : $('#edit-open');
@@ -759,7 +770,7 @@ function closeEdit() {
   ed.on = ed.leaving = false; ed.preview = null; ed.hover = ''; pin.hidden = true;
   delete document.body.dataset.editing;
   document.body.removeAttribute('data-unpinned');
-  if (ed.prevView !== 'sheet') { $(`#view-${ed.prevView}`).checked = true; state.view = ed.prevView; el.stage.dataset.view = ed.prevView; }
+  setView(ed.prevView);
   ov.replaceChildren(); ov.removeAttribute('viewBox'); liveRoot.replaceChildren();
 }
 function openSlot(key) {
@@ -853,7 +864,8 @@ function paintList() {
   const empty = $('#ep-empty');
   empty.hidden = ed.shown.length > 0;
   empty.replaceChildren(...(ed.shown.length ? [] : q
-    ? [`No ${TOPIC[vol().topic] ?? ''} word matches “${ed.query.trim()}”. `, h('button', { type: 'button', class: 'linkbtn', id: 'ep-clear' }, 'Clear the search')]
+    ? [`No ${TOPIC[vol().topic] ?? ''} word matches “${ed.query.trim()}”. `, h('button', { type: 'button', class: 'linkbtn', id: 'ep-clear' }, 'Clear the search'), ' or ',
+      h('a', { class: 'linkbtn', href: $('#ep-propose').href, target: '_blank', rel: 'noopener noreferrer' }, 'propose a term'), '.']
     : [`No other ${family(ed.key) === 'data' ? 'status lines' : 'words'} in the ${TOPIC[vol().topic] ?? ''} lexicon fit here.`]));
   list.replaceChildren(...groups);
   $('#ep-count').textContent = q ? `${ed.shown.length} of ${o.rows.length}` : '';
@@ -1073,7 +1085,9 @@ function wire() {
     } else if (t.name === 'format' || t.name === 'eformat') {
       if (Object.hasOwn(FORMATS, t.value)) { state.format = t.value; update(); }
     } else if (t.name === 'view') {
-      if (t.value === 'sheet' || t.value === 'screen') { state.view = t.value; el.stage.dataset.view = t.value; if (ed.hover && !ed.on) setHover(null); }
+      setView(t.checked ? 'screen' : 'sheet');
+      flip();
+      if (ed.hover && !ed.on) setHover(null);
     }
   });
   for (const [id, d, other] of [['#prev', -1, '#next'], ['#next', 1, '#prev']]) {

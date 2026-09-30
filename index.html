@@ -9,11 +9,15 @@
 <meta property="og:description" content="Security wallpapers drawn with the tools of print. Drawn in your browser, no third-party tracking.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kernspace.vercel.app">
-<meta property="og:image" content="https://kernspace.vercel.app/art/preview.svg">
+<meta property="og:image" content="https://kernspace.vercel.app/art/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Cybersecurity, typeset. Two desktop wallpapers: an indigo Cutting Mat reading Secure by design, and a near-black navy Specimen with the letters SDD.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="kernspace · Cybersecurity, typeset.">
 <meta name="twitter:description" content="Security wallpapers drawn with the tools of print. Drawn in your browser.">
-<meta name="twitter:image" content="https://kernspace.vercel.app/art/preview.svg">
+<meta name="twitter:image" content="https://kernspace.vercel.app/art/og.png">
+<meta name="twitter:image:alt" content="Cybersecurity, typeset. Two desktop wallpapers: an indigo Cutting Mat reading Secure by design, and a near-black navy Specimen with the letters SDD.">
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#0E0C15" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#F4F3F8" media="(prefers-color-scheme: light)">
@@ -68,14 +72,15 @@
       <div class="stage-col">
         <div class="stage-bar">
           <div class="series-now">
-            <div class="series-switch" id="series-switch" role="radiogroup" aria-label="Series"></div>
+            <div class="seg series-switch seg-lite" id="series-switch" role="radiogroup" aria-label="Series"></div>
             <p class="series-meta"><span id="series-count">15 volumes</span> <a href="#series">2 more series in pencil</a></p>
           </div>
           <div class="stage-tools">
-            <div class="seg seg-view" role="radiogroup" aria-label="Preview">
-              <label><input type="radio" name="view" value="sheet" id="view-sheet" checked><span class="opt"><span class="name">Sheet</span></span></label>
-              <label><input type="radio" name="view" value="screen" id="view-screen"><span class="opt"><span class="name">On screen</span></span></label>
-            </div>
+            <label class="switch" title="On screen">
+              <input type="checkbox" role="switch" name="view" value="screen" id="view-screen">
+              <span class="track" aria-hidden="true"><i></i></span>
+              <span class="sr">On screen</span>
+            </label>
             <button class="btn btn-sm" type="button" id="edit-open"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 2.5l3 3L6 13H3v-3l7.5-7.5ZM9 4l3 3"/></svg><span>Edit words</span></button>
           </div>
           <p class="crumb" id="crumb"></p>
@@ -208,6 +213,7 @@
           <div>
             <button class="linkbtn" type="button" id="restore" disabled>Restore all words</button>
             <p class="ep-saved" id="ep-saved">Saved in this browser only.</p>
+            <p class="ep-saved"><a class="linkbtn" id="ep-propose" href="https://github.com/0xF3tt/kernspace/issues/new?template=lexicon_term.yml" target="_blank" rel="noopener noreferrer">Propose a term</a> for this lexicon.</p>
           </div>
           <details class="fixed-list">
             <summary>Fixed on this sheet</summary>
@@ -327,12 +333,12 @@
       <div class="colo-grid">
         <div>
           <h2 id="colo-title">Colophon</h2>
-          <p>Set in Newsreader and JetBrains Mono. The sheets themselves use Nunito for the phrase and JetBrains Mono for everything else, with ligatures off so code reads as typed.</p>
+          <p>Set in Newsreader and JetBrains Mono. The sheets use Nunito for their large type (the phrase, the hero letters, the waterfall) and JetBrains Mono for everything else, with ligatures off so code reads as typed.</p>
           <p class="colo-aside">A proposal, not a rule: a different way cyber could look.</p>
         </div>
         <div>
           <h2>How it's made</h2>
-          <p>Every sheet is drawn as SVG in your browser and turned into a PNG on a canvas. Nothing is uploaded, and no image here comes from an image-generation model.</p>
+          <p>Every sheet is drawn as SVG in your browser and turned into a PNG on a canvas. Nothing is uploaded, and no image here comes from an image-generation model. Research and development assisted by AI.</p>
           <p>Wallpapers are CC BY-NC-SA 4.0, code is PolyForm Noncommercial 1.0.0. For a conference, a CTF or merch, ask.</p>
         </div>
         <ul class="colo-links">

@@ -141,11 +141,11 @@ button { font: inherit; color: inherit; }
 .series-now { display: flex; align-items: center; gap: 6px 16px; min-width: 0; font-size: var(--t-15); color: var(--ink-2); }
 .series-meta { display: flex; align-items: baseline; gap: 10px; }
 .series-meta a { color: var(--ink-3); font-size: var(--t-13); }
-/* the series switch: radios marked with registration brackets, never filled */
-.series-switch { display: flex; gap: 8px; }
-.sopt .bracket { position: relative; display: block; --bi: -1px; padding: 5px 12px; color: var(--ink-2); line-height: 1.3; transition: color .15s; }
-.sopt:hover .bracket, .sopt input:checked + .bracket { color: var(--ink); }
-.sopt input:focus-visible + .bracket { outline: 2px solid var(--pencil); outline-offset: 3px; border-radius: 4px; }
+/* the series switch: a segmented group without the well. JS sets --n, one option per series, each with its own glyph */
+.seg.series-switch { --n: 2; display: inline-grid; padding: 0; background: none; box-shadow: none; }
+.seg.series-switch::before { top: 0; bottom: 0; left: 0; width: calc(100% / var(--n)); }
+.seg.series-switch .opt { flex-direction: row; gap: 8px; padding: 5px 14px; line-height: 1.3; }
+.series-switch svg { width: 16px; height: 16px; flex: none; }
 
 .stage {
   position: relative; display: grid; place-items: center;
@@ -260,9 +260,9 @@ kbd {
 .frame input:checked ~ .cap { color: var(--ink); }
 .frame input:focus-visible ~ .face { outline: 2px solid var(--pencil); outline-offset: 5px; border-radius: 3px; }
 
-/* registration brackets: the one selection mark, in pencil */
-.bracket::after {
-  content: ""; position: absolute; inset: var(--bi, -6px); pointer-events: none;
+/* registration brackets: the one selection mark, in pencil. Choices among peers (.seg) move one bracket to the next option;
+   a card or a swatch draws its own. The ghost on .opt::after is the hover preview. */
+.bracket::after, .seg::before, .seg .opt::after {
   --b: 1.5px; --l: 10px; --c: var(--pencil);
   background:
     linear-gradient(var(--c), var(--c)) top left / var(--l) var(--b), linear-gradient(var(--c), var(--c)) top left / var(--b) var(--l),
@@ -270,8 +270,8 @@ kbd {
     linear-gradient(var(--c), var(--c)) bottom left / var(--l) var(--b), linear-gradient(var(--c), var(--c)) bottom left / var(--b) var(--l),
     linear-gradient(var(--c), var(--c)) bottom right / var(--l) var(--b), linear-gradient(var(--c), var(--c)) bottom right / var(--b) var(--l);
   background-repeat: no-repeat;
-  opacity: 0; transform: scale(1.08); transition: opacity .16s ease, transform .22s var(--ease);
 }
+.bracket::after { content: ""; position: absolute; inset: var(--bi, -6px); pointer-events: none; opacity: 0; transform: scale(1.08); transition: opacity .16s ease, transform .22s var(--ease); }
 input:checked ~ .bracket::after, input:checked + .bracket::after { opacity: 1; transform: none; }
 
 /* ---------- inspector */
@@ -321,24 +321,36 @@ input:checked ~ .bracket::after, input:checked + .bracket::after { opacity: 1; t
   padding: 3px; border-radius: 11px; background: var(--well); box-shadow: inset 0 0 0 1px var(--hair);
 }
 .seg::before {
-  content: ""; position: absolute; top: 3px; bottom: 3px; left: 3px; width: calc((100% - 6px) / var(--n));
-  border-radius: 8px; background: var(--raised);
-  box-shadow: 0 0 0 1px var(--hair), 0 2px 6px -2px rgba(0, 0, 0, .35);
+  content: ""; position: absolute; top: 3px; bottom: 3px; left: 3px; width: calc((100% - 6px) / var(--n)); pointer-events: none;
   transform: translateX(calc(var(--i) * 100%)); transition: transform .3s var(--ease);
 }
 .seg:has(> label:nth-child(2) input:checked) { --i: 1; }
 .seg:has(> label:nth-child(3) input:checked) { --i: 2; }
+.seg:has(> label:nth-child(4) input:checked) { --i: 3; }
 .seg > label { position: relative; z-index: 1; display: flex; cursor: pointer; }
 .seg input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
-.seg .opt { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 10px 4px 9px; border-radius: 8px; color: var(--ink-2); text-align: center; transition: color .2s; }
+.seg .opt { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 10px 4px 9px; border-radius: 2px; color: var(--ink-2); text-align: center; transition: color .2s; }
+.seg .opt::after { content: ""; position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity .15s; }
+@media (hover: hover) { .seg label:hover input:not(:checked) + .opt::after { opacity: .4; } .seg label:hover .opt { color: var(--ink); } }
 .seg input:checked + .opt { color: var(--ink); }
 .seg input:focus-visible + .opt { outline: 2px solid var(--pencil); outline-offset: 1px; }
 .seg .opt small { font: 400 10.5px/1 var(--data); color: var(--ink-3); font-variant-numeric: tabular-nums; }
 .seg .opt .name { font-size: var(--t-15); line-height: 1.1; }
 .fmt { display: block; height: 18px; border: 1.5px solid currentColor; border-radius: 3px; margin-bottom: 4px; }
 .fmt.d { width: 32px; } .fmt.w { width: 29px; } .fmt.p { width: 10px; border-radius: 2.5px; }
-.seg-view { --n: 2; width: 196px; }
-.seg-view .opt { padding: 6px 8px; flex-direction: row; justify-content: center; white-space: nowrap; }
+
+/* a plain switch, no visible label ("On screen" is its name and tooltip): the sheet slides along a ruler. Off shows the sheet alone; on shows it on a screen. Pencil marks the on state, as on the pressed icon buttons */
+.switch { display: inline-flex; align-items: center; min-height: 36px; cursor: pointer; }
+.switch input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.switch .track {
+  position: relative; flex: none; width: 46px; height: 26px; border-radius: 4px; background-color: var(--well); box-shadow: inset 0 0 0 1px var(--control);
+  background-image: linear-gradient(90deg, var(--control) 1px, transparent 1px); background-size: 6px 4px; background-position: 3px 100%; background-repeat: repeat-x;
+  transition: background-color .2s, box-shadow .2s;
+}
+.switch .track i { position: absolute; top: 4px; left: 4px; width: 20px; height: 14px; border-radius: 2px; background: var(--ink-3); transition: transform .3s var(--ease), background-color .2s; }
+.switch input:checked + .track { background-color: var(--pencil-wash); box-shadow: inset 0 0 0 1px var(--pencil); }
+.switch input:checked + .track i { transform: translateX(18px); background: var(--pencil); }
+.switch input:focus-visible + .track { outline: 2px solid var(--pencil); outline-offset: 3px; }
 
 /* whoami: the handle and the whoami line, laid out as the sheet's box draws them */
 .who {
@@ -643,8 +655,8 @@ body[data-editing] .ruler-y span::after { content: ""; position: absolute; top: 
   .brand { min-height: 44px; }
   .btn-sm, .who input { height: 44px; }
   .stage-bar { flex-wrap: wrap; }
-  .sopt .bracket { padding-block: 11px; }
-  .seg-view .opt { padding-block: 13px; }
+  .seg.series-switch .opt { padding-block: 11px; }
+  .switch { min-height: 44px; }
   .gcard .face.bracket::after, .sheetlet .art.bracket::after { transform: none; }   /* the settle scale would push the last card past the screen */
   .nav { display: none; }
   .intro .wrap, .sec-head { grid-template-columns: minmax(0, 1fr); }
@@ -696,7 +708,8 @@ body[data-editing] .ruler-y span::after { content: ""; position: absolute; top: 
   .hint-keys { display: none; }
   .series-now { width: 100%; }
   .stage-tools { width: 100%; justify-content: space-between; }
-  .seg-view { width: 172px; }
+  .seg-lite .name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .seg-lite .opt { min-width: 44px; min-height: 44px; justify-content: center; padding-inline: 12px; }
   .gmeta .mono { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -706,6 +719,12 @@ body[data-editing] .ruler-y span::after { content: ""; position: absolute; top: 
 }
 @media (forced-colors: active) {
   .bracket::after { background: none; outline: 2px solid Highlight; }
+  .seg::before { background: none; }
+  .seg .opt::after { display: none; }
+  .switch .track { outline: 1px solid CanvasText; }
+  .switch input:checked + .track { outline: 2px solid Highlight; }
+  .switch .track i { forced-color-adjust: none; background: CanvasText; }
+  .switch input:checked + .track i { background: Highlight; }
   .ep-list:focus-visible, .orow.is-active { outline: 2px solid Highlight; outline-offset: -2px; }
   .orow[aria-selected="true"] { outline: 1px solid Highlight; outline-offset: -1px; }
   .ep-search, .who, .seg, .icon-line { outline: 1px solid CanvasText; outline-offset: -1px; }
