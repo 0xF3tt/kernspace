@@ -1483,6 +1483,63 @@
       }
     },
     {
+      "text": "Harness engineering",
+      "type": "term",
+      "code": "",
+      "meaning": "Building the guides and sensors around a coding agent, everything but the model, so its work can be trusted.",
+      "fame": "niche",
+      "reference": "https://martinfowler.com/articles/exploring-gen-ai/harness-engineering.html",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ],
+        "as": "harness"
+      }
+    },
+    {
+      "text": "Spec-driven development",
+      "type": "term",
+      "code": "SDD",
+      "meaning": "Write the specification first and let it drive planning, tasks and code, increasingly built by coding agents.",
+      "fame": "niche",
+      "reference": "https://github.github.com/spec-kit/",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "spec first, code second"
+      }
+    },
+    {
+      "text": "SDD",
+      "type": "term",
+      "code": "",
+      "meaning": "Spec-driven development, shortened: the specification leads and coding agents build from it.",
+      "fame": "niche",
+      "reference": "https://github.github.com/spec-kit/",
+      "series": [
+        "specimen"
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ]
+      }
+    },
+    {
       "text": "Trust No AI",
       "type": "phrase",
       "code": "",

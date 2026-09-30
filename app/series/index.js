@@ -8,11 +8,13 @@ import * as specimenRules from './specimen.rules.js';
 export const SERIES = {
   'cutting-mat': {
     name: 'Cutting Mat', dir: 'series/cutting-mat/presets', hint: 'mat',     // hint: the lexicon key holding {slots, as}
+    glyph: '<rect x="1.5" y="1.5" width="15" height="15"/><path d="M3 15 15 3"/><path d="M1.5 6.5h15M1.5 11.5h15" stroke-dasharray="2 2" opacity=".7"/>',   // the switch's icon: the taint path and two trust boundaries
     BAR: ['bg', 'major', 'angle', 'text', 'tb', 'chip1', 'chip2', 'chip3'],
     render, ...cuttingMat,
   },
   specimen: {
     name: 'Specimen', dir: 'series/specimen/presets', hint: 'spec',
+    glyph: '<path d="M3 13.5 9 2.5l6 11M5.2 9.5h7.6"/><path d="M1.5 16.5h15" stroke-width="1" opacity=".7"/>',   // a capital A over its baseline hairline
     BAR: ['bg', 'text', 'text2', 'rule', 'data', 'major', 'tb', 'chip1'],
     render: renderSpecimen, ...specimenRules,
   },

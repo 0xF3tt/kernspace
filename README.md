@@ -9,13 +9,15 @@
 
 *Privileged space, carefully kerned.*
 
-![kernspace Cutting Mat preview](art/preview.svg)
+![kernspace: a Cutting Mat and a Specimen wallpaper, side by side](art/og.png)
 
-Original visual resources for the cybersecurity and geek community: wallpapers first, more later. No hoodies, no green rain, no padlocks, no skulls. Every element on a sheet means something real in security, and every word is checked.
+**Cybersecurity, typeset.** Original visual resources for the cybersecurity and geek community: wallpapers first, more later. Drawn with the tools of print. Every mark on a sheet stands for something real: a taint path, a trust boundary, a finding.
+
+*Everything means something.*
 
 A proposal, not a rule: a different way cyber could look.
 
-> **Status:** 1.0.0-beta.3. A web app renders Cutting Mat and Specimen wallpapers in your browser: pick a series, a preset, a palette, one of its three grounds and a format, swap any word for another from the topic's lexicon, fill in your `# whoami` (a handle and a line of your own, both needed to download), then download PNG or SVG. Your edits stay in your browser.
+> **Status:** 1.0.0-beta.3. A web app draws Cutting Mat and Specimen wallpapers in your browser: pick a series, a volume, an ink, one of its three grounds and a format, preview it on a screen, change the words from the volume's own lexicon, fill in your `# whoami` (a handle and a line of your own, both needed to download), then download PNG or SVG. Nothing is uploaded, and your edits stay in your browser.
 
 ## How it works
 
@@ -23,10 +25,19 @@ Every piece is a combination of four things:
 
 | Axis | What it is | Today |
 |---|---|---|
-| **Series** | A layout borrowed from graphic design, where each element carries a security meaning | `cutting-mat` (15 presets) · `specimen` (15 presets) · `galley-proof` · `catalog-card` (concepts) |
-| **Topic** | A researched lexicon of one field's real vocabulary | 15 topics · 1,527 verified terms |
-| **Palette** | A color system with three grounds, contrast-checked (WCAG) and color-vision checked | `purple` · `green` · `red` · `blue` |
+| **Series** | A layout borrowed from graphic design, where each element carries a security meaning | `cutting-mat` (15 volumes) · `specimen` (15 volumes) · `galley-proof` · `catalog-card` (concepts) |
+| **Topic** (a volume) | A researched lexicon of one field's real vocabulary | 15 topics · 1,530 verified terms |
+| **Palette** (an ink) | A color system with three grounds, contrast-checked (WCAG) and simulated for protan, deutan and tritan vision | `purple` · `green` · `red` · `blue` |
 | **Format** | Output size | `desktop` 3840×2160 · `wide` 3840×2400 (16:10) · `phone` 1290×2796 |
+
+Two series are on press; two more are drawn in pencil and waiting for press.
+
+| Series | Status | What it is |
+|---|---|---|
+| Cutting Mat | Live | A designer's cutting mat, read as a threat model: rulers, a taint path, trust boundaries and tape. |
+| Specimen | Live | A foundry type specimen. The field's core primitive is set as a typeface, with the one unhandled case left as an empty box. |
+| Galley Proof | Concept | Security review as proofreading. Each finding gets the proofreader's mark that matches the fix; the advisory is an errata slip. |
+| Catalog Card | Concept | Every concept catalogued like a book: a call number from a real framework, one typed definition, corrections in pencil. |
 
 ## Layout
 
@@ -50,14 +61,15 @@ Serve the repo root with any static server and open it:
 python3 -m http.server 8000
 ```
 
-Check the renderer and the word editor (Node 20+, no installs):
+Check the renderer, the word editor and the lexicons (Node 20+, no installs):
 
 ```sh
 node app/render.test.mjs
 node app/words.test.mjs
+node app/lexicon.test.mjs
 ```
 
-The first renders every preset of both series in every palette, ground and format and runs each series' overlap checker (and checks that the checker fires on broken sheets); the second takes a sample of the words the editor offers for each series, applies them and runs the same checker on each result.
+The first renders every preset of both series in every palette, ground and format and runs each series' overlap checker (and checks that the checker fires on broken sheets); the second takes a sample of the words the editor offers for each series, applies them and runs the same checker on each result; the third lints every lexicon (shape, allowed values, length limits, duplicates) so a proposed term can be checked before review.
 
 ## Deploy
 
@@ -76,6 +88,8 @@ git tag -s v1.0.0-beta.3 -m "1.0.0-beta.3" && git push origin v1.0.0-beta.3
 
 ## Palettes
 
+Each ink comes from the history of print and computing, and each ground is a real material. All twelve are contrast-checked against WCAG and simulated for protan, deutan and tritan vision.
+
 | Palette | Dark | Mid | Light | Story |
 |---|---|---|---|---|
 | `purple` | aniline | indigo | ditto | Spirit-duplicator inks; red + blue, both sides on one sheet |
@@ -91,7 +105,7 @@ git tag -s v1.0.0-beta.3 -m "1.0.0-beta.3" && git push origin v1.0.0-beta.3
 4. ~~Cutting Mat presets for all 15 topics~~
 5. ~~Specimen series: renderer, series switch and all 15 topics~~
 6. New series: Galley Proof, Catalog Card
-7. Lint for lexicons, palettes and presets in CI
+7. ~~Lint for lexicons in CI~~ · lint for palettes and presets
 
 ## How it's made
 
