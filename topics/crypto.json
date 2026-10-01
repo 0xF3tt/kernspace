@@ -39,6 +39,12 @@
         "slots": [
           "note"
         ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "TLS 1.3"
       }
     },
     {
@@ -81,13 +87,19 @@
       "text": "SHA-1 → SHA-256",
       "type": "term",
       "code": "FIPS 180-4",
-      "meaning": "SHA-1 has practical collisions since 2017; NIST retires it by 31 Dec 2030. Use SHA-2 or SHA-3.",
+      "meaning": "SHA-1 has had practical collisions since 2017; NIST retires it by 31 Dec 2030 in favor of SHA-2 and SHA-3.",
       "fame": "iconic",
       "reference": "NIST news, 15 Dec 2022; NIST FIPS 180-4",
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "MD5 → SHA-256",
@@ -99,7 +111,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "ECB penguin",
@@ -117,6 +135,9 @@
           "finding",
           "note"
         ]
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -128,9 +149,16 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "specimen"
       ],
       "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "don't roll your own crypto"
+      },
+      "spec": {
         "slots": [
           "note"
         ],
@@ -164,13 +192,16 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Bletchley Park",
       "type": "term",
       "code": "",
-      "meaning": "British WWII codebreaking centre where Enigma and Lorenz cipher traffic was read.",
+      "meaning": "British WWII codebreaking center where Enigma and Lorenz cipher traffic was read.",
       "fame": "iconic",
       "reference": "",
       "series": [
@@ -181,6 +212,9 @@
         "slots": [
           "note"
         ]
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -193,7 +227,10 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Kerckhoffs's principle",
@@ -206,6 +243,9 @@
         "catalog-card",
         "specimen"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "note"
@@ -224,6 +264,9 @@
         "catalog-card",
         "specimen"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "class"
@@ -287,7 +330,17 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "hero",
+          "family"
+        ],
+        "as": "HMAC"
+      }
     },
     {
       "text": "SHA-256 · FIPS 180-4",
@@ -304,6 +357,12 @@
         "slots": [
           "note"
         ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "SHA-256"
       }
     },
     {
@@ -316,7 +375,16 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "X.509"
+      }
     },
     {
       "text": "-----BEGIN CERTIFICATE-----",
@@ -328,7 +396,19 @@
       "series": [
         "cutting-mat",
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": [
+          "source",
+          "flow"
+        ],
+        "as": "PEM certificate"
+      },
+      "spec": {
+        "slots": [
+          "test"
+        ]
+      }
     },
     {
       "text": "OpenSSL",
@@ -344,6 +424,9 @@
         "slots": [
           "control"
         ]
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -360,6 +443,9 @@
         "slots": [
           "control"
         ]
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -376,6 +462,9 @@
         "slots": [
           "flow"
         ]
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -388,7 +477,10 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Nonce",
@@ -401,6 +493,9 @@
         "specimen",
         "catalog-card"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "rating"
@@ -419,6 +514,9 @@
         "catalog-card",
         "specimen"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "class"
@@ -442,6 +540,12 @@
           "control"
         ],
         "as": "ML-KEM-768"
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "ML-KEM-768"
       }
     },
     {
@@ -459,6 +563,9 @@
           "finding"
         ],
         "as": "HNDL"
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -472,6 +579,9 @@
         "catalog-card",
         "specimen"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "class"
@@ -489,6 +599,9 @@
         "specimen",
         "catalog-card"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "rating"
@@ -500,7 +613,7 @@
       "text": "Side-channel attack",
       "type": "term",
       "code": "",
-      "meaning": "Recovering secrets from timing, power, EM or cache behaviour instead of breaking the math itself.",
+      "meaning": "Recovering secrets from timing, power, EM or cache behavior instead of breaking the math itself.",
       "fame": "iconic",
       "reference": "",
       "series": [
@@ -511,7 +624,10 @@
         "slots": [
           "finding"
         ],
-        "as": "side-channel attack"
+        "as": "side-channel leak"
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -523,31 +639,20 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "specimen"
       ],
       "mat": {
         "slots": [
           "note"
         ],
         "as": "crypto means cryptography"
-      }
-    },
-    {
-      "text": "A04:2025 Cryptographic Failures",
-      "type": "framework",
-      "code": "A04:2025",
-      "meaning": "OWASP Top 10:2025 category for weak, missing or misused cryptography; down from #2 in 2021.",
-      "fame": "iconic",
-      "reference": "https://owasp.org/Top10/2025/",
-      "series": [
-        "catalog-card",
-        "cutting-mat"
-      ],
-      "mat": {
+      },
+      "spec": {
         "slots": [
-          "finding"
+          "note"
         ],
-        "as": "A04:2025"
+        "as": "crypto means cryptography"
       }
     },
     {
@@ -577,8 +682,14 @@
       "series": [
         "catalog-card",
         "galley-proof",
-        "specimen"
+        "specimen",
+        "cutting-mat"
       ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      },
       "spec": {
         "slots": [
           "rating"
@@ -590,13 +701,16 @@
       "text": "RFC 8446 → RFC 9846",
       "type": "id",
       "code": "RFC 9846",
-      "meaning": "TLS 1.3 was republished in Jul 2026; RFC 9846 obsoletes RFC 8446. Cite the new number.",
+      "meaning": "TLS 1.3 was republished as RFC 9846 in Jul 2026, obsoleting RFC 8446.",
       "fame": "niche",
       "reference": "https://www.rfc-editor.org/info/rfc9846",
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "X25519MLKEM768 · 0x11EC",
@@ -614,6 +728,12 @@
           "control"
         ],
         "as": "X25519MLKEM768"
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "X25519MLKEM768"
       }
     },
     {
@@ -626,7 +746,19 @@
       "series": [
         "specimen",
         "cutting-mat"
-      ]
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "TLS_AES_128_GCM_SHA256"
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "TLS_AES_128_GCM_SHA256"
+      }
     },
     {
       "text": "0x1303 · TLS_CHACHA20_POLY1305_SHA256",
@@ -636,21 +768,31 @@
       "fame": "niche",
       "reference": "IANA TLS Cipher Suites registry; RFC 9846",
       "series": [
-        "specimen",
-        "cutting-mat"
-      ]
+        "specimen"
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "test"
+        ]
+      }
     },
     {
       "text": "ChaCha20-Poly1305 · RFC 8439",
       "type": "id",
       "code": "RFC 8439",
       "meaning": "AEAD pairing the ChaCha20 stream cipher with the Poly1305 authenticator; obsoletes RFC 7539.",
-      "fame": "niche",
+      "fame": "iconic",
       "reference": "https://www.rfc-editor.org/info/rfc8439",
       "series": [
         "catalog-card",
         "specimen"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "family"
@@ -669,6 +811,9 @@
         "specimen",
         "catalog-card"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "hero"
@@ -681,13 +826,16 @@
       "type": "id",
       "code": "RFC 9106",
       "meaning": "Primary variant of Argon2, the Password Hashing Competition winner; RFC 9106 makes it mandatory.",
-      "fame": "niche",
+      "fame": "iconic",
       "reference": "https://www.rfc-editor.org/info/rfc9106",
       "series": [
         "catalog-card",
         "galley-proof",
         "specimen"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "family"
@@ -700,11 +848,14 @@
       "type": "id",
       "code": "RFC 7748",
       "meaning": "Elliptic-curve key agreement function on Curve25519, defined alongside X448 in RFC 7748.",
-      "fame": "niche",
+      "fame": "iconic",
       "reference": "https://www.rfc-editor.org/info/rfc7748",
       "series": [
         "specimen"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "family"
@@ -717,11 +868,14 @@
       "type": "id",
       "code": "RFC 8032",
       "meaning": "EdDSA signatures over edwards25519; approved by NIST in FIPS 186-5.",
-      "fame": "niche",
+      "fame": "iconic",
       "reference": "https://www.rfc-editor.org/info/rfc8032",
       "series": [
         "specimen"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "family"
@@ -756,7 +910,16 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "ML-DSA-65"
+      }
     },
     {
       "text": "SLH-DSA · FIPS 205",
@@ -768,7 +931,16 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "SLH-DSA"
+      }
     },
     {
       "text": "FN-DSA · FIPS 206 (pending)",
@@ -780,7 +952,16 @@
       "series": [
         "specimen",
         "galley-proof"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "FN-DSA"
+      }
     },
     {
       "text": "HQC",
@@ -792,19 +973,28 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Kyber → ML-KEM",
       "type": "term",
       "code": "FIPS 203",
-      "meaning": "Pre-standard name to replace: CRYSTALS-Kyber became ML-KEM in FIPS 203 (Dilithium became ML-DSA).",
+      "meaning": "CRYSTALS-Kyber became ML-KEM in FIPS 203; CRYSTALS-Dilithium became ML-DSA in FIPS 204.",
       "fame": "niche",
       "reference": "NIST FIPS 203; NIST FIPS 204",
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "LMS / XMSS · SP 800-208",
@@ -816,7 +1006,16 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "LMS / XMSS"
+      }
     },
     {
       "text": "CNSA 2.0",
@@ -851,7 +1050,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "FIPS 140-2 → FIPS 140-3",
@@ -863,7 +1068,10 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "SHAttered",
@@ -880,6 +1088,9 @@
         "slots": [
           "finding"
         ]
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -1001,7 +1212,7 @@
         "slots": [
           "finding"
         ],
-        "as": "CVE-2008-0166"
+        "as": "Debian weak keys"
       }
     },
     {
@@ -1015,6 +1226,9 @@
         "catalog-card",
         "specimen"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "hero"
@@ -1036,6 +1250,12 @@
         "slots": [
           "control"
         ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "ECH"
       }
     },
     {
@@ -1051,7 +1271,8 @@
       ],
       "mat": {
         "slots": [
-          "flow"
+          "flow",
+          "source"
         ]
       }
     },
@@ -1086,7 +1307,8 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "specimen"
       ],
       "mat": {
         "slots": [
@@ -1109,6 +1331,9 @@
         "slots": [
           "note"
         ]
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -1121,7 +1346,16 @@
       "series": [
         "galley-proof",
         "cutting-mat"
-      ]
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ],
+        "as": "ssl_protocols"
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "id_ed25519.pub",
@@ -1148,43 +1382,44 @@
       "reference": "https://cwe.mitre.org/data/definitions/327.html",
       "series": [
         "catalog-card",
-        "specimen"
-      ]
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "broken algorithm"
+      }
     },
     {
       "text": "CWE-329",
       "type": "id",
       "code": "CWE-329",
-      "meaning": "Generation of Predictable IV with CBC Mode.",
+      "meaning": "A CBC initialization vector an attacker can predict, which undermines the confidentiality CBC is meant to give.",
       "fame": "niche",
       "reference": "https://cwe.mitre.org/data/definitions/329.html",
       "series": [
         "catalog-card",
-        "specimen"
-      ]
-    },
-    {
-      "text": "T1573 · Encrypted Channel",
-      "type": "id",
-      "code": "T1573",
-      "meaning": "ATT&CK C2 technique; subs T1573.001 Symmetric and T1573.002 Asymmetric Cryptography.",
-      "fame": "niche",
-      "reference": "https://attack.mitre.org/techniques/T1573/",
-      "series": [
-        "catalog-card",
-        "specimen"
-      ]
-    },
-    {
-      "text": "D3-MENCR · Message Encryption",
-      "type": "id",
-      "code": "D3-MENCR",
-      "meaning": "D3FEND countermeasure: encrypting a message body using a cryptographic key.",
-      "fame": "niche",
-      "reference": "https://d3fend.mitre.org/technique/d3f:MessageEncryption/",
-      "series": [
-        "catalog-card"
-      ]
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "predictable IV"
+      }
     },
     {
       "text": "Nothing-up-my-sleeve number",
@@ -1198,6 +1433,12 @@
         "catalog-card",
         "specimen"
       ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "nothing-up-my-sleeve"
+      },
       "spec": {
         "slots": [
           "note"
@@ -1238,9 +1479,16 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "specimen"
       ],
       "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "attacks always get better"
+      },
+      "spec": {
         "slots": [
           "note"
         ],
@@ -1256,8 +1504,14 @@
       "reference": "",
       "series": [
         "catalog-card",
-        "specimen"
+        "specimen",
+        "cutting-mat"
       ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      },
       "spec": {
         "slots": [
           "rating"
@@ -1275,7 +1529,10 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Key ceremony",
@@ -1293,19 +1550,28 @@
           "control"
         ],
         "as": "key ceremony"
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
       "text": "3DES → AES",
       "type": "term",
       "code": "SP 800-131A Rev. 2",
-      "meaning": "Triple DES encryption is disallowed after 2023; its 64-bit block falls to Sweet32. Use AES.",
+      "meaning": "Triple DES encryption is disallowed after 2023; its 64-bit block falls to Sweet32. AES is the replacement.",
       "fame": "niche",
       "reference": "NIST SP 800-131A Rev. 2",
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "RC4 → ChaCha20-Poly1305",
@@ -1317,19 +1583,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
-    },
-    {
-      "text": "A02:2021 → A04:2025",
-      "type": "id",
-      "code": "A04:2025",
-      "meaning": "OWASP moved Cryptographic Failures from #2 (2021) to #4 (2025); in 2017 it was Sensitive Data Exposure.",
-      "fame": "niche",
-      "reference": "https://owasp.org/Top10/2025/",
-      "series": [
-        "galley-proof",
-        "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "Acceptable · Deprecated · Disallowed",
@@ -1340,7 +1600,13 @@
       "reference": "NIST SP 800-131A Rev. 2",
       "series": [
         "galley-proof"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "Crypto agility",
@@ -1352,7 +1618,10 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Clipper chip",
@@ -1363,7 +1632,13 @@
       "reference": "",
       "series": [
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "CBOM",
@@ -1376,6 +1651,9 @@
         "specimen",
         "catalog-card"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "hero"
@@ -1397,6 +1675,9 @@
         "slots": [
           "note"
         ]
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -1413,6 +1694,9 @@
         "slots": [
           "control"
         ]
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -1459,7 +1743,7 @@
       "text": "Passwords need a slow KDF",
       "type": "term",
       "code": "RFC 9106",
-      "meaning": "A fast hash lets attackers test guesses cheaply; derive keys from passwords with a memory-hard KDF such as Argon2id.",
+      "meaning": "A fast hash lets attackers test guesses cheaply; password hashing calls for a memory-hard KDF such as Argon2id.",
       "fame": "niche",
       "reference": "https://www.rfc-editor.org/info/rfc9106",
       "series": [
@@ -1479,11 +1763,12 @@
       "text": "Key storage",
       "type": "term",
       "code": "",
-      "meaning": "The strongest cipher fails when its key sits in a repository, a log or a plain file; keep keys in an HSM, a KMS or a vault.",
+      "meaning": "Even a strong cipher fails when its key sits in a repository, a log or a plain file; HSMs, KMSs and vaults hold keys.",
       "fame": "niche",
       "reference": "https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html",
       "series": [
-        "specimen"
+        "specimen",
+        "cutting-mat"
       ],
       "spec": {
         "slots": [
@@ -1492,7 +1777,10 @@
         "as": "A key is only as safe as the place it is stored."
       },
       "mat": {
-        "slots": []
+        "slots": [
+          "sink"
+        ],
+        "as": "key storage"
       }
     },
     {
@@ -1518,7 +1806,7 @@
       "text": "SCSV 0x5600",
       "type": "id",
       "code": "0x5600",
-      "meaning": "TLS_FALLBACK_SCSV: a signaling value in the cipher list that marks a downgrade retry, not a real cipher suite (RFC 7507).",
+      "meaning": "TLS_FALLBACK_SCSV: a signaling value in the cipher list that marks a downgrade retry, not a cipher suite (RFC 7507).",
       "fame": "niche",
       "reference": "RFC 7507; IANA TLS Cipher Suites registry",
       "series": [
@@ -1537,7 +1825,7 @@
       "text": "SCSV 0x00FF",
       "type": "id",
       "code": "0x00FF",
-      "meaning": "TLS_EMPTY_RENEGOTIATION_INFO_SCSV: a signaling value that says the client supports secure renegotiation, not a real cipher suite (RFC 5746).",
+      "meaning": "TLS_EMPTY_RENEGOTIATION_INFO_SCSV: a signaling value for secure-renegotiation support, not a cipher suite (RFC 5746).",
       "fame": "niche",
       "reference": "RFC 5746; IANA TLS Cipher Suites registry",
       "series": [
@@ -1556,7 +1844,7 @@
       "text": "e / е",
       "type": "id",
       "code": "U+65/U+435",
-      "meaning": "Latin e and Cyrillic ie look the same in most fonts; Unicode UTS #39 lists them as confusable, the basis of IDN homograph spoofing.",
+      "meaning": "Latin e and Cyrillic ie look alike in most fonts; Unicode UTS #39 lists them as confusable (IDN homograph spoofing).",
       "fame": "niche",
       "reference": "Unicode UTS #39, confusables.txt",
       "series": [
@@ -1789,7 +2077,7 @@
       "text": "Cypherpunks write code.",
       "type": "phrase",
       "code": "",
-      "meaning": "Eric Hughes, A Cypherpunk's Manifesto (9 Mar 1993): privacy is defended by building and publishing crypto software, not by asking for it.",
+      "meaning": "Eric Hughes, A Cypherpunk's Manifesto (9 Mar 1993): privacy is defended by writing crypto software, not by asking.",
       "fame": "iconic",
       "reference": "https://www.activism.net/cypherpunk/manifesto.html",
       "series": [
@@ -1800,7 +2088,7 @@
       "text": "Trust the math.",
       "type": "phrase",
       "code": "",
-      "meaning": "Bruce Schneier, The Guardian, Sep 2013 ('NSA surveillance: A guide to staying secure'): sound cryptography holds; what fails is the code, the keys and the endpoints around it.",
+      "meaning": "Bruce Schneier, The Guardian, Sep 2013: sound cryptography holds; what fails is the code, keys and endpoints around it.",
       "fame": "niche",
       "reference": "https://www.theguardian.com/world/2013/sep/05/nsa-how-to-remain-secure-surveillance",
       "series": [
@@ -1811,12 +2099,291 @@
       "text": "Privacy is not secrecy.",
       "type": "phrase",
       "code": "",
-      "meaning": "Eric Hughes, A Cypherpunk's Manifesto (1993): private is what you choose to reveal selectively, secret is what nobody may know; crypto is the tool for the first.",
+      "meaning": "Eric Hughes, A Cypherpunk's Manifesto (1993): privacy is the power to reveal oneself selectively, unlike secrecy.",
       "fame": "niche",
       "reference": "https://www.activism.net/cypherpunk/manifesto.html",
       "series": [
         "cutting-mat"
       ]
+    },
+    {
+      "text": "MD5 · RFC 1321",
+      "type": "id",
+      "code": "RFC 1321",
+      "meaning": "Legacy 128-bit evidence hash; no longer collision-resistant, so it is logged beside SHA-256, not alone.",
+      "fame": "iconic",
+      "reference": "https://www.rfc-editor.org/rfc/rfc1321",
+      "series": [
+        "galley-proof",
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
+    },
+    {
+      "text": "RSA · RFC 8017",
+      "type": "id",
+      "code": "RFC 8017",
+      "meaning": "Public-key cryptosystem by Rivest, Shamir and Adleman (1978), based on the difficulty of factoring; PKCS #1.",
+      "fame": "iconic",
+      "reference": "https://www.rfc-editor.org/info/rfc8017",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "hero",
+          "family"
+        ],
+        "as": "RSA"
+      }
+    },
+    {
+      "text": "Diffie–Hellman key exchange",
+      "type": "term",
+      "code": "RFC 2631",
+      "meaning": "1976 key-agreement protocol by Diffie and Hellman: two parties derive a shared secret over an open channel.",
+      "fame": "iconic",
+      "reference": "https://www.rfc-editor.org/info/rfc2631",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ],
+        "as": "Diffie–Hellman"
+      },
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
+    },
+    {
+      "text": "ECDSA · FIPS 186-5",
+      "type": "id",
+      "code": "FIPS 186-5",
+      "meaning": "Elliptic Curve Digital Signature Algorithm: signatures over elliptic curves, with a fresh secret number per message.",
+      "fame": "iconic",
+      "reference": "https://csrc.nist.gov/pubs/fips/186-5/final",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "ECDSA"
+      }
+    },
+    {
+      "text": "Elliptic-curve cryptography",
+      "type": "term",
+      "code": "ECC",
+      "meaning": "Public-key cryptography on the points of an elliptic curve over a finite field; short keys for the strength they give.",
+      "fame": "iconic",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/186/final",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
+    },
+    {
+      "text": "Shor's algorithm",
+      "type": "term",
+      "code": "quant-ph/9508027",
+      "meaning": "Quantum algorithm that factors integers and solves discrete logarithms in polynomial time; the threat behind PQC.",
+      "fame": "iconic",
+      "reference": "https://arxiv.org/abs/quant-ph/9508027",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "finding",
+          "note"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "family",
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "Digital signature",
+      "type": "term",
+      "code": "FIPS 186-5",
+      "meaning": "Value made with a private key that anyone can check with the public key, showing who signed and that the data is intact.",
+      "fame": "iconic",
+      "reference": "https://csrc.nist.gov/pubs/fips/186-5/final",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "family",
+          "class"
+        ]
+      }
+    },
+    {
+      "text": "Certificate Transparency",
+      "type": "term",
+      "code": "RFC 6962 / RFC 9162",
+      "meaning": "Public, append-only logs of issued TLS certificates, so anyone can spot a certificate a CA should not have issued.",
+      "fame": "niche",
+      "reference": "https://certificate.transparency.dev/",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ],
+        "as": "CT log"
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
+    },
+    {
+      "text": "BEAST · CVE-2011-3389",
+      "type": "id",
+      "code": "CVE-2011-3389",
+      "meaning": "2011 attack on the chained IVs of CBC mode in SSL and TLS 1.0 that let a man in the middle recover HTTPS plaintext.",
+      "fame": "niche",
+      "reference": "https://www.cve.org/CVERecord?id=CVE-2011-3389",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "BEAST"
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "CRIME · CVE-2012-4929",
+      "type": "id",
+      "code": "CVE-2012-4929",
+      "meaning": "2012 attack on TLS compression: watching length changes lets a man in the middle recover secret HTTP header values.",
+      "fame": "niche",
+      "reference": "https://www.cve.org/CVERecord?id=CVE-2012-4929",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "CRIME"
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "BREACH · CVE-2013-3587",
+      "type": "id",
+      "code": "CVE-2013-3587",
+      "meaning": "2013 CRIME-style attack on HTTP response compression: length changes let a man in the middle recover secrets in HTTPS.",
+      "fame": "niche",
+      "reference": "https://www.cve.org/CVERecord?id=CVE-2013-3587",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "BREACH"
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "IND-CPA",
+      "type": "term",
+      "code": "",
+      "meaning": "Indistinguishability under chosen-plaintext attack: an attacker cannot tell which of two chosen messages was encrypted.",
+      "fame": "niche",
+      "reference": "https://eprint.iacr.org/1998/021",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "family",
+          "class"
+        ]
+      }
+    },
+    {
+      "text": "IND-CCA2",
+      "type": "term",
+      "code": "",
+      "meaning": "Indistinguishability under adaptive chosen-ciphertext attack; the usual goal for encryption, and the one ML-KEM targets.",
+      "fame": "niche",
+      "reference": "https://eprint.iacr.org/1998/021; NIST FIPS 203",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "family",
+          "class"
+        ]
+      }
     }
   ]
 }

@@ -4,8 +4,8 @@
     {
       "text": "Ghidra",
       "type": "tool",
-      "code": "12.1.4",
-      "meaning": "NSA's open-source reverse-engineering suite, public since RSA Conference 2019; 12.1.4 shipped Sept 2026.",
+      "code": "",
+      "meaning": "NSA's open-source reverse-engineering suite, made public at RSA Conference 2019.",
       "fame": "iconic",
       "reference": "https://github.com/NationalSecurityAgency/ghidra/releases",
       "series": [
@@ -16,8 +16,8 @@
     {
       "text": "IDA Pro",
       "type": "tool",
-      "code": "9.4",
-      "meaning": "Hex-Rays' interactive disassembler, first released 1991; since 9.0 one binary handles 32- and 64-bit code.",
+      "code": "",
+      "meaning": "Hex-Rays' interactive disassembler, first released in 1991; its FLIRT signatures and decompiler are reverser staples.",
       "fame": "iconic",
       "reference": "https://docs.hex-rays.com/release-notes",
       "series": [
@@ -91,7 +91,7 @@
       "text": "UPX",
       "type": "tool",
       "code": "F0001.008",
-      "meaning": "The Ultimate Packer for eXecutables, the classic open-source packer; MBC method F0001.008. Current: 5.2.1.",
+      "meaning": "The Ultimate Packer for eXecutables, the classic open-source packer; MBC method F0001.008.",
       "fame": "iconic",
       "reference": "https://github.com/upx/upx",
       "series": [
@@ -113,7 +113,8 @@
       "fame": "iconic",
       "reference": "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format",
       "series": [
-        "catalog-card"
+        "catalog-card",
+        "specimen"
       ],
       "spec": {
         "slots": [
@@ -174,7 +175,12 @@
       "series": [
         "specimen",
         "galley-proof"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ]
+      }
     },
     {
       "text": "IAT",
@@ -232,7 +238,16 @@
       "reference": "https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html",
       "series": [
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "90 = nop"
+      },
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "INT3 · 0xCC",
@@ -243,7 +258,16 @@
       "reference": "https://github.com/MBCProject/mbc-markdown/blob/main/anti-behavioral-analysis/debugger-detection.md",
       "series": [
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "CC = int3"
+      },
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "T1027.002 Software Packing",
@@ -278,7 +302,8 @@
       "fame": "iconic",
       "reference": "https://attack.mitre.org/techniques/T1497/",
       "series": [
-        "catalog-card"
+        "catalog-card",
+        "specimen"
       ],
       "spec": {
         "slots": [
@@ -291,7 +316,7 @@
       "text": "T1027 Obfuscated Files or Information",
       "type": "id",
       "code": "T1027",
-      "meaning": "ATT&CK parent technique for making files hard to discover or analyze; 18 sub-techniques in v19.",
+      "meaning": "ATT&CK parent technique for making files or information hard to discover or analyze, with many sub-techniques.",
       "fame": "iconic",
       "reference": "https://attack.mitre.org/techniques/T1027/",
       "series": [
@@ -302,7 +327,7 @@
       "text": "T1055.012 Process Hollowing",
       "type": "id",
       "code": "T1055.012",
-      "meaning": "ATT&CK sub-technique name for running code inside a hollowed-out legitimate process.",
+      "meaning": "ATT&CK sub-technique: running code inside a legitimate process whose original code was hollowed out.",
       "fame": "iconic",
       "reference": "https://attack.mitre.org/techniques/T1055/012/",
       "series": [
@@ -313,6 +338,12 @@
       "mat": {
         "slots": [
           "finding"
+        ],
+        "as": "process hollowing"
+      },
+      "spec": {
+        "slots": [
+          "rating"
         ],
         "as": "process hollowing"
       }
@@ -334,6 +365,12 @@
           "source",
           "finding"
         ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "Stuxnet"
       }
     },
     {
@@ -352,6 +389,12 @@
         "slots": [
           "finding"
         ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "WannaCry"
       }
     },
     {
@@ -364,7 +407,13 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "NotPetya"
+      }
     },
     {
       "text": "Conficker · S0608",
@@ -376,7 +425,13 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "Conficker"
+      }
     },
     {
       "text": "Emotet · S0367",
@@ -395,6 +450,12 @@
           "source",
           "finding"
         ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "Emotet"
       }
     },
     {
@@ -517,6 +578,11 @@
         "slots": [
           "note"
         ]
+      },
+      "spec": {
+        "slots": [
+          "note"
+        ]
       }
     },
     {
@@ -529,8 +595,19 @@
       "series": [
         "galley-proof",
         "catalog-card",
-        "specimen"
-      ]
+        "specimen",
+        "cutting-mat"
+      ],
+      "spec": {
+        "slots": [
+          "note"
+        ]
+      },
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
     },
     {
       "text": "Time Based Evasion → Time Based Checks",
@@ -579,7 +656,12 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
     },
     {
       "text": "T1480.001 Environmental Keying",
@@ -598,12 +680,17 @@
           "finding"
         ],
         "as": "environmental keying"
+      },
+      "spec": {
+        "slots": [
+          "class"
+        ]
       }
     },
     {
       "text": "MBC · Malware Behavior Catalog",
       "type": "framework",
-      "code": "v3.2",
+      "code": "",
       "meaning": "MITRE's malware-analysis catalog; adds two objectives ATT&CK lacks: OB0001 Anti-Behavioral, OB0002 Anti-Static.",
       "fame": "niche",
       "reference": "https://github.com/MBCProject/mbc-markdown/releases",
@@ -621,7 +708,12 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
     },
     {
       "text": "B0002 Debugger Evasion",
@@ -633,7 +725,12 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
     },
     {
       "text": "B0009 Virtual Machine Detection",
@@ -645,7 +742,12 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
     },
     {
       "text": "SIDT (red pill) · B0009.030",
@@ -661,6 +763,12 @@
       "mat": {
         "slots": [
           "finding"
+        ],
+        "as": "SIDT (red pill)"
+      },
+      "spec": {
+        "slots": [
+          "rating"
         ],
         "as": "SIDT (red pill)"
       }
@@ -709,6 +817,12 @@
           "finding"
         ],
         "as": "stack strings"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "stack strings"
       }
     },
     {
@@ -726,6 +840,12 @@
       "mat": {
         "slots": [
           "finding"
+        ],
+        "as": "opaque predicate"
+      },
+      "spec": {
+        "slots": [
+          "rating"
         ],
         "as": "opaque predicate"
       }
@@ -748,6 +868,12 @@
           "finding"
         ],
         "as": "API hammering"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "API hammering"
       }
     },
     {
@@ -768,6 +894,12 @@
           "finding"
         ],
         "as": "TLS callbacks"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "TLS callbacks"
       }
     },
     {
@@ -784,7 +916,14 @@
       "mat": {
         "slots": [
           "finding"
-        ]
+        ],
+        "as": "VMProtect"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "VMProtect"
       }
     },
     {
@@ -813,7 +952,16 @@
       "reference": "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format",
       "series": [
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "0x10b = PE32 · 0x20b = PE32+"
+      },
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "0x8664 AMD64 · 0xAA64 ARM64",
@@ -824,7 +972,16 @@
       "reference": "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format",
       "series": [
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "0x8664 = AMD64 · 0xAA64 = ARM64"
+      },
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "0xfeedfacf · 0xcffaedfe",
@@ -835,7 +992,16 @@
       "reference": "https://github.com/apple-oss-distributions/xnu/blob/main/EXTERNAL_HEADERS/mach-o/loader.h",
       "series": [
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "0xfeedfacf = MH_MAGIC_64"
+      },
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "PE\\0\\0",
@@ -846,7 +1012,16 @@
       "reference": "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format",
       "series": [
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "50 45 00 00 = PE\\0\\0"
+      },
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "e_lfanew @ 0x3C",
@@ -857,7 +1032,15 @@
       "reference": "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format",
       "series": [
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Rich header",
@@ -887,6 +1070,12 @@
           "control"
         ],
         "as": "DYNAMIC_BASE"
+      },
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "DYNAMIC_BASE = 0x0040"
       }
     },
     {
@@ -898,7 +1087,15 @@
       "reference": "https://github.com/bminor/glibc/blob/master/elf/elf.h",
       "series": [
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "LC_UNIXTHREAD → LC_MAIN",
@@ -955,7 +1152,7 @@
       }
     },
     {
-      "text": "Cuckoo 2.x → CAPEv2",
+      "text": "Cuckoo → CAPEv2",
       "type": "tool",
       "code": "CAPEv2",
       "meaning": "Cuckoo 2.x is unmaintained, repo archived April 2021; CAPE (Config And Payload Extraction) derives from Cuckoo v1.",
@@ -970,7 +1167,7 @@
       "text": "dnSpy → dnSpyEx",
       "type": "tool",
       "code": "dnSpyEx",
-      "meaning": "The .NET debugger/decompiler dnSpy was archived Dec 21, 2020; the dnSpyEx fork continues it (v6.6.0).",
+      "meaning": "The .NET debugger and decompiler dnSpy was archived Dec 21, 2020; the dnSpyEx fork continues it.",
       "fame": "niche",
       "reference": "https://github.com/dnSpyEx/dnSpy",
       "series": [
@@ -981,8 +1178,8 @@
     {
       "text": "YARA → YARA-X",
       "type": "tool",
-      "code": "YARA-X 1.0.0",
-      "meaning": "YARA-X 1.0.0 went stable June 4, 2025; original YARA now gets only critical fixes. Current: 1.20.0.",
+      "code": "",
+      "meaning": "YARA-X, the Rust rewrite, went stable on June 4, 2025; original YARA now gets only critical fixes.",
       "fame": "niche",
       "reference": "https://virustotal.github.io/yara-x/blog/yara-x-is-stable/",
       "series": [
@@ -1012,7 +1209,7 @@
     {
       "text": "capa",
       "type": "tool",
-      "code": "v9.4.0",
+      "code": "",
       "meaning": "FLARE tool that detects capabilities in executables and maps them to ATT&CK and MBC.",
       "fame": "niche",
       "reference": "https://github.com/mandiant/capa",
@@ -1067,13 +1264,7 @@
       "series": [
         "specimen",
         "catalog-card"
-      ],
-      "spec": {
-        "slots": [
-          "hero"
-        ],
-        "as": "FLIRT"
-      }
+      ]
     },
     {
       "text": "F5",
@@ -1123,25 +1314,6 @@
       ]
     },
     {
-      "text": "D3-FCR File Content Rules",
-      "type": "id",
-      "code": "D3-FCR",
-      "meaning": "D3FEND technique: a pattern-matching rule language over file content; synonyms File Signatures, File Content Signatures.",
-      "fame": "niche",
-      "reference": "https://d3fend.mitre.org/technique/d3f:FileContentRules/",
-      "series": [
-        "cutting-mat",
-        "catalog-card",
-        "specimen"
-      ],
-      "mat": {
-        "slots": [
-          "control"
-        ],
-        "as": "D3-FCR"
-      }
-    },
-    {
       "text": "Flame · S0143 · sKyWIper",
       "type": "id",
       "code": "S0143",
@@ -1151,7 +1323,13 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "Flame"
+      }
     },
     {
       "text": "Elk Cloner (1982)",
@@ -1174,18 +1352,15 @@
       "series": [
         "galley-proof",
         "specimen"
-      ]
-    },
-    {
-      "text": "Flare-On",
-      "type": "term",
-      "code": "2014",
-      "meaning": "The FLARE team's annual single-player reverse-engineering CTF, held every fall since Flare-On 1 in 2014.",
-      "fame": "niche",
-      "reference": "https://flare-on.com/",
-      "series": [
-        "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Control-flow flattening",
@@ -1215,7 +1390,7 @@
       "text": "System breakpoint reached!",
       "type": "status-line",
       "code": "x64dbg",
-      "meaning": "x64dbg log line printed when a new debuggee stops at the Windows loader's system breakpoint, before any of its own code runs.",
+      "meaning": "x64dbg log line printed when a new debuggee stops at the Windows loader's system breakpoint, before its own code.",
       "fame": "niche",
       "reference": "https://github.com/x64dbg/x64dbg/blob/development/src/dbg/debugger.cpp",
       "series": [
@@ -1240,7 +1415,7 @@
       "text": "call analysis failed",
       "type": "status-line",
       "code": "Hex-Rays",
-      "meaning": "Hex-Rays decompiler graceful failure: it could not determine a call's calling convention and parameters. Its docs call it the most painful error message.",
+      "meaning": "Hex-Rays failure: it could not infer a call's calling convention and parameters; its docs call it the most painful.",
       "fame": "niche",
       "reference": "https://docs.hex-rays.com/core/decompiler/failures",
       "series": [
@@ -1273,21 +1448,10 @@
       }
     },
     {
-      "text": "Reflections on Trusting Trust",
-      "type": "phrase",
-      "code": "",
-      "meaning": "Ken Thompson's 1984 Turing Award lecture: a trojaned compiler binary plants a backdoor that no source-level review can find. Its moral: you can't trust code you did not totally create yourself.",
-      "fame": "iconic",
-      "reference": "https://dl.acm.org/doi/10.1145/358198.358210",
-      "series": [
-        "cutting-mat"
-      ]
-    },
-    {
       "text": "WYSINWYX",
       "type": "phrase",
       "code": "",
-      "meaning": "'What You See Is Not What You eXecute' (Balakrishnan and Reps): source code can hide behavior the compiled machine code has, so analyze the binary.",
+      "meaning": "Balakrishnan and Reps' 'What You See Is Not What You eXecute': the binary can differ from its source, so analyze it.",
       "fame": "niche",
       "reference": "https://research.cs.wisc.edu/wpis/papers/wysinwyx.final.pdf",
       "series": [
@@ -1298,7 +1462,7 @@
       "text": "mov is Turing-complete",
       "type": "phrase",
       "code": "",
-      "meaning": "Title and result of Stephen Dolan's 2013 paper: x86 mov, plus one jmp back to the start, can simulate any Turing machine. It inspired the movfuscator, a compiler that emits only mov instructions to defeat reverse engineering.",
+      "meaning": "Stephen Dolan's 2013 paper showing x86 mov alone can compute anything; it inspired the movfuscator compiler.",
       "fame": "niche",
       "reference": "https://github.com/xoreaxeaxeax/movfuscator",
       "series": [
@@ -1473,7 +1637,7 @@
       "text": "CRC-32 check value",
       "type": "snippet",
       "code": "CRC-32",
-      "meaning": "Known-answer test: The standard CRC-32 check value.",
+      "meaning": "Known-answer test: the CRC-32 of the ASCII string 123456789 is 0xCBF43926, the catalogue's standard check value.",
       "fame": "niche",
       "reference": "https://reveng.sourceforge.io/crc-catalogue/all.htm",
       "series": [
@@ -1497,7 +1661,8 @@
       "fame": "niche",
       "reference": "https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html",
       "series": [
-        "specimen"
+        "specimen",
+        "galley-proof"
       ],
       "spec": {
         "slots": [
@@ -1517,7 +1682,8 @@
       "fame": "niche",
       "reference": "https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html",
       "series": [
-        "specimen"
+        "specimen",
+        "galley-proof"
       ],
       "spec": {
         "slots": [
@@ -1528,6 +1694,177 @@
       "mat": {
         "slots": []
       }
+    },
+    {
+      "text": "SUNBURST · 2020",
+      "type": "artifact",
+      "code": "",
+      "meaning": "Backdoor in trojanized SolarWinds Orion updates, disclosed Dec 2020; a landmark supply-chain detection case.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Binwalk v2 → Binwalk v3",
+      "type": "tool",
+      "code": "",
+      "meaning": "Binwalk v3 is the Rust rewrite of the firmware and embedded-file analysis tool.",
+      "fame": "niche",
+      "reference": "https://github.com/ReFirmLabs/binwalk",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ],
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "GDB",
+      "type": "tool",
+      "code": "",
+      "meaning": "The GNU Project debugger, for seeing what a program does while it runs or at the moment it crashed.",
+      "fame": "iconic",
+      "reference": "https://www.sourceware.org/gdb/",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "OllyDbg",
+      "type": "tool",
+      "code": "",
+      "meaning": "Classic 32-bit assembler-level debugger for Windows, long a staple of unpacking and crackme work.",
+      "fame": "iconic",
+      "reference": "https://www.ollydbg.de/",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ]
+    },
+    {
+      "text": "Mirai (2016)",
+      "type": "term",
+      "code": "2016",
+      "meaning": "Botnet malware that infects vulnerable IoT devices for DDoS attacks; its source code was published in September 2016.",
+      "fame": "iconic",
+      "reference": "https://www.cisa.gov/news-events/alerts/2016/10/14/heightened-ddos-threat-posed-mirai-and-other-botnets",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "source",
+          "finding"
+        ],
+        "as": "Mirai"
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "Mirai"
+      }
+    },
+    {
+      "text": "Morris worm (1988)",
+      "type": "term",
+      "code": "1988",
+      "meaning": "Worm released on November 2, 1988; within a day it hit an estimated 6,000 of some 60,000 Internet-connected computers.",
+      "fame": "iconic",
+      "reference": "https://www.fbi.gov/news/stories/morris-worm-30-years-since-first-major-attack-on-internet-110218",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "source",
+          "finding"
+        ],
+        "as": "Morris worm"
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "Morris worm"
+      }
+    },
+    {
+      "text": "Zeus (Zbot)",
+      "type": "term",
+      "code": "",
+      "meaning": "Banking trojan family from the Zeus crimeware kit; its source leaked in 2011, seeding Citadel and Gameover Zeus.",
+      "fame": "iconic",
+      "reference": "https://www.europol.europa.eu/sites/default/files/documents/banking_trojans_from_stone_age_to_space_era.pdf",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "source",
+          "finding"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
+    },
+    {
+      "text": "Control-flow graph",
+      "type": "term",
+      "code": "",
+      "meaning": "Directed graph of a function's basic blocks, with edges for the jumps between them; a disassembler's graph view.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Basic block",
+      "type": "term",
+      "code": "",
+      "meaning": "A straight-line run of instructions with a single entry and a single exit; the nodes of a control-flow graph.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "Calling convention",
+      "type": "term",
+      "code": "",
+      "meaning": "The rules fixing where a call's arguments, return value and saved registers live; cdecl and the System V ABI are two.",
+      "fame": "iconic",
+      "reference": "https://gitlab.com/x86-psABIs/x86-64-ABI",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
     }
   ]
 }

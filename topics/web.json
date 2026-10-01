@@ -59,7 +59,7 @@
       "text": "Content-Security-Policy",
       "type": "framework",
       "code": "CSP",
-      "meaning": "Response header that allowlists where scripts, styles and frames may load from. Current draft: CSP Level 3.",
+      "meaning": "Response header that allowlists where scripts, styles and frames may load from. Specified in CSP Level 3.",
       "fame": "iconic",
       "reference": "https://www.w3.org/TR/CSP3/",
       "series": [
@@ -155,13 +155,19 @@
         "slots": [
           "finding"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "SSRF"
       }
     },
     {
       "text": "IDOR · CWE-639",
       "type": "id",
       "code": "CWE-639",
-      "meaning": "Insecure Direct Object Reference; closest CWE: Authorization Bypass Through User-Controlled Key. WSTG-ATHZ-04.",
+      "meaning": "Insecure Direct Object Reference: a request names an object by key and the app skips the ownership check. WSTG-ATHZ-04.",
       "fame": "iconic",
       "reference": "https://cwe.mitre.org/data/definitions/639.html",
       "series": [
@@ -173,6 +179,12 @@
         "slots": [
           "finding"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "IDOR"
       }
     },
     {
@@ -190,7 +202,7 @@
       "text": "Open Redirect · CWE-601",
       "type": "id",
       "code": "CWE-601",
-      "meaning": "URL Redirection to Untrusted Site. Mapped to A01:2025 Broken Access Control.",
+      "meaning": "A redirect target taken from user input sends users from a trusted site to an untrusted one. Mapped to A01:2025.",
       "fame": "iconic",
       "reference": "https://cwe.mitre.org/data/definitions/601.html",
       "series": [
@@ -201,7 +213,7 @@
       "text": "XXE · CWE-611",
       "type": "id",
       "code": "CWE-611",
-      "meaning": "XML External Entity: Improper Restriction of XML External Entity Reference.",
+      "meaning": "XML External Entity: a parser resolves attacker-defined entities, exposing local files or reaching internal hosts.",
       "fame": "iconic",
       "reference": "https://cwe.mitre.org/data/definitions/611.html",
       "series": [
@@ -213,6 +225,12 @@
         "slots": [
           "finding"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "XXE"
       }
     },
     {
@@ -291,7 +309,7 @@
       "text": "SameSite=Lax",
       "type": "snippet",
       "code": "CWE-1275",
-      "meaning": "Cookie withheld on cross-site subrequests, sent on top-level GET navigations. Chrome's default since v80.",
+      "meaning": "Cookie withheld on cross-site subrequests, sent on top-level GET navigations. Chrome's default since 2020.",
       "fame": "iconic",
       "reference": "https://www.chromium.org/updates/same-site/",
       "series": [
@@ -321,7 +339,14 @@
         "slots": [
           "flow",
           "source"
-        ]
+        ],
+        "as": "JWT"
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "JWT"
       }
     },
     {
@@ -340,24 +365,6 @@
           "flow"
         ],
         "as": "OAuth 2.0"
-      }
-    },
-    {
-      "text": "A05:2025 Injection",
-      "type": "id",
-      "code": "A05:2025",
-      "meaning": "OWASP Top 10:2025 category covering XSS and SQL injection among 37 mapped CWEs.",
-      "fame": "iconic",
-      "reference": "https://top10.owasp.org/2025/A05_2025-Injection/",
-      "series": [
-        "cutting-mat",
-        "specimen",
-        "catalog-card"
-      ],
-      "mat": {
-        "slots": [
-          "finding"
-        ]
       }
     },
     {
@@ -387,6 +394,12 @@
         "slots": [
           "finding"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "BOLA"
       }
     },
     {
@@ -397,7 +410,6 @@
       "fame": "niche",
       "reference": "https://api-security.owasp.org/editions/2023/en/0x11-t10/",
       "series": [
-        "specimen",
         "catalog-card"
       ]
     },
@@ -411,7 +423,12 @@
       "series": [
         "specimen",
         "galley-proof"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "status"
+        ]
+      }
     },
     {
       "text": "403 Forbidden",
@@ -426,6 +443,11 @@
         "galley-proof"
       ],
       "mat": {
+        "slots": [
+          "status"
+        ]
+      },
+      "spec": {
         "slots": [
           "status"
         ]
@@ -515,7 +537,6 @@
       "fame": "niche",
       "reference": "https://api-security.owasp.org/editions/2023/en/0x11-t10/",
       "series": [
-        "specimen",
         "catalog-card"
       ]
     },
@@ -528,7 +549,6 @@
       "reference": "https://api-security.owasp.org/editions/2023/en/0x11-t10/",
       "series": [
         "cutting-mat",
-        "specimen",
         "catalog-card"
       ],
       "mat": {
@@ -545,7 +565,6 @@
       "fame": "niche",
       "reference": "https://api-security.owasp.org/editions/2023/en/0x11-t10/",
       "series": [
-        "specimen",
         "catalog-card"
       ]
     },
@@ -557,7 +576,6 @@
       "fame": "niche",
       "reference": "https://api-security.owasp.org/editions/2023/en/0x11-t10/",
       "series": [
-        "specimen",
         "catalog-card"
       ]
     },
@@ -569,7 +587,6 @@
       "fame": "niche",
       "reference": "https://api-security.owasp.org/editions/2023/en/0x11-t10/",
       "series": [
-        "specimen",
         "catalog-card"
       ]
     },
@@ -581,7 +598,6 @@
       "fame": "niche",
       "reference": "https://api-security.owasp.org/editions/2023/en/0x11-t10/",
       "series": [
-        "specimen",
         "catalog-card"
       ]
     },
@@ -593,7 +609,6 @@
       "fame": "niche",
       "reference": "https://api-security.owasp.org/editions/2023/en/0x11-t10/",
       "series": [
-        "specimen",
         "catalog-card"
       ]
     },
@@ -605,7 +620,6 @@
       "fame": "niche",
       "reference": "https://api-security.owasp.org/editions/2023/en/0x11-t10/",
       "series": [
-        "specimen",
         "catalog-card"
       ]
     },
@@ -629,13 +643,16 @@
       "reference": "https://cwe.mitre.org/data/definitions/444.html",
       "series": [
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Prototype Pollution · CWE-1321",
       "type": "id",
       "code": "CWE-1321",
-      "meaning": "Improperly Controlled Modification of Object Prototype Attributes; CWE lists JavaScript as its platform.",
+      "meaning": "Untrusted input adds properties to a JavaScript object's prototype, so every object inheriting from it changes.",
       "fame": "niche",
       "reference": "https://cwe.mitre.org/data/definitions/1321.html",
       "series": [
@@ -646,7 +663,7 @@
       "text": "SSTI · CWE-1336",
       "type": "id",
       "code": "CWE-1336",
-      "meaning": "Server-side template injection: Improper Neutralization of Special Elements Used in a Template Engine.",
+      "meaning": "Server-side template injection: untrusted input is evaluated as template code by the server's template engine.",
       "fame": "niche",
       "reference": "https://cwe.mitre.org/data/definitions/1336.html",
       "series": [
@@ -658,13 +675,19 @@
         "slots": [
           "finding"
         ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "SSTI"
       }
     },
     {
       "text": "CSWSH · CWE-1385",
       "type": "id",
       "code": "CWE-1385",
-      "meaning": "Cross-Site WebSocket Hijacking; CWE-1385 Missing Origin Validation in WebSockets.",
+      "meaning": "Cross-Site WebSocket Hijacking: another site opens a WebSocket with the user's cookies because Origin goes unchecked.",
       "fame": "niche",
       "reference": "https://cwe.mitre.org/data/definitions/1385.html",
       "series": [
@@ -717,7 +740,10 @@
       "reference": "",
       "series": [
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "CSRF / SSRF",
@@ -728,7 +754,10 @@
       "reference": "",
       "series": [
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Web Cache Deception",
@@ -793,7 +822,10 @@
       "reference": "",
       "series": [
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Self-XSS",
@@ -977,6 +1009,11 @@
         "slots": [
           "status"
         ]
+      },
+      "spec": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {
@@ -988,7 +1025,6 @@
       "reference": "https://www.rfc-editor.org/rfc/rfc7636",
       "series": [
         "cutting-mat",
-        "specimen",
         "catalog-card"
       ],
       "mat": {
@@ -1006,7 +1042,7 @@
       "fame": "niche",
       "reference": "https://wstg.owasp.org/v4.2/",
       "series": [
-        "specimen"
+        "catalog-card"
       ]
     },
     {
@@ -1025,18 +1061,6 @@
           "finding"
         ]
       }
-    },
-    {
-      "text": "OWASP ZAP → ZAP",
-      "type": "term",
-      "code": "",
-      "meaning": "Not an OWASP project since August 2023; the correct name is 'ZAP' or 'ZAP by Checkmarx'.",
-      "fame": "niche",
-      "reference": "https://www.zaproxy.org/docs/nowaspzap/",
-      "series": [
-        "galley-proof",
-        "catalog-card"
-      ]
     },
     {
       "text": "Feature-Policy → Permissions-Policy",
@@ -1108,8 +1132,8 @@
     {
       "text": "PNA → LNA",
       "type": "term",
-      "code": "Chrome 142",
-      "meaning": "Private Network Access was put on hold; Local Network Access replaces it, with a prompt in Chrome 142.",
+      "code": "",
+      "meaning": "Private Network Access was put on hold; Local Network Access replaces it, with a permission prompt.",
       "fame": "niche",
       "reference": "https://developer.chrome.com/blog/local-network-access",
       "series": [
@@ -1143,42 +1167,6 @@
       ]
     },
     {
-      "text": "A10:2021 SSRF → A01:2025",
-      "type": "id",
-      "code": "A01:2025",
-      "meaning": "SSRF lost its own Top 10 slot and was rolled into Broken Access Control.",
-      "fame": "niche",
-      "reference": "https://top10.owasp.org/2025/",
-      "series": [
-        "galley-proof",
-        "catalog-card"
-      ]
-    },
-    {
-      "text": "A06:2021 → A03:2025",
-      "type": "id",
-      "code": "A03:2025",
-      "meaning": "Vulnerable and Outdated Components grew into Software Supply Chain Failures.",
-      "fame": "niche",
-      "reference": "https://top10.owasp.org/2025/",
-      "series": [
-        "galley-proof",
-        "catalog-card"
-      ]
-    },
-    {
-      "text": "A7:2017 XSS → Injection",
-      "type": "id",
-      "code": "A03:2021",
-      "meaning": "XSS lost its own slot in 2021 and joined Injection (now A05:2025).",
-      "fame": "niche",
-      "reference": "https://top10.owasp.org/2021/A03_2021-Injection/",
-      "series": [
-        "galley-proof",
-        "catalog-card"
-      ]
-    },
-    {
       "text": "API6:2019 → API3:2023",
       "type": "id",
       "code": "API3:2023",
@@ -1194,22 +1182,26 @@
       "text": "Filter Input, Escape Output",
       "type": "phrase",
       "code": "",
-      "meaning": "Web-app security maxim (FIEO) from a 2005 post, whose premise is that most vulnerabilities trace back to failing to filter input or escape output.",
+      "meaning": "Web-app security maxim (FIEO) from a 2005 post: most flaws come from input left unfiltered or output left unescaped.",
       "fame": "niche",
       "reference": "https://shiflett.org/blog/2005/filter-input-escape-output",
       "series": [
-        "cutting-mat"
+        "cutting-mat",
+        "galley-proof",
+        "catalog-card"
       ]
     },
     {
       "text": "Minimize user data",
       "type": "phrase",
       "code": "",
-      "meaning": "W3C TAG Web Platform Design Principle 1.10: design features to work with the minimum data needed for users' goals, which limits disclosure and misuse.",
+      "meaning": "W3C TAG web design principle 1.10: use the minimum user data a goal needs, which limits disclosure and misuse.",
       "fame": "niche",
       "reference": "https://www.w3.org/TR/design-principles/#data-minimization",
       "series": [
-        "cutting-mat"
+        "cutting-mat",
+        "galley-proof",
+        "catalog-card"
       ]
     },
     {
@@ -1217,7 +1209,7 @@
       "type": "term",
       "code": "SOP",
       "meaning": "SOP lets any page send a cross-origin request but hides the response unless the other origin opts in with CORS.",
-      "fame": "iconic",
+      "fame": "niche",
       "reference": "https://fetch.spec.whatwg.org/#http-cors-protocol",
       "series": [
         "specimen"
@@ -1236,7 +1228,7 @@
       "text": "A cookie follows the site",
       "type": "term",
       "code": "",
-      "meaning": "Cookies ignore port and, by default, the scheme, so a site and its subdomains share them; SameSite and the __Host- prefix narrow that.",
+      "meaning": "Cookies are scoped by host, not port or scheme, and Domain widens them to subdomains; SameSite and __Host- narrow that.",
       "fame": "niche",
       "reference": "https://www.rfc-editor.org/info/rfc6265",
       "series": [
@@ -1295,7 +1287,7 @@
       "text": "427 Unassigned",
       "type": "status-line",
       "code": "IANA",
-      "meaning": "Status 427 has no assignment in the IANA registry; a client meets it as an unknown code and falls back to its class, 4xx.",
+      "meaning": "Status 427 is unassigned in the IANA registry; a client treats it as an unknown code and falls back to its class, 4xx.",
       "fame": "niche",
       "reference": "https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml",
       "series": [
@@ -1314,7 +1306,7 @@
       "text": "509 Unassigned",
       "type": "status-line",
       "code": "IANA",
-      "meaning": "Status 509 has no assignment in the IANA registry; a client meets it as an unknown code and falls back to its class, 5xx.",
+      "meaning": "Status 509 is unassigned in the IANA registry; a client treats it as an unknown code and falls back to its class, 5xx.",
       "fame": "niche",
       "reference": "https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml",
       "series": [
@@ -1462,6 +1454,210 @@
         "as": "JWT header = eyJhbGciOiJIUzI1NiIsInR5cCI6…"
       },
       "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "404 Not Found",
+      "type": "id",
+      "code": "RFC 9110 §15.5.5",
+      "meaning": "HTTP status: the origin server found no current representation for the target resource.",
+      "fame": "iconic",
+      "reference": "https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "418 I'm a teapot",
+      "type": "id",
+      "code": "RFC 2324",
+      "meaning": "April Fools HTCPCP status (1998); RFC 9110 lists 418 as (Unused) and keeps it reserved.",
+      "fame": "iconic",
+      "reference": "https://www.rfc-editor.org/rfc/rfc9110.html#name-418-unused",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "OS Command Injection · CWE-78",
+      "type": "id",
+      "code": "CWE-78",
+      "meaning": "Untrusted input changes an operating-system command the application builds. Ranked #9 in the 2025 CWE Top 25.",
+      "fame": "iconic",
+      "reference": "https://cwe.mitre.org/data/definitions/78.html",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "CWE-78"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "OS cmd injection"
+      }
+    },
+    {
+      "text": "Unrestricted File Upload · CWE-434",
+      "type": "id",
+      "code": "CWE-434",
+      "meaning": "The application accepts uploads of a dangerous file type and its environment then processes them. #12 in 2025.",
+      "fame": "iconic",
+      "reference": "https://cwe.mitre.org/data/definitions/434.html",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "CWE-434"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "unrestricted upload"
+      }
+    },
+    {
+      "text": "Session Fixation · CWE-384",
+      "type": "id",
+      "code": "CWE-384",
+      "meaning": "A session identifier survives login, so an attacker who knew it before can use the authenticated session.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/384.html",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "CWE-384"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "session fixation"
+      }
+    },
+    {
+      "text": "Mass Assignment · CWE-915",
+      "type": "id",
+      "code": "CWE-915",
+      "meaning": "Input sets object attributes with no control over which ones; the weakness API3:2023 cites for mass assignment.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/915.html",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "CWE-915"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "mass assignment"
+      }
+    },
+    {
+      "text": "DNS rebinding",
+      "type": "term",
+      "code": "CAPEC-275",
+      "meaning": "A hostname first resolves to the attacker, then to an internal address, so the browser keeps trusting one origin.",
+      "fame": "niche",
+      "reference": "https://capec.mitre.org/data/definitions/275.html",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow",
+          "finding"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ]
+      }
+    },
+    {
+      "text": "CORS preflight",
+      "type": "term",
+      "code": "",
+      "meaning": "The OPTIONS request a browser sends to ask a server whether a cross-origin request may follow. Defined in Fetch.",
+      "fame": "niche",
+      "reference": "https://fetch.spec.whatwg.org/#cors-preflight-request",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "innerHTML",
+      "type": "term",
+      "code": "",
+      "meaning": "DOM property that parses a string as HTML; fed untrusted input it is a classic DOM XSS sink.",
+      "fame": "iconic",
+      "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ]
+      },
+      "spec": {
         "slots": []
       }
     }

@@ -49,7 +49,7 @@ Each topic file (`<slug>.json`) holds a list of terms:
 
 The word editor offers a term with a hint for the series on the sheet first, under *Suggested*, in its `as` form; terms without one are offered by `type` further down (a hero, a waterfall phrase, a confusable pair and a rating are offered only through a `spec` hint). `node app/words.test.mjs` checks every `mat` and `spec` hint and every `phrase`.
 
-Two conventions keep the series apart. A term written for one series only carries an empty hint for the other (`"mat": {"slots": []}` on a Specimen-only term), so the other series does not offer it by type. A status line too long for a phone prompt beside a 20-character handle carries an empty hint for that series too (`"spec": {"slots": []}`).
+A term tagged only for series that are not built yet (`galley-proof`, `catalog-card`) is never offered by type. Two conventions keep the built series apart. A term written for one series only carries an empty hint for the other (`"mat": {"slots": []}` on a Specimen-only term), so the other series does not offer it by type. A status line too long for a phone prompt beside a 20-character handle carries an empty hint for that series too (`"spec": {"slots": []}`).
 
 ## Trademarks and References
 
