@@ -1,7 +1,7 @@
 // The word editor's logic, without the DOM: which words a sheet can take in each slot, and whether they fit.
 // Options come from the volume's own lexicon (topics/<topic>.json). A term with a hint for the series (`mat` for
 // Cutting Mat, `spec` for Specimen) is offered only in the slots it names, written as its `as` form; a term
-// without one is offered by its word type. Every option is checked against the slot table and the overlap checker
+// without one is offered by its word type, if its `series` names a built series. Every option is checked against the slot table and the overlap checker
 // (app/check.js) in desktop, wide and phone. What is series-specific (which slots, which words, how a value is
 // drawn and fitted, what stays fixed, how a failure reads) comes from the series' rules module.
 import { family, get, len, overlaps, slotRules } from './check.js';
@@ -36,7 +36,7 @@ export function pool({ entry, key, shipped, lexicon, index, presets }) {
   if (S.poolOf?.(key, { entry, terms, index, presets, add })) return out;      // a slot with a pool of its own
   const { slot, types } = S.kindsOf(key), iconic = (t) => (t.fame === 'iconic' ? 0 : 1);
   const hinted = terms.filter((t) => t[S.hint]?.slots?.includes(slot)).sort((x, y) => iconic(x) - iconic(y));
-  const typed = terms.filter((t) => !t[S.hint] && types.includes(t.type)).sort((x, y) => iconic(x) - iconic(y));
+  const typed = terms.filter((t) => !t[S.hint] && t.series.some((s) => s in SERIES) && types.includes(t.type)).sort((x, y) => iconic(x) - iconic(y));
   for (const [group, list] of [['suggested', hinted], ['more', typed]]) for (const t of list) for (const o of S.offer(key, t, group === 'suggested', shipped))
     add(o.value, { group, code: o.code ?? (t.code && t.code !== t.text ? t.code : ''), meaning: o.meaning ?? t.meaning });
   return out;

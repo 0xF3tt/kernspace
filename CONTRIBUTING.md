@@ -13,7 +13,7 @@ By opening a pull request or submitting content, you confirm that you have the r
 We welcome contributions to existing topic lexicons (`topics/<topic>.json`):
 1. **Verifiable sources:** Every canonical ID, number, or standard must cite an official reference (e.g. RFC, OWASP, MITRE CWE/ATT&CK, NIST).
 2. **Series hints:** a term can say where it reads right on each series (`mat`, `spec`); see [`topics/README.md`](topics/README.md).
-3. **Field lengths:** `text` is at most 38 characters and `meaning` at most 120. `node app/lexicon.test.mjs` enforces them, along with the allowed `type`, `fame` and `series` values, the shape of the hints and duplicates. A handful of older entries still run past 120 and are listed in `app/lexicon.legacy.json`; shorten one and delete its line.
+3. **Field lengths:** `text` is at most 38 characters and `meaning` at most 120. `node app/lexicon.test.mjs` enforces them, along with the allowed `type`, `fame` and `series` values, the shape of the hints and duplicates.
 4. **No sensitive data:** Public terminology only. Never include real personal emails, internal hostnames, credentials, or private keys.
 5. **Validation:** Always run the test suite locally before opening a pull request:
    ```sh

@@ -5,7 +5,7 @@
       "text": "OWASP Top 10:2025",
       "type": "framework",
       "code": "OWASP Top 10:2025",
-      "meaning": "Current edition of OWASP's awareness list of the ten most critical web application security risks.",
+      "meaning": "The 2025 edition of OWASP's awareness list of the ten most critical web application security risks.",
       "fame": "iconic",
       "reference": "https://top10.owasp.org/2025/",
       "series": [
@@ -35,13 +35,18 @@
           "finding"
         ],
         "as": "A01:2025"
+      },
+      "spec": {
+        "slots": [
+          "class"
+        ]
       }
     },
     {
       "text": "Security Misconfiguration",
       "type": "id",
       "code": "A02:2025",
-      "meaning": "A02 in OWASP Top 10:2025, up from #5 in the 2021 edition.",
+      "meaning": "Systems, applications or cloud services configured insecurely; A02 in OWASP Top 10:2025, up from #5 in 2021.",
       "fame": "iconic",
       "reference": "https://top10.owasp.org/2025/0x00_2025-Introduction/",
       "series": [
@@ -59,7 +64,7 @@
       "text": "Software Supply Chain Failures",
       "type": "id",
       "code": "A03:2025",
-      "meaning": "New A03:2025; broadens 2021's outdated-components risk to compromises across the software ecosystem.",
+      "meaning": "A03 in OWASP Top 10:2025: compromises anywhere in the software supply chain; broadens 2021's outdated-components risk.",
       "fame": "niche",
       "reference": "https://top10.owasp.org/2025/0x00_2025-Introduction/",
       "series": [
@@ -90,6 +95,11 @@
           "finding"
         ],
         "as": "A06:2025"
+      },
+      "spec": {
+        "slots": [
+          "class"
+        ]
       }
     },
     {
@@ -173,13 +183,22 @@
       "reference": "https://github.com/OWASP/ASVS/tree/v5.0.0/5.0/en",
       "series": [
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ],
+        "as": "ASVS levels · L1 · L2 · L3"
+      },
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "OWASP SAMM v2",
       "type": "framework",
-      "code": "SAMM 2.2.0",
-      "meaning": "Software Assurance Maturity Model: 5 business functions, 15 security practices; v2.2.0 tagged Jul 6, 2026.",
+      "code": "",
+      "meaning": "OWASP maturity model for software security programs: 5 business functions, 15 security practices, 3 maturity levels.",
       "fame": "niche",
       "reference": "https://github.com/owaspsamm/core/releases/tag/v2.2.0",
       "series": [
@@ -219,7 +238,13 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "out-of-bounds write"
+      }
     },
     {
       "text": "CWE-416 Use After Free",
@@ -231,7 +256,13 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "use after free"
+      }
     },
     {
       "text": "CWE-20 Improper Input Validation",
@@ -274,6 +305,66 @@
           "rating"
         ],
         "as": "hard-coded secrets"
+      }
+    },
+    {
+      "text": "Insecure deserialization",
+      "type": "term",
+      "code": "CWE-502",
+      "meaning": "Deserializing untrusted data into objects, which can run attacker code or forge application state.",
+      "fame": "iconic",
+      "reference": "https://cwe.mitre.org/data/definitions/502.html",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ],
+        "as": "job queue"
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Log injection",
+      "type": "term",
+      "code": "CWE-117",
+      "meaning": "Untrusted input written to logs without neutralization, so an attacker can forge or split entries.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/117.html",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ],
+        "as": "audit log"
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Cleartext storage",
+      "type": "term",
+      "code": "CWE-312",
+      "meaning": "Sensitive data kept unencrypted at rest, readable by anyone who reaches the store or its copies.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/312.html",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ],
+        "as": "backups"
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -343,7 +434,10 @@
       "reference": "",
       "series": [
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Secure SDLC",
@@ -383,7 +477,7 @@
       "text": "SP 800-218 · SSDF",
       "type": "framework",
       "code": "NIST SP 800-218",
-      "meaning": "NIST Secure Software Development Framework v1.1, published Feb 2022; the current final SSDF.",
+      "meaning": "NIST Secure Software Development Framework: secure development practices in four groups; v1.1 published Feb 2022.",
       "fame": "niche",
       "reference": "https://csrc.nist.gov/pubs/sp/800/218/final",
       "series": [
@@ -400,7 +494,16 @@
       "reference": "https://csrc.nist.gov/pubs/sp/800/218/final",
       "series": [
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ],
+        "as": "NIST SSDF · PO · PS · PW · RV"
+      },
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "PW.3 → Moved to PW.4",
@@ -436,7 +539,16 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ],
+        "as": "US Executive Order 14028"
+      },
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Regulation (EU) 2024/2847",
@@ -452,7 +564,8 @@
       "mat": {
         "slots": [
           "note"
-        ]
+        ],
+        "as": "EU Cyber Resilience Act"
       }
     },
     {
@@ -476,7 +589,7 @@
       "text": "STRIDE",
       "type": "framework",
       "code": "STRIDE",
-      "meaning": "Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege.",
+      "meaning": "Threat-classification mnemonic: Spoofing, Tampering, Repudiation, Information disclosure, DoS, Elevation of privilege.",
       "fame": "iconic",
       "reference": "https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats",
       "series": [
@@ -596,7 +709,8 @@
       ],
       "mat": {
         "slots": [
-          "note"
+          "note",
+          "source"
         ],
         "as": "attack surface"
       }
@@ -614,7 +728,8 @@
       ],
       "mat": {
         "slots": [
-          "note"
+          "note",
+          "source"
         ],
         "as": "abuse case"
       }
@@ -629,13 +744,19 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "EoP card game"
+      }
     },
     {
       "text": "Least privilege",
       "type": "term",
       "code": "CWE-250",
-      "meaning": "Grant only the privileges needed; violated by CWE-250 'Execution with Unnecessary Privileges'.",
+      "meaning": "Each account and process gets only the privileges it needs; CWE-250 'Execution with Unnecessary Privileges' violates it.",
       "fame": "iconic",
       "reference": "https://cwe.mitre.org/data/definitions/250.html",
       "series": [
@@ -653,7 +774,7 @@
       "text": "Secure by default",
       "type": "term",
       "code": "SSDF PW.9",
-      "meaning": "Ship with secure settings on; SSDF PW.9: 'Configure Software to Have Secure Settings by Default'.",
+      "meaning": "Products ship with secure settings already on; SSDF PW.9: 'Configure Software to Have Secure Settings by Default'.",
       "fame": "iconic",
       "reference": "https://csrc.nist.gov/pubs/sp/800/218/final",
       "series": [
@@ -671,7 +792,7 @@
       "text": "Economy of mechanism",
       "type": "term",
       "code": "CWE-637",
-      "meaning": "Keep protection simple; violated by CWE-637 'Unnecessary Complexity in Protection Mechanism'.",
+      "meaning": "Design principle that protection stays simple; CWE-637 'Unnecessary Complexity in Protection Mechanism' violates it.",
       "fame": "niche",
       "reference": "https://cwe.mitre.org/data/definitions/637.html",
       "series": [
@@ -691,7 +812,8 @@
       ],
       "mat": {
         "slots": [
-          "note"
+          "note",
+          "control"
         ]
       },
       "spec": {
@@ -713,7 +835,8 @@
       ],
       "mat": {
         "slots": [
-          "note"
+          "note",
+          "control"
         ]
       }
     },
@@ -730,7 +853,8 @@
       ],
       "mat": {
         "slots": [
-          "note"
+          "note",
+          "control"
         ]
       }
     },
@@ -743,7 +867,10 @@
       "reference": "",
       "series": [
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Fuzzing",
@@ -788,7 +915,7 @@
     },
     {
       "text": "SARIF 2.1.0",
-      "type": "id",
+      "type": "framework",
       "code": "SARIF v2.1.0",
       "meaning": "Static Analysis Results Interchange Format; OASIS Standard since March 27, 2020.",
       "fame": "niche",
@@ -807,7 +934,7 @@
       "text": "CodeQL",
       "type": "tool",
       "code": "",
-      "meaning": "GitHub's semantic code analysis engine that lets you query code as if it were data.",
+      "meaning": "GitHub's semantic code analysis engine: it builds a database of the code and runs QL queries against it.",
       "fame": "iconic",
       "reference": "",
       "series": [
@@ -874,7 +1001,7 @@
       "text": "CycloneDX",
       "type": "framework",
       "code": "ECMA-424",
-      "meaning": "OWASP bill-of-materials standard; v1.7 released Oct 21, 2025; standardized by Ecma as ECMA-424.",
+      "meaning": "OWASP bill-of-materials standard, also standardized by Ecma as ECMA-424.",
       "fame": "niche",
       "reference": "https://cyclonedx.org/specification/overview/",
       "series": [
@@ -891,7 +1018,7 @@
       "text": "SPDX 3.0",
       "type": "framework",
       "code": "SPDX 3.0",
-      "meaning": "Linux Foundation SBOM standard; current version 3.0. SPDX 2.2.1 was published as ISO/IEC 5962:2021.",
+      "meaning": "Linux Foundation SBOM standard; 3.0 reorganized the model into profiles. SPDX 2.2.1 is ISO/IEC 5962:2021.",
       "fame": "niche",
       "reference": "https://spdx.dev/use/specifications/",
       "series": [
@@ -919,6 +1046,9 @@
         "slots": [
           "hero"
         ]
+      },
+      "mat": {
+        "slots": []
       }
     },
     {
@@ -947,7 +1077,13 @@
       "reference": "https://github.com/openvex/spec/blob/main/OPENVEX-SPEC.md",
       "series": [
         "galley-proof"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "PURL (ECMA-427)",
@@ -959,13 +1095,22 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "Package-URL (PURL)"
+      },
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "SLSA",
       "type": "framework",
-      "code": "SLSA 1.2",
-      "meaning": "Supply-chain Levels for Software Artifacts; v1.2 is the current approved spec, with Build and Source tracks.",
+      "code": "",
+      "meaning": "Supply-chain Levels for Software Artifacts: graded levels of supply chain integrity, starting with the build.",
       "fame": "iconic",
       "reference": "https://slsa.dev/spec/v1.2/",
       "series": [
@@ -1092,6 +1237,12 @@
           "finding"
         ],
         "as": "CVE-2024-3094"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "xz backdoor"
       }
     },
     {
@@ -1112,22 +1263,10 @@
       }
     },
     {
-      "text": "CVSS Temporal → Threat",
-      "type": "id",
-      "code": "CVSS v4.0",
-      "meaning": "v4.0 renamed the v3.1 Temporal metric group to the Threat metric group and simplified its metrics.",
-      "fame": "niche",
-      "reference": "https://www.first.org/cvss/v4-0/",
-      "series": [
-        "catalog-card",
-        "galley-proof"
-      ]
-    },
-    {
       "text": "Shift left",
       "type": "term",
       "code": "",
-      "meaning": "Move security activities earlier in the life cycle, closer to design and coding.",
+      "meaning": "Practice of moving security activities earlier in the life cycle, closer to design and coding.",
       "fame": "iconic",
       "reference": "",
       "series": [
@@ -1214,19 +1353,10 @@
       "series": [
         "galley-proof",
         "specimen"
-      ]
-    },
-    {
-      "text": "whitelist → allowlist",
-      "type": "term",
-      "code": "",
-      "meaning": "Terminology shift: 'allowlist' and 'denylist' replace the older terms in docs and tools.",
-      "fame": "niche",
-      "reference": "",
-      "series": [
-        "galley-proof",
-        "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "permissions: {}",
@@ -1243,6 +1373,9 @@
         "slots": [
           "note"
         ]
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -1276,7 +1409,7 @@
       "text": "Secure the Weakest Link",
       "type": "phrase",
       "code": "",
-      "meaning": "Security principle: software is only as resilient as its weakest component, so find and fix the most serious risks first. It is Principle 1 in Viega and McGraw's Building Secure Software and a heading in the OWASP Developer Guide.",
+      "meaning": "Principle 1 in Viega and McGraw's Building Secure Software: a system is only as strong as its weakest component.",
       "fame": "iconic",
       "reference": "https://devguide.owasp.org/en/02-foundations/03-security-principles/",
       "series": [
@@ -1287,7 +1420,7 @@
       "text": "Minimize attack surface area",
       "type": "phrase",
       "code": "",
-      "meaning": "First of OWASP's Security by Design Principles: every feature adds risk, so keep the exposed surface as small as possible.",
+      "meaning": "First of OWASP's Security by Design Principles: every feature adds risk, so keep the exposed surface small.",
       "fame": "iconic",
       "reference": "https://wiki.owasp.org/index.php/Security_by_Design_Principles",
       "series": [
@@ -1298,7 +1431,7 @@
       "text": "Be Reluctant to Trust",
       "type": "phrase",
       "code": "",
-      "meaning": "Principle 9 in Viega and McGraw's Building Secure Software (2001): assume the environment is hostile and give trust sparingly.",
+      "meaning": "Principle 9 in Viega and McGraw's Building Secure Software: assume a hostile environment and give trust sparingly.",
       "fame": "niche",
       "reference": "https://www.pearson.de/media/muster/toc/toc_9780672334061.pdf",
       "series": [
@@ -1309,7 +1442,7 @@
       "text": "Least common mechanism",
       "type": "phrase",
       "code": "",
-      "meaning": "Saltzer and Schroeder (1975) design principle g: minimize the mechanism that more than one user shares and every user depends on.",
+      "meaning": "Saltzer and Schroeder's 1975 principle: minimize the mechanism shared by more than one user and relied on by all.",
       "fame": "niche",
       "reference": "https://web.mit.edu/Saltzer/www/publications/protection/Basic.html",
       "series": [
@@ -1340,11 +1473,12 @@
       "text": "Fail closed",
       "type": "term",
       "code": "CWE-636",
-      "meaning": "When a check cannot decide, because of an error or missing data, the safe answer is to deny; CWE-636 names the opposite, failing open.",
+      "meaning": "When a check cannot decide, because of an error or missing data, the safe answer is deny; CWE-636 is the opposite.",
       "fame": "iconic",
       "reference": "https://cwe.mitre.org/data/definitions/636.html",
       "series": [
-        "specimen"
+        "specimen",
+        "cutting-mat"
       ],
       "spec": {
         "slots": [
@@ -1353,7 +1487,10 @@
         "as": "When a check cannot decide, the answer must be no."
       },
       "mat": {
-        "slots": []
+        "slots": [
+          "control"
+        ],
+        "as": "fail closed"
       }
     },
     {
@@ -1418,7 +1555,7 @@
       "text": "a / а",
       "type": "id",
       "code": "U+61/U+430",
-      "meaning": "Latin a and Cyrillic a look the same in most fonts; Unicode UTS #39 lists them as confusable, a way around allow-lists and name checks.",
+      "meaning": "Latin a and Cyrillic a look the same in most fonts; Unicode UTS #39 lists them as confusable, so names can be spoofed.",
       "fame": "niche",
       "reference": "Unicode UTS #39, confusables.txt",
       "series": [
@@ -1534,7 +1671,7 @@
       "text": "PBKDF2-HMAC-SHA1, one round",
       "type": "snippet",
       "code": "RFC 6070",
-      "meaning": "Known-answer test: PBKDF2 of \"password\" with salt \"salt\", one iteration and a 20-byte key; first 64 bits shown.",
+      "meaning": "Known-answer test: PBKDF2 of \"password\" with salt \"salt\", one iteration and a 20-byte key; first 32 bits shown.",
       "fame": "niche",
       "reference": "https://www.rfc-editor.org/info/rfc6070",
       "series": [
@@ -1566,6 +1703,378 @@
         ]
       },
       "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "CWE-778",
+      "type": "id",
+      "code": "CWE-778",
+      "meaning": "Insufficient Logging: security-critical events go unrecorded or lack key details, leaving forensics blind.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/778.html",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
+    },
+    {
+      "text": "A04:2025 Cryptographic Failures",
+      "type": "framework",
+      "code": "A04:2025",
+      "meaning": "OWASP Top 10:2025 category for weak, missing or misused cryptography; down from #2 in 2021.",
+      "fame": "iconic",
+      "reference": "https://owasp.org/Top10/2025/",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "A04:2025"
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "A02:2021 → A04:2025",
+      "type": "id",
+      "code": "A04:2025",
+      "meaning": "OWASP moved Cryptographic Failures from #2 (2021) to #4 (2025); in 2017 it was Sensitive Data Exposure.",
+      "fame": "niche",
+      "reference": "https://owasp.org/Top10/2025/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "A05:2025 Injection",
+      "type": "id",
+      "code": "A05:2025",
+      "meaning": "OWASP Top 10:2025 category covering XSS and SQL injection among 37 mapped CWEs.",
+      "fame": "iconic",
+      "reference": "https://top10.owasp.org/2025/A05_2025-Injection/",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ]
+      }
+    },
+    {
+      "text": "A10:2021 SSRF → A01:2025",
+      "type": "id",
+      "code": "A01:2025",
+      "meaning": "SSRF lost its own Top 10 slot and was rolled into Broken Access Control.",
+      "fame": "niche",
+      "reference": "https://top10.owasp.org/2025/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "A06:2021 → A03:2025",
+      "type": "id",
+      "code": "A03:2025",
+      "meaning": "Vulnerable and Outdated Components grew into Software Supply Chain Failures.",
+      "fame": "niche",
+      "reference": "https://top10.owasp.org/2025/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "A7:2017 XSS → Injection",
+      "type": "id",
+      "code": "A03:2021",
+      "meaning": "XSS lost its own slot in 2021 and joined Injection (now A05:2025).",
+      "fame": "niche",
+      "reference": "https://top10.owasp.org/2021/A03_2021-Injection/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "CWE-732",
+      "type": "id",
+      "code": "CWE-732",
+      "meaning": "Incorrect Permission Assignment for Critical Resource: the weakness behind world-readable storage.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/732.html",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ],
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "loose permissions"
+      }
+    },
+    {
+      "text": "CWE-1188",
+      "type": "id",
+      "code": "CWE-1188",
+      "meaning": "Initialization of a Resource with an Insecure Default: open-by-default services and settings.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/1188.html",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ],
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "insecure defaults"
+      }
+    },
+    {
+      "text": "CWE-16 Configuration",
+      "type": "id",
+      "code": "CWE-16",
+      "meaning": "Obsolete CWE category, mapping prohibited; map the real weakness, e.g. a descendant of CWE-284.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/16.html",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "CWE-295",
+      "type": "id",
+      "code": "CWE-295",
+      "meaning": "Improper Certificate Validation; MASWE-0027 (validation) and MASWE-0028 (pinning) map to it.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/295.html",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "CWE-319",
+      "type": "id",
+      "code": "CWE-319",
+      "meaning": "Cleartext Transmission of Sensitive Information: the usual class for unencrypted-protocol findings.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/319.html",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ],
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "cleartext transit"
+      }
+    },
+    {
+      "text": "CWE-1392 Use of Default Credentials",
+      "type": "id",
+      "code": "CWE-1392",
+      "meaning": "Weakness behind the classic default-password finding; added to CWE in October 2022.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/1392.html",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "CWE-1392"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "default credentials"
+      }
+    },
+    {
+      "text": "Authentication Failures",
+      "type": "id",
+      "code": "A07:2025",
+      "meaning": "A07 in OWASP Top 10:2025: flaws in proving who a user is; was 'Identification and Authentication Failures'.",
+      "fame": "niche",
+      "reference": "https://top10.owasp.org/2025/A07_2025-Authentication_Failures/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "A07:2025"
+      }
+    },
+    {
+      "text": "Software or Data Integrity Failures",
+      "type": "id",
+      "code": "A08:2025",
+      "meaning": "A08 in OWASP Top 10:2025: failing to verify the integrity of code and data; was 'Software and Data Integrity Failures'.",
+      "fame": "niche",
+      "reference": "https://top10.owasp.org/2025/A08_2025-Software_or_Data_Integrity_Failures/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "A08:2025"
+      }
+    },
+    {
+      "text": "BSIMM",
+      "type": "framework",
+      "code": "",
+      "meaning": "Building Security In Maturity Model: a descriptive survey of the software security practices real firms run.",
+      "fame": "niche",
+      "reference": "https://www.bsimm.com/",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "OWASP Top 10 Proactive Controls",
+      "type": "framework",
+      "code": "",
+      "meaning": "OWASP's catalog of ten defensive controls developers build into their code to avoid common security issues.",
+      "fame": "niche",
+      "reference": "https://top10proactive.owasp.org/",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "Top 10 Proactive Controls"
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "DevSecOps",
+      "type": "term",
+      "code": "",
+      "meaning": "Practice of building security into every stage of DevOps delivery, with automated checks inside the pipeline.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Dependency confusion",
+      "type": "term",
+      "code": "",
+      "meaning": "Supply chain attack where a build fetches a public package named like an internal one; Alex Birsan, 2021.",
+      "fame": "iconic",
+      "reference": "https://medium.com/@alex.birsan/dependency-confusion-4a5d60fec610",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "dependency confusion"
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Threat Modeling Manifesto",
+      "type": "framework",
+      "code": "",
+      "meaning": "Public statement of threat modeling's values, principles and anti-patterns, written by a working group of practitioners.",
+      "fame": "niche",
+      "reference": "https://www.threatmodelingmanifesto.org/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Attack tree",
+      "type": "artifact",
+      "code": "",
+      "meaning": "Tree diagram with an attacker's goal at the root and the ways to reach it as branches; popularized by Schneier in 1999.",
+      "fame": "niche",
+      "reference": "https://www.schneier.com/academic/archives/1999/12/attack_trees.html",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "attack tree"
+      },
+      "spec": {
         "slots": []
       }
     }

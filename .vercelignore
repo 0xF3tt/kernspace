@@ -8,7 +8,6 @@ CONTRIBUTING.md
 .DS_Store
 **/.DS_Store
 app/*.test.mjs
-app/lexicon.legacy.json
 # private or temporary, kept in sync with .gitignore
 fonts/licensed/
 _tmp_*.html

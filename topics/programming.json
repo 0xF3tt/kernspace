@@ -134,7 +134,6 @@
       "fame": "iconic",
       "reference": "https://git-scm.com/docs/git-merge#_how_conflicts_are_presented",
       "series": [
-        "galley-proof",
         "specimen"
       ]
     },
@@ -171,7 +170,15 @@
       "reference": "https://docs.python.org/3/library/traceback.html",
       "series": [
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "test"
+        ]
+      }
     },
     {
       "text": "Segmentation fault (core dumped)",
@@ -182,31 +189,15 @@
       "reference": "",
       "series": [
         "specimen"
-      ]
-    },
-    {
-      "text": "404 Not Found",
-      "type": "id",
-      "code": "RFC 9110 §15.5.5",
-      "meaning": "HTTP status: the origin server found no current representation for the target resource.",
-      "fame": "iconic",
-      "reference": "https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found",
-      "series": [
-        "specimen",
-        "catalog-card"
-      ]
-    },
-    {
-      "text": "418 I'm a teapot",
-      "type": "id",
-      "code": "RFC 2324",
-      "meaning": "April Fools HTCPCP status (1998); RFC 9110 lists 418 as (Unused) and keeps it reserved.",
-      "fame": "iconic",
-      "reference": "https://www.rfc-editor.org/rfc/rfc9110.html#name-418-unused",
-      "series": [
-        "specimen",
-        "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "test"
+        ]
+      }
     },
     {
       "text": "0xDEADBEEF",
@@ -332,7 +323,7 @@
       "text": "Works on my machine",
       "type": "status-line",
       "code": "",
-      "meaning": "The classic reply when a bug won't reproduce locally; reproducible builds are the cure.",
+      "meaning": "The classic reply when a bug won't reproduce locally; the usual cure is a reproducible environment.",
       "fame": "iconic",
       "reference": "",
       "series": [
@@ -405,7 +396,15 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
     },
     {
       "text": "Python 2.7 → Python 3",
@@ -464,7 +463,7 @@
       "text": "Magic number",
       "type": "term",
       "code": "",
-      "meaning": "An unexplained literal in code (name it as a constant), or the signature bytes opening a file format.",
+      "meaning": "An unexplained numeric literal in code, or the signature bytes that open a file format.",
       "fame": "iconic",
       "reference": "",
       "series": [
@@ -519,7 +518,7 @@
       "text": "Code-Review +2",
       "type": "id",
       "code": "Gerrit Code-Review label",
-      "meaning": "Gerrit vote meaning looks good to me, approved; +2 enables submit, any -2 blocks it.",
+      "meaning": "Gerrit's top review vote, looks good and approved; a +2 lets the change submit, any -2 blocks it.",
       "fame": "niche",
       "reference": "https://gerrit-review.googlesource.com/Documentation/config-labels.html",
       "series": [
@@ -530,6 +529,11 @@
       "mat": {
         "slots": [
           "control",
+          "status"
+        ]
+      },
+      "spec": {
+        "slots": [
           "status"
         ]
       }
@@ -554,8 +558,7 @@
       "fame": "niche",
       "reference": "https://www.kernel.org/doc/html/latest/process/submitting-patches.html",
       "series": [
-        "galley-proof",
-        "specimen"
+        "galley-proof"
       ]
     },
     {
@@ -578,8 +581,7 @@
       "fame": "niche",
       "reference": "https://www.conventionalcommits.org/en/v1.0.0/",
       "series": [
-        "galley-proof",
-        "specimen"
+        "galley-proof"
       ]
     },
     {
@@ -591,8 +593,7 @@
       "reference": "https://www.gnu.org/software/diffutils/manual/html_node/Incomplete-Lines.html",
       "series": [
         "cutting-mat",
-        "galley-proof",
-        "specimen"
+        "galley-proof"
       ],
       "mat": {
         "slots": [
@@ -660,19 +661,35 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
     },
     {
       "text": "error: externally-managed-environment",
       "type": "status-line",
       "code": "PEP 668",
-      "meaning": "pip refusing to install into an OS-managed Python (PEP 668 marker); use a virtual environment.",
+      "meaning": "pip's refusal to install into a Python the operating system manages, signalled by a PEP 668 marker file.",
       "fame": "niche",
       "reference": "https://peps.python.org/pep-0668/",
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "test"
+        ]
+      }
     },
     {
       "text": "egg → wheel",
@@ -695,7 +712,15 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
     },
     {
       "text": "E501 line too long",
@@ -707,18 +732,34 @@
       "series": [
         "specimen",
         "galley-proof"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "status"
+        ]
+      }
     },
     {
       "text": "TS2322 · not assignable",
       "type": "id",
       "code": "TS2322",
-      "meaning": "TypeScript: Type '{0}' is not assignable to type '{1}'. The error every TS developer knows.",
+      "meaning": "TypeScript compiler error: a value's type is not assignable to the type its target expects.",
       "fame": "niche",
       "reference": "https://github.com/microsoft/TypeScript/blob/v5.8.3/src/compiler/diagnosticMessages.json",
       "series": [
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "status"
+        ]
+      }
     },
     {
       "text": "E0382 · borrow of moved value",
@@ -754,6 +795,12 @@
         "slots": [
           "status"
         ]
+      },
+      "spec": {
+        "slots": [
+          "status"
+        ],
+        "as": "SC2086 · quote vars"
       }
     },
     {
@@ -774,6 +821,12 @@
           "control",
           "note"
         ]
+      },
+      "spec": {
+        "slots": [
+          "note"
+        ],
+        "as": "Prefer === over =="
       }
     },
     {
@@ -828,7 +881,7 @@
       "text": "NULL → nullptr",
       "type": "term",
       "code": "C23 · ISO/IEC 9899:2024",
-      "meaning": "C23 adopts the nullptr constant from C++11 and makes bool, true and false keywords.",
+      "meaning": "C23 adds the nullptr constant from C++11, the typed replacement for the NULL macro.",
       "fame": "niche",
       "reference": "https://en.cppreference.com/w/c/23",
       "series": [
@@ -849,7 +902,7 @@
     },
     {
       "text": "strlcpy · strlcat",
-      "type": "id",
+      "type": "term",
       "code": "POSIX.1-2024 (Issue 8)",
       "meaning": "Size-bounded string copy and concatenation, first standardized in IEEE Std 1003.1-2024.",
       "fame": "niche",
@@ -938,7 +991,16 @@
       "reference": "https://www.unicode.org/charts/PDF/U0370.pdf",
       "series": [
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "NFC(U+037E) = U+003B"
+      }
     },
     {
       "text": "0 vs O · 1 vs l vs I",
@@ -953,7 +1015,7 @@
     },
     {
       "text": "CRLF vs LF",
-      "type": "id",
+      "type": "term",
       "code": "U+000D U+000A",
       "meaning": "Windows ends lines with CR LF (0x0D 0x0A), Unix with LF alone; mixed files make noisy diffs.",
       "fame": "iconic",
@@ -961,7 +1023,16 @@
       "series": [
         "specimen",
         "galley-proof"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "CRLF"
+      }
     },
     {
       "text": "0x7F 'ELF'",
@@ -1059,7 +1130,7 @@
       "text": "Mark II moth · 1947",
       "type": "artifact",
       "code": "",
-      "meaning": "1947-09-09: a moth taped into the Harvard Mark II log as the \"First actual case of bug being found.\"",
+      "meaning": "The \"First actual case of bug being found\" caption on a moth taped into the Harvard Mark II log, 1947-09-09.",
       "fame": "niche",
       "reference": "https://www.computerhistory.org/tdih/september/9/",
       "series": [
@@ -1089,7 +1160,7 @@
       "text": "JDK 25 · LTS",
       "type": "framework",
       "code": "Java SE 25",
-      "meaning": "Current Java LTS, GA 2025-09-16; JDK 27 (GA 2026-09-15) is non-LTS; the next LTS is 29.",
+      "meaning": "Java long-term-support release, GA 2025-09-16; LTS releases come every two years (21, 25, 29).",
       "fame": "niche",
       "reference": "https://openjdk.org/projects/jdk/25/",
       "series": [
@@ -1146,8 +1217,8 @@
     {
       "text": "Language Server Protocol",
       "type": "framework",
-      "code": "Language Server Protocol 3.18",
-      "meaning": "Editor-agnostic protocol for completion, diagnostics and go-to-definition; 3.18 is current.",
+      "code": "",
+      "meaning": "Editor-agnostic protocol between editors and language servers for completion, diagnostics and go-to-definition.",
       "fame": "niche",
       "reference": "https://microsoft.github.io/language-server-protocol/specifications/lsp/3.18/specification/",
       "series": [
@@ -1195,7 +1266,7 @@
       "text": "Parse, don’t validate",
       "type": "phrase",
       "code": "",
-      "meaning": "Type-driven design: turn untrusted input into a type that makes invalid states impossible, instead of checking it and throwing the proof away. It is the principle behind Vol. 02's safeParse().",
+      "meaning": "Type-driven design: turn untrusted input into a type that rules out invalid states, instead of just checking it.",
       "fame": "niche",
       "reference": "https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/",
       "series": [
@@ -1206,7 +1277,7 @@
       "text": "Heed compiler warnings.",
       "type": "phrase",
       "code": "",
-      "meaning": "Practice 2 of the SEI CERT Top 10 Secure Coding Practices: compile at the highest warning level and fix the code rather than silencing the warning.",
+      "meaning": "SEI CERT secure-coding practice 2: compile at the highest warning level and fix the code, not the warning.",
       "fame": "niche",
       "reference": "https://wiki.sei.cmu.edu/confluence/display/seccode/Top+10+Secure+Coding+Practices",
       "series": [
@@ -1217,7 +1288,7 @@
       "text": "Errors are values.",
       "type": "phrase",
       "code": "",
-      "meaning": "Rob Pike's Go maxim: errors are ordinary values to be checked and handled explicitly, never ignored, which is the habit behind failing closed.",
+      "meaning": "Rob Pike's Go maxim: errors are ordinary values, so check and handle them explicitly instead of ignoring them.",
       "fame": "niche",
       "reference": "https://go.dev/blog/errors-are-values",
       "series": [
@@ -1228,7 +1299,7 @@
       "text": "Readability counts.",
       "type": "phrase",
       "code": "",
-      "meaning": "An aphorism from The Zen of Python (PEP 20): code is read far more than it is written, and readable code is code a reviewer can actually check.",
+      "meaning": "Aphorism from The Zen of Python (PEP 20): code is read far more often than it is written.",
       "fame": "iconic",
       "reference": "https://peps.python.org/pep-0020/",
       "series": [
@@ -1239,7 +1310,7 @@
       "text": "Crash Early",
       "type": "phrase",
       "code": "",
-      "meaning": "The Pragmatic Programmer, Tip 38: a dead program normally does a lot less damage than a crippled one. Stop on the impossible state instead of carrying on corrupted.",
+      "meaning": "Pragmatic Programmer, Tip 38: a dead program does far less damage than a crippled one, so stop on an impossible state.",
       "fame": "niche",
       "reference": "https://pragprog.com/tips/",
       "series": [
@@ -1256,54 +1327,54 @@
       "series": [
         "specimen"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "rating"
         ],
         "as": "float rounding"
-      },
-      "mat": {
-        "slots": []
       }
     },
     {
       "text": "Parse into types",
       "type": "term",
       "code": "",
-      "meaning": "Turn raw input into a specific type once, at the edge; everything past that point relies on the type instead of re-checking.",
+      "meaning": "Turn raw input into a specific type once, at the edge, so later code relies on the type instead of re-checking.",
       "fame": "niche",
       "reference": "https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/",
       "series": [
         "specimen"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "phrase"
         ],
         "as": "Parse input into a type once, then let the type carry the proof."
-      },
-      "mat": {
-        "slots": []
       }
     },
     {
       "text": "Check every return value",
       "type": "term",
       "code": "",
-      "meaning": "A call that can fail reports it through a return value or errno; an ignored one hides the failure until it becomes a bug.",
+      "meaning": "A call that can fail reports it by return value or errno; an ignored one hides the failure until it becomes a bug.",
       "fame": "niche",
       "reference": "https://cwe.mitre.org/data/definitions/252.html",
       "series": [
         "specimen"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "phrase"
         ],
         "as": "Check every return value; an ignored error is a bug in waiting."
-      },
-      "mat": {
-        "slots": []
       }
     },
     {
@@ -1316,14 +1387,14 @@
       "series": [
         "specimen"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "phrase"
         ],
         "as": "Validate at the boundary, then trust the type inside."
-      },
-      "mat": {
-        "slots": []
       }
     },
     {
@@ -1336,32 +1407,32 @@
       "series": [
         "specimen"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "notdef"
         ]
-      },
-      "mat": {
-        "slots": []
       }
     },
     {
       "text": "undefined",
       "type": "status-line",
       "code": "ECMA-262",
-      "meaning": "The ECMAScript value of a variable that was never assigned; a check that only tests for null misses it.",
+      "meaning": "The ECMAScript value of a variable that was never assigned; a strict check for null misses it.",
       "fame": "niche",
       "reference": "https://tc39.es/ecma262/",
       "series": [
         "specimen"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "notdef"
         ]
-      },
-      "mat": {
-        "slots": []
       }
     },
     {
@@ -1374,13 +1445,13 @@
       "series": [
         "specimen"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "notdef"
         ]
-      },
-      "mat": {
-        "slots": []
       }
     },
     {
@@ -1393,13 +1464,13 @@
       "series": [
         "specimen"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "confusable"
         ]
-      },
-      "mat": {
-        "slots": []
       }
     },
     {
@@ -1412,51 +1483,51 @@
       "series": [
         "specimen"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "confusable"
         ]
-      },
-      "mat": {
-        "slots": []
       }
     },
     {
       "text": "o / о",
       "type": "id",
       "code": "U+6F/U+43E",
-      "meaning": "Latin o and Cyrillic o look the same in most fonts; Unicode UTS #39 lists them as confusable; a Trojan Source trick in identifiers.",
+      "meaning": "Latin o and Cyrillic o look the same in most fonts; Unicode UTS #39 lists them as confusable, a homoglyph trick.",
       "fame": "niche",
       "reference": "Unicode UTS #39, confusables.txt",
       "series": [
         "specimen"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "confusable"
         ]
-      },
-      "mat": {
-        "slots": []
       }
     },
     {
       "text": "a / а",
       "type": "id",
       "code": "U+61/U+430",
-      "meaning": "Latin a and Cyrillic a look the same in most fonts; Unicode UTS #39 lists them as confusable, so two identifiers can differ unseen.",
+      "meaning": "Latin a and Cyrillic a look the same in most fonts; UTS #39 lists them as confusable, so identifiers can differ unseen.",
       "fame": "niche",
       "reference": "Unicode UTS #39, confusables.txt",
       "series": [
         "specimen"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "confusable"
         ]
-      },
-      "mat": {
-        "slots": []
       }
     },
     {
@@ -1469,14 +1540,14 @@
       "series": [
         "specimen"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "test"
         ],
         "as": "CRC-32(\"\") = 0x00000000"
-      },
-      "mat": {
-        "slots": []
       }
     },
     {
@@ -1489,14 +1560,14 @@
       "series": [
         "specimen"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "test"
         ],
         "as": "Adler-32(\"Wikipedia\") = 0x11E60398"
-      },
-      "mat": {
-        "slots": []
       }
     },
     {
@@ -1509,12 +1580,276 @@
       "series": [
         "specimen"
       ],
+      "mat": {
+        "slots": []
+      },
       "spec": {
         "slots": [
           "test"
         ],
         "as": "UTF-8(\"€\") = E2 82 AC"
+      }
+    },
+    {
+      "text": "Spec-driven development",
+      "type": "term",
+      "code": "SDD",
+      "meaning": "Write the specification first and let it drive planning, tasks and code, increasingly built by coding agents.",
+      "fame": "niche",
+      "reference": "https://github.github.com/spec-kit/",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "spec first, code second"
+      }
+    },
+    {
+      "text": "SDD",
+      "type": "term",
+      "code": "",
+      "meaning": "Spec-driven development, shortened: the specification leads and coding agents build from it.",
+      "fame": "niche",
+      "reference": "https://github.github.com/spec-kit/",
+      "series": [
+        "specimen"
+      ],
+      "mat": {
+        "slots": []
       },
+      "spec": {
+        "slots": [
+          "hero"
+        ]
+      }
+    },
+    {
+      "text": "git",
+      "type": "tool",
+      "code": "",
+      "meaning": "Distributed version control system created by Linus Torvalds in 2005 for the Linux kernel.",
+      "fame": "iconic",
+      "reference": "https://git-scm.com/book/en/v2/Getting-Started-A-Short-History-of-Git",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "git blame",
+      "type": "term",
+      "code": "",
+      "meaning": "Git command that shows which commit and author last changed each line of a file.",
+      "fame": "niche",
+      "reference": "https://git-scm.com/docs/git-blame",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "git rebase",
+      "type": "term",
+      "code": "",
+      "meaning": "Git command that reapplies commits on top of another base, rewriting history with new commit hashes.",
+      "fame": "niche",
+      "reference": "https://git-scm.com/docs/git-rebase",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Force push",
+      "type": "term",
+      "code": "",
+      "meaning": "Git push that makes a remote branch match local history even when that drops commits the remote has.",
+      "fame": "niche",
+      "reference": "https://git-scm.com/docs/git-push",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "never force push main"
+      }
+    },
+    {
+      "text": "Stack Overflow",
+      "type": "term",
+      "code": "",
+      "meaning": "Question-and-answer site for programmers, founded in 2008 by Jeff Atwood and Joel Spolsky.",
+      "fame": "iconic",
+      "reference": "https://stackoverflow.co/company/press/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Technical debt",
+      "type": "term",
+      "code": "OOPSLA '92",
+      "meaning": "Ward Cunningham's metaphor: a shortcut in code is a loan whose unpaid rewrite accrues interest as extra work.",
+      "fame": "iconic",
+      "reference": "https://c2.com/doc/oopsla92.html",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "galley-proof",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "technical debt"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "technical debt"
+      }
+    },
+    {
+      "text": "Billion-dollar mistake",
+      "type": "term",
+      "code": "QCon 2009",
+      "meaning": "Tony Hoare's name for inventing the null reference in ALGOL W in 1965: a reference that points at nothing.",
+      "fame": "niche",
+      "reference": "https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare/",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "billion-dollar mistake"
+      }
+    },
+    {
+      "text": "Race condition",
+      "type": "term",
+      "code": "CWE-362",
+      "meaning": "Bug where the result depends on the timing of concurrent operations on a shared resource.",
+      "fame": "iconic",
+      "reference": "https://cwe.mitre.org/data/definitions/362.html",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "galley-proof",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "race condition"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "race condition"
+      }
+    },
+    {
+      "text": "Deadlock",
+      "type": "term",
+      "code": "CWE-833",
+      "meaning": "Standstill where threads each wait for a lock another holds, so none of them can ever proceed.",
+      "fame": "iconic",
+      "reference": "https://cwe.mitre.org/data/definitions/833.html",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "deadlock"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "deadlock"
+      }
+    },
+    {
+      "text": "Premature optimization",
+      "type": "term",
+      "code": "Computing Surveys 6(4)",
+      "meaning": "Knuth's 1974 warning against spending effort on the speed of noncritical code before the hot spots are identified.",
+      "fame": "iconic",
+      "reference": "https://dl.acm.org/doi/10.1145/356635.356640",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "galley-proof",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "premature optimization"
+      }
+    },
+    {
+      "text": "The Zen of Python",
+      "type": "term",
+      "code": "PEP 20",
+      "meaning": "Tim Peters's aphorisms on Python's design: 20 principles, 19 written down, laid out in PEP 20.",
+      "fame": "niche",
+      "reference": "https://peps.python.org/pep-0020/",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Postel's law",
+      "type": "term",
+      "code": "RFC 1122 §1.2.2",
+      "meaning": "Jon Postel's robustness principle: be conservative in what you send and liberal in what you accept.",
+      "fame": "niche",
+      "reference": "https://www.rfc-editor.org/info/rfc1122",
+      "series": [
+        "specimen",
+        "galley-proof",
+        "catalog-card"
+      ],
       "mat": {
         "slots": []
       }

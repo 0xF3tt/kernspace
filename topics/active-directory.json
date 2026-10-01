@@ -27,7 +27,8 @@
       "reference": "MITRE ATT&CK T1558.004",
       "series": [
         "cutting-mat",
-        "catalog-card"
+        "catalog-card",
+        "specimen"
       ],
       "mat": {
         "slots": [
@@ -81,6 +82,12 @@
         "slots": [
           "finding"
         ]
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "silver ticket"
       }
     },
     {
@@ -126,7 +133,8 @@
       "reference": "MITRE ATT&CK T1003.006",
       "series": [
         "cutting-mat",
-        "catalog-card"
+        "catalog-card",
+        "specimen"
       ],
       "mat": {
         "slots": [
@@ -141,7 +149,7 @@
       }
     },
     {
-      "text": "NTDS credential theft",
+      "text": "NTDS dumping",
       "type": "id",
       "code": "T1003.003",
       "meaning": "Dumping secrets from the NTDS directory store; named MITRE technique.",
@@ -233,7 +241,7 @@
       "text": "Steal or Forge Auth Certs",
       "type": "id",
       "code": "T1649",
-      "meaning": "Steal or forge authentication certificates for lateral movement.",
+      "meaning": "Steal or forge authentication certificates to impersonate accounts, most often through AD CS.",
       "fame": "niche",
       "reference": "MITRE ATT&CK T1649",
       "series": [
@@ -275,7 +283,8 @@
       "reference": "CVE-2020-1472",
       "series": [
         "cutting-mat",
-        "catalog-card"
+        "catalog-card",
+        "specimen"
       ],
       "mat": {
         "slots": [
@@ -455,7 +464,7 @@
       "text": "RBCD",
       "type": "term",
       "code": "",
-      "meaning": "Resource-Based Constrained Delegation via msDS-AllowedToActOnBehalfOf.",
+      "meaning": "Constrained delegation set on the target resource via msDS-AllowedToActOnBehalfOfOtherIdentity.",
       "fame": "niche",
       "reference": "MS Learn Kerberos constrained delegation",
       "series": [
@@ -485,7 +494,7 @@
       "text": "Mimikatz",
       "type": "tool",
       "code": "S0002",
-      "meaning": "Credential- and ticket-manipulation tool catalogued by MITRE.",
+      "meaning": "Open-source tool that extracts Windows credentials and forges Kerberos tickets.",
       "fame": "iconic",
       "reference": "MITRE ATT&CK S0002 (Tool)",
       "series": [
@@ -501,12 +510,17 @@
       "text": "BloodHound",
       "type": "tool",
       "code": "S0521",
-      "meaning": "Graphs Active Directory attack paths; catalogued by MITRE.",
+      "meaning": "Graph tool that maps Active Directory attack paths from ordinary users to Domain Admin.",
       "fame": "iconic",
       "reference": "MITRE ATT&CK S0521 (Tool)",
       "series": [
         "cutting-mat"
-      ]
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      }
     },
     {
       "text": "SharpHound",
@@ -527,9 +541,9 @@
     {
       "text": "Rubeus",
       "type": "tool",
-      "code": "",
-      "meaning": "Toolkit for Kerberos ticket handling and abuse research.",
-      "fame": "niche",
+      "code": "S1071",
+      "meaning": "C# toolset for raw Kerberos interaction and ticket abuse.",
+      "fame": "iconic",
       "reference": "",
       "series": [
         "cutting-mat"
@@ -543,9 +557,9 @@
     {
       "text": "Impacket",
       "type": "tool",
-      "code": "",
+      "code": "S0357",
       "meaning": "Python library implementing Windows network protocols; used in AD tooling.",
-      "fame": "niche",
+      "fame": "iconic",
       "reference": "",
       "series": [
         "cutting-mat"
@@ -603,6 +617,11 @@
         "slots": [
           "sink"
         ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
       }
     },
     {
@@ -639,6 +658,11 @@
           "sink"
         ],
         "as": "krbtgt"
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
       }
     },
     {
@@ -744,7 +768,8 @@
       "reference": "[MS-NLMP]; MS deprecated features",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "specimen"
       ],
       "mat": {
         "slots": [
@@ -877,8 +902,7 @@
       ],
       "mat": {
         "slots": [
-          "flow",
-          "sink"
+          "flow"
         ],
         "as": "global catalog"
       }
@@ -892,7 +916,8 @@
       "reference": "MS Learn",
       "series": [
         "cutting-mat",
-        "catalog-card"
+        "catalog-card",
+        "specimen"
       ],
       "mat": {
         "slots": [
@@ -977,7 +1002,12 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
     },
     {
       "text": "Domain Admins · 512",
@@ -989,7 +1019,12 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
     },
     {
       "text": "Enterprise Admins · 519",
@@ -1001,7 +1036,12 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
     },
     {
       "text": "S-1-5-32-544",
@@ -1013,7 +1053,13 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "S-1-5-32-544 = BUILTIN\\Administrators"
+      }
     },
     {
       "text": "Administrator · RID 500",
@@ -1024,7 +1070,12 @@
       "reference": "MS Learn well-known SIDs",
       "series": [
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
     },
     {
       "text": "RC4-HMAC · etype 23",
@@ -1122,7 +1173,13 @@
       "reference": "MS Learn userAccountControl",
       "series": [
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "UAC 0x400000 = DONT_REQ_PREAUTH"
+      }
     },
     {
       "text": "UAC 0x80000",
@@ -1133,7 +1190,13 @@
       "reference": "MS Learn userAccountControl",
       "series": [
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "UAC 0x80000 = TRUSTED_FOR_DELEGATION"
+      }
     },
     {
       "text": "LmCompatibilityLevel = 5",
@@ -1157,7 +1220,12 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
     },
     {
       "text": "Default Domain Policy GUID",
@@ -1169,7 +1237,13 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "Default Domain Policy"
+      }
     },
     {
       "text": "DFL/FFL 2025 = level 10",
@@ -1192,8 +1266,15 @@
       "reference": "MS Learn detect/remediate RC4",
       "series": [
         "cutting-mat",
-        "galley-proof"
-      ]
+        "galley-proof",
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "test"
+        ],
+        "as": "DefaultDomainSupportedEncTypes = 0x18"
+      }
     },
     {
       "text": "krbtgt reset x2",
@@ -1210,6 +1291,9 @@
           "note",
           "status"
         ]
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -1224,7 +1308,7 @@
       ]
     },
     {
-      "text": "Red Forest (ESAE) -> EAM",
+      "text": "Red Forest (ESAE) → EAM",
       "type": "term",
       "code": "",
       "meaning": "Legacy hardened admin forest replaced by the Enterprise Access Model.",
@@ -1236,7 +1320,7 @@
       ]
     },
     {
-      "text": "AD tier model -> EAM",
+      "text": "AD tier model → EAM",
       "type": "term",
       "code": "",
       "meaning": "Legacy tiering superseded by the Enterprise Access Model.",
@@ -1248,7 +1332,7 @@
       ]
     },
     {
-      "text": "ATA -> Defender for Identity",
+      "text": "ATA → Defender for Identity",
       "type": "term",
       "code": "",
       "meaning": "Advanced Threat Analytics reached end of life Jan 2026; migrate to MDI.",
@@ -1260,19 +1344,7 @@
       ]
     },
     {
-      "text": "Azure AD -> Microsoft Entra ID",
-      "type": "term",
-      "code": "",
-      "meaning": "Cloud directory renamed July 2023; on-prem AD name unchanged.",
-      "fame": "iconic",
-      "reference": "MS Learn new name for Azure AD",
-      "series": [
-        "galley-proof",
-        "catalog-card"
-      ]
-    },
-    {
-      "text": "RC4 -> AES-SHA1 (2026)",
+      "text": "RC4 → AES-SHA1 (2026)",
       "type": "term",
       "code": "CVE-2026-20833",
       "meaning": "Kerberos RC4 default disabled on DCs by mid-2026 hardening.",
@@ -1306,7 +1378,7 @@
       ]
     },
     {
-      "text": "legacy LAPS -> Windows LAPS",
+      "text": "legacy LAPS → Windows LAPS",
       "type": "term",
       "code": "",
       "meaning": "Legacy MSI LAPS deprecated; native Windows LAPS is the replacement.",
@@ -1321,7 +1393,7 @@
       "text": "LAPS",
       "type": "term",
       "code": "",
-      "meaning": "Local Admin Password Solution: rotates unique local-admin passwords.",
+      "meaning": "Local Administrator Password Solution: rotates unique local-admin passwords.",
       "fame": "iconic",
       "reference": "MS Learn Windows LAPS",
       "series": [
@@ -1377,7 +1449,7 @@
       "text": "Attackers think in graphs.",
       "type": "phrase",
       "code": "",
-      "meaning": "From the 2015 essay 'Defenders think in lists. Attackers think in graphs. As long as this is true, attackers win.' Defenders manage lists of assets, while attackers follow the graph of logons, credentials and admin rights across a Windows/AD network.",
+      "meaning": "From a 2015 essay: defenders manage lists of assets, attackers follow the graph of logons and rights.",
       "fame": "iconic",
       "reference": "https://github.com/JohnLaTwC/Shared/blob/master/Defenders%20think%20in%20lists.%20Attackers%20think%20in%20graphs.%20As%20long%20as%20this%20is%20true%2C%20attackers%20win.md",
       "series": [
@@ -1388,7 +1460,7 @@
       "text": "Six Degrees of Domain Admin",
       "type": "phrase",
       "code": "",
-      "meaning": "BloodHound's tagline and the title of its DEF CON 24 (2016) launch talk. Any user sits a few hops of sessions, group memberships and admin rights away from Domain Admin, and graphing those attack paths shows them.",
+      "meaning": "BloodHound's tagline and DEF CON 24 (2016) talk title: any user is a few hops from Domain Admin.",
       "fame": "iconic",
       "reference": "https://github.com/SpecterOps/BloodHound",
       "series": [
@@ -1399,7 +1471,7 @@
       "text": "Clean source principle",
       "type": "phrase",
       "code": "",
-      "meaning": "Microsoft privileged-access principle: every security dependency must be as trustworthy as the object it secures, since whoever controls anything that controls a target controls the target. The source of access must be trusted at least as much as the destination.",
+      "meaning": "Microsoft privileged-access principle: a security dependency must be as trustworthy as what it secures.",
       "fame": "niche",
       "reference": "https://learn.microsoft.com/en-us/security/privileged-access-workstations/privileged-access-success-criteria#clean-source-principle",
       "series": [
@@ -1410,7 +1482,7 @@
       "text": "Keep Tier 0 tightly scoped",
       "type": "phrase",
       "code": "",
-      "meaning": "AD DS tier model rule: keep Tier 0 as small as possible, because every extra account, server or application in it widens the attack surface of the identity control plane.",
+      "meaning": "AD tier model rule: keep Tier 0 as small as possible; every extra member widens the attack surface.",
       "fame": "niche",
       "reference": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/tier-model#keep-tier-0-tightly-scoped",
       "series": [
@@ -1458,7 +1530,7 @@
       }
     },
     {
-      "text": "Lower tiers do not log up",
+      "text": "Higher tiers do not log down",
       "type": "term",
       "code": "Tier model",
       "meaning": "A credential typed on a weaker system can be stolen there.",
@@ -1489,6 +1561,11 @@
       ],
       "mat": {
         "slots": []
+      },
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
       }
     },
     {
@@ -1503,6 +1580,11 @@
       ],
       "mat": {
         "slots": []
+      },
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
       }
     },
     {
@@ -1517,6 +1599,11 @@
       ],
       "mat": {
         "slots": []
+      },
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
       }
     },
     {
@@ -1619,7 +1706,7 @@
       "text": "LM hash of the empty string",
       "type": "snippet",
       "code": "LM",
-      "meaning": "Known-answer test: Each half is DES(\"KGS!@#$%\") under a zero key, the legacy empty LM hash.",
+      "meaning": "Known-answer test: each half is DES(\"KGS!@#$%\") under a zero key, the legacy empty LM hash.",
       "fame": "niche",
       "reference": "https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-nlmp/",
       "series": [
@@ -1669,6 +1756,235 @@
       },
       "mat": {
         "slots": []
+      }
+    },
+    {
+      "text": "Domain Controller",
+      "type": "term",
+      "code": "",
+      "meaning": "Server running AD DS that authenticates logons and holds a replicated copy of its domain's directory.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ],
+        "as": "DC"
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
+    },
+    {
+      "text": "Kerberos",
+      "type": "term",
+      "code": "RFC 4120",
+      "meaning": "Ticket-based network authentication protocol; in AD, the KDC on every DC issues the tickets.",
+      "fame": "iconic",
+      "reference": "https://www.rfc-editor.org/rfc/rfc4120",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
+    },
+    {
+      "text": "SID",
+      "type": "term",
+      "code": "",
+      "meaning": "Security identifier: the unique value that identifies a security principal, such as a user, group or computer.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-identifiers",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "SID"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "RID",
+      "type": "term",
+      "code": "",
+      "meaning": "Relative identifier: the last value of a domain SID, which sets an account or group apart within its domain.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-identifiers",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "RID"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "ACL",
+      "type": "term",
+      "code": "",
+      "meaning": "Access control list: the list of access control entries that governs access to a securable object.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/en-us/windows/win32/secauthz/access-control-lists",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "ACL"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "DACL",
+      "type": "term",
+      "code": "",
+      "meaning": "Discretionary ACL: the part of a security descriptor that lists which trustees are allowed or denied access.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/en-us/windows/win32/secauthz/access-control-lists",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "DACL"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "ACE",
+      "type": "term",
+      "code": "",
+      "meaning": "Access control entry: one element of an ACL, naming a trustee and the rights it allows, denies or audits.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/en-us/windows/win32/secauthz/access-control-entries",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "ACE"
+      },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Constrained delegation",
+      "type": "term",
+      "code": "",
+      "meaning": "Kerberos delegation limited to the back-end services a front-end account may act for a user on.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/windows-server/security/kerberos/kerberos-constrained-delegation-overview",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "NTLM relay",
+      "type": "term",
+      "code": "",
+      "meaning": "Forwarding a victim's NTLM authentication to another server to act as that user there.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/en-us/security-updates/SecurityAdvisories/2009/974926",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "NTLM relay"
+      }
+    },
+    {
+      "text": "AD CS",
+      "type": "term",
+      "code": "",
+      "meaning": "Active Directory Certificate Services: the Windows Server role that issues and manages PKI certificates.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/active-directory-certificate-services-overview",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "sink"
+        ],
+        "as": "AD CS"
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "ADCS"
+      }
+    },
+    {
+      "text": "NetExec",
+      "type": "tool",
+      "code": "",
+      "meaning": "The Network Execution Tool: automates assessing large networks; the community successor to CrackMapExec.",
+      "fame": "niche",
+      "reference": "https://github.com/Pennyw0rth/NetExec",
+      "series": [
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
       }
     }
   ]

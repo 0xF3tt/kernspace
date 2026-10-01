@@ -125,6 +125,12 @@
           "note"
         ],
         "as": "least privilege · AC-6"
+      },
+      "spec": {
+        "slots": [
+          "note"
+        ],
+        "as": "least privilege · AC-6"
       }
     },
     {
@@ -168,7 +174,7 @@
       "text": "Open design",
       "type": "term",
       "code": "",
-      "meaning": "The design should not be secret; security rests on protected keys, not on attackers' ignorance. 1975 principle.",
+      "meaning": "The design should not be secret; security rests on protected keys, not on attackers' ignorance. A 1975 design principle.",
       "fame": "niche",
       "reference": "The Protection of Information in Computer Systems (1975)",
       "series": [
@@ -218,7 +224,7 @@
         "slots": [
           "rating"
         ],
-        "as": "obscurity as control"
+        "as": "secrecy as control"
       }
     },
     {
@@ -632,7 +638,6 @@
       "fame": "niche",
       "reference": "https://events.ccc.de/congress/2025/",
       "series": [
-        "specimen",
         "cutting-mat"
       ],
       "mat": {
@@ -645,11 +650,10 @@
       "text": "DEF CON 34",
       "type": "id",
       "code": "DC34",
-      "meaning": "Aug 6–9, 2026, Las Vegas Convention Center West Hall. The first DEF CON was held June 9–11, 1993.",
+      "meaning": "The 34th DEF CON, Aug 6–9, 2026, Las Vegas Convention Center West Hall. The first was held June 9–11, 1993.",
       "fame": "iconic",
       "reference": "https://defcon.org/html/defcon-34/dc-34-index.html",
       "series": [
-        "specimen",
         "cutting-mat"
       ],
       "mat": {
@@ -767,8 +771,7 @@
       "reference": "https://www.first.org/tlp/",
       "series": [
         "galley-proof",
-        "catalog-card",
-        "specimen"
+        "catalog-card"
       ]
     },
     {
@@ -786,13 +789,18 @@
         "slots": [
           "note"
         ]
+      },
+      "spec": {
+        "slots": [
+          "note"
+        ]
       }
     },
     {
       "text": "TLP:RED",
       "type": "id",
       "code": "TLP:RED",
-      "meaning": "For the eyes and ears of individual recipients only, no further disclosure.",
+      "meaning": "TLP 2.0 label: for the eyes and ears of individual recipients only, no further disclosure.",
       "fame": "niche",
       "reference": "https://www.first.org/tlp/",
       "series": [
@@ -804,11 +812,16 @@
           "flow",
           "note"
         ]
+      },
+      "spec": {
+        "slots": [
+          "note"
+        ]
       }
     },
     {
       "text": "CERT/CC",
-      "type": "id",
+      "type": "term",
       "code": "CERT/CC",
       "meaning": "CERT Coordination Center, created Nov 1988 at Carnegie Mellon's SEI in response to the Internet worm.",
       "fame": "iconic",
@@ -822,18 +835,6 @@
           "flow"
         ]
       }
-    },
-    {
-      "text": "CSIRT, not CERT",
-      "type": "term",
-      "code": "CSIRT",
-      "meaning": "Generic name for an incident response team; 'CERT' is a registered mark of Carnegie Mellon University.",
-      "fame": "niche",
-      "reference": "https://certcc.github.io/CERT-Guide-to-CVD/",
-      "series": [
-        "galley-proof",
-        "specimen"
-      ]
     },
     {
       "text": "Patch Tuesday",
@@ -910,8 +911,7 @@
       "fame": "niche",
       "reference": "https://www.rfc-editor.org/rfc/rfc4949",
       "series": [
-        "catalog-card",
-        "specimen"
+        "catalog-card"
       ]
     },
     {
@@ -922,8 +922,7 @@
       "fame": "niche",
       "reference": "https://www.rfc-editor.org/rfc/rfc2196",
       "series": [
-        "catalog-card",
-        "specimen"
+        "catalog-card"
       ]
     },
     {
@@ -942,11 +941,17 @@
           "control",
           "note"
         ]
+      },
+      "spec": {
+        "slots": [
+          "note"
+        ],
+        "as": "RFC 3514 · the evil bit"
       }
     },
     {
       "text": "There's no place like 127.0.0.1",
-      "type": "status-line",
+      "type": "phrase",
       "code": "127.0.0.1",
       "meaning": "Classic geek joke: the loopback address is home.",
       "fame": "iconic",
@@ -955,7 +960,19 @@
         "cutting-mat",
         "specimen",
         "galley-proof"
-      ]
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "no place like 127.0.0.1"
+      },
+      "spec": {
+        "slots": [
+          "note"
+        ],
+        "as": "no place like 127.0.0.1"
+      }
     },
     {
       "text": "Orange Book",
@@ -978,13 +995,21 @@
       "reference": "",
       "series": [
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
     },
     {
       "text": "Common Criteria · EAL1–EAL7",
       "type": "framework",
       "code": "ISO/IEC 15408",
-      "meaning": "Evaluation standard (CC:2022 Release 1; ISO/IEC 15408) with seven assurance levels, EAL1 to EAL7.",
+      "meaning": "Evaluation standard (ISO/IEC 15408, CC:2022) with seven assurance levels, EAL1 to EAL7.",
       "fame": "niche",
       "reference": "https://www.commoncriteriaportal.org/cc/",
       "series": [
@@ -1059,6 +1084,11 @@
       "mat": {
         "slots": [
           "status"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "class"
         ]
       }
     },
@@ -1142,7 +1172,15 @@
       "reference": "https://www.iso.org/standard/27001",
       "series": [
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
     },
     {
       "text": "114 → 93 controls",
@@ -1195,7 +1233,7 @@
       "text": "SP 800-53 Rev. 5",
       "type": "framework",
       "code": "NIST SP 800-53r5",
-      "meaning": "NIST security and privacy control catalog in 20 families; Release 5.2.0 issued Aug 27, 2025.",
+      "meaning": "NIST catalog of security and privacy controls in 20 families; Rev. 5 was published in Sept 2020.",
       "fame": "iconic",
       "reference": "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
       "series": [
@@ -1217,7 +1255,15 @@
       "reference": "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
       "series": [
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
     },
     {
       "text": "PE PL PM PS PT RA SA SC SI SR",
@@ -1228,7 +1274,15 @@
       "reference": "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
       "series": [
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
     },
     {
       "text": "SP 800-53 ≠ SP 800-63",
@@ -1240,7 +1294,15 @@
       "series": [
         "specimen",
         "galley-proof"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": [
+          "note"
+        ]
+      }
     },
     {
       "text": "CIS Controls v8",
@@ -1279,8 +1341,15 @@
       ],
       "mat": {
         "slots": [
-          "source"
-        ]
+          "note"
+        ],
+        "as": "CISSP · 8 domains"
+      },
+      "spec": {
+        "slots": [
+          "note"
+        ],
+        "as": "CISSP · 8 domains"
       }
     },
     {
@@ -1304,22 +1373,24 @@
       "text": "other than satisfied (O)",
       "type": "status-line",
       "code": "SP 800-53A Rev. 5",
-      "meaning": "SP 800-53A Rev. 5 finding for one determination statement: potential anomalies in the control, or too little information to decide. The other finding is satisfied (S).",
+      "meaning": "SP 800-53A finding: potential anomalies in the control, or too little information to decide. The other is satisfied (S).",
       "fame": "niche",
       "reference": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53Ar5.pdf",
       "series": [
-        "cutting-mat"
+        "cutting-mat",
+        "specimen"
       ]
     },
     {
       "text": "Authorization to Operate",
       "type": "status-line",
       "code": "ATO",
-      "meaning": "RMF authorization decision (SP 800-37 Rev. 2, Task R-4 and Appendix F): the authorizing official accepts the risk and the system may operate.",
+      "meaning": "RMF decision (SP 800-37 Rev. 2, Task R-4): the authorizing official accepts the risk and the system may operate.",
       "fame": "niche",
       "reference": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf",
       "series": [
-        "cutting-mat"
+        "cutting-mat",
+        "specimen"
       ]
     },
     {
@@ -1344,7 +1415,8 @@
       "fame": "iconic",
       "reference": "https://haveibeenpwned.com/",
       "series": [
-        "cutting-mat"
+        "cutting-mat",
+        "specimen"
       ]
     },
     {
@@ -1376,7 +1448,7 @@
       "text": "Verify explicitly",
       "type": "phrase",
       "code": "",
-      "meaning": "The first of Microsoft's three Zero Trust principles (with least privilege access and assume breach): authenticate and authorize every request using all available signals.",
+      "meaning": "Microsoft's first Zero Trust principle: authenticate and authorize every request using all available signals.",
       "fame": "niche",
       "reference": "https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview",
       "series": [
@@ -1387,7 +1459,7 @@
       "text": "Separation of privilege",
       "type": "phrase",
       "code": "",
-      "meaning": "A 1975 design principle: where feasible, a mechanism that needs two keys to unlock is more robust and flexible than one that needs only one.",
+      "meaning": "A 1975 design principle: a mechanism that needs two keys to unlock is more robust and flexible than one key.",
       "fame": "niche",
       "reference": "https://web.mit.edu/Saltzer/www/publications/protection/Basic.html",
       "series": [
@@ -1420,7 +1492,7 @@
       "text": "Implicit trust",
       "type": "term",
       "code": "NIST SP 800-207",
-      "meaning": "A device or user is trusted because of where it sits on the network, not because it proved anything: the gap zero trust removes.",
+      "meaning": "Trust granted because of network position, not because anything was proven: the gap zero trust removes.",
       "fame": "niche",
       "reference": "https://csrc.nist.gov/pubs/sp/800/207/final",
       "series": [
@@ -1666,6 +1738,247 @@
       },
       "mat": {
         "slots": []
+      }
+    },
+    {
+      "text": "DE.AE · Adverse Event Analysis",
+      "type": "id",
+      "code": "DE.AE",
+      "meaning": "CSF 2.0 Detect category, called Anomalies and Events in CSF 1.1; 2.0 dropped DE.DP Detection Processes.",
+      "fame": "niche",
+      "reference": "https://doi.org/10.6028/NIST.CSWP.29",
+      "series": [
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "TLP:CLEAR",
+      "type": "id",
+      "code": "TLP 2.0",
+      "meaning": "FIRST Traffic Light Protocol label for information that may be shared publicly; replaced TLP:WHITE.",
+      "fame": "iconic",
+      "reference": "https://www.first.org/tlp/",
+      "series": [
+        "specimen",
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
+    },
+    {
+      "text": "TLP:WHITE",
+      "type": "id",
+      "code": "TLP 1.0",
+      "meaning": "Deprecated TLP 1.0 label; replaced by TLP:CLEAR when TLP 2.0 took effect in August 2022.",
+      "fame": "niche",
+      "reference": "https://www.first.org/newsroom/releases/20220805",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "CSF 2.0 · RS.AN-03",
+      "type": "id",
+      "code": "RS.AN-03",
+      "meaning": "Analysis is performed to establish what has taken place during an incident and the root cause of the incident.",
+      "fame": "niche",
+      "reference": "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
+    },
+    {
+      "text": "CSF 2.0 · RS.AN-07",
+      "type": "id",
+      "code": "RS.AN-07",
+      "meaning": "Incident data and metadata are collected, and their integrity and provenance are preserved.",
+      "fame": "niche",
+      "reference": "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf",
+      "series": [
+        "catalog-card",
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
+    },
+    {
+      "text": "CSF 1.1 · RS.AN-3",
+      "type": "id",
+      "code": "RS.AN-3",
+      "meaning": "CSF 1.1 \"Forensics are performed\". CSF 2.0 rescoped it into RS.AN-03 (analysis) and RS.AN-06 (records).",
+      "fame": "niche",
+      "reference": "https://www.nist.gov/document/csf-11-csf-20-core-transition-changes",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "whitelist → allowlist",
+      "type": "term",
+      "code": "",
+      "meaning": "Terminology shift: 'allowlist' and 'denylist' replace the older terms in docs and tools.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "Reflections on Trusting Trust",
+      "type": "phrase",
+      "code": "",
+      "meaning": "Ken Thompson's 1984 Turing Award lecture: a trojaned compiler can plant a backdoor no source-level review finds.",
+      "fame": "iconic",
+      "reference": "https://dl.acm.org/doi/10.1145/358198.358210",
+      "series": [
+        "cutting-mat"
+      ]
+    },
+    {
+      "text": "Bell–LaPadula",
+      "type": "term",
+      "code": "ESD-TR-75-306",
+      "meaning": "Multilevel confidentiality model by David Bell and Leonard LaPadula, set out in MITRE reports of the 1970s.",
+      "fame": "niche",
+      "reference": "https://csrc.nist.gov/files/pubs/conference/1998/10/08/proceedings-of-the-21st-nissc-1998/final/docs/early-cs-papers/bell76.pdf",
+      "series": [
+        "catalog-card",
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "Bell–LaPadula model"
+      }
+    },
+    {
+      "text": "Biba model",
+      "type": "term",
+      "code": "ESD-TR-76-372",
+      "meaning": "Integrity model by Kenneth Biba, the dual of Bell–LaPadula: it guards data against improper modification.",
+      "fame": "niche",
+      "reference": "https://apps.dtic.mil/sti/html/tr/ADA039324/index.html",
+      "series": [
+        "catalog-card",
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "Biba integrity model"
+      }
+    },
+    {
+      "text": "Black Hat USA",
+      "type": "term",
+      "code": "",
+      "meaning": "Security industry conference first held in Las Vegas in 1997, followed days later by DEF CON.",
+      "fame": "iconic",
+      "reference": "https://www.blackhat.com",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "Need to know",
+      "type": "term",
+      "code": "",
+      "meaning": "Access to specific information only for those whose official duties require it, on top of any clearance.",
+      "fame": "iconic",
+      "reference": "https://csrc.nist.gov/glossary/term/need_to_know",
+      "series": [
+        "catalog-card",
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "need to know"
+      },
+      "spec": {
+        "slots": [
+          "phrase"
+        ],
+        "as": "Clearance opens the door; need to know opens the file."
+      }
+    },
+    {
+      "text": "SOC 2",
+      "type": "framework",
+      "code": "SOC 2",
+      "meaning": "AICPA examination report on a service organization's controls against the five Trust Services Criteria.",
+      "fame": "niche",
+      "reference": "https://www.aicpa-cima.com/resources/landing/system-and-organization-controls-soc-suite-of-services",
+      "series": [
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "Bug bounty",
+      "type": "term",
+      "code": "",
+      "meaning": "Rewards paid to outside researchers who report security flaws in an organization's software or services.",
+      "fame": "iconic",
+      "reference": "https://csrc.nist.gov/glossary/term/bug_bounty",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow",
+          "note"
+        ],
+        "as": "bug bounty"
       }
     }
   ]

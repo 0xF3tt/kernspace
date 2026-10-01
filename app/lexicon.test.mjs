@@ -1,6 +1,5 @@
 // Lexicon lint, no browser needed:  node app/lexicon.test.mjs
 // Checks every topics/<slug>.json against the rules in topics/README.md and CONTRIBUTING.md: shape, allowed values, limits, duplicates.
-// A `meaning` over 120 characters is tolerated only for the entries listed in app/lexicon.legacy.json; shorten one and delete its line.
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 
@@ -14,14 +13,14 @@ const KEYS = ['text', 'type', 'code', 'meaning', 'fame', 'reference', 'series', 
 const REQUIRED = ['text', 'type', 'code', 'meaning', 'fame', 'series'];          // `reference` may be empty or absent (status lines)
 const TEXT_MAX = 38, MEANING_MAX = 120, CONTROL = /[\u0000-\u001F\u007F-\u009F]/, EMAIL = /[\w.+-]+@[\w-]+\.[\w.-]+/;
 
-// every problem one term has; `tolerateLongMeaning` is for the legacy list
-function problems(t, tolerateLongMeaning = false) {
+// every problem one term has
+function problems(t) {
   const p = [], text = (k) => typeof t[k] === 'string' && t[k] === t[k].trim();
   for (const k of Object.keys(t)) if (!KEYS.includes(k)) p.push(`unknown key "${k}"`);
   for (const k of REQUIRED) if (!(k in t)) p.push(`missing "${k}"`);
   if (!text('text') || !len(t.text) || len(t.text) > TEXT_MAX) p.push(`text must be 1–${TEXT_MAX} characters, with no stray spaces`);
   if (!text('meaning') || !t.meaning) p.push('meaning must be a non-empty line, with no stray spaces');
-  else if (len(t.meaning) > MEANING_MAX && !tolerateLongMeaning) p.push(`meaning is ${len(t.meaning)} characters, max ${MEANING_MAX}`);
+  else if (len(t.meaning) > MEANING_MAX) p.push(`meaning is ${len(t.meaning)} characters, max ${MEANING_MAX}`);
   if (typeof t.code !== 'string') p.push('code must be a string (empty when there is none)');
   if ('reference' in t && typeof t.reference !== 'string') p.push('reference must be a string');
   if (!TYPES.includes(t.type)) p.push(`type "${t.type}" is not one of ${TYPES.join(', ')}`);
@@ -41,7 +40,6 @@ function problems(t, tolerateLongMeaning = false) {
 
 // ---------- every lexicon
 const slugs = readdirSync(file('topics')).filter(f => f.endsWith('.json')).map(f => f.slice(0, -5)).sort();
-const legacy = new Set(json('app/lexicon.legacy.json')), stale = new Set(legacy);
 const bad = []; let count = 0;
 for (const slug of slugs) {
   const d = json(`topics/${slug}.json`);
@@ -50,8 +48,7 @@ for (const slug of slugs) {
   const seen = new Set();
   for (const t of d.terms) {
     count++;
-    const id = `${slug} · ${t.text} · ${t.code}`, old = legacy.has(id), ps = problems(t, old);
-    if (old && typeof t.meaning === 'string' && len(t.meaning) > MEANING_MAX) stale.delete(id);
+    const ps = problems(t);
     const key = JSON.stringify([t.text, t.code, t.type]);
     if (seen.has(key)) ps.push('duplicate: same text, code and type as another term in this topic');
     seen.add(key);
@@ -59,7 +56,6 @@ for (const slug of slugs) {
   }
 }
 assert.deepEqual(bad, [], `\n${bad.join('\n')}\n`);
-assert.deepEqual([...stale], [], 'these entries of app/lexicon.legacy.json are within 120 characters now (or gone): delete their lines');
 
 // ---------- the lint itself: each broken term must be caught
 const ok = { text: 'Term', type: 'term', code: '', meaning: 'One line.', fame: 'niche', reference: '', series: ['specimen'] };
@@ -72,6 +68,5 @@ const broken = {
   'control character': { ...ok, meaning: 'Line\nbreak' }, 'bad hint': { ...ok, mat: { slots: 'finding' } }, 'extra hint key': { ...ok, spec: { slots: [], wide: true } },
 };
 for (const [name, t] of Object.entries(broken)) assert.ok(problems(t).length, `the lint should catch: ${name}`);
-assert.deepEqual(problems({ ...ok, meaning: 'x'.repeat(MEANING_MAX + 1) }, true), [], 'the legacy list tolerates a long meaning');
 
-console.log(`ok · ${slugs.length} lexicons, ${count} terms · shape, allowed values, limits and duplicates checked · ${legacy.size} legacy long meanings tolerated · lint catches ${Object.keys(broken).length} kinds of broken term`);
+console.log(`ok · ${slugs.length} lexicons, ${count} terms · shape, allowed values, limits and duplicates checked · lint catches ${Object.keys(broken).length} kinds of broken term`);

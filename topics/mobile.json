@@ -4,8 +4,8 @@
     {
       "text": "OWASP MASVS v2",
       "type": "framework",
-      "code": "MASVS v2.1.0",
-      "meaning": "Mobile Application Security Verification Standard; current release (Jan 2024), 8 control groups incl. PRIVACY.",
+      "code": "",
+      "meaning": "Mobile Application Security Verification Standard: 8 control groups, from STORAGE to PRIVACY.",
       "fame": "iconic",
       "reference": "https://github.com/OWASP/masvs/releases/tag/v2.1.0",
       "series": [
@@ -21,8 +21,8 @@
     {
       "text": "OWASP MASTG",
       "type": "framework",
-      "code": "MASTG v2.0.0",
-      "meaning": "Mobile Application Security Testing Guide; first stable v2 (June 30, 2026): atomic tests, demos, best practices.",
+      "code": "",
+      "meaning": "Mobile Application Security Testing Guide: atomic tests, demos and best practices behind MASVS.",
       "fame": "iconic",
       "reference": "https://github.com/OWASP/mastg/releases/tag/v2.0.0",
       "series": [
@@ -38,8 +38,8 @@
     {
       "text": "OWASP MASWE",
       "type": "framework",
-      "code": "MASWE v1.0.0",
-      "meaning": "Mobile Application Security Weakness Enumeration; first stable release (Aug 2026): 78 weaknesses, stable IDs.",
+      "code": "",
+      "meaning": "Mobile Application Security Weakness Enumeration: stable IDs for mobile weaknesses, grouped by MASVS.",
       "fame": "niche",
       "reference": "https://github.com/OWASP/maswe/releases/tag/v1.0.0",
       "series": [
@@ -56,7 +56,7 @@
       "text": "OWASP Mobile Top 10 2024",
       "type": "framework",
       "code": "Mobile Top 10:2024",
-      "meaning": "Current OWASP list of top mobile app risks, from M1 Improper Credential Usage to M10 Insufficient Cryptography.",
+      "meaning": "OWASP's 2024 list of top mobile app risks, from M1 Improper Credential Usage to M10 Insufficient Cryptography.",
       "fame": "iconic",
       "reference": "https://owasp.org/www-project-mobile-top-10/",
       "series": [
@@ -77,7 +77,6 @@
       "fame": "niche",
       "reference": "https://owasp.org/www-project-mobile-top-10/2023-risks/",
       "series": [
-        "specimen",
         "galley-proof",
         "catalog-card"
       ]
@@ -98,6 +97,12 @@
           "finding",
           "note"
         ]
+      },
+      "spec": {
+        "slots": [
+          "class"
+        ],
+        "as": "MAS-L1 · essential security"
       }
     },
     {
@@ -116,6 +121,12 @@
           "finding",
           "note"
         ]
+      },
+      "spec": {
+        "slots": [
+          "class"
+        ],
+        "as": "MAS-L2 · advanced security"
       }
     },
     {
@@ -134,6 +145,12 @@
           "finding",
           "note"
         ]
+      },
+      "spec": {
+        "slots": [
+          "class"
+        ],
+        "as": "MAS-R · resilience"
       }
     },
     {
@@ -146,7 +163,13 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ],
+        "as": "MAS-EUDIW · EU wallet profile"
+      }
     },
     {
       "text": "MASVS L1/L2/R → MAS Profiles",
@@ -168,7 +191,6 @@
       "fame": "niche",
       "reference": "https://mas.owasp.org/MASVS/controls/MASVS-STORAGE-1/",
       "series": [
-        "specimen",
         "cutting-mat",
         "catalog-card"
       ],
@@ -186,7 +208,6 @@
       "fame": "niche",
       "reference": "https://mas.owasp.org/MASVS/controls/MASVS-NETWORK-2/",
       "series": [
-        "specimen",
         "cutting-mat",
         "catalog-card"
       ],
@@ -204,7 +225,6 @@
       "fame": "niche",
       "reference": "https://mas.owasp.org/MASVS/controls/MASVS-RESILIENCE-1/",
       "series": [
-        "specimen",
         "cutting-mat",
         "catalog-card"
       ],
@@ -222,7 +242,6 @@
       "fame": "niche",
       "reference": "https://mas.owasp.org/MASVS/controls/MASVS-PRIVACY-1/",
       "series": [
-        "specimen",
         "cutting-mat",
         "catalog-card"
       ],
@@ -240,7 +259,6 @@
       "fame": "niche",
       "reference": "https://mas.owasp.org/MASWE/MASVS-NETWORK/MASWE-0028/",
       "series": [
-        "specimen",
         "galley-proof",
         "catalog-card"
       ]
@@ -253,7 +271,6 @@
       "fame": "niche",
       "reference": "https://mas.owasp.org/MASWE/MASVS-PLATFORM/MASWE-0039/",
       "series": [
-        "specimen",
         "cutting-mat",
         "catalog-card"
       ],
@@ -271,7 +288,6 @@
       "fame": "niche",
       "reference": "https://mas.owasp.org/MASWE/MASVS-RESILIENCE/MASWE-0051/",
       "series": [
-        "specimen",
         "cutting-mat",
         "catalog-card"
       ],
@@ -289,7 +305,6 @@
       "fame": "niche",
       "reference": "https://mas.owasp.org/MASWE/MASVS-STORAGE/MASWE-0005/",
       "series": [
-        "specimen",
         "galley-proof",
         "catalog-card"
       ]
@@ -302,7 +317,6 @@
       "fame": "niche",
       "reference": "https://mas.owasp.org/MASTG/tests/android/MASVS-RESILIENCE/MASTG-TEST-0039/",
       "series": [
-        "specimen",
         "galley-proof",
         "catalog-card"
       ]
@@ -388,7 +402,16 @@
       "reference": "https://source.android.com/docs/security/features/verifiedboot/boot-flow",
       "series": [
         "cutting-mat"
-      ]
+      ],
+      "mat": {
+        "slots": [
+          "status"
+        ],
+        "as": "verifiedbootstate=green"
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "SELinux: Enforcing",
@@ -462,7 +485,7 @@
       "type": "term",
       "code": "android:usesCleartextTraffic",
       "meaning": "Manifest flag planned for deprecation (Android 17 notice); cleartext rules move to Network Security Config.",
-      "fame": "niche",
+      "fame": "iconic",
       "reference": "https://developer.android.com/about/versions/17/behavior-changes-all",
       "series": [
         "galley-proof",
@@ -552,8 +575,7 @@
       "fame": "niche",
       "reference": "https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.Builder",
       "series": [
-        "galley-proof",
-        "cutting-mat"
+        "galley-proof"
       ]
     },
     {
@@ -567,7 +589,14 @@
         "galley-proof",
         "catalog-card",
         "cutting-mat"
-      ]
+      ],
+      "mat": {
+        "slots": [
+          "control",
+          "note"
+        ],
+        "as": "Play Integrity"
+      }
     },
     {
       "text": "MEETS_STRONG_INTEGRITY",
@@ -634,7 +663,7 @@
       "text": "EncryptedSharedPreferences",
       "type": "term",
       "code": "androidx.security:security-crypto",
-      "meaning": "Jetpack Security Crypto API; all APIs deprecated since 1.1.0-alpha07 (Apr 2025) for platform APIs and Keystore.",
+      "meaning": "Jetpack Security Crypto API, deprecated since 1.1.0-alpha07 (Apr 2025) in favor of platform APIs and Keystore.",
       "fame": "niche",
       "reference": "https://developer.android.com/jetpack/androidx/releases/security",
       "series": [
@@ -664,7 +693,13 @@
       "series": [
         "cutting-mat",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "developer verification"
+      }
     },
     {
       "text": "assetlinks.json",
@@ -680,6 +715,11 @@
       "mat": {
         "slots": [
           "flow"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "family"
         ]
       }
     },
@@ -728,7 +768,8 @@
       "reference": "https://support.apple.com/guide/security/secure-enclave-sec59b0b31ff/web",
       "series": [
         "cutting-mat",
-        "catalog-card"
+        "catalog-card",
+        "specimen"
       ],
       "mat": {
         "slots": [
@@ -817,6 +858,11 @@
         "slots": [
           "note"
         ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
       }
     },
     {
@@ -862,6 +908,11 @@
       "mat": {
         "slots": [
           "note"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "family"
         ]
       }
     },
@@ -956,6 +1007,12 @@
       "spec": {
         "slots": [
           "hero"
+        ],
+        "as": "MIE"
+      },
+      "mat": {
+        "slots": [
+          "control"
         ],
         "as": "MIE"
       }
@@ -1057,7 +1114,6 @@
       "reference": "https://www.cve.org/CVERecord?id=CVE-2019-8900",
       "series": [
         "cutting-mat",
-        "specimen",
         "catalog-card"
       ],
       "mat": {
@@ -1267,7 +1323,8 @@
       "series": [
         "cutting-mat",
         "galley-proof",
-        "catalog-card"
+        "catalog-card",
+        "specimen"
       ],
       "mat": {
         "slots": [
@@ -1308,7 +1365,8 @@
       "fame": "iconic",
       "reference": "",
       "series": [
-        "cutting-mat"
+        "cutting-mat",
+        "specimen"
       ],
       "mat": {
         "slots": [
@@ -1333,7 +1391,8 @@
       "reference": "https://mas.owasp.org/MASVS/controls/MASVS-RESILIENCE-2/",
       "series": [
         "cutting-mat",
-        "catalog-card"
+        "catalog-card",
+        "specimen"
       ],
       "mat": {
         "slots": [
@@ -1380,7 +1439,8 @@
       "reference": "https://developer.android.com/privacy-and-security/risks/tapjacking",
       "series": [
         "cutting-mat",
-        "catalog-card"
+        "catalog-card",
+        "specimen"
       ],
       "mat": {
         "slots": [
@@ -1403,7 +1463,6 @@
       "fame": "niche",
       "reference": "https://csrc.nist.gov/pubs/sp/800/163/r1/final",
       "series": [
-        "specimen",
         "catalog-card"
       ]
     },
@@ -1415,7 +1474,6 @@
       "fame": "niche",
       "reference": "https://www.rfc-editor.org/rfc/rfc8252",
       "series": [
-        "specimen",
         "catalog-card"
       ]
     },
@@ -1427,19 +1485,6 @@
       "fame": "niche",
       "reference": "https://cwe.mitre.org/data/definitions/926.html",
       "series": [
-        "specimen",
-        "catalog-card"
-      ]
-    },
-    {
-      "text": "CWE-295",
-      "type": "id",
-      "code": "CWE-295",
-      "meaning": "Improper Certificate Validation; MASWE-0027 (validation) and MASWE-0028 (pinning) map to it.",
-      "fame": "niche",
-      "reference": "https://cwe.mitre.org/data/definitions/295.html",
-      "series": [
-        "specimen",
         "catalog-card"
       ]
     },
@@ -1475,7 +1520,7 @@
       "text": "Enable Lockdown Mode.",
       "type": "phrase",
       "code": "",
-      "meaning": "CISA mobile guidance, first iPhone-specific recommendation: turn on Lockdown Mode to shrink the attack surface for highly targeted people.",
+      "meaning": "CISA mobile guidance, first iPhone tip: turn on Lockdown Mode to shrink the attack surface of highly targeted people.",
       "fame": "niche",
       "reference": "https://www.cisa.gov/sites/default/files/2025-12/guidance-mobile-communications-best-practices_508c.pdf",
       "series": [
@@ -1552,6 +1597,11 @@
       "series": [
         "specimen"
       ],
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
+      },
       "mat": {
         "slots": []
       }
@@ -1566,6 +1616,11 @@
       "series": [
         "specimen"
       ],
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
+      },
       "mat": {
         "slots": []
       }
@@ -1650,7 +1705,7 @@
       "text": "TOTP RFC 6238 test vector",
       "type": "snippet",
       "code": "RFC 6238",
-      "meaning": "Known-answer test: SHA-1 secret \"12345678901234567890\" at Unix time 59 gives 94287082.",
+      "meaning": "Known-answer test: the RFC's published SHA-1 test key at Unix time 59 gives 94287082.",
       "fame": "niche",
       "reference": "https://www.rfc-editor.org/info/rfc6238",
       "series": [
@@ -1670,7 +1725,7 @@
       "text": "HOTP RFC 4226 test vector",
       "type": "snippet",
       "code": "RFC 4226",
-      "meaning": "Known-answer test: SHA-1 secret \"12345678901234567890\" at counter 0 gives 755224.",
+      "meaning": "Known-answer test: the RFC's published SHA-1 test key at counter 0 gives 755224.",
       "fame": "niche",
       "reference": "https://www.rfc-editor.org/info/rfc4226",
       "series": [
@@ -1724,6 +1779,211 @@
       },
       "mat": {
         "slots": []
+      }
+    },
+    {
+      "text": "Jailbreak",
+      "type": "term",
+      "code": "",
+      "meaning": "Disabling iOS protections, code signing above all, so unsigned code can run; Apple calls it unauthorized modification.",
+      "fame": "iconic",
+      "reference": "https://support.apple.com/guide/iphone/unauthorized-modification-of-ios-iph9385bb26a/ios",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding",
+          "note"
+        ],
+        "as": "jailbreak"
+      }
+    },
+    {
+      "text": "Rooting",
+      "type": "term",
+      "code": "",
+      "meaning": "Modifying Android so commands can run as the root user, bypassing restrictions such as app sandboxing.",
+      "fame": "iconic",
+      "reference": "https://mas.owasp.org/MASTG/0x05b-Android-Security-Testing/#getting-privileged-access",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding",
+          "note"
+        ],
+        "as": "rooting"
+      }
+    },
+    {
+      "text": "Trusted Execution Environment",
+      "type": "term",
+      "code": "TEE",
+      "meaning": "Isolated area of the main processor that protects sensitive code and data from the rich OS around it.",
+      "fame": "iconic",
+      "reference": "https://globalplatform.org/resource-publication/what-is-a-trusted-execution-environment-tee-past-present-future/",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control",
+          "sink"
+        ],
+        "as": "TEE"
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "TEE"
+      }
+    },
+    {
+      "text": "Pegasus",
+      "type": "term",
+      "code": "S0289 · S0316",
+      "meaning": "Commercial spyware linked to NSO Group; ATT&CK tracks it as S0289 for iOS and S0316 for Android.",
+      "fame": "iconic",
+      "reference": "https://attack.mitre.org/software/S0289/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding",
+          "note"
+        ]
+      }
+    },
+    {
+      "text": "adb",
+      "type": "tool",
+      "code": "MASTG-TOOL-0004",
+      "meaning": "Android Debug Bridge: command-line tool that talks to a device or emulator for app install, debugging and shell.",
+      "fame": "iconic",
+      "reference": "https://developer.android.com/tools/adb",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "flow",
+          "source"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "Android Debug Bridge"
+      }
+    },
+    {
+      "text": "Google Play Protect",
+      "type": "term",
+      "code": "",
+      "meaning": "Built-in Android malware defense from Google that scans apps and warns about or blocks harmful ones.",
+      "fame": "niche",
+      "reference": "https://developers.google.com/android/play-protect",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control",
+          "note"
+        ],
+        "as": "Play Protect"
+      }
+    },
+    {
+      "text": "Runtime permissions",
+      "type": "term",
+      "code": "",
+      "meaning": "Android model (6.0+) where the user grants dangerous permissions while the app runs, not at install time.",
+      "fame": "iconic",
+      "reference": "https://developer.android.com/training/permissions/requesting",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "runtime permissions"
+      }
+    },
+    {
+      "text": "Android Verified Boot",
+      "type": "term",
+      "code": "AVB",
+      "meaning": "Chain of trust from a hardware root through the bootloader to verified partitions, with rollback protection.",
+      "fame": "niche",
+      "reference": "https://source.android.com/docs/security/features/verifiedboot",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control",
+          "note"
+        ],
+        "as": "verified boot"
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
+    },
+    {
+      "text": "Provisioning profile",
+      "type": "term",
+      "code": "embedded.mobileprovision",
+      "meaning": "Apple-signed file tying together who may sign an app, where it can run and which entitlements it may use.",
+      "fame": "niche",
+      "reference": "https://developer.apple.com/documentation/technotes/tn3125-inside-code-signing-provisioning-profiles",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "provisioning profile"
+      }
+    },
+    {
+      "text": "Entitlements",
+      "type": "term",
+      "code": "",
+      "meaning": "Key-value pairs embedded in an app's code signature that grant it a right to use a service or technology.",
+      "fame": "iconic",
+      "reference": "https://developer.apple.com/documentation/bundleresources/entitlements",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control",
+          "note"
+        ],
+        "as": "entitlements"
       }
     }
   ]

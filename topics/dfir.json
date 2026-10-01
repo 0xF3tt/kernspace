@@ -9,14 +9,16 @@
       "fame": "iconic",
       "reference": "",
       "series": [
-        "specimen",
-        "cutting-mat"
+        "specimen"
       ],
       "spec": {
         "slots": [
           "hero"
         ],
         "as": "DFIR"
+      },
+      "mat": {
+        "slots": []
       }
     },
     {
@@ -29,7 +31,8 @@
       "series": [
         "catalog-card",
         "galley-proof",
-        "cutting-mat"
+        "cutting-mat",
+        "specimen"
       ],
       "mat": {
         "slots": [
@@ -48,7 +51,7 @@
       "text": "Order of Volatility",
       "type": "framework",
       "code": "RFC 3227 §2.1",
-      "meaning": "Collect the most volatile first: registers and cache, memory, temp file systems, disk, remote logs, archival media.",
+      "meaning": "Ranking of evidence by how fast it vanishes: registers and cache, memory, temp files, disk, remote logs, archives.",
       "fame": "iconic",
       "reference": "https://www.rfc-editor.org/rfc/rfc3227",
       "series": [
@@ -76,8 +79,12 @@
       ],
       "mat": {
         "slots": [
-          "note",
-          "finding"
+          "note"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "class"
         ]
       }
     },
@@ -91,7 +98,12 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
     },
     {
       "text": "NIST SP 800-61 Rev. 2",
@@ -190,18 +202,6 @@
       }
     },
     {
-      "text": "MD5 · RFC 1321",
-      "type": "id",
-      "code": "RFC 1321",
-      "meaning": "Legacy 128-bit evidence hash; no longer collision-resistant, so it is logged beside SHA-256, not alone.",
-      "fame": "iconic",
-      "reference": "https://www.rfc-editor.org/rfc/rfc1321",
-      "series": [
-        "galley-proof",
-        "specimen"
-      ]
-    },
-    {
       "text": "Super Timeline",
       "type": "term",
       "code": "",
@@ -223,8 +223,8 @@
     {
       "text": "Volatility 3",
       "type": "tool",
-      "code": "v2.26.0",
-      "meaning": "Open-source memory forensics framework; its parity release v2.26.0 (May 2025) deprecated Volatility 2.",
+      "code": "",
+      "meaning": "Open-source memory forensics framework; its 2025 feature-parity release deprecated Volatility 2.",
       "fame": "iconic",
       "reference": "https://volatilityfoundation.org/announcing-the-official-parity-release-of-volatility-3/",
       "series": [
@@ -300,6 +300,11 @@
         "slots": [
           "flow"
         ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
       }
     },
     {
@@ -317,25 +322,11 @@
         "slots": [
           "flow"
         ]
-      }
-    },
-    {
-      "text": "Event ID 1102",
-      "type": "id",
-      "code": "1102",
-      "meaning": "Windows Security event: The audit log was cleared. A classic anti-forensics red flag.",
-      "fame": "iconic",
-      "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-1102",
-      "series": [
-        "specimen",
-        "catalog-card",
-        "galley-proof"
-      ],
+      },
       "spec": {
         "slots": [
-          "rating"
-        ],
-        "as": "log cleared"
+          "family"
+        ]
       }
     },
     {
@@ -423,6 +414,11 @@
           "sink",
           "flow"
         ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
       }
     },
     {
@@ -464,7 +460,8 @@
       "reference": "",
       "series": [
         "galley-proof",
-        "catalog-card"
+        "catalog-card",
+        "specimen"
       ],
       "spec": {
         "slots": [
@@ -484,7 +481,12 @@
         "specimen",
         "catalog-card",
         "galley-proof"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
     },
     {
       "text": "Live Response",
@@ -513,7 +515,8 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "specimen"
       ],
       "mat": {
         "slots": [
@@ -526,24 +529,6 @@
           "rating"
         ],
         "as": "patient zero"
-      }
-    },
-    {
-      "text": "TLP:CLEAR",
-      "type": "id",
-      "code": "TLP 2.0",
-      "meaning": "FIRST Traffic Light Protocol label for information that may be shared publicly; replaced TLP:WHITE.",
-      "fame": "iconic",
-      "reference": "https://www.first.org/tlp/",
-      "series": [
-        "specimen",
-        "galley-proof",
-        "cutting-mat"
-      ],
-      "mat": {
-        "slots": [
-          "flow"
-        ]
       }
     },
     {
@@ -599,42 +584,6 @@
       }
     },
     {
-      "text": "CSF 2.0 · RS.AN-03",
-      "type": "id",
-      "code": "RS.AN-03",
-      "meaning": "Analysis is performed to establish what has taken place during an incident and the root cause of the incident.",
-      "fame": "niche",
-      "reference": "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf",
-      "series": [
-        "catalog-card",
-        "specimen"
-      ]
-    },
-    {
-      "text": "CSF 2.0 · RS.AN-07",
-      "type": "id",
-      "code": "RS.AN-07",
-      "meaning": "Incident data and metadata are collected, and their integrity and provenance are preserved.",
-      "fame": "niche",
-      "reference": "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf",
-      "series": [
-        "catalog-card",
-        "specimen"
-      ]
-    },
-    {
-      "text": "CSF 1.1 · RS.AN-3",
-      "type": "id",
-      "code": "RS.AN-3",
-      "meaning": "CSF 1.1 \"Forensics are performed\". CSF 2.0 rescoped it into RS.AN-03 (analysis) and RS.AN-06 (records).",
-      "fame": "niche",
-      "reference": "https://www.nist.gov/document/csf-11-csf-20-core-transition-changes",
-      "series": [
-        "catalog-card",
-        "galley-proof"
-      ]
-    },
-    {
       "text": "ISO/IEC 27037:2012",
       "type": "id",
       "code": "ISO/IEC 27037:2012",
@@ -644,7 +593,12 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
     },
     {
       "text": "ISO/IEC 27035-1:2023",
@@ -679,7 +633,12 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
     },
     {
       "text": "NSRL RDSv3",
@@ -721,26 +680,19 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
-    },
-    {
-      "text": "TLP:WHITE",
-      "type": "id",
-      "code": "TLP 1.0",
-      "meaning": "Deprecated TLP 1.0 label; replaced by TLP:CLEAR when TLP 2.0 took effect in August 2022.",
-      "fame": "niche",
-      "reference": "https://www.first.org/newsroom/releases/20220805",
-      "series": [
-        "galley-proof",
-        "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
     },
     {
       "text": "MACB",
       "type": "term",
       "code": "",
       "meaning": "Modified, Accessed, Changed (metadata), Born: the four timestamps read in every timeline.",
-      "fame": "niche",
+      "fame": "iconic",
       "reference": "",
       "series": [
         "specimen",
@@ -779,7 +731,10 @@
       "reference": "https://learn.microsoft.com/en-us/windows/win32/devnotes/file-record-segment-header",
       "series": [
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "$UsnJrnl:$J",
@@ -900,7 +855,8 @@
       "reference": "",
       "series": [
         "galley-proof",
-        "catalog-card"
+        "catalog-card",
+        "specimen"
       ],
       "spec": {
         "slots": [
@@ -924,6 +880,11 @@
         "slots": [
           "flow"
         ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
       }
     },
     {
@@ -935,19 +896,10 @@
       "reference": "https://github.com/libyal/libregf/blob/main/documentation/Windows%20NT%20Registry%20File%20(REGF)%20format.asciidoc",
       "series": [
         "specimen"
-      ]
-    },
-    {
-      "text": "528 → 4624",
-      "type": "id",
-      "code": "4624",
-      "meaning": "Legacy Windows XP/2003 logon events 528 and 540 became 4624 from Vista and Server 2008 on.",
-      "fame": "niche",
-      "reference": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor",
-      "series": [
-        "galley-proof",
-        "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": ".evt → .evtx",
@@ -960,24 +912,6 @@
         "galley-proof",
         "catalog-card"
       ]
-    },
-    {
-      "text": "Logon Type 10",
-      "type": "id",
-      "code": "RemoteInteractive",
-      "meaning": "Event 4624 logon type for sessions over Terminal Services or Remote Desktop.",
-      "fame": "niche",
-      "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4624",
-      "series": [
-        "specimen",
-        "cutting-mat"
-      ],
-      "mat": {
-        "slots": [
-          "source",
-          "finding"
-        ]
-      }
     },
     {
       "text": "EnableScriptBlockLogging=1",
@@ -994,13 +928,16 @@
         "slots": [
           "note"
         ]
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
       "text": "TZ=UTC",
       "type": "snippet",
       "code": "",
-      "meaning": "Normalize every timestamp to UTC before building a timeline; mixed local times breed errors.",
+      "meaning": "Shorthand for the timeline rule: normalize every timestamp to UTC, since mixed local times breed errors.",
       "fame": "niche",
       "reference": "",
       "series": [
@@ -1008,6 +945,11 @@
         "specimen"
       ],
       "mat": {
+        "slots": [
+          "note"
+        ]
+      },
+      "spec": {
         "slots": [
           "note"
         ]
@@ -1035,7 +977,13 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "note"
+        ],
+        "as": "Mac epoch · 2001-01-01"
+      }
     },
     {
       "text": "C ≠ Created",
@@ -1146,6 +1094,11 @@
           "sink",
           "flow"
         ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
       }
     },
     {
@@ -1254,19 +1207,6 @@
       "fame": "iconic",
       "reference": "https://www.giac.org/certifications/certified-forensic-analyst-gcfa/",
       "series": [
-        "specimen",
-        "cutting-mat"
-      ]
-    },
-    {
-      "text": "CERT/CC · 1988",
-      "type": "id",
-      "code": "CERT/CC",
-      "meaning": "Coordination center set up at the Software Engineering Institute in 1988 after the first major internet worm.",
-      "fame": "niche",
-      "reference": "",
-      "series": [
-        "catalog-card",
         "cutting-mat"
       ],
       "mat": {
@@ -1274,18 +1214,6 @@
           "note"
         ]
       }
-    },
-    {
-      "text": "CWE-778",
-      "type": "id",
-      "code": "CWE-778",
-      "meaning": "Insufficient Logging: security-critical events go unrecorded or lack key details, leaving forensics blind.",
-      "fame": "niche",
-      "reference": "https://cwe.mitre.org/data/definitions/778.html",
-      "series": [
-        "catalog-card",
-        "specimen"
-      ]
     },
     {
       "text": "HASH MATCH · SHA-256 VERIFIED",
@@ -1296,7 +1224,8 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "specimen"
       ],
       "mat": {
         "slots": [
@@ -1313,7 +1242,8 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "specimen"
       ],
       "mat": {
         "slots": [
@@ -1330,7 +1260,8 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "specimen"
       ],
       "mat": {
         "slots": [
@@ -1338,14 +1269,17 @@
         ]
       },
       "spec": {
-        "slots": []
+        "slots": [
+          "status"
+        ],
+        "as": "EVIDENCE SEALED"
       }
     },
     {
       "text": "Every contact leaves a trace.",
       "type": "phrase",
       "code": "",
-      "meaning": "Locard's exchange principle, the founding maxim of forensic science: any contact leaves evidence behind. In DFIR it means every intruder action leaves artifacts.",
+      "meaning": "Locard's exchange principle: any contact leaves evidence behind, so every intruder action leaves artifacts.",
       "fame": "iconic",
       "reference": "https://nij.ojp.gov/nij-hosted-online-training-courses/types-of-evidence/collecting-dna-evidence-at-property-crime-scenes/evidence-found-crime-scenes",
       "series": [
@@ -1356,7 +1290,7 @@
       "text": "Where is the evidence?",
       "type": "phrase",
       "code": "",
-      "meaning": "First collection step in RFC 3227 §3.2: list the systems involved in the incident and the ones evidence will be collected from.",
+      "meaning": "First collection step in RFC 3227 §3.2: list the systems involved and where evidence will be collected.",
       "fame": "niche",
       "reference": "https://www.rfc-editor.org/rfc/rfc3227.html#section-3.2",
       "series": [
@@ -1378,7 +1312,7 @@
       "text": "Be methodical.",
       "type": "phrase",
       "code": "",
-      "meaning": "RFC 3227 §2 guiding principle for evidence collection: follow tested, repeatable procedures step by step, even in a crisis.",
+      "meaning": "RFC 3227 §2 guiding principle: follow tested, repeatable procedures step by step, even in a crisis.",
       "fame": "niche",
       "reference": "https://www.rfc-editor.org/rfc/rfc3227.html#section-2",
       "series": [
@@ -1457,6 +1391,11 @@
       ],
       "mat": {
         "slots": []
+      },
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
       }
     },
     {
@@ -1471,13 +1410,18 @@
       ],
       "mat": {
         "slots": []
+      },
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
       }
     },
     {
       "text": "0xFFFFFFFF",
       "type": "status-line",
       "code": "MFT",
-      "meaning": "The four-byte end marker that closes an MFT record attribute list.",
+      "meaning": "Four-byte marker that ends the attributes in an MFT record.",
       "fame": "niche",
       "reference": "https://flatcap.github.io/linux-ntfs/ntfs/attributes/index.html",
       "series": [
@@ -1485,6 +1429,11 @@
       ],
       "mat": {
         "slots": []
+      },
+      "spec": {
+        "slots": [
+          "notdef"
+        ]
       }
     },
     {
@@ -1620,6 +1569,240 @@
         "as": "Unix 978307200 = 2001-01-01Z (Mac epoch)"
       },
       "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "SP 800-61 Rev. 2 → Rev. 3",
+      "type": "framework",
+      "code": "SP 800-61r3",
+      "meaning": "NIST incident response guidance; Rev. 3 (Apr 2025) is a CSF 2.0 Community Profile superseding Rev. 2 (2012).",
+      "fame": "niche",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ]
+    },
+    {
+      "text": "CSIRT, not CERT",
+      "type": "term",
+      "code": "CSIRT",
+      "meaning": "Generic name for an incident response team; 'CERT' is a registered mark of Carnegie Mellon University.",
+      "fame": "niche",
+      "reference": "https://certcc.github.io/CERT-Guide-to-CVD/",
+      "series": [
+        "galley-proof",
+        "specimen"
+      ]
+    },
+    {
+      "text": "Volatility 2 → Volatility 3",
+      "type": "tool",
+      "code": "",
+      "meaning": "The original Volatility memory-forensics repo is archived and points to Volatility 3.",
+      "fame": "niche",
+      "reference": "https://github.com/volatilityfoundation/volatility",
+      "series": [
+        "catalog-card",
+        "galley-proof"
+      ],
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "FTK Imager",
+      "type": "tool",
+      "code": "",
+      "meaning": "Exterro's tool for acquiring forensic images, previewing evidence and capturing live memory.",
+      "fame": "iconic",
+      "reference": "https://www.exterro.com/digital-forensics-software/ftk-imager",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ],
+        "as": "FTK Imager → E01"
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "EnCase",
+      "type": "tool",
+      "code": "",
+      "meaning": "Commercial digital forensics suite by Guidance Software, later renamed OpenText Forensic after the OpenText acquisition.",
+      "fame": "iconic",
+      "reference": "https://www.opentext.com/products/forensic",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "LNK files",
+      "type": "artifact",
+      "code": ".lnk",
+      "meaning": "Windows shortcut files; those in the Recent folder record a target's path and timestamps, a file-access trace.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-shllink/16cb4ca1-9339-4d0c-a68d-bf1d6cc0f943",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "Jump Lists",
+      "type": "artifact",
+      "code": "",
+      "meaning": "Per-application taskbar lists of recent, frequent and pinned files; their records show which files a user opened.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/windows/win32/shell/taskbar-extensions",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "Registry Hives",
+      "type": "artifact",
+      "code": "SAM, SYSTEM, SOFTWARE, SECURITY",
+      "meaning": "The machine-wide Windows registry files: SAM, SYSTEM, SOFTWARE and SECURITY, each a hive stored on disk.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/en-us/windows/win32/sysinfo/registry-hives",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "RegRipper",
+      "type": "tool",
+      "code": "",
+      "meaning": "Open-source tool that parses Windows registry hives with plugins to pull out forensic artifacts.",
+      "fame": "niche",
+      "reference": "https://github.com/keydet89/RegRipper3.0",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ],
+        "as": "hive → RegRipper"
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "$LogFile",
+      "type": "artifact",
+      "code": "MFT record 2",
+      "meaning": "NTFS transaction log of recent metadata changes, used to recover the volume after a crash.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      }
+    },
+    {
+      "text": "WinPmem",
+      "type": "tool",
+      "code": "",
+      "meaning": "Open-source physical memory acquisition tool for Windows, maintained under the Velocidex project.",
+      "fame": "niche",
+      "reference": "https://github.com/Velocidex/WinPmem",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "DumpIt",
+      "type": "tool",
+      "code": "",
+      "meaning": "Fast Windows memory acquisition tool that writes crash-dump images; made by Comae, then Magnet Forensics.",
+      "fame": "niche",
+      "reference": "https://www.magnetforensics.com/resources/magnet-dumpit-for-windows/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Eradication",
+      "type": "term",
+      "code": "",
+      "meaning": "IR phase that removes what an incident left behind, such as malware and breached accounts, and fixes exploited flaws.",
+      "fame": "iconic",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
+      "series": [
+        "galley-proof",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ],
+        "as": "eradication"
+      },
+      "spec": {
         "slots": []
       }
     }

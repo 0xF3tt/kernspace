@@ -11,7 +11,18 @@
       "series": [
         "cutting-mat",
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "SOC"
+      }
     },
     {
       "text": "SIEM",
@@ -26,7 +37,7 @@
       ],
       "mat": {
         "slots": [
-          "sink"
+          "control"
         ]
       },
       "spec": {
@@ -74,6 +85,9 @@
           "hero"
         ],
         "as": "XDR"
+      },
+      "mat": {
+        "slots": []
       }
     },
     {
@@ -86,7 +100,12 @@
       "series": [
         "specimen",
         "cutting-mat"
-      ]
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
     },
     {
       "text": "UEBA",
@@ -98,7 +117,10 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Blue Team",
@@ -110,7 +132,16 @@
       "series": [
         "cutting-mat",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "blue team"
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "Threat Hunting",
@@ -128,6 +159,9 @@
           "note"
         ],
         "as": "threat hunting"
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -139,13 +173,19 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "catalog-card"
+        "catalog-card",
+        "specimen"
       ],
       "mat": {
         "slots": [
           "note"
         ],
         "as": "detection engineering"
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
       }
     },
     {
@@ -163,20 +203,29 @@
     {
       "text": "Sigma specification",
       "type": "framework",
-      "code": "v2.1.0",
-      "meaning": "Generic YAML signature format for log detections; specification v2.1.0 released 2025-08-02.",
+      "code": "",
+      "meaning": "Generic YAML signature format for log detections; rules convert to each SIEM's query language.",
       "fame": "iconic",
       "reference": "https://github.com/SigmaHQ/sigma-specification",
       "series": [
         "catalog-card",
         "cutting-mat"
-      ]
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ],
+        "as": "Sigma"
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "YARA",
       "type": "tool",
       "code": "",
-      "meaning": "Pattern-matching rule language for classifying files and memory; the classic 4.x line is in maintenance mode.",
+      "meaning": "Pattern-matching rule language that classifies files and memory by text or binary patterns plus a boolean condition.",
       "fame": "iconic",
       "reference": "https://github.com/VirusTotal/yara",
       "series": [
@@ -193,7 +242,7 @@
     {
       "text": "Sysmon",
       "type": "tool",
-      "code": "v15.22",
+      "code": "",
       "meaning": "Sysinternals System Monitor: service and driver logging process, network, file and registry activity.",
       "fame": "iconic",
       "reference": "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon",
@@ -206,6 +255,9 @@
           "control",
           "flow"
         ]
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -224,6 +276,11 @@
           "finding",
           "flow"
         ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
       }
     },
     {
@@ -240,6 +297,12 @@
       "mat": {
         "slots": [
           "finding"
+        ],
+        "as": "4625 · logon fail"
+      },
+      "spec": {
+        "slots": [
+          "status"
         ],
         "as": "4625 · failed logon"
       }
@@ -259,6 +322,9 @@
           "finding"
         ],
         "as": "4688 · new process"
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -277,6 +343,9 @@
           "finding"
         ],
         "as": "1102 · log cleared"
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -295,6 +364,11 @@
           "finding",
           "flow"
         ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
       }
     },
     {
@@ -311,6 +385,12 @@
       "mat": {
         "slots": [
           "flow"
+        ],
+        "as": "Sysmon EID 1"
+      },
+      "spec": {
+        "slots": [
+          "family"
         ],
         "as": "Sysmon EID 1"
       }
@@ -331,6 +411,9 @@
           "hero"
         ],
         "as": "IOC"
+      },
+      "mat": {
+        "slots": []
       }
     },
     {
@@ -349,6 +432,9 @@
           "status"
         ],
         "as": "true positive"
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -371,7 +457,8 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "specimen"
       ],
       "mat": {
         "slots": [
@@ -412,7 +499,8 @@
       "fame": "iconic",
       "reference": "",
       "series": [
-        "cutting-mat"
+        "cutting-mat",
+        "specimen"
       ],
       "mat": {
         "slots": [
@@ -465,6 +553,9 @@
           "control",
           "flow"
         ]
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -482,14 +573,22 @@
     {
       "text": "MITRE D3FEND",
       "type": "framework",
-      "code": "1.6.0",
-      "meaning": "Defensive ontology, 1.6.0 (2026-08-31). Tactics: Model, Harden, Detect, Isolate, Deceive, Evict, Restore.",
+      "code": "",
+      "meaning": "MITRE ontology of defensive techniques. Tactics: Model, Harden, Detect, Isolate, Deceive, Evict, Restore.",
       "fame": "niche",
       "reference": "https://d3fend.mitre.org/version/",
       "series": [
         "catalog-card",
         "cutting-mat"
-      ]
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "Hash Values · Trivial",
@@ -501,7 +600,10 @@
       "series": [
         "specimen",
         "galley-proof"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "TTPs · Tough!",
@@ -529,7 +631,15 @@
       "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4768",
       "series": [
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Event ID 4769",
@@ -541,7 +651,15 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Logon Type 3 · Network",
@@ -552,7 +670,15 @@
       "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4624",
       "series": [
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Logon Type 10 · RemoteInteractive",
@@ -570,6 +696,12 @@
           "finding"
         ],
         "as": "logon type 10"
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "Logon Type 10"
       }
     },
     {
@@ -581,7 +713,10 @@
       "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4625",
       "series": [
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "0xC0000064",
@@ -592,7 +727,10 @@
       "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4625",
       "series": [
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Ticket Encryption Type 0x17",
@@ -628,6 +766,12 @@
           "finding"
         ],
         "as": "Sysmon EID 10"
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "Sysmon EID 10"
       }
     },
     {
@@ -639,7 +783,16 @@
       "reference": "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon",
       "series": [
         "cutting-mat"
-      ]
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "Sysmon/Operational"
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "ProcessCreationIncludeCmdLine_Enabled",
@@ -649,7 +802,6 @@
       "fame": "niche",
       "reference": "https://learn.microsoft.com/windows/client-management/mdm/policy-csp-admx-auditsettings",
       "series": [
-        "cutting-mat",
         "catalog-card"
       ]
     },
@@ -668,6 +820,9 @@
           "hero"
         ],
         "as": "AMSI"
+      },
+      "mat": {
+        "slots": []
       }
     },
     {
@@ -686,6 +841,9 @@
           "status"
         ],
         "as": "benign positive"
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -714,6 +872,9 @@
           "note"
         ],
         "as": "eyes on glass"
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -732,6 +893,9 @@
           "note"
         ],
         "as": "single pane of glass"
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -762,10 +926,11 @@
       "type": "term",
       "code": "",
       "meaning": "Periodic callback pattern of implants to command-and-control; hunted through connection regularity.",
-      "fame": "niche",
+      "fame": "iconic",
       "reference": "",
       "series": [
-        "cutting-mat"
+        "cutting-mat",
+        "specimen"
       ],
       "mat": {
         "slots": [
@@ -791,7 +956,15 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "D3-PSA · Process Spawn Analysis",
@@ -803,7 +976,15 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "D3-PLA · Process Lineage Analysis",
@@ -815,7 +996,15 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "DET0157 · Kerberoasting",
@@ -827,31 +1016,15 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
-    },
-    {
-      "text": "Defense Evasion → Stealth · TA0005",
-      "type": "id",
-      "code": "TA0005",
-      "meaning": "ATT&CK v19 split Defense Evasion: TA0005 is now Stealth; defense-breaking moved to TA0112.",
-      "fame": "niche",
-      "reference": "https://attack.mitre.org/tactics/TA0005/",
-      "series": [
-        "catalog-card",
-        "galley-proof"
-      ]
-    },
-    {
-      "text": "T1070.001 → T1685.005",
-      "type": "id",
-      "code": "T1685.005",
-      "meaning": "Clear Windows Event Logs moved from Indicator Removal to Disable or Modify Tools in ATT&CK v19.",
-      "fame": "niche",
-      "reference": "https://attack.mitre.org/techniques/T1685/005/",
-      "series": [
-        "catalog-card",
-        "galley-proof"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      },
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Data Sources → Detection Strategies",
@@ -914,41 +1087,6 @@
       ]
     },
     {
-      "text": "SP 800-61 Rev. 2 → Rev. 3",
-      "type": "framework",
-      "code": "SP 800-61r3",
-      "meaning": "NIST incident response guidance; Rev. 3 (Apr 2025) is a CSF 2.0 Community Profile superseding Rev. 2 (2012).",
-      "fame": "niche",
-      "reference": "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
-      "series": [
-        "catalog-card",
-        "galley-proof"
-      ]
-    },
-    {
-      "text": "DE.AE · Adverse Event Analysis",
-      "type": "id",
-      "code": "DE.AE",
-      "meaning": "CSF 2.0 Detect category, called Anomalies and Events in CSF 1.1; 2.0 dropped DE.DP Detection Processes.",
-      "fame": "niche",
-      "reference": "https://doi.org/10.6028/NIST.CSWP.29",
-      "series": [
-        "catalog-card"
-      ]
-    },
-    {
-      "text": "RC4-HMAC → AES-SHA1",
-      "type": "term",
-      "code": "",
-      "meaning": "Kerberos default shift: AES-SHA1 in 2022 updates (CVE-2022-37966); DCs stop assuming RC4 in 2026 (CVE-2026-20833).",
-      "fame": "niche",
-      "reference": "https://learn.microsoft.com/windows-server/security/kerberos/detect-remediate-rc4-kerberos",
-      "series": [
-        "catalog-card",
-        "galley-proof"
-      ]
-    },
-    {
       "text": "weird.log",
       "type": "filename",
       "code": "",
@@ -962,6 +1100,11 @@
       "mat": {
         "slots": [
           "flow"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "family"
         ]
       }
     },
@@ -989,9 +1132,11 @@
       "fame": "niche",
       "reference": "https://learn.microsoft.com/azure/azure-monitor/reference/tables/securityevent",
       "series": [
-        "cutting-mat",
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "status: experimental",
@@ -1008,6 +1153,9 @@
         "slots": [
           "status"
         ]
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -1030,9 +1178,11 @@
       "fame": "niche",
       "reference": "https://yara.readthedocs.io/",
       "series": [
-        "specimen",
-        "cutting-mat"
-      ]
+        "specimen"
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "HM0–HM4",
@@ -1078,13 +1228,17 @@
       "fame": "niche",
       "reference": "https://github.com/palantir/alerting-detection-strategy-framework",
       "series": [
-        "galley-proof"
+        "galley-proof",
+        "specimen"
       ],
       "spec": {
         "slots": [
           "rating"
         ],
         "as": "blind spots"
+      },
+      "mat": {
+        "slots": []
       }
     },
     {
@@ -1100,34 +1254,10 @@
       ]
     },
     {
-      "text": "The Cuckoo's Egg · 1989",
-      "type": "artifact",
-      "code": "",
-      "meaning": "1989 book on tracing an intruder from a tiny accounting discrepancy; a blue-team origin story.",
-      "fame": "niche",
-      "reference": "",
-      "series": [
-        "catalog-card",
-        "cutting-mat"
-      ]
-    },
-    {
-      "text": "SUNBURST · 2020",
-      "type": "artifact",
-      "code": "",
-      "meaning": "Backdoor in trojanized SolarWinds Orion updates, disclosed Dec 2020; a landmark supply-chain detection case.",
-      "fame": "niche",
-      "reference": "",
-      "series": [
-        "catalog-card",
-        "cutting-mat"
-      ]
-    },
-    {
       "text": "Enumerating Goodness",
       "type": "phrase",
       "code": "",
-      "meaning": "The cure, in the 2005 essay 'The Six Dumbest Ideas in Computer Security', for 'Enumerating Badness', the idea behind anti-virus and intrusion detection: track the few programs you need and deny everything else.",
+      "meaning": "The 'Six Dumbest Ideas' (2005) cure for 'Enumerating Badness', the AV and IDS model: allow only the programs you need.",
       "fame": "niche",
       "reference": "https://www.ranum.com/security/computer_security/editorials/dumb/",
       "series": [
@@ -1138,7 +1268,7 @@
       "text": "The Defender's Advantage",
       "type": "phrase",
       "code": "",
-      "meaning": "Title of a Google Cloud (Mandiant) guide: organizations facing adversaries in their own environment have a fundamental defender's advantage, which security teams capitalize on by controlling the landscape where they meet attackers, through six critical security functions.",
+      "meaning": "Google Cloud (Mandiant) guide: defenders hold home ground, and six security functions turn it into an edge.",
       "fame": "niche",
       "reference": "https://cloud.google.com/security/resources/defenders-advantage",
       "series": [
@@ -1365,6 +1495,326 @@
         ],
         "as": "base64(UTF-16LE \"IEX\") = SQBFAFgA"
       },
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "IOA",
+      "type": "term",
+      "code": "",
+      "meaning": "Indicator of attack: intent-based behavioral signal, contrasted with the static IOC. Lookalike of IOC.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "specimen"
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ]
+      }
+    },
+    {
+      "text": "528 → 4624",
+      "type": "id",
+      "code": "4624",
+      "meaning": "Legacy Windows XP/2003 logon events 528 and 540 became 4624 from Vista and Server 2008 on.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ]
+    },
+    {
+      "text": "D3-MENCR · Message Encryption",
+      "type": "id",
+      "code": "D3-MENCR",
+      "meaning": "D3FEND countermeasure: encrypting a message body using a cryptographic key.",
+      "fame": "niche",
+      "reference": "https://d3fend.mitre.org/technique/d3f:MessageEncryption/",
+      "series": [
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "D3-FCR File Content Rules",
+      "type": "id",
+      "code": "D3-FCR",
+      "meaning": "D3FEND technique: a pattern-matching rule language over file content; synonyms File Signatures, File Content Signatures.",
+      "fame": "niche",
+      "reference": "https://d3fend.mitre.org/technique/d3f:FileContentRules/",
+      "series": [
+        "cutting-mat",
+        "catalog-card",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ],
+        "as": "D3-FCR"
+      },
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
+    },
+    {
+      "text": "Snort",
+      "type": "tool",
+      "code": "",
+      "meaning": "Open-source network intrusion detection and prevention system that inspects traffic against rules.",
+      "fame": "iconic",
+      "reference": "https://www.snort.org/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control",
+          "flow"
+        ]
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Zeek",
+      "type": "tool",
+      "code": "",
+      "meaning": "Open-source network security monitor that passively watches traffic and writes detailed, structured logs.",
+      "fame": "niche",
+      "reference": "https://zeek.org/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control",
+          "flow"
+        ]
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "osquery",
+      "type": "tool",
+      "code": "",
+      "meaning": "SQL-powered operating system instrumentation and monitoring framework for Linux, macOS and Windows.",
+      "fame": "niche",
+      "reference": "https://osquery.io/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Event ID 4672",
+      "type": "id",
+      "code": "4672",
+      "meaning": "Windows Security: \"Special privileges assigned to new logon.\" Fires when a logon is given sensitive privileges.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4672",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding",
+          "flow"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
+    },
+    {
+      "text": "Event ID 7045",
+      "type": "id",
+      "code": "7045",
+      "meaning": "Windows System log event: the Service Control Manager reports that a service was installed in the system.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/defender-for-identity/deploy/configure-windows-event-collection",
+      "series": [
+        "specimen",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding",
+          "flow"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
+    },
+    {
+      "text": "MDR",
+      "type": "term",
+      "code": "",
+      "meaning": "Managed Detection and Response: an outsourced service that monitors, investigates and responds to threats for clients.",
+      "fame": "iconic",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "MDR"
+      }
+    },
+    {
+      "text": "NDR",
+      "type": "term",
+      "code": "",
+      "meaning": "Network Detection and Response: applies behavioral analytics to network traffic to detect and respond to threats.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "NDR"
+      }
+    },
+    {
+      "text": "Honeypot",
+      "type": "term",
+      "code": "",
+      "meaning": "Decoy system or resource designed to attract intruders, so that any contact with it gives them away.",
+      "fame": "iconic",
+      "reference": "https://csrc.nist.gov/glossary/term/honeypot",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Honeytoken",
+      "type": "term",
+      "code": "",
+      "meaning": "Decoy credential, file or record with no legitimate use; any touch of it signals an intruder.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/defender-for-identity/entity-tags",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "IP Addresses · Easy",
+      "type": "term",
+      "code": "",
+      "meaning": "Second level of the Pyramid of Pain: IP address indicators are easy for adversaries to change.",
+      "fame": "niche",
+      "reference": "https://detect-respond.blogspot.com/2013/03/the-pyramid-of-pain.html",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Domain Names · Simple",
+      "type": "term",
+      "code": "",
+      "meaning": "Third level of the Pyramid of Pain: domain names are simple to replace, if slightly more work than IPs.",
+      "fame": "niche",
+      "reference": "https://detect-respond.blogspot.com/2013/03/the-pyramid-of-pain.html",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Network/Host Artifacts · Annoying",
+      "type": "term",
+      "code": "",
+      "meaning": "Fourth level of the Pyramid of Pain: network and host artifacts are annoying for adversaries to change.",
+      "fame": "niche",
+      "reference": "https://detect-respond.blogspot.com/2013/03/the-pyramid-of-pain.html",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Tools · Challenging",
+      "type": "term",
+      "code": "",
+      "meaning": "Fifth level of the Pyramid of Pain: losing a tool is challenging, forcing adversaries to find or build another.",
+      "fame": "niche",
+      "reference": "https://detect-respond.blogspot.com/2013/03/the-pyramid-of-pain.html",
+      "series": [
+        "specimen",
+        "galley-proof"
+      ],
       "mat": {
         "slots": []
       }

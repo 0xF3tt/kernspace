@@ -88,24 +88,6 @@
       }
     },
     {
-      "text": "A02:2025 Security Misconfiguration",
-      "type": "id",
-      "code": "A02:2025",
-      "meaning": "OWASP Top 10:2025 category for insecure settings, defaults and permissions across the stack.",
-      "fame": "iconic",
-      "reference": "https://top10.owasp.org/2025/",
-      "series": [
-        "catalog-card",
-        "cutting-mat"
-      ],
-      "mat": {
-        "slots": [
-          "finding"
-        ],
-        "as": "A02:2025"
-      }
-    },
-    {
       "text": "IAM",
       "type": "term",
       "code": "",
@@ -397,21 +379,27 @@
     {
       "text": "CIS AWS Foundations Benchmark",
       "type": "framework",
-      "code": "v7.0.0",
-      "meaning": "Current CIS Amazon Web Services Foundations Benchmark: baseline account hardening checks.",
+      "code": "",
+      "meaning": "CIS Amazon Web Services Foundations Benchmark: baseline account hardening checks.",
       "fame": "iconic",
       "reference": "https://www.cisecurity.org/benchmark/amazon_web_services",
       "series": [
         "catalog-card",
         "cutting-mat",
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "CIS AWS Foundations"
+      }
     },
     {
       "text": "CIS Kubernetes Benchmark",
       "type": "framework",
-      "code": "v2.0.1",
-      "meaning": "Current CIS Kubernetes Benchmark: hardening checks for control plane, worker nodes and policies.",
+      "code": "",
+      "meaning": "CIS Kubernetes Benchmark: hardening checks for control plane, worker nodes and policies.",
       "fame": "iconic",
       "reference": "https://www.cisecurity.org/benchmark/kubernetes",
       "series": [
@@ -643,6 +631,12 @@
         "slots": [
           "finding"
         ]
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "PassRole abuse"
       }
     },
     {
@@ -655,8 +649,14 @@
       "series": [
         "cutting-mat",
         "catalog-card",
-        "specimen"
-      ]
+        "specimen",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
     },
     {
       "text": "\"Principal\": \"*\"",
@@ -726,7 +726,13 @@
       "reference": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html",
       "series": [
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "note"
+        ],
+        "as": "AKIA stays, ASIA expires"
+      }
     },
     {
       "text": "HttpTokens: required",
@@ -767,7 +773,7 @@
       "text": "T1552.005 Cloud Instance Metadata API",
       "type": "id",
       "code": "T1552.005",
-      "meaning": "ATT&CK v19 sub-technique of Unsecured Credentials: credentials exposed via the metadata service.",
+      "meaning": "ATT&CK sub-technique of Unsecured Credentials: credentials exposed via the metadata service.",
       "fame": "niche",
       "reference": "https://attack.mitre.org/techniques/T1552/005/",
       "series": [
@@ -780,6 +786,12 @@
           "finding"
         ],
         "as": "T1552.005"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "metadata API abuse"
       }
     },
     {
@@ -804,7 +816,13 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "cloud account abuse"
+      }
     },
     {
       "text": "T1530 Data from Cloud Storage",
@@ -822,6 +840,12 @@
           "finding"
         ],
         "as": "T1530"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "cloud data theft"
       }
     },
     {
@@ -838,7 +862,14 @@
       "mat": {
         "slots": [
           "finding"
-        ]
+        ],
+        "as": "T1611"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "container escape"
       }
     },
     {
@@ -852,7 +883,13 @@
         "catalog-card",
         "specimen",
         "galley-proof"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "log tampering"
+      }
     },
     {
       "text": "T1535 Unused/Unsupported Cloud Regions",
@@ -870,6 +907,12 @@
           "finding"
         ],
         "as": "T1535"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "unused-region abuse"
       }
     },
     {
@@ -880,44 +923,7 @@
       "fame": "niche",
       "reference": "https://attack.mitre.org/groups/G0139/",
       "series": [
-        "catalog-card",
-        "specimen"
-      ]
-    },
-    {
-      "text": "CWE-732",
-      "type": "id",
-      "code": "CWE-732",
-      "meaning": "Incorrect Permission Assignment for Critical Resource: the weakness behind world-readable storage.",
-      "fame": "niche",
-      "reference": "https://cwe.mitre.org/data/definitions/732.html",
-      "series": [
-        "specimen",
         "catalog-card"
-      ]
-    },
-    {
-      "text": "CWE-1188",
-      "type": "id",
-      "code": "CWE-1188",
-      "meaning": "Initialization of a Resource with an Insecure Default: open-by-default services and settings.",
-      "fame": "niche",
-      "reference": "https://cwe.mitre.org/data/definitions/1188.html",
-      "series": [
-        "specimen",
-        "catalog-card"
-      ]
-    },
-    {
-      "text": "CWE-16 Configuration",
-      "type": "id",
-      "code": "CWE-16",
-      "meaning": "Obsolete CWE category, mapping prohibited; map the real weakness, e.g. a descendant of CWE-284.",
-      "fame": "niche",
-      "reference": "https://cwe.mitre.org/data/definitions/16.html",
-      "series": [
-        "catalog-card",
-        "galley-proof"
       ]
     },
     {
@@ -928,8 +934,7 @@
       "fame": "niche",
       "reference": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
       "series": [
-        "cutting-mat",
-        "specimen"
+        "cutting-mat"
       ],
       "mat": {
         "slots": [
@@ -953,7 +958,7 @@
       "text": "enforce: restricted",
       "type": "status-line",
       "code": "",
-      "meaning": "Short for the pod-security.kubernetes.io/enforce label set to restricted: failing pods are rejected.",
+      "meaning": "Short for the Pod Security Admission enforce label set to restricted: failing pods are rejected.",
       "fame": "niche",
       "reference": "https://kubernetes.io/docs/concepts/security/pod-security-admission/",
       "series": [
@@ -992,8 +997,7 @@
       "fame": "niche",
       "reference": "https://kubernetes.io/docs/concepts/security/service-accounts/",
       "series": [
-        "galley-proof",
-        "cutting-mat"
+        "galley-proof"
       ]
     },
     {
@@ -1022,7 +1026,8 @@
       "mat": {
         "slots": [
           "flow"
-        ]
+        ],
+        "as": "kubelet:10250"
       }
     },
     {
@@ -1057,8 +1062,7 @@
       "fame": "niche",
       "reference": "https://www.cve.org/CVERecord?id=CVE-2018-1002105",
       "series": [
-        "catalog-card",
-        "specimen"
+        "catalog-card"
       ]
     },
     {
@@ -1070,7 +1074,8 @@
       "reference": "https://www.cve.org/CVERecord?id=CVE-2025-1974",
       "series": [
         "catalog-card",
-        "cutting-mat"
+        "cutting-mat",
+        "galley-proof"
       ],
       "mat": {
         "slots": [
@@ -1087,7 +1092,8 @@
       "fame": "niche",
       "reference": "https://www.cve.org/CVERecord?id=CVE-2021-38647",
       "series": [
-        "catalog-card"
+        "catalog-card",
+        "galley-proof"
       ]
     },
     {
@@ -1140,6 +1146,9 @@
           "status"
         ],
         "as": "NEW → NOTIFIED → RESOLVED"
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -1150,7 +1159,6 @@
       "fame": "niche",
       "reference": "https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html",
       "series": [
-        "specimen",
         "cutting-mat"
       ],
       "mat": {
@@ -1168,7 +1176,6 @@
       "fame": "niche",
       "reference": "https://docs.aws.amazon.com/securityhub/latest/userguide/s3-controls.html",
       "series": [
-        "specimen",
         "cutting-mat"
       ],
       "mat": {
@@ -1186,7 +1193,6 @@
       "fame": "niche",
       "reference": "https://docs.aws.amazon.com/securityhub/latest/userguide/iam-controls.html",
       "series": [
-        "specimen",
         "cutting-mat"
       ],
       "mat": {
@@ -1261,14 +1267,20 @@
     {
       "text": "CIS Azure Foundations Benchmark",
       "type": "framework",
-      "code": "v6.0.0",
-      "meaning": "Current CIS benchmark for baseline Microsoft Azure hardening.",
+      "code": "",
+      "meaning": "CIS benchmark for baseline Microsoft Azure hardening.",
       "fame": "niche",
       "reference": "https://www.cisecurity.org/benchmark/azure",
       "series": [
         "catalog-card",
         "cutting-mat"
-      ]
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "CIS Azure Foundations"
+      }
     },
     {
       "text": "CSA CCM",
@@ -1292,7 +1304,12 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
     },
     {
       "text": "ISO/IEC 27017",
@@ -1328,7 +1345,7 @@
       "text": "iam.disableServiceAccountKeyCreation",
       "type": "id",
       "code": "iam.disableServiceAccountKeyCreation",
-      "meaning": "Legacy managed Google Cloud constraint blocking service account key creation; Google recommends iam.managed.*",
+      "meaning": "Legacy Google Cloud org policy constraint blocking service account keys; Google recommends iam.managed.* instead.",
       "fame": "niche",
       "reference": "https://docs.cloud.google.com/resource-manager/docs/organization-policy/restricting-service-accounts",
       "series": [
@@ -1340,7 +1357,7 @@
       "text": "Keep people away from data",
       "type": "phrase",
       "code": "",
-      "meaning": "AWS Well-Architected security design principle: use mechanisms and tools to reduce or remove direct human access to data, which lowers the risk of mishandling and human error.",
+      "meaning": "AWS Well-Architected security principle: reduce or remove direct human access to data, lowering the risk of mishandling.",
       "fame": "niche",
       "reference": "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/security.html",
       "series": [
@@ -1351,7 +1368,7 @@
       "text": "Maintain traceability",
       "type": "phrase",
       "code": "",
-      "meaning": "AWS Well-Architected security design principle: monitor, alert on and audit actions and changes in real time, and feed logs into automated investigation. Older editions worded it 'Enable traceability'.",
+      "meaning": "AWS Well-Architected security principle: monitor, alert on and audit actions in real time (once 'Enable traceability').",
       "fame": "niche",
       "reference": "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/security.html",
       "series": [
@@ -1362,7 +1379,7 @@
       "text": "Apply security at all layers",
       "type": "phrase",
       "code": "",
-      "meaning": "AWS Well-Architected security design principle: defense in depth across the edge, VPC, load balancing, compute, OS, application and code.",
+      "meaning": "AWS Well-Architected security principle: defense in depth from the network edge down to the application code.",
       "fame": "niche",
       "reference": "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/security.html",
       "series": [
@@ -1373,7 +1390,7 @@
       "text": "Prepare for security events",
       "type": "phrase",
       "code": "",
-      "meaning": "AWS Well-Architected security design principle: have incident management in place, run response simulations and automate detection, investigation and recovery.",
+      "meaning": "AWS Well-Architected security principle: have incident management, run response drills, automate detection and recovery.",
       "fame": "niche",
       "reference": "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/security.html",
       "series": [
@@ -1395,7 +1412,7 @@
       "text": "NOT_AVAILABLE",
       "type": "status-line",
       "code": "ASFF",
-      "meaning": "Security Hub compliance status for a check that could not be performed: an outage, an API error or a Config result that was NOT_APPLICABLE.",
+      "meaning": "Security Hub compliance status for a check that could not run: an outage, an API error or an AWS Config NOT_APPLICABLE.",
       "fame": "niche",
       "reference": "https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_Compliance.html",
       "series": [
@@ -1490,7 +1507,7 @@
       "text": "e / е",
       "type": "id",
       "code": "U+65/U+435",
-      "meaning": "Latin e and Cyrillic ie look the same in most fonts; Unicode UTS #39 lists them as confusable, a trick for lookalike resource names.",
+      "meaning": "Latin e and Cyrillic ie look the same in most fonts; Unicode UTS #39 lists them as confusable (lookalike names).",
       "fame": "niche",
       "reference": "Unicode UTS #39, confusables.txt",
       "series": [
@@ -1586,7 +1603,7 @@
       "text": "S3 ETag of an empty object",
       "type": "snippet",
       "code": "S3",
-      "meaning": "Known-answer test: for a plain single-part upload the ETag is the MD5 of the content; MD5 of zero bytes, first 96 bits shown.",
+      "meaning": "Known-answer test: a single-part upload's ETag is the MD5 of its content; here zero bytes, first 96 bits.",
       "fame": "niche",
       "reference": "https://docs.aws.amazon.com/AmazonS3/latest/API/API_Object.html",
       "series": [
@@ -1620,6 +1637,162 @@
       },
       "mat": {
         "slots": []
+      }
+    },
+    {
+      "text": "sts:AssumeRole",
+      "type": "id",
+      "code": "sts:AssumeRole",
+      "meaning": "AWS STS action that returns temporary credentials for an IAM role; the role's trust policy says who may call it.",
+      "fame": "niche",
+      "reference": "https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html",
+      "series": [
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "AssumeRole abuse"
+      }
+    },
+    {
+      "text": "Amazon GuardDuty",
+      "type": "tool",
+      "code": "",
+      "meaning": "AWS threat detection service that analyzes CloudTrail events, VPC flow logs and DNS logs for suspicious activity.",
+      "fame": "niche",
+      "reference": "https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control",
+          "flow"
+        ],
+        "as": "GuardDuty"
+      }
+    },
+    {
+      "text": "AWS Security Hub",
+      "type": "tool",
+      "code": "",
+      "meaning": "AWS service that correlates signals from GuardDuty, Inspector, Macie and Security Hub CSPM to rank security risks.",
+      "fame": "niche",
+      "reference": "https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub-v2.html",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ],
+        "as": "Security Hub"
+      }
+    },
+    {
+      "text": "Prowler",
+      "type": "tool",
+      "code": "",
+      "meaning": "Open-source cloud security tool that audits AWS, Azure, GCP and Kubernetes against built-in checks and benchmarks.",
+      "fame": "niche",
+      "reference": "https://github.com/prowler-cloud/prowler",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "Falco",
+      "type": "tool",
+      "code": "",
+      "meaning": "Open-source runtime security tool for hosts, containers and Kubernetes; rules over kernel events raise alerts.",
+      "fame": "niche",
+      "reference": "https://falco.org/",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "Open Policy Agent / Gatekeeper",
+      "type": "tool",
+      "code": "",
+      "meaning": "OPA is a policy engine with the Rego language; Gatekeeper applies it as a Kubernetes admission webhook.",
+      "fame": "niche",
+      "reference": "https://www.openpolicyagent.org/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ],
+        "as": "OPA Gatekeeper"
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "NetworkPolicy",
+      "type": "term",
+      "code": "",
+      "meaning": "Kubernetes object that sets which Pod traffic is allowed, by IP address and port; a network plugin must enforce it.",
+      "fame": "niche",
+      "reference": "https://kubernetes.io/docs/concepts/services-networking/network-policies/",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "control"
+        ]
+      }
+    },
+    {
+      "text": "CIS GCP Foundation Benchmark",
+      "type": "framework",
+      "code": "",
+      "meaning": "CIS Google Cloud Platform Foundation Benchmark: secure configuration guidelines for baseline Google Cloud hardening.",
+      "fame": "niche",
+      "reference": "https://www.cisecurity.org/benchmark/google_cloud_computing_platform",
+      "series": [
+        "catalog-card",
+        "cutting-mat",
+        "specimen"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "CIS GCP Foundation"
       }
     }
   ]

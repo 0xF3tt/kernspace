@@ -62,7 +62,12 @@
         "cutting-mat",
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ]
+      }
     },
     {
       "text": "First blood",
@@ -86,7 +91,7 @@
         "slots": [
           "phrase"
         ],
-        "as": "Solve it before anyone else and the board remembers your team."
+        "as": "Be first to solve it and the board remembers your team."
       }
     },
     {
@@ -106,6 +111,9 @@
           "flow"
         ],
         "as": "scoreboard"
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -118,7 +126,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "pwn",
@@ -159,6 +173,11 @@
           "hero"
         ],
         "as": "REV"
+      },
+      "mat": {
+        "slots": [
+          "finding"
+        ]
       }
     },
     {
@@ -171,7 +190,18 @@
       "series": [
         "cutting-mat",
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "Cryptography"
+      }
     },
     {
       "text": "web",
@@ -189,6 +219,11 @@
           "hero"
         ],
         "as": "WEB"
+      },
+      "mat": {
+        "slots": [
+          "finding"
+        ]
       }
     },
     {
@@ -201,7 +236,18 @@
       "series": [
         "cutting-mat",
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "Forensics"
+      }
     },
     {
       "text": "misc",
@@ -219,6 +265,11 @@
           "hero"
         ],
         "as": "MISC"
+      },
+      "mat": {
+        "slots": [
+          "finding"
+        ]
       }
     },
     {
@@ -236,6 +287,12 @@
         "slots": [
           "finding"
         ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ],
+        "as": "Steganography"
       }
     },
     {
@@ -248,7 +305,10 @@
       "series": [
         "cutting-mat",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "CTFtime",
@@ -265,13 +325,16 @@
         "slots": [
           "flow"
         ]
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
       "text": "CTFd",
       "type": "tool",
-      "code": "CTFd 3.8.7",
-      "meaning": "Open-source CTF platform under Apache-2.0; release 3.8.7 shipped in August 2026.",
+      "code": "",
+      "meaning": "Open-source CTF platform under Apache-2.0 that runs challenges, teams, flag submission and the scoreboard.",
       "fame": "iconic",
       "reference": "https://github.com/CTFd/CTFd/releases",
       "series": [
@@ -289,7 +352,10 @@
       "series": [
         "cutting-mat",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "Hack The Box",
@@ -325,13 +391,21 @@
       "series": [
         "cutting-mat",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "pwntools",
       "type": "tool",
-      "code": "4.15.0",
-      "meaning": "Python CTF framework and exploit development library; latest stable release 4.15.0.",
+      "code": "",
+      "meaning": "Python CTF framework and exploit development library.",
       "fame": "iconic",
       "reference": "https://github.com/Gallopsled/pwntools/releases",
       "series": [
@@ -343,43 +417,30 @@
           "source",
           "flow"
         ]
+      },
+      "spec": {
+        "slots": []
       }
-    },
-    {
-      "text": "Ghidra",
-      "type": "tool",
-      "code": "12.1.4",
-      "meaning": "NSA's open-source software reverse engineering suite; release 12.1.4 in September 2026.",
-      "fame": "iconic",
-      "reference": "https://github.com/NationalSecurityAgency/ghidra/releases",
-      "series": [
-        "cutting-mat",
-        "catalog-card"
-      ]
-    },
-    {
-      "text": "IDA Pro",
-      "type": "tool",
-      "code": "",
-      "meaning": "Hex-Rays' commercial disassembler and decompiler, a long-standing reversing standard.",
-      "fame": "iconic",
-      "reference": "https://hex-rays.com/ida-pro",
-      "series": [
-        "cutting-mat",
-        "catalog-card"
-      ]
     },
     {
       "text": "CyberChef",
       "type": "tool",
-      "code": "v11.5.0",
-      "meaning": "GCHQ's browser tool for encoding, decoding and data transforms; release v11.5.0 in September 2026.",
+      "code": "",
+      "meaning": "GCHQ's browser tool for encoding, decoding and other data transforms, chained into recipes.",
       "fame": "iconic",
       "reference": "https://github.com/gchq/CyberChef/releases",
       "series": [
         "cutting-mat",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "flag.txt",
@@ -395,6 +456,11 @@
       "mat": {
         "slots": [
           "sink"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "family"
         ]
       }
     },
@@ -413,6 +479,11 @@
         "slots": [
           "sink"
         ]
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
       }
     },
     {
@@ -429,6 +500,11 @@
       "mat": {
         "slots": [
           "sink"
+        ]
+      },
+      "spec": {
+        "slots": [
+          "family"
         ]
       }
     },
@@ -467,7 +543,10 @@
       "series": [
         "cutting-mat",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "Plaid Parliament of Pwning",
@@ -479,7 +558,10 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Google CTF",
@@ -491,7 +573,10 @@
       "series": [
         "cutting-mat",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "CSAW CTF",
@@ -503,7 +588,10 @@
       "series": [
         "cutting-mat",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "Attack-Defence / Attack-Defense",
@@ -515,7 +603,10 @@
       "series": [
         "specimen",
         "galley-proof"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Hack quest",
@@ -551,7 +642,10 @@
       "series": [
         "cutting-mat",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "Vulnbox",
@@ -593,6 +687,9 @@
           "flow"
         ],
         "as": "checker"
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -664,7 +761,16 @@
       "series": [
         "cutting-mat",
         "galley-proof"
-      ]
+      ],
+      "mat": {
+        "slots": [
+          "status"
+        ],
+        "as": "OK · DOWN · FAULTY"
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "Correct / Incorrect",
@@ -682,6 +788,9 @@
           "status"
         ],
         "as": "Correct"
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -693,7 +802,13 @@
       "reference": "https://github.com/CTFd/CTFd/blob/master/CTFd/api/v1/challenges.py",
       "series": [
         "galley-proof"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "Correct but more flags are required",
@@ -704,7 +819,13 @@
       "reference": "https://github.com/CTFd/CTFd/blob/master/CTFd/plugins/challenges/logic.py",
       "series": [
         "galley-proof"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "You're submitting flags too fast.",
@@ -714,9 +835,14 @@
       "fame": "niche",
       "reference": "https://github.com/CTFd/CTFd/blob/master/CTFd/api/v1/challenges.py",
       "series": [
-        "cutting-mat",
         "galley-proof"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "Freeze Time",
@@ -728,7 +854,10 @@
       "series": [
         "cutting-mat",
         "galley-proof"
-      ]
+      ],
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "View After CTF",
@@ -739,7 +868,13 @@
       "reference": "https://github.com/CTFd/CTFd/blob/master/CTFd/themes/admin/templates/configs/time.html",
       "series": [
         "galley-proof"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "Dynamic scoring",
@@ -751,7 +886,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "Weight",
@@ -763,7 +904,10 @@
       "series": [
         "cutting-mat",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "Pre-2017 formula → 2017+ formula",
@@ -775,7 +919,13 @@
       "series": [
         "catalog-card",
         "galley-proof"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "Upsolve",
@@ -793,6 +943,9 @@
           "phrase"
         ],
         "as": "Solve it after the clock stops and learn what you missed."
+      },
+      "mat": {
+        "slots": []
       }
     },
     {
@@ -800,7 +953,7 @@
       "type": "term",
       "code": "",
       "meaning": "A solve path the author never planned; often patched and re-released.",
-      "fame": "niche",
+      "fame": "iconic",
       "reference": "",
       "series": [
         "galley-proof",
@@ -811,6 +964,9 @@
           "phrase"
         ],
         "as": "Solve it a way the author never planned, then write it up."
+      },
+      "mat": {
+        "slots": []
       }
     },
     {
@@ -823,7 +979,10 @@
       "series": [
         "specimen",
         "galley-proof"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "baby",
@@ -834,7 +993,10 @@
       "reference": "https://archive.ooo/",
       "series": [
         "specimen"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Guessy",
@@ -852,6 +1014,9 @@
           "rating"
         ],
         "as": "guessy challenge"
+      },
+      "mat": {
+        "slots": []
       }
     },
     {
@@ -882,7 +1047,15 @@
       "series": [
         "cutting-mat",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "PPC",
@@ -893,7 +1066,16 @@
       "reference": "",
       "series": [
         "specimen"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "hero"
+        ],
+        "as": "PPC"
+      },
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Earlier last flag wins the tie",
@@ -908,6 +1090,9 @@
       ],
       "spec": {
         "slots": []
+      },
+      "mat": {
+        "slots": []
       }
     },
     {
@@ -920,7 +1105,10 @@
       "series": [
         "catalog-card",
         "galley-proof"
-      ]
+      ],
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "Root Fu",
@@ -932,7 +1120,10 @@
       "series": [
         "cutting-mat",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "War Gamez",
@@ -944,7 +1135,10 @@
       "series": [
         "cutting-mat",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "Binjitsu",
@@ -956,7 +1150,10 @@
       "series": [
         "cutting-mat",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "DDTek",
@@ -968,7 +1165,10 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Order of the Overflow",
@@ -980,7 +1180,10 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Nautilus Institute → BBB",
@@ -992,7 +1195,13 @@
       "series": [
         "catalog-card",
         "galley-proof"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "Benevolent Bureau of Birds",
@@ -1004,7 +1213,10 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Maple Mallard Magistrates",
@@ -1016,19 +1228,25 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "Blue Water",
       "type": "term",
       "code": "",
-      "meaning": "Winner of the DEF CON 34 CTF Finals in August 2026; runner-up in 2023 and 2024.",
+      "meaning": "CTF team that won the DEF CON 34 CTF Finals in August 2026; runner-up in 2023 and 2024.",
       "fame": "niche",
       "reference": "https://www.gatech.edu/news/2026/08/19/georgia-tech-students-claim-victory-def-cons-elite-hacking-competition",
       "series": [
         "cutting-mat",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "iCTF",
@@ -1040,7 +1258,10 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "FAUST CTF",
@@ -1052,7 +1273,10 @@
       "series": [
         "cutting-mat",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "DEF CON 28 Safe Mode",
@@ -1064,7 +1288,10 @@
       "series": [
         "cutting-mat",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "Cyber Grand Challenge",
@@ -1076,7 +1303,10 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "FLARE-On 13",
@@ -1088,7 +1318,10 @@
       "series": [
         "cutting-mat",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "ECSC",
@@ -1100,7 +1333,10 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "ICC",
@@ -1112,7 +1348,10 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "0CTF/TCTF → 0CTF",
@@ -1125,13 +1364,16 @@
         "specimen",
         "catalog-card",
         "galley-proof"
-      ]
+      ],
+      "mat": {
+        "slots": []
+      }
     },
     {
       "text": "kCTF",
       "type": "tool",
-      "code": "v1.8.1",
-      "meaning": "Google's open-source, Kubernetes-based infrastructure for CTF competitions; latest release v1.8.1.",
+      "code": "",
+      "meaning": "Google's open-source, Kubernetes-based infrastructure for CTF competitions.",
       "fame": "niche",
       "reference": "https://github.com/google/kctf",
       "series": [
@@ -1149,31 +1391,10 @@
       "series": [
         "catalog-card",
         "galley-proof"
-      ]
-    },
-    {
-      "text": "Volatility 2 → Volatility 3",
-      "type": "tool",
-      "code": "",
-      "meaning": "The original Volatility memory-forensics repo is archived and points to Volatility 3.",
-      "fame": "niche",
-      "reference": "https://github.com/volatilityfoundation/volatility",
-      "series": [
-        "catalog-card",
-        "galley-proof"
-      ]
-    },
-    {
-      "text": "Binwalk v2 → Binwalk v3",
-      "type": "tool",
-      "code": "v3.1.0",
-      "meaning": "Binwalk v3 is the Rust rewrite of the firmware and embedded-file analysis tool.",
-      "fame": "niche",
-      "reference": "https://github.com/ReFirmLabs/binwalk",
-      "series": [
-        "catalog-card",
-        "galley-proof"
-      ]
+      ],
+      "spec": {
+        "slots": []
+      }
     },
     {
       "text": "Instancer",
@@ -1192,6 +1413,9 @@
           "flow"
         ],
         "as": "instancer"
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -1211,6 +1435,9 @@
           "rating"
         ],
         "as": "flag sharing"
+      },
+      "mat": {
+        "slots": []
       }
     },
     {
@@ -1230,7 +1457,7 @@
       "text": "Don’t panic! Don’t give up!",
       "type": "phrase",
       "code": "",
-      "meaning": "OverTheWire's advice on the Bandit page to beginners stuck on a level: the game exists to teach the basics, so keep going.",
+      "meaning": "OverTheWire's advice on its Bandit page to beginners stuck on a level: the game teaches the basics, so keep going.",
       "fame": "niche",
       "reference": "https://overthewire.org/wargames/bandit/",
       "series": [
@@ -1241,7 +1468,7 @@
       "text": "Learn to Hack!",
       "type": "phrase",
       "code": "",
-      "meaning": "pwn.college's tagline, the headline of its dojo, where learners solve flag-based challenges to build core security skills hands-on.",
+      "meaning": "pwn.college's tagline: its dojo teaches core security skills through hands-on, flag-based challenges.",
       "fame": "niche",
       "reference": "https://pwn.college/",
       "series": [
@@ -1535,6 +1762,112 @@
         ]
       },
       "mat": {
+        "slots": []
+      }
+    },
+    {
+      "text": "wargame",
+      "type": "term",
+      "code": "",
+      "meaning": "Always-open practice game of levels where each flag or password unlocks the next; no clock, no rival teams.",
+      "fame": "iconic",
+      "reference": "https://overthewire.org/wargames/",
+      "series": [
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "wargame"
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "HITCON CTF",
+      "type": "term",
+      "code": "",
+      "meaning": "CTF run by Taiwan's HITCON community: an online Jeopardy edition and, in some years, a final.",
+      "fame": "niche",
+      "reference": "https://ctf.hitcon.org/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "SECCON CTF",
+      "type": "term",
+      "code": "",
+      "meaning": "Japanese CTF series: online qualifiers, then finals with international and domestic divisions.",
+      "fame": "niche",
+      "reference": "https://ctf.seccon.jp/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Hack.lu CTF",
+      "type": "term",
+      "code": "",
+      "meaning": "Online Jeopardy CTF by FluxFingers of Ruhr University Bochum, born at Luxembourg's hack.lu conference.",
+      "fame": "niche",
+      "reference": "https://flu.xxx/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "CryptoHack",
+      "type": "tool",
+      "code": "",
+      "meaning": "Free platform for learning modern cryptography by solving interactive challenges.",
+      "fame": "niche",
+      "reference": "https://cryptohack.org/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "pwn.college",
+      "type": "tool",
+      "code": "",
+      "meaning": "Free hacking-education platform from Arizona State University; learners earn colored belts by solving challenges.",
+      "fame": "niche",
+      "reference": "https://pwn.college/",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "flow"
+        ]
+      },
+      "spec": {
         "slots": []
       }
     }

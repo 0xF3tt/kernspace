@@ -12,7 +12,12 @@
         "cutting-mat",
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
     },
     {
       "text": "Sensitive Information Disclosure",
@@ -24,7 +29,12 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
     },
     {
       "text": "Excessive Agency",
@@ -43,6 +53,11 @@
           "finding"
         ],
         "as": "excessive agency"
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
       }
     },
     {
@@ -55,7 +70,12 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
     },
     {
       "text": "Data and Model Poisoning",
@@ -67,7 +87,12 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
     },
     {
       "text": "Unbounded Consumption",
@@ -79,7 +104,12 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
     },
     {
       "text": "Misinformation",
@@ -91,7 +121,12 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
     },
     {
       "text": "Hidden Context Exposure",
@@ -104,7 +139,12 @@
         "specimen",
         "catalog-card",
         "galley-proof"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
     },
     {
       "text": "Vector and Embedding Weaknesses",
@@ -116,7 +156,12 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
     },
     {
       "text": "Improper Output Handling",
@@ -128,7 +173,12 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
     },
     {
       "text": "Agent Goal Hijack",
@@ -147,6 +197,11 @@
           "finding"
         ],
         "as": "agent goal hijack"
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
       }
     },
     {
@@ -159,7 +214,12 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
     },
     {
       "text": "Memory & Context Poisoning",
@@ -171,7 +231,12 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
     },
     {
       "text": "Cascading Failures",
@@ -190,6 +255,11 @@
           "finding"
         ],
         "as": "cascading failures"
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
       }
     },
     {
@@ -209,6 +279,11 @@
           "finding"
         ],
         "as": "rogue agents"
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
       }
     },
     {
@@ -291,7 +366,7 @@
       "text": "System Prompt Leakage",
       "type": "term",
       "code": "LLM07:2025",
-      "meaning": "Retired 2025 entry; OWASP 2026 re-scoped it as Hidden Context Exposure (LLM08:2026).",
+      "meaning": "2025 OWASP entry; the 2026 edition re-scoped it as Hidden Context Exposure (LLM08:2026).",
       "fame": "iconic",
       "reference": "https://genai.owasp.org/llm-top-10/",
       "series": [
@@ -302,7 +377,7 @@
     {
       "text": "MITRE ATLAS",
       "type": "framework",
-      "code": "2026.09",
+      "code": "",
       "meaning": "Adversarial Threat Landscape for AI Systems: ATT&CK-style knowledge base of AI attack tactics and techniques.",
       "fame": "iconic",
       "reference": "https://atlas.mitre.org/",
@@ -317,7 +392,7 @@
       }
     },
     {
-      "text": "Direct",
+      "text": "Direct Injection",
       "type": "id",
       "code": "AML.T0051.000",
       "meaning": "ATLAS LLM Prompt Injection sub-technique: instructions entered straight into the model.",
@@ -325,8 +400,21 @@
       "reference": "https://atlas.mitre.org/techniques/AML.T0051.000",
       "series": [
         "specimen",
-        "catalog-card"
-      ]
+        "catalog-card",
+        "cutting-mat"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "direct injection"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "direct injection"
+      }
     },
     {
       "text": "Indirect",
@@ -337,11 +425,18 @@
       "reference": "https://atlas.mitre.org/techniques/AML.T0051.001",
       "series": [
         "specimen",
-        "catalog-card"
+        "catalog-card",
+        "cutting-mat"
       ],
       "spec": {
         "slots": [
           "rating"
+        ],
+        "as": "indirect injection"
+      },
+      "mat": {
+        "slots": [
+          "finding"
         ],
         "as": "indirect injection"
       }
@@ -363,6 +458,11 @@
           "finding"
         ],
         "as": "LLM jailbreak"
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
       }
     },
     {
@@ -376,7 +476,12 @@
         "specimen",
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
     },
     {
       "text": "RAG Poisoning",
@@ -395,6 +500,11 @@
           "finding"
         ],
         "as": "RAG poisoning"
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
       }
     },
     {
@@ -414,6 +524,11 @@
           "finding"
         ],
         "as": "tool poisoning"
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
       }
     },
     {
@@ -433,6 +548,11 @@
           "finding"
         ],
         "as": "rug pull"
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
       }
     },
     {
@@ -618,7 +738,7 @@
       "text": "NIST AI RMF 1.0",
       "type": "framework",
       "code": "NIST AI 100-1",
-      "meaning": "AI Risk Management Framework, January 2023; NIST says 1.0 is being revised, no new version yet.",
+      "meaning": "NIST's voluntary framework for managing AI risk, published January 2023 and built on four core functions.",
       "fame": "iconic",
       "reference": "https://doi.org/10.6028/NIST.AI.100-1",
       "series": [
@@ -659,7 +779,13 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ],
+        "as": "NIST AI RMF · MEASURE 2.7"
+      }
     },
     {
       "text": "Generative AI Profile",
@@ -724,7 +850,12 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
     },
     {
       "text": "Prompt Injection",
@@ -735,13 +866,20 @@
       "reference": "https://doi.org/10.6028/NIST.AI.100-2e2025",
       "series": [
         "specimen",
-        "catalog-card"
+        "catalog-card",
+        "cutting-mat"
       ],
       "mat": {
         "slots": [
           "finding"
         ],
         "as": "prompt injection"
+      },
+      "spec": {
+        "slots": [
+          "class"
+        ],
+        "as": "NISTAML.018 · prompt injection"
       }
     },
     {
@@ -754,7 +892,12 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
     },
     {
       "text": "CWE-1427",
@@ -772,6 +915,12 @@
         "slots": [
           "finding"
         ]
+      },
+      "spec": {
+        "slots": [
+          "class"
+        ],
+        "as": "CWE-1427 · LLM prompting"
       }
     },
     {
@@ -784,7 +933,13 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ],
+        "as": "CWE-1426 · GenAI output"
+      }
     },
     {
       "text": "CWE-1434",
@@ -796,7 +951,13 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "spec": {
+        "slots": [
+          "class"
+        ],
+        "as": "CWE-1434 · inference settings"
+      }
     },
     {
       "text": "EU AI Act",
@@ -861,13 +1022,19 @@
       "series": [
         "cutting-mat",
         "catalog-card"
-      ]
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "OWASP Agentic Top 10"
+      }
     },
     {
       "text": "MCP",
       "type": "framework",
-      "code": "2026-07-28",
-      "meaning": "Model Context Protocol: open protocol connecting LLM apps to external tools and data; current spec 2026-07-28.",
+      "code": "",
+      "meaning": "Model Context Protocol: open protocol connecting LLM apps to external tools and data sources.",
       "fame": "iconic",
       "reference": "https://modelcontextprotocol.io/specification/2026-07-28",
       "series": [
@@ -905,7 +1072,7 @@
       "text": "Dynamic Client Registration",
       "type": "term",
       "code": "2026-07-28",
-      "meaning": "Deprecated in MCP 2026-07-28; migrate to Client ID Metadata Documents.",
+      "meaning": "OAuth client self-registration (RFC 7591); deprecated in MCP 2026-07-28 for Client ID Metadata Documents.",
       "fame": "niche",
       "reference": "https://modelcontextprotocol.io/specification/2026-07-28/deprecated",
       "series": [
@@ -1017,6 +1184,9 @@
         "slots": [
           "note"
         ]
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -1415,6 +1585,9 @@
           "status"
         ],
         "as": "UNTRUSTED DATA · QUARANTINED"
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -1432,6 +1605,9 @@
           "status"
         ],
         "as": "TOOL CALL HELD · HITL"
+      },
+      "spec": {
+        "slots": []
       }
     },
     {
@@ -1457,7 +1633,7 @@
       "text": "99% is a failing grade",
       "type": "phrase",
       "code": "",
-      "meaning": "Maxim on prompt-injection defenses (2023): a filter that stops 99% of attacks still fails, because attackers find the 1% that gets through.",
+      "meaning": "Maxim on prompt-injection defenses (2023): a filter that stops 99% of attacks still fails, as attackers find the 1%.",
       "fame": "niche",
       "reference": "https://simonwillison.net/2023/May/2/prompt-injection-explained/",
       "series": [
@@ -1468,7 +1644,7 @@
       "text": "Agents Rule of Two",
       "type": "phrase",
       "code": "",
-      "meaning": "Meta's 2025 rule: in one session, an agent should have no more than two of three properties: it processes untrustworthy inputs, it can reach sensitive systems or private data, and it can change state or communicate externally.",
+      "meaning": "Meta's 2025 rule: an agent session should hold at most two of untrusted input, sensitive access and outward action.",
       "fame": "niche",
       "reference": "https://ai.meta.com/blog/practical-ai-agent-security/",
       "series": [
@@ -1502,48 +1678,10 @@
       }
     },
     {
-      "text": "Spec-driven development",
-      "type": "term",
-      "code": "SDD",
-      "meaning": "Write the specification first and let it drive planning, tasks and code, increasingly built by coding agents.",
-      "fame": "niche",
-      "reference": "https://github.github.com/spec-kit/",
-      "series": [
-        "cutting-mat",
-        "specimen",
-        "catalog-card"
-      ],
-      "mat": {
-        "slots": [
-          "note"
-        ],
-        "as": "spec first, code second"
-      }
-    },
-    {
-      "text": "SDD",
-      "type": "term",
-      "code": "",
-      "meaning": "Spec-driven development, shortened: the specification leads and coding agents build from it.",
-      "fame": "niche",
-      "reference": "https://github.github.com/spec-kit/",
-      "series": [
-        "specimen"
-      ],
-      "mat": {
-        "slots": []
-      },
-      "spec": {
-        "slots": [
-          "hero"
-        ]
-      }
-    },
-    {
       "text": "Trust No AI",
       "type": "phrase",
       "code": "",
-      "meaning": "Title and closing message of a 2024 paper: prompt injection attacks confidentiality, integrity and availability, so the output of an LLM app is never trusted by default.",
+      "meaning": "Title of a 2024 paper: prompt injection threatens confidentiality, integrity and availability; never trust LLM output.",
       "fame": "niche",
       "reference": "https://arxiv.org/abs/2412.06090",
       "series": [
@@ -1554,8 +1692,8 @@
       "text": "Human oversight",
       "type": "phrase",
       "code": "",
-      "meaning": "Title of EU AI Act Article 14: high-risk AI systems must be designed so that people can oversee them effectively while they are in use.",
-      "fame": "iconic",
+      "meaning": "Title of EU AI Act Article 14: high-risk AI must be designed so people can oversee it effectively while in use.",
+      "fame": "niche",
       "reference": "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-14",
       "series": [
         "cutting-mat"
@@ -1565,7 +1703,7 @@
       "text": "Secure and Resilient",
       "type": "phrase",
       "code": "",
-      "meaning": "One of the NIST AI RMF's characteristics of trustworthy AI (section 3.3): the system withstands attacks and unexpected changes, or degrades safely.",
+      "meaning": "NIST AI RMF trustworthiness trait (section 3.3): the system withstands attacks and unexpected change or degrades safely.",
       "fame": "niche",
       "reference": "https://airc.nist.gov/airmf-resources/airmf/3-sec-characteristics/",
       "series": [
@@ -1652,7 +1790,7 @@
       "text": "s / ѕ",
       "type": "id",
       "code": "U+73/U+455",
-      "meaning": "Latin s and Cyrillic dze look the same in most fonts; Unicode UTS #39 lists them as confusable, a trick for filter-evading prompts.",
+      "meaning": "Latin s and Cyrillic dze look the same in most fonts; UTS #39 lists them as confusable, a trick against prompt filters.",
       "fame": "niche",
       "reference": "Unicode UTS #39, confusables.txt",
       "series": [
@@ -1728,7 +1866,7 @@
       "text": "FGSM panda → gibbon",
       "type": "snippet",
       "code": "arXiv 1412.6572",
-      "meaning": "Known-answer test: the figure from the fast gradient sign paper, where a perturbation of .007 turns a panda at 57.7% into a gibbon at 99.3%.",
+      "meaning": "Known-answer test: the FGSM paper's figure, where a .007 perturbation turns a panda at 57.7% into a gibbon at 99.3%.",
       "fame": "niche",
       "reference": "https://arxiv.org/abs/1412.6572",
       "series": [
@@ -1748,7 +1886,7 @@
       "text": "GGUF file header",
       "type": "snippet",
       "code": "GGUF",
-      "meaning": "Known-answer test: a GGUF file starts with the four magic bytes 47 47 55 46, \"GGUF\", then the format version, currently 3.",
+      "meaning": "Known-answer test: a GGUF file begins with the magic bytes 47 47 55 46 (\"GGUF\"), then the format version.",
       "fame": "niche",
       "reference": "https://github.com/ggml-org/ggml/blob/master/docs/gguf.md",
       "series": [
@@ -1768,7 +1906,7 @@
       "text": "pickle protocol 4",
       "type": "snippet",
       "code": "pickle",
-      "meaning": "Known-answer test: Python pickle protocol 4 of the integer 1; a pickle is a program the loader runs, which is why untrusted ones are never loaded.",
+      "meaning": "Known-answer test: protocol 4 pickle of 1; a pickle is a program its loader runs, so untrusted ones never load.",
       "fame": "niche",
       "reference": "https://docs.python.org/3/library/pickle.html",
       "series": [
@@ -1820,6 +1958,262 @@
       },
       "mat": {
         "slots": []
+      }
+    },
+    {
+      "text": "LLM Prompt Injection · AML.T0051",
+      "type": "id",
+      "code": "AML.T0051",
+      "meaning": "ATLAS technique: malicious prompts that cause an LLM to act in unintended ways.",
+      "fame": "niche",
+      "reference": "MITRE ATLAS 2026.09",
+      "series": [
+        "specimen",
+        "catalog-card"
+      ],
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "prompt injection"
+      }
+    },
+    {
+      "text": "Identity and Privilege Abuse",
+      "type": "id",
+      "code": "ASI03",
+      "meaning": "Abuse of an agent's delegated identity, inherited credentials or trust chains to escalate access.",
+      "fame": "niche",
+      "reference": "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "privilege abuse"
+      },
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
+    },
+    {
+      "text": "Agentic Supply Chain Vulnerabilities",
+      "type": "id",
+      "code": "ASI04",
+      "meaning": "Third-party tools, plug-ins, models, agents and MCP servers that arrive malicious or tampered, often loaded at runtime.",
+      "fame": "niche",
+      "reference": "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "agentic supply chain"
+      },
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
+    },
+    {
+      "text": "Unexpected Code Execution (RCE)",
+      "type": "id",
+      "code": "ASI05",
+      "meaning": "Agent-generated or agent-run code that becomes unintended execution: host compromise or sandbox escape.",
+      "fame": "niche",
+      "reference": "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "unexpected RCE"
+      },
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
+    },
+    {
+      "text": "Insecure Inter-Agent Communication",
+      "type": "id",
+      "code": "ASI07",
+      "meaning": "Agent-to-agent messages lacking authentication, integrity or validation, open to interception, spoofing or tampering.",
+      "fame": "niche",
+      "reference": "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "insecure agent comms"
+      },
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
+    },
+    {
+      "text": "Human-Agent Trust Exploitation",
+      "type": "id",
+      "code": "ASI09",
+      "meaning": "Humans over-trusting an agent's confident output, so their approvals can be steered without independent checks.",
+      "fame": "niche",
+      "reference": "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "human-agent trust"
+      },
+      "spec": {
+        "slots": [
+          "class"
+        ]
+      }
+    },
+    {
+      "text": "Model Extraction",
+      "type": "id",
+      "code": "NISTAML.031",
+      "meaning": "NIST AML privacy attack: recovering a model's architecture or parameters through queries; also called model stealing.",
+      "fame": "niche",
+      "reference": "https://doi.org/10.6028/NIST.AI.100-2e2025",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "model extraction"
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
+    },
+    {
+      "text": "Model inversion",
+      "type": "term",
+      "code": "",
+      "meaning": "Privacy attack that rebuilds class representatives of training data from a model; NIST files it under Reconstruction.",
+      "fame": "niche",
+      "reference": "https://doi.org/10.6028/NIST.AI.100-2e2025",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "model inversion"
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
+    },
+    {
+      "text": "Evasion Attack",
+      "type": "id",
+      "code": "NISTAML.022",
+      "meaning": "NIST AML attack class: adversarial examples that change a model's prediction at deployment time.",
+      "fame": "niche",
+      "reference": "https://doi.org/10.6028/NIST.AI.100-2e2025",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "evasion attack"
+      },
+      "spec": {
+        "slots": [
+          "family"
+        ]
+      }
+    },
+    {
+      "text": "Google SAIF",
+      "type": "framework",
+      "code": "",
+      "meaning": "Google's Secure AI Framework: conceptual guidance for securing AI systems, introduced in June 2023.",
+      "fame": "niche",
+      "reference": "https://saif.google",
+      "series": [
+        "cutting-mat",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "Google SAIF"
+      },
+      "spec": {
+        "slots": []
+      }
+    },
+    {
+      "text": "Many-shot jailbreaking",
+      "type": "term",
+      "code": "",
+      "meaning": "Jailbreak that fills a long context window with many faked dialogue turns; described by Anthropic in April 2024.",
+      "fame": "niche",
+      "reference": "https://www.anthropic.com/research/many-shot-jailbreaking",
+      "series": [
+        "cutting-mat",
+        "specimen",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": [
+          "finding"
+        ],
+        "as": "many-shot jailbreak"
+      },
+      "spec": {
+        "slots": [
+          "rating"
+        ],
+        "as": "many-shot jailbreak"
       }
     }
   ]
