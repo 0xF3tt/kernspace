@@ -1,0 +1,20 @@
+{
+  "series": "galley-proof", "topic": "ctf", "title": "Vol. 14 · Capture", "ground": "dark",
+  "phrase": ["Don’t panic!", "Don’t give up!"],
+  "file": "challenge.yml",
+  "lines": ["name: Paper Trail", "author: Acme", "category: web", "description: Find the page we forgot.",
+    "attribution: Written by Acme", "type: standard", "extra:", "    initial: 500", "    decay: 100",
+    "    minimum: 50", "tags: [easy, path traversal]", "state: visible"],
+  "marks": [
+    {"line": 4, "type": "query", "note": "guessy?", "phone": "guessy?"},
+    {"line": 6, "type": "sub", "at": "standard", "to": "dynamic", "note": "extra needs it", "phone": "dynamic"},
+    {"line": 9, "type": "stet", "at": "100", "note": "solves, not points", "phone": "keep"},
+    {"line": 11, "type": "dele", "at": ", path traversal", "note": "tags are public", "phone": "remove tag"},
+    {"line": 12, "type": "sub", "at": "visible", "to": "hidden", "note": "until release", "phone": "hidden"}
+  ],
+  "errata": {"line": 12, "throughout": "for value read initial"},
+  "notes": ["flag format: flag{...}", "test for unintended solves"],
+  "label": "CTF GALLEY · VOL. 14 · CAPTURE",
+  "data": {"left": "Correct / Incorrect", "right": "{handle} · git:(main) · purple learns"},
+  "phone": {"data": {"right": "{handle} · purple learns"}}
+}

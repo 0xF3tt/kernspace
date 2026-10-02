@@ -1,0 +1,20 @@
+{
+  "series": "galley-proof", "topic": "cloud", "title": "Vol. 10 · Posture", "ground": "light",
+  "phrase": ["Keep people", "away from data"],
+  "file": "bucket-policy.json",
+  "lines": ["  \"Effect\": \"Allow\",", "  \"Principal\": \"*\",", "  \"Action\": \"s3:*\",", "  \"Resource\": [",
+    "    \"arn:aws:s3:::amzn-s3-demo-bucket\",", "    \"arn:aws:s3:::amzn-s3-demo-bucket/*\"", "  ]", "}, {",
+    "  \"Effect\": \"Deny\",", "  \"Principal\": \"*\",", "  \"Condition\": {\"Bool\": {", "    \"aws:SecureTransport\": \"false\""],
+  "marks": [
+    {"line": 2, "type": "sub", "at": "\"*\"", "to": "{\"AWS\": \"111122223333\"}", "note": "Allow * is public", "phone": "one account"},
+    {"line": 3, "type": "sub", "at": "s3:*", "to": "s3:GetObject", "note": "every S3 action", "phone": "s3:GetObject"},
+    {"line": 5, "type": "dele", "at": "\"arn:aws:s3:::amzn-s3-demo-bucket\",", "note": "no bucket actions", "phone": "no bucket ARN"},
+    {"line": 6, "type": "query", "note": "every object?", "phone": "every object?"},
+    {"line": 10, "type": "stet", "at": "\"*\"", "note": "Deny: HTTPS only", "phone": "keep"}
+  ],
+  "errata": {"line": 3, "throughout": "for 2008-10-17 read 2012-10-17"},
+  "notes": ["Security \"in\" the Cloud", "blast radius"],
+  "label": "CLOUD GALLEY · VOL. 10 · POSTURE",
+  "data": {"left": "AccessDenied", "right": "{handle} · git:(main) · blue builds"},
+  "phone": {"data": {"right": "{handle} · blue builds"}}
+}

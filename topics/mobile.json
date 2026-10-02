@@ -79,7 +79,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for M2:2016 read M9:2024"
+      }
     },
     {
       "text": "MAS-L1",
@@ -181,7 +187,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for MASVS L1/L2/R read MAS Profiles"
+      }
     },
     {
       "text": "MASVS-STORAGE-1",
@@ -307,7 +319,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for MASWE-0001 read MASWE-0005"
+      }
     },
     {
       "text": "MASTG-TEST-0039 → MASTG-TEST-0226",
@@ -343,7 +361,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for MSTG read MASTG"
+      }
     },
     {
       "text": "Android Keystore",
@@ -354,9 +378,15 @@
       "reference": "https://developer.android.com/privacy-and-security/keystore",
       "series": [
         "cutting-mat",
-        "catalog-card"
+        "catalog-card",
+        "galley-proof"
       ],
       "mat": {
+        "slots": [
+          "note"
+        ]
+      },
+      "galley": {
         "slots": [
           "note"
         ]
@@ -372,12 +402,18 @@
       "series": [
         "cutting-mat",
         "specimen",
-        "catalog-card"
+        "catalog-card",
+        "galley-proof"
       ],
       "mat": {
         "slots": [
           "control",
           "sink"
+        ]
+      },
+      "galley": {
+        "slots": [
+          "note"
         ]
       }
     },
@@ -391,7 +427,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for Keymaster read KeyMint"
+      }
     },
     {
       "text": "androidboot.verifiedbootstate=green",
@@ -401,7 +443,8 @@
       "fame": "niche",
       "reference": "https://source.android.com/docs/security/features/verifiedboot/boot-flow",
       "series": [
-        "cutting-mat"
+        "cutting-mat",
+        "galley-proof"
       ],
       "mat": {
         "slots": [
@@ -411,6 +454,12 @@
       },
       "spec": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ],
+        "as": "verifiedbootstate=green"
       }
     },
     {
@@ -421,9 +470,15 @@
       "fame": "iconic",
       "reference": "https://source.android.com/docs/security/features/selinux",
       "series": [
-        "cutting-mat"
+        "cutting-mat",
+        "galley-proof"
       ],
       "mat": {
+        "slots": [
+          "status"
+        ]
+      },
+      "galley": {
         "slots": [
           "status"
         ]
@@ -596,6 +651,12 @@
           "note"
         ],
         "as": "Play Integrity"
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for SafetyNet read Play Integrity"
       }
     },
     {
@@ -607,9 +668,15 @@
       "reference": "https://developer.android.com/google/play/integrity/verdicts",
       "series": [
         "cutting-mat",
-        "specimen"
+        "specimen",
+        "galley-proof"
       ],
       "mat": {
+        "slots": [
+          "status"
+        ]
+      },
+      "galley": {
         "slots": [
           "status"
         ]
@@ -657,6 +724,12 @@
           "hero"
         ],
         "as": "FBE"
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for FDE read FBE"
       }
     },
     {
@@ -943,7 +1016,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for UIWebView read WKWebView"
+      }
     },
     {
       "text": "Lockdown Mode",
@@ -990,7 +1069,13 @@
         "specimen",
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for PPL read SPTM"
+      }
     },
     {
       "text": "Memory Integrity Enforcement",
@@ -1535,7 +1620,8 @@
       "fame": "niche",
       "reference": "https://developer.android.com/privacy-and-security/keystore",
       "series": [
-        "specimen"
+        "specimen",
+        "galley-proof"
       ],
       "spec": {
         "slots": [
@@ -1545,6 +1631,12 @@
       },
       "mat": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "note"
+        ],
+        "as": "keys stay in the chip"
       }
     },
     {

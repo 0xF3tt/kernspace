@@ -42,6 +42,12 @@
           "note"
         ],
         "as": "Security \"in\" the Cloud"
+      },
+      "galley": {
+        "slots": [
+          "note"
+        ],
+        "as": "Security \"in\" the Cloud"
       }
     },
     {
@@ -85,6 +91,12 @@
           "phrase"
         ],
         "as": "Design so one stolen key can only burn a small part of it."
+      },
+      "galley": {
+        "slots": [
+          "note"
+        ],
+        "as": "blast radius"
       }
     },
     {
@@ -138,7 +150,13 @@
         "catalog-card",
         "galley-proof",
         "specimen"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for IMDSv1 read IMDSv2"
+      }
     },
     {
       "text": "Capital One 2019",
@@ -174,6 +192,12 @@
           "rating"
         ],
         "as": "public bucket"
+      },
+      "galley": {
+        "slots": [
+          "note"
+        ],
+        "as": "public S3 bucket"
       }
     },
     {
@@ -285,7 +309,13 @@
         "specimen",
         "catalog-card",
         "galley-proof"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for PSP read PSA"
+      }
     },
     {
       "text": "privileged: true",
@@ -422,7 +452,13 @@
       "series": [
         "catalog-card",
         "galley-proof"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for Azure AD read Microsoft Entra ID"
+      }
     },
     {
       "text": "~/.kube/config",
@@ -889,6 +925,12 @@
           "rating"
         ],
         "as": "log tampering"
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for T1562.008 read T1685.002"
       }
     },
     {
@@ -1229,7 +1271,13 @@
       "series": [
         "catalog-card",
         "galley-proof"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for tfsec read Trivy"
+      }
     },
     {
       "text": "Checkov",
@@ -1339,6 +1387,11 @@
           "status",
           "note"
         ]
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {
@@ -1361,7 +1414,8 @@
       "fame": "niche",
       "reference": "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/security.html",
       "series": [
-        "cutting-mat"
+        "cutting-mat",
+        "galley-proof"
       ]
     },
     {
@@ -1435,7 +1489,8 @@
       "fame": "niche",
       "reference": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html",
       "series": [
-        "specimen"
+        "specimen",
+        "galley-proof"
       ],
       "spec": {
         "slots": [
@@ -1444,6 +1499,11 @@
       },
       "mat": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {
@@ -1454,7 +1514,8 @@
       "fame": "niche",
       "reference": "https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html",
       "series": [
-        "specimen"
+        "specimen",
+        "galley-proof"
       ],
       "spec": {
         "slots": [
@@ -1463,6 +1524,11 @@
       },
       "mat": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {
@@ -1793,6 +1859,29 @@
           "note"
         ],
         "as": "CIS GCP Foundation"
+      }
+    },
+    {
+      "text": "2008-10-17 → 2012-10-17",
+      "type": "id",
+      "code": "2012-10-17",
+      "meaning": "IAM policy language versions: AWS says to use 2012-10-17, not the earlier 2008-10-17, in new or updated policies.",
+      "fame": "niche",
+      "reference": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_version.html",
+      "series": [
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": []
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for 2008-10-17 read 2012-10-17"
       }
     }
   ]

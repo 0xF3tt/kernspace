@@ -299,6 +299,12 @@
           "rating"
         ],
         "as": "security theater"
+      },
+      "galley": {
+        "slots": [
+          "note"
+        ],
+        "as": "security theater"
       }
     },
     {
@@ -459,7 +465,12 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "note"
+        ]
+      }
     },
     {
       "text": "Hacker ethic",
@@ -772,7 +783,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for TLP:WHITE read TLP:CLEAR"
+      }
     },
     {
       "text": "TLP:AMBER+STRICT",
@@ -1108,6 +1125,12 @@
         "slots": [
           "notdef"
         ]
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for PR.AC read PR.AA"
       }
     },
     {
@@ -1120,7 +1143,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for CSF 1.1 read CSF 2.0"
+      }
     },
     {
       "text": "ISO/IEC 27001:2022",
@@ -1326,7 +1355,13 @@
       "series": [
         "galley-proof",
         "specimen"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for (ISC)² read ISC2"
+      }
     },
     {
       "text": "CISSP",
@@ -1378,8 +1413,14 @@
       "reference": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53Ar5.pdf",
       "series": [
         "cutting-mat",
-        "specimen"
-      ]
+        "specimen",
+        "galley-proof"
+      ],
+      "galley": {
+        "slots": [
+          "status"
+        ]
+      }
     },
     {
       "text": "Authorization to Operate",
@@ -1390,8 +1431,14 @@
       "reference": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf",
       "series": [
         "cutting-mat",
-        "specimen"
-      ]
+        "specimen",
+        "galley-proof"
+      ],
+      "galley": {
+        "slots": [
+          "status"
+        ]
+      }
     },
     {
       "text": "DIVISION D: MINIMAL PROTECTION",
@@ -1416,8 +1463,14 @@
       "reference": "https://haveibeenpwned.com/",
       "series": [
         "cutting-mat",
-        "specimen"
-      ]
+        "specimen",
+        "galley-proof"
+      ],
+      "galley": {
+        "slots": [
+          "status"
+        ]
+      }
     },
     {
       "text": "Good news — no pwnage found!",
@@ -1979,6 +2032,30 @@
           "note"
         ],
         "as": "bug bounty"
+      }
+    },
+    {
+      "text": "Responsible disclosure → CVD",
+      "type": "term",
+      "code": "CVD",
+      "meaning": "MSRC reframed 'Responsible Disclosure' as Coordinated Vulnerability Disclosure in July 2010; CERT/CC also advocates CVD.",
+      "fame": "niche",
+      "reference": "https://certcc.github.io/CERT-Guide-to-CVD/tutorials/terms/cvd/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": []
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for responsible disclosure read CVD"
       }
     }
   ]

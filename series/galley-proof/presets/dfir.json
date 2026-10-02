@@ -1,0 +1,22 @@
+{
+  "series": "galley-proof", "topic": "dfir", "title": "Vol. 12 · Evidence", "ground": "light",
+  "phrase": ["Document", "each step."],
+  "file": "case-notes.md",
+  "lines": ["# Item 03 · examiner notes", "- Image: item03.E01, write-blocked",
+    "- MD5: d41d8cd98f00b204e9800998ecf8427e", "- RAM: captured live, before imaging",
+    "- All times local.", "## tool.exe", "- Modified 2025-11-04 16:40:52Z ($SI)",
+    "- Created 2026-03-02 03:12:09Z ($SI)", "- Shimcache lists tool.exe, so it ran.",
+    "- No Prefetch file for tool.exe."],
+  "marks": [
+    {"line": 3, "type": "query", "note": "MD5 of 0 bytes?", "phone": "0-byte image?"},
+    {"line": 5, "type": "sub", "at": "local", "to": "UTC", "note": "the Z means UTC", "phone": "UTC"},
+    {"line": 7, "type": "stet", "at": "2025-11-04", "note": "copies keep M time", "phone": "copied"},
+    {"line": 8, "type": "query", "note": "$FN times match?", "phone": "$FN match?"},
+    {"line": 9, "type": "query", "note": "proof that it ran?", "phone": "proof it ran?"}
+  ],
+  "errata": {"line": 5, "throughout": "for SP 800-61 Rev. 2 read Rev. 3"},
+  "notes": ["TZ=UTC", "$SI ≠ $FN", "Chain of Custody"],
+  "label": "DFIR GALLEY · VOL. 12 · EVIDENCE",
+  "data": {"left": "WRITE-BLOCK ENGAGED", "right": "{handle} · git:(main) · purple learns"},
+  "phone": {"data": {"right": "{handle} · purple learns"}}
+}

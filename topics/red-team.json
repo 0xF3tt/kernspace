@@ -165,6 +165,12 @@
           "note"
         ],
         "as": "threat-informed defense"
+      },
+      "galley": {
+        "slots": [
+          "note"
+        ],
+        "as": "threat-informed defense"
       }
     },
     {
@@ -200,6 +206,12 @@
           "note"
         ],
         "as": "purple team"
+      },
+      "galley": {
+        "slots": [
+          "note"
+        ],
+        "as": "purple team"
       }
     },
     {
@@ -214,6 +226,12 @@
         "catalog-card"
       ],
       "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "assume breach"
+      },
+      "galley": {
         "slots": [
           "note"
         ],
@@ -262,6 +280,12 @@
           "phrase"
         ],
         "as": "Tell the trusted agent before you touch anything critical."
+      },
+      "galley": {
+        "slots": [
+          "note"
+        ],
+        "as": "deconfliction"
       }
     },
     {
@@ -1114,11 +1138,17 @@
       "code": "TA0005",
       "meaning": "Deprecated tactic name: v19 split Defense Evasion into Stealth (keeps TA0005) and Defense Impairment.",
       "fame": "niche",
-      "reference": "MITRE ATT&CK v19.2",
+      "reference": "https://attack.mitre.org/tactics/TA0005/",
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for Defense Evasion read Stealth"
+      }
     },
     {
       "text": "Impair Defenses → T1685",
@@ -1138,11 +1168,17 @@
       "code": "T1059.001",
       "meaning": "Deprecated: standalone PowerShell (T1086) revoked in v7, now a sub-technique of T1059.",
       "fame": "niche",
-      "reference": "MITRE ATT&CK v7",
+      "reference": "https://attack.mitre.org/techniques/T1059/001/",
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for T1086 read T1059.001"
+      }
     },
     {
       "text": "Man-in-the-Middle → AiTM",
@@ -1150,11 +1186,17 @@
       "code": "T1557",
       "meaning": "Renamed in v10 to Adversary-in-the-Middle (T1557) to be more inclusive.",
       "fame": "niche",
-      "reference": "MITRE ATT&CK v10",
+      "reference": "https://attack.mitre.org/techniques/T1557/",
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for MiTM read AiTM"
+      }
     },
     {
       "text": "PRE-ATT&CK → TA0043 + TA0042",
@@ -1166,7 +1208,10 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": []
+      }
     },
     {
       "text": "BEACON · CHECK-IN 60s",
@@ -1176,9 +1221,15 @@
       "fame": "niche",
       "reference": "",
       "series": [
-        "cutting-mat"
+        "cutting-mat",
+        "galley-proof"
       ],
       "mat": {
+        "slots": [
+          "status"
+        ]
+      },
+      "galley": {
         "slots": [
           "status"
         ]
@@ -1192,9 +1243,15 @@
       "fame": "niche",
       "reference": "",
       "series": [
-        "cutting-mat"
+        "cutting-mat",
+        "galley-proof"
       ],
       "mat": {
+        "slots": [
+          "status"
+        ]
+      },
+      "galley": {
         "slots": [
           "status"
         ]
@@ -1270,7 +1327,8 @@
       "fame": "niche",
       "reference": "https://attack.mitre.org/techniques/T1071/",
       "series": [
-        "specimen"
+        "specimen",
+        "galley-proof"
       ],
       "spec": {
         "slots": [
@@ -1279,6 +1337,11 @@
       },
       "mat": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {
@@ -1289,7 +1352,8 @@
       "fame": "niche",
       "reference": "https://attack.mitre.org/techniques/T1566/",
       "series": [
-        "specimen"
+        "specimen",
+        "galley-proof"
       ],
       "spec": {
         "slots": [
@@ -1298,6 +1362,11 @@
       },
       "mat": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {
@@ -1308,7 +1377,8 @@
       "fame": "niche",
       "reference": "https://attack.mitre.org/techniques/T1055/",
       "series": [
-        "specimen"
+        "specimen",
+        "galley-proof"
       ],
       "spec": {
         "slots": [
@@ -1317,6 +1387,11 @@
       },
       "mat": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {
@@ -1445,7 +1520,13 @@
       "series": [
         "catalog-card",
         "galley-proof"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for T1070.001 read T1685.005"
+      }
     },
     {
       "text": "T1573 · Encrypted Channel",
@@ -1615,6 +1696,12 @@
         "as": "tradecraft"
       },
       "spec": {
+        "slots": [
+          "note"
+        ],
+        "as": "tradecraft"
+      },
+      "galley": {
         "slots": [
           "note"
         ],
