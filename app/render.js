@@ -1,4 +1,4 @@
-// Shared helpers for kernspace renderers: formats, escaping, the whoami box and bundled fonts.
+// Shared helpers for kernspace renderers: formats, escaping, the whoami box, the film grain finish and bundled fonts.
 
 export const FORMATS = {
   desktop: { w: 3840, h: 2160, label: 'Desktop 16:9' },
@@ -27,6 +27,17 @@ export function whoamiLines(handle, motto) {
   const h = handle || HANDLE, m = motto || MOTTO, line = `${h} · ${m}`;
   return [...line].length <= 48 ? ['# whoami', line] : ['# whoami', h, m];
 }
+
+// Film grain, the optional finish: noise added to the whole sheet, type included (sheet + .12 × (noise − .5), about
+// ±12 levels on every ground). The noise is one seamless 256 px tile repeated by feTile: PNG can't compress noise,
+// but it finds the repeats, so a desktop PNG stays near 3.5 MB instead of 14–20 MB. Seeded: the same file draws the
+// same grain. k3 is the strength; k4 is always -k3/2.
+export const GRAIN = '<filter id="grain" x="0" y="0" width="100%" height="100%" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">'
+  + '<feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="7" stitchTiles="stitch" x="0" y="0" width="256" height="256"/>'
+  + '<feColorMatrix type="matrix" values="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 1"/><feTile result="noise"/>'
+  + '<feComposite in="SourceGraphic" in2="noise" operator="arithmetic" k1="0" k2="1" k3=".12" k4="-.06"/></filter>';
+// a sheet's body (everything after its <style>), with the grain over it or as it is
+export const finish = (body, grain) => (grain ? `<defs>${GRAIN}</defs><g filter="url(#grain)">${body}</g>` : body);
 
 const FONT_FILES = {
   nunito: 'fonts/nunito/Nunito-Variable.ttf',

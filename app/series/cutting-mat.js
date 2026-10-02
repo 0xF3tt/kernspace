@@ -1,7 +1,7 @@
 // Cutting Mat: the self-healing mat on a designer's desk, read as a threat model.
 // Port of render_desktop.py / render_phone.py: same grid, marks and copy, as one standalone SVG.
 // Presets are data: series/cutting-mat/presets/index.json lists them, one <id>.json each.
-import { FORMATS, HANDLE, esc, whoamiLines } from '../render.js';
+import { FORMATS, HANDLE, esc, finish, whoamiLines } from '../render.js';
 
 const AUTHOR = '0xF3tt';                            // side signature: author credit, never the handle
 const SANS = 'KNunito,Nunito,sans-serif', MONO_FAM = 'KMono,"JetBrains Mono",ui-monospace,monospace';
@@ -114,8 +114,8 @@ function style(c, F, fonts) {
     + `.d{font-weight:300;font-size:${F.data.size}px;letter-spacing:${F.data.ls}em}`;
 }
 
-// preset: parsed presets/<slug>.json · colors: one palette ground · format: FORMATS key
-export function render({ preset: p, colors, format = 'desktop', handle, motto, fonts }) {
+// preset: parsed presets/<slug>.json · colors: one palette ground · format: FORMATS key · grain: the film grain finish
+export function render({ preset: p, colors, format = 'desktop', handle, motto, fonts, grain = false }) {
   const key = formatKey(format), g = SPECS[key];
   if (!g) throw new Error(`cutting-mat: unknown format ${format}`);
   if (!p?.layout) throw new Error('cutting-mat: preset must be a parsed preset object');
@@ -263,5 +263,5 @@ export function render({ preset: p, colors, format = 'desktop', handle, motto, f
   const oflNotice = '<!-- Embedded fonts: Nunito (SIL OFL 1.1, Copyright 2014 The Nunito Project Authors) and JetBrains Mono (SIL OFL 1.1, Copyright 2020 The JetBrains Mono Project Authors). See fonts/README.md -->';
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`
     + `<title>${esc(`kernspace · Cutting Mat · ${p.title ?? ''}`)}</title>${oflNotice}<style>${style(c, F, fonts || {})}</style>`
-    + `<rect width="${W}" height="${H}" fill="${c.bg}"/>${s.join('')}</svg>`;
+    + finish(`<rect width="${W}" height="${H}" fill="${c.bg}"/>${s.join('')}`, grain) + '</svg>';
 }
