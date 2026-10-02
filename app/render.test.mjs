@@ -6,7 +6,7 @@
 // waterfall clip, the hero column and the keep-clear zones, with a broken sheet for each rule the checker must catch.
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
-import { FORMATS, HANDLE, MOTTO, esc, validHandle, validMotto, whoamiLines } from './render.js';
+import { FORMATS, GRAIN, HANDLE, MOTTO, esc, validHandle, validMotto, whoamiLines } from './render.js';
 import { SERIES } from './series/index.js';
 import { GEOMETRY, heroSize } from './series/specimen.js';
 import { ANGLES, HANDLES, LIMITS, MOTTOS, PROBE, advances, overlaps, prepare, useMetrics } from './check.js';
@@ -217,6 +217,15 @@ for (const [sid, S] of Object.entries(SERIES)) for (const [slug, p] of Object.en
     onCanvas(svg, w, h, where);
     counts[sid] = (counts[sid] ?? 0) + 1;
   }
+}
+
+// film grain: every series takes it, and it adds the filter and one group around the sheet, nothing else
+for (const [sid, S] of Object.entries(SERIES)) for (const fmt of Object.keys(FORMATS)) {
+  const args = { preset: Object.values(PRESETS[sid])[0], colors: ground(palettes[0], 'mid'), format: fmt, handle: '', fonts };
+  const plain = S.render(args), grain = S.render({ ...args, grain: true }), wrap = `<defs>${GRAIN}</defs><g filter="url(#grain)">`;
+  assert.equal(grain.split(wrap).length, 2, `${sid}/${fmt}: the grain filter and its group, once`);
+  assert.equal(grain.replace(wrap, '').replace(/<\/g><\/svg>$/, '</svg>'), plain, `${sid}/${fmt}: the grain changes nothing else`);
+  balanced(grain);
 }
 
 // ---------- overlap checker (app/check.js explains the boxes, tolerance and colors)

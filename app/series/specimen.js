@@ -10,7 +10,7 @@
 //   matrix: { axes: [a ≤12, b ≤12], cell: [i, l] (1-4), rating ≤24 }   4×4, digits = impact, likelihood
 //   test ≤44 (a known-answer test) · notes: 2-3 × ≤28 · label (vertical, fixed)
 //   data: { left ≤44, right ≤44 ({handle} = the viewer's) } · phone: { data } overrides, like Cutting Mat's
-import { FORMATS, HANDLE, esc, whoamiLines } from '../render.js';
+import { FORMATS, HANDLE, esc, finish, whoamiLines } from '../render.js';
 
 const SANS = 'KNunito,Nunito,sans-serif', MONO_FAM = 'KMono,"JetBrains Mono",ui-monospace,monospace';
 const MONO = { asc: 1.02, desc: 0.3, adv: 0.6 };    // vertical metrics per em (hhea = OS/2 typo), as in cutting-mat.js
@@ -97,8 +97,8 @@ function style(c, g, hero, fonts) {
     + (g.vl ? `.vl{font-size:${g.vl.size}px;letter-spacing:${g.vl.ls}em;font-weight:300}` : '');
 }
 
-// preset: parsed presets/<slug>.json · colors: one palette ground · format: FORMATS key
-export function render({ preset: p, colors, format = 'desktop', handle, motto, fonts }) {
+// preset: parsed presets/<slug>.json · colors: one palette ground · format: FORMATS key · grain: the film grain finish
+export function render({ preset: p, colors, format = 'desktop', handle, motto, fonts, grain = false }) {
   const key = formatKey(format), g = SPECS[key];
   if (!g) throw new Error(`specimen: unknown format ${format}`);
   if (!p?.waterfall) throw new Error('specimen: preset must be a parsed preset object');
@@ -196,5 +196,5 @@ export function render({ preset: p, colors, format = 'desktop', handle, motto, f
   const clip = `<defs><clipPath id="wf"><rect x="0" y="${n(wfTop - 20)}" width="${g.clip}" height="${n(wfEnd - wfTop + 40)}"/></clipPath></defs>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`
     + `<title>${esc(`kernspace · Specimen · ${p.title ?? ''}`)}</title>${oflNotice}<style>${style(c, g, hero, fonts || {})}</style>`
-    + `<rect width="${W}" height="${H}" fill="${c.bg}"/>${clip}${s.join('')}</svg>`;
+    + finish(`<rect width="${W}" height="${H}" fill="${c.bg}"/>${clip}${s.join('')}`, grain) + '</svg>';
 }

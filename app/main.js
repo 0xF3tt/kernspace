@@ -79,7 +79,7 @@ function swap(img, url) {
 const data = { series: {}, palettes: {}, fonts: null, lex: {} };     // series[s] = { index, presets, skipped }; lexicons are shared
 const lexLoads = {};
 const lastVol = {};                                      // the volume each series was left on
-const state = { series: DEFAULT, i: 0, ink: 'purple', role: 'mid', format: 'desktop', view: 'sheet', handle: '', motto: '', mark: 'taint', edits: {}, ver: {} };
+const state = { series: DEFAULT, i: 0, ink: 'purple', role: 'mid', grain: false, format: 'desktop', view: 'sheet', handle: '', motto: '', mark: 'taint', edits: {}, ver: {} };
 let S = SERIES[state.series];                       // the series on the stage: its renderer, slot table and marks
 const D = () => data.series[state.series];
 const E = (s = state.series) => (state.edits[s] ??= {});     // edited presets by id
@@ -162,14 +162,15 @@ function ground(ink, role) {
   const [slug, g] = Object.entries(data.palettes[ink].grounds).find(([, x]) => x.role === role);
   return { slug, colors: g.colors };
 }
-const draw = (p, ink, role, format, fonts, R = S) => R.render({ preset: p, colors: ground(ink, role).colors, format, handle: state.handle, motto: state.motto, fonts });
+// the grain goes only on the sheet in the stage and its downloads: thumbnails and the editor's proof stay without it
+const draw = (p, ink, role, format, fonts, R = S, grain = false) => R.render({ preset: p, colors: ground(ink, role).colors, format, handle: state.handle, motto: state.motto, fonts, grain });
 
 // ---------- the page's fixed parts, built once the data is in
 
 const el = {
   form: $('#form'), stage: $('#stage'), sheet: $('#sheet'), img: $('#sheet-img'), strip: $('#strip'), dd: $('#drawdown'),
   inks: $('#ink-rows'), legend: $('#legend'), slip: $('#slip'), handle: $('#handle'), motto: $('#motto'), who: $('#who'),
-  whoNote: $('#who-note'), need: $('#need'), png: $('#dl-png'), svg: $('#dl-svg'),
+  whoNote: $('#who-note'), need: $('#need'), png: $('#dl-png'), svg: $('#dl-svg'), grain: $('#grain'),
 };
 
 function buildStrip() {
@@ -281,11 +282,11 @@ function rulers() {
 let current = null, ticket = 0, drawing = Promise.resolve();
 function fileName(e, g) {
   const { w, h: H } = FORMATS[state.format];
-  return `kernspace_${state.series}_${e.id}${E()[e.id] ? '_edited' : ''}_${state.ink}-${g.slug}_${w}x${H}`;
+  return `kernspace_${state.series}_${e.id}${E()[e.id] ? '_edited' : ''}_${state.ink}-${g.slug}${state.grain ? '_grain' : ''}_${w}x${H}`;
 }
 async function drawSheet() {
   const t = ++ticket, e = vol(), g = ground(state.ink, state.role), { w, h: H } = FORMATS[state.format];
-  const text = draw(preset(), state.ink, state.role, state.format, data.fonts), name = fileName(e, g);
+  const text = draw(preset(), state.ink, state.role, state.format, data.fonts, S, state.grain), name = fileName(e, g);
   const url = blobUrl(text), img = new Image();
   img.src = url;
   el.stage.setAttribute('aria-busy', 'true');
@@ -294,7 +295,7 @@ async function drawSheet() {
     if (t !== ticket) return URL.revokeObjectURL(url);
     current = { svg: text, name, w, h: H };
     swap(el.img, url);
-    el.img.alt = `${S.name}, ${e.title}: ${data.palettes[state.ink].name} ink on the ${nice(g.slug)} ground, ${w} by ${H} pixels.`;
+    el.img.alt = `${S.name}, ${e.title}: ${data.palettes[state.ink].name} ink on the ${nice(g.slug)} ground${state.grain ? ', with film grain' : ''}, ${w} by ${H} pixels.`;
   } catch (err) {
     URL.revokeObjectURL(url);
     if (t === ticket) { current = null; tell('This sheet could not be drawn.', 'Try another ink or format.', false); console.error(err); }
@@ -325,6 +326,7 @@ function update() {
   el.dd.querySelectorAll('.dd-ink').forEach((s) => s.classList.toggle('on', s.dataset.ink === state.ink));
   el.dd.querySelectorAll('.dd-row small').forEach((s) => { s.hidden = s.parentElement.dataset.row !== e.ground; });
   $(`#g-${state.ink}-${state.role}`).checked = true;
+  el.grain.checked = state.grain;          // also undoes a browser restoring the switch on reload: it starts off every visit
   $('#gr-name').textContent = nice(g.slug);
   $('#gr-hex').textContent = g.colors.bg;
   $('#gr-note').textContent = `${NOTES[g.slug] ?? ''} ${INKS[state.ink]}`;
@@ -1082,6 +1084,9 @@ function wire() {
     else if (t.name === 'ground') {
       const [ink, role] = t.value.split(':');
       if (PALS.includes(ink) && ROLES.includes(role)) { state.ink = ink; state.role = role; update(); }
+    } else if (t.name === 'grain') {
+      state.grain = t.checked;
+      if (booted) update();                  // before the data is in, start() draws with it
     } else if (t.name === 'format' || t.name === 'eformat') {
       if (Object.hasOwn(FORMATS, t.value)) { state.format = t.value; update(); }
     } else if (t.name === 'view') {
