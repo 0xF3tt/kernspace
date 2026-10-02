@@ -37,6 +37,12 @@
           "sink",
           "flow"
         ]
+      },
+      "galley": {
+        "slots": [
+          "note"
+        ],
+        "as": "flag format: flag{...}"
       }
     },
     {
@@ -770,6 +776,12 @@
       },
       "spec": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ],
+        "as": "OK · DOWN · FAULTY"
       }
     },
     {
@@ -791,6 +803,11 @@
       },
       "spec": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {
@@ -807,6 +824,9 @@
         "slots": []
       },
       "spec": {
+        "slots": []
+      },
+      "galley": {
         "slots": []
       }
     },
@@ -825,6 +845,9 @@
       },
       "spec": {
         "slots": []
+      },
+      "galley": {
+        "slots": []
       }
     },
     {
@@ -841,6 +864,9 @@
         "slots": []
       },
       "spec": {
+        "slots": []
+      },
+      "galley": {
         "slots": []
       }
     },
@@ -967,6 +993,12 @@
       },
       "mat": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "note"
+        ],
+        "as": "test for unintended solves"
       }
     },
     {
@@ -1093,6 +1125,11 @@
       },
       "mat": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {
@@ -1108,6 +1145,12 @@
       ],
       "spec": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for flower read Tulip"
       }
     },
     {
@@ -1201,6 +1244,12 @@
       },
       "spec": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for Nautilus Institute read BBB"
       }
     },
     {
@@ -1367,6 +1416,12 @@
       ],
       "mat": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for 0CTF/TCTF read 0CTF"
       }
     },
     {
@@ -1394,6 +1449,12 @@
       ],
       "spec": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for redpwn/rctf read otter-sec/rctf"
       }
     },
     {
@@ -1754,7 +1815,8 @@
       "fame": "niche",
       "reference": "",
       "series": [
-        "specimen"
+        "specimen",
+        "galley-proof"
       ],
       "spec": {
         "slots": [
@@ -1763,6 +1825,11 @@
       },
       "mat": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {
@@ -1869,6 +1936,29 @@
       },
       "spec": {
         "slots": []
+      }
+    },
+    {
+      "text": "value → initial",
+      "type": "term",
+      "code": "dynamic",
+      "meaning": "Since CTFd 3.4.0 a dynamic challenge takes its starting points from initial, not value, so ctfcli can manage it.",
+      "fame": "niche",
+      "reference": "https://github.com/CTFd/CTFd/blob/master/CHANGELOG.md",
+      "series": [
+        "galley-proof"
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": []
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for value read initial"
       }
     }
   ]

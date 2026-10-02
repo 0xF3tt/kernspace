@@ -428,6 +428,11 @@
         "slots": [
           "status"
         ]
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {
@@ -448,6 +453,11 @@
         ]
       },
       "spec": {
+        "slots": [
+          "status"
+        ]
+      },
+      "galley": {
         "slots": [
           "status"
         ]
@@ -509,6 +519,11 @@
         "slots": [
           "note"
         ]
+      },
+      "galley": {
+        "slots": [
+          "note"
+        ]
       }
     },
     {
@@ -523,6 +538,12 @@
         "galley-proof"
       ],
       "mat": {
+        "slots": [
+          "note"
+        ],
+        "as": "parameterized query"
+      },
+      "galley": {
         "slots": [
           "note"
         ],
@@ -991,6 +1012,11 @@
           "source",
           "note"
         ]
+      },
+      "galley": {
+        "slots": [
+          "note"
+        ]
       }
     },
     {
@@ -1011,6 +1037,11 @@
         ]
       },
       "spec": {
+        "slots": [
+          "status"
+        ]
+      },
+      "galley": {
         "slots": [
           "status"
         ]
@@ -1096,7 +1127,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for report-uri read report-to"
+      }
     },
     {
       "text": "X-XSS-Protection → CSP",
@@ -1114,6 +1151,12 @@
         "slots": [
           "note"
         ]
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for X-XSS-Protection read CSP"
       }
     },
     {
@@ -1127,7 +1170,13 @@
         "specimen",
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for CORB read ORB"
+      }
     },
     {
       "text": "PNA → LNA",
@@ -1140,7 +1189,13 @@
         "specimen",
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for PNA read LNA"
+      }
     },
     {
       "text": "Implicit grant → Code + PKCE",
@@ -1152,7 +1207,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for Implicit grant read Code + PKCE"
+      }
     },
     {
       "text": "RFC 7231 → RFC 9110",
@@ -1164,7 +1225,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for RFC 7231 read RFC 9110"
+      }
     },
     {
       "text": "API6:2019 → API3:2023",
@@ -1176,7 +1243,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for API6:2019 read API3:2023"
+      }
     },
     {
       "text": "Filter Input, Escape Output",

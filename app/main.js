@@ -843,7 +843,7 @@ function renderPanel() {
     return;
   }
   const o = options(key), a = family(key), fits = o.rows.filter((r) => r.ok).length;
-  const now = a === 'data' ? preset().phone?.data?.[key.slice(5)] ?? o.now : o.now, max = a === 'data' ? S.LIMITS.phone : S.limitOf(key);
+  const now = a === 'data' ? preset().phone?.data?.[key.slice(5)] ?? o.now : o.now, max = a === 'data' ? S.phoneCap?.(preset(), key) ?? S.LIMITS.phone : S.limitOf(key);
   fill($('#ep-meta'),
     o.lock ? h('span', { class: 'tape tape-pencil', title: 'Set by the volume' }, o.lock.trim()) : null,
     h('span', {}, `${fits} ${fits === 1 ? 'option fits' : 'options fit'}`),

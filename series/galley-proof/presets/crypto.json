@@ -1,0 +1,23 @@
+{
+  "series": "galley-proof", "topic": "crypto", "title": "Vol. 09 · Key", "ground": "dark",
+  "phrase": ["Attacks always", "get better"],
+  "file": "sshd_config",
+  "lines": ["Port 22", "HostKeyAlgorithms ssh-rsa", "KexAlgorithms curve25519-sha256",
+    "Ciphers aes256-ctr,aes256-cbc", "MACs hmac-sha1", "PermitRootLogin yes",
+    "PasswordAuthentication yes", "PubkeyAuthentication yes", "PermitEmptyPasswords no",
+    "AllowTcpForwarding yes", "X11Forwarding no"],
+  "marks": [
+    {"line": 2, "type": "sub", "at": "ssh-rsa", "to": "ssh-ed25519", "note": "SHA-1 signatures", "phone": "ssh-ed25519"},
+    {"line": 3, "type": "ins", "at": "curve25519-sha256", "to": "mlkem768x25519-sha256,", "note": "hybrid PQ first", "phone": "add ML-KEM"},
+    {"line": 4, "type": "dele", "at": ",aes256-cbc", "note": "no CBC modes", "phone": "remove CBC"},
+    {"line": 5, "type": "sub", "at": "hmac-sha1", "to": "hmac-sha2-256", "note": "prefer SHA-2 MACs", "phone": "hmac-sha2-256"},
+    {"line": 6, "type": "query", "note": "keys only?", "phone": "keys only?"},
+    {"line": 7, "type": "sub", "at": "yes", "to": "no", "note": "pubkey only", "phone": "no"},
+    {"line": 10, "type": "stet", "at": "yes", "note": "bastion host", "phone": "keep"}
+  ],
+  "errata": {"line": 2, "throughout": "for Kyber read ML-KEM"},
+  "notes": ["don't roll your own crypto", "crypto means cryptography"],
+  "label": "CRYPTO GALLEY · VOL. 09 · KEY",
+  "data": {"left": "Verify return code: 0 (ok)", "right": "{handle} · git:(main) · blue builds"},
+  "phone": {"data": {"right": "{handle} · blue builds"}}
+}

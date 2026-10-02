@@ -1,0 +1,22 @@
+{
+  "series": "galley-proof", "topic": "appsec", "title": "Vol. 01 · Design", "ground": "mid",
+  "phrase": ["Be Reluctant", "to Trust"],
+  "file": "ci.yml",
+  "lines": ["name: ci", "on: pull_request_target", "permissions: write-all", "jobs:", "  scan:",
+    "    runs-on: self-hosted", "    continue-on-error: true", "    steps:",
+    "      - uses: actions/setup-node@main", "      - uses: actions/checkout@v7", "        with:",
+    "          allow-unsafe-pr-checkout: true"],
+  "marks": [
+    {"line": 2, "type": "sub", "at": "pull_request_target", "to": "pull_request", "note": "elevated trust", "phone": "pull_request"},
+    {"line": 3, "type": "sub", "at": "write-all", "to": "{contents: read}", "note": "least privilege", "phone": "contents: read"},
+    {"line": 6, "type": "query", "note": "public repo?", "phone": "public repo?"},
+    {"line": 7, "type": "stet", "at": "true", "note": "report-only scan", "phone": "keep"},
+    {"line": 9, "type": "sub", "at": "main", "to": "v7", "note": "unreleased commits", "phone": "v7"},
+    {"line": 12, "type": "dele", "at": "allow-unsafe-pr-checkout: true", "note": "disables the guard", "phone": "remove opt-in"}
+  ],
+  "errata": {"line": 3, "throughout": "for A06:2021 read A03:2025"},
+  "notes": ["trust boundary", "secure by default", "what can go wrong?"],
+  "label": "APPSEC GALLEY · VOL. 01 · DESIGN",
+  "data": {"left": "Risk accepted", "right": "{handle} · git:(main) · blue builds"},
+  "phone": {"data": {"right": "{handle} · blue builds"}}
+}

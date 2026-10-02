@@ -99,6 +99,12 @@
       },
       "spec": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for SHA-1 read SHA-256"
       }
     },
     {
@@ -117,6 +123,12 @@
       },
       "spec": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for MD5 read SHA-256"
       }
     },
     {
@@ -159,6 +171,12 @@
         "as": "don't roll your own crypto"
       },
       "spec": {
+        "slots": [
+          "note"
+        ],
+        "as": "don't roll your own crypto"
+      },
+      "galley": {
         "slots": [
           "note"
         ],
@@ -653,6 +671,12 @@
           "note"
         ],
         "as": "crypto means cryptography"
+      },
+      "galley": {
+        "slots": [
+          "note"
+        ],
+        "as": "crypto means cryptography"
       }
     },
     {
@@ -710,6 +734,12 @@
       ],
       "mat": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for RFC 8446 read RFC 9846"
       }
     },
     {
@@ -994,6 +1024,12 @@
       },
       "spec": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for Kyber read ML-KEM"
       }
     },
     {
@@ -1056,6 +1092,12 @@
       },
       "spec": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for Dual_EC_DRBG read CTR_DRBG"
       }
     },
     {
@@ -1071,6 +1113,12 @@
       ],
       "spec": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for FIPS 140-2 read FIPS 140-3"
       }
     },
     {
@@ -1285,7 +1333,8 @@
       "reference": "https://www.rfc-editor.org/info/rfc9846",
       "series": [
         "cutting-mat",
-        "specimen"
+        "specimen",
+        "galley-proof"
       ],
       "mat": {
         "slots": [
@@ -1293,6 +1342,11 @@
         ]
       },
       "spec": {
+        "slots": [
+          "status"
+        ]
+      },
+      "galley": {
         "slots": [
           "status"
         ]
@@ -1493,6 +1547,12 @@
           "note"
         ],
         "as": "attacks always get better"
+      },
+      "galley": {
+        "slots": [
+          "note"
+        ],
+        "as": "attacks always get better"
       }
     },
     {
@@ -1571,6 +1631,12 @@
       },
       "spec": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for 3DES read AES"
       }
     },
     {
@@ -1589,6 +1655,12 @@
       },
       "spec": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for RC4 read ChaCha20-Poly1305"
       }
     },
     {
@@ -2024,7 +2096,8 @@
       "fame": "niche",
       "reference": "https://www.rfc-editor.org/info/rfc9846",
       "series": [
-        "specimen"
+        "specimen",
+        "galley-proof"
       ],
       "spec": {
         "slots": [
@@ -2033,6 +2106,11 @@
       },
       "mat": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {
@@ -2043,7 +2121,8 @@
       "fame": "niche",
       "reference": "https://www.rfc-editor.org/info/rfc9846",
       "series": [
-        "specimen"
+        "specimen",
+        "galley-proof"
       ],
       "spec": {
         "slots": [
@@ -2052,6 +2131,11 @@
       },
       "mat": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {
@@ -2062,7 +2146,8 @@
       "fame": "niche",
       "reference": "https://www.rfc-editor.org/info/rfc9846",
       "series": [
-        "specimen"
+        "specimen",
+        "galley-proof"
       ],
       "spec": {
         "slots": [
@@ -2071,6 +2156,11 @@
       },
       "mat": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {

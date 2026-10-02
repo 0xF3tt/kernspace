@@ -28,7 +28,7 @@ All OFL, confirmed in the [google/fonts](https://github.com/google/fonts) reposi
 | **Libre Caslon Text** | Caslon's 1734 broadside is where the type specimen starts | `specimen` |
 | **Libre Bodoni** | Bodoni's *Manuale Tipografico* (1818), the other classic specimen | `specimen` |
 | **Courier Prime** | Library catalog cards were typewritten | `catalog-card` |
-| **EB Garamond** | A book face for the text on a galley proof | `galley-proof` |
+| **EB Garamond** | A book face for the text on a galley proof | `galley-proof` (considered; the series ships in Nunito and JetBrains Mono, since the galley is code set line for line) |
 | **IBM Plex Mono** | An alternative mono with an engineering pedigree | any |
 | **Onest** | From the NEUST system: a quiet grotesque for names and titles | any |
 | **Bricolage Grotesque** | From the NEUST system: a display grotesque with character | any |

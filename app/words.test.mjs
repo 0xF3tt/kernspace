@@ -2,7 +2,7 @@
 // Every word the editor offers as fitting must pass the renderer's own checks once it is on the sheet: the slot
 // table and the full overlap checker in every format, with the longest handle and whoami line. The fast path
 // the editor uses (quickFits) must agree with the full checker. Runs for every series in the registry, from its
-// own presets and the lexicons of their topics; a Specimen slot must be offered at least two words that fit.
+// own presets and the lexicons of their topics; outside Cutting Mat, every slot must be offered at least two words that fit.
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { FORMATS } from './render.js';
@@ -51,7 +51,7 @@ for (const [sid, S] of Object.entries(SERIES)) {
       assert.ok(same(rows[0].value, get(shipped, key)) && rows[0].applied, `${sid} ${e.id} ${key}: the shipped words come first and are in use`);
       const ok = rows.filter((r) => r.ok && !r.applied);
       offered += ok.length;
-      if (sid === 'specimen') assert.ok(ok.length >= 2, `${sid} ${e.id} ${key}: ${ok.length} fitting words offered, expected at least 2`);
+      if (sid !== 'cutting-mat') assert.ok(ok.length >= 2, `${sid} ${e.id} ${key}: ${ok.length} fitting words offered, expected at least 2`);
       // accepted words pass the whole test, with the longest whoami box
       for (const r of pick(ok, 2)) {
         const next = put(shipped, key, r.value, shipped), where = `${sid} ${e.id} ${key} = ${JSON.stringify(r.value)}`;

@@ -336,7 +336,8 @@
       "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-1102",
       "series": [
         "cutting-mat",
-        "catalog-card"
+        "catalog-card",
+        "galley-proof"
       ],
       "mat": {
         "slots": [
@@ -346,6 +347,12 @@
       },
       "spec": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ],
+        "as": "1102 · log cleared"
       }
     },
     {
@@ -446,7 +453,12 @@
       "reference": "https://learn.microsoft.com/azure/sentinel/incident-navigate-triage",
       "series": [
         "galley-proof"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "note"
+        ]
+      }
     },
     {
       "text": "Alert fatigue",
@@ -844,6 +856,11 @@
       },
       "spec": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {
@@ -855,7 +872,12 @@
       "reference": "https://learn.microsoft.com/azure/sentinel/incident-navigate-triage",
       "series": [
         "galley-proof"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "status"
+        ]
+      }
     },
     {
       "text": "Eyes on glass",
@@ -1048,7 +1070,13 @@
       "series": [
         "catalog-card",
         "galley-proof"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for sigmac read pySigma"
+      }
     },
     {
       "text": "Bro → Zeek",
@@ -1060,7 +1088,13 @@
       "series": [
         "catalog-card",
         "galley-proof"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for Bro read Zeek"
+      }
     },
     {
       "text": "Azure Sentinel → Microsoft Sentinel",
@@ -1084,7 +1118,13 @@
       "series": [
         "catalog-card",
         "galley-proof"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for MITRE Shield read MITRE Engage"
+      }
     },
     {
       "text": "weird.log",
@@ -1239,6 +1279,11 @@
       },
       "mat": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "note"
+        ]
       }
     },
     {
@@ -1272,7 +1317,8 @@
       "fame": "niche",
       "reference": "https://cloud.google.com/security/resources/defenders-advantage",
       "series": [
-        "cutting-mat"
+        "cutting-mat",
+        "galley-proof"
       ]
     },
     {
@@ -1525,7 +1571,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for 528 read 4624"
+      }
     },
     {
       "text": "D3-MENCR · Message Encryption",

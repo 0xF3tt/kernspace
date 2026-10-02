@@ -1,0 +1,24 @@
+{
+  "series": "galley-proof", "topic": "red-team", "title": "Vol. 07 · Emulate", "ground": "dark",
+  "phrase": ["Offense", "informs defense"],
+  "file": "layer.json",
+  "lines": ["\"versions\": {\"attack\": \"18\",", "  \"navigator\": \"5.2.0\", \"layer\": \"4.5\"},",
+    "\"domain\": \"enterprise-attack\",", "\"techniques\": [",
+    "  {\"techniqueID\": \"T1078\", \"score\": 1},", "  {\"techniqueID\": \"T1086\", \"score\": 1},",
+    "  {\"techniqueID\": \"T1562\", \"score\": 1},", "  {\"techniqueID\": \"T1685\", \"score\": 1},",
+    "  {\"techniqueID\": \"T1070\", \"score\": 1},", "  {\"techniqueID\": \"T1134\", \"score\": 1,",
+    "   \"tactic\": \"defense-evasion\"}", "],"],
+  "marks": [
+    {"line": 1, "type": "sub", "at": "18", "to": "19", "note": "T1685 needs v19", "phone": "19"},
+    {"line": 5, "type": "query", "note": "observed? assumed?", "phone": "observed?"},
+    {"line": 6, "type": "sub", "at": "T1086", "to": "T1059.001", "note": "revoked in v7", "phone": "T1059.001"},
+    {"line": 7, "type": "dele", "at": "{\"techniqueID\": \"T1562\", \"score\": 1},", "note": "revoked by T1685", "phone": "dup of T1685"},
+    {"line": 9, "type": "stet", "at": "T1070", "note": "not revoked in v19", "phone": "keep"},
+    {"line": 11, "type": "sub", "at": "defense-evasion", "to": "stealth", "note": "TA0005 is Stealth", "phone": "stealth"}
+  ],
+  "errata": {"line": 6, "throughout": "for T1070.001 read T1685.005"},
+  "notes": ["assume breach", "threat-informed defense", "purple team"],
+  "label": "RED TEAM GALLEY · VOL. 07 · EMULATE",
+  "data": {"left": "ROE SIGNED · SCOPE LOCKED", "right": "{handle} · git:(main) · red breaks"},
+  "phone": {"data": {"right": "{handle} · red breaks"}}
+}

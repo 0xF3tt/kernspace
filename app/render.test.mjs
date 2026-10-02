@@ -3,12 +3,14 @@
 // <dir>/index.json, checked for shape, and rendered in every palette, ground and format. Then the overlap checker
 // (app/check.js, the same code the word editor uses in the browser) for every series that has one, and per-series
 // blocks: Cutting Mat's presets against the README slot table; Specimen's against its own preset shape, the
-// waterfall clip, the hero column and the keep-clear zones, with a broken sheet for each rule the checker must catch.
+// waterfall clip, the hero column and the keep-clear zones; Galley Proof's against its preset shape and content rules, a fixture
+// with all eight mark types and renderer safety; both with a broken sheet for each rule the checker must catch.
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { FORMATS, GRAIN, HANDLE, MOTTO, esc, validHandle, validMotto, whoamiLines } from './render.js';
 import { SERIES } from './series/index.js';
 import { GEOMETRY, heroSize } from './series/specimen.js';
+import { AUTHOR, GEOMETRY as GALLEY, KEY, KEY_HEAD, tally, slip } from './series/galley-proof.js';
 import { ANGLES, HANDLES, LIMITS, MOTTOS, PROBE, advances, overlaps, prepare, useMetrics } from './check.js';
 
 const file = path => new URL(`../${path}`, import.meta.url);
@@ -47,13 +49,14 @@ for (const [sid, S] of Object.entries(SERIES)) {
   assert.deepEqual(listed.sort(), idx.map(e => e.id).sort(), `${DIR}: every preset file is listed in index.json, and only those`);
   PRESETS[sid] = Object.fromEntries(idx.map(e => [e.id, json(`${DIR}/${e.id}.json`)]));
 }
-// Cutting Mat numbers its volumes 1, 2, 3… in file order; Specimen is a subset of it until every topic has a sheet
+// Cutting Mat numbers its volumes 1, 2, 3… in file order; every other series takes its volumes from it: same vol, title and ground
 INDEX['cutting-mat'].forEach((e, i) => assert.equal(e.vol, i + 1, `cutting-mat index.json: vol ${e.vol}, expected ${i + 1}`));
-for (const e of INDEX.specimen) {
+for (const sid of Object.keys(INDEX).filter(s => s !== 'cutting-mat')) for (const e of INDEX[sid]) {
   const twin = INDEX['cutting-mat'].find(t => t.topic === e.topic);
-  assert.ok(twin, `specimen ${e.id}: no Cutting Mat volume for topic "${e.topic}"`);
-  assert.equal(e.vol, twin.vol, `specimen ${e.id}: vol ${e.vol}, but Cutting Mat numbers this topic ${twin.vol}`);
-  assert.equal(e.title, twin.title, `specimen ${e.id}: title "${e.title}", but every series names a volume alike: "${twin.title}"`);   // Vol. 09 is "Key" everywhere
+  assert.ok(twin, `${sid} ${e.id}: no Cutting Mat volume for topic "${e.topic}"`);
+  assert.equal(e.vol, twin.vol, `${sid} ${e.id}: vol ${e.vol}, but Cutting Mat numbers this topic ${twin.vol}`);
+  assert.equal(e.title, twin.title, `${sid} ${e.id}: title "${e.title}", but every series names a volume alike: "${twin.title}"`);   // Vol. 09 is "Key" everywhere
+  assert.equal(e.ground, twin.ground, `${sid} ${e.id}: ground "${e.ground}", but every series copies the volume's ground: "${twin.ground}"`);
 }
 const index = INDEX['cutting-mat'], presets = PRESETS['cutting-mat'];   // the per-series blocks below
 
@@ -151,10 +154,11 @@ for (const e of index) {
 // ---------- every preset × palette × format renders a well-formed sheet
 
 // every string a preset puts on one format, the viewer's handle in place of {handle}
-// (Specimen's phone draws 4 waterfall lines, 11 glyphs + .notdef, one confusable pair and no matrix, test or notes)
-const strings = (p, fmt, handle = '') => (p.series === 'specimen' ? specimenStrings(p, fmt) : [
+const strings = (p, fmt, handle = '') => (STRINGS[p.series] ?? assert.fail(`no strings() for series "${p.series}": add it to STRINGS`))(p, fmt).map(s => s.replaceAll('{handle}', handle || HANDLE));
+const cuttingMatStrings = (p, fmt) => [
   ...p.phrase, ...monoStrings({ ...p, data: fmt === 'phone' ? { ...p.data, ...p.phone?.data } : p.data, phone: null }),
-]).map(s => s.replaceAll('{handle}', handle || HANDLE));
+];
+// (Specimen's phone draws 4 waterfall lines, 11 glyphs + .notdef, one confusable pair and no matrix, test or notes)
 function specimenStrings(p, fmt) {
   const g = GEOMETRY[fmt], phone = fmt === 'phone', roles = p.waterfall.roles.filter((_, i) => !phone || i !== g.wf.drop);
   return [
@@ -163,14 +167,30 @@ function specimenStrings(p, fmt) {
     ...(phone ? p.confusables[0] : [...p.confusables.flat(), `${p.matrix.axes[0]} × ${p.matrix.axes[1]}`, p.test, ...p.notes, p.label]),
   ];
 }
+// (Galley Proof draws the file's lines trimmed, each mark's `to` and note beside it, and on the phone no notes, key or side label)
+const galleyMono = (p, fmt) => {   // the strings drawn in JetBrains Mono, the key and slip included
+  const phone = fmt === 'phone', vol = pad2(+/\d+/.exec(p.title)[0]);
+  return [`GALLEY ${vol} · ${p.file}`, tally(p), `ERRATA · GALLEY ${vol}`, ...slip(p, vol), ...Object.values({ ...p.data, ...(phone ? p.phone?.data : null) }),
+    ...(phone ? [] : [...p.notes, p.label, KEY_HEAD, ...[...new Set(p.marks.map(m => m.type))].map(t => KEY[t][0])])].map(s => s.replaceAll('{handle}', HANDLE));
+};
+const galleyStrings = (p, fmt) => {
+  const phone = fmt === 'phone', used = [...new Set(p.marks.map(m => m.type))], flip = m => m.type === 'sub' || m.type === 'ins';
+  return [
+    ...p.phrase, ...p.lines.map(l => l.trimStart()), ...galleyMono(p, fmt),
+    ...p.marks.flatMap(m => [['tr', 'wf', 'stet'].includes(m.type) && m.type, flip(m) && (phone ? m.phone : m.to), (!phone || !flip(m)) && (phone ? m.phone : m.note)].filter(Boolean)),
+    ...(phone ? [] : [...used.filter(t => ['tr', 'wf', 'stet'].includes(t)), ...(used.includes('query') ? ['?'] : []), ...used.map(t => KEY[t][1])]),
+  ];
+};
+const STRINGS = { 'cutting-mat': cuttingMatStrings, specimen: specimenStrings, 'galley-proof': galleyStrings };
 
 // leaked values: a NaN, undefined, null or [object …] in any attribute (coordinates, colors, transforms)
 const leaked = svg => [...svg.matchAll(/ [\w:-]+="([^"]*)"/g)].map(m => m[1]).filter(v => /NaN|undefined|null|Infinity|\[object/.test(v));
 // every text the sheet draws is one the test expects: preset strings, the whoami box, the signature, the
 // ISB tags and the rulers (hex offsets, addresses, line numbers). Words like "NaN" are fine as words.
+const EXTRA = { 'cutting-mat': ['0xF3tt', 'ISB-01', 'ISB-02'], specimen: [], 'galley-proof': ['0xF3tt'] };   // texts a series draws besides its preset's strings
 const RULER = /^([0-9A-F]{2}|0x[0-9A-F]{4}|\d{1,2})$/;
 function unexpected(svg, p, fmt, handle = '', motto = '') {
-  const ok = new Set([...strings(p, fmt, handle), ...whoamiLines(handle, motto), ...(p.series === 'specimen' ? [] : ['0xF3tt', 'ISB-01', 'ISB-02'])]);
+  const ok = new Set([...strings(p, fmt, handle), ...whoamiLines(handle, motto), ...(EXTRA[p.series] ?? assert.fail(`no EXTRA for series "${p.series}": add it, [] if none`))]);
   return [...svg.matchAll(/<text [^>]*>([^<]*)<\/text>/g)].map(m => m[1].replace(/&(lt|gt|amp|quot|apos);/g, c => ({ '&lt;': '<', '&gt;': '>', '&amp;': '&', '&quot;': '"', '&apos;': "'" }[c])))
     .filter(t => !ok.has(t) && !RULER.test(t));
 }
@@ -197,6 +217,19 @@ function onCanvas(svg, w, h, where) {
   }
 }
 
+// what only a Galley Proof render must hold: the signature, the roles it draws in, the forms of its paths and turns
+function galleyRender(S, svg, pal, role, fmt, where) {
+  assert.ok(svg.includes(`>0xF3tt · ${MOTTO}</text>`) && svg.includes('>0xF3tt</text>') === (fmt !== 'phone'), `${where}: whoami and the signature`);
+  if (fmt === 'phone') for (const [, x, t] of svg.matchAll(/<text x="([\d.]+)" y="[\d.]+" class="mt"[^>]*>([^<]*)</g)) assert.ok(+x + 18 * len(t) <= 1230, `${where}: "${t}" runs past x 1230`);
+  assert.ok(!/<foreignObject|<div|<script|id="grain"/i.test(svg), `${where}: SVG text only`);
+  const c = ground(pal, role), drawn = new Set(S.BAR.map(k => c[k]));   // the roles the sheet draws in
+  for (const r of ['major', 'angle', 'diag', 'tb', 'sink', 'chip3']) assert.ok(drawn.has(c[r]) || !svg.includes(`"${c[r]}"`), `${where}: draws in ${r}, which Galley Proof never uses`);
+  for (const [, d] of svg.matchAll(/<path d="([^"]*)"/g)) assert.ok(/^[MLHVC\d.,\s-]+$/.test(d) && d.startsWith('M'), `${where}: path uses only absolute M L H V C: ${d}`);
+  for (const [, t] of svg.matchAll(/ transform="([^"]*)"/g)) assert.match(t, /^translate\(\d+,\d+\) rotate\(-1\.5\)$|^translate\([\d.]+,[\d.]+\) rotate\(-90\)$/, `${where}: transform form`);
+  assert.equal((svg.match(/rotate\(-1\.5\)/g) ?? []).length, 7, `${where}: every slip element carries the turn`);
+  assert.ok(!svg.includes('class="gl"') === (fmt === 'phone'), `${where}: glosses are desktop and wide only`);
+}
+
 const counts = {};
 for (const [sid, S] of Object.entries(SERIES)) for (const [slug, p] of Object.entries(PRESETS[sid])) {
   // every ground, not only the preset's own: the app lets people switch it
@@ -215,6 +248,7 @@ for (const [sid, S] of Object.entries(SERIES)) for (const [slug, p] of Object.en
     assert.ok(!/<foreignObject|<div|<script/i.test(svg), `${where}: SVG text only`);
     balanced(svg);
     onCanvas(svg, w, h, where);
+    if (sid === 'galley-proof') galleyRender(S, svg, pal, role, fmt, where);
     counts[sid] = (counts[sid] ?? 0) + 1;
   }
 }
@@ -430,13 +464,234 @@ assert.ok(!render({ preset: p, colors, format: 'phone', fonts: null }).includes(
   assert.ok(!S.render({ preset: sp0, colors: c0, format: 'phone', fonts: null }).includes('@font-face'), 'specimen: no fonts yet still renders');
 }
 
+// ---------- Galley Proof: its preset shape and content rules, a fixture with all eight mark types, the checker bites, renderer safety
+
+{
+  const S = SERIES['galley-proof'], GP = PRESETS['galley-proof'], TYPES = Object.keys(KEY), NEEDS_AT = ['dele', 'sub', 'ins', 'wf', 'stet', 'space'];
+  // the preset's drawn strings by font; `to` and the key's mono names are mono, glosses and phrases are Nunito
+  const everyString = (v, out = []) => (typeof v === 'string' ? out.push(v) : v && typeof v === 'object' && Object.values(v).forEach(x => everyString(x, out)), out);
+  function checkGalley(p, e, at) {   // every content rule of one preset; throws on the first it breaks
+    const name = e.title.match(TITLE)[2];
+    keys(p, ['series', 'topic', 'title', 'ground', 'phrase', 'file', 'lines', 'marks', 'errata', 'notes', 'label', 'data', 'phone'], at);
+    for (const k of ['series', 'topic', 'title', 'ground', 'phrase', 'file', 'lines', 'marks', 'errata', 'notes', 'label', 'data']) assert.ok(k in p, `${at}: missing "${k}"`);
+    assert.equal(p.series, 'galley-proof', `${at}: series`);
+    for (const k of ['topic', 'title', 'ground']) assert.equal(p[k], e[k], `${at}: ${k} differs from index.json`);
+    list(p.phrase, 2, 18, `${at} phrase`); assert.ok(p.phrase.length >= 1, `${at} phrase: one or two lines`);
+    str(p.file, 20, `${at} file`); assert.match(p.file, /^[\w.-]+$/, `${at} file`);
+    list(p.lines, 12, 40, `${at} lines`, { indent: true }); assert.ok(p.lines.length >= 8, `${at} lines: 8-12`);
+    p.lines.forEach((l, i) => assert.ok(!/\S {2,}/.test(l), `${at} lines[${i}]: a run of 2+ spaces after the indent`));
+    assert.ok(Array.isArray(p.marks) && p.marks.length >= 4 && p.marks.length <= 7, `${at} marks: 4-7`);
+    p.marks.forEach((m, i) => {
+      const w = `${at} marks[${i}]`, ln = p.lines[m.line - 1]?.trimStart();
+      keys(m, ['line', 'type', 'at', 'to', 'note', 'phone'], w);
+      assert.ok(TYPES.includes(m.type), `${w}: type ${m.type}`);
+      assert.ok(Number.isInteger(m.line) && ln != null, `${w}: line points into lines`);
+      assert.equal(p.marks.filter(x => x.line === m.line).length, 1, `${w}: more than one mark on line ${m.line}`);
+      if (NEEDS_AT.includes(m.type)) { str(m.at, 40, `${w} at`); assert.equal(ln.split(m.at).length - 1, 1, `${w}: "${m.at}" must occur exactly once in line ${m.line}`); }
+      else assert.ok(!('at' in m), `${w}: ${m.type} takes no at`);
+      if (m.type === 'sub' || m.type === 'ins') str(m.to, 24, `${w} to`); else assert.ok(!('to' in m), `${w}: only sub and ins take to`);
+      str(m.note, 18, `${w} note`); str(m.phone, m.type === 'stet' ? 10 : ['tr', 'wf'].includes(m.type) ? 12 : 14, `${w} phone`);
+      if (m.type === 'tr') assert.ok(m.line < p.lines.length, `${w}: tr is never on the last line`);
+    });
+    const sub = p.marks.find(m => m.line === p.errata?.line);
+    keys(p.errata, ['line', 'throughout'], `${at} errata`);
+    assert.equal(sub?.type, 'sub', `${at} errata.line must point at a sub mark`);
+    assert.ok(len(`for ${sub.at} read ${sub.to}`) <= 36, `${at} errata: the sub line is over 36`);
+    str(p.errata.throughout, 36, `${at} errata.throughout`); assert.match(p.errata.throughout, /^for .+ read .+$/, `${at} errata.throughout`);
+    list(p.notes, 3, 28, `${at} notes`); assert.ok(p.notes.length >= 2, `${at} notes: 2-3`);
+    str(p.label, 40, `${at} label`); assert.ok(p.label.endsWith(`VOL. ${pad2(e.vol)} · ${name.toUpperCase()}`), `${at} label: should end with "VOL. ${pad2(e.vol)} · ${name.toUpperCase()}"`);
+    keys(p.data, ['left', 'right'], `${at} data`);
+    for (const k of ['left', 'right']) str(p.data[k], 44, `${at} data.${k}`);
+    keys(p.phone, ['data'], `${at} phone`);
+    for (const k of Object.keys(p.phone.data)) str(p.phone.data[k], 30, `${at} phone.data.${k}`);
+    const panel = PRESETS['cutting-mat'][p.topic]?.panel, cm = new Set((panel?.lines ?? []).map(l => l.trim()));   // kinship with the terminal panel stops at the topic
+    assert.ok(panel?.title !== p.file && !p.lines.some(l => cm.has(l.trim())), `${at}: shares a file name or a line with Cutting Mat's ${p.topic} panel`);
+    if (p.topic === 'dfir') assert.ok(p.marks.every(m => ['stet', 'query', 'sub'].includes(m.type)) && p.marks.filter(m => m.type === 'sub').length <= 1, `${at}: dfir takes only stet and query, and at most one sub`);
+    for (const t of everyString(p)) {
+      for (const [h] of t.matchAll(/\b(?:[a-z0-9-]+\.)+(?:com|net|org|io|dev|app|ai|co|cloud|gov|edu)\b/gi)) assert.match(h, /(^|\.)example\.(com|org|net)$/i, `${at}: "${t}" names a real-looking domain`);
+      assert.ok(!/[<>&]/.test(t), `${at}: "${t}" holds <, > or &`);
+      assert.ok(!/@\w[\w.-]*\.\w/.test(t), `${at}: "${t}" looks like an email address`);
+      for (const [, a, b, c] of t.matchAll(/\b(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.\d{1,3}\b/g)) assert.ok(+a === 127 || ['192.0.2', '198.51.100', '203.0.113'].includes(`${a}.${b}.${c}`), `${at}: "${t}" holds a real-looking IPv4 address`);
+    }
+    for (const s of [...galleyMono(p, 'desktop'), ...Object.values(p.phone?.data ?? {}), ...p.lines, ...p.marks.flatMap(m => [m.at, m.to, m.phone])].filter(Boolean)) for (const ch of s)
+      assert.equal(MONO_ADV.get(ch.codePointAt(0)), 0.6, `${at}: "${ch}" (${hexCp(ch)}) in "${s}" is not a JetBrains Mono glyph`);
+    for (const s of [...p.phrase, ...p.marks.map(m => m.note), ...p.marks.filter(m => m.type === 'query').map(m => m.phone), ...Object.values(KEY).map(k => k[1]), 'tr', 'wf', 'stet', '?']) for (const ch of s)
+      assert.ok(NUNITO_ADV.has(ch.codePointAt(0)), `${at}: "${ch}" (${hexCp(ch)}) in "${s}" is not a Nunito glyph`);
+  }
+  for (const e of INDEX['galley-proof']) checkGalley(GP[e.id], e, `galley-proof/${e.id}.json`);
+
+  // a defensive Python file with all eight mark types, test-only
+  const FIXTURE = {
+    series: 'galley-proof', topic: 'crypto', title: 'Vol. 09 · Key', ground: 'dark', phrase: ['Trust no input', 'log less'], file: 'app.py',
+    lines: ['import logging', 'log = logging.getLogger("app")', 'def handle(body):', '    log.info(body)', '    body = redact(body)',
+      '    token = os.environ["TOKEN"]', '    print(token)', '    if user.is_admin or True:', '    return render(body)', '    verify(sig)', '    ok = check(a, b)'],
+    marks: [
+      { line: 2, type: 'query', note: 'which logger?', phone: 'which?' }, { line: 4, type: 'tr', note: 'redact first', phone: 'swap' },
+      { line: 6, type: 'wf', at: 'environ', note: 'use the vault', phone: 'vault' }, { line: 7, type: 'dele', at: 'print(token)', note: 'never print secrets', phone: 'remove' },
+      { line: 8, type: 'sub', at: 'or True', to: 'and audited', note: 'no bypass', phone: 'and audited' }, { line: 9, type: 'ins', at: 'render', to: 'escape', note: 'escape output', phone: 'escape' },
+      { line: 10, type: 'stet', at: 'verify', note: 'checked upstream', phone: 'keep' }, { line: 11, type: 'space', at: 'b', note: 'keep apart', phone: 'space' },
+    ],
+    errata: { line: 8, throughout: 'for MD5 read SHA-256' }, notes: ['trust no input', 'log less, not more'], label: 'CRYPTO GALLEY · VOL. 09 · KEY',
+    data: { left: 'exit 0', right: '{handle} · git:(main) · ok' }, phone: { data: { right: '{handle} · ok' } },
+  };
+  assert.equal(tally({ lines: Array(9).fill('x'), marks: [{ type: 'query' }, { type: 'query' }, { type: 'stet' }, { type: 'stet' }, { type: 'sub' }] }), '9 lines · 1 change · 2 queries · 2 stet');
+  // crypto's renders come from the series loops above, with galleyRender; the fixture is no volume, so it has a matrix of its own
+  for (const pal of palettes) for (const role of GROUNDS) for (const [fmt, { w, h }] of Object.entries(FORMATS)) {
+    const p = FIXTURE, where = `galley-proof/fixture/${pal.slug}/${role}/${fmt}`, svg = S.render({ preset: p, colors: ground(pal, role), format: fmt, handle: '', fonts });
+    assert.deepEqual(leaked(svg), [], `${where}: bad value in an attribute`);
+    assert.deepEqual(unexpected(svg, p, fmt), [], `${where}: text the preset does not hold`);
+    for (const s of strings(p, fmt)) assert.ok(svg.includes(`>${esc(s)}</text>`), `${where}: missing ${s}`);
+    balanced(svg);
+    onCanvas(svg, w, h, where);
+    galleyRender(S, svg, pal, role, fmt, where);
+  }
+  const g0 = GP.crypto, gc = ground(palettes[0], 'dark'), gargs = { preset: g0, colors: gc, handle: '', fonts };
+  assert.throws(() => S.render({ ...gargs, colors: { ...gc, bg: 'red"/><script>' }, format: 'desktop' }), /bad color/);
+  assert.throws(() => S.render({ ...gargs, format: 'desktop', fonts: { nunito: 'x");}<' } }), /data: URL/);
+  assert.throws(() => S.render({ ...gargs, format: 'square' }), /unknown format/);
+  const gevil = S.render({ ...gargs, format: 'desktop', handle: '<b>&"x' });
+  assert.ok(gevil.includes(`>&lt;b&gt;&amp;&quot;x · ${MOTTO}</text>`) && !gevil.includes('<b>'), 'galley-proof: handle escaped');
+  balanced(gevil);
+  assert.ok(gevil.includes('>0xF3tt</text>') && !gevil.includes('>&lt;b&gt;&amp;&quot;x</text>'), 'galley-proof: the slug signature is the author, never the handle');
+  assert.ok(S.render({ ...gargs, format: 'phone', handle: 'r2_labs' }).includes('>r2_labs · blue builds</text>'), 'galley-proof: the prompt is the viewer\'s');
+  assert.ok(!S.render({ ...gargs, format: 'phone', fonts: null }).includes('@font-face'), 'galley-proof: no fonts yet still renders');
+  assert.equal(tally(g0), '11 lines · 5 changes · 1 query · 1 stet');
+  assert.deepEqual(slip(g0, '09'), ['sshd_config, l. 2:', 'for ssh-rsa read ssh-ed25519', 'throughout:', 'for Kyber read ML-KEM']);
+  assert.equal(slip({ ...g0, errata: { ...g0.errata, line: 5 } }, '09')[1], 'for hmac-sha1 read hmac-sha2-256', 'galley-proof: the slip repeats the sub at errata.line');
+  assert.equal(KEY_HEAD, 'PROOF MARKS · CMOS 18');
+  assert.deepEqual(KEY, { dele: ['delete', 'remove what must not ship'], sub: ['replace', 'set the right value'], ins: ['insert', 'add the missing control'], tr: ['transpose', 'wrong order · CWE-696'],
+    wf: ['wrong font', 'wrong type · CWE-843'], stet: ['let it stand', 'risk accepted, on record'], query: ['query', 'open question to the author'], space: ['insert space', 'keep apart · CWE-653'] }, 'galley-proof: the key, word for word');
+  assert.ok(Object.keys(GALLEY).join() === 'desktop,wide,phone', 'galley-proof: geometry per format');
+  const gused = S.usedStrings(g0, 'notes.0');
+  assert.ok(g0.lines.every((_, i) => gused.get(String(i + 1)) === 'the line numbers') && gused.get(AUTHOR) === 'the head slug', 'galley-proof: usedStrings holds the line numbers and the initials');
+  assert.equal(S.phoneCap(g0, 'data.left'), 26, 'galley-proof: data.left keeps to the phone\'s room beside a 20-character handle');
+  assert.ok(!SERIES['cutting-mat'].phoneCap && !SERIES.specimen.phoneCap, 'galley-proof: only Galley caps data.left below LIMITS.phone');
+
+  // the checker bites: a broken copy of crypto (or the fixture) for each rule, asserted on the message that names the problem. A sheet is
+  // broken by editing the preset, or the rendered SVG (a text's place, a mark's path) where the renderer would refuse.
+  const says = (hit, pattern, what) => assert.ok(hit.some(b => pattern.test(b)), `overlap checker missed ${what}; got ${JSON.stringify(hit)}`);
+  const cut = (p, fmt, edit, pattern, what) => {
+    const { w, h } = FORMATS[fmt], svg = edit(S.render({ preset: p, colors: PROBE, format: fmt, handle: '', fonts: null }));
+    says(S.collisions(S.scene(svg, S.slotNames(p, fmt)), w, h, fmt === 'phone'), pattern, what);
+  };
+  const edit = (re, to) => svg => { assert.match(svg, re); return svg.replace(re, to); };
+  const place = (cls, x, y) => edit(new RegExp(`<text x="[\\d.]+" y="[\\d.]+" class="${cls}"`), `<text x="${x}" y="${y}" class="${cls}"`);   // a class's first text
+  const move = (d, dx, dy) => d.replace(/([MLHVC])([^MLHVC]*)/g, (m, c, a) => {   // a path moved by (dx, dy)
+    const v = a.trim().split(/[ ,]+/).map(Number);
+    return c === 'H' ? `H${v[0] + dx}` : c === 'V' ? `V${v[0] + dy}` : c + v.map((x, i) => (i % 2 ? x + dy : x + dx)).join(',');
+  });
+  const moveY = (d, dy) => move(d, 0, dy);
+  const row = (n, f) => svg => { const parts = svg.split(/(?=<text [^>]*class="gn")/); parts[n] = f(parts[n]); return parts.join(''); };   // line n's elements: from its gutter to the next
+  const markDown = (n, dy) => row(n, r => r.replace(/<path d="([^"]*)"/g, (m, d) => (+d.match(/^M([\d.]+)/)[1] < 1800 ? `<path d="${moveY(d, dy)}"` : m)));   // its in-text paths, one line lower
+  const marginMove = (n, dx, dy) => row(n, r => r.replace(/<path d="([^"]*)"/g, (m, d) => (+d.match(/^M([\d.]+)/)[1] >= 1800 ? `<path d="${move(d, dx, dy)}"` : m)));   // its margin symbol or ring, moved
+  const marginDown = (n, dy) => marginMove(n, 0, dy);
+  const crypto = GP.crypto, g = GALLEY.desktop;
+  cut(crypto, 'desktop', markDown(4, g.code.pitch), /^the mark on line 4 leaves its row band/, 'a mark one line below its own');
+  cut(crypto, 'desktop', edit(/translate\(1150,1650\)/g, 'translate(600,1420)'), /^code line 11 ".*" overlaps the slip/, 'the slip over line 11');
+  says(overlaps({ ...crypto, marks: crypto.marks.map((m, i) => (i === 2 ? { ...m, note: 'W'.repeat(40) } : m)) }, 'desktop'), /^margin 4 gloss ".*" runs into the key column/, 'a margin note running into the key column');
+  cut(crypto, 'desktop', place('d', 1400, g.data.y), /^status line left ".*" reaches the Dock/, 'a status line in the Dock');
+  cut(crypto, 'phone', place('d', GALLEY.phone.left, 500), /^status line left ".*" reaches the lock-screen clock/, 'a text under the phone clock');
+  cut(crypto, 'desktop', place('ty', g.code.x, g.code.base), /^code line 1 ".*" overlaps tally/, 'two overlapping texts');
+
+  // one bite per rule left, each on the message that names it (mutation-checked: disabling the rule lets its bite through)
+  const text = (n, cls, x, y) => row(n, r => r.replace(new RegExp(`<text x="[\\d.]+" y="[\\d.]+" class="${cls}"`), `<text x="${x}" y="${y}" class="${cls}"`));   // line n's first text of a class
+  const noteMove = (dx, dy) => edit(/<path d="([^"]*)"([^>]*\/>)<text x="([\d.]+)" y="([\d.]+)"( class="nt")/, (m, d, r, x, y, c) => `<path d="${move(d, dx, dy)}"${r}<text x="${+x + dx}" y="${+y + dy}"${c}`);   // the first note and its ring
+  const slipAt = (x, y) => edit(/translate\(1150,1650\)/g, `translate(${x},${y})`);
+  // 2: a text leaves its home
+  cut(crypto, 'desktop', place('sl', 1700, g.slug.base), /^slug ".*" does not fit inside the strip/, 'a slug leaving the strip');
+  cut(crypto, 'desktop', place('hl', 1500, g.hl.bases[0]), /^phrase\[0\] ".*" does not fit inside the strip/, 'a headline leaving the strip');
+  cut(crypto, 'desktop', place('cd', 1760, g.code.base), /^code line 1 ".*" does not fit inside the strip/, 'a code line leaving the strip');
+  cut(crypto, 'desktop', place('ty', 1500, g.foot.base), /^tally ".*" does not fit inside the strip/, 'a tally leaving the strip');
+  cut(crypto, 'desktop', place('eb', 700, 92), /^slip line 1 ".*" does not fit inside the slip/, 'a slip line outside the slip');
+  cut(crypto, 'desktop', place('eh', 700, 46), /^slip head ".*" does not fit inside the slip/, 'the slip head outside the slip');
+  cut(crypto, 'desktop', place('k', 3600, 1688.8), /^whoami line ".*" does not fit inside its box/, 'a whoami line outside its box');
+  // 3: an in-text mark stays in its band and off other lines
+  cut(crypto, 'desktop', edit(/<path d="M913.07,694.67 H1125.33"/, '<path d="M290,694.67 H400"'), /^the mark on line 2 leaves its row band/, 'a mark left of the strip');
+  cut(crypto, 'desktop', markDown(5, -g.code.pitch), /^the mark on line 5 overlaps code line 4/, 'a mark over another line\'s text');
+  cut(crypto, 'desktop', edit(/<path d="M538.67,958.67 H808.53"/, '<path d="M240,870.67 H300"'), /^the mark on line 5 overlaps gutter 4/, 'a mark over a gutter number');
+  cut(crypto, 'desktop', edit(/<path d="M538.67,958.67 H808.53"/, '<path d="M938,870.67 H1208"'), /^the mark on line 4 overlaps the mark on line 5/, 'two marks touching');
+  // 4: a margin item beside its line, right of the strip, clear of the others and the key
+  cut(crypto, 'desktop', text(2, 'mt', 1840, 730), /^margin 2 matter ".*" is not level with code line 2/, 'a margin text off its baseline');
+  cut(crypto, 'desktop', text(2, 'mt', 1700, 708), /^margin 2 matter ".*" starts left of the margin/, 'a margin text left of the margin');
+  cut(crypto, 'desktop', marginMove(4, -60, 0), /^margin 4 mark starts left of the margin/, 'a dele loop left of the margin');
+  cut(crypto, 'desktop', marginMove(4, 1000, 0), /^margin 4 mark runs into the key column/, 'a dele loop in the key column');
+  cut(crypto, 'desktop', text(4, 'gl', 1850, 884), /^margin 4 gloss ".*" overlaps margin 4 mark/, 'a gloss over a margin symbol');
+  cut(crypto, 'desktop', marginMove(6, 0, 4 * g.code.pitch), /^margin 6 ring overlaps margin 10 ring/, 'two margin rings');
+  // 5: the slip hides nothing and stays tipped on the strip
+  cut(crypto, 'desktop', slipAt(0, 1420), /^gutter 11 "11" overlaps the slip/, 'the slip over a gutter number');
+  cut(crypto, 'desktop', slipAt(1800, 800), /^margin 4 mark overlaps the slip/, 'the slip over a margin symbol');
+  cut(crypto, 'desktop', slipAt(1800, 1000), /^margin 7 matter ".*" overlaps the slip/, 'the slip over a margin text');
+  cut(crypto, 'desktop', slipAt(1800, 250), /^notes\[0\] ".*" overlaps the slip/, 'the slip over a note');
+  cut(crypto, 'desktop', slipAt(1800, 420), /^notes\[1\] ".*" overlaps the slip/, 'the slip over a note ring');
+  cut(crypto, 'desktop', slipAt(300, 1800), /^tally ".*" overlaps the slip/, 'the slip over the tally');
+  cut(crypto, 'desktop', slipAt(850, 600), /^the mark on line 2 overlaps the slip/, 'the slip over an in-text mark');
+  cut(crypto, 'desktop', slipAt(2300, 1650), /^the slip does not overlap the strip/, 'a slip off the strip');
+  // 6: the margin band is the marks' and notes' alone
+  cut(crypto, 'desktop', edit(/<text x="2860" y="500" class="kh"/, '<text x="2860" y="500" text-anchor="end" class="kh"'), /^key head ".*" enters the margin/, 'the key head turned into the margin');
+  cut(crypto, 'desktop', place('kn', 2000, 620), /^key 1 name ".*" enters the margin/, 'a key name in the margin');
+  cut(crypto, 'desktop', place('kg', 2000, 670), /^key 1 gloss ".*" enters the margin/, 'a key gloss in the margin');
+  cut(crypto, 'desktop', edit(/<path d="M2860,606.67 H2900"/, '<path d="M1960,606.67 H2000"'), /^key 1 mark enters the margin/, 'a key glyph in the margin');
+  cut(crypto, 'desktop', place('k', 2000, 1000), /^whoami line ".*" enters the margin/, 'a whoami line in the margin');
+  cut(crypto, 'desktop', edit(/translate\(3748.5,/, 'translate(2000,'), /^side label ".*" enters the margin/, 'the side label in the margin');
+  cut(crypto, 'desktop', noteMove(0, 300), /^notes\[0\] ".*" drops below the margin head/, 'a note below the first code band');
+  cut(crypto, 'desktop', noteMove(-100, 0), /^notes\[0\] ".*" leaves the margin/, 'a note left of the margin');
+  cut(crypto, 'desktop', text(7, 'mt', 1845, 400), /^notes\[1\] ".*" overlaps margin 7 matter/, 'a note ring over a margin text');
+  cut(crypto, 'desktop', marginMove(4, 0, -470), /^notes\[1\] ".*" overlaps margin 4 mark/, 'a note ring over a margin symbol');
+  // 7: the canvas and the keep-clear zones
+  cut(crypto, 'desktop', place('d', 3700, g.data.y), /^status line left ".*" leaves the canvas/, 'a text off the canvas');
+  cut(crypto, 'desktop', place('sl', g.code.x, 60), /^slug ".*" reaches the menu bar/, 'a text in the menu bar');
+  cut(crypto, 'desktop', edit(/<rect x="2860" y="1640"/, '<rect x="2860" y="50"'), /^the whoami box reaches the menu bar/, 'a shape in the menu bar');
+  cut(crypto, 'desktop', edit(/(<rect x="300" y="150" width="1480" height=")1750"/, '$12000"'), /^the strip reaches the Dock/, 'the strip in the Dock');
+  cut(crypto, 'desktop', edit(/<path d="M913.07,694.67 H1125.33"/, '<path d="M-20,694.67 H400"'), /^the mark on line 2 leaves the canvas/, 'a mark off the canvas');
+  cut(crypto, 'desktop', markDown(2, -600), /^the mark on line 2 reaches the menu bar/, 'a mark in the menu bar');
+  cut(crypto, 'desktop', marginMove(4, 2100, 0), /^margin 4 mark leaves the canvas/, 'a margin symbol off the canvas');
+  cut(crypto, 'desktop', marginMove(4, 0, -780), /^margin 4 mark reaches the menu bar/, 'a margin symbol in the menu bar');
+  cut(crypto, 'desktop', edit(/<path d="M2860,606.67 H2900"/, '<path d="M3830,606.67 H3870"'), /^key 1 mark leaves the canvas/, 'a key glyph off the canvas');
+  cut(crypto, 'desktop', edit(/<path d="M2860,606.67 H2900"/, '<path d="M2860,60 H2900"'), /^key 1 mark reaches the menu bar/, 'a key glyph in the menu bar');
+  cut(crypto, 'desktop', slipAt(3500, 1650), /^the slip leaves the canvas/, 'the slip off the canvas');
+  cut(crypto, 'phone', place('d', GALLEY.phone.left, 2700), /^status line left ".*" reaches the phone's bottom buttons/, 'a text in the phone\'s bottom 260px');
+  cut(crypto, 'phone', place('mt', 1195, 1350), /^margin \d+ matter ".*" leaves the canvas/, 'a phone margin text off the canvas');
+  // the schema rules: a broken copy of crypto must be turned down by the content rules above
+  const entry = INDEX['galley-proof'].find(e => e.id === 'crypto');
+  assert.throws(() => checkGalley({ ...crypto, errata: { ...crypto.errata, line: 3 } }, entry, 'bite'), /errata\.line must point at a sub mark/);
+  assert.throws(() => checkGalley({ ...crypto, lines: ['a < b', ...crypto.lines.slice(1)] }, entry, 'bite'), /holds <, > or &/);
+  assert.throws(() => checkGalley({ ...crypto, lines: ['x'.repeat(41), ...crypto.lines.slice(1)] }, entry, 'bite'), /max 40/);
+  const cmPanel = PRESETS['cutting-mat'].crypto.panel;
+  assert.throws(() => checkGalley({ ...crypto, lines: [...crypto.lines.slice(0, -1), cmPanel.lines[0]] }, entry, 'bite'), /shares a file name or a line/);
+  assert.throws(() => checkGalley({ ...crypto, file: cmPanel.title }, entry, 'bite'), /shares a file name or a line/);
+  assert.throws(() => checkGalley({ ...crypto, notes: ['ask api.google.com', ...crypto.notes.slice(1)] }, entry, 'bite'), /names a real-looking domain/);
+  assert.throws(() => checkGalley({ ...crypto, notes: ['ssh to 10.0.0.1', ...crypto.notes.slice(1)] }, entry, 'bite'), /holds a real-looking IPv4 address/);
+  const dfir = GP.dfir, dfirEntry = INDEX['galley-proof'].find(e => e.id === 'dfir'), extra = type => ({ line: 6, type, at: 'tool', ...(type === 'sub' && { to: 'x' }), note: 'n', phone: 'p' });
+  assert.throws(() => checkGalley({ ...dfir, marks: [...dfir.marks, extra('sub')] }, dfirEntry, 'bite'), /dfir takes only stet and query, and at most one sub/);
+  assert.throws(() => checkGalley({ ...dfir, marks: [...dfir.marks, extra('dele')] }, dfirEntry, 'bite'), /dfir takes only stet and query, and at most one sub/);
+  // one bite per mark type, on the fixture: the mark one line lower leaves its row band (a query draws only in the margin: its ring's text leaves its line)
+  const fixtureLine = type => FIXTURE.marks.find(m => m.type === type).line;
+  for (const type of TYPES.filter(t => t !== 'query')) cut(FIXTURE, 'desktop', markDown(fixtureLine(type), g.code.pitch), new RegExp(`^the mark on line ${fixtureLine(type)} leaves its row band`), `a ${type} mark one line below its own`);
+  cut(FIXTURE, 'desktop', row(fixtureLine('query'), r => r.replace(/(<text x="[\d.]+" y=")([\d.]+)(" class="ml")/, (m, a, y, c) => `${a}${+y + g.code.pitch}${c}`)), /^margin 2 label ".*" is not level with code line 2/, 'a query one line below its own');
+  cut(crypto, 'desktop', marginDown(4, 60), /^margin 4 mark is not level with code line 4/, 'a dele loop below its line');
+  cut(crypto, 'desktop', marginDown(4, 20), /^margin 4 mark is not level with code line 4/, 'a dele loop 20px low');
+  cut(FIXTURE, 'desktop', marginDown(fixtureLine('space'), 20), /^margin 11 mark is not level with code line 11/, 'a # 20px low');
+  cut(crypto, 'desktop', marginDown(10, 25), /^margin 10 ring is not level with code line 10/, 'a stet ring off its label');
+  cut(crypto, 'desktop', edit(/<text x="3010" /g, '<text x="2950" '), /^key \d ring overlaps key \d name "let it stand"/, 'a key ring over its name');
+  cut(crypto, 'desktop', markDown(2, -45), /^the mark on line 2 leaves its row band/, 'a mark above its row band');
+  cut(crypto, 'desktop', edit(/<path d="M913.07,694.67 H1125.33"/, '<path d="M1700,694.67 H1779.9"'), /^the mark on line 2 leaves its row band/, 'a strike past the strip edge');
+  cut(crypto, 'desktop', marginDown(4, -20), /^margin 4 mark is not level with code line 4/, 'a dele loop 20px high');
+  cut(crypto, 'desktop', edit(/<path d="M2860,606.67 H2900"/, '<path d="M2860,490 H2900"'), /^key 1 mark overlaps key head/, 'a key glyph over the key head');
+  cut(crypto, 'desktop', edit(/<path d="M2860,606.67 H2900"/, '<path d="M3010,660 H3050"'), /^key 1 mark overlaps key 1 gloss/, 'a key glyph over its gloss');
+  for (const fmt of Object.keys(FORMATS)) assert.deepEqual(overlaps(FIXTURE, fmt), [], `galley-proof fixture on ${fmt}`);   // all eight mark types clear the checker
+}
+
 // ---------- the studio contract (app/main.js): every series answers the same questions about a preset
 
-const studio = { presets: 0, marks: 0, quads: 0 };
+// what a phone leaves undrawn: slots with no box, fixed marks with no box (Specimen's phone: no test line, notes, second pair, matrix or side label; Galley's: no notes, key or side label)
+const UNDRAWN_PHONE = { specimen: { slots: /^(test|notes|confusables\.1)/, fixed: /^(matrix\.axes|label)/ }, 'galley-proof': { slots: /^notes/, fixed: /^(key|label)/ } };
+const studio = {};   // per series: presets, marks, slot boxes
 for (const [sid, S] of Object.entries(SERIES)) {
+  const st = studio[sid] = { presets: 0, marks: 0, quads: 0 };
   assert.ok(S.READ.nav && S.READ.title && S.READ.intro && S.READ.who && S.READ.mark && S.READ.legendHead.length === 3, `${sid}: the "Read the …" copy`);
   assert.ok(S.FIXED_LIST.length >= 3 && S.FIXED_LIST.every(([name, does]) => name?.trim() && does?.trim()), `${sid}: the fixed list has at least three entries, each with a name and a line`);
   assert.equal(Object.keys(S.FIXED).every(k => S.fixedOf(k)), true, `${sid}: fixedOf knows every FIXED key`);
+  assert.ok(Array.isArray(S.typed) && S.typed.includes(sid) && S.typed.every(s => Object.hasOwn(SERIES, s)), `${sid}: typed lists its own series and only registered ones`);
   for (const e of INDEX[sid]) {
     const p = PRESETS[sid][e.id], at = `${sid}/${e.id}`, colors = ground(palettes[0], p.ground);
     assert.ok(S.valid(p) && !S.valid({}) && !S.valid(null), `${at}: valid()`);
@@ -465,18 +720,19 @@ for (const [sid, S] of Object.entries(SERIES)) {
       for (const key of keys) {
         const px = S.GEOM.px(key, fmt), qs = S.slotQuads(base.s, p, key);
         assert.ok(px > 0, `${at} ${fmt} ${key}: GEOM.px is ${px}`);
-        if (!qs.length) { assert.ok(sid === 'specimen' && fmt === 'phone' && /^(test|notes|confusables\.1)/.test(key), `${at} ${fmt} ${key}: no box`); continue; }   // Specimen's phone draws no test line, notes or second pair
+        if (!qs.length) { assert.ok(fmt === 'phone' && UNDRAWN_PHONE[sid]?.slots.test(key), `${at} ${fmt} ${key}: no box`); continue; }   // a slot the phone leaves undrawn
         for (const q of qs) for (const [x, y] of q) assert.ok(x >= -1 && x <= w + 1 && y >= -1 && y <= h + 1, `${at} ${fmt} ${key}: box leaves the canvas`);
-        studio.quads++;
+        st.quads++;
       }
-      for (const key of Object.keys(S.FIXED)) {   // the fixed marks a click can hit have a box too (bar Specimen's phone, which draws no matrix or side label)
-        if (!(sid === 'specimen' && fmt === 'phone' && /^(matrix\.axes|label)/.test(key))) assert.ok(S.slotQuads(base.s, p, key).length, `${at} ${fmt} fixed ${key}: no box`);
+      for (const key of Object.keys(S.FIXED)) {   // the fixed marks a click can hit have a box too (bar what a phone leaves undrawn)
+        if (!(fmt === 'phone' && UNDRAWN_PHONE[sid]?.fixed.test(key))) assert.ok(S.slotQuads(base.s, p, key).length, `${at} ${fmt} fixed ${key}: no box`);
       }
     }
-    studio.presets++; studio.marks += list.length;
+    st.presets++; st.marks += list.length;
   }
 }
 
-const nf = Object.keys(FORMATS).length, per = sid =>
+const sum = k => Object.values(studio).reduce((n, x) => n + x[k], 0), nf = Object.keys(FORMATS).length, per = sid =>
   `${sid} ${counts[sid]} renders (${INDEX[sid].length} presets × ${palettes.length} palettes × ${GROUNDS.length} grounds × ${nf} formats) · overlap checker: ${sheets[sid]} sheets clear`;
-console.log(`ok · ${Object.keys(SERIES).map(per).join(' · ')} · studio contract: ${studio.presets} presets, ${studio.marks} marks, ${studio.quads} slot boxes`);
+const contract = ([sid, x]) => `${sid} ${x.presets} presets, ${x.marks} marks, ${x.quads} slot boxes`;
+console.log(`ok · ${Object.keys(SERIES).map(per).join(' · ')} · studio contract: ${Object.entries(studio).map(contract).join(' · ')} · total ${sum('presets')} presets, ${sum('marks')} marks, ${sum('quads')} slot boxes`);

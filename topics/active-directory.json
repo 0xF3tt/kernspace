@@ -1208,7 +1208,12 @@
       "series": [
         "specimen",
         "galley-proof"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "note"
+        ]
+      }
     },
     {
       "text": "MS-DRSR / GetNCChanges",
@@ -1284,7 +1289,8 @@
       "fame": "niche",
       "reference": "MS Learn forest recovery",
       "series": [
-        "cutting-mat"
+        "cutting-mat",
+        "galley-proof"
       ],
       "mat": {
         "slots": [
@@ -1294,6 +1300,11 @@
       },
       "spec": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {
@@ -1341,7 +1352,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for ATA read Defender for Identity"
+      }
     },
     {
       "text": "RC4 → AES-SHA1 (2026)",
@@ -1353,7 +1370,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for RC4 read AES-SHA1"
+      }
     },
     {
       "text": "NTLMv1 removed (24H2/WS2025)",
@@ -1387,7 +1410,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for legacy LAPS read Windows LAPS"
+      }
     },
     {
       "text": "LAPS",
@@ -1415,7 +1444,12 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "note"
+        ]
+      }
     },
     {
       "text": "SID filtering",
@@ -1729,7 +1763,8 @@
       "meaning": "A failing path check: two attack paths reach tier 0.",
       "fame": "niche",
       "series": [
-        "specimen"
+        "specimen",
+        "galley-proof"
       ],
       "spec": {
         "slots": [
@@ -1738,6 +1773,11 @@
       },
       "mat": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {
@@ -1747,7 +1787,8 @@
       "meaning": "A passing krbtgt rotation check: reset twice.",
       "fame": "niche",
       "series": [
-        "specimen"
+        "specimen",
+        "galley-proof"
       ],
       "spec": {
         "slots": [
@@ -1756,6 +1797,11 @@
       },
       "mat": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {

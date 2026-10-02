@@ -46,7 +46,8 @@
       "series": [
         "cutting-mat",
         "specimen",
-        "catalog-card"
+        "catalog-card",
+        "galley-proof"
       ],
       "mat": {
         "slots": [
@@ -58,6 +59,12 @@
         "slots": [
           "family"
         ]
+      },
+      "galley": {
+        "slots": [
+          "note"
+        ],
+        "as": "excessive agency"
       }
     },
     {
@@ -311,6 +318,12 @@
           "phrase"
         ],
         "as": "Grant an agent only the autonomy and tools the task needs."
+      },
+      "galley": {
+        "slots": [
+          "note"
+        ],
+        "as": "grant least agency"
       }
     },
     {
@@ -1400,7 +1413,8 @@
       "series": [
         "cutting-mat",
         "catalog-card",
-        "specimen"
+        "specimen",
+        "galley-proof"
       ],
       "mat": {
         "slots": [
@@ -1414,6 +1428,12 @@
           "phrase"
         ],
         "as": "Private data, untrusted input, exit path: never all three."
+      },
+      "galley": {
+        "slots": [
+          "note"
+        ],
+        "as": "lethal trifecta"
       }
     },
     {
@@ -1578,7 +1598,8 @@
       "fame": "niche",
       "reference": "",
       "series": [
-        "cutting-mat"
+        "cutting-mat",
+        "galley-proof"
       ],
       "mat": {
         "slots": [
@@ -1588,6 +1609,12 @@
       },
       "spec": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ],
+        "as": "UNTRUSTED · QUARANTINED"
       }
     },
     {
@@ -1598,7 +1625,8 @@
       "fame": "niche",
       "reference": "",
       "series": [
-        "cutting-mat"
+        "cutting-mat",
+        "galley-proof"
       ],
       "mat": {
         "slots": [
@@ -1608,6 +1636,12 @@
       },
       "spec": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ],
+        "as": "TOOL CALL HELD · HITL"
       }
     },
     {
@@ -1618,7 +1652,8 @@
       "fame": "niche",
       "reference": "",
       "series": [
-        "cutting-mat"
+        "cutting-mat",
+        "galley-proof"
       ],
       "mat": {
         "slots": [
@@ -1627,6 +1662,12 @@
       },
       "spec": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ],
+        "as": "SIGNATURE VERIFIED"
       }
     },
     {
@@ -1930,7 +1971,8 @@
       "fame": "niche",
       "reference": "",
       "series": [
-        "specimen"
+        "specimen",
+        "galley-proof"
       ],
       "spec": {
         "slots": [
@@ -1939,6 +1981,11 @@
       },
       "mat": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {
@@ -1949,7 +1996,8 @@
       "fame": "niche",
       "reference": "",
       "series": [
-        "specimen"
+        "specimen",
+        "galley-proof"
       ],
       "spec": {
         "slots": [
@@ -1958,6 +2006,12 @@
       },
       "mat": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ],
+        "as": "SIGNED · HASH MATCH"
       }
     },
     {
@@ -2214,6 +2268,102 @@
           "rating"
         ],
         "as": "many-shot jailbreak"
+      }
+    },
+    {
+      "text": "LLM06:2025 → LLM03:2026",
+      "type": "id",
+      "code": "LLM03:2026",
+      "meaning": "Excessive Agency climbed from #6 in the 2025 OWASP Top 10 for LLM Applications to #3 in 2026.",
+      "fame": "niche",
+      "reference": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": []
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for LLM06:2025 read LLM03:2026"
+      }
+    },
+    {
+      "text": "LLM07:2025 → LLM08:2026",
+      "type": "id",
+      "code": "LLM08:2026",
+      "meaning": "2025's #7 System Prompt Leakage became #8 Hidden Context Exposure in the 2026 OWASP LLM Top 10.",
+      "fame": "niche",
+      "reference": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": []
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for LLM07:2025 read LLM08:2026"
+      }
+    },
+    {
+      "text": "LLM05:2025 → LLM10:2026",
+      "type": "id",
+      "code": "LLM10:2026",
+      "meaning": "Improper Output Handling fell furthest in the 2026 OWASP LLM Top 10, from #5 (2025) to #10.",
+      "fame": "niche",
+      "reference": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": []
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for LLM05:2025 read LLM10:2026"
+      }
+    },
+    {
+      "text": "LLM10:2025 → LLM06:2026",
+      "type": "id",
+      "code": "LLM06:2026",
+      "meaning": "Unbounded Consumption rose four places in the 2026 OWASP LLM Top 10, from #10 (2025) to #6.",
+      "fame": "niche",
+      "reference": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
+      "series": [
+        "galley-proof",
+        "catalog-card"
+      ],
+      "mat": {
+        "slots": []
+      },
+      "spec": {
+        "slots": []
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for LLM10:2025 read LLM06:2026"
       }
     }
   ]

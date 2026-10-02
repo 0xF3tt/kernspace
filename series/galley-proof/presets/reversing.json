@@ -1,0 +1,20 @@
+{
+  "series": "galley-proof", "topic": "reversing", "title": "Vol. 11 · Unpack", "ground": "mid",
+  "phrase": ["WYSINWYX"],
+  "file": "upx.yar",
+  "lines": ["rule upx_packed_pe {", "  meta:", "    description = \"UPX-packed PE file\"", "  strings:",
+    "    $dos = \"cannot be run in DOS mode\"", "    $s0 = \"UPX0\"", "    $s1 = \"UPX1\" wide", "    $magic = \"UPX!\"",
+    "  condition:", "    uint16(0) == 0x5A4D and", "    any of them", "}"],
+  "marks": [
+    {"line": 5, "type": "dele", "at": "$dos = \"cannot be run in DOS mode\"", "note": "default DOS stub", "phone": "remove stub"},
+    {"line": 6, "type": "query", "note": "sections renamed?", "phone": "renamed?"},
+    {"line": 7, "type": "wf", "at": "wide", "note": "names are UTF-8", "phone": "not wide"},
+    {"line": 10, "type": "stet", "at": "uint16(0) == 0x5A4D", "note": "PE-only by design", "phone": "keep"},
+    {"line": 11, "type": "sub", "at": "any of them", "to": "all of them", "note": "one hit is weak", "phone": "all of them"}
+  ],
+  "errata": {"line": 11, "throughout": "for YARA read YARA-X"},
+  "notes": ["a thin IAT is a clue", "static first, then dynamic"],
+  "label": "REVERSING GALLEY · VOL. 11 · UNPACK",
+  "data": {"left": "AU: idle", "right": "{handle} · git:(main) · purple learns"},
+  "phone": {"data": {"right": "{handle} · purple learns"}}
+}

@@ -1,0 +1,22 @@
+{
+  "series": "galley-proof", "topic": "active-directory", "title": "Vol. 06 · Forest", "ground": "mid",
+  "phrase": ["Attackers think", "in graphs."],
+  "file": "GptTmpl.inf",
+  "lines": ["[Unicode]", "Unicode=yes", "[System Access]", "MinimumPasswordAge = 1",
+    "MaximumPasswordAge = 42", "MinimumPasswordLength = 7", "PasswordComplexity = 1",
+    "ClearTextPassword = 1", "[Privilege Rights]", "SeDebugPrivilege = *S-1-5-32-544",
+    "SeDenyNetworkLogonRight = *S-1-5-32-546"],
+  "marks": [
+    {"line": 5, "type": "query", "note": "expire at all?", "phone": "expire at all?"},
+    {"line": 6, "type": "sub", "at": "7", "to": "14", "note": "MS baseline", "phone": "14"},
+    {"line": 7, "type": "stet", "at": "1", "note": "bars account name", "phone": "keep"},
+    {"line": 8, "type": "sub", "at": "1", "to": "0", "note": "same as plaintext", "phone": "0"},
+    {"line": 10, "type": "query", "note": "debug in prod?", "phone": "debug in prod?"},
+    {"line": 11, "type": "ins", "at": "*S-1-5-32-546", "to": "*S-1-5-114,", "note": "block local admins", "phone": "add S-1-5-114"}
+  ],
+  "errata": {"line": 8, "throughout": "for legacy LAPS read Windows LAPS"},
+  "notes": ["GPP cpassword removed", "tier 0 logs on to tier 0"],
+  "label": "AD GALLEY · VOL. 06 · FOREST",
+  "data": {"left": "[FAIL] 2 paths → tier 0", "right": "{handle} · git:(main) · blue builds"},
+  "phone": {"data": {"right": "{handle} · blue builds"}}
+}

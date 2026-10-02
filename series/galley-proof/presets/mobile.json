@@ -1,0 +1,21 @@
+{
+  "series": "galley-proof", "topic": "mobile", "title": "Vol. 04 · Device", "ground": "light",
+  "phrase": ["Set a", "Telco PIN."],
+  "file": "Vault.kt",
+  "lines": ["val spec = KeyGenParameterSpec.Builder(", "  id, PURPOSE_ENCRYPT or PURPOSE_DECRYPT", ").apply {",
+    "  setBlockModes(BLOCK_MODE_ECB)", "  setEncryptionPaddings(", "    ENCRYPTION_PADDING_PKCS7)",
+    "  setRandomizedEncryptionRequired(false)", "  setUserAuthenticationRequired(true)",
+    "  setInvalidatedByBiometricEnrollment(", "    false)", "  setIsStrongBoxBacked(true)", "}.build()"],
+  "marks": [
+    {"line": 4, "type": "sub", "at": "ECB", "to": "GCM", "note": "ECB leaks patterns", "phone": "GCM"},
+    {"line": 6, "type": "sub", "at": "PKCS7", "to": "NONE", "note": "no padding in GCM", "phone": "NONE"},
+    {"line": 7, "type": "dele", "at": "setRandomizedEncryptionRequired(false)", "note": "random IVs only", "phone": "drop opt-out"},
+    {"line": 10, "type": "query", "note": "thief adds finger?", "phone": "new finger ok?"},
+    {"line": 11, "type": "stet", "at": "true", "note": "slower, but safer", "phone": "keep"}
+  ],
+  "errata": {"line": 4, "throughout": "for Keymaster read KeyMint"},
+  "notes": ["assume the phone is lost", "keys stay in the chip"],
+  "label": "MOBILE GALLEY · VOL. 04 · DEVICE",
+  "data": {"left": "verifiedbootstate=green", "right": "{handle} · git:(main) · blue builds"},
+  "phone": {"data": {"right": "{handle} · blue builds"}}
+}

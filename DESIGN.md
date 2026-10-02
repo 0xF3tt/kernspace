@@ -19,7 +19,7 @@ Every color is a token on `:root`. Dark is the default; light redefines the same
 | `--control` | `#6A6383` | `#8E88A6` | Input and track edges, 3:1 against the ground |
 | `--ink` | `#EDEAF6` | `#16122A` | Text; the one filled button |
 | `--ink-2`, `--ink-3` | `#ADA7C2`, `#948EAB` | `#4A445F`, `#686280` | Secondary and tertiary text |
-| `--pencil` | `#7FCBDA` | `#1A6B80` | Annotation only: selection, focus, the marks in *Read the mat* / *Read the specimen* |
+| `--pencil` | `#7FCBDA` | `#1A6B80` | Annotation only: selection, focus, the marks in *Read the mat* / *Read the specimen* / *Read the galley* |
 | `--pencil-sheet` | `#8FD6E4` | same | Pencil drawn over a sheet, in both themes |
 | `--rubric` | `#F2939C` | `#B42A2A` | Errors, and why a word doesn't fit |
 | `--tape` | ink at 8% | ink at 6% | Hover wash |
@@ -38,7 +38,7 @@ Scale, in px: 12 · 13 · 15 · 17 (body, line height 1.5) · 21 · 28 · 40 · 
 ## Elements
 
 - **Registration brackets.** The one selection mark, drawn in pencil at the four corners: the current volume, ground, slot and option. A selection is never a filled block. Among peers in a segmented group (series, format) one bracket slides to the chosen option, and a hover previews it faintly on the others; anything else draws its own.
-- **The series switch.** The stage bar names each series as a radio option with a glyph drawn from its own marks (the mat's taint path and boundaries, the specimen's A over its baseline), and one bracket slides to the selected one. At 560px and below the names hide and the glyphs stay at 44px, with the name kept as the accessible label and the tooltip. The Live cards in *Series* use the same brackets for the series in the studio; each card's button switches to it.
+- **The series switch.** The stage bar names each series as a radio option with a glyph drawn from its own marks (the mat's taint path and boundaries, the specimen's A over its baseline, the galley's strip and dele loop), and one bracket slides to the selected one. At 560px and below the names hide and the glyphs stay at 44px, with the name kept as the accessible label and the tooltip. The Live cards in *Series* use the same brackets for the series in the studio; each card's button switches to it.
 - **The preview switch.** One plain switch with no visible label (*On screen* is its accessible name and its tooltip): off shows the sheet alone, on shows it on a menu bar and dock or a lock screen. The track is a ruler and the sheet slides along it; on takes the pencil wash and ring, like a pressed icon button. The word editor turns it off while it is open and restores it after.
 - **The finish switch.** The same switch with its name beside it: *Film grain*, the last row of *Ink and ground*, with a note under it that says what it does and what it costs. It is off at every visit. The grain goes on the stage and in both downloads, never on thumbnails or in the word editor's proof, which is read before the finish goes on.
 - **The stage.** The sheet in its well, with rulers in sheet pixels along the top and left. In the word editor the rulers follow the zoom.
@@ -51,7 +51,7 @@ Scale, in px: 12 · 13 · 15 · 17 (body, line height 1.5) · 21 · 28 · 40 · 
 Content runs to 1440px with a 32px gutter (16px on phones). Breakpoints at 1180, 860 and 560px.
 
 - **Wide:** the stage on the left, the inspector (344px) on the right.
-- **1180px and below:** the inspector narrows to 312px; *Read the mat* (or *Read the specimen*) stacks, and picking a line from its key scrolls the sheet into view.
+- **1180px and below:** the inspector narrows to 312px; *Read the mat* (or the specimen's or the galley's key) stacks, and picking a line from its key scrolls the sheet into view.
 - **860px and below:** one column. Downloads sit in a bar pinned to the bottom. In the word editor the stage, the slot rail and the edit bar stay pinned while the options scroll.
 
 ## Motion
@@ -60,7 +60,7 @@ One orchestrated moment: the zoom to a slot in the word editor (380ms, ease-out 
 
 ## Words
 
-Sentence case and plain verbs. An action keeps its name through the flow: *Download PNG* is followed by *Saved*. An error says what failed and what to do next (*The PNG could not be drawn in this browser. Download the SVG instead*). Marks on a sheet are named for what they show, and the key in *Read the mat* (*Read the specimen* on a Specimen sheet) says what each one means in the threat model. The section's name and intro come from the series.
+Sentence case and plain verbs. An action keeps its name through the flow: *Download PNG* is followed by *Saved*. An error says what failed and what to do next (*The PNG could not be drawn in this browser. Download the SVG instead*). Marks on a sheet are named for what they show, and the key in *Read the mat* (*Read the specimen* on a Specimen sheet, *Read the galley* on a Galley Proof sheet) says what each one means in the threat model or the review. The section's name and intro come from the series.
 
 ## Rules
 

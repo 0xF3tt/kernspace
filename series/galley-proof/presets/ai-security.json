@@ -1,0 +1,21 @@
+{
+  "series": "galley-proof", "topic": "ai-security", "title": "Vol. 13 · Prompt", "ground": "mid",
+  "phrase": ["Agents", "Rule of Two"],
+  "file": "tools.json",
+  "lines": ["{", "  \"name\": \"send_email\",", "  \"annotations\": {", "    \"readOnlyHint\": true,",
+    "    \"openWorldHint\": false,", "    \"destructiveHint\": false", "  },", "  \"inputSchema\": {",
+    "    \"type\": \"object\",", "    \"additionalProperties\": true,", "    \"properties\": {",
+    "      \"to\": {\"type\": \"string\"},"],
+  "marks": [
+    {"line": 2, "type": "query", "note": "human in the loop?", "phone": "approve sends?"},
+    {"line": 4, "type": "sub", "at": "true", "to": "false", "note": "it sends mail", "phone": "false"},
+    {"line": 5, "type": "dele", "at": "\"openWorldHint\": false,", "note": "reaches outsiders", "phone": "remove hint"},
+    {"line": 6, "type": "sub", "at": "false", "to": "true", "note": "can't unsend mail", "phone": "true"},
+    {"line": 10, "type": "sub", "at": "true", "to": "false", "note": "reject extra args", "phone": "false"}
+  ],
+  "errata": {"line": 4, "throughout": "for LLM06:2025 read LLM03:2026"},
+  "notes": ["grant least agency", "lethal trifecta"],
+  "label": "AISEC GALLEY · VOL. 13 · PROMPT",
+  "data": {"left": "TOOL CALL HELD · HITL", "right": "{handle} · git:(main) · purple learns"},
+  "phone": {"data": {"right": "{handle} · purple learns"}}
+}

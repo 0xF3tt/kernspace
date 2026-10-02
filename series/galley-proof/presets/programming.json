@@ -1,0 +1,22 @@
+{
+  "series": "galley-proof", "topic": "programming", "title": "Vol. 02 · Code", "ground": "light",
+  "phrase": ["Readability", "counts."],
+  "file": "reset.py",
+  "lines": ["import logging", "import random", "from hmac import compare_digest",
+    "TOKEN_FIELD = \"token\" # nosec B105", "def new_token():", "    return random.randbytes(16).hex()",
+    "def same_token(a, b):", "    return a == b", "def confirm(form):",
+    "    token = form.pop(TOKEN_FIELD)", "    logging.info(\"reset: %s\", form)", "    password = form.pop(\"password\")"],
+  "marks": [
+    {"line": 2, "type": "sub", "at": "random", "to": "secrets", "note": "not for security", "phone": "secrets"},
+    {"line": 4, "type": "stet", "at": "# nosec B105", "note": "only a field name", "phone": "keep"},
+    {"line": 5, "type": "query", "note": "expires when?", "phone": "expires when?"},
+    {"line": 6, "type": "sub", "at": "random.randbytes(16).hex()", "to": "secrets.token_urlsafe()", "note": "not for tokens", "phone": "token_urlsafe"},
+    {"line": 8, "type": "sub", "at": "a == b", "to": "compare_digest(a, b)", "note": "timing attacks", "phone": "compare_digest"},
+    {"line": 11, "type": "tr", "note": "log holds password", "phone": "pop first"}
+  ],
+  "errata": {"line": 8, "throughout": "for random read secrets"},
+  "notes": ["never trust the client", "validate input, encode out"],
+  "label": "PROGRAMMING GALLEY · VOL. 02 · CODE",
+  "data": {"left": "Works on my machine", "right": "{handle} · git:(main) · purple learns"},
+  "phone": {"data": {"right": "{handle} · purple learns"}}
+}

@@ -583,6 +583,12 @@
         "slots": [
           "note"
         ]
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for T1045 read T1027.002"
       }
     },
     {
@@ -1149,6 +1155,12 @@
         "slots": [
           "note"
         ]
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for PEiD read Detect It Easy"
       }
     },
     {
@@ -1161,7 +1173,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for Cuckoo read CAPEv2"
+      }
     },
     {
       "text": "dnSpy → dnSpyEx",
@@ -1173,7 +1191,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for dnSpy read dnSpyEx"
+      }
     },
     {
       "text": "YARA → YARA-X",
@@ -1192,6 +1216,12 @@
           "control"
         ],
         "as": "YARA-X"
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for YARA read YARA-X"
       }
     },
     {
@@ -1360,6 +1390,9 @@
       },
       "mat": {
         "slots": []
+      },
+      "galley": {
+        "slots": []
       }
     },
     {
@@ -1408,8 +1441,14 @@
       "fame": "niche",
       "reference": "https://docs.hex-rays.com/ida-actions/options",
       "series": [
-        "cutting-mat"
-      ]
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "galley": {
+        "slots": [
+          "status"
+        ]
+      }
     },
     {
       "text": "call analysis failed",
@@ -1419,8 +1458,14 @@
       "fame": "niche",
       "reference": "https://docs.hex-rays.com/core/decompiler/failures",
       "series": [
-        "cutting-mat"
-      ]
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "galley": {
+        "slots": [
+          "status"
+        ]
+      }
     },
     {
       "text": "Trace/breakpoint trap",
@@ -1430,8 +1475,14 @@
       "fame": "niche",
       "reference": "https://man7.org/linux/man-pages/man7/signal.7.html",
       "series": [
-        "cutting-mat"
-      ]
+        "cutting-mat",
+        "galley-proof"
+      ],
+      "galley": {
+        "slots": [
+          "status"
+        ]
+      }
     },
     {
       "text": "Win.Test.EICAR_HDB-1 FOUND",

@@ -720,7 +720,12 @@
       "series": [
         "specimen",
         "galley-proof"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "note"
+        ]
+      }
     },
     {
       "text": "FILE",
@@ -776,7 +781,7 @@
       "code": "AppCompatCache",
       "meaning": "Compatibility cache in the SYSTEM hive listing executables the OS has seen; not proof of execution alone.",
       "fame": "niche",
-      "reference": "",
+      "reference": "https://cloud.google.com/blog/topics/threat-intelligence/caching-out-the-val/",
       "series": [
         "specimen",
         "galley-proof"
@@ -911,7 +916,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for .evt read .evtx"
+      }
     },
     {
       "text": "EnableScriptBlockLogging=1",
@@ -939,10 +950,11 @@
       "code": "",
       "meaning": "Shorthand for the timeline rule: normalize every timestamp to UTC, since mixed local times breed errors.",
       "fame": "niche",
-      "reference": "",
+      "reference": "https://www.rfc-editor.org/rfc/rfc3227.html#section-2",
       "series": [
         "cutting-mat",
-        "specimen"
+        "specimen",
+        "galley-proof"
       ],
       "mat": {
         "slots": [
@@ -950,6 +962,11 @@
         ]
       },
       "spec": {
+        "slots": [
+          "note"
+        ]
+      },
+      "galley": {
         "slots": [
           "note"
         ]
@@ -1231,6 +1248,11 @@
         "slots": [
           "status"
         ]
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {
@@ -1246,6 +1268,11 @@
         "specimen"
       ],
       "mat": {
+        "slots": [
+          "status"
+        ]
+      },
+      "galley": {
         "slots": [
           "status"
         ]
@@ -1273,6 +1300,11 @@
           "status"
         ],
         "as": "EVIDENCE SEALED"
+      },
+      "galley": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {
@@ -1305,7 +1337,8 @@
       "fame": "niche",
       "reference": "https://www.rfc-editor.org/rfc/rfc3227.html#section-3.2",
       "series": [
-        "cutting-mat"
+        "cutting-mat",
+        "galley-proof"
       ]
     },
     {
@@ -1387,7 +1420,8 @@
       "fame": "niche",
       "reference": "https://flatcap.github.io/linux-ntfs/ntfs/files/index.html",
       "series": [
-        "specimen"
+        "specimen",
+        "galley-proof"
       ],
       "mat": {
         "slots": []
@@ -1395,6 +1429,11 @@
       "spec": {
         "slots": [
           "notdef"
+        ]
+      },
+      "galley": {
+        "slots": [
+          "status"
         ]
       }
     },
@@ -1406,7 +1445,8 @@
       "fame": "niche",
       "reference": "https://flatcap.github.io/linux-ntfs/ntfs/files/index.html",
       "series": [
-        "specimen"
+        "specimen",
+        "galley-proof"
       ],
       "mat": {
         "slots": []
@@ -1414,6 +1454,11 @@
       "spec": {
         "slots": [
           "notdef"
+        ]
+      },
+      "galley": {
+        "slots": [
+          "status"
         ]
       }
     },
@@ -1582,7 +1627,13 @@
       "series": [
         "catalog-card",
         "galley-proof"
-      ]
+      ],
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for SP 800-61 Rev. 2 read Rev. 3"
+      }
     },
     {
       "text": "CSIRT, not CERT",
@@ -1609,6 +1660,12 @@
       ],
       "spec": {
         "slots": []
+      },
+      "galley": {
+        "slots": [
+          "errata"
+        ],
+        "as": "for Volatility 2 read Volatility 3"
       }
     },
     {

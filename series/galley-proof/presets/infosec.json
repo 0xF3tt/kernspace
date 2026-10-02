@@ -1,0 +1,22 @@
+{
+  "series": "galley-proof", "topic": "infosec", "title": "Vol. 15 · Trust", "ground": "mid",
+  "phrase": ["Trust is a", "vulnerability"],
+  "file": "security.txt",
+  "lines": ["# Our security address", "Contact: http://example.com/security", "# Our OpenPGP key",
+    "Encryption: https://example.com/pgp.txt", "Hiring: https://example.com/jobs", "Acknowledgement: https://example.com/hof",
+    "# Our responsible disclosure policy", "Policy: https://example.com/disclosure", "Preferred-Languages: en, es",
+    "Signature: https://example.com/sig.asc", "Expire: 2027-09-30T23:59:59Z"],
+  "marks": [
+    {"line": 2, "type": "sub", "at": "http", "to": "https", "note": "https is required", "phone": "https"},
+    {"line": 4, "type": "stet", "at": "https://example.com/pgp.txt", "note": "finder checks key", "phone": "keep"},
+    {"line": 6, "type": "sub", "at": "Acknowledgement", "to": "Acknowledgments", "note": "parsers ignore it", "phone": "RFC spelling"},
+    {"line": 8, "type": "query", "note": "testing allowed?", "phone": "testing ok?"},
+    {"line": 10, "type": "dele", "at": "Signature: https://example.com/sig.asc", "note": "sign it inline", "phone": "remove field"},
+    {"line": 11, "type": "ins", "at": ": 2027", "to": "s", "note": "required field", "phone": "spell Expires"}
+  ],
+  "errata": {"line": 2, "throughout": "for responsible disclosure read CVD"},
+  "notes": ["hacker ≠ cracker", "security theater"],
+  "label": "INFOSEC GALLEY · VOL. 15 · TRUST",
+  "data": {"left": "other than satisfied (O)", "right": "{handle} · git:(main) · purple learns"},
+  "phone": {"data": {"right": "{handle} · purple learns"}}
+}

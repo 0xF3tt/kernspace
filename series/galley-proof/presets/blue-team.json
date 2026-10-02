@@ -1,0 +1,20 @@
+{
+  "series": "galley-proof", "topic": "blue-team", "title": "Vol. 08 · Detect", "ground": "light",
+  "phrase": ["The Defender's", "Advantage"],
+  "file": "log_cleared.yml",
+  "lines": ["title: Security Log Cleared", "status: experimental", "tags:", "    - attack.t1070.001",
+    "logsource: {product: windows}", "detection:", "    selection:", "        EventID: 1102",
+    "    condition: selection", "falsepositives:", "    - System provisioning", "level: low"],
+  "marks": [
+    {"line": 4, "type": "sub", "at": "t1070.001", "to": "t1685.005", "note": "revoked in v19", "phone": "t1685.005"},
+    {"line": 5, "type": "ins", "at": "}", "to": ", service: security", "note": "1102 not unique", "phone": "Security only"},
+    {"line": 8, "type": "query", "note": "AD FS hosts too?", "phone": "AD FS hosts?"},
+    {"line": 11, "type": "stet", "at": "System provisioning", "note": "golden image reset", "phone": "keep"},
+    {"line": 12, "type": "sub", "at": "low", "to": "high", "note": "prompt review", "phone": "high"}
+  ],
+  "errata": {"line": 4, "throughout": "for sigmac read pySigma"},
+  "notes": ["Blind Spots and Assumptions", "tune it, don't mute it"],
+  "label": "BLUE TEAM GALLEY · VOL. 08 · DETECT",
+  "data": {"left": "1102 · log cleared", "right": "{handle} · git:(main) · blue builds"},
+  "phone": {"data": {"right": "{handle} · blue builds"}}
+}

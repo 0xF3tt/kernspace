@@ -1,0 +1,20 @@
+{
+  "series": "galley-proof", "topic": "web", "title": "Vol. 05 · Origin", "ground": "dark",
+  "phrase": ["Filter Input,", "Escape Output"],
+  "file": "site.conf",
+  "lines": ["server_tokens on;", "add_header X-XSS-Protection \"1\";", "add_header X-Frame-Options DENY always;",
+    "add_header Content-Security-Policy", "    \"frame-ancestors 'none'\";", "server {", "    server_name example.com;",
+    "    root /var/www/html;", "    location /static/ {", "        add_header Cache-Control public;", "    }", "}"],
+  "marks": [
+    {"line": 1, "type": "sub", "at": "on", "to": "off", "note": "hides the version", "phone": "off"},
+    {"line": 2, "type": "dele", "at": "add_header X-XSS-Protection \"1\";", "note": "deprecated filter", "phone": "remove filter"},
+    {"line": 3, "type": "stet", "at": "X-Frame-Options DENY", "note": "legacy browsers", "phone": "keep"},
+    {"line": 5, "type": "ins", "at": ";", "to": "always", "note": "on every response", "phone": "add always"},
+    {"line": 10, "type": "query", "note": "drops headers, ok?", "phone": "headers ok?"}
+  ],
+  "errata": {"line": 1, "throughout": "for X-XSS-Protection read CSP"},
+  "notes": ["Referer [sic]", "CORS loosens, SOP guards"],
+  "label": "WEB GALLEY · VOL. 05 · ORIGIN",
+  "data": {"left": "403 Forbidden", "right": "{handle} · git:(main) · blue builds"},
+  "phone": {"data": {"right": "{handle} · blue builds"}}
+}
