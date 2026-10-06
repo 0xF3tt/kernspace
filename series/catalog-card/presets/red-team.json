@@ -1,0 +1,21 @@
+{
+  "series": "catalog-card", "topic": "red-team", "title": "Vol. 07 · Emulate", "ground": "dark",
+  "phrase": ["Same room,", "same side."],
+  "drawer_label": "RED TEAM · PU–PY",
+  "guide_tabs": ["Security", "Red teaming", "Emulation", "Closure phase"],
+  "call_number": ["CA-8(2)", "ID.IM-02", "A09:2025"],
+  "main_entry": "Purple teaming",
+  "definition": "Red and blue teams replay a test to see what else attackers could try and how defenders respond.",
+  "collation": "red + blue ; ≤10 weeks ; TIBER-EU: optional",
+  "correction_struck": "optional", "correction_new": "mandatory",
+  "notes": ["Standard: Reg. (EU) 2025/1190 (Jun 2025).", "Transition: TIBER-EU, May 2018 → Feb 2025."],
+  "drafts": [],
+  "tracings_subject": ["Adversary emulation", "Red team", "Assume breach", "DORA TLPT"],
+  "tracings_added": ["Control team", "Deconfliction"],
+  "see_also": ["Valid Accounts · T1078", "Stealth · TA0005"],
+  "rod_invariant": "every miss ends in a fix",
+  "circulation_dates": ["2018-05 TIBER-EU", "2025-01 DORA", "2025-02 TIBER-EU", "2025-07 RTS"],
+  "label": "RED TEAM CATALOG CARD · VOL. 07 · EMULATE",
+  "data": { "left": "T1566 unseen", "right": "{handle} · git:(main) · red breaks" },
+  "phone": { "definition": "Red and blue teams replay a test to see what else attackers could try and how to respond.", "data": { "right": "{handle} · red breaks" } }
+}

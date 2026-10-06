@@ -120,6 +120,12 @@
       ],
       "mat": {
         "slots": []
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "User Behavior · D3-UBA"
       }
     },
     {
@@ -162,6 +168,12 @@
       },
       "spec": {
         "slots": []
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "Threat hunting"
       }
     },
     {
@@ -198,7 +210,12 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ]
+      }
     },
     {
       "text": "Sigma specification",
@@ -219,6 +236,11 @@
       },
       "spec": {
         "slots": []
+      },
+      "card": {
+        "slots": [
+          "added"
+        ]
       }
     },
     {
@@ -237,6 +259,11 @@
           "hero"
         ],
         "as": "YARA"
+      },
+      "card": {
+        "slots": [
+          "added"
+        ]
       }
     },
     {
@@ -258,6 +285,11 @@
       },
       "spec": {
         "slots": []
+      },
+      "card": {
+        "slots": [
+          "added"
+        ]
       }
     },
     {
@@ -353,6 +385,12 @@
           "status"
         ],
         "as": "1102 · log cleared"
+      },
+      "card": {
+        "slots": [
+          "status"
+        ],
+        "as": "1102 · log cleared"
       }
     },
     {
@@ -421,6 +459,11 @@
       },
       "mat": {
         "slots": []
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -432,7 +475,8 @@
       "reference": "https://learn.microsoft.com/azure/sentinel/incident-navigate-triage",
       "series": [
         "galley-proof",
-        "cutting-mat"
+        "cutting-mat",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -442,6 +486,11 @@
       },
       "spec": {
         "slots": []
+      },
+      "card": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {
@@ -452,11 +501,17 @@
       "fame": "iconic",
       "reference": "https://learn.microsoft.com/azure/sentinel/incident-navigate-triage",
       "series": [
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "galley": {
         "slots": [
           "note"
+        ]
+      },
+      "card": {
+        "slots": [
+          "status"
         ]
       }
     },
@@ -470,7 +525,8 @@
       "series": [
         "cutting-mat",
         "galley-proof",
-        "specimen"
+        "specimen",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -484,6 +540,11 @@
           "rating"
         ],
         "as": "alert fatigue"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -512,7 +573,8 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "specimen"
+        "specimen",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -525,6 +587,11 @@
           "rating"
         ],
         "as": "long dwell time"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -568,6 +635,11 @@
       },
       "spec": {
         "slots": []
+      },
+      "card": {
+        "slots": [
+          "added"
+        ]
       }
     },
     {
@@ -846,7 +918,8 @@
       "reference": "https://learn.microsoft.com/azure/sentinel/incident-navigate-triage",
       "series": [
         "galley-proof",
-        "cutting-mat"
+        "cutting-mat",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -861,6 +934,11 @@
         "slots": [
           "status"
         ]
+      },
+      "card": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {
@@ -871,9 +949,15 @@
       "fame": "niche",
       "reference": "https://learn.microsoft.com/azure/sentinel/incident-navigate-triage",
       "series": [
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "galley": {
+        "slots": [
+          "status"
+        ]
+      },
+      "card": {
         "slots": [
           "status"
         ]
@@ -930,7 +1014,12 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ]
+      }
     },
     {
       "text": "Stack counting",
@@ -1006,6 +1095,12 @@
       },
       "mat": {
         "slots": []
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Process Spawn · D3-PSA"
       }
     },
     {
@@ -1026,6 +1121,12 @@
       },
       "mat": {
         "slots": []
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Process Lineage · D3-PLA"
       }
     },
     {
@@ -1269,7 +1370,8 @@
       "reference": "https://github.com/palantir/alerting-detection-strategy-framework",
       "series": [
         "galley-proof",
-        "specimen"
+        "specimen",
+        "catalog-card"
       ],
       "spec": {
         "slots": [
@@ -1284,6 +1386,12 @@
         "slots": [
           "note"
         ]
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "Blind spots"
       }
     },
     {
@@ -1615,6 +1723,12 @@
         "slots": [
           "class"
         ]
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Content Rules · D3-FCR"
       }
     },
     {
@@ -1657,6 +1771,11 @@
       },
       "spec": {
         "slots": []
+      },
+      "card": {
+        "slots": [
+          "added"
+        ]
       }
     },
     {
@@ -1677,6 +1796,11 @@
       },
       "spec": {
         "slots": []
+      },
+      "card": {
+        "slots": [
+          "added"
+        ]
       }
     },
     {
@@ -1869,6 +1993,54 @@
       ],
       "mat": {
         "slots": []
+      }
+    },
+    {
+      "text": "Log source",
+      "type": "term",
+      "code": "",
+      "meaning": "Where a detection reads its events: a named log and channel, such as WinEventLog:Security.",
+      "fame": "iconic",
+      "reference": "https://attack.mitre.org/detectionstrategies/DET0157/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ]
+      }
+    },
+    {
+      "text": "Threat Hunting · RA-10",
+      "type": "id",
+      "code": "RA-10",
+      "meaning": "SP 800-53 Rev. 5 control Threat Hunting: find adversaries that evade existing controls.",
+      "fame": "niche",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ]
+      }
+    },
+    {
+      "text": "Audit Generation · AU-12",
+      "type": "id",
+      "code": "AU-12",
+      "meaning": "SP 800-53 Rev. 5 control Audit Record Generation: systems produce the records that detections read.",
+      "fame": "niche",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ]
       }
     }
   ]

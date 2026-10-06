@@ -1,6 +1,6 @@
 // The word editor's logic, without the DOM: which words a sheet can take in each slot, and whether they fit.
 // Options come from the volume's own lexicon (topics/<topic>.json). A term with a hint for the series (`mat` for
-// Cutting Mat, `spec` for Specimen, `galley` for Galley Proof) is offered only in the slots it names, written as its
+// Cutting Mat, `spec` for Specimen, `galley` for Galley Proof, `card` for Catalog Card) is offered only in the slots it names, written as its
 // `as` form; a term without one is offered by its word type, when its `series` names one of the series this series
 // takes words from (`typed` in app/series/index.js). Every option is checked against the slot table and the overlap checker
 // (app/check.js) in desktop, wide and phone. What is series-specific (which slots, which words, how a value is

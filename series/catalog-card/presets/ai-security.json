@@ -1,0 +1,21 @@
+{
+  "series": "catalog-card", "topic": "ai-security", "title": "Vol. 13 · Prompt", "ground": "mid",
+  "phrase": ["Untrusted model,", "untrusted code."],
+  "drawer_label": "AI SECURITY · PI–PR",
+  "guide_tabs": ["AI security", "Supply chain", "Model files", "Serialization"],
+  "call_number": ["LLM04:2026", "CWE-502", "AML.T0018"],
+  "main_entry": "Pickle model files",
+  "definition": "Model weights saved with Python's pickle, a format that can run code while loading, not just restore data.",
+  "collation": "protocol 0–5 ; weights_only=False",
+  "correction_struck": "False", "correction_new": "True",
+  "notes": ["Standard: OWASP LLM Top 10 (Aug 2026).", "Transition: PyTorch 2.6 (29 Jan 2025)."],
+  "drafts": [],
+  "tracings_subject": ["Unsafe AI artifacts", "Sleeper agents", "Hugging Face", "Model card"],
+  "tracings_added": ["safetensors", "Verify AI artifacts"],
+  "see_also": ["Supply chain · AML.T0010", "Rug pull · AML.T0109"],
+  "rod_invariant": "weights load as plain data",
+  "circulation_dates": ["2022-10 opt-in", "2024-07 warning", "2025-01 default", "2025-04 bypass"],
+  "label": "AISEC CATALOG CARD · VOL. 13 · PROMPT",
+  "data": { "left": "SIGNED · HASH MATCH", "right": "{handle} · git:(main) · purple learns" },
+  "phone": { "definition": "Weights saved with Python's pickle: loading the file can run code, not just restore data.", "data": { "right": "{handle} · purple learns" } }
+}

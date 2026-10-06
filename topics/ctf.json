@@ -55,7 +55,12 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ]
+      }
     },
     {
       "text": "Attack-Defense",
@@ -72,6 +77,11 @@
       "mat": {
         "slots": [
           "note"
+        ]
+      },
+      "card": {
+        "slots": [
+          "subject"
         ]
       }
     },
@@ -149,7 +159,8 @@
       "reference": "https://primer.picoctf.org/",
       "series": [
         "cutting-mat",
-        "specimen"
+        "specimen",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -161,6 +172,11 @@
           "hero"
         ],
         "as": "PWN"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -172,7 +188,8 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "specimen"
+        "specimen",
+        "catalog-card"
       ],
       "spec": {
         "slots": [
@@ -183,6 +200,11 @@
       "mat": {
         "slots": [
           "finding"
+        ]
+      },
+      "card": {
+        "slots": [
+          "subject"
         ]
       }
     },
@@ -195,7 +217,8 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "specimen"
+        "specimen",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -207,6 +230,11 @@
           "family"
         ],
         "as": "Cryptography"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -218,7 +246,8 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "specimen"
+        "specimen",
+        "catalog-card"
       ],
       "spec": {
         "slots": [
@@ -229,6 +258,11 @@
       "mat": {
         "slots": [
           "finding"
+        ]
+      },
+      "card": {
+        "slots": [
+          "subject"
         ]
       }
     },
@@ -241,7 +275,8 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "specimen"
+        "specimen",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -253,6 +288,11 @@
           "family"
         ],
         "as": "Forensics"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -264,7 +304,8 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "specimen"
+        "specimen",
+        "catalog-card"
       ],
       "spec": {
         "slots": [
@@ -275,6 +316,11 @@
       "mat": {
         "slots": [
           "finding"
+        ]
+      },
+      "card": {
+        "slots": [
+          "subject"
         ]
       }
     },
@@ -457,7 +503,8 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "specimen"
+        "specimen",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -467,6 +514,11 @@
       "spec": {
         "slots": [
           "family"
+        ]
+      },
+      "card": {
+        "slots": [
+          "subject"
         ]
       }
     },
@@ -479,7 +531,8 @@
       "reference": "https://help.hackthebox.com/en/articles/5307061-machine-submission-requirements",
       "series": [
         "cutting-mat",
-        "specimen"
+        "specimen",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -489,6 +542,11 @@
       "spec": {
         "slots": [
           "family"
+        ]
+      },
+      "card": {
+        "slots": [
+          "subject"
         ]
       }
     },
@@ -501,7 +559,8 @@
       "reference": "https://help.hackthebox.com/en/articles/5307061-machine-submission-requirements",
       "series": [
         "cutting-mat",
-        "specimen"
+        "specimen",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -511,6 +570,11 @@
       "spec": {
         "slots": [
           "family"
+        ]
+      },
+      "card": {
+        "slots": [
+          "subject"
         ]
       }
     },
@@ -675,6 +739,11 @@
           "rating"
         ],
         "as": "exposed Vulnbox"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -696,6 +765,11 @@
       },
       "spec": {
         "slots": []
+      },
+      "card": {
+        "slots": [
+          "added"
+        ]
       }
     },
     {
@@ -730,6 +804,11 @@
       "spec": {
         "slots": [
           "hero"
+        ]
+      },
+      "card": {
+        "slots": [
+          "added"
         ]
       }
     },
@@ -766,7 +845,8 @@
       "reference": "https://github.com/fausecteam/ctf-gameserver/blob/master/src/ctf_gameserver/lib/checkresult.py",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -778,6 +858,12 @@
         "slots": []
       },
       "galley": {
+        "slots": [
+          "status"
+        ],
+        "as": "OK · DOWN · FAULTY"
+      },
+      "card": {
         "slots": [
           "status"
         ],
@@ -793,7 +879,8 @@
       "reference": "https://github.com/CTFd/CTFd/blob/master/CTFd/plugins/challenges/logic.py",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -808,6 +895,12 @@
         "slots": [
           "status"
         ]
+      },
+      "card": {
+        "slots": [
+          "status"
+        ],
+        "as": "Correct"
       }
     },
     {
@@ -983,7 +1076,8 @@
       "reference": "",
       "series": [
         "galley-proof",
-        "specimen"
+        "specimen",
+        "catalog-card"
       ],
       "spec": {
         "slots": [
@@ -999,6 +1093,11 @@
           "note"
         ],
         "as": "test for unintended solves"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -1477,6 +1576,11 @@
       },
       "spec": {
         "slots": []
+      },
+      "card": {
+        "slots": [
+          "added"
+        ]
       }
     },
     {
@@ -1796,7 +1900,8 @@
       "fame": "niche",
       "reference": "",
       "series": [
-        "specimen"
+        "specimen",
+        "catalog-card"
       ],
       "spec": {
         "slots": [
@@ -1805,6 +1910,11 @@
       },
       "mat": {
         "slots": []
+      },
+      "card": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {
@@ -1816,7 +1926,8 @@
       "reference": "",
       "series": [
         "specimen",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "spec": {
         "slots": [
@@ -1827,6 +1938,11 @@
         "slots": []
       },
       "galley": {
+        "slots": [
+          "status"
+        ]
+      },
+      "card": {
         "slots": [
           "status"
         ]
@@ -1959,6 +2075,102 @@
           "errata"
         ],
         "as": "for value read initial"
+      }
+    },
+    {
+      "text": "Relative path · CWE-23",
+      "type": "id",
+      "code": "CWE-23",
+      "meaning": "A pathname with ../ steps resolves outside its restricted directory; the child of CWE-22 that the name describes.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/23.html",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ]
+      }
+    },
+    {
+      "text": "Absolute path · CWE-36",
+      "type": "id",
+      "code": "CWE-36",
+      "meaning": "A pathname given in full is used as is, so access leaves the restricted directory; a child of CWE-22.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/36.html",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ]
+      }
+    },
+    {
+      "text": "Link following · CWE-59",
+      "type": "id",
+      "code": "CWE-59",
+      "meaning": "A file name resolves through a link or shortcut to an unintended resource, as when an archive carries a symlink.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/59.html",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ]
+      }
+    },
+    {
+      "text": "Path control · CWE-73",
+      "type": "id",
+      "code": "CWE-73",
+      "meaning": "User input controls a file name or path used in a filesystem operation; often the step before a traversal.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/73.html",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ]
+      }
+    },
+    {
+      "text": "Symlink · CAPEC-132",
+      "type": "id",
+      "code": "CAPEC-132",
+      "meaning": "Attack pattern: a planted symbolic link makes an application open the link's target, not its file. Weakness: CWE-59.",
+      "fame": "niche",
+      "reference": "https://capec.mitre.org/data/definitions/132.html",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ]
+      }
+    },
+    {
+      "text": "Proof of work",
+      "type": "term",
+      "code": "",
+      "meaning": "A puzzle a client must solve before connecting, so a host can throttle automated floods; kCTF lists one as a service.",
+      "fame": "niche",
+      "reference": "https://google.github.io/kctf/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ]
       }
     }
   ]

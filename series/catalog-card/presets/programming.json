@@ -1,0 +1,21 @@
+{
+  "series": "catalog-card", "topic": "programming", "title": "Vol. 02 · Code", "ground": "light",
+  "phrase": ["Every input", "is hostile."],
+  "drawer_label": "PROGRAMMING · BR–BY",
+  "guide_tabs": ["Resources", "Range error", "Memory buffer", "Out-of-bounds"],
+  "call_number": ["CWE-787", "CWE-120", "STR31-C"],
+  "main_entry": "Buffer overflow",
+  "definition": "Copies input into a buffer without checking that it fits, so bytes are written past its end.",
+  "collation": "2025 Top 25 #11 ; +1 null byte ; gets",
+  "correction_struck": "gets", "correction_new": "fgets",
+  "notes": ["Standard: C23, ISO/IEC 9899 (Oct 2024).", "Transition: ISO/IEC 9899:2011 removed gets."],
+  "drafts": [],
+  "tracings_subject": ["Off-by-one error", "Null termination", "Memory safety", "Undefined behavior"],
+  "tracings_added": ["Input validation", "Stack canary"],
+  "see_also": ["Deprecated · MSC24-C", "Array bounds · ARR30-C"],
+  "rod_invariant": "size checked before copy",
+  "circulation_dates": ["1988-11 worm", "2007-11 C99 TC3", "2011-12 C11", "2024-10 C23"],
+  "label": "PROGRAMMING CATALOG CARD · VOL. 02 · CODE",
+  "data": { "left": "Invalid write of size 4", "right": "{handle} · git:(main) · purple learns" },
+  "phone": { "data": { "right": "{handle} · purple learns" } }
+}

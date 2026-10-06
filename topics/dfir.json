@@ -45,6 +45,12 @@
           "rating"
         ],
         "as": "custody gap"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "Chain of custody"
       }
     },
     {
@@ -63,6 +69,12 @@
           "note"
         ],
         "as": "order of volatility"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "Order of volatility"
       }
     },
     {
@@ -86,6 +98,12 @@
         "slots": [
           "class"
         ]
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Evidence · RFC 3227"
       }
     },
     {
@@ -103,6 +121,12 @@
         "slots": [
           "class"
         ]
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "IR guide · SP 800-61r3"
       }
     },
     {
@@ -143,13 +167,19 @@
       "reference": "",
       "series": [
         "galley-proof",
-        "cutting-mat"
+        "cutting-mat",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
           "control"
         ],
         "as": "containment"
+      },
+      "card": {
+        "slots": [
+          "added"
+        ]
       }
     },
     {
@@ -218,6 +248,12 @@
           "flow"
         ],
         "as": "super timeline"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "Super timeline"
       }
     },
     {
@@ -468,6 +504,11 @@
           "rating"
         ],
         "as": "anti-forensics"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -516,7 +557,8 @@
       "series": [
         "cutting-mat",
         "galley-proof",
-        "specimen"
+        "specimen",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -529,6 +571,12 @@
           "rating"
         ],
         "as": "patient zero"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "Patient zero"
       }
     },
     {
@@ -621,7 +669,13 @@
       "reference": "https://csrc.nist.gov/pubs/sp/800/86/final",
       "series": [
         "catalog-card"
-      ]
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Forensics · SP 800-86"
+      }
     },
     {
       "text": "NIST IR 8428",
@@ -1153,6 +1207,142 @@
       }
     },
     {
+      "text": "Unified Audit Log",
+      "type": "term",
+      "code": "",
+      "meaning": "Microsoft 365's searchable record of user and admin activity across its services, queried in Purview.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/purview/audit-search",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "Unified audit log"
+      }
+    },
+    {
+      "text": "Mailbox Auditing",
+      "type": "term",
+      "code": "",
+      "meaning": "Exchange Online logging of mailbox actions by owners, delegates and admins; on by default in every organization.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/purview/audit-mailboxes",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ],
+        "as": "Mailbox auditing"
+      }
+    },
+    {
+      "text": "Audit Log Retention Policy",
+      "type": "term",
+      "code": "",
+      "meaning": "Purview rule that sets how long matching audit records are kept, up to ten years with the right licenses.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/purview/audit-log-retention-policies",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ],
+        "as": "Retention policy"
+      }
+    },
+    {
+      "text": "Clear Mailbox Data · T1070.008",
+      "type": "id",
+      "code": "T1070.008",
+      "meaning": "ATT&CK sub-technique of T1070 Indicator Removal: deleting mailbox data or logs to hide email-based activity.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/techniques/T1070/008/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Clear mail · T1070.008"
+      }
+    },
+    {
+      "text": "Email Forwarding Rule · T1114.003",
+      "type": "id",
+      "code": "T1114.003",
+      "meaning": "ATT&CK sub-technique of T1114 Email Collection: an inbox rule that forwards a victim's mail to another address.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/techniques/T1114/003/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Forwarding · T1114.003"
+      }
+    },
+    {
+      "text": "Email Hiding Rules · T1564.008",
+      "type": "id",
+      "code": "T1564.008",
+      "meaning": "ATT&CK sub-technique of T1564 Hide Artifacts: inbox rules that hide inbound mail in a compromised mailbox.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/techniques/T1564/008/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Hiding rules · T1564.008"
+      }
+    },
+    {
+      "text": "Account Takeover",
+      "type": "term",
+      "code": "",
+      "meaning": "An attacker taking control of a user account and acting as that user; also called a compromised account.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/purview/audit-log-investigate-accounts",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "Account takeover"
+      }
+    },
+    {
+      "text": "Audit Log Export",
+      "type": "term",
+      "code": "",
+      "meaning": "Downloading audit search results as a CSV from Purview, so the evidence can be kept and analyzed offline.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/purview/audit-log-export-records",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ],
+        "as": "Audit log export"
+      }
+    },
+    {
       "text": "FSEvents",
       "type": "artifact",
       "code": "",
@@ -1178,7 +1368,8 @@
       "reference": "",
       "series": [
         "galley-proof",
-        "cutting-mat"
+        "cutting-mat",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -1186,6 +1377,12 @@
           "note"
         ],
         "as": "legal hold"
+      },
+      "card": {
+        "slots": [
+          "added"
+        ],
+        "as": "Legal hold"
       }
     },
     {
@@ -1242,7 +1439,8 @@
       "series": [
         "cutting-mat",
         "galley-proof",
-        "specimen"
+        "specimen",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -1253,6 +1451,12 @@
         "slots": [
           "status"
         ]
+      },
+      "card": {
+        "slots": [
+          "status"
+        ],
+        "as": "HASH MATCH · SHA-256"
       }
     },
     {
@@ -1265,7 +1469,8 @@
       "series": [
         "cutting-mat",
         "galley-proof",
-        "specimen"
+        "specimen",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -1273,6 +1478,11 @@
         ]
       },
       "galley": {
+        "slots": [
+          "status"
+        ]
+      },
+      "card": {
         "slots": [
           "status"
         ]
@@ -1288,7 +1498,8 @@
       "series": [
         "cutting-mat",
         "galley-proof",
-        "specimen"
+        "specimen",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -1302,6 +1513,28 @@
         "as": "EVIDENCE SEALED"
       },
       "galley": {
+        "slots": [
+          "status"
+        ]
+      },
+      "card": {
+        "slots": [
+          "status"
+        ],
+        "as": "EVIDENCE SEALED"
+      }
+    },
+    {
+      "text": "LEGAL HOLD ACTIVE",
+      "type": "status-line",
+      "code": "",
+      "meaning": "Prompt banner: the evidence in scope is under legal hold and must not be altered or deleted.",
+      "fame": "niche",
+      "reference": "",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
         "slots": [
           "status"
         ]
@@ -1851,7 +2084,8 @@
       "reference": "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
       "series": [
         "galley-proof",
-        "cutting-mat"
+        "cutting-mat",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -1861,6 +2095,11 @@
       },
       "spec": {
         "slots": []
+      },
+      "card": {
+        "slots": [
+          "added"
+        ]
       }
     }
   ]

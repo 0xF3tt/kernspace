@@ -9,9 +9,11 @@ const len = s => [...s].length;                       // code points: "·" and "
 
 const TYPES = ['id', 'term', 'framework', 'tool', 'artifact', 'status-line', 'filename', 'number', 'quote', 'snippet', 'phrase'];
 const FAME = ['iconic', 'niche'], SERIES = ['cutting-mat', 'specimen', 'galley-proof', 'catalog-card'];
-const KEYS = ['text', 'type', 'code', 'meaning', 'fame', 'reference', 'series', 'mat', 'spec', 'galley'];
+const KEYS = ['text', 'type', 'code', 'meaning', 'fame', 'reference', 'series', 'mat', 'spec', 'galley', 'card'];
 const REQUIRED = ['text', 'type', 'code', 'meaning', 'fame', 'series'];          // `reference` may be empty or absent (status lines)
 const GALLEY_SLOTS = ['note', 'status', 'errata'];                             // what a `galley` hint may name (the series' HINTS)
+const CARD_SLOTS = ['subject', 'added', 'see', 'status'];                     // what a `card` hint may name
+const SEE_FORM = /^\S.* · \S.*$/;                                              // a see-also reads NAME · ID
 const TEXT_MAX = 38, MEANING_MAX = 120, CONTROL = /[\u0000-\u001F\u007F-\u009F]/, EMAIL = /[\w.+-]+@[\w-]+\.[\w.-]+/;
 
 // every problem one term has
@@ -27,14 +29,19 @@ function problems(t) {
   if (!TYPES.includes(t.type)) p.push(`type "${t.type}" is not one of ${TYPES.join(', ')}`);
   if (!FAME.includes(t.fame)) p.push(`fame "${t.fame}" is not iconic or niche`);
   if (!Array.isArray(t.series) || !t.series.length || new Set(t.series).size !== t.series.length || t.series.some(s => !SERIES.includes(s))) p.push(`series must be a list of unique values from ${SERIES.join(', ')}`);
-  for (const h of ['mat', 'spec', 'galley']) {
+  for (const h of ['mat', 'spec', 'galley', 'card']) {
     if (!(h in t)) continue;
     const v = t[h], ok = v && typeof v === 'object' && Array.isArray(v.slots) && v.slots.every(s => typeof s === 'string')
       && Object.keys(v).every(k => k === 'slots' || k === 'as') && (!('as' in v) || typeof v.as === 'string');
     if (!ok) p.push(`${h} must be { "slots": [...], "as"?: "..." }`);
     else if (h === 'galley' && v.slots.some(x => !GALLEY_SLOTS.includes(x))) p.push(`galley.slots must be from ${GALLEY_SLOTS.join(', ')}`);
+    else if (h === 'card') {
+      if (v.slots.some(x => !CARD_SLOTS.includes(x))) p.push(`card.slots must be from ${CARD_SLOTS.join(', ')}`);
+      if (v.slots.length && Array.isArray(t.series) && !t.series.includes('catalog-card')) p.push('a card hint needs catalog-card in series');
+      if (v.slots.includes('see') && !SEE_FORM.test(v.as || t.text)) p.push('a see hint must read NAME · ID');
+    }
   }
-  const strings = JSON.stringify(t), values = [t.text, t.code, t.meaning, t.reference, t.mat?.as, t.spec?.as, t.galley?.as, ...(Array.isArray(t.series) ? t.series : [])];
+  const strings = JSON.stringify(t), values = [t.text, t.code, t.meaning, t.reference, t.mat?.as, t.spec?.as, t.galley?.as, t.card?.as, ...(Array.isArray(t.series) ? t.series : [])];
   if (values.some(v => typeof v === 'string' && CONTROL.test(v))) p.push('control character');
   if (EMAIL.test(strings)) p.push('looks like an email address: public terminology only');
   return p;
@@ -69,6 +76,8 @@ const broken = {
   'missing meaning': (({ meaning, ...r }) => r)(ok), 'unknown key': { ...ok, color: 'red' }, 'email': { ...ok, meaning: 'Mail me@example.com' },
   'control character': { ...ok, meaning: 'Line\nbreak' }, 'bad hint': { ...ok, mat: { slots: 'finding' } }, 'extra hint key': { ...ok, spec: { slots: [], wide: true } },
   'bad galley hint': { ...ok, galley: { slots: 'note' } }, 'unknown galley slot': { ...ok, galley: { slots: ['finding'] } },
+  'bad card hint': { ...ok, series: ['catalog-card'], card: { slots: 'subject' } }, 'unknown card slot': { ...ok, series: ['catalog-card'], card: { slots: ['finding'] } },
+  'card hint without the tag': { ...ok, card: { slots: ['subject'] } }, 'see hint without NAME · ID': { ...ok, series: ['catalog-card'], card: { slots: ['see'] } },
 };
 for (const [name, t] of Object.entries(broken)) assert.ok(problems(t).length, `the lint should catch: ${name}`);
 

@@ -1,0 +1,21 @@
+{
+  "series": "catalog-card", "topic": "ctf", "title": "Vol. 14 · Capture", "ground": "dark",
+  "phrase": ["Stay inside", "the root."],
+  "drawer_label": "CTF · PA–PE",
+  "guide_tabs": ["CTF", "Web", "File access", "Pathname"],
+  "call_number": ["CWE-22", "CAPEC-126", "A01:2025"],
+  "main_entry": "Path traversal",
+  "definition": "Joins input onto a base folder without confining it, so ../ steps escape the folder it was meant to serve.",
+  "collation": "2025 Top 25 #6 ; tar default: fully_trusted",
+  "correction_struck": "fully_trusted", "correction_new": "data",
+  "notes": ["Standard: RFC 3986, dot segments (Jan 2005).", "Transition: PEP 706, Python 3.14 (Oct 2025)."],
+  "drafts": [],
+  "tracings_subject": ["flag.txt", "Unintended", "Vulnbox", "Attack-Defense"],
+  "tracings_added": ["Checker", "SLA"],
+  "see_also": ["Relative path · CWE-23", "Link following · CWE-59"],
+  "rod_invariant": "check the resolved path",
+  "circulation_dates": ["2007-08 tar CVE", "2018-06 Zip Slip", "2023-06 filters", "2025-10 default"],
+  "label": "CTF CATALOG CARD · VOL. 14 · CAPTURE",
+  "data": { "left": "Correct", "right": "{handle} · git:(main) · purple learns" },
+  "phone": { "definition": "Joins input onto a base folder without confining it, so ../ steps escape the folder.", "data": { "right": "{handle} · purple learns" } }
+}

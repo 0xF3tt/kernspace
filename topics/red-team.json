@@ -33,6 +33,12 @@
         "slots": [
           "note"
         ]
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "Cyber kill chain"
       }
     },
     {
@@ -44,7 +50,13 @@
       "reference": "Unified Kill Chain",
       "series": [
         "catalog-card"
-      ]
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "Unified kill chain"
+      }
     },
     {
       "text": "C2",
@@ -135,6 +147,12 @@
           "note"
         ],
         "as": "adversary emulation"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "Adversary emulation"
       }
     },
     {
@@ -147,7 +165,13 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "Adversary simulation"
+      }
     },
     {
       "text": "Threat-Informed Defense",
@@ -181,13 +205,20 @@
       "fame": "iconic",
       "reference": "",
       "series": [
-        "cutting-mat"
+        "cutting-mat",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
           "source"
         ],
         "as": "red team"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "Red team"
       }
     },
     {
@@ -236,6 +267,12 @@
           "note"
         ],
         "as": "assume breach"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "Assume breach"
       }
     },
     {
@@ -286,6 +323,11 @@
           "note"
         ],
         "as": "deconfliction"
+      },
+      "card": {
+        "slots": [
+          "added"
+        ]
       }
     },
     {
@@ -297,7 +339,13 @@
       "reference": "",
       "series": [
         "catalog-card"
-      ]
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ],
+        "as": "Trusted agent"
+      }
     },
     {
       "text": "Control Team",
@@ -309,7 +357,13 @@
       "series": [
         "catalog-card",
         "galley-proof"
-      ]
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ],
+        "as": "Control team"
+      }
     },
     {
       "text": "TIBER-EU",
@@ -320,7 +374,12 @@
       "reference": "ECB TIBER-EU (Feb 2025)",
       "series": [
         "catalog-card"
-      ]
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ]
+      }
     },
     {
       "text": "DORA TLPT",
@@ -331,7 +390,12 @@
       "reference": "Reg. (EU) 2022/2554; Del. Reg. (EU) 2025/1190",
       "series": [
         "catalog-card"
-      ]
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ]
+      }
     },
     {
       "text": "CA-8(2) Red Team Exercises",
@@ -378,6 +442,12 @@
           "source"
         ],
         "as": "emulation plan"
+      },
+      "card": {
+        "slots": [
+          "added"
+        ],
+        "as": "Emulation plan"
       }
     },
     {
@@ -389,7 +459,13 @@
       "reference": "MITRE Center for Threat-Informed Defense",
       "series": [
         "catalog-card"
-      ]
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ],
+        "as": "Micro emulation plan"
+      }
     },
     {
       "text": "Initial Access · TA0001",
@@ -414,6 +490,11 @@
           "rating"
         ],
         "as": "initial access"
+      },
+      "card": {
+        "slots": [
+          "see"
+        ]
       }
     },
     {
@@ -492,6 +573,11 @@
           "rating"
         ],
         "as": "stealth"
+      },
+      "card": {
+        "slots": [
+          "see"
+        ]
       }
     },
     {
@@ -641,6 +727,11 @@
           "rating"
         ],
         "as": "LSASS memory"
+      },
+      "card": {
+        "slots": [
+          "see"
+        ]
       }
     },
     {
@@ -666,6 +757,11 @@
           "rating"
         ],
         "as": "valid accounts"
+      },
+      "card": {
+        "slots": [
+          "see"
+        ]
       }
     },
     {
@@ -715,6 +811,11 @@
           "rating"
         ],
         "as": "phishing"
+      },
+      "card": {
+        "slots": [
+          "see"
+        ]
       }
     },
     {
@@ -983,7 +1084,8 @@
       "fame": "niche",
       "reference": "",
       "series": [
-        "cutting-mat"
+        "cutting-mat",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -991,6 +1093,12 @@
           "control"
         ],
         "as": "kill date"
+      },
+      "card": {
+        "slots": [
+          "added"
+        ],
+        "as": "Kill date"
       }
     },
     {
@@ -1222,7 +1330,8 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -1230,6 +1339,11 @@
         ]
       },
       "galley": {
+        "slots": [
+          "status"
+        ]
+      },
+      "card": {
         "slots": [
           "status"
         ]
@@ -1244,7 +1358,8 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -1252,6 +1367,11 @@
         ]
       },
       "galley": {
+        "slots": [
+          "status"
+        ]
+      },
+      "card": {
         "slots": [
           "status"
         ]
@@ -1328,7 +1448,8 @@
       "reference": "https://attack.mitre.org/techniques/T1071/",
       "series": [
         "specimen",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "spec": {
         "slots": [
@@ -1339,6 +1460,11 @@
         "slots": []
       },
       "galley": {
+        "slots": [
+          "status"
+        ]
+      },
+      "card": {
         "slots": [
           "status"
         ]
@@ -1353,7 +1479,8 @@
       "reference": "https://attack.mitre.org/techniques/T1566/",
       "series": [
         "specimen",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "spec": {
         "slots": [
@@ -1364,6 +1491,11 @@
         "slots": []
       },
       "galley": {
+        "slots": [
+          "status"
+        ]
+      },
+      "card": {
         "slots": [
           "status"
         ]
@@ -1378,7 +1510,8 @@
       "reference": "https://attack.mitre.org/techniques/T1055/",
       "series": [
         "specimen",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "spec": {
         "slots": [
@@ -1389,6 +1522,11 @@
         "slots": []
       },
       "galley": {
+        "slots": [
+          "status"
+        ]
+      },
+      "card": {
         "slots": [
           "status"
         ]
@@ -1706,6 +1844,11 @@
           "note"
         ],
         "as": "tradecraft"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {

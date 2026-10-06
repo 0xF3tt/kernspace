@@ -1,0 +1,21 @@
+{
+  "series": "catalog-card", "topic": "active-directory", "title": "Vol. 06 · Forest", "ground": "mid",
+  "phrase": ["Any user may ask,", "so guard the key."],
+  "drawer_label": "AD · KE–KR",
+  "guide_tabs": ["Directory", "Credentials", "Kerberos", "Tickets"],
+  "call_number": ["T1558.003", "CWE-327", "M1041"],
+  "main_entry": "Kerberoasting",
+  "definition": "Requests a service ticket for an SPN account, then tests password guesses against it offline.",
+  "collation": "any domain user ; Event 4769 ; RC4 allowed",
+  "correction_struck": "RC4 allowed", "correction_new": "AES-SHA1 only",
+  "notes": ["Standard: RFC 3962, Kerberos AES (Feb 2005).", "Transition: KB5073381 (14 Apr 2026)."],
+  "drafts": [],
+  "tracings_subject": ["SPN", "Service account", "TGS", "Silver Ticket"],
+  "tracings_added": ["gMSA", "Password policies"],
+  "see_also": ["Cracking · T1110.002", "AS-REP roast · T1558.004"],
+  "rod_invariant": "long random service key",
+  "circulation_dates": ["2014-09 DerbyCon", "2026-04 AES-SHA1", "2026-07 enforced"],
+  "label": "AD CATALOG CARD · VOL. 06 · FOREST",
+  "data": { "left": "KDC_ERR_ETYPE_NOTSUPP", "right": "{handle} · git:(main) · blue builds" },
+  "phone": { "data": { "right": "{handle} · blue builds" } }
+}

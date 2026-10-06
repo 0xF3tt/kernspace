@@ -1,0 +1,21 @@
+{
+  "series": "catalog-card", "topic": "cloud", "title": "Vol. 10 · Posture", "ground": "light",
+  "phrase": ["Apply security", "at all layers"],
+  "drawer_label": "CLOUD · PO–PR",
+  "guide_tabs": ["Cloud security", "Kubernetes", "Workloads", "Admission"],
+  "call_number": ["A02:2025", "CWE-250", "T1611"],
+  "main_entry": "Pod security",
+  "definition": "Checks every pod against a security level as it is created, then rejects, warns on or logs any that break it.",
+  "collation": "3 levels ; 3 modes ; PodSecurityPolicy",
+  "correction_struck": "PodSecurityPolicy", "correction_new": "PodSecurity",
+  "notes": ["Standard: KEP-2579, Pod Security (Aug 2022).", "Transition: PSP removed, K8s 1.25 (2022)."],
+  "drafts": [],
+  "tracings_subject": ["Container escape", "privileged: true", "Blast radius", "Toxic combination"],
+  "tracings_added": ["runAsNonRoot: true", "Admission policy"],
+  "see_also": ["Metadata API · T1552.005", "Containers · SP 800-190"],
+  "rod_invariant": "enforce, don't just warn",
+  "circulation_dates": ["2021-04 deprec.", "2021-12 PSA beta", "2022-08 removed"],
+  "label": "CLOUD CATALOG CARD · VOL. 10 · POSTURE",
+  "data": { "left": "enforce: restricted", "right": "{handle} · git:(main) · blue builds" },
+  "phone": { "definition": "Checks each new pod against a security level; rejects, warns on or logs any that break it.", "data": { "right": "{handle} · blue builds" } }
+}

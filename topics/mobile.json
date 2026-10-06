@@ -307,6 +307,12 @@
         "slots": [
           "finding"
         ]
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Root check · MASWE-0051"
       }
     },
     {
@@ -415,6 +421,11 @@
         "slots": [
           "note"
         ]
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -444,7 +455,8 @@
       "reference": "https://source.android.com/docs/security/features/verifiedboot/boot-flow",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -456,6 +468,12 @@
         "slots": []
       },
       "galley": {
+        "slots": [
+          "status"
+        ],
+        "as": "verifiedbootstate=green"
+      },
+      "card": {
         "slots": [
           "status"
         ],
@@ -669,7 +687,8 @@
       "series": [
         "cutting-mat",
         "specimen",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -677,6 +696,11 @@
         ]
       },
       "galley": {
+        "slots": [
+          "status"
+        ]
+      },
+      "card": {
         "slots": [
           "status"
         ]
@@ -812,6 +836,11 @@
           "note"
         ],
         "as": "application sandbox"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -855,6 +884,11 @@
           "hero"
         ],
         "as": "SEP"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -964,6 +998,11 @@
       "mat": {
         "slots": [
           "control"
+        ]
+      },
+      "card": {
+        "slots": [
+          "added"
         ]
       }
     },
@@ -1501,7 +1540,8 @@
       "reference": "https://mas.owasp.org/MASTG/best-practices/MASTG-BEST-0029/",
       "series": [
         "specimen",
-        "cutting-mat"
+        "cutting-mat",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -1513,6 +1553,11 @@
           "hero"
         ],
         "as": "RASP"
+      },
+      "card": {
+        "slots": [
+          "added"
+        ]
       }
     },
     {
@@ -1890,6 +1935,11 @@
           "note"
         ],
         "as": "jailbreak"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -1909,6 +1959,11 @@
           "note"
         ],
         "as": "rooting"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -1933,6 +1988,12 @@
       "spec": {
         "slots": [
           "hero"
+        ],
+        "as": "TEE"
+      },
+      "card": {
+        "slots": [
+          "subject"
         ],
         "as": "TEE"
       }
@@ -2039,6 +2100,12 @@
         "slots": [
           "family"
         ]
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "Verified boot"
       }
     },
     {
@@ -2076,6 +2143,103 @@
           "note"
         ],
         "as": "entitlements"
+      }
+    },
+    {
+      "text": "Key attestation",
+      "type": "term",
+      "code": "",
+      "meaning": "Android Keystore feature: a certificate chain that proves a key pair is hardware-backed and states its properties.",
+      "fame": "niche",
+      "reference": "https://developer.android.com/privacy-and-security/security-key-attestation",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ]
+      }
+    },
+    {
+      "text": "Security updates",
+      "type": "term",
+      "code": "M1001",
+      "meaning": "ATT&CK Mobile mitigation M1001: install security updates, and limit access from devices without recent patches.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/mitigations/M1001/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ]
+      }
+    },
+    {
+      "text": "MASWE-0053",
+      "type": "id",
+      "code": "MASWE-0053",
+      "meaning": "Emulated or Virtual Device Detection Not Implemented (MASVS-RESILIENCE); applies to MAS-R.",
+      "fame": "niche",
+      "reference": "https://mas.owasp.org/MASWE/MASVS-RESILIENCE/MASWE-0053/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Emulators · MASWE-0053"
+      }
+    },
+    {
+      "text": "Hooking · T1617",
+      "type": "id",
+      "code": "T1617",
+      "meaning": "ATT&CK Mobile technique: hooking system APIs, usually through a root framework, to hide artifacts.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/techniques/T1617/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ]
+      }
+    },
+    {
+      "text": "Unix Shell · T1623.001",
+      "type": "id",
+      "code": "T1623.001",
+      "meaning": "ATT&CK Mobile sub-technique: abusing Unix shell commands; some need a rooted or jailbroken device.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/techniques/T1623/001/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ]
+      }
+    },
+    {
+      "text": "MEETS_DEVICE_INTEGRITY",
+      "type": "status-line",
+      "code": "deviceRecognitionVerdict",
+      "meaning": "Default Play Integrity device label: a genuine, certified Android device (hardware-backed proof on Android 13+).",
+      "fame": "niche",
+      "reference": "https://developer.android.com/google/play/integrity/verdicts",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "status"
+        ]
       }
     }
   ]

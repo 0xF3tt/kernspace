@@ -1,0 +1,21 @@
+{
+  "series": "catalog-card", "topic": "crypto", "title": "Vol. 09 · Key", "ground": "dark",
+  "phrase": ["Only the key", "is secret."],
+  "drawer_label": "CRYPTO · KE–KY",
+  "guide_tabs": ["Cryptography", "Public-key", "Key exchange", "Post-quantum"],
+  "call_number": ["A04:2025", "CWE-327", "SP 800-227"],
+  "main_entry": "Key encapsulation",
+  "definition": "Sets up a shared secret over an open channel: sealed under a public key, opened only by its private key.",
+  "collation": "IND-CCA2 ; 1 round trip ; RSA-2048",
+  "correction_struck": "RSA-2048", "correction_new": "ML-KEM-768",
+  "notes": ["Standard: FIPS 203, ML-KEM (13 Aug 2024).", "Transition: NIST IR 8547 draft (Nov 2024)."],
+  "drafts": ["correction", "circulation_dates.3", "circulation_dates.4"],
+  "tracings_subject": ["Shor's algorithm", "Forward secrecy", "Lattice cryptography", "Diffie–Hellman"],
+  "tracings_added": ["X25519MLKEM768", "Crypto agility"],
+  "see_also": ["ML-DSA-65 · FIPS 204", "HQC · NIST IR 8545"],
+  "rod_invariant": "private key stays private",
+  "circulation_dates": ["1994-11 Shor", "2024-08 FIPS 203", "2026-08 RFC 10024", ">2030 deprecated", ">2035 disallowed"],
+  "label": "CRYPTO CATALOG CARD · VOL. 09 · KEY",
+  "data": { "left": "Verify return code: 0 (ok)", "right": "{handle} · git:(main) · blue builds" },
+  "phone": { "definition": "Seals a fresh shared secret under a public key; only its private key opens it.", "data": { "right": "{handle} · blue builds" } }
+}

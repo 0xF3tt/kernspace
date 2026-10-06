@@ -35,7 +35,12 @@
       "series": [
         "catalog-card",
         "specimen"
-      ]
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ]
+      }
     },
     {
       "text": "Integrity",
@@ -131,6 +136,11 @@
           "note"
         ],
         "as": "least privilege · AC-6"
+      },
+      "card": {
+        "slots": [
+          "see"
+        ]
       }
     },
     {
@@ -243,6 +253,12 @@
           "note"
         ],
         "as": "zero trust · SP 800-207"
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Zero trust · SP 800-207"
       }
     },
     {
@@ -771,6 +787,11 @@
         "slots": [
           "note"
         ]
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -800,7 +821,8 @@
       "reference": "https://www.first.org/tlp/",
       "series": [
         "specimen",
-        "cutting-mat"
+        "cutting-mat",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -810,6 +832,11 @@
       "spec": {
         "slots": [
           "note"
+        ]
+      },
+      "card": {
+        "slots": [
+          "added"
         ]
       }
     },
@@ -822,7 +849,8 @@
       "reference": "https://www.first.org/tlp/",
       "series": [
         "specimen",
-        "cutting-mat"
+        "cutting-mat",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -833,6 +861,43 @@
       "spec": {
         "slots": [
           "note"
+        ]
+      },
+      "card": {
+        "slots": [
+          "added"
+        ]
+      }
+    },
+    {
+      "text": "TLP:AMBER",
+      "type": "id",
+      "code": "TLP:AMBER",
+      "meaning": "TLP 2.0 label: limited disclosure, only on a need-to-know basis within the recipient's organization and its clients.",
+      "fame": "iconic",
+      "reference": "https://www.first.org/tlp/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ]
+      }
+    },
+    {
+      "text": "TLP:GREEN",
+      "type": "id",
+      "code": "TLP:GREEN",
+      "meaning": "TLP 2.0 label: limited disclosure, recipients can spread it within their community.",
+      "fame": "iconic",
+      "reference": "https://www.first.org/tlp/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "added"
         ]
       }
     },
@@ -850,6 +915,43 @@
       "mat": {
         "slots": [
           "flow"
+        ]
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
+      }
+    },
+    {
+      "text": "Information sharing",
+      "type": "term",
+      "code": "",
+      "meaning": "Exchanging cyber threat information with partners under agreed handling rules, as guided by NIST SP 800-150 (Oct 2016).",
+      "fame": "niche",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/150/final",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ]
+      }
+    },
+    {
+      "text": "ISAC",
+      "type": "term",
+      "code": "ISAC",
+      "meaning": "Information Sharing and Analysis Center: a community, often of one sector, whose members share cyber threat information.",
+      "fame": "niche",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/150/final",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "subject"
         ]
       }
     },
@@ -887,6 +989,12 @@
           "flow"
         ],
         "as": "security.txt"
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "security.txt · RFC 9116"
       }
     },
     {
@@ -904,6 +1012,12 @@
       "spec": {
         "slots": [
           "hero"
+        ],
+        "as": "CVD"
+      },
+      "card": {
+        "slots": [
+          "subject"
         ],
         "as": "CVD"
       }
@@ -929,7 +1043,13 @@
       "reference": "https://www.rfc-editor.org/rfc/rfc4949",
       "series": [
         "catalog-card"
-      ]
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Glossary · RFC 4949"
+      }
     },
     {
       "text": "RFC 2196",
@@ -940,7 +1060,13 @@
       "reference": "https://www.rfc-editor.org/rfc/rfc2196",
       "series": [
         "catalog-card"
-      ]
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Site security · RFC 2196"
+      }
     },
     {
       "text": "RFC 3514",
@@ -1273,6 +1399,12 @@
         "slots": [
           "note"
         ]
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Controls · SP 800-53r5"
       }
     },
     {
@@ -1414,9 +1546,15 @@
       "series": [
         "cutting-mat",
         "specimen",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "galley": {
+        "slots": [
+          "status"
+        ]
+      },
+      "card": {
         "slots": [
           "status"
         ]
@@ -1432,9 +1570,15 @@
       "series": [
         "cutting-mat",
         "specimen",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "galley": {
+        "slots": [
+          "status"
+        ]
+      },
+      "card": {
         "slots": [
           "status"
         ]
@@ -1448,10 +1592,17 @@
       "fame": "niche",
       "reference": "https://csrc.nist.gov/files/pubs/conference/1998/10/08/proceedings-of-the-21st-nissc-1998/final/docs/early-cs-papers/dod85.pdf",
       "series": [
-        "cutting-mat"
+        "cutting-mat",
+        "catalog-card"
       ],
       "spec": {
         "slots": []
+      },
+      "card": {
+        "slots": [
+          "status"
+        ],
+        "as": "D: MINIMAL PROTECTION"
       }
     },
     {
@@ -1464,9 +1615,15 @@
       "series": [
         "cutting-mat",
         "specimen",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "galley": {
+        "slots": [
+          "status"
+        ]
+      },
+      "card": {
         "slots": [
           "status"
         ]
@@ -1930,6 +2087,11 @@
           "family"
         ],
         "as": "Bell–LaPadula model"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -1996,6 +2158,11 @@
           "phrase"
         ],
         "as": "Clearance opens the door; need to know opens the file."
+      },
+      "card": {
+        "slots": [
+          "added"
+        ]
       }
     },
     {

@@ -1,0 +1,21 @@
+{
+  "series": "catalog-card", "topic": "appsec", "title": "Vol. 01 · Design", "ground": "mid",
+  "phrase": ["Secure", "by design."],
+  "drawer_label": "APPSEC · SE–SH",
+  "guide_tabs": ["Security", "Engineering", "Secure design", "Principles"],
+  "call_number": ["A07:2025", "CWE-1392", "PW.9"],
+  "main_entry": "Secure by default",
+  "definition": "Ships with its protections already on, so it resists common attacks unless someone knowingly turns them off.",
+  "collation": "0 default passwords ; admin MFA: opt-in",
+  "correction_struck": "opt-in", "correction_new": "opt-out",
+  "notes": ["Standard: SP 800-218, SSDF 1.1 (Feb 2022).", "Transition: CRA, (EU) 2024/2847 (Dec 2027)."],
+  "drafts": [],
+  "tracings_subject": ["Attack surface", "Threat modeling", "Misconfiguration"],
+  "tracings_added": ["Secure baseline", "Deny by default"],
+  "see_also": ["SP 800-53 · SA-8(23)"],
+  "rod_invariant": "secure out of the box",
+  "circulation_dates": ["1975-09 Saltzer", "2022-02 SSDF 1.1", "2023-04 CISA", "2027-12 CRA"],
+  "label": "APPSEC CATALOG CARD · VOL. 01 · DESIGN",
+  "data": { "left": "no leaks found", "right": "{handle} · git:(main) · blue builds" },
+  "phone": { "definition": "Ships with its protections on: it resists common attacks unless someone knowingly turns them off.", "data": { "right": "{handle} · blue builds" } }
+}

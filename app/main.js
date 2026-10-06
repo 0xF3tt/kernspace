@@ -1,7 +1,7 @@
 // kernspace · the studio. Everything renders in the browser; nothing is uploaded.
 // Data (presets, palettes, fonts, lexicons) loads from this site; the page builds its nodes with the DOM (strings
 // become text, never markup) and sets styles through CSSOM, so the CSP needs no inline styles or scripts.
-import { FORMATS, HANDLE, MOTTO, validHandle, validMotto } from './render.js';
+import { FORMATS, HANDLE, MOTTO, srgbPNG, validHandle, validMotto, zip } from './render.js';
 import { SERIES } from './series/index.js';
 import { DEFAULT, migrate } from './store.js';
 import { advances, family, get, glyphs, hull, len, overlaps, prepare, slotRules, useMetrics } from './check.js';
@@ -59,6 +59,8 @@ function svg(markup, attrs = {}) {
   return s;
 }
 // replace a node's children, skipping the empty ones (replaceChildren would print "null")
+// an icon-only control: the name for assistive tech, the tip (CSS ::after) for everyone else
+const nameBtn = (b, label, tip = label) => { b.setAttribute('aria-label', label); b.dataset.tip = tip; };
 const fill = (node, ...kids) => node.replaceChildren(...kids.flat().filter((x) => x != null && x !== false));
 const pad2 = (v) => String(v).padStart(2, '0');
 const nice = (slug) => slug.charAt(0).toUpperCase() + slug.slice(1).replace('-', ' ');
@@ -170,7 +172,7 @@ const draw = (p, ink, role, format, fonts, R = S, grain = false) => R.render({ p
 const el = {
   form: $('#form'), stage: $('#stage'), sheet: $('#sheet'), img: $('#sheet-img'), strip: $('#strip'), dd: $('#drawdown'),
   inks: $('#ink-rows'), legend: $('#legend'), slip: $('#slip'), handle: $('#handle'), motto: $('#motto'), who: $('#who'),
-  whoNote: $('#who-note'), need: $('#need'), png: $('#dl-png'), svg: $('#dl-svg'), grain: $('#grain'),
+  whoNote: $('#who-note'), need: $('#need'), png: $('#dl-png'), svg: $('#dl-svg'), pack: $('#dl-pack'), grain: $('#grain'),
 };
 
 function buildStrip() {
@@ -210,7 +212,7 @@ function buildInkRows() {
 function buildSwitch() {
   const sw = $('#series-switch'), all = Object.entries(SERIES);
   sw.style.setProperty('--n', all.length);
-  sw.replaceChildren(...all.map(([s, R]) => h('label', { title: R.name },
+  sw.replaceChildren(...all.map(([s, R]) => h('label', { dataset: { tip: R.name } },
     h('input', { type: 'radio', name: 'series', value: s, id: `series-${s}` }),
     h('span', { class: 'opt' }, svg(R.glyph, { viewBox: '0 0 18 18', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.4, 'aria-hidden': 'true' }), h('span', { class: 'name' }, R.name)))));
   syncSwitch();
@@ -229,7 +231,7 @@ function paintSeries() {
   document.querySelectorAll('.sheetlet[data-series]').forEach((card) => {
     const on = card.dataset.series === state.series, b = card.querySelector('.use-series');
     card.toggleAttribute('data-current', on);
-    b.textContent = on ? 'In the studio' : 'Use in the studio';
+    nameBtn(b, on ? `${SERIES[card.dataset.series].name} is in the studio` : `Use ${SERIES[card.dataset.series].name} in the studio`, on ? 'In the studio' : 'Use in the studio');
     if (on) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
   });
 }
@@ -255,14 +257,21 @@ function paintInks() {
   el.inks.querySelectorAll('.gcard').forEach((b) => swap(b.querySelector('img'), blobUrl(draw(preset(), b.dataset.ink, b.dataset.role, 'desktop', null))));
 }
 
+// the notch and home-bar insets in px: env() can't be read directly, so a hidden probe carries them as padding
+const probe = h('div', { 'aria-hidden': 'true', style: { position: 'fixed', visibility: 'hidden', 'pointer-events': 'none', height: '100svh', 'box-sizing': 'border-box', 'padding-block': 'env(safe-area-inset-top, 0px) env(safe-area-inset-bottom, 0px)' } });
+document.body.append(probe);
+const insets = () => { const cs = getComputedStyle(probe); return parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom); };
+const insetTop = () => parseFloat(getComputedStyle(probe).paddingTop);
+
 // one stage height for every format, so switching never moves the page
 function fit() {
   if (ed.on) return fitEdit();
   const { w, h: H0 } = FORMATS[state.format], ar = w / H0;
   const cs = getComputedStyle(el.stage), padX = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
   const avail = el.stage.clientWidth - padX, narrow = isNarrow();
-  const stageH = Math.round(Math.min(avail / (16 / 9), narrow ? 420 : Math.max(360, innerHeight - 330)));
-  const H = state.format === 'phone' ? stageH * (narrow ? 1.35 : 1) : stageH;
+  const stageH = Math.round(narrow ? Math.min(avail / (16 / 9), 420) * 1.35 : Math.min(avail / (16 / 9), Math.max(360, innerHeight - 330)));   // narrow: the phone's taller well for all, letterboxing desktop and wide
+  const room = narrow ? Math.max(120, probe.offsetHeight - 60 - insetTop() - $('.acts').offsetHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom)) : Infinity;   // short screens: header and download bar leave this much
+  const H = Math.min(room, stageH);
   el.form.style.setProperty('--stage-h', `${Math.round(H + parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom))}px`);
   const sw = Math.min(avail, H * ar);
   el.sheet.style.setProperty('--w', `${sw}px`);
@@ -280,7 +289,7 @@ function rulers() {
 
 // the sheet itself: drawn with fonts, swapped in once decoded; a later change drops an earlier render
 let current = null, ticket = 0, drawing = Promise.resolve();
-function fileName(e, g) {
+function fileName(e, g = ground(state.ink, state.role)) {
   const { w, h: H } = FORMATS[state.format];
   return `kernspace_${state.series}_${e.id}${E()[e.id] ? '_edited' : ''}_${state.ink}-${g.slug}${state.grain ? '_grain' : ''}_${w}x${H}`;
 }
@@ -402,6 +411,7 @@ async function chooseSeries(s) {
   state.role = vol().ground;
   inkKey = ''; thumbKeys.clear(); cache.clear();
   buildStrip(); buildInkRows(); paintSeries(); readWho();
+  if (el.pack.getAttribute('aria-busy') !== 'true') nameBtn(el.pack, ...packLabel());   // the real count
   el.strip.scrollLeft = 0;
   update();
   persist();
@@ -423,8 +433,10 @@ const ready = () => validHandle(state.handle) && el.handle.value.trim() === stat
   && validMotto(state.motto) && el.motto.value.trim() === state.motto && glyphs('mono', state.motto);
 function syncDownloads() {
   const ok = ready() && !!current;
-  el.png.disabled = el.svg.disabled = !ok;
+  el.png.disabled = el.svg.disabled = el.pack.disabled = !ok;
+  const was = el.need.hidden;
   el.need.hidden = ready();
+  if (was !== el.need.hidden) fit();   // the bar changes height with the need line, and the stage cap counts it
 }
 function readWho() {
   const hv = el.handle.value.trim(), mv = el.motto.value.trim();
@@ -486,30 +498,63 @@ el.svg.addEventListener('click', async () => {
   const snap = await settled();
   if (snap) save(new Blob([snap.svg], { type: 'image/svg+xml' }), `${snap.name}.svg`);
 });
+// SVG text -> tagged sRGB PNG bytes, through a canvas (one sheet at a time)
+async function rasterise(text, w, H) {
+  const src = blobUrl(text), cv = h('canvas', { width: w, height: H });
+  try {
+    const img = new Image();
+    img.src = src;
+    await img.decode();
+    await new Promise((r) => setTimeout(r, 60));   // lets embedded fonts settle (Safari)
+    const ctx = cv.getContext('2d');
+    if (!ctx) throw new Error('no 2d context');
+    ctx.drawImage(img, 0, 0, w, H);
+    const png = await new Promise((ok, no) => cv.toBlob((b) => (b ? ok(b) : no(new Error('empty PNG'))), 'image/png'));
+    return srgbPNG(new Uint8Array(await png.arrayBuffer()));   // tagged sRGB, see srgbPNG
+  } finally { URL.revokeObjectURL(src); cv.width = cv.height = 0; }   // frees the backing store now: WebKit caps total canvas memory, and the pack draws 15
+}
 el.png.addEventListener('click', async () => {
   if (el.png.getAttribute('aria-busy') === 'true') return;
-  const label = el.png.querySelector('span');
   el.png.setAttribute('aria-busy', 'true');
-  label.textContent = 'Drawing PNG';
-  let src = '';
+  nameBtn(el.png, 'Drawing PNG');
   try {
     const snap = await settled();
     if (!snap) return;
-    const img = new Image();
-    img.src = src = blobUrl(snap.svg);
-    await img.decode();
-    await new Promise((r) => setTimeout(r, 60));   // lets embedded fonts settle (Safari)
-    const cv = h('canvas', { width: snap.w, height: snap.h }), ctx = cv.getContext('2d');
-    if (!ctx) throw new Error('no 2d context');
-    ctx.drawImage(img, 0, 0, snap.w, snap.h);
-    save(await new Promise((ok, no) => cv.toBlob((b) => (b ? ok(b) : no(new Error('empty PNG'))), 'image/png')), `${snap.name}.png`);
+    save(new Blob([await rasterise(snap.svg, snap.w, snap.h)], { type: 'image/png' }), `${snap.name}.png`);
   } catch (err) {
     console.error(err);
     tell('The PNG could not be drawn in this browser.', 'Download the SVG instead: it holds the same sheet.', false);
   } finally {
-    if (src) URL.revokeObjectURL(src);
     el.png.removeAttribute('aria-busy');
-    label.textContent = 'Download PNG';
+    nameBtn(el.png, 'Download PNG');
+  }
+});
+// the rotation pack: every volume of the series in the selected ink and ground, one PNG each, for the OS's wallpaper rotation
+const packLabel = () => ['Download all volumes, ZIP', `Download all ${D().index.length} volumes (ZIP)`];
+el.pack.addEventListener('click', async () => {
+  if (el.pack.getAttribute('aria-busy') === 'true') return;
+  const list = D().index, n = list.length;
+  el.pack.setAttribute('aria-busy', 'true');
+  nameBtn(el.pack, 'Preparing the pack');
+  try {
+    const snap = await settled();
+    if (!snap) return;
+    const R = S, d = D(), saved = { ...E() }, { series, ink, role, format, grain, handle, motto } = state;   // the controls stay live for the whole pack: draw from a snapshot
+    const g = ground(ink, role), { w, h: H } = FORMATS[format], tail = `${ink}-${g.slug}${grain ? '_grain' : ''}_${w}x${H}`, files = [];
+    announce(`Drawing ${n} sheets for the rotation pack.`);
+    for (const [i, e] of d.index.entries()) {
+      nameBtn(el.pack, `Drawing ${i + 1} of ${n}`);
+      const text = R.render({ preset: saved[e.id] ?? d.presets[e.id], colors: g.colors, format, handle, motto, fonts: data.fonts, grain });
+      files.push({ name: `${pad2(e.vol)}_kernspace_${series}_${e.id}${saved[e.id] ? '_edited' : ''}_${tail}.png`, bytes: await rasterise(text, w, H) });
+    }
+    announce(`${n} sheets drawn.`);
+    save(new Blob([zip(files)], { type: 'application/zip' }), `kernspace_${series}_${tail}_${n}-volumes.zip`);
+  } catch (err) {
+    console.error(err);
+    tell('The pack could not be drawn in this browser.', 'Download the sheets one by one instead.', false);
+  } finally {
+    el.pack.removeAttribute('aria-busy');
+    nameBtn(el.pack, ...packLabel());
   }
 });
 
@@ -517,7 +562,7 @@ el.png.addEventListener('click', async () => {
 
 const root = document.documentElement, themeBtn = $('#theme');
 const isDark = () => (root.dataset.theme ? root.dataset.theme === 'dark' : !matchMedia('(prefers-color-scheme: light)').matches);
-const labelTheme = () => themeBtn.setAttribute('aria-label', isDark() ? 'Switch to light theme' : 'Switch to dark theme');
+const labelTheme = () => nameBtn(themeBtn, isDark() ? 'Switch to light theme' : 'Switch to dark theme');
 labelTheme();
 matchMedia('(prefers-color-scheme: light)').addEventListener('change', labelTheme);
 themeBtn.addEventListener('click', () => {
@@ -550,13 +595,13 @@ const pickMark = (ev) => {
   if (b.dataset.mark !== state.mark) { state.mark = b.dataset.mark; showMark(); }
   // stacked layout: the sheet sits above the key, so bring the mark into view
   const fig = $('.read-fig'), r = fig.getBoundingClientRect();
-  if (ev.type === 'click' && (r.top < 0 || r.bottom > innerHeight)) fig.scrollIntoView({ block: 'nearest', behavior: reduced() ? 'auto' : 'smooth' });
+  if (ev.type === 'click' && getComputedStyle(fig).position !== 'sticky' && (r.top < 0 || r.bottom > innerHeight)) fig.scrollIntoView({ block: 'nearest', behavior: reduced() ? 'auto' : 'smooth' });
 };
 
 // ---------- the word editor
 
 // the preview switch: off shows the sheet alone, on shows it on a screen
-function setView(v) { state.view = v; el.stage.dataset.view = v; $('#view-screen').checked = v === 'screen'; }
+function setView(v) { state.view = v; el.stage.dataset.view = v; $('#view-screen').checked = v === 'screen'; $('.hint-touch').hidden = v !== 'sheet'; }   // a tap only opens the editor on the sheet
 const flips = [];
 function flip() {
   const t = performance.now();
@@ -591,12 +636,13 @@ function slotBox(key, fmt = state.format) {
   return qs.length ? hull(qs.flat()) : null;
 }
 function hitAt(x, y, pad) {
-  let best = null, area = Infinity;
+  let best = null, far = Infinity, area = Infinity;   // under the point beats near it; ties go to the smallest box
   for (const key of [...slotsOf(preset()), ...Object.keys(S.FIXED)]) {
     const b = slotBox(key);
-    if (!b || x < b.x0 - pad || x > b.x1 + pad || y < b.y0 - pad || y > b.y1 + pad) continue;
-    const a = (b.x1 - b.x0) * (b.y1 - b.y0);
-    if (a < area) { area = a; best = key; }
+    if (!b) continue;
+    const d = Math.max(b.x0 - x, x - b.x1, b.y0 - y, y - b.y1, 0), a = (b.x1 - b.x0) * (b.y1 - b.y0);
+    if (d > pad || d > far || (d === far && a >= area)) continue;
+    far = d; area = a; best = key;
   }
   return best;
 }
@@ -622,8 +668,8 @@ function renderLive() {
 const queueLive = () => { if (!liveQueued) liveQueued = requestAnimationFrame(renderLive); };
 function fitEdit() {
   const narrow = isNarrow(), cs = getComputedStyle(el.stage), vh = Math.round(window.visualViewport?.height ?? innerHeight);
-  const pinned = narrow && vh >= 560;   // top bar + stage + rail + edit bar, and at least 180px of options
-  const total = !narrow ? Math.max(460, innerHeight - 224) : pinned ? Math.max(160, Math.min(Math.round(vh * 0.38), vh - 373)) : 220;
+  const pinned = narrow && vh - insets() >= 560;   // top bar + stage + rail + edit bar, and at least 180px of options
+  const total = !narrow ? Math.max(460, innerHeight - 224) : pinned ? Math.max(160, Math.min(Math.round(vh * 0.38), vh - 373 - Math.round(insets()))) : 220;
   el.form.style.setProperty('--stage-h', `${total}px`);
   document.body.toggleAttribute('data-unpinned', narrow && !pinned);
   ed.win = {
@@ -748,7 +794,7 @@ async function enterEdit(key) {
   renderLive();
   $('#studio').scrollIntoView({ block: 'start', behavior: reduced() ? 'auto' : 'smooth' });
   const keys = slotsOf(preset());
-  openSlot(keys.includes(key) ? key : keys[0]);
+  openSlot(keys.includes(key) ? key : keys[0], true);
   rail.querySelector('[aria-selected="true"]')?.focus({ preventScroll: true });
 }
 function exitEdit() {
@@ -775,13 +821,17 @@ function closeEdit() {
   setView(ed.prevView);
   ov.replaceChildren(); ov.removeAttribute('viewBox'); liveRoot.replaceChildren();
 }
-function openSlot(key) {
+function openSlot(key, first) {
   ed.leaving = false;
   ed.key = key; ed.preview = null; ed.query = ''; ed.showBad = false; ed.active = -1; ed.linked = ''; ed.overview = false;
   $('#ep-search').value = '';
   $('#whole').setAttribute('aria-pressed', 'false');
   buildRail(); renderPanel(); labels(); renderLive();
   list.scrollTop = 0;
+  if (!first && isNarrow() && !document.body.hasAttribute('data-unpinned')) {   // the page scrolls, not the list: bring the new header back under the rail
+    const dy = $('.ep-head').getBoundingClientRect().top - (parseFloat(getComputedStyle(rail).top) + rail.offsetHeight);   // sticky offsets, not the rail's live rect: a shortened container clamps that
+    if (dy < 0) scrollBy({ top: dy - 8, behavior: 'instant' });
+  }
   moveView(viewFor(key));
 }
 function stepSlot(d, say) {
@@ -806,7 +856,8 @@ function editRefresh() {
   fitEdit(); buildRail(); renderPanel(); labels(); renderLive();
   moveView(ed.overview ? fullView() : viewFor(ed.key));
 }
-const refit = () => { if (!ed.on || ed.leaving) return; fitEdit(); cancelAnimationFrame(ed.anim); ed.view = ed.overview ? fullView() : viewFor(ed.key); applyView(); };
+const refit = () => { if (!ed.on || ed.leaving) return; fitEdit(); cancelAnimationFrame(ed.anim); ed.view = ed.overview ? fullView() : viewFor(ed.key); applyView(); keepSearch(); };
+const keepSearch = () => { const q = $('#ep-search'); if (isNarrow() && document.activeElement === q) q.scrollIntoView({ block: 'start' }); };   // typing on a phone: results stay above the keyboard
 
 // the rail: every word on the sheet, in reading order; arrows move focus, Enter or Space opens
 function buildRail() {
@@ -830,7 +881,8 @@ function renderPanel() {
   $('#undo').disabled = !st?.undo.length;
   $('#redo').disabled = !st?.redo.length;
   $('#restore').disabled = !E()[vol().id];
-  if (was?.disabled) (['#undo', '#redo'].map($).find((b) => b !== was && !b.disabled) ?? list).focus();
+  syncClear();
+  if (was?.disabled) (['#undo', '#redo'].map($).find((b) => b !== was && !b.disabled) ?? (list.hidden ? rail.querySelector('[aria-selected="true"]') : list)).focus();
   $('#ep-linked').hidden = !ed.linked;
   $('#ep-linked').textContent = ed.linked;
   $('#ep-who').hidden = !who;
@@ -875,7 +927,8 @@ function paintList() {
   const tgl = $('#ep-bad');
   tgl.hidden = !bad.length;
   tgl.setAttribute('aria-expanded', String(ed.showBad));
-  tgl.querySelector('span').textContent = `${ed.showBad ? 'Hide' : 'Show'} ${bad.length} that won’t fit`;
+  tgl.querySelector('span').textContent = bad.length;   // the number is the data; the label is the name
+  nameBtn(tgl, `${ed.showBad ? 'Hide' : 'Show'} ${bad.length} that won’t fit`);
   setActive(ed.active < ed.shown.length ? ed.active : -1, { preview: false, scroll: false });
   if (ed.active < 0) preview(null);
 }
@@ -992,6 +1045,26 @@ function editKeys(ev) {
 
 // ---------- saved words: this browser only; everything still works when storage is blocked
 
+// every saved word: changed slots of each edited volume plus the unchecked ones
+function savedCount() {
+  let words = 0, vols = 0;
+  for (const [s, byId] of Object.entries(state.edits)) for (const [id, p] of Object.entries(byId)) { const n = changedSlots(p, data.series[s].presets[id]).length; if (n) { words += n; vols++; } }
+  for (const byId of Object.values(unchecked)) for (const slots of Object.values(byId)) { const n = Object.keys(slots).length; if (n) { words += n; vols++; } }
+  return { words, vols };
+}
+const syncClear = () => { $('#clear-saved').disabled = !savedCount().words; };
+function clearSaved() {
+  const { words, vols } = savedCount();
+  if (!words || !confirm(`Clear ${words} saved word${words === 1 ? '' : 's'} in ${vols} volume${vols === 1 ? '' : 's'}? Your whoami stays.`)) return;
+  for (const [s, byId] of Object.entries(state.edits)) for (const id of Object.keys(byId)) state.ver[vkey(id, s)] = (state.ver[vkey(id, s)] ?? 0) + 1;
+  for (const k of Object.keys(state.edits)) delete state.edits[k];
+  for (const k of Object.keys(unchecked)) delete unchecked[k];
+  ed.stacks = {}; ed.linked = ''; ed.preview = null; ed.active = -1;
+  inkKey = ''; thumbKeys.clear(); cache.clear();
+  update(); persist(); syncClear();
+  if (ed.on) editRefresh();
+  tell('Saved words cleared', `${words} word${words === 1 ? '' : 's'} in ${vols} volume${vols === 1 ? '' : 's'}`);
+}
 const STORE = 'ks-edits';
 const canStore = (() => { try { localStorage.setItem('ks-probe', '1'); localStorage.removeItem('ks-probe'); return true; } catch { return false; } })();
 // saved words that could not be checked this time, by series and id: a volume whose fetch failed (kept until that
@@ -1106,8 +1179,9 @@ function wire() {
     if (!b) return;
     state.ink = b.dataset.ink; state.role = b.dataset.role;
     update();
-    $('#studio').scrollIntoView({ block: 'start' });
-    $(`#g-${state.ink}-${state.role}`)?.focus({ preventScroll: true });
+    const kb = !ev.detail && isNarrow();   // keyboard on a phone: stay at the card, so the focus ring is on screen
+    if (!kb) $('#studio').scrollIntoView({ block: 'start' });
+    $(`#g-${state.ink}-${state.role}`)?.focus({ preventScroll: !kb });
   });
   $('#series').addEventListener('click', async (ev) => {      // a Live card: use that series in the studio
     const b = ev.target.closest('.use-series');
@@ -1155,6 +1229,7 @@ function wire() {
   });
   list.addEventListener('keydown', listKeys);
   $('#ep-search').addEventListener('keydown', listKeys);
+  $('#ep-search').addEventListener('focus', keepSearch);
   $('#ep-search').addEventListener('input', (ev) => { ed.query = ev.target.value; ed.active = -1; paintList(); });
   list.addEventListener('focus', () => { if (list.matches(':focus-visible') && ed.active < 0 && ed.shown.length) setActive(Math.max(0, ed.shown.findIndex((r) => r.applied))); });
   list.addEventListener('pointermove', (ev) => {
@@ -1169,6 +1244,7 @@ function wire() {
   $('#undo').addEventListener('click', undo);
   $('#redo').addEventListener('click', redo);
   $('#restore').addEventListener('click', () => { if (E()[vol().id]) { ed.linked = ''; commit(D().presets[vol().id], 'All words restored'); } });
+  $('#clear-saved').addEventListener('click', clearSaved);
   $('#edit-open').addEventListener('click', () => enterEdit());
   $('#edit-done').addEventListener('click', exitEdit);
   $('#eb-done').addEventListener('click', exitEdit);
@@ -1183,6 +1259,28 @@ function wire() {
   });
   addEventListener('resize', () => { fit(); refit(); });
   window.visualViewport?.addEventListener('resize', refit);
+}
+
+// ---------- touch tooltips: a long-press on a [data-tip] control shows its tip and does not fire the control; mouse keeps the hover tip
+
+{
+  let timer = 0, held, x0, y0, shown, hideT, eat = false, down = false;   // down: a finger or pen is on the screen
+  const hideTip = () => { clearTimeout(hideT); shown?.classList.remove('tip-on'); shown = null; };
+  const tipOf = (ev) => ev.target.closest?.('[data-tip]');
+  addEventListener('pointerdown', (ev) => {
+    down = ev.pointerType !== 'mouse';
+    if (!down) return;
+    hideTip(); eat = false; held = tipOf(ev); x0 = ev.clientX; y0 = ev.clientY;
+    if (held) timer = setTimeout(show, 500);
+  }, true);
+  function show() { clearTimeout(timer); timer = 0; shown = held; shown.classList.add('tip-on'); eat = true; hideT = setTimeout(hideTip, 1500); }
+  addEventListener('pointermove', (ev) => { if (timer && Math.hypot(ev.clientX - x0, ev.clientY - y0) > 10) { clearTimeout(timer); timer = 0; } }, true);
+  const lift = () => { clearTimeout(timer); timer = 0; if (eat) setTimeout(() => { eat = false; }, 400); };   // no click follows a drag-off: don't eat the next tap
+  addEventListener('pointerup', (ev) => { down = false; lift(ev); }, true);
+  addEventListener('pointercancel', lift, true);
+  addEventListener('click', (ev) => { if (eat) { eat = false; ev.preventDefault(); ev.stopPropagation(); } }, true);
+  // Android's own long-press can beat the timer (and cancel the pointer): take it as the signal
+  addEventListener('contextmenu', (ev) => { if (down && held && tipOf(ev) === held) { ev.preventDefault(); if (!shown) show(); } }, true);
 }
 
 async function start() {
@@ -1203,6 +1301,7 @@ async function start() {
   loads[state.series] = restores[state.series] = Promise.resolve(0);
   state.role = D().index[0].ground;
   buildSwitch(); buildStrip(); buildDrawdown(); buildInkRows(); paintSeries();
+  nameBtn(el.pack, ...packLabel());   // the real count from first paint
   const dropped = await restoreSaved(saved);
   booted = true;
   readWho();

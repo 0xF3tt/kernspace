@@ -290,6 +290,11 @@
           "finding"
         ],
         "as": "off-by-one error"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -475,6 +480,11 @@
           "finding"
         ],
         "as": "undefined behavior"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -1916,6 +1926,294 @@
       ],
       "mat": {
         "slots": []
+      }
+    },
+    {
+      "text": "Null termination",
+      "type": "term",
+      "code": "CWE-170",
+      "meaning": "Ending a C string with its null character; a missing or misplaced terminator lets a copy or read run past the buffer.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/170.html",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ]
+      }
+    },
+    {
+      "text": "Memory safety",
+      "type": "term",
+      "code": "",
+      "meaning": "Freedom from memory-access errors such as out-of-bounds reads and writes; CWE's informal term around CWE-119.",
+      "fame": "iconic",
+      "reference": "https://cwe.mitre.org/data/definitions/119.html",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ]
+      }
+    },
+    {
+      "text": "Write-what-where",
+      "type": "term",
+      "code": "CWE-123",
+      "meaning": "An attacker can write an arbitrary value to an arbitrary address, often as the result of a buffer overflow.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/123.html",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ]
+      }
+    },
+    {
+      "text": "Memory corruption",
+      "type": "term",
+      "code": "",
+      "meaning": "Writing outside a buffer's bounds or to otherwise invalid memory; CWE's alternate term for an out-of-bounds write.",
+      "fame": "iconic",
+      "reference": "https://cwe.mitre.org/data/definitions/787.html",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ]
+      }
+    },
+    {
+      "text": "Out-of-bounds read",
+      "type": "term",
+      "code": "CWE-125",
+      "meaning": "Reading past the end, or before the start, of a buffer; the read-side sibling of a buffer overflow.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/125.html",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ]
+      }
+    },
+    {
+      "text": "Input validation",
+      "type": "term",
+      "code": "",
+      "meaning": "Treating all input as malicious and accepting only what matches a strict specification, its length included.",
+      "fame": "iconic",
+      "reference": "https://cwe.mitre.org/data/definitions/20.html",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ]
+      }
+    },
+    {
+      "text": "Stack canary",
+      "type": "term",
+      "code": "D3-SFCV",
+      "meaning": "A known value kept in a stack frame and checked before return, so an overwrite of the frame is caught.",
+      "fame": "iconic",
+      "reference": "https://d3fend.mitre.org/technique/d3f:StackFrameCanaryValidation/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ]
+      }
+    },
+    {
+      "text": "ASLR",
+      "type": "term",
+      "code": "D3-SAOR",
+      "meaning": "Address Space Layout Randomization: random base addresses for memory segments, so exploits cannot predict them.",
+      "fame": "iconic",
+      "reference": "https://d3fend.mitre.org/technique/d3f:SegmentAddressOffsetRandomization/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ]
+      }
+    },
+    {
+      "text": "FORTIFY_SOURCE",
+      "type": "term",
+      "code": "",
+      "meaning": "GCC flag (Fedora/Red Hat) that CWE-120 lists among compiler mechanisms for automatic buffer overflow detection.",
+      "fame": "niche",
+      "reference": "https://cwe.mitre.org/data/definitions/120.html",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ]
+      }
+    },
+    {
+      "text": "NX bit",
+      "type": "term",
+      "code": "D3-PSEP",
+      "meaning": "Hardware no-execute bit: memory outside the code segment cannot run, so bytes written into a buffer do not execute.",
+      "fame": "niche",
+      "reference": "https://d3fend.mitre.org/technique/d3f:ProcessSegmentExecutionPrevention/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ]
+      }
+    },
+    {
+      "text": "Deprecated · MSC24-C",
+      "type": "id",
+      "code": "MSC24-C",
+      "meaning": "SEI CERT C recommendation: do not use deprecated or obsolescent functions; gets() was eliminated from C11.",
+      "fame": "niche",
+      "reference": "https://cmu-sei.github.io/secure-coding-standards/sei-cert-c-coding-standard/recommendations/miscellaneous-msc/msc24-c/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ]
+      }
+    },
+    {
+      "text": "Array bounds · ARR30-C",
+      "type": "id",
+      "code": "ARR30-C",
+      "meaning": "SEI CERT C rule: do not form or use out-of-bounds pointers or array subscripts.",
+      "fame": "niche",
+      "reference": "https://cmu-sei.github.io/secure-coding-standards/sei-cert-c-coding-standard/rules/arrays-arr/arr30-c/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ]
+      }
+    },
+    {
+      "text": "Truncation · STR03-C",
+      "type": "id",
+      "code": "STR03-C",
+      "meaning": "SEI CERT C recommendation: do not inadvertently truncate a string when a bounded copy cuts it short.",
+      "fame": "niche",
+      "reference": "https://cmu-sei.github.io/secure-coding-standards/sei-cert-c-coding-standard/recommendations/characters-and-strings-str/str03-c/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ]
+      }
+    },
+    {
+      "text": "Allocation · MEM35-C",
+      "type": "id",
+      "code": "MEM35-C",
+      "meaning": "SEI CERT C rule: allocate sufficient memory for an object.",
+      "fame": "niche",
+      "reference": "https://cmu-sei.github.io/secure-coding-standards/sei-cert-c-coding-standard/rules/memory-management-mem/mem35-c/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ]
+      }
+    },
+    {
+      "text": "Library calls · ARR38-C",
+      "type": "id",
+      "code": "ARR38-C",
+      "meaning": "SEI CERT C rule: guarantee that library functions do not form invalid pointers.",
+      "fame": "niche",
+      "reference": "https://cmu-sei.github.io/secure-coding-standards/sei-cert-c-coding-standard/rules/arrays-arr/arr38-c/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ]
+      }
+    },
+    {
+      "text": "Invalid read of size 4",
+      "type": "status-line",
+      "code": "Valgrind Memcheck",
+      "meaning": "Memcheck's report that a program read memory it should not, such as past the end of a heap block.",
+      "fame": "niche",
+      "reference": "https://valgrind.org/docs/manual/mc-manual.html",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "Invalid free()",
+      "type": "status-line",
+      "code": "Valgrind Memcheck",
+      "meaning": "Memcheck's report of a free() on an address that is not the start of a live heap block, such as a double free.",
+      "fame": "niche",
+      "reference": "https://valgrind.org/docs/manual/mc-manual.html",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "realloc() with size 0",
+      "type": "status-line",
+      "code": "Valgrind Memcheck",
+      "meaning": "Memcheck's warning on realloc() with a zero size, which C23 makes undefined behavior.",
+      "fame": "niche",
+      "reference": "https://valgrind.org/docs/manual/mc-manual.html",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "status"
+        ]
       }
     }
   ]
