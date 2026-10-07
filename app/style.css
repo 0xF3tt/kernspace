@@ -388,9 +388,32 @@ input:checked ~ .bracket::after, input:checked + .bracket::after { opacity: 1; t
 .switch input:checked + .track { background-color: var(--pencil-wash); box-shadow: inset 0 0 0 1px var(--pencil); }
 .switch input:checked + .track i { transform: translateX(18px); background: var(--pencil); }
 .switch input:focus-visible + .track { outline: 2px solid var(--pencil); outline-offset: 3px; }
-/* the finish switch: the same switch with its name beside it, the last row of Ink and ground */
-.switch.finish { position: relative; display: flex; justify-content: space-between; gap: 12px; margin-top: 16px; font-size: var(--t-15); color: var(--ink); }
-.finish + .note { margin-top: 4px; }
+/* the finish picker, the last row of Ink and ground on the drawdown's grid: Finish in its 44px name column, None or a
+   family, then that family's stocks in a bare group, so the family keeps the well, one bracket sliding in each; the note;
+   then, while a finish is on, the sheet at full size */
+.finish { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px; align-items: center; margin-top: 16px; }
+.finish-name { font-size: var(--t-13); color: var(--ink-3); line-height: 1.1; }
+.finish .seg { grid-column: 2; }
+.finish .opt { min-width: 0; padding-inline: 0; }
+.finish .opt .name { white-space: nowrap; }   /* each stock keeps one line */
+/* the bare group keeps the family's 3px sides and its bracket's left and width, so both rows share column edges */
+.seg.stock { padding-block: 0; background: none; box-shadow: none; }
+.seg.stock::before { top: 0; bottom: 0; }
+.seg.stock .opt { padding-block: 7px 6px; }
+.seg.stock.fresh::before { transition: none; }   /* a new family's stocks: the bracket lands, it doesn't slide over the new names */
+/* the note, over every finish's note stacked unseen in the same cell (main.js): as tall as the longest at any width */
+.finish-say, .loupe { grid-column: 1 / -1; }
+.finish-say { display: grid; }
+.finish-say > *, .finish-size > * { grid-area: 1 / 1; }
+.finish-size { display: grid; visibility: hidden; }
+.finish .note { margin-top: 0; }
+.finish .note span { display: block; }
+/* one canvas pixel to each screen pixel: main.js sizes the canvas from this box and the pixel ratio. It dims while it shows
+   an older sheet than the stage, after a beat, so a quick redraw doesn't flicker */
+.loupe { margin: 2px 0 0; }
+.loupe canvas { display: block; width: 100%; height: 112px; border-radius: 2px; background: var(--well); box-shadow: var(--thumb-shadow); image-rendering: pixelated; transition: opacity .2s ease; }
+.loupe[aria-busy="true"] canvas { opacity: .55; transition-delay: .5s; }
+.loupe figcaption { margin-top: 6px; font-size: var(--t-12); color: var(--ink-3); }
 
 /* whoami: the handle and the whoami line, laid out as the sheet's box draws them */
 .who {
@@ -691,6 +714,7 @@ body[data-editing] .ruler-y span::after { content: ""; position: absolute; top: 
   body[data-editing]:not([data-unpinned]) .ep :is(input, .orow, button, summary) { scroll-margin: calc(132px + var(--stage-h)) 0 84px; }
   .icon-line, .ep-hist .icon-btn, .ep-tools .icon-btn { width: 44px; height: 44px; }
   .seg-fmt .opt { padding: 13px 4px; }
+  .finish .opt { min-height: 44px; justify-content: center; }
   .ep-foot .linkbtn, #slip-undo { min-height: 44px; min-width: 44px; }
   .ep-foot .linkbtn { display: inline-flex; align-items: center; }   /* min-height does nothing on an inline link */
   .colo-links { gap: 0; }
@@ -779,11 +803,17 @@ body[data-editing] .ruler-y span::after { content: ""; position: absolute; top: 
   .seg-lite .name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .seg-lite .opt { min-width: 44px; min-height: 44px; justify-content: center; padding-inline: 12px; }
 }
-@media (max-width: 400px) { .top .tape { display: none; } }   /* the version is in the footer too */
+@media (max-width: 400px) {
+  .top .tape { display: none; }   /* the version is in the footer too */
+  .finish { grid-template-columns: minmax(0, 1fr); }   /* Finish goes above its picker, so 35 mm fast keeps one line at 15px */
+  .finish .seg { grid-column: 1; }
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .mk-draw { stroke-dashoffset: 0; }
+  /* the crop still dims only after its beat, as a step and not a fade, so a quick redraw doesn't flash */
+  .loupe[aria-busy="true"] canvas { transition: opacity 0s linear .5s !important; }
 }
 @media (forced-colors: active) {
   .bracket::after { background: none; outline: 2px solid Highlight; }

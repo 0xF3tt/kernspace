@@ -127,8 +127,8 @@ function ring(cx, cy, rx, ry) {
   return `M${n(sx)},${n(sy)} ` + [0, 1, 2, 3].map(i => arc(t + i * t / 2, t + (i + 1) * t / 2)).join(' ') + ` ${arc(3 * t, 3 * t + .35, .94)}`;
 }
 
-// preset: parsed presets/<slug>.json · colors: one palette ground · format: FORMATS key · grain: the film grain finish
-export function render({ preset: p, colors, format = 'desktop', handle, motto, fonts, grain = false }) {
+// preset: parsed presets/<slug>.json · colors: one palette ground · format: FORMATS key · texture: a FINISHES key (a film grain or a paper), or none
+export function render({ preset: p, colors, format = 'desktop', handle, motto, fonts, texture = '' }) {
   const key = formatKey(format), g = SPECS[key];
   if (!g) throw new Error(`galley-proof: unknown format ${format}`);
   if (!p?.lines) throw new Error('galley-proof: preset must be a parsed preset object');
@@ -248,5 +248,5 @@ export function render({ preset: p, colors, format = 'desktop', handle, motto, f
   const oflNotice = '<!-- Embedded fonts: Nunito (SIL OFL 1.1, Copyright 2014 The Nunito Project Authors) and JetBrains Mono (SIL OFL 1.1, Copyright 2020 The JetBrains Mono Project Authors). See fonts/README.md -->';
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`
     + `<title>${esc(`kernspace · Galley Proof · ${p.title ?? ''}`)}</title>${oflNotice}<style>${style(g, fonts || {})}</style>`
-    + finish(s.join(''), grain) + '</svg>';
+    + finish(s.join(''), texture) + '</svg>';
 }

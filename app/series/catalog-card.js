@@ -161,8 +161,8 @@ function style(K, fonts) {
     + Object.entries(K).map(([k, [fam, sz, wt, ls]]) => `.${k}{${fam === 'n' ? `font-family:${SANS};` : ''}font-size:${sz}px;font-weight:${wt}${ls ? `;letter-spacing:${ls}em` : ''}}`).join('');
 }
 
-// preset: parsed presets/<slug>.json · colors: one palette ground · format: FORMATS key · grain: the film grain finish
-export function render({ preset: p, colors, format = 'desktop', handle, motto, fonts, grain = false }) {
+// preset: parsed presets/<slug>.json · colors: one palette ground · format: FORMATS key · texture: a FINISHES key (a film grain or a paper), or none
+export function render({ preset: p, colors, format = 'desktop', handle, motto, fonts, texture = '' }) {
   const key = formatKey(format), g = GEOMETRY[key];
   if (!g) throw new Error(`catalog-card: unknown format ${format}`);
   if (!p?.call_number) throw new Error('catalog-card: preset must be a parsed preset object');
@@ -300,5 +300,5 @@ export function render({ preset: p, colors, format = 'desktop', handle, motto, f
   const oflNotice = '<!-- Embedded fonts: Nunito (SIL OFL 1.1, Copyright 2014 The Nunito Project Authors) and JetBrains Mono (SIL OFL 1.1, Copyright 2020 The JetBrains Mono Project Authors). See fonts/README.md -->';
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${CW}" height="${CH}" viewBox="0 0 ${CW} ${CH}">`
     + `<title>${esc(`kernspace · Catalog Card · ${p.title ?? ''}`)}</title>${oflNotice}<style>${style(K, fonts || {})}</style>`
-    + finish(s.join(''), grain) + '</svg>';
+    + finish(s.join(''), texture) + '</svg>';
 }
