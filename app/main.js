@@ -345,6 +345,7 @@ function update() {
   if (radio) radio.checked = true;
   el.sheet.setAttribute('title', `${w} × ${H}`);
   paintStrip();
+  writeLink();
   // the sections below the studio redraw at once, or shortly after the last change while editing
   clearTimeout(belowTimer);
   if (ed.on) { belowTimer = setTimeout(paintBelow, 450); editRefresh(); } else paintBelow();
@@ -427,13 +428,15 @@ async function restoreLate(s) {
   try { return await restoreSeries(s, saved, whoFits()); } catch (err) { console.error(err); unchecked[s] = saved; delete restores[s]; return 0; }
 }
 
-// ---------- your whoami: handle and line, both needed to download
+// ---------- your whoami: handle and line, optional. Empty, the sheet keeps the shipped box; typed, it must print
 
-const ready = () => validHandle(state.handle) && el.handle.value.trim() === state.handle
-  && validMotto(state.motto) && el.motto.value.trim() === state.motto && glyphs('mono', state.motto);
+// readWho only takes a valid value into state, so a field matches state when it is empty or valid
+const ready = () => el.handle.value.trim() === state.handle && el.motto.value.trim() === state.motto;
 function syncDownloads() {
   const ok = ready() && !!current;
   el.png.disabled = el.svg.disabled = el.pack.disabled = !ok;
+  // a hidden need line would still be read out through aria-describedby
+  for (const b of [el.png, el.svg, el.pack]) if (ready()) b.removeAttribute('aria-describedby'); else b.setAttribute('aria-describedby', 'need');
   const was = el.need.hidden;
   el.need.hidden = ready();
   if (was !== el.need.hidden) fit();   // the bar changes height with the need line, and the stage cap counts it
@@ -1084,6 +1087,33 @@ function persist() {
     else localStorage.removeItem(STORE);
   } catch {}
 }
+// the sheet on the stage as a link: series, volume, ink, ground and format, each left out at its default. Words,
+// whoami and grain stay in this browser. A link wins over the series saved here.
+const LINK = ['series', 'vol', 'ink', 'ground', 'format'];
+function readLink() {
+  const q = new URLSearchParams(location.search);
+  return LINK.some((k) => q.has(k)) ? Object.fromEntries(LINK.map((k) => [k, q.get(k)])) : null;
+}
+function useLink(link) {
+  const i = D().index.findIndex((e) => e.vol === Number(link?.vol));
+  if (i > 0) state.i = i;
+  state.role = vol().ground;
+  if (!link) return;
+  if (PALS.includes(link.ink)) state.ink = link.ink;
+  if (ROLES.includes(link.ground)) state.role = link.ground;
+  if (Object.hasOwn(FORMATS, link.format)) state.format = link.format;
+}
+// replaceState, not push: picking sheets doesn't fill the back button. Only on a change (Safari caps the calls).
+function writeLink() {
+  const e = vol(), q = new URLSearchParams(), u = new URL(location.href);
+  if (state.series !== DEFAULT) q.set('series', state.series);
+  if (state.i) q.set('vol', e.vol);
+  if (state.ink !== 'purple') q.set('ink', state.ink);
+  if (state.role !== e.ground) q.set('ground', state.role);
+  if (state.format !== 'desktop') q.set('format', state.format);
+  u.search = q;
+  if (u.href !== location.href) try { history.replaceState(history.state, '', u); } catch {}
+}
 function readSaved() {
   try { return canStore ? migrate(JSON.parse(localStorage.getItem(STORE) ?? 'null')) : null; } catch { return null; }
 }
@@ -1289,8 +1319,9 @@ async function start() {
   json('version.json').then((v) => document.querySelectorAll('[data-version]').forEach((n) => { n.textContent = v.version; }), () => {});
   $('#ep-saved').textContent = canStore ? 'Saved in this browser only.' : 'This browser blocks storage, so your words last until you reload.';
   el.stage.setAttribute('aria-busy', 'true');
-  const saved = readSaved();
-  if (SERIES[saved?.series]) useSeries(saved.series);        // the last series viewed
+  const saved = readSaved(), link = readLink();
+  const first = link ? link.series ?? DEFAULT : saved?.series;   // the linked series, else the last one viewed
+  if (SERIES[first]) useSeries(first);
   const boot = () => load().then(() => true, (err) => { console.error(err); return false; });
   let ok = await boot();
   if (!ok && state.series !== DEFAULT) { useSeries(DEFAULT); ok = await boot(); }   // the saved series would not load: start on the first
@@ -1299,13 +1330,16 @@ async function start() {
     return tell('The wallpaper data could not be loaded.', 'Check your connection and reload the page.', false);
   }
   loads[state.series] = restores[state.series] = Promise.resolve(0);
-  state.role = D().index[0].ground;
+  useLink(link);
   buildSwitch(); buildStrip(); buildDrawdown(); buildInkRows(); paintSeries();
   nameBtn(el.pack, ...packLabel());   // the real count from first paint
   const dropped = await restoreSaved(saved);
   booted = true;
   readWho();
   update();
+  // a linked volume further along: bring it into the strip without moving the page
+  const lab = state.i && el.strip.querySelector(`input[value="${state.i}"]`)?.closest('label');
+  if (lab) el.strip.scrollLeft += lab.getBoundingClientRect().left - el.strip.getBoundingClientRect().left;
   if (Object.keys(unchecked[state.series] ?? {}).length) tell('Some saved words could not be checked.', 'They stay saved: reload the page to bring them back.', false);
   else if (dropped) tell(`${dropped} saved ${dropped === 1 ? 'word was' : 'words were'} left out.`, 'They are no longer in the lexicon or no longer fit. Your other words are back.', false);
   if (canStore) persist();

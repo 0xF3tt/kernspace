@@ -1,13 +1,13 @@
 // The overlap checker and the slot rules, shared by the test (node app/render.test.mjs) and the word editor.
 // A rendered sheet is rebuilt into boxes (app/boxes.js) and judged by its series' rules (app/series/<series>.rules.js,
 // which lists what is checked); this file dispatches on `preset.series` and keeps the exports its callers use.
-import { FORMATS } from './render.js';
+import { FORMATS, MOTTO } from './render.js';
 import { PROBE } from './boxes.js';
 import { SERIES } from './series/index.js';
 
 export { advances, family, glyphs, hull, len, useMetrics, PROBE } from './boxes.js';
 export const { ANGLES, LIMITS } = SERIES['cutting-mat'];       // the slot table of the series the test covers
-export const HANDLES = ['', 'abcdefg', 'x'.repeat(20)];     // default, longest two-line box, three lines
+export const HANDLES = ['', 'a'.repeat(45 - [...MOTTO].length), 'x'.repeat(20)];   // default, longest two-line box (48 with the default line), three lines
 export const MOTTOS = ['', 'x'.repeat(40)];                  // default, longest
 
 // all collisions of one preset in one format, deduplicated across the whoami boxes checked

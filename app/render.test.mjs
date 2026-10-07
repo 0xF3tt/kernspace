@@ -236,7 +236,7 @@ function onCanvas(svg, w, h, where) {
 
 // what only a Galley Proof render must hold: the signature, the roles it draws in, the forms of its paths and turns
 function galleyRender(S, svg, pal, role, fmt, where) {
-  assert.ok(svg.includes(`>0xF3tt · ${MOTTO}</text>`) && svg.includes('>0xF3tt</text>') === (fmt !== 'phone'), `${where}: whoami and the signature`);
+  assert.ok(svg.includes(`>${HANDLE} · ${MOTTO}</text>`) && svg.includes('>0xF3tt</text>') === (fmt !== 'phone'), `${where}: whoami and the signature`);
   if (fmt === 'phone') for (const [, x, t] of svg.matchAll(/<text x="([\d.]+)" y="[\d.]+" class="mt"[^>]*>([^<]*)</g)) assert.ok(+x + 18 * len(t) <= 1230, `${where}: "${t}" runs past x 1230`);
   assert.ok(!/<foreignObject|<div|<script|id="grain"/i.test(svg), `${where}: SVG text only`);
   const c = ground(pal, role), drawn = new Set(S.BAR.map(k => c[k]));   // the roles the sheet draws in
@@ -305,7 +305,7 @@ for (const [sid, S] of Object.entries(SERIES)) for (const [slug, p] of Object.en
     assert.deepEqual(leaked(svg), [], `${where}: bad value in an attribute`);
     assert.deepEqual(unexpected(svg, p, fmt), [], `${where}: text the preset does not hold`);
     for (const s of strings(p, fmt)) assert.ok(svg.includes(`>${esc(s)}</text>`), `${where}: missing ${s}`);
-    assert.ok(svg.includes(`>0xF3tt · ${MOTTO}</text>`), `${where}: default whoami`);
+    assert.ok(svg.includes(`>${HANDLE} · ${MOTTO}</text>`), `${where}: default whoami`);
     assert.ok(svg.includes(fonts.nunito) && svg.includes(fonts.jbm), `${where}: fonts`);
     assert.ok(svg.includes('text{font-family:KMono') && svg.includes('font-variant-ligatures:none'), where);
     if (sid === 'cutting-mat') assert.ok(svg.includes('.t{font-size:') && /\.t\{[^}]*letter-spacing:0;/.test(svg), `${where}: halo labels need letter-spacing 0 (Safari cuts letters)`);
@@ -464,9 +464,9 @@ for (const ok of ['0xF3tt', 'a', 'a.b-c_d', 'x'.repeat(20)]) assert.ok(validHand
 for (const bad of ['', 'x'.repeat(21), 'a b', '<b>', 'ñandú', null, 42]) assert.ok(!validHandle(bad), String(bad));
 for (const ok of [MOTTO, 'a', 'explorando los colores púrpura', 'x'.repeat(LIMITS.motto)]) assert.ok(validMotto(ok), ok);
 for (const bad of ['', ' a', 'a ', 'x'.repeat(LIMITS.motto + 1), 'a\nb', null, 42]) assert.ok(!validMotto(bad), String(bad));
-assert.deepEqual(whoamiLines(''), ['# whoami', `0xF3tt · ${MOTTO}`]);
-assert.deepEqual(whoamiLines('abcdefg'), ['# whoami', `abcdefg · ${MOTTO}`]);          // 48 chars: still 2 lines
-assert.deepEqual(whoamiLines('abcdefgh'), ['# whoami', 'abcdefgh', MOTTO]);            // 49: wraps
+assert.deepEqual(whoamiLines(''), ['# whoami', `${HANDLE} · ${MOTTO}`]);
+assert.deepEqual(whoamiLines(HANDLES[1]), ['# whoami', `${HANDLES[1]} · ${MOTTO}`]);     // 48 chars: still 2 lines
+assert.deepEqual(whoamiLines(`${HANDLES[1]}a`), ['# whoami', `${HANDLES[1]}a`, MOTTO]);   // 49: wraps
 assert.deepEqual(whoamiLines('r2', 'reading the fine print'), ['# whoami', 'r2 · reading the fine print']);
 assert.deepEqual(whoamiLines('x'.repeat(20), 'y'.repeat(40)), ['# whoami', 'x'.repeat(20), 'y'.repeat(40)]);
 const long = 'x'.repeat(20);
@@ -482,7 +482,8 @@ for (const fmt of Object.keys(FORMATS)) {
   const svg = render({ preset: p, colors, format: fmt, handle: 'r2_labs', motto: 'reading the fine print', fonts });
   const right = (fmt === 'phone' ? p.phone?.data?.right : null) ?? p.data.right;
   assert.ok(svg.includes(`>${esc(right.replace('{handle}', 'r2_labs'))}</text>`), `${fmt}: status line follows the handle`);
-  assert.ok(!svg.includes('{handle}') && !svg.includes('>0xF3tt · '), `${fmt}: no default name left in the prompt or the whoami box`);
+  const box = [...svg.matchAll(/class="w"[^>]*>([^<]*)</g)].map(m => m[1]).join('\n');   // the side label also says kernspace
+  assert.ok(!svg.includes('{handle}') && !box.includes(HANDLE) && !svg.includes(`>${esc(right.replace('{handle}', HANDLE))}<`), `${fmt}: no default name left in the prompt or the whoami box`);
   assert.ok(svg.includes('>0xF3tt</text>'), `${fmt}: signature stays 0xF3tt`);
   assert.ok(svg.includes('>r2_labs · reading the fine print</text>'), `${fmt}: whoami line`);
 }
@@ -968,7 +969,7 @@ const card = { renders: 0, sheets: 0 };   // what this block ran besides the ser
     assert.deepEqual(leaked(svg), [], `${where}: bad value in an attribute`);
     assert.deepEqual(unexpected(svg, p, fmt), [], `${where}: text the preset does not hold`);
     for (const t of strings(p, fmt)) assert.ok(svg.includes(`>${esc(t)}</text>`), `${where}: missing ${t}`);
-    assert.ok(svg.includes(`>0xF3tt · ${MOTTO}</text>`), `${where}: default whoami`);
+    assert.ok(svg.includes(`>${HANDLE} · ${MOTTO}</text>`), `${where}: default whoami`);
     assert.ok(svg.includes(fonts.nunito) && svg.includes(fonts.jbm) && svg.includes('text{font-family:KMono') && svg.includes('font-variant-ligatures:none'), `${where}: fonts`);
     balanced(svg);
     onCanvas(svg, w, h, where);

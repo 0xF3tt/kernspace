@@ -6,8 +6,8 @@ export const FORMATS = {
   phone: { w: 1290, h: 2796, label: 'Phone' },
 };
 
-export const HANDLE = '0xF3tt';                     // default handle: the whoami box and the status line
-export const MOTTO = 'somewhere exploring the purple colors.';   // default whoami line
+export const HANDLE = 'kernspace';                   // default handle: the whoami box and the status line
+export const MOTTO = 'privileged space, carefully kerned.';   // default whoami line
 const XML = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' };
 
 // XML-escape text and attribute values; also drops control chars XML 1.0 forbids
