@@ -4,7 +4,7 @@ The design line of the site ([`index.html`](index.html), [`app/style.css`](app/s
 
 ## Idea
 
-The page is a print-shop desk. Sheets lie in a well on the desk, and the interface marks them the way a designer marks a proof: non-photo-blue pencil for what is selected, red pencil for what is wrong. Nothing on the page is there for decoration; every mark says something, like the marks on the sheets.
+The page is a print-shop desk, in black and white so the sheets carry all the color. Sheets lie on a neutral grey tile, never on the page itself, and the interface marks them the way a designer marks a proof: a blue pencil for what is selected, a red pencil for what is wrong. Nothing on the page is there for decoration; every mark says something, like the marks on the sheets.
 
 ## Color
 
@@ -12,19 +12,19 @@ Every color is a token on `:root`. Dark is the default; light redefines the same
 
 | Token | Dark | Light | Use |
 |---|---|---|---|
-| `--desk` | `#0E0C15` | `#F4F3F8` | Page ground |
-| `--well` | `#0A0911` | `#EAE8F1` | The stage a sheet lies on |
-| `--raised` | `#17141F` | `#FFFFFF` | Controls, keycaps, slips |
-| `--hair` | `#262233` | `#DDD9E7` | Hairlines |
-| `--control` | `#6A6383` | `#8E88A6` | Input and track edges, 3:1 against the ground |
-| `--ink` | `#EDEAF6` | `#16122A` | Text; the one filled button |
-| `--ink-2`, `--ink-3` | `#ADA7C2`, `#948EAB` | `#4A445F`, `#686280` | Secondary and tertiary text |
-| `--pencil` | `#7FCBDA` | `#1A6B80` | Annotation only: selection, focus, the marks in *Read the mat* / *Read the specimen* / *Read the galley* / *Read the card* |
+| `--desk` | `#000000` | `#FFFFFF` | Page ground |
+| `--well` | `#1D1D1F` | `#F5F5F7` | The tile a sheet lies on: neutral grey, so no page color touches a sheet |
+| `--raised` | `#1D1D1F` | `#FFFFFF` | Controls, keycaps, slips |
+| `--hair` | `#424245` | `#D2D2D7` | Hairlines |
+| `--control` | `#6E6E73` | `#86868B` | Input and track edges, 3:1 against the ground and the tile |
+| `--ink` | `#F5F5F7` | `#1D1D1F` | Text; the one filled button |
+| `--ink-2`, `--ink-3` | `#A1A1A6`, `#86868B` | `#424245`, `#6E6E73` | Secondary and tertiary text, 4.5:1 on the ground and the tile |
+| `--pencil` | `#2997FF` | `#0066CC` | Annotation only: selection, focus, the marks in *Read the mat* / *Read the specimen* / *Read the galley* / *Read the card* |
 | `--pencil-sheet` | `#8FD6E4` | same | Pencil drawn over a sheet, in both themes |
-| `--rubric` | `#F2939C` | `#B42A2A` | Errors, and why a word doesn't fit |
+| `--rubric` | `#FF453A` | `#E30000` | Errors, and why a word doesn't fit |
 | `--tape` | ink at 8% | ink at 6% | Hover wash |
 
-Pencil never fills a button at rest, and rubric never decorates. The sheets keep their own palettes in both themes.
+Pencil never fills a button at rest, and rubric never decorates. Pencil and rubric are nearly the same brightness, so they are told apart by hue: after protan, deutan and tritan simulation they stay at least ΔE00 50 apart. The sheets keep their own palettes in both themes.
 
 ## Type
 

@@ -1,6 +1,6 @@
 /* kernspace · the studio. The proofing desk: the sheet is the hero, framed by crop marks and rulers in real
-   pixels; the chrome is ink on paper so the four inks carry all the color. Non-photo blue (the pre-press pencil)
-   marks everything that is annotation: selection, focus, guides, explanations.
+   pixels; the chrome is black and white so the four inks carry all the color, and every sheet lies on a neutral grey
+   tile, never on the page. The blue pencil marks everything that is annotation: selection, focus, guides, explanations.
    DESIGN.md explains the tokens and the components. No inline styles anywhere: the CSP allows only this file. */
 
 @font-face { font-family: "Newsreader"; src: url("../fonts/newsreader/Newsreader-Variable.ttf") format("truetype"); font-weight: 200 800; font-style: normal; font-display: swap; }
@@ -11,21 +11,21 @@
 @font-face { font-family: "KMono"; src: url("../fonts/jetbrains-mono/JetBrainsMono-Variable.ttf") format("truetype"); font-weight: 100 800; font-display: block; }
 
 :root {
-  /* dark first: aniline night */
-  --desk: #0E0C15;          /* page ground */
-  --well: #0A0911;          /* the stage the sheet lies on */
-  --raised: #17141F;        /* controls, keycaps, slips */
-  --hair: #262233;          /* hairlines */
-  --control: #6A6383;       /* input and track edges, 3:1 */
-  --ink: #EDEAF6;           /* text, primary button */
-  --ink-2: #ADA7C2;
-  --ink-3: #948EAB;
-  --on-ink: #0E0C15;
-  --pencil: #7FCBDA;        /* non-photo blue: annotation only */
-  --pencil-wash: rgba(127, 203, 218, .13);
+  /* dark first: black, with the near-black tile every sheet lies on */
+  --desk: #000000;          /* page ground */
+  --well: #1D1D1F;          /* the tile a sheet lies on: neutral grey, never the page */
+  --raised: #1D1D1F;        /* controls, keycaps, slips */
+  --hair: #424245;          /* hairlines */
+  --control: #6E6E73;       /* input and track edges, 3:1 */
+  --ink: #F5F5F7;           /* text, primary button */
+  --ink-2: #A1A1A6;
+  --ink-3: #86868B;
+  --on-ink: #000000;
+  --pencil: #2997FF;        /* the blue pencil: annotation only */
+  --pencil-wash: rgba(41, 151, 255, .16);
   --pencil-sheet: #8FD6E4;  /* drawn over sheets, same in both themes */
-  --rubric: #F2939C;        /* the red pencil: errors */
-  --tape: rgba(237, 234, 246, .08);
+  --rubric: #FF453A;        /* the red pencil: errors */
+  --tape: rgba(245, 245, 247, .08);
   --shadow: 0 1px 0 rgba(255, 255, 255, .04) inset, 0 40px 80px -40px rgba(0, 0, 0, .85), 0 12px 24px -16px rgba(0, 0, 0, .6);
   --thumb-shadow: 0 1px 2px rgba(0, 0, 0, .5), 0 0 0 1px rgba(255, 255, 255, .05);
 
@@ -39,20 +39,20 @@
 }
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
-    --desk: #F4F3F8; --well: #EAE8F1; --raised: #FFFFFF; --hair: #DDD9E7; --control: #8E88A6;
-    --ink: #16122A; --ink-2: #4A445F; --ink-3: #686280; --on-ink: #F4F3F8;
-    --pencil: #1A6B80; --pencil-wash: rgba(31, 122, 145, .10); --rubric: #B42A2A; --tape: rgba(22, 18, 42, .06);
-    --shadow: 0 1px 0 rgba(255, 255, 255, .6) inset, 0 34px 60px -34px rgba(22, 18, 42, .45), 0 10px 20px -14px rgba(22, 18, 42, .3);
-    --thumb-shadow: 0 1px 2px rgba(22, 18, 42, .2), 0 0 0 1px rgba(22, 18, 42, .06);
+    --desk: #FFFFFF; --well: #F5F5F7; --raised: #FFFFFF; --hair: #D2D2D7; --control: #86868B;
+    --ink: #1D1D1F; --ink-2: #424245; --ink-3: #6E6E73; --on-ink: #FFFFFF;
+    --pencil: #0066CC; --pencil-wash: rgba(0, 102, 204, .10); --rubric: #E30000; --tape: rgba(29, 29, 31, .06);
+    --shadow: 0 1px 0 rgba(255, 255, 255, .6) inset, 0 34px 60px -34px rgba(0, 0, 0, .28), 0 10px 20px -14px rgba(0, 0, 0, .18);
+    --thumb-shadow: 0 1px 2px rgba(0, 0, 0, .14), 0 0 0 1px rgba(0, 0, 0, .06);
     color-scheme: light;
   }
 }
 :root[data-theme="light"] {
-  --desk: #F4F3F8; --well: #EAE8F1; --raised: #FFFFFF; --hair: #DDD9E7; --control: #8E88A6;
-  --ink: #16122A; --ink-2: #4A445F; --ink-3: #686280; --on-ink: #F4F3F8;
-  --pencil: #1A6B80; --pencil-wash: rgba(31, 122, 145, .10); --rubric: #B42A2A; --tape: rgba(22, 18, 42, .06);
-  --shadow: 0 1px 0 rgba(255, 255, 255, .6) inset, 0 34px 60px -34px rgba(22, 18, 42, .45), 0 10px 20px -14px rgba(22, 18, 42, .3);
-  --thumb-shadow: 0 1px 2px rgba(22, 18, 42, .2), 0 0 0 1px rgba(22, 18, 42, .06);
+  --desk: #FFFFFF; --well: #F5F5F7; --raised: #FFFFFF; --hair: #D2D2D7; --control: #86868B;
+  --ink: #1D1D1F; --ink-2: #424245; --ink-3: #6E6E73; --on-ink: #FFFFFF;
+  --pencil: #0066CC; --pencil-wash: rgba(0, 102, 204, .10); --rubric: #E30000; --tape: rgba(29, 29, 31, .06);
+  --shadow: 0 1px 0 rgba(255, 255, 255, .6) inset, 0 34px 60px -34px rgba(0, 0, 0, .28), 0 10px 20px -14px rgba(0, 0, 0, .18);
+  --thumb-shadow: 0 1px 2px rgba(0, 0, 0, .14), 0 0 0 1px rgba(0, 0, 0, .06);
   color-scheme: light;
 }
 
@@ -143,7 +143,7 @@ button { font: inherit; color: inherit; }
 }
 [data-version]:empty { visibility: hidden; }   /* until version.json arrives */
 .tape-pencil { background: transparent; color: var(--pencil); box-shadow: inset 0 0 0 1px var(--pencil); }
-.tape i { width: 14px; height: 5px; border-radius: 3px; background: var(--c, var(--ink-3)); box-shadow: 0 0 0 1px rgba(128, 128, 150, .28); flex: none; }
+.tape i { width: 14px; height: 5px; border-radius: 3px; background: var(--c, var(--ink-3)); box-shadow: 0 0 0 1px rgba(130, 130, 130, .28); flex: none; }
 
 /* ---------- intro */
 .intro .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 46ch); align-items: end; gap: 16px 48px; padding-block: 44px 28px; }
@@ -220,7 +220,7 @@ button { font: inherit; color: inherit; }
 .menubar {
   position: absolute; left: 0; right: 0; top: 0; height: 2.6%;
   display: flex; align-items: center; gap: .9cqw; padding-inline: 1.2cqw;
-  background: rgba(18, 16, 28, .38); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  background: rgba(18, 18, 18, .38); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
   font-size: 1.05cqw; font-weight: 500;
 }
 .menubar i { display: block; height: .55cqw; border-radius: 1cqw; background: currentColor; opacity: .8; }
@@ -257,11 +257,11 @@ button { font: inherit; color: inherit; }
 .peek.p1 { left: 6.822cqw; width: 86.357cqw; top: 188.217cqw; }
 .peek.p2 { left: 9.922cqw; width: 80.155cqw; top: 189.612cqw; }
 .lock-btn { position: absolute; bottom: 3.6%; width: 12.5cqw; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center;
-  background: rgba(20, 18, 28, .38); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: #fff; }
+  background: rgba(19, 19, 19, .38); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: #fff; }
 .lock-btn svg { width: 45%; height: 45%; }
 .lock-btn.l { left: 10%; } .lock-btn.r { right: 10%; }
 .stage[data-view="screen"] .sheet[data-format="phone"] { border-radius: calc(var(--w) * .13); }
-.stage[data-view="screen"] .sheet[data-format="phone"] > img { border-radius: inherit; box-shadow: 0 0 0 5px #0B0A0F, 0 0 0 6px var(--control), var(--shadow); }
+.stage[data-view="screen"] .sheet[data-format="phone"] > img { border-radius: inherit; box-shadow: 0 0 0 5px #0B0B0B, 0 0 0 6px var(--control), var(--shadow); }
 .stage[data-view="screen"] .sheet[data-format="phone"] .ruler { opacity: 0; }
 
 .slug-row { display: flex; align-items: center; justify-content: space-between; gap: 12px 20px; flex-wrap: wrap; margin-top: 12px; }
@@ -339,7 +339,7 @@ input:checked ~ .bracket::after, input:checked + .bracket::after { opacity: 1; t
     linear-gradient(to bottom right, transparent calc(50% - .8px), var(--fg) calc(50% - .8px), var(--fg) calc(50% + .8px), transparent calc(50% + .8px)),
     repeating-linear-gradient(90deg, var(--tb) 0 4px, transparent 4px 7px) 0 38% / 100% 1px no-repeat,
     var(--bg);
-  box-shadow: inset 0 0 0 1px rgba(128, 128, 150, .22);
+  box-shadow: inset 0 0 0 1px rgba(130, 130, 130, .22);
   transition: transform .15s var(--ease);
 }
 .cell .chip::before { content: ""; position: absolute; right: 14%; top: 16%; width: 30%; height: 4px; border-radius: 2px; background: var(--c1); }
@@ -445,6 +445,7 @@ input:checked ~ .bracket::after, input:checked + .bracket::after { opacity: 1; t
 /* read the mat */
 .read-grid { display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 48px; align-items: start; }
 .read-fig { position: sticky; top: 92px; margin: 0; aspect-ratio: 16 / 9; max-width: 100%; container-type: inline-size; }
+.read-fig img { box-shadow: 0 0 0 10px var(--well), var(--shadow); }   /* the tile as a spread, so the key's marks stay on the sheet */
 .read-fig img.dim { filter: brightness(.48) saturate(.6); }
 .read-fig svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
 .mk { fill: rgba(143, 214, 228, .16); stroke: var(--pencil-sheet); stroke-width: 2.5; vector-effect: non-scaling-stroke; }
@@ -454,7 +455,7 @@ input:checked ~ .bracket::after, input:checked + .bracket::after { opacity: 1; t
 .pin {
   position: absolute; transform: translate(-50%, -50%);
   padding: 5px 10px; border-radius: 999px; white-space: nowrap;
-  background: #0B0A10; color: var(--pencil-sheet); box-shadow: inset 0 0 0 1px var(--pencil-sheet);
+  background: #0B0B0B; color: var(--pencil-sheet); box-shadow: inset 0 0 0 1px var(--pencil-sheet);
   font: 500 1.05cqw/1 var(--data); font-size: max(11px, 1.05cqw);
   animation: rise .25s ease both;
 }
@@ -482,7 +483,7 @@ input:checked ~ .bracket::after, input:checked + .bracket::after { opacity: 1; t
 .gcard .face { position: relative; display: block; }
 .gcard img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 2px; box-shadow: var(--thumb-shadow); background: var(--raised); transition: transform .2s var(--ease); }
 @media (hover: hover) { .gcard:hover img { transform: translateY(-2px); } }
-.colorbar { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); height: 10px; border-radius: 1px; overflow: hidden; box-shadow: 0 0 0 1px rgba(128, 128, 150, .2); }
+.colorbar { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); height: 10px; border-radius: 1px; overflow: hidden; box-shadow: 0 0 0 1px rgba(130, 130, 130, .2); }
 .gmeta { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
 .gmeta b { font-size: var(--t-17); font-weight: 560; }
 .gmeta .mono { font-size: 11px; color: var(--ink-3); }
@@ -501,6 +502,8 @@ input:checked ~ .bracket::after, input:checked + .bracket::after { opacity: 1; t
 .sheetlet .use-series { align-self: flex-start; margin-top: 4px; }
 .sheetlet .art.bracket { --bi: -7px; }
 .sheetlet[data-current] .art.bracket::after { opacity: 1; transform: none; }
+/* every sheet lies on the tile, never on the page: the strip, the inks and the series take the stage's grey as a mat */
+.frame .face, .gcard .face, .sheetlet .art { background: var(--well); padding: clamp(5px, 3%, 10px); border-radius: 6px; }
 
 /* colophon + sign-off */
 .colophon .wrap { padding-block: 72px 40px; }
@@ -584,17 +587,17 @@ body[data-editing] .ruler-y span::after { content: ""; position: absolute; top: 
 .ov { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 2; }
 .ov .br { fill: none; stroke: var(--pencil-sheet); stroke-width: 2.5; vector-effect: non-scaling-stroke; stroke-linecap: square; }
 .ov .br.dash { stroke-dasharray: 5 4; }
-.ov .br.fixed { stroke: #A7A1BC; stroke-dasharray: 2 4; }
+.ov .br.fixed { stroke: #A4A4A4; stroke-dasharray: 2 4; }
 .ov .ghost { fill: rgba(143, 214, 228, .06); stroke: var(--pencil-sheet); stroke-opacity: .6; stroke-width: 1.2; stroke-dasharray: 4 4; vector-effect: non-scaling-stroke; }
 .ov .obst { fill: rgba(242, 147, 156, .16); stroke: #F2939C; stroke-width: 2; vector-effect: non-scaling-stroke; }
 .ov .clock { fill: rgba(242, 147, 156, .12); stroke: #F2939C; stroke-width: 1.5; stroke-dasharray: 6 4; vector-effect: non-scaling-stroke; }
 /* light grounds (ditto, greenbar, redline, whiteprint): the same marks in darker pencil and rubric, 4.5:1 or more */
 .sheet[data-ground="light"] .ov .br, .sheet[data-ground="light"] .ov .ghost { stroke: #1F6E82; stroke-opacity: 1; }
-.sheet[data-ground="light"] .ov .br.fixed { stroke: #686280; }
+.sheet[data-ground="light"] .ov .br.fixed { stroke: #666666; }
 .sheet[data-ground="light"] .ov .obst, .sheet[data-ground="light"] .ov .clock { stroke: #B42A2A; }
 .sheet.can-edit { cursor: pointer; }
 .sheet-pin { z-index: 3; pointer-events: none; transform: translate(-50%, -100%); }
-.sheet-pin.fixed { color: #C9C4DA; box-shadow: inset 0 0 0 1px #6B6585; }
+.sheet-pin.fixed { color: #C7C7C7; box-shadow: inset 0 0 0 1px #696969; }
 
 /* slot rail: the sheet's words, in reading order, as tape */
 .rail { gap: 8px; margin: 14px -6px 0; padding: 8px 6px 10px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: thin; scrollbar-color: var(--hair) transparent; }
@@ -607,7 +610,7 @@ body[data-editing] .ruler-y span::after { content: ""; position: absolute; top: 
 .rchip[aria-selected="true"] { color: var(--ink); background: var(--pencil-wash); }
 .rchip[aria-selected="true"]::after { opacity: 1; transform: none; }
 .rchip.edited::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--pencil); flex: none; }
-.rchip .sw { flex: none; background: var(--c); box-shadow: 0 0 0 1px rgba(128, 128, 150, .3); }
+.rchip .sw { flex: none; background: var(--c); box-shadow: 0 0 0 1px rgba(130, 130, 130, .3); }
 .rchip .sw.h { width: 14px; height: 5px; border-radius: 3px; }
 .rchip .sw.v { width: 5px; height: 14px; border-radius: 3px; }
 .rchip .sw.q { width: 8px; height: 8px; }
