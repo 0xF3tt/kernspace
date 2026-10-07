@@ -17,7 +17,7 @@
 
 A proposal, not a rule: a different way cyber could look.
 
-> **Status:** 1.0.0-beta.6. A web app draws Cutting Mat, Specimen, Galley Proof and Catalog Card wallpapers in your browser: pick a series, a volume, an ink, one of its three grounds and a format, add a film grain finish if you want, preview it on a screen, change the words from the volume's own lexicon, fill in your `# whoami` (a handle and a line of your own, both needed to download), then download PNG or SVG. Nothing is uploaded, and your edits stay in your browser.
+> **Status:** 1.0.0-beta.7. A web app draws Cutting Mat, Specimen, Galley Proof and Catalog Card wallpapers in your browser: pick a series, a volume, an ink, one of its three grounds and a format, add a film grain finish if you want, preview it on a screen, change the words from the volume's own lexicon, fill in your `# whoami` (a handle and a line of your own, both needed to download), then download PNG or SVG. Nothing is uploaded, and your edits stay in your browser.
 
 ## How it works
 
@@ -84,7 +84,7 @@ Vercel serves the repo root as a static site; [`vercel.json`](vercel.json) adds 
 Versions follow [SemVer](https://semver.org): `1.0.0-beta.N` while in beta, then `1.0.0-rc.N`, then `1.0.0`. The label on the site comes from [`version.json`](version.json), the only place it is written. To release: change it in a pull request, merge, then tag that commit with `v` + the version and push the tag. CI fails the tag if it doesn't match `version.json`. Release notes live in [GitHub Releases](https://github.com/0xF3tt/kernspace/releases).
 
 ```sh
-git tag -s v1.0.0-beta.6 -m "1.0.0-beta.6" && git push origin v1.0.0-beta.6
+git tag -s v1.0.0-beta.7 -m "1.0.0-beta.7" && git push origin v1.0.0-beta.7
 ```
 
 ## Palettes
