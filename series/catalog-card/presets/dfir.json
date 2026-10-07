@@ -1,0 +1,21 @@
+{
+  "series": "catalog-card", "topic": "dfir", "title": "Vol. 12 · Evidence", "ground": "light",
+  "phrase": ["Collect first,", "conclude later."],
+  "drawer_label": "DFIR · MA–ME",
+  "guide_tabs": ["Forensics", "Cloud evidence", "Audit logs", "Mailbox audit"],
+  "call_number": ["T1114.002", "AU-11", "RS.AN-08"],
+  "main_entry": "MailItemsAccessed",
+  "definition": "Logs mail items a client or protocol accessed by bind or sync, scoping what an intruder may have read.",
+  "collation": "2-min binds ; folder syncs ; kept 90 days",
+  "correction_struck": "90 days", "correction_new": "180 days",
+  "notes": ["Standard: NIST SP 800-53 Rev. 5 (Sep 2020).", "Transition: Purview 180 days (17 Oct 2023)."],
+  "drafts": [],
+  "tracings_subject": ["Unified audit log", "Patient zero", "Anti-forensics", "Super timeline"],
+  "tracings_added": ["Mailbox auditing", "Retention policy"],
+  "see_also": ["Clear mail · T1070.008", "Forwarding · T1114.003"],
+  "rod_invariant": "keep mailbox auditing on",
+  "circulation_dates": ["2023-06 reported", "2023-07 expanded", "2023-10 180 days"],
+  "label": "DFIR CATALOG CARD · VOL. 12 · EVIDENCE",
+  "data": { "left": "EVIDENCE SEALED", "right": "{handle} · git:(main) · purple learns" },
+  "phone": { "definition": "Logs mail items a client accessed by bind or sync, to scope what an intruder may have read.", "data": { "right": "{handle} · purple learns" } }
+}

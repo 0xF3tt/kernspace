@@ -1,0 +1,21 @@
+{
+  "series": "catalog-card", "topic": "infosec", "title": "Vol. 15 · Trust", "ground": "mid",
+  "phrase": ["Trust has limits,", "so label them."],
+  "drawer_label": "INFOSEC · TH–TO",
+  "guide_tabs": ["Security", "Info sharing", "Designations", "Traffic Light"],
+  "call_number": ["ID.RA-02", "AC-21", "SP 800-150"],
+  "main_entry": "TLP",
+  "definition": "Traffic Light Protocol: the sender marks shared information with a color that says how far it may travel.",
+  "collation": "4 labels ; WHITE = no limit",
+  "correction_struck": "WHITE", "correction_new": "CLEAR",
+  "notes": ["Standard: TLP 2.0, FIRST (Aug 2022).", "Transition: TLP 1.0 usable to 31 Dec 2022."],
+  "drafts": [],
+  "tracings_subject": ["Information sharing", "Chatham House Rule", "Confidentiality"],
+  "tracings_added": ["Need to know", "TLP:AMBER+STRICT"],
+  "see_also": ["Zero trust · SP 800-207", "Least Privilege · AC-6"],
+  "rod_invariant": "only the source widens it",
+  "circulation_dates": ["2016-08 TLP 1.0", "2022-08 TLP 2.0", "2022-12 1.0 ends"],
+  "label": "INFOSEC CATALOG CARD · VOL. 15 · TRUST",
+  "data": { "left": "Authorization to Operate", "right": "{handle} · git:(main) · purple learns" },
+  "phone": { "definition": "Traffic Light Protocol: marks shared information with a color for how far it may travel.", "data": { "right": "{handle} · purple learns" } }
+}

@@ -99,6 +99,12 @@
         "slots": [
           "family"
         ]
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Poisoning · LLM05:2026"
       }
     },
     {
@@ -494,6 +500,12 @@
         "slots": [
           "family"
         ]
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "Data poisoning"
       }
     },
     {
@@ -542,6 +554,12 @@
         "slots": [
           "family"
         ]
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Tool poison · AML.T0110"
       }
     },
     {
@@ -566,6 +584,12 @@
         "slots": [
           "family"
         ]
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Rug pull · AML.T0109"
       }
     },
     {
@@ -624,6 +648,11 @@
       "mat": {
         "slots": [
           "control"
+        ]
+      },
+      "card": {
+        "slots": [
+          "added"
         ]
       }
     },
@@ -691,7 +720,13 @@
       "series": [
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Supply chain · AML.T0010"
+      }
     },
     {
       "text": "Tay",
@@ -1163,6 +1198,11 @@
         "slots": [
           "control"
         ]
+      },
+      "card": {
+        "slots": [
+          "added"
+        ]
       }
     },
     {
@@ -1191,7 +1231,8 @@
       "reference": "https://huggingface.co/docs/transformers/model_doc/auto",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -1200,6 +1241,12 @@
       },
       "spec": {
         "slots": []
+      },
+      "card": {
+        "slots": [
+          "added"
+        ],
+        "as": "trust_remote_code"
       }
     },
     {
@@ -1211,7 +1258,8 @@
       "reference": "https://atlas.mitre.org/studies/AML.CS0064",
       "series": [
         "cutting-mat",
-        "specimen"
+        "specimen",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -1222,6 +1270,11 @@
       "spec": {
         "slots": [
           "hero"
+        ]
+      },
+      "card": {
+        "slots": [
+          "subject"
         ]
       }
     },
@@ -1241,6 +1294,11 @@
           "flow"
         ],
         "as": "model card"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -1251,12 +1309,18 @@
       "fame": "iconic",
       "reference": "",
       "series": [
-        "cutting-mat"
+        "cutting-mat",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
           "source",
           "flow"
+        ]
+      },
+      "card": {
+        "slots": [
+          "subject"
         ]
       }
     },
@@ -1459,6 +1523,12 @@
           "rating"
         ],
         "as": "slopsquatting"
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Slopsquat · AML.T0060"
       }
     },
     {
@@ -1501,6 +1571,12 @@
           "finding"
         ],
         "as": "sleeper agents"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "Sleeper agents"
       }
     },
     {
@@ -1599,7 +1675,8 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -1615,6 +1692,12 @@
           "status"
         ],
         "as": "UNTRUSTED · QUARANTINED"
+      },
+      "card": {
+        "slots": [
+          "status"
+        ],
+        "as": "UNTRUSTED · QUARANTINED"
       }
     },
     {
@@ -1626,7 +1709,8 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -1638,6 +1722,12 @@
         "slots": []
       },
       "galley": {
+        "slots": [
+          "status"
+        ],
+        "as": "TOOL CALL HELD · HITL"
+      },
+      "card": {
         "slots": [
           "status"
         ],
@@ -1653,7 +1743,8 @@
       "reference": "",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -1664,6 +1755,12 @@
         "slots": []
       },
       "galley": {
+        "slots": [
+          "status"
+        ],
+        "as": "SIGNATURE VERIFIED"
+      },
+      "card": {
         "slots": [
           "status"
         ],
@@ -1972,7 +2069,8 @@
       "reference": "",
       "series": [
         "specimen",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "spec": {
         "slots": [
@@ -1983,6 +2081,11 @@
         "slots": []
       },
       "galley": {
+        "slots": [
+          "status"
+        ]
+      },
+      "card": {
         "slots": [
           "status"
         ]
@@ -1997,7 +2100,8 @@
       "reference": "",
       "series": [
         "specimen",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "spec": {
         "slots": [
@@ -2008,6 +2112,12 @@
         "slots": []
       },
       "galley": {
+        "slots": [
+          "status"
+        ],
+        "as": "SIGNED · HASH MATCH"
+      },
+      "card": {
         "slots": [
           "status"
         ],
@@ -2078,6 +2188,12 @@
         "slots": [
           "class"
         ]
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "Agentic supply chain"
       }
     },
     {
@@ -2364,6 +2480,56 @@
           "errata"
         ],
         "as": "for LLM10:2025 read LLM06:2026"
+      }
+    },
+    {
+      "text": "Unsafe AI Artifacts",
+      "type": "id",
+      "code": "AML.T0011.000",
+      "meaning": "ATLAS sub-technique: a model or bundled file that harms its host when loaded, run or used for inference.",
+      "fame": "niche",
+      "reference": "https://atlas.mitre.org/techniques/AML.T0011.000",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "Unsafe AI artifacts"
+      }
+    },
+    {
+      "text": "Verify AI Artifacts",
+      "type": "id",
+      "code": "AML.M0014",
+      "meaning": "ATLAS mitigation: check the cryptographic checksum of every AI artifact to catch tampering.",
+      "fame": "niche",
+      "reference": "https://atlas.mitre.org/mitigations/AML.M0014",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ],
+        "as": "Verify AI artifacts"
+      }
+    },
+    {
+      "text": "Pickle scanning",
+      "type": "term",
+      "code": "",
+      "meaning": "Hub-side check that lists the imports inside a pickle file without running it; a filter, not a guarantee.",
+      "fame": "niche",
+      "reference": "https://huggingface.co/docs/hub/security-pickle",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ]
       }
     }
   ]

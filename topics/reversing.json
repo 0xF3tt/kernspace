@@ -292,6 +292,12 @@
           "rating"
         ],
         "as": "software packing"
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Packing · T1027.002"
       }
     },
     {
@@ -313,6 +319,40 @@
       }
     },
     {
+      "text": "T1497.001 System Checks",
+      "type": "id",
+      "code": "T1497.001",
+      "meaning": "ATT&CK sub-technique: reading hardware and system properties to tell a VM or sandbox from a real host.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/techniques/T1497/001/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "System checks"
+      }
+    },
+    {
+      "text": "T1497.002 User Activity Based Checks",
+      "type": "id",
+      "code": "T1497.002",
+      "meaning": "ATT&CK sub-technique: waiting for mouse, keyboard or document activity that a sandbox lacks.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/techniques/T1497/002/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "User-activity checks"
+      }
+    },
+    {
       "text": "T1027 Obfuscated Files or Information",
       "type": "id",
       "code": "T1027",
@@ -321,7 +361,13 @@
       "reference": "https://attack.mitre.org/techniques/T1027/",
       "series": [
         "catalog-card"
-      ]
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Obfuscation · T1027"
+      }
     },
     {
       "text": "T1055.012 Process Hollowing",
@@ -346,6 +392,12 @@
           "rating"
         ],
         "as": "process hollowing"
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Hollowing · T1055.012"
       }
     },
     {
@@ -650,6 +702,12 @@
           "rating"
         ],
         "as": "debugger evasion"
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Debugger evasion · T1622"
       }
     },
     {
@@ -667,6 +725,12 @@
         "slots": [
           "class"
         ]
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Dynamic API · T1027.007"
       }
     },
     {
@@ -691,6 +755,12 @@
         "slots": [
           "class"
         ]
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Env keying · T1480.001"
       }
     },
     {
@@ -719,6 +789,12 @@
         "slots": [
           "class"
         ]
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "Debugger detection"
       }
     },
     {
@@ -753,6 +829,12 @@
         "slots": [
           "class"
         ]
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "VM detection"
       }
     },
     {
@@ -803,6 +885,12 @@
           "rating"
         ],
         "as": "API hashing"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "API hashing"
       }
     },
     {
@@ -829,6 +917,12 @@
           "rating"
         ],
         "as": "stack strings"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "Stack strings"
       }
     },
     {
@@ -854,6 +948,12 @@
           "rating"
         ],
         "as": "opaque predicate"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "Opaque predicate"
       }
     },
     {
@@ -878,6 +978,12 @@
       "spec": {
         "slots": [
           "rating"
+        ],
+        "as": "API hammering"
+      },
+      "card": {
+        "slots": [
+          "subject"
         ],
         "as": "API hammering"
       }
@@ -1161,6 +1267,12 @@
           "errata"
         ],
         "as": "for PEiD read Detect It Easy"
+      },
+      "card": {
+        "slots": [
+          "added"
+        ],
+        "as": "Detect It Easy"
       }
     },
     {
@@ -1179,6 +1291,12 @@
           "errata"
         ],
         "as": "for Cuckoo read CAPEv2"
+      },
+      "card": {
+        "slots": [
+          "added"
+        ],
+        "as": "CAPEv2"
       }
     },
     {
@@ -1222,6 +1340,12 @@
           "errata"
         ],
         "as": "for YARA read YARA-X"
+      },
+      "card": {
+        "slots": [
+          "added"
+        ],
+        "as": "YARA-X"
       }
     },
     {
@@ -1234,7 +1358,13 @@
       "series": [
         "catalog-card",
         "galley-proof"
-      ]
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ],
+        "as": "FLOSS"
+      }
     },
     {
       "text": "capa",
@@ -1246,7 +1376,12 @@
       "series": [
         "specimen",
         "catalog-card"
-      ]
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ]
+      }
     },
     {
       "text": "imphash",
@@ -1442,9 +1577,15 @@
       "reference": "https://docs.hex-rays.com/ida-actions/options",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "galley": {
+        "slots": [
+          "status"
+        ]
+      },
+      "card": {
         "slots": [
           "status"
         ]
@@ -1459,9 +1600,15 @@
       "reference": "https://docs.hex-rays.com/core/decompiler/failures",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "galley": {
+        "slots": [
+          "status"
+        ]
+      },
+      "card": {
         "slots": [
           "status"
         ]
@@ -1476,9 +1623,15 @@
       "reference": "https://man7.org/linux/man-pages/man7/signal.7.html",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "galley": {
+        "slots": [
+          "status"
+        ]
+      },
+      "card": {
         "slots": [
           "status"
         ]

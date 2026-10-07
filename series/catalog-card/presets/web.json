@@ -1,0 +1,21 @@
+{
+  "series": "catalog-card", "topic": "web", "title": "Vol. 05 · Origin", "ground": "dark",
+  "phrase": ["Mind", "the origin."],
+  "drawer_label": "WEB · SA–SE",
+  "guide_tabs": ["HTTP", "Cookies", "Set-Cookie", "Attributes"],
+  "call_number": ["CWE-284", "CWE-923", "CWE-1275"],
+  "main_entry": "SameSite attribute",
+  "definition": "A cookie attribute that tells the browser whether to send the cookie with requests that another site starts.",
+  "collation": "3 values ; Chrome default: None",
+  "correction_struck": "None", "correction_new": "Lax",
+  "notes": ["Standard: RFC 6265bis draft (Dec 2025).", "Transition: Chrome 80 Lax default (2020)."],
+  "drafts": ["circulation_dates.4"],
+  "tracings_subject": ["CSRF", "XSS"],
+  "tracings_added": ["CSRF token"],
+  "see_also": ["Web Origin · RFC 6454"],
+  "rod_invariant": "never rely on the default",
+  "circulation_dates": ["2016-05 SameSite", "2020-02 enforced", "2020-04 rollback", "2020-07 resumed", "2025-12 approved"],
+  "label": "WEB CATALOG CARD · VOL. 05 · ORIGIN",
+  "data": { "left": "401 Unauthorized", "right": "{handle} · git:(main) · blue builds" },
+  "phone": { "definition": "Tells the browser whether to send a cookie on requests that another site starts.", "data": { "right": "{handle} · blue builds" } }
+}

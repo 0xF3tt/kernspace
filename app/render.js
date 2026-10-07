@@ -39,6 +39,43 @@ export const GRAIN = '<filter id="grain" x="0" y="0" width="100%" height="100%" 
 // a sheet's body (everything after its <style>), with the grain over it or as it is
 export const finish = (body, grain) => (grain ? `<defs>${GRAIN}</defs><g filter="url(#grain)">${body}</g>` : body);
 
+// Tag a PNG as sRGB: canvas exports carry no color chunk, and an untagged PNG may be read in the display's own space
+// (Display P3 on a Mac), which shifts every ink. Adds an sRGB chunk (perceptual) after IHDR unless one is there already.
+const CRC = Array.from({ length: 256 }, (_, n) => { for (let k = 0; k < 8; k++) n = n & 1 ? 0xEDB88320 ^ (n >>> 1) : n >>> 1; return n >>> 0; });
+export const crc32 = b => (b.reduce((c, v) => CRC[(c ^ v) & 255] ^ (c >>> 8), -1) ^ -1) >>> 0;
+export function srgbPNG(bytes) {
+  const dv = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength), at = 8 + 12 + dv.getUint32(8);   // signature, then IHDR
+  for (let i = 8; i + 8 <= bytes.length; i += 12 + dv.getUint32(i)) {
+    const t = String.fromCharCode(...bytes.subarray(i + 4, i + 8));
+    if (t === 'sRGB' || t === 'iCCP') return bytes;
+    if (t === 'IDAT') break;
+  }
+  const chunk = new Uint8Array(13), cv = new DataView(chunk.buffer);
+  cv.setUint32(0, 1); chunk.set([0x73, 0x52, 0x47, 0x42, 0], 4); cv.setUint32(9, crc32(chunk.subarray(4, 9)));   // length 1, "sRGB", intent 0
+  const out = new Uint8Array(bytes.length + 13);
+  out.set(bytes.subarray(0, at)); out.set(chunk, at); out.set(bytes.subarray(at), at + 13);
+  return out;
+}
+
+// A ZIP of files, STORED (a PNG is compressed already): local headers, central directory, end record. 32-bit sizes, UTF-8 names.
+export function zip(files) {
+  const d = new Date(), time = d.getHours() << 11 | d.getMinutes() << 5 | d.getSeconds() >> 1;
+  const date = Math.max(0, d.getFullYear() - 1980) << 9 | (d.getMonth() + 1) << 5 | d.getDate();
+  const enc = new TextEncoder(), parts = [], dir = [];
+  let at = 0;
+  const put = (n, ...v) => { const b = new Uint8Array(n), dv = new DataView(b.buffer); let o = 0; for (const [w, x] of v) { w === 2 ? dv.setUint16(o, x, true) : dv.setUint32(o, x, true); o += w; } return b; };
+  for (const { name, bytes } of files) {
+    const nm = enc.encode(name), crc = crc32(bytes), common = [[2, 0x0800], [2, 0], [2, time], [2, date], [4, crc], [4, bytes.length], [4, bytes.length], [2, nm.length], [2, 0]];
+    parts.push(put(30, [4, 0x04034b50], [2, 20], ...common), nm, bytes);
+    dir.push(put(46, [4, 0x02014b50], [2, 20], [2, 20], ...common, [2, 0], [2, 0], [2, 0], [4, 0], [4, at]), nm);   // comment length, disk, internal and external attrs, local header offset
+    at += 30 + nm.length + bytes.length;
+  }
+  const size = dir.reduce((n, b) => n + b.length, 0), out = new Uint8Array(at + size + 22);
+  let o = 0;
+  for (const b of [...parts, ...dir, put(22, [4, 0x06054b50], [2, 0], [2, 0], [2, files.length], [2, files.length], [4, size], [4, at], [2, 0])]) { out.set(b, o); o += b.length; }
+  return out;
+}
+
 const FONT_FILES = {
   nunito: 'fonts/nunito/Nunito-Variable.ttf',
   jbm: 'fonts/jetbrains-mono/JetBrainsMono-Variable.ttf',

@@ -40,6 +40,12 @@
           "rating"
         ],
         "as": "AS-REP roasting"
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "AS-REP roast · T1558.004"
       }
     },
     {
@@ -64,6 +70,11 @@
           "rating"
         ],
         "as": "golden ticket"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -88,6 +99,11 @@
           "rating"
         ],
         "as": "silver ticket"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -691,11 +707,17 @@
       "reference": "RFC 4120",
       "series": [
         "specimen",
-        "cutting-mat"
+        "cutting-mat",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
           "flow"
+        ]
+      },
+      "card": {
+        "slots": [
+          "subject"
         ]
       }
     },
@@ -708,7 +730,8 @@
       "reference": "RFC 4120",
       "series": [
         "specimen",
-        "cutting-mat"
+        "cutting-mat",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -721,6 +744,11 @@
           "hero"
         ],
         "as": "KDC"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -750,13 +778,19 @@
       "reference": "MS Learn",
       "series": [
         "specimen",
-        "cutting-mat"
+        "cutting-mat",
+        "catalog-card"
       ],
       "spec": {
         "slots": [
           "hero"
         ],
         "as": "SPN"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -976,8 +1010,14 @@
       "reference": "MS Learn",
       "series": [
         "specimen",
-        "galley-proof"
-      ]
+        "galley-proof",
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ]
+      }
     },
     {
       "text": "dMSA",
@@ -990,7 +1030,12 @@
         "specimen",
         "galley-proof",
         "catalog-card"
-      ]
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ]
+      }
     },
     {
       "text": "Protected Users",
@@ -1849,6 +1894,12 @@
         "slots": [
           "family"
         ]
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Kerberos · RFC 4120"
       }
     },
     {
@@ -2031,6 +2082,203 @@
         "slots": [
           "finding"
         ]
+      }
+    },
+    {
+      "text": "Service account",
+      "type": "term",
+      "code": "",
+      "meaning": "Account a service runs under; once it has an SPN, any domain user can ask the KDC for a ticket to it.",
+      "fame": "iconic",
+      "reference": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-service-accounts",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ]
+      }
+    },
+    {
+      "text": "Password Policies",
+      "type": "term",
+      "code": "M1027",
+      "meaning": "ATT&CK mitigation: long, complex, regularly expiring passwords for service accounts, or managed accounts such as gMSA.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/mitigations/M1027/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ],
+        "as": "Password policies"
+      }
+    },
+    {
+      "text": "Privileged Account Management",
+      "type": "term",
+      "code": "M1026",
+      "meaning": "ATT&CK mitigation: give service accounts only the privileges they need, and no seat in groups such as Domain Admins.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/mitigations/M1026/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ],
+        "as": "Privileged accounts"
+      }
+    },
+    {
+      "text": "Password Cracking",
+      "type": "id",
+      "code": "T1110.002",
+      "meaning": "ATT&CK sub-technique: recovering passwords offline by testing guesses against captured hashes or encrypted data.",
+      "fame": "iconic",
+      "reference": "https://attack.mitre.org/techniques/T1110/002/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Cracking · T1110.002"
+      }
+    },
+    {
+      "text": "SP 800-53 · SC-13",
+      "type": "id",
+      "code": "SC-13",
+      "meaning": "SP 800-53 Rev. 5 control Cryptographic Protection: use the cryptography the system's policy calls for.",
+      "fame": "niche",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ]
+      }
+    },
+    {
+      "text": "SP 800-53 · IA-5(1)",
+      "type": "id",
+      "code": "IA-5(1)",
+      "meaning": "SP 800-53 Rev. 5 control Password-based Authentication: rules for how passwords are set, kept and checked.",
+      "fame": "niche",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ]
+      }
+    },
+    {
+      "text": "KDC_ERR_ETYPE_NOTSUPP",
+      "type": "status-line",
+      "code": "0xE",
+      "meaning": "Kerberos failure code 0xE: the KDC has no support for the requested encryption type.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4769",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "KDC_ERR_PREAUTH_REQUIRED",
+      "type": "status-line",
+      "code": "0x19",
+      "meaning": "Kerberos failure code 0x19: additional pre-authentication is required.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4769",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "KDC_ERR_PREAUTH_FAILED",
+      "type": "status-line",
+      "code": "0x18",
+      "meaning": "Kerberos failure code 0x18: the pre-authentication information was invalid.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4769",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "KRB_AP_ERR_SKEW",
+      "type": "status-line",
+      "code": "0x25",
+      "meaning": "Kerberos failure code 0x25: the clock skew is too great.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4769",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "status"
+        ]
+      }
+    },
+    {
+      "text": "Kerberos encryption types",
+      "type": "term",
+      "code": "",
+      "meaning": "The ciphers a Kerberos account supports, such as RC4-HMAC or AES-SHA1, set in msDS-SupportedEncryptionTypes.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-kile/6cfc7b50-11ed-4b4d-846d-6f08f0812919",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "Encryption types"
+      }
+    },
+    {
+      "text": "Limit or disable RC4 usage",
+      "type": "term",
+      "code": "",
+      "meaning": "Microsoft guidance for Kerberos: scope RC4 with Group Policy, or switch it off for the whole domain.",
+      "fame": "niche",
+      "reference": "https://learn.microsoft.com/en-us/windows-server/security/kerberos/detect-remediate-rc4-kerberos",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ],
+        "as": "Disable RC4"
       }
     }
   ]

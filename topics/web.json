@@ -30,7 +30,13 @@
       "series": [
         "catalog-card",
         "galley-proof"
-      ]
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Web Origin · RFC 6454"
+      }
     },
     {
       "text": "CORS",
@@ -102,6 +108,12 @@
           "hero"
         ],
         "as": "XSS"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "XSS"
       }
     },
     {
@@ -137,6 +149,12 @@
           "rating"
         ],
         "as": "CSRF on settings"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ],
+        "as": "CSRF"
       }
     },
     {
@@ -285,6 +303,11 @@
           "flow"
         ],
         "as": "Set-Cookie"
+      },
+      "card": {
+        "slots": [
+          "see"
+        ]
       }
     },
     {
@@ -422,7 +445,8 @@
       "reference": "https://www.rfc-editor.org/rfc/rfc9110#section-15.5.2",
       "series": [
         "specimen",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "spec": {
         "slots": [
@@ -430,6 +454,11 @@
         ]
       },
       "galley": {
+        "slots": [
+          "status"
+        ]
+      },
+      "card": {
         "slots": [
           "status"
         ]
@@ -445,7 +474,8 @@
       "series": [
         "cutting-mat",
         "specimen",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -458,6 +488,11 @@
         ]
       },
       "galley": {
+        "slots": [
+          "status"
+        ]
+      },
+      "card": {
         "slots": [
           "status"
         ]
@@ -1029,7 +1064,8 @@
       "series": [
         "cutting-mat",
         "specimen",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -1042,6 +1078,11 @@
         ]
       },
       "galley": {
+        "slots": [
+          "status"
+        ]
+      },
+      "card": {
         "slots": [
           "status"
         ]
@@ -1231,6 +1272,12 @@
           "errata"
         ],
         "as": "for RFC 7231 read RFC 9110"
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "HTTP · RFC 9110"
       }
     },
     {
@@ -1548,6 +1595,11 @@
         "slots": [
           "status"
         ]
+      },
+      "card": {
+        "slots": [
+          "status"
+        ]
       }
     },
     {
@@ -1732,6 +1784,86 @@
       },
       "spec": {
         "slots": []
+      }
+    },
+    {
+      "text": "CSRF token",
+      "type": "term",
+      "code": "",
+      "meaning": "Secret, unpredictable per-session value the server requires on every state-changing request; a CSRF defense.",
+      "fame": "iconic",
+      "reference": "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ]
+      }
+    },
+    {
+      "text": "SameSite=Strict",
+      "type": "snippet",
+      "code": "",
+      "meaning": "Cookie sent only with same-site requests, even withheld on links from other sites. The strictest SameSite value.",
+      "fame": "iconic",
+      "reference": "https://datatracker.ietf.org/doc/draft-ietf-httpbis-rfc6265bis/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ]
+      }
+    },
+    {
+      "text": "Public Suffix List",
+      "type": "artifact",
+      "code": "",
+      "meaning": "List of public suffixes, a Mozilla initiative kept as a community resource; browsers use it to find registrable domains.",
+      "fame": "niche",
+      "reference": "https://publicsuffix.org/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ]
+      }
+    },
+    {
+      "text": "Top-level navigation",
+      "type": "term",
+      "code": "",
+      "meaning": "RFC 6265bis: a navigation of a top-level traversable; SameSite=Lax cookies are sent with cross-site ones.",
+      "fame": "niche",
+      "reference": "https://datatracker.ietf.org/doc/draft-ietf-httpbis-rfc6265bis/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ]
+      }
+    },
+    {
+      "text": "Site for cookies",
+      "type": "term",
+      "code": "",
+      "meaning": "RFC 6265bis: the origin same-site is judged against; for a page in a top-level traversable, its top-level origin.",
+      "fame": "niche",
+      "reference": "https://datatracker.ietf.org/doc/draft-ietf-httpbis-rfc6265bis/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     }
   ]

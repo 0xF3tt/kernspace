@@ -3,9 +3,11 @@
 import { render } from './cutting-mat.js';
 import { render as renderSpecimen } from './specimen.js';
 import { render as renderGalley } from './galley-proof.js';
+import { render as renderCard } from './catalog-card.js';
 import * as cuttingMat from './cutting-mat.rules.js';
 import * as specimenRules from './specimen.rules.js';
 import * as galleyRules from './galley-proof.rules.js';
+import * as cardRules from './catalog-card.rules.js';
 
 export const SERIES = {
   'cutting-mat': {
@@ -26,5 +28,11 @@ export const SERIES = {
     glyph: '<rect x="3.5" y="1.5" width="8" height="15"/><path d="M13.5 12h1.5c1.8 0 2.4-1.7 1.4-2.8s-3-.2-2.5 1.2 2.2 1.6 3.1.4" stroke-width="1.2"/>',   // a tall galley strip and a small dele loop beside it
     BAR: ['bg', 'minor', 'text', 'text2', 'rule', 'frame', 'data', 'chip1'],
     render: renderGalley, ...galleyRules,
+  },
+  'catalog-card': {
+    name: 'Catalog Card', dir: 'series/catalog-card/presets', hint: 'card', typed: ['catalog-card'],   // by type it offers only the status lines written for it; every heading needs a hint
+    glyph: '<path d="M3 4.5V2.5h5v2"/><rect x="1.5" y="4.5" width="15" height="11" rx="1"/><path d="M3.5 8h11"/><circle cx="9" cy="12.8" r="1.3"/>',   // a card with its header rule and rod hole, a guide tab behind
+    BAR: ['bg', 'major', 'angle', 'frame', 'rule', 'text', 'text2', 'chip1'],
+    render: renderCard, ...cardRules,
   },
 };

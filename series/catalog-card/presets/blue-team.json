@@ -1,0 +1,21 @@
+{
+  "series": "catalog-card", "topic": "blue-team", "title": "Vol. 08 · Detect", "ground": "light",
+  "phrase": ["Hashes change.", "Habits don't."],
+  "drawer_label": "BLUE TEAM · DE–DI",
+  "guide_tabs": ["Defenses", "Detections", "Strategies", "Analytics"],
+  "call_number": ["DE.AE-02", "SI-4", "AU-6"],
+  "main_entry": "Detection strategy",
+  "definition": "Plans how to catch one adversary technique, with analytics that name the log sources they read.",
+  "collation": "918 strategies ; reads Data source",
+  "correction_struck": "Data source", "correction_new": "Data component",
+  "notes": ["Standard: MITRE v19, Detections (Apr 2026).", "Transition: DS0001–DS0038 retired, Oct 2025."],
+  "drafts": [],
+  "tracings_subject": ["Log source", "Blind spots", "Pyramid of Pain", "Alert fatigue"],
+  "tracings_added": ["Sigma specification", "Detection-as-Code"],
+  "see_also": ["Process Spawn · D3-PSA", "Audit Generation · AU-12"],
+  "rod_invariant": "no log source, no detection",
+  "circulation_dates": ["2021-10 DS v10", "2025-10 DET v18", "2026-04 v19"],
+  "label": "BLUE TEAM CATALOG CARD · VOL. 08 · DETECT",
+  "data": { "left": "True Positive", "right": "{handle} · git:(main) · blue builds" },
+  "phone": { "data": { "right": "{handle} · blue builds" } }
+}

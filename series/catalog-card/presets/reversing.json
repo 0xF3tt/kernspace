@@ -1,0 +1,21 @@
+{
+  "series": "catalog-card", "topic": "reversing", "title": "Vol. 11 · Unpack", "ground": "mid",
+  "phrase": ["If it sleeps,", "ask why."],
+  "drawer_label": "REVERSING · SA–SE",
+  "guide_tabs": ["Reversing", "Malware", "Anti-analysis", "Environment"],
+  "call_number": ["T1497", "TA0005", "TA0007"],
+  "main_entry": "Sandbox evasion",
+  "definition": "Checks whether it runs in a virtual machine or analysis sandbox, then changes behavior or goes quiet.",
+  "collation": "3 sub-techniques ; .003: Time Based Evasion",
+  "correction_struck": "Time Based Evasion", "correction_new": "Time Based Checks",
+  "notes": ["Standard: MITRE T1497, v19 (Apr 2026).", "Transition: v18 renamed T1497.003, Oct 2025."],
+  "drafts": [],
+  "tracings_subject": ["System checks", "User-activity checks", "VM detection", "API hammering"],
+  "tracings_added": ["capa", "YARA-X"],
+  "see_also": ["Debugger evasion · T1622", "Env keying · T1480.001"],
+  "rod_invariant": "the lab must look lived-in",
+  "circulation_dates": ["2019-04 T1497", "2025-10 renamed", "2026-04 Stealth"],
+  "label": "REVERSING CATALOG CARD · VOL. 11 · UNPACK",
+  "data": { "left": "Trace/breakpoint trap", "right": "{handle} · git:(main) · purple learns" },
+  "phone": { "definition": "Checks whether it runs in a virtual machine or sandbox, then changes behavior or goes quiet.", "data": { "right": "{handle} · purple learns" } }
+}

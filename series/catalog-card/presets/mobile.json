@@ -1,0 +1,21 @@
+{
+  "series": "catalog-card", "topic": "mobile", "title": "Vol. 04 · Device", "ground": "light",
+  "phrase": ["Trust the chip,", "not the phone."],
+  "drawer_label": "MOBILE · DA–DO",
+  "guide_tabs": ["App security", "Mobile apps", "Resilience", "OS integrity"],
+  "call_number": ["TA0029", "T1404", "M1002"],
+  "main_entry": "Device attestation",
+  "definition": "Gives the backend signed evidence that a request comes from a genuine, uncompromised device, not a rooted one.",
+  "collation": "nonce 16–500 ; 10,000 calls/day ; SafetyNet",
+  "correction_struck": "SafetyNet", "correction_new": "Play Integrity",
+  "notes": ["Standard: MASVS-RESILIENCE-1, v2.1.0 (2024).", "Transition: Android 13+ verdicts (May 2025)."],
+  "drafts": [],
+  "tracings_subject": ["Rooting", "Jailbreak", "Verified boot", "StrongBox"],
+  "tracings_added": ["Key attestation", "App Attest"],
+  "see_also": ["Root check · MASWE-0051", "Emulators · MASWE-0053"],
+  "rod_invariant": "server checks, not the app",
+  "circulation_dates": ["2017-08 API 26", "2020-09 iOS 14", "2022-06 deprecated", "2025-01 turndown"],
+  "label": "MOBILE CATALOG CARD · VOL. 04 · DEVICE",
+  "data": { "left": "MEETS_STRONG_INTEGRITY", "right": "{handle} · git:(main) · blue builds" },
+  "phone": { "definition": "Gives the backend signed evidence that a request comes from a genuine device, not a rooted one.", "data": { "right": "{handle} · blue builds" } }
+}

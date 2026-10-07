@@ -17,7 +17,7 @@
 
 A proposal, not a rule: a different way cyber could look.
 
-> **Status:** 1.0.0-beta.6. A web app draws Cutting Mat, Specimen and Galley Proof wallpapers in your browser: pick a series, a volume, an ink, one of its three grounds and a format, add a film grain finish if you want, preview it on a screen, change the words from the volume's own lexicon, fill in your `# whoami` (a handle and a line of your own, both needed to download), then download PNG or SVG. Nothing is uploaded, and your edits stay in your browser.
+> **Status:** 1.0.0-beta.7. A web app draws Cutting Mat, Specimen, Galley Proof and Catalog Card wallpapers in your browser: pick a series, a volume, an ink, one of its three grounds and a format, add a film grain finish if you want, preview it on a screen, change the words from the volume's own lexicon, fill in your `# whoami` (a handle and a line of your own, both needed to download), then download PNG or SVG. Nothing is uploaded, and your edits stay in your browser.
 
 ## How it works
 
@@ -25,19 +25,19 @@ Every piece is a combination of four things:
 
 | Axis | What it is | Today |
 |---|---|---|
-| **Series** | A layout borrowed from graphic design, where each element carries a security meaning | `cutting-mat` · `specimen` · `galley-proof` (15 volumes each) · `catalog-card` (concept) |
-| **Topic** (a volume) | A researched lexicon of one field's real vocabulary | 15 topics · 1,657 verified terms |
+| **Series** | A layout borrowed from graphic design, where each element carries a security meaning | `cutting-mat` · `specimen` · `galley-proof` · `catalog-card` (15 volumes each) |
+| **Topic** (a volume) | A researched lexicon of one field's real vocabulary | 15 topics · 1,743 verified terms |
 | **Palette** (an ink) | A color system with three grounds, contrast-checked (WCAG) and simulated for protan, deutan and tritan vision | `purple` · `green` · `red` · `blue` |
 | **Format** | Output size | `desktop` 3840×2160 · `wide` 3840×2400 (16:10) · `phone` 1290×2796 |
 
-Three series are on press; one more is drawn in pencil and waiting for press.
+Four series are on press.
 
 | Series | Status | What it is |
 |---|---|---|
 | Cutting Mat | Live | A designer's cutting mat, read as a threat model: rulers, a taint path, trust boundaries and tape. |
 | Specimen | Live | A foundry type specimen. The field's core primitive is set as a typeface, with the one unhandled case left as an empty box. |
 | Galley Proof | Live | Security review as proofreading. Each finding gets the proofreader's mark that matches the fix; the advisory is an errata slip. |
-| Catalog Card | Concept | Every concept catalogued like a book: a call number from a real framework, one typed definition, corrections in pencil. |
+| Catalog Card | Live | Every concept catalogued like a book: a call number from a real framework, one typed definition, corrections in pencil. |
 
 ## Layout
 
@@ -61,15 +61,16 @@ Serve the repo root with any static server and open it:
 python3 -m http.server 8000
 ```
 
-Check the renderer, the word editor and the lexicons (Node 20+, no installs):
+Check the renderer, the word editor, the lexicons and the palettes (Node 20+, no installs):
 
 ```sh
 node app/render.test.mjs
 node app/words.test.mjs
 node app/lexicon.test.mjs
+node app/palette.test.mjs
 ```
 
-The first renders every preset of every series in every palette, ground and format and runs each series' overlap checker (and checks that the checker fires on broken sheets); the second takes a sample of the words the editor offers for each series, applies them and runs the same checker on each result; the third lints every lexicon (shape, allowed values, length limits, duplicates) so a proposed term can be checked before review.
+The first renders every preset of every series in every palette, ground and format and runs each series' overlap checker (and checks that the checker fires on broken sheets); the second takes a sample of the words the editor offers for each series, applies them and runs the same checker on each result; the third lints every lexicon (shape, allowed values, length limits, duplicates) so a proposed term can be checked before review; the fourth lints every palette ground (WCAG contrast of text and marks, chip separation in CIEDE2000 under normal and color-blind vision, and lightness for Galley Proof's thin proof marks).
 
 ## Deploy
 
@@ -83,7 +84,7 @@ Vercel serves the repo root as a static site; [`vercel.json`](vercel.json) adds 
 Versions follow [SemVer](https://semver.org): `1.0.0-beta.N` while in beta, then `1.0.0-rc.N`, then `1.0.0`. The label on the site comes from [`version.json`](version.json), the only place it is written. To release: change it in a pull request, merge, then tag that commit with `v` + the version and push the tag. CI fails the tag if it doesn't match `version.json`. Release notes live in [GitHub Releases](https://github.com/0xF3tt/kernspace/releases).
 
 ```sh
-git tag -s v1.0.0-beta.6 -m "1.0.0-beta.6" && git push origin v1.0.0-beta.6
+git tag -s v1.0.0-beta.7 -m "1.0.0-beta.7" && git push origin v1.0.0-beta.7
 ```
 
 ## Palettes
@@ -105,8 +106,8 @@ Each ink comes from the history of print and computing, and each ground is a rea
 4. ~~Cutting Mat presets for all 15 topics~~
 5. ~~Specimen series: renderer, series switch and all 15 topics~~
 6. ~~Galley Proof series: renderer, proof marks from the Chicago Manual of Style and all 15 topics~~
-7. New series: Catalog Card
-8. ~~Lint for lexicons in CI~~ · lint for palettes and presets
+7. ~~Catalog Card series: renderer, call numbers from real frameworks and all 15 topics~~
+8. ~~Lint for lexicons in CI~~ · ~~lint for palettes~~ · lint for presets
 
 ## How it's made
 

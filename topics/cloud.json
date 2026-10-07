@@ -78,7 +78,8 @@
       "series": [
         "cutting-mat",
         "galley-proof",
-        "specimen"
+        "specimen",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -97,6 +98,11 @@
           "note"
         ],
         "as": "blast radius"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -156,6 +162,12 @@
           "errata"
         ],
         "as": "for IMDSv1 read IMDSv2"
+      },
+      "card": {
+        "slots": [
+          "added"
+        ],
+        "as": "IMDSv2"
       }
     },
     {
@@ -167,7 +179,12 @@
       "reference": "https://attack.mitre.org/techniques/T1552/005/",
       "series": [
         "catalog-card"
-      ]
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ]
+      }
     },
     {
       "text": "Public S3 bucket",
@@ -179,7 +196,8 @@
       "series": [
         "cutting-mat",
         "galley-proof",
-        "specimen"
+        "specimen",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -198,6 +216,11 @@
           "note"
         ],
         "as": "public S3 bucket"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -326,11 +349,17 @@
       "reference": "https://kubernetes.io/docs/concepts/security/pod-security-standards/",
       "series": [
         "galley-proof",
-        "cutting-mat"
+        "cutting-mat",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
           "finding"
+        ]
+      },
+      "card": {
+        "slots": [
+          "subject"
         ]
       }
     },
@@ -404,6 +433,11 @@
           "phrase"
         ],
         "as": "Write the guardrail once as code, then check every deploy."
+      },
+      "card": {
+        "slots": [
+          "added"
+        ]
       }
     },
     {
@@ -515,6 +549,11 @@
           "rating"
         ],
         "as": "cryptojacking"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -650,6 +689,11 @@
           "rating"
         ],
         "as": "toxic combination"
+      },
+      "card": {
+        "slots": [
+          "subject"
+        ]
       }
     },
     {
@@ -779,12 +823,18 @@
       "reference": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
           "status",
           "note"
+        ]
+      },
+      "card": {
+        "slots": [
+          "status"
         ]
       }
     },
@@ -828,6 +878,12 @@
           "rating"
         ],
         "as": "metadata API abuse"
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Metadata API · T1552.005"
       }
     },
     {
@@ -858,6 +914,12 @@
           "rating"
         ],
         "as": "cloud account abuse"
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Cloud accts · T1078.004"
       }
     },
     {
@@ -869,7 +931,8 @@
       "reference": "https://attack.mitre.org/techniques/T1530/",
       "series": [
         "specimen",
-        "cutting-mat"
+        "cutting-mat",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -882,6 +945,12 @@
           "rating"
         ],
         "as": "cloud data theft"
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Cloud storage · T1530"
       }
     },
     {
@@ -1005,12 +1074,18 @@
       "reference": "https://kubernetes.io/docs/concepts/security/pod-security-admission/",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
           "status",
           "note"
+        ]
+      },
+      "card": {
+        "slots": [
+          "status"
         ]
       }
     },
@@ -1023,11 +1098,17 @@
       "reference": "https://kubernetes.io/docs/concepts/security/pod-security-standards/",
       "series": [
         "galley-proof",
-        "cutting-mat"
+        "cutting-mat",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
           "note"
+        ]
+      },
+      "card": {
+        "slots": [
+          "added"
         ]
       }
     },
@@ -1052,7 +1133,13 @@
       "series": [
         "catalog-card",
         "cutting-mat"
-      ]
+      ],
+      "card": {
+        "slots": [
+          "added"
+        ],
+        "as": "Admission policy"
+      }
     },
     {
       "text": "10250",
@@ -1357,6 +1444,12 @@
         "slots": [
           "class"
         ]
+      },
+      "card": {
+        "slots": [
+          "see"
+        ],
+        "as": "Containers · SP 800-190"
       }
     },
     {
@@ -1380,7 +1473,8 @@
       "reference": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html",
       "series": [
         "cutting-mat",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "mat": {
         "slots": [
@@ -1389,6 +1483,11 @@
         ]
       },
       "galley": {
+        "slots": [
+          "status"
+        ]
+      },
+      "card": {
         "slots": [
           "status"
         ]
@@ -1490,7 +1589,8 @@
       "reference": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html",
       "series": [
         "specimen",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "spec": {
         "slots": [
@@ -1501,6 +1601,11 @@
         "slots": []
       },
       "galley": {
+        "slots": [
+          "status"
+        ]
+      },
+      "card": {
         "slots": [
           "status"
         ]
@@ -1515,7 +1620,8 @@
       "reference": "https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html",
       "series": [
         "specimen",
-        "galley-proof"
+        "galley-proof",
+        "catalog-card"
       ],
       "spec": {
         "slots": [
@@ -1526,6 +1632,11 @@
         "slots": []
       },
       "galley": {
+        "slots": [
+          "status"
+        ]
+      },
+      "card": {
         "slots": [
           "status"
         ]
@@ -1822,6 +1933,12 @@
       },
       "spec": {
         "slots": []
+      },
+      "card": {
+        "slots": [
+          "added"
+        ],
+        "as": "OPA Gatekeeper"
       }
     },
     {
@@ -1839,6 +1956,11 @@
       "mat": {
         "slots": [
           "control"
+        ]
+      },
+      "card": {
+        "slots": [
+          "added"
         ]
       }
     },
@@ -1882,6 +2004,38 @@
           "errata"
         ],
         "as": "for 2008-10-17 read 2012-10-17"
+      }
+    },
+    {
+      "text": "Container escape",
+      "type": "term",
+      "code": "",
+      "meaning": "Breaking out of a container to reach its host node; ATT&CK calls the technique Escape to Host.",
+      "fame": "iconic",
+      "reference": "https://attack.mitre.org/techniques/T1611/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "subject"
+        ]
+      }
+    },
+    {
+      "text": "Deploy Container · T1610",
+      "type": "id",
+      "code": "T1610",
+      "meaning": "ATT&CK technique: an adversary deploys a container to run code or slip past existing defenses.",
+      "fame": "niche",
+      "reference": "https://attack.mitre.org/techniques/T1610/",
+      "series": [
+        "catalog-card"
+      ],
+      "card": {
+        "slots": [
+          "see"
+        ]
       }
     }
   ]
