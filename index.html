@@ -174,13 +174,13 @@
         </fieldset>
 
         <fieldset class="field">
-          <legend class="field-head">Your whoami <span class="val">needed to download</span></legend>
+          <legend class="field-head">Your whoami <span class="val">optional</span></legend>
           <div class="who" id="who">
             <span class="who-prompt" aria-hidden="true"># whoami</span>
             <div class="who-row">
-              <input class="h" id="handle" name="handle" type="text" placeholder="0xF3tt" maxlength="20" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="next" aria-label="Handle" aria-describedby="who-note">
+              <input class="h" id="handle" name="handle" type="text" placeholder="kernspace" maxlength="20" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="next" aria-label="Handle" aria-describedby="who-note">
               <span class="who-dot" aria-hidden="true">·</span>
-              <input class="m" id="motto" name="motto" type="text" placeholder="somewhere exploring the purple colors." maxlength="40" autocomplete="off" spellcheck="true" enterkeyhint="done" aria-label="Whoami line" aria-describedby="who-note">
+              <input class="m" id="motto" name="motto" type="text" placeholder="privileged space, carefully kerned." maxlength="40" autocomplete="off" spellcheck="true" enterkeyhint="done" aria-label="Whoami line" aria-describedby="who-note">
             </div>
           </div>
           <p class="note" id="who-note" aria-live="polite">Your handle goes in the whoami box and in the prompt under the sheet; your line follows it. The signature stays 0xF3tt.</p>
@@ -210,9 +210,9 @@
           <div class="who" id="who-e">
             <span class="who-prompt" aria-hidden="true"># whoami</span>
             <div class="who-row">
-              <input class="h" id="handle-e" type="text" placeholder="0xF3tt" maxlength="20" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="next" aria-label="Handle" aria-describedby="who-e-note">
+              <input class="h" id="handle-e" type="text" placeholder="kernspace" maxlength="20" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="next" aria-label="Handle" aria-describedby="who-e-note">
               <span class="who-dot" aria-hidden="true">·</span>
-              <input class="m" id="motto-e" type="text" placeholder="somewhere exploring the purple colors." maxlength="40" autocomplete="off" spellcheck="true" enterkeyhint="done" aria-label="Whoami line" aria-describedby="who-e-note">
+              <input class="m" id="motto-e" type="text" placeholder="privileged space, carefully kerned." maxlength="40" autocomplete="off" spellcheck="true" enterkeyhint="done" aria-label="Whoami line" aria-describedby="who-e-note">
             </div>
           </div>
           <p class="note" id="who-e-note" aria-live="polite"></p>
@@ -236,10 +236,10 @@
       </section>
 
       <div class="acts">
-        <button class="btn btn-ink" type="button" id="dl-png" aria-label="Download PNG" data-tip="Download PNG" aria-describedby="need" disabled><svg class="dl" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5v8m-3.5-3.5L8 10.5 11.5 7M3 13.5h10"/></svg></button>
-        <button class="btn btn-icon" type="button" id="dl-svg" aria-label="Download SVG" data-tip="Download SVG" aria-describedby="need" disabled><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5.5 4-4 4 4 4M10.5 4l4 4-4 4M9 3 7 13"/></svg></button>
-        <button class="btn btn-icon" type="button" id="dl-pack" aria-label="Download all volumes, ZIP" data-tip="Download all volumes (ZIP)" aria-describedby="need" disabled><svg class="dl" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 3.5h10a1 1 0 0 1 1 1V8"/><rect x="2.5" y="6" width="10" height="6" rx="1"/><path d="M15.5 11v6m-2.5-2.5 2.5 2.5 2.5-2.5"/></svg></button>
-        <p class="need" id="need">Write your handle and your whoami line to download.</p>
+        <button class="btn btn-ink" type="button" id="dl-png" aria-label="Download PNG" data-tip="Download PNG" disabled><svg class="dl" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5v8m-3.5-3.5L8 10.5 11.5 7M3 13.5h10"/></svg></button>
+        <button class="btn btn-icon" type="button" id="dl-svg" aria-label="Download SVG" data-tip="Download SVG" disabled><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5.5 4-4 4 4 4M10.5 4l4 4-4 4M9 3 7 13"/></svg></button>
+        <button class="btn btn-icon" type="button" id="dl-pack" aria-label="Download all volumes, ZIP" data-tip="Download all volumes (ZIP)" disabled><svg class="dl" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 3.5h10a1 1 0 0 1 1 1V8"/><rect x="2.5" y="6" width="10" height="6" rx="1"/><path d="M15.5 11v6m-2.5-2.5 2.5 2.5 2.5-2.5"/></svg></button>
+        <p class="need" id="need" hidden>Fix your whoami to download.</p>
         <p class="fine">Drawn in your browser. Nothing is uploaded.</p>
         <div class="edit-bar" id="edit-bar">
           <button class="icon-btn" type="button" id="eb-prev" aria-label="Previous word" data-tip="Previous word"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 4-6 6 6 6"/></svg></button>
