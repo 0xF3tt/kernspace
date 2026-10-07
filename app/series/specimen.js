@@ -97,8 +97,8 @@ function style(c, g, hero, fonts) {
     + (g.vl ? `.vl{font-size:${g.vl.size}px;letter-spacing:${g.vl.ls}em;font-weight:300}` : '');
 }
 
-// preset: parsed presets/<slug>.json · colors: one palette ground · format: FORMATS key · grain: the film grain finish
-export function render({ preset: p, colors, format = 'desktop', handle, motto, fonts, grain = false }) {
+// preset: parsed presets/<slug>.json · colors: one palette ground · format: FORMATS key · texture: a FINISHES key (a film grain or a paper), or none
+export function render({ preset: p, colors, format = 'desktop', handle, motto, fonts, texture = '' }) {
   const key = formatKey(format), g = SPECS[key];
   if (!g) throw new Error(`specimen: unknown format ${format}`);
   if (!p?.waterfall) throw new Error('specimen: preset must be a parsed preset object');
@@ -196,5 +196,5 @@ export function render({ preset: p, colors, format = 'desktop', handle, motto, f
   const clip = `<defs><clipPath id="wf"><rect x="0" y="${n(wfTop - 20)}" width="${g.clip}" height="${n(wfEnd - wfTop + 40)}"/></clipPath></defs>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`
     + `<title>${esc(`kernspace · Specimen · ${p.title ?? ''}`)}</title>${oflNotice}<style>${style(c, g, hero, fonts || {})}</style>`
-    + finish(`<rect width="${W}" height="${H}" fill="${c.bg}"/>${clip}${s.join('')}`, grain) + '</svg>';
+    + finish(`<rect width="${W}" height="${H}" fill="${c.bg}"/>${clip}${s.join('')}`, texture) + '</svg>';
 }

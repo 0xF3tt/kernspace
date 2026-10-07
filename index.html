@@ -156,12 +156,19 @@
             <b id="gr-name"></b><span class="mono" id="gr-hex"></span>
             <p id="gr-note"></p>
           </div>
-          <label class="switch finish">
-            <span>Film grain</span>
-            <input type="checkbox" role="switch" name="grain" id="grain" aria-describedby="grain-note">
-            <span class="track" aria-hidden="true"><i></i></span>
-          </label>
-          <p class="note" id="grain-note">A finish over the whole sheet, type included. The PNG grows to 2–4 MB.</p>
+          <div class="finish">
+            <span class="finish-name" id="finish-name">Finish</span>
+            <div class="seg" id="finish-family" role="radiogroup" aria-labelledby="finish-name"></div>
+            <div class="seg stock" id="finish-stock" role="radiogroup" hidden></div>
+            <div class="finish-say">
+              <p class="note" id="finish-note" aria-live="polite">Add film grain or paper over the whole sheet, type included.</p>
+              <div class="note finish-size" id="finish-size" aria-hidden="true" hidden></div>
+            </div>
+            <figure class="loupe" id="loupe" hidden>
+              <canvas width="688" height="224" role="img" aria-label="The whoami box at full size"></canvas>
+              <figcaption>At full size</figcaption>
+            </figure>
+          </div>
         </fieldset>
 
         <fieldset class="field">

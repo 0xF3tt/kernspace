@@ -1,7 +1,7 @@
 // kernspace · the studio. Everything renders in the browser; nothing is uploaded.
 // Data (presets, palettes, fonts, lexicons) loads from this site; the page builds its nodes with the DOM (strings
 // become text, never markup) and sets styles through CSSOM, so the CSP needs no inline styles or scripts.
-import { FORMATS, HANDLE, MOTTO, srgbPNG, validHandle, validMotto, zip } from './render.js';
+import { FINISHES, FORMATS, HANDLE, MOTTO, srgbPNG, validHandle, validMotto, zip } from './render.js';
 import { SERIES } from './series/index.js';
 import { DEFAULT, migrate } from './store.js';
 import { advances, family, get, glyphs, hull, len, overlaps, prepare, slotRules, useMetrics } from './check.js';
@@ -62,6 +62,7 @@ function svg(markup, attrs = {}) {
 // an icon-only control: the name for assistive tech, the tip (CSS ::after) for everyone else
 const nameBtn = (b, label, tip = label) => { b.setAttribute('aria-label', label); b.dataset.tip = tip; };
 const fill = (node, ...kids) => node.replaceChildren(...kids.flat().filter((x) => x != null && x !== false));
+const setText = (sel, text) => { const n = $(sel); if (n.textContent !== text) n.textContent = text; };
 const pad2 = (v) => String(v).padStart(2, '0');
 const nice = (slug) => slug.charAt(0).toUpperCase() + slug.slice(1).replace('-', ' ');
 const volName = (e) => e.title.replace(/^Vol\. \d+ · /, '');
@@ -81,7 +82,7 @@ function swap(img, url) {
 const data = { series: {}, palettes: {}, fonts: null, lex: {} };     // series[s] = { index, presets, skipped }; lexicons are shared
 const lexLoads = {};
 const lastVol = {};                                      // the volume each series was left on
-const state = { series: DEFAULT, i: 0, ink: 'purple', role: 'mid', grain: false, format: 'desktop', view: 'sheet', handle: '', motto: '', mark: 'taint', edits: {}, ver: {} };
+const state = { series: DEFAULT, i: 0, ink: 'purple', role: 'mid', finish: '', format: 'desktop', view: 'sheet', handle: '', motto: '', mark: 'taint', edits: {}, ver: {} };
 let S = SERIES[state.series];                       // the series on the stage: its renderer, slot table and marks
 const D = () => data.series[state.series];
 const E = (s = state.series) => (state.edits[s] ??= {});     // edited presets by id
@@ -164,15 +165,15 @@ function ground(ink, role) {
   const [slug, g] = Object.entries(data.palettes[ink].grounds).find(([, x]) => x.role === role);
   return { slug, colors: g.colors };
 }
-// the grain goes only on the sheet in the stage and its downloads: thumbnails and the editor's proof stay without it
-const draw = (p, ink, role, format, fonts, R = S, grain = false) => R.render({ preset: p, colors: ground(ink, role).colors, format, handle: state.handle, motto: state.motto, fonts, grain });
+// a finish goes only on the stage's sheet and its downloads: thumbnails, the key, the Live cards and the editor's proof stay plain
+const draw = (p, ink, role, format, fonts, R = S, texture = '') => R.render({ preset: p, colors: ground(ink, role).colors, format, handle: state.handle, motto: state.motto, fonts, texture });
 
 // ---------- the page's fixed parts, built once the data is in
 
 const el = {
   form: $('#form'), stage: $('#stage'), sheet: $('#sheet'), img: $('#sheet-img'), strip: $('#strip'), dd: $('#drawdown'),
   inks: $('#ink-rows'), legend: $('#legend'), slip: $('#slip'), handle: $('#handle'), motto: $('#motto'), who: $('#who'),
-  whoNote: $('#who-note'), need: $('#need'), png: $('#dl-png'), svg: $('#dl-svg'), pack: $('#dl-pack'), grain: $('#grain'),
+  whoNote: $('#who-note'), need: $('#need'), png: $('#dl-png'), svg: $('#dl-svg'), pack: $('#dl-pack'), loupe: $('#loupe'),
 };
 
 function buildStrip() {
@@ -291,25 +292,26 @@ function rulers() {
 let current = null, ticket = 0, drawing = Promise.resolve();
 function fileName(e, g = ground(state.ink, state.role)) {
   const { w, h: H } = FORMATS[state.format];
-  return `kernspace_${state.series}_${e.id}${E()[e.id] ? '_edited' : ''}_${state.ink}-${g.slug}${state.grain ? '_grain' : ''}_${w}x${H}`;
+  return `kernspace_${state.series}_${e.id}${E()[e.id] ? '_edited' : ''}_${state.ink}-${g.slug}${state.finish ? `_${state.finish}` : ''}_${w}x${H}`;
 }
 async function drawSheet() {
   const t = ++ticket, e = vol(), g = ground(state.ink, state.role), { w, h: H } = FORMATS[state.format];
-  const text = draw(preset(), state.ink, state.role, state.format, data.fonts, S, state.grain), name = fileName(e, g);
+  const text = draw(preset(), state.ink, state.role, state.format, data.fonts, S, state.finish), name = fileName(e, g);
   const url = blobUrl(text), img = new Image();
   img.src = url;
   el.stage.setAttribute('aria-busy', 'true');
+  if (state.finish) el.loupe.setAttribute('aria-busy', 'true');   // the crop shows the sheet before this one until it redraws
   try {
     await img.decode();
     if (t !== ticket) return URL.revokeObjectURL(url);
-    current = { svg: text, name, w, h: H };
+    current = { svg: text, name, w, h: H, t, img, format: state.format, finish: state.finish };   // the image, for the crop at full size
     swap(el.img, url);
-    el.img.alt = `${S.name}, ${e.title}: ${data.palettes[state.ink].name} ink on the ${nice(g.slug)} ground${state.grain ? ', with film grain' : ''}, ${w} by ${H} pixels.`;
+    el.img.alt = `${S.name}, ${e.title}: ${data.palettes[state.ink].name} ink on the ${nice(g.slug)} ground${state.finish ? `, ${FINISHES[state.finish].alt}` : ''}, ${w} by ${H} pixels.`;
   } catch (err) {
     URL.revokeObjectURL(url);
     if (t === ticket) { current = null; tell('This sheet could not be drawn.', 'Try another ink or format.', false); console.error(err); }
   } finally {
-    if (t === ticket) { el.stage.setAttribute('aria-busy', 'false'); syncDownloads(); }
+    if (t === ticket) { el.stage.setAttribute('aria-busy', 'false'); syncDownloads(); queueLoupe(); }
   }
 }
 
@@ -335,10 +337,10 @@ function update() {
   el.dd.querySelectorAll('.dd-ink').forEach((s) => s.classList.toggle('on', s.dataset.ink === state.ink));
   el.dd.querySelectorAll('.dd-row small').forEach((s) => { s.hidden = s.parentElement.dataset.row !== e.ground; });
   $(`#g-${state.ink}-${state.role}`).checked = true;
-  el.grain.checked = state.grain;          // also undoes a browser restoring the switch on reload: it starts off every visit
-  $('#gr-name').textContent = nice(g.slug);
-  $('#gr-hex').textContent = g.colors.bg;
-  $('#gr-note').textContent = `${NOTES[g.slug] ?? ''} ${INKS[state.ink]}`;
+  syncFinish();
+  setText('#gr-name', nice(g.slug));         // a live region: rewriting the same words would read them out again
+  setText('#gr-hex', g.colors.bg);
+  setText('#gr-note', `${NOTES[g.slug] ?? ''} ${INKS[state.ink]}`);
   $(`#fmt-${state.format}`).checked = true;
   $(`#ef-${state.format}`).checked = true;
   const radio = el.strip.querySelector(`input[value="${state.i}"]`);
@@ -542,12 +544,12 @@ el.pack.addEventListener('click', async () => {
   try {
     const snap = await settled();
     if (!snap) return;
-    const R = S, d = D(), saved = { ...E() }, { series, ink, role, format, grain, handle, motto } = state;   // the controls stay live for the whole pack: draw from a snapshot
-    const g = ground(ink, role), { w, h: H } = FORMATS[format], tail = `${ink}-${g.slug}${grain ? '_grain' : ''}_${w}x${H}`, files = [];
+    const R = S, d = D(), saved = { ...E() }, { series, ink, role, format, finish, handle, motto } = state;   // the controls stay live for the whole pack: draw from a snapshot
+    const g = ground(ink, role), { w, h: H } = FORMATS[format], tail = `${ink}-${g.slug}${finish ? `_${finish}` : ''}_${w}x${H}`, files = [];
     announce(`Drawing ${n} sheets for the rotation pack.`);
     for (const [i, e] of d.index.entries()) {
       nameBtn(el.pack, `Drawing ${i + 1} of ${n}`);
-      const text = R.render({ preset: saved[e.id] ?? d.presets[e.id], colors: g.colors, format, handle, motto, fonts: data.fonts, grain });
+      const text = R.render({ preset: saved[e.id] ?? d.presets[e.id], colors: g.colors, format, handle, motto, fonts: data.fonts, texture: finish });
       files.push({ name: `${pad2(e.vol)}_kernspace_${series}_${e.id}${saved[e.id] ? '_edited' : ''}_${tail}.png`, bytes: await rasterise(text, w, H) });
     }
     announce(`${n} sheets drawn.`);
@@ -560,6 +562,82 @@ el.pack.addEventListener('click', async () => {
     nameBtn(el.pack, ...packLabel());
   }
 });
+
+// ---------- the finish: none, or one film grain or paper over the whole sheet (FINISHES in render.js)
+
+const FAMILIES = [...new Set(Object.values(FINISHES).map((f) => f.family))];
+const stocks = Object.create(null);           // the stock last picked in each family, this visit only
+// an option in either group, described by the note under the picker
+const finishOpt = (name, value, label) => h('label', {}, h('input', { type: 'radio', name, value, 'aria-describedby': 'finish-note' }), h('span', { class: 'opt' }, h('span', { class: 'name' }, label)));
+const noteOf = (f) => [h('span', {}, f.note), h('span', {}, `The PNG grows to ${f.png}.`)];
+// None and the families; under them the chosen family's stocks. Two segmented groups, one bracket sliding in each
+function buildFinish() {
+  const fam = $('#finish-family');
+  fam.style.setProperty('--n', FAMILIES.length + 1);
+  fam.replaceChildren(finishOpt('family', '', 'None'), ...FAMILIES.map((f) => finishOpt('family', f, f)));
+  // every finish's note, stacked unseen in the note's own cell: the note is as tall as the longest at any width, so moving
+  // between stocks or families never moves what is below
+  $('#finish-size').replaceChildren(...Object.values(FINISHES).map((f) => h('span', {}, ...noteOf(f))));
+  syncFinish();
+}
+// a stock is itself; a family brings back the stock last picked in it this visit, or else its first; anything else is none
+function pickFinish(t) {
+  if (t.name === 'stock') state.finish = Object.hasOwn(FINISHES, t.value) ? (stocks[FINISHES[t.value].family] = t.value) : '';
+  else state.finish = FAMILIES.includes(t.value) ? (stocks[t.value] ?? Object.keys(FINISHES).find((k) => FINISHES[k].family === t.value)) : '';
+}
+// the picker, its note and the crop follow state, which also undoes a browser restoring the radios on reload: every visit starts at none
+const NONE_NOTE = $('#finish-note').textContent;
+let noted = '';
+function syncFinish() {
+  const f = FINISHES[state.finish], fam = f?.family ?? '', box = $('#finish-stock');
+  document.querySelectorAll('input[name="family"]').forEach((r) => { r.checked = r.value === fam; });
+  if (f && box.dataset.family !== fam) {     // the chosen family's stocks
+    const keys = Object.keys(FINISHES).filter((k) => FINISHES[k].family === fam);
+    box.dataset.family = fam;
+    box.setAttribute('aria-label', `${fam} stock`);
+    box.style.setProperty('--n', keys.length);
+    box.replaceChildren(...keys.map((k) => finishOpt('stock', k, FINISHES[k].label)));
+    // new names under the bracket: it lands on the stock the family brings back, never slides from the old family's column
+    box.classList.add('fresh');
+    requestAnimationFrame(() => requestAnimationFrame(() => box.classList.remove('fresh')));
+  }
+  box.querySelectorAll('input').forEach((r) => { r.checked = r.value === state.finish; });
+  if (noted === state.finish) return;        // the note is a live region: write only on change
+  noted = state.finish;
+  box.hidden = $('#finish-size').hidden = !f;
+  fill($('#finish-note'), f ? noteOf(f) : NONE_NOTE);
+  // the crop, dimmed until it shows this finish; at none it is emptied, so the next finish never opens on an old sheet
+  const cv = el.loupe.querySelector('canvas');
+  el.loupe.hidden = !f;
+  el.loupe.setAttribute('aria-busy', 'true');
+  cv.setAttribute('aria-label', 'The whoami box at full size');
+  if (!f) { cv.getContext('2d').clearRect(0, 0, cv.width, cv.height); loupeAt = ''; }
+}
+// At full size. The stage draws the sheet at a fifth to a half of its pixels, and the finish with it at that scale, which
+// is not the export's texture. While a finish is on, a crop of the export itself: the sheet's SVG image drawn unscaled on a
+// canvas, as the PNG is, one sheet pixel to each screen pixel, from just left of the whoami box (small type on flat ground
+// in every series and format). It waits for the sheet to settle and for the crop to be on screen, and a newer sheet drops
+// it. A canvas drawn without the graphics card rasterises the whole 4K filter on the main thread (1–2 s), so after a
+// slow draw it waits for a longer pause: browsing sheets doesn't stall on every step.
+let loupeTimer = 0, loupeSlow = false, loupeSeen = false, loupeAt = '';
+const queueLoupe = () => { clearTimeout(loupeTimer); loupeTimer = setTimeout(paintLoupe, loupeSlow ? 1200 : 160); };
+function paintLoupe() {
+  const c = current, cv = el.loupe.querySelector('canvas');
+  if (!c?.finish || c.t !== ticket || el.loupe.hidden || !loupeSeen || ed.on) return;
+  const r = devicePixelRatio || 1, w = Math.round(cv.clientWidth * r), H = Math.round(cv.clientHeight * r), at = `${c.t} ${w}x${H}`;
+  if (!w || !H || at === loupeAt) return;   // already showing this sheet at this size
+  if (cv.width !== w || cv.height !== H) { cv.width = w; cv.height = H; }
+  const b = slotBox('whoami', c.format) ?? { x0: c.w / 2, y0: c.h / 2, y1: c.h / 2 };
+  const x = w >= c.w ? (c.w - w) / 2 : Math.min(Math.max(b.x0 - 40, 0), c.w - w), y = Math.min(Math.max((b.y0 + b.y1 - H) / 2, 0), c.h - H);
+  const ctx = cv.getContext('2d'), t0 = performance.now();
+  ctx.clearRect(0, 0, w, H);
+  ctx.drawImage(c.img, -Math.round(x), -Math.round(y), c.w, c.h);
+  requestAnimationFrame(() => setTimeout(() => { loupeSlow = performance.now() - t0 > 400; }));   // slow when the frame that shows it waited for the raster
+  loupeAt = at;
+  cv.setAttribute('aria-label', `The whoami box at full size, ${FINISHES[c.finish].alt}.`);
+  el.loupe.setAttribute('aria-busy', 'false');
+}
+new IntersectionObserver(([e]) => { loupeSeen = e.isIntersecting; if (loupeSeen) queueLoupe(); }).observe(el.loupe);
 
 // ---------- theme: follows the system until the viewer picks (theme.js applied a saved choice before paint)
 
@@ -1087,8 +1165,8 @@ function persist() {
     else localStorage.removeItem(STORE);
   } catch {}
 }
-// the sheet on the stage as a link: series, volume, ink, ground and format, each left out at its default. Words,
-// whoami and grain stay in this browser. A link wins over the series saved here.
+// the sheet on the stage as a link: series, volume, ink, ground and format, each left out at its default. Words and
+// whoami stay in this browser, and the finish starts at none every visit. A link wins over the series saved here.
 const LINK = ['series', 'vol', 'ink', 'ground', 'format'];
 function readLink() {
   const q = new URLSearchParams(location.search);
@@ -1187,9 +1265,15 @@ function wire() {
     else if (t.name === 'ground') {
       const [ink, role] = t.value.split(':');
       if (PALS.includes(ink) && ROLES.includes(role)) { state.ink = ink; state.role = role; update(); }
-    } else if (t.name === 'grain') {
-      state.grain = t.checked;
+    } else if (t.name === 'family' || t.name === 'stock') {
+      // the file name under the stage takes the finish's key and can wrap anew, and the browser's scroll anchoring then
+      // moves the inspector under the pointer (two columns, 861 to 1071px): keep the picked option where it was
+      const lab = t.closest('label'), y = lab.getBoundingClientRect().top;
+      pickFinish(t);
+      syncFinish();
       if (booted) update();                  // before the data is in, start() draws with it
+      const r = lab.getBoundingClientRect();
+      if (r.height && r.top !== y) scrollBy({ top: r.top - y, behavior: 'instant' });
     } else if (t.name === 'format' || t.name === 'eformat') {
       if (Object.hasOwn(FORMATS, t.value)) { state.format = t.value; update(); }
     } else if (t.name === 'view') {
@@ -1287,7 +1371,10 @@ function wire() {
     if (ed.on) $('#undo').focus();
     undo();
   });
-  addEventListener('resize', () => { fit(); refit(); });
+  addEventListener('resize', () => { fit(); refit(); queueLoupe(); });
+  // a change of pixel ratio alone (the window moved to another screen) fires no resize, and the crop must stay 1:1
+  const ratio = () => matchMedia(`(resolution: ${devicePixelRatio}dppx)`).addEventListener('change', () => { queueLoupe(); ratio(); }, { once: true });
+  ratio();
   window.visualViewport?.addEventListener('resize', refit);
 }
 
@@ -1315,6 +1402,7 @@ function wire() {
 
 async function start() {
   wire();
+  buildFinish();
   // the release label lives in version.json only; a failed fetch leaves it blank, the studio doesn't need it
   json('version.json').then((v) => document.querySelectorAll('[data-version]').forEach((n) => { n.textContent = v.version; }), () => {});
   $('#ep-saved').textContent = canStore ? 'Saved in this browser only.' : 'This browser blocks storage, so your words last until you reload.';

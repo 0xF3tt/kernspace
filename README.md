@@ -17,7 +17,7 @@
 
 A proposal, not a rule: a different way cyber could look.
 
-> **Status:** 1.0.0-beta.7. A web app draws Cutting Mat, Specimen, Galley Proof and Catalog Card wallpapers in your browser: pick a series, a volume, an ink, one of its three grounds and a format, add a film grain finish if you want, preview it on a screen, change the words from the volume's own lexicon, sign it in the `# whoami` box with a handle and a line of your own if you want, then download PNG or SVG. The address bar keeps the series, volume, ink, ground and format, so a link opens the same sheet. Nothing is uploaded, and your edits stay in your browser.
+> **Status:** 1.0.0-beta.7. A web app draws Cutting Mat, Specimen, Galley Proof and Catalog Card wallpapers in your browser: pick a series, a volume, an ink, one of its three grounds and a format, add a film grain or paper finish if you want, preview it on a screen, change the words from the volume's own lexicon, sign it in the `# whoami` box with a handle and a line of your own if you want, then download PNG or SVG. The address bar keeps the series, volume, ink, ground and format, so a link opens the same sheet. Nothing is uploaded, and your edits stay in your browser.
 
 ## How it works
 

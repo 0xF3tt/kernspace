@@ -13,7 +13,7 @@ import { spawnSync } from 'node:child_process';
 import { mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { FORMATS, GRAIN, HANDLE, MOTTO, crc32 as crc, esc, srgbPNG, zip, validHandle, validMotto, whoamiLines } from './render.js';
+import { FINISHES, FORMATS, HANDLE, MOTTO, crc32 as crc, esc, srgbPNG, zip, validHandle, validMotto, whoamiLines } from './render.js';
 import { SERIES } from './series/index.js';
 import { GEOMETRY, heroSize } from './series/specimen.js';
 import { AUTHOR, GEOMETRY as GALLEY, KEY, KEY_HEAD, tally, slip } from './series/galley-proof.js';
@@ -318,13 +318,52 @@ for (const [sid, S] of Object.entries(SERIES)) for (const [slug, p] of Object.en
   }
 }
 
-// film grain: every series takes it, and it adds the filter and one group around the sheet, nothing else
+// the finishes: each is the approved filter, byte for byte (its CRC-32 is pinned here, so a changed digit fails), and one
+// <filter id="grain"> of filter primitives with plain attributes only, from a fixed list (no style, script, link, event or
+// second id), and colour matrices that keep alpha (last row 0 0 0 0 1); the key is file-name safe and starts with its
+// family; each family's stocks sit together (the picker shows one family's at a time) under distinct labels; the picker,
+// the note and the alt text have their words
+const APPROVED = { 'film-35mm': 0xb3417a9c, 'film-65mm': 0x7efe51bd, 'film-35mm-fast': 0xd2a5a5a3, 'paper-tooth': 0x6335662d, 'paper-riso': 0x322febd5, 'paper-card': 0xb477f059 };
+assert.deepEqual(Object.keys(FINISHES), Object.keys(APPROVED), 'the finishes are the six approved: three film stocks, then three papers, in order');
+assert.deepEqual(Object.values(FINISHES).map((f) => f.family), ['Film', 'Film', 'Film', 'Paper', 'Paper', 'Paper'], 'two families, each one run of stocks');
+for (const fam of new Set(Object.values(FINISHES).map((f) => f.family))) {
+  const labels = Object.values(FINISHES).filter((f) => f.family === fam).map((f) => f.label);
+  assert.equal(new Set(labels).size, labels.length, `${fam}: each stock its own label`);
+}
+const FE = new Set(['feTurbulence', 'feColorMatrix', 'feTile', 'feDisplacementMap', 'feGaussianBlur', 'feConvolveMatrix', 'feOffset', 'feComposite', 'feComponentTransfer', 'feFuncR', 'feFuncG', 'feFuncB']);
+const FE_ATTRS = new Set(['x', 'y', 'width', 'height', 'in', 'in2', 'result', 'type', 'values', 'baseFrequency', 'numOctaves', 'seed', 'stitchTiles', 'scale', 'xChannelSelector', 'yChannelSelector',
+  'stdDeviation', 'order', 'kernelMatrix', 'divisor', 'bias', 'preserveAlpha', 'dx', 'dy', 'operator', 'k1', 'k2', 'k3', 'k4', 'tableValues', 'slope', 'intercept']);
+for (const [k, f] of Object.entries(FINISHES)) {
+  assert.match(k, /^(film|paper)(-[a-z0-9]+)+$/, `${k}: a file-name suffix`);
+  assert.equal(k.split('-')[0], f.family.toLowerCase(), `${k}: in the ${f.family} family`);
+  assert.equal(crc(new TextEncoder().encode(f.filter)), APPROVED[k], `${k}: the approved filter, byte for byte`);
+  for (const w of ['family', 'label', 'alt', 'note', 'png']) assert.ok(typeof f[w] === 'string' && f[w].trim() === f[w] && f[w], `${k}: ${w}`);
+  assert.match(f.filter, /^<filter id="grain" x="-1%" y="-1%" width="102%" height="102%" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">.*<\/filter>$/s, `${k}: one filter, id grain, its region and sRGB`);
+  const tags = [...f.filter.matchAll(/<(\/?)([A-Za-z]+)((?: [\w-]+="[^"<>]*")*)(\/?)>/g)];
+  assert.equal(tags.map((t) => t[0]).join(''), f.filter, `${k}: nothing but tags (no text, comments or entities)`);
+  assert.deepEqual(tags.filter((t) => t[2] === 'filter').map((t) => t[1]), ['', '/'], `${k}: a single <filter>`);
+  balanced(f.filter);
+  for (const [, , tag, attrs] of tags.slice(1, -1)) {
+    assert.ok(FE.has(tag), `${k}: <${tag}> is not a filter primitive`);
+    for (const [, a] of attrs.matchAll(/ ([\w-]+)=/g)) assert.ok(FE_ATTRS.has(a), `${k}: <${tag} ${a}> is not a filter attribute`);
+    if (tag === 'feColorMatrix') {
+      const v = attrs.match(/ values="([^"]*)"/)[1].trim().split(/\s+/).map(Number);
+      assert.ok(/ type="matrix"/.test(attrs) && v.length === 20 && v.every(Number.isFinite), `${k}: a full colour matrix`);
+      assert.deepEqual(v.slice(15), [0, 0, 0, 0, 1], `${k}: a colour matrix keeps alpha`);
+    }
+  }
+}
+
+// a finish: every series takes each one, and it adds the filter and one group around the sheet, nothing else
 for (const [sid, S] of Object.entries(SERIES)) for (const fmt of Object.keys(FORMATS)) {
-  const args = { preset: Object.values(PRESETS[sid])[0], colors: ground(palettes[0], 'mid'), format: fmt, handle: '', fonts };
-  const plain = S.render(args), grain = S.render({ ...args, grain: true }), wrap = `<defs>${GRAIN}</defs><g filter="url(#grain)">`;
-  assert.equal(grain.split(wrap).length, 2, `${sid}/${fmt}: the grain filter and its group, once`);
-  assert.equal(grain.replace(wrap, '').replace(/<\/g><\/svg>$/, '</svg>'), plain, `${sid}/${fmt}: the grain changes nothing else`);
-  balanced(grain);
+  const args = { preset: Object.values(PRESETS[sid])[0], colors: ground(palettes[0], 'mid'), format: fmt, handle: '', fonts }, plain = S.render(args);
+  for (const k of ['', 'film', 'Film', 'paper', 'Paper', 'grain', 'constructor', '__proto__', 'toString', 'hasOwnProperty']) assert.equal(S.render({ ...args, texture: k }), plain, `${sid}/${fmt}: '${k}' is no finish: the plain sheet`);
+  for (const [k, f] of Object.entries(FINISHES)) {
+    const svg = S.render({ ...args, texture: k }), wrap = `<defs>${f.filter}</defs><g filter="url(#grain)">`;
+    assert.equal(svg.split(wrap).length, 2, `${sid}/${fmt}/${k}: the filter and its group, once`);
+    assert.equal(svg.replace(wrap, '').replace(/<\/g><\/svg>$/, '</svg>'), plain, `${sid}/${fmt}/${k}: the finish changes nothing else`);
+    balanced(svg);
+  }
 }
 
 // ---------- angular size: a wallpaper's pixels are scaled to the screen, so legibility is a visual angle
@@ -1360,4 +1399,4 @@ for (const [sid, S] of Object.entries(SERIES)) {
 const sum = k => Object.values(studio).reduce((n, x) => n + x[k], 0), nf = Object.keys(FORMATS).length, per = sid =>
   `${sid} ${counts[sid]} renders (${INDEX[sid].length} presets × ${palettes.length} palettes × ${GROUNDS.length} grounds × ${nf} formats) · overlap checker: ${sheets[sid]} sheets clear`;
 const contract = ([sid, x]) => `${sid} ${x.presets} presets, ${x.marks} marks, ${x.quads} slot boxes`;
-console.log(`ok · ${Object.keys(SERIES).map(per).join(' · ')} · studio contract: ${Object.entries(studio).map(contract).join(' · ')} · total ${sum('presets')} presets, ${sum('marks')} marks, ${sum('quads')} slot boxes · angular (farthest setup): ${ANGULAR} · catalog-card fixtures max and min: ${card.renders} renders (2 × ${palettes.length} palettes × ${GROUNDS.length} grounds × ${nf} formats), ${card.sheets} sheets clear, angular ${Object.keys(FORMATS).map(f => `${f} text ≥ ${card.angular[f][0].toFixed(1)}′ strokes ≥ ${card.angular[f][1].toFixed(1)}′`).join(' · ')}`);
+console.log(`ok · ${Object.keys(SERIES).map(per).join(' · ')} · studio contract: ${Object.entries(studio).map(contract).join(' · ')} · total ${sum('presets')} presets, ${sum('marks')} marks, ${sum('quads')} slot boxes · angular (farthest setup): ${ANGULAR} · catalog-card fixtures max and min: ${card.renders} renders (2 × ${palettes.length} palettes × ${GROUNDS.length} grounds × ${nf} formats), ${card.sheets} sheets clear, angular ${Object.keys(FORMATS).map(f => `${f} text ≥ ${card.angular[f][0].toFixed(1)}′ strokes ≥ ${card.angular[f][1].toFixed(1)}′`).join(' · ')} · ${Object.keys(FINISHES).length} finishes: each filter the approved bytes and checked, each wraps every series in every format and changes nothing else`);
