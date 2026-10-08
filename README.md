@@ -122,3 +122,5 @@ Designed and directed by [0xF3tt](https://github.com/0xF3tt). Research and devel
 | Fonts | Their own licenses; see the [font catalog](fonts/README.md) |
 
 Because of the noncommercial terms, kernspace is *free for the community*, not "open source" in the OSI sense. Want to use something commercially (a conference, a CTF, merch)? Ask: exceptions are granted case by case.
+
+kernspace is free. If it's useful to you, you can [sponsor it on GitHub](https://github.com/sponsors/0xF3tt).
