@@ -10,15 +10,16 @@
 //   circulation_dates: 3-5 × ≤18 · label ≤42 (vertical, fixed) · data: { left ≤44, right ≤44 ({handle} = the viewer's) }
 //   phone: { definition, data: { right } } are the only overrides; every other phone subset is a rule (view)
 import { FORMATS, HANDLE, esc, finish, whoamiLines } from '../render.js';
+import { FACES, fontCSS, fontStack, notice } from '../fonts.js';
 
-const SANS = 'KNunito,Nunito,sans-serif', MONO_FAM = 'KMono,"JetBrains Mono",ui-monospace,monospace';
-const ADV = 0.6, CAP = 0.73, NUN = [0.713, 0.186];   // mono advance and cap height per em; Nunito's real ink above and below the baseline (no font metrics here)
+export const FONTS = ['nunito', 'mono'];           // the guide card's phrase · the card's typing and the house lines
+const SANS = fontStack('nunito'), MONO_FAM = fontStack('mono');
+const ADV = FACES.mono.adv, CAP = FACES.mono.cap, NUN = [0.713, 0.186];   // mono advance and cap height per em; Nunito's real ink above and below the baseline (no font metrics here)
 const AUTHOR = '0xF3tt';                             // the cataloger's credit on the accession stamp: never the handle
 const HEADS = ['SEE ALSO', 'DATE DUE'];
 const ROLES = ['bg', 'minor', 'major', 'angle', 'frame', 'rule', 'diag', 'text', 'text2', 'data', 'tb', 'sink', 'chip1', 'chip2', 'chip3'];
 const COLOR = /^(#[0-9a-f]{3,8}|rgba?\([\d.,%\s]+\))$/i;
 const PRE = ' xml:space="preserve"';
-const FONT_URL = /^data:[\w/+.-]+;base64,[A-Za-z0-9+/=]*$/;
 
 // paper: every card is `major` laid flat over `bg` at a step t, solved per ground for a fixed WCAG contrast with the ground (no gradient,
 // no shadow). Roles drawn on a paper are held to their contrast on it by palette.test; the main card is the darkest paper on light grounds.
@@ -151,12 +152,7 @@ function formatKey(format) {
 }
 
 function style(K, fonts) {
-  const face = (fam, url, wght) => {
-    if (!url) return '';
-    if (!FONT_URL.test(url)) throw new Error(`catalog-card: ${fam} must be a base64 data: URL`);
-    return `@font-face{font-family:${fam};src:url("${url}") format("truetype");font-weight:${wght}}`;
-  };
-  return face('KNunito', fonts.nunito, '200 1000') + face('KMono', fonts.jbm, '100 800')
+  return fontCSS(fonts, FONTS, 'catalog-card')
     + `text{font-family:${MONO_FAM};font-weight:400;font-variant-ligatures:none;white-space:pre}`     // no ligatures: the IDs read as typed
     + Object.entries(K).map(([k, [fam, sz, wt, ls]]) => `.${k}{${fam === 'n' ? `font-family:${SANS};` : ''}font-size:${sz}px;font-weight:${wt}${ls ? `;letter-spacing:${ls}em` : ''}}`).join('');
 }
@@ -297,8 +293,7 @@ export function render({ preset: p, colors, format = 'desktop', handle, motto, f
     s.push(`<text x="0" y="0" transform="${tf(g.R + 60 + (va - vd) / 2, V.top + len, -90)}" class="vl" fill="${c.text2}">${esc(p.label)}</text>`);
   }
 
-  const oflNotice = '<!-- Embedded fonts: Nunito (SIL OFL 1.1, Copyright 2014 The Nunito Project Authors) and JetBrains Mono (SIL OFL 1.1, Copyright 2020 The JetBrains Mono Project Authors). See fonts/README.md -->';
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${CW}" height="${CH}" viewBox="0 0 ${CW} ${CH}">`
-    + `<title>${esc(`kernspace · Catalog Card · ${p.title ?? ''}`)}</title>${oflNotice}<style>${style(K, fonts || {})}</style>`
+    + `<title>${esc(`kernspace · Catalog Card · ${p.title ?? ''}`)}</title>${notice(FONTS)}<style>${style(K, fonts || {})}</style>`
     + finish(s.join(''), texture) + '</svg>';
 }

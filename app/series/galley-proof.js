@@ -12,9 +12,11 @@
 //   notes: 2-3 × ≤28 · label (vertical, fixed)
 //   data: { left ≤44, right ≤44 ({handle} = the viewer's) } · phone: { data } overrides, like Cutting Mat's
 import { FORMATS, HANDLE, esc, finish, whoamiLines } from '../render.js';
+import { FACES, fontCSS, fontStack, notice } from '../fonts.js';
 
-const SANS = 'KNunito,Nunito,sans-serif', MONO_FAM = 'KMono,"JetBrains Mono",ui-monospace,monospace';
-const MONO = { asc: 1.02, desc: 0.3, adv: 0.6 };    // vertical metrics per em (hhea = OS/2 typo), as in cutting-mat.js
+export const FONTS = ['nunito', 'mono'];          // the headline and margin · the file, slip and house lines
+const SANS = fontStack('nunito'), MONO_FAM = fontStack('mono');
+const MONO = FACES.mono;                            // vertical metrics per em (hhea = OS/2 typo), as in cutting-mat.js
 const ADV = MONO.adv;
 const AUTHOR = '0xF3tt';                            // the proofreader's initials: author credit, never the handle
 
@@ -45,7 +47,6 @@ const PHONE = {
 const SPECS = { desktop: DESKTOP, wide: WIDE, phone: PHONE };
 const ROLES = ['bg', 'minor', 'major', 'angle', 'frame', 'rule', 'diag', 'text', 'text2', 'data', 'tb', 'sink', 'chip1', 'chip2', 'chip3'];
 const COLOR = /^(#[0-9a-f]{3,8}|rgba?\([\d.,%\s]+\))$/i;
-const FONT_URL = /^data:[\w/+.-]+;base64,[A-Za-z0-9+/=]*$/;
 const PRE = ' xml:space="preserve"';
 const KEY_HEAD = 'PROOF MARKS · CMOS 18';
 // the key's name and gloss per mark type; the CWE ids name the weakness a mark corrects
@@ -88,14 +89,9 @@ function formatKey(format) {
 }
 
 function style(g, fonts) {
-  const face = (fam, url, wght) => {
-    if (!url) return '';
-    if (!FONT_URL.test(url)) throw new Error(`galley-proof: ${fam} must be a base64 data: URL`);
-    return `@font-face{font-family:${fam};src:url("${url}") format("truetype");font-weight:${wght}}`;
-  };
   const mono = (cls, size, wght) => `.${cls}{font-size:${size}px;font-weight:${wght}}`;
   const sans = (cls, size) => `.${cls}{font-family:${SANS};font-weight:300;font-size:${size}px}`;
-  return face('KNunito', fonts.nunito, '200 1000') + face('KMono', fonts.jbm, '100 800')
+  return fontCSS(fonts, FONTS, 'galley-proof')
     + `text{font-family:${MONO_FAM};font-weight:400;font-variant-ligatures:none}`     // no ligatures: !== and -- read as typed
     + mono('sl', g.slug.size, 500) + sans('hl', g.hl.size) + mono('gn', g.gut.size, 400) + mono('cd', g.code.size, 400)
     + mono('ty', g.foot.size, 300) + mono('mt', g.mar.mt, 400) + sans('ml', g.mar.ml) + mono('eh', g.slip.head, 500) + mono('eb', g.slip.body, 400)
@@ -245,8 +241,7 @@ export function render({ preset: p, colors, format = 'desktop', handle, motto, f
     s.push(`<text transform="translate(${n(g.R + 60 + (va - vd) / 2)},${n(V.top + len)}) rotate(-90)" class="vl" fill="${c.text2}">${esc(p.label)}</text>`);
   }
 
-  const oflNotice = '<!-- Embedded fonts: Nunito (SIL OFL 1.1, Copyright 2014 The Nunito Project Authors) and JetBrains Mono (SIL OFL 1.1, Copyright 2020 The JetBrains Mono Project Authors). See fonts/README.md -->';
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`
-    + `<title>${esc(`kernspace · Galley Proof · ${p.title ?? ''}`)}</title>${oflNotice}<style>${style(g, fonts || {})}</style>`
+    + `<title>${esc(`kernspace · Galley Proof · ${p.title ?? ''}`)}</title>${notice(FONTS)}<style>${style(g, fonts || {})}</style>`
     + finish(s.join(''), texture) + '</svg>';
 }

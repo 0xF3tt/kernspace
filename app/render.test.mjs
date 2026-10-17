@@ -15,6 +15,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { FINISHES, FORMATS, HANDLE, MOTTO, crc32 as crc, esc, srgbPNG, zip, validHandle, validMotto, whoamiLines } from './render.js';
 import { SERIES } from './series/index.js';
+import { FACES } from './fonts.js';
 import { GEOMETRY, heroSize } from './series/specimen.js';
 import { AUTHOR, GEOMETRY as GALLEY, KEY, KEY_HEAD, tally, slip } from './series/galley-proof.js';
 import { AUTHOR as CARD_AUTHOR, GEOMETRY as CARD, CLASSES, HEADS, DEPTH, paper, render as renderCard, stamp, view, defLines } from './series/catalog-card.js';
@@ -25,7 +26,7 @@ import { ANGLES, HANDLES, LIMITS, MOTTOS, PROBE, advances, overlaps, prepare, us
 const file = path => new URL(`../${path}`, import.meta.url);
 const json = path => JSON.parse(readFileSync(file(path), 'utf8'));
 const palettes = ['purple', 'green', 'red', 'blue'].map(slug => json(`palettes/${slug}.json`));
-const fonts = { nunito: 'data:font/ttf;base64,TlVOSVRP', jbm: 'data:font/ttf;base64,SkJN' };
+const fonts = { nunito: 'data:font/ttf;base64,TlVOSVRP', mono: 'data:font/ttf;base64,SkJN' };
 const ground = (pal, role) => Object.values(pal.grounds).find(g => g.role === role).colors;
 const len = s => [...s].length;                     // code points: "·" and "→" count once
 const pad2 = v => String(v).padStart(2, '0');
@@ -306,7 +307,7 @@ for (const [sid, S] of Object.entries(SERIES)) for (const [slug, p] of Object.en
     assert.deepEqual(unexpected(svg, p, fmt), [], `${where}: text the preset does not hold`);
     for (const s of strings(p, fmt)) assert.ok(svg.includes(`>${esc(s)}</text>`), `${where}: missing ${s}`);
     assert.ok(svg.includes(`>${HANDLE} · ${MOTTO}</text>`), `${where}: default whoami`);
-    assert.ok(svg.includes(fonts.nunito) && svg.includes(fonts.jbm), `${where}: fonts`);
+    assert.ok(svg.includes(fonts.nunito) && svg.includes(fonts.mono), `${where}: fonts`);
     assert.ok(svg.includes('text{font-family:KMono') && svg.includes('font-variant-ligatures:none'), where);
     if (sid === 'cutting-mat') assert.ok(svg.includes('.t{font-size:') && /\.t\{[^}]*letter-spacing:0;/.test(svg), `${where}: halo labels need letter-spacing 0 (Safari cuts letters)`);
     assert.ok(!/<foreignObject|<div|<script/i.test(svg), `${where}: SVG text only`);
@@ -370,7 +371,7 @@ for (const [sid, S] of Object.entries(SERIES)) for (const fmt of Object.keys(FOR
 // arcmin per sheet px at the farthest viewing setup of each format: desktop 24" 1080p at 60 cm (27" 4K at 60 cm: 0.89),
 // wide 13.6" MacBook Air 2560x1664 at 50 cm (14" MacBook Pro: 0.56), phone 6.7" phone at 36 cm
 const ARCMIN = { desktop: 0.79, wide: 0.54, phone: 0.53 };
-const XHEIGHT = { mono: 0.55, nunito: 0.484 };      // OS/2 sxHeight / unitsPerEm of the bundled fonts
+const XHEIGHT = Object.fromEntries(Object.values(FACES).map(f => [f.family, f.xh]));   // OS/2 sxHeight / unitsPerEm, by embedded family
 const MIN_X = 4, MIN_STROKE = 1;                    // arcmin: a 20/20 letter's x-height; the finest line the eye resolves
 // marks below the floor that stay (texture is exempt by rule: the grid's minor/major colors, lines with an opacity); Cutting Mat only
 const THIN = [   // [format, element, stroke-width, why]
@@ -386,8 +387,8 @@ function angular(svg, colors, fmt, sid = '') {
   const bad = [];
   for (const m of svg.matchAll(/<text\b([^>]*)>([^<]+)</g)) {
     const tokens = (/class="([^"]*)"/.exec(m[1])?.[1] ?? '').split(/\s+/), inline = /font-size[=:]"?([\d.]+)/.exec(m[1]);
-    const size = inline ? +inline[1] : parseFloat(decl(tokens, 'font-size').pop()), nun = decl(tokens, 'font-family').pop()?.includes('KNunito');
-    const x = size * (nun ? XHEIGHT.nunito : XHEIGHT.mono) * k;
+    const size = inline ? +inline[1] : parseFloat(decl(tokens, 'font-size').pop());
+    const x = size * XHEIGHT[decl(tokens, 'font-family').pop()?.split(',')[0]] * k;
     if (sid === 'cutting-mat' && SMALL.some(([f, c]) => f === fmt && tokens.includes(c))) continue;
     if (x < text) text = x;
     if (!(x >= MIN_X)) bad.push(`text "${m[2].slice(0, 20)}" (${tokens.join(' ')}) x-height ${x.toFixed(1)}′`);
@@ -1009,7 +1010,7 @@ const card = { renders: 0, sheets: 0 };   // what this block ran besides the ser
     assert.deepEqual(unexpected(svg, p, fmt), [], `${where}: text the preset does not hold`);
     for (const t of strings(p, fmt)) assert.ok(svg.includes(`>${esc(t)}</text>`), `${where}: missing ${t}`);
     assert.ok(svg.includes(`>${HANDLE} · ${MOTTO}</text>`), `${where}: default whoami`);
-    assert.ok(svg.includes(fonts.nunito) && svg.includes(fonts.jbm) && svg.includes('text{font-family:KMono') && svg.includes('font-variant-ligatures:none'), `${where}: fonts`);
+    assert.ok(svg.includes(fonts.nunito) && svg.includes(fonts.mono) && svg.includes('text{font-family:KMono') && svg.includes('font-variant-ligatures:none'), `${where}: fonts`);
     balanced(svg);
     onCanvas(svg, w, h, where);
     cardRender(S, svg, pal, role, fmt, where, p);

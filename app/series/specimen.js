@@ -11,10 +11,12 @@
 //   test ≤44 (a known-answer test) · notes: 2-3 × ≤28 · label (vertical, fixed)
 //   data: { left ≤44, right ≤44 ({handle} = the viewer's) } · phone: { data } overrides, like Cutting Mat's
 import { FORMATS, HANDLE, esc, finish, whoamiLines } from '../render.js';
+import { FACES, fontCSS, fontStack, notice } from '../fonts.js';
 
-const SANS = 'KNunito,Nunito,sans-serif', MONO_FAM = 'KMono,"JetBrains Mono",ui-monospace,monospace';
-const MONO = { asc: 1.02, desc: 0.3, adv: 0.6 };    // vertical metrics per em (hhea = OS/2 typo), as in cutting-mat.js
-const NUNITO = { asc: 0.83, desc: 0.2 };            // ink above / below the baseline (boxes.js INK)
+export const FONTS = ['nunito', 'mono'];          // the specimen's face · codes, labels and the house lines
+const SANS = fontStack('nunito'), MONO_FAM = fontStack('mono');
+const MONO = FACES.mono;                            // vertical metrics per em (hhea = OS/2 typo), as in cutting-mat.js
+const NUNITO = { asc: FACES.nunito.ink[0], desc: FACES.nunito.ink[1] };   // ink above / below the baseline (boxes.js INK)
 const WEIGHTS = [800, 600, 400, 300, 200];          // waterfall, anon → root: weight grows with exposure
 const LEFT = 160, HERO_MAX = 1000;                  // hero px cap; 0.705 em cap height puts its top at y≈200
 
@@ -62,7 +64,6 @@ const PHONE = {
 const SPECS = { desktop: DESKTOP, wide: WIDE, phone: PHONE };
 const ROLES = ['bg', 'minor', 'major', 'angle', 'frame', 'rule', 'diag', 'text', 'text2', 'data', 'tb', 'sink', 'chip1', 'chip2', 'chip3'];
 const COLOR = /^(#[0-9a-f]{3,8}|rgba?\([\d.,%\s]+\))$/i;
-const FONT_URL = /^data:[\w/+.-]+;base64,[A-Za-z0-9+/=]*$/;
 const PRE = ' xml:space="preserve"';
 export { SPECS as GEOMETRY, WEIGHTS };
 
@@ -80,13 +81,8 @@ function formatKey(format) {
 }
 
 function style(c, g, hero, fonts) {
-  const face = (fam, url, wght) => {
-    if (!url) return '';
-    if (!FONT_URL.test(url)) throw new Error(`specimen: ${fam} must be a base64 data: URL`);
-    return `@font-face{font-family:${fam};src:url("${url}") format("truetype");font-weight:${wght}}`;
-  };
   const sans = (cls, size, wght) => `.${cls}{font-family:${SANS};font-weight:${wght};font-size:${size}px}`;
-  return face('KNunito', fonts.nunito, '200 1000') + face('KMono', fonts.jbm, '100 800')
+  return fontCSS(fonts, FONTS, 'specimen')
     + `text{font-family:${MONO_FAM};font-weight:400;font-variant-ligatures:none}`     // no ligatures: !== and -- read as typed
     + sans('h', hero, 800) + sans('fn', g.fam.size, 300) + sans('g', g.grid.glyph, 300)
     + g.wf.sizes.map((s, i) => sans(`w${i}`, s, WEIGHTS[i + (g.wf.drop && i >= g.wf.drop ? 1 : 0)])).join('')
@@ -192,9 +188,8 @@ export function render({ preset: p, colors, format = 'desktop', handle, motto, f
     s.push(`<text transform="translate(${n(g.R + 60 + (va - vd) / 2)},${n(V.top + len)}) rotate(-90)" class="vl" fill="${c.text2}">${esc(p.label)}</text>`);
   }
 
-  const oflNotice = '<!-- Embedded fonts: Nunito (SIL OFL 1.1, Copyright 2014 The Nunito Project Authors) and JetBrains Mono (SIL OFL 1.1, Copyright 2020 The JetBrains Mono Project Authors). See fonts/README.md -->';
   const clip = `<defs><clipPath id="wf"><rect x="0" y="${n(wfTop - 20)}" width="${g.clip}" height="${n(wfEnd - wfTop + 40)}"/></clipPath></defs>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`
-    + `<title>${esc(`kernspace · Specimen · ${p.title ?? ''}`)}</title>${oflNotice}<style>${style(c, g, hero, fonts || {})}</style>`
+    + `<title>${esc(`kernspace · Specimen · ${p.title ?? ''}`)}</title>${notice(FONTS)}<style>${style(c, g, hero, fonts || {})}</style>`
     + finish(`<rect width="${W}" height="${H}" fill="${c.bg}"/>${clip}${s.join('')}`, texture) + '</svg>';
 }

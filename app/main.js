@@ -3,6 +3,7 @@
 // become text, never markup) and sets styles through CSSOM, so the CSP needs no inline styles or scripts.
 import { FINISHES, FORMATS, HANDLE, MOTTO, srgbPNG, validHandle, validMotto, zip } from './render.js';
 import { SERIES } from './series/index.js';
+import { FACES, faceMetrics } from './fonts.js';
 import { DEFAULT, migrate } from './store.js';
 import { advances, family, get, glyphs, hull, len, overlaps, prepare, slotRules, useMetrics } from './check.js';
 import { FMTS, changedSlots, guard, linkedNote, options as wordOptions, plain, pool, put, same, slotsOf } from './words.js';
@@ -142,15 +143,20 @@ async function loadPresets(s = state.series) {
 // a series' presets, fetched once (the boot series comes with the page); a failed fetch may be tried again
 const loads = {}, restores = {};
 const loadOnce = (s) => (loads[s] ??= loadPresets(s).catch((e) => { delete loads[s]; throw e; }));
+// a series' faces (app/fonts.js), each fetched once: the data: URL the sheets embed and the metrics the checker measures
+// with, at the weights the series draw; a failed fetch may be tried again
+const faceLoads = {};
+const loadFaces = (keys) => Promise.all(keys.map((k) => (faceLoads[k] ??= fontFile(FACES[k].file).then(({ buf, url }) => {
+  useMetrics({ [k]: faceMetrics(k, buf, advances) });
+  data.fonts = { ...data.fonts, [k]: url };
+}, (e) => { delete faceLoads[k]; throw e; }))));
 async function load() {
-  const [fonts, palettes] = await Promise.all([
-    Promise.all(['fonts/nunito/Nunito-Variable.ttf', 'fonts/jetbrains-mono/JetBrainsMono-Variable.ttf'].map(fontFile)),
+  const [, palettes] = await Promise.all([
+    loadFaces(S.fonts),
     Promise.all(PALS.map((p) => json(`palettes/${p}.json`))),
     loadPresets(),
   ]);
   PALS.forEach((p, i) => { data.palettes[p] = palettes[i]; });
-  useMetrics({ nunito: Object.fromEntries([200, 300, 400, 600, 800].map((wght) => [wght, advances(fonts[0].buf, { wght })])), mono: advances(fonts[1].buf) });   // Cutting Mat's .ph draws at 300, Specimen at all five
-  data.fonts = { nunito: fonts[0].url, jbm: fonts[1].url };
 }
 // a volume's lexicon, fetched once when the editor or a saved word needs it
 function lexicon(topic) {
@@ -395,7 +401,7 @@ async function chooseSeries(s) {
   el.stage.setAttribute('aria-busy', 'true');
   let dropped = 0;
   try {
-    await loadOnce(s);
+    await Promise.all([loadOnce(s), loadFaces(SERIES[s].fonts)]);
     if (t === choice) dropped = await (restores[s] ??= restoreLate(s));
   } catch (err) {
     console.error(err);
@@ -729,7 +735,7 @@ function hitAt(x, y, pad) {
 }
 
 // the live proof: inline SVG in a shadow root, zoomed through its viewBox
-const liveFonts = () => Promise.all(['300 16px KNunito', '16px KMono'].map((f) => document.fonts.load(f))).catch(() => {});
+const liveFonts = () => Promise.all(S.fonts.map((k) => document.fonts.load(`16px ${FACES[k].family}`))).catch(() => {});
 let liveQueued = 0;
 function renderLive() {
   liveQueued = 0;

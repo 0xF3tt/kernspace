@@ -1,4 +1,5 @@
-// Shared helpers for kernspace renderers: formats, escaping, the whoami box, the finishes (film grain and paper) and bundled fonts.
+// Shared helpers for kernspace renderers: formats, escaping, the whoami box and the finishes (film grain and paper).
+// The bundled fonts are in app/fonts.js.
 
 export const FORMATS = {
   desktop: { w: 3840, h: 2160, label: 'Desktop 16:9' },
@@ -270,27 +271,4 @@ export function zip(files) {
   let o = 0;
   for (const b of [...parts, ...dir, put(22, [4, 0x06054b50], [2, 0], [2, 0], [2, files.length], [2, files.length], [4, size], [4, at], [2, 0])]) { out.set(b, o); o += b.length; }
   return out;
-}
-
-const FONT_FILES = {
-  nunito: 'fonts/nunito/Nunito-Variable.ttf',
-  jbm: 'fonts/jetbrains-mono/JetBrainsMono-Variable.ttf',
-};
-
-// fetch one font as a data: URL (an SVG shown as an image can't load outside files)
-async function dataURL(url) {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`font ${url}: HTTP ${res.status}`);
-  const blob = new Blob([await res.arrayBuffer()], { type: 'font/ttf' });
-  return new Promise((ok, fail) => {
-    const fr = new FileReader();
-    fr.onload = () => ok(fr.result);
-    fr.onerror = () => fail(fr.error);
-    fr.readAsDataURL(blob);
-  });
-}
-
-export async function loadFonts(base = '') {
-  const [nunito, jbm] = await Promise.all([FONT_FILES.nunito, FONT_FILES.jbm].map(f => dataURL(base + f)));
-  return { nunito, jbm };
 }

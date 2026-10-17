@@ -2,12 +2,13 @@
 // Port of render_desktop.py / render_phone.py: same grid, marks and copy, as one standalone SVG.
 // Presets are data: series/cutting-mat/presets/index.json lists them, one <id>.json each.
 import { FORMATS, HANDLE, esc, finish, whoamiLines } from '../render.js';
+import { FACES, fontCSS, fontStack, notice } from '../fonts.js';
 
 const AUTHOR = '0xF3tt';                            // side signature: author credit, never the handle
-const SANS = 'KNunito,Nunito,sans-serif', MONO_FAM = 'KMono,"JetBrains Mono",ui-monospace,monospace';
+export const FONTS = ['nunito', 'mono'];          // the phrase · everything else
+const SANS = fontStack('nunito'), MONO_FAM = fontStack('mono');
 // vertical metrics per em (hhea = OS/2 typo in both files): place text where the old HTML boxes did
-const NUNITO = { asc: 1.011, desc: 0.353 };
-const MONO = { asc: 1.02, desc: 0.3, adv: 0.6 };
+const NUNITO = FACES.nunito, MONO = FACES.mono;
 
 // geometry per format: U = cell, grid positions in cells (panels: [col0, col1, row0, row1]), the rest in px
 const DESKTOP = {
@@ -69,7 +70,6 @@ const PHONE = {
 const SPECS = { desktop: DESKTOP, wide: WIDE, phone: PHONE };
 const ROLES = ['bg', 'minor', 'major', 'angle', 'frame', 'rule', 'diag', 'text', 'text2', 'data', 'tb', 'sink', 'chip1', 'chip2', 'chip3'];
 const COLOR = /^(#[0-9a-f]{3,8}|rgba?\([\d.,%\s]+\))$/i;
-const FONT_URL = /^data:[\w/+.-]+;base64,[A-Za-z0-9+/=]*$/;
 const PRE = ' xml:space="preserve"';
 
 const n = v => +v.toFixed(2);                       // short, stable numbers
@@ -95,12 +95,7 @@ function formatKey(format) {
 }
 
 function style(c, F, fonts) {
-  const face = (fam, url, wght) => {
-    if (!url) return '';
-    if (!FONT_URL.test(url)) throw new Error(`cutting-mat: ${fam} must be a base64 data: URL`);
-    return `@font-face{font-family:${fam};src:url("${url}") format("truetype");font-weight:${wght}}`;
-  };
-  return face('KNunito', fonts.nunito, '200 1000') + face('KMono', fonts.jbm, '100 800')
+  return fontCSS(fonts, FONTS, 'cutting-mat')
     + `text{font-family:${MONO_FAM};font-variant-ligatures:none}`    // no ligatures: !== and -- read as typed
     + `.r{font-weight:300;font-size:${F.r.size}px;letter-spacing:${F.r.ls}em;fill:${c.rule}}`
     // halo labels: no letter-spacing. With it, WebKit (Safari, every iOS browser) paints glyph by glyph, and each
@@ -260,8 +255,7 @@ export function render({ preset: p, colors, format = 'desktop', handle, motto, f
   text(X0, dy, data.left, 'd', c.data);
   text(X1, dy, data.right?.replaceAll('{handle}', handle || HANDLE), 'd', c.data, ' text-anchor="end"');   // the prompt is the viewer's
 
-  const oflNotice = '<!-- Embedded fonts: Nunito (SIL OFL 1.1, Copyright 2014 The Nunito Project Authors) and JetBrains Mono (SIL OFL 1.1, Copyright 2020 The JetBrains Mono Project Authors). See fonts/README.md -->';
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`
-    + `<title>${esc(`kernspace · Cutting Mat · ${p.title ?? ''}`)}</title>${oflNotice}<style>${style(c, F, fonts || {})}</style>`
+    + `<title>${esc(`kernspace · Cutting Mat · ${p.title ?? ''}`)}</title>${notice(FONTS)}<style>${style(c, F, fonts || {})}</style>`
     + finish(`<rect width="${W}" height="${H}" fill="${c.bg}"/>${s.join('')}`, texture) + '</svg>';
 }
