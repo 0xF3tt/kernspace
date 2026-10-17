@@ -22,11 +22,14 @@
 // so the editor's fast path and the full checker cannot disagree. Every text is named by class and order (`call 2`, `def 1`, `date 3`,
 // `num II.`), never by string; only the editable texts map to a slot by string. Boxes, tolerance and colors: app/boxes.js.
 import { FORMATS, HANDLE } from '../render.js';
-import { CLASSES, GEOMETRY, HEADS, defLines, render, stamp, view } from './catalog-card.js';
+import { CLASSES, GEOMETRY, HAND, HEADS, STRIKE, cell, defLines, render, stamp, view } from './catalog-card.js';
 import { INK, PROBE, ROLE, TOL, attrs, classes, fail, family, glyphs, hits, hull, len, quad, reBox, transform, unesc, union, width, within } from '../boxes.js';
+import { FACES } from '../fonts.js';
 export { poolOf } from './cutting-mat.rules.js';
 
 const ADV = 0.6, APART = 4, ROD = 24, WHO = 16, NOTIF = 2215, NUMERALS = ['I.', 'II.'];
+// the pencil's ink: Architects Daughter's letters and punctuation stay within HAND; only its braces and bar reach the face's full ink
+const inkOf = (face, s) => (face === 'architects' && !/[{|}]/.test(s) ? HAND : INK[face]);
 const drawnRight = (s, handle) => s?.replaceAll('{handle}', handle || HANDLE);
 const box = (x0, y0, x1, y1) => ({ x0, y0, x1, y1 }), shrink = (b, d) => box(b.x0 + d, b.y0 + d, b.x1 - d, b.y1 - d);
 const home = (b, name) => ({ ...b, name, q: quad(b.x0, b.y0, b.x1, b.y1) });   // an inner box a text must stay inside, named for the editor's messages
@@ -134,14 +137,14 @@ export function scene(svg, slots) {
   // texts, by class and order
   const K = CLASSES(g), M = g.main, T = P('main').r, S = P('see').r, front = P('front').r, blank = P('blank').r, slip = P('slip').r, drawer = P('panel').r;
   const inMain = box(T.x0 + M.pad, T.y0 + 4, T.x1 - M.pad, front.y0 - 4), seeIn = box(S.x0 + g.see.pad, S.y0 + 4, S.x1 - g.see.pad, T.y0 - 4);
-  const cx0 = M.x0 + M.pad, i1 = M.body === 'entry' ? cx0 + M.callMax * ADV * K.call[1] + M.gap : cx0, cw = ADV * K.trs[1], cols = M.tr.cols.map((c) => i1 + c * cw), nr = M.tr.bases.length;
+  const cx0 = M.x0 + M.pad, i1 = M.body === 'entry' ? cx0 + M.callMax * cell(K, 'call') + M.gap : cx0, cw = cell(K, 'trs'), cols = M.tr.cols.map((c) => i1 + c * cw), nr = M.tr.bases.length;
   const texts = [], seen = {}, nPhr = els.filter((e) => e.tag === 'text' && e.a.class === 'phr').length, sf = slots?.facts ?? {};
   for (const { a, str, tag } of els) {
     if (tag !== 'text') continue;
     const k = a.class, { size, ls = 0, wght } = css[k] ?? fail(`overlap checker: unknown text class "${k}"`), face = css[k].face ?? 'mono', c = (seen[k] = (seen[k] ?? 0) + 1);
     if (!size) fail(`overlap checker: no font size for class "${k}"`);
     role(a.fill);
-    const w = (width(face, str, wght) + len(str) * ls) * size, [up, down] = INK[face], ax = +(a.x ?? 0), y = +(a.y ?? 0), anchor = { middle: 0.5, end: 1 }[a['text-anchor']] ?? 0, x = ax - w * anchor;
+    const w = (width(face, str, wght) + len(str) * ls) * size, [up, down] = inkOf(face, str), ax = +(a.x ?? 0), y = +(a.y ?? 0), anchor = { middle: 0.5, end: 1 }[a['text-anchor']] ?? 0, x = ax - w * anchor;
     const o = turn(a) ?? [ax, y], s0 = FAMILY[k] ? slots?.get(str) : null, slot = s0 && family(s0.key) === FAMILY[k] ? s0 : null, num = k === 'num' ? str : null;
     const nm = {   // id, then the paper it is drawn on and the inner box it must stay in, with its name
       tab: [`tab ${c}`], seeh: ['see-also head', at('see'), seeIn, 'the see-also card'], see: [`see-also ${c}`, at('see'), seeIn, 'the see-also card'], call: [`call ${c}`], entry: ['entry'], stamp: ['stamp'],
@@ -157,7 +160,7 @@ export function scene(svg, slots) {
     const q = transform(quad(x, y - up * size, x + w, y + down * size), a.transform);   // first: it refuses a transform the boxes cannot read
     const t = {
       kind: k, str, slot: slot?.key, rot: +(a.transform?.match(/rotate\((-?[\d.]+)\)/)?.[1] ?? 0) % 90 !== 0, name: `${slot?.name ?? label} "${str}"`, on, home: inner ? home(inner, where) : null, q, ox: o[0], oy: o[1],
-      at: { x: ax, y, k: anchor, tr: a.transform, size, ls, face, wght, ink: INK[face], pad: 0 },
+      at: { x: ax, y, k: anchor, tr: a.transform, size, ls, face, wght, ink: INK[face], inkOf: (s) => inkOf(face, s), pad: 0 },
     };
     if (k === 'stamp') { t.localIn = stampIn; t.local = quad(ax, y - up * size, ax + w, y + down * size); }
     if (k === 'trs' || k === 'tra' || num) {   // the tracing grid: the 1st indention and the columns come from GEOMETRY, never from the words
@@ -231,8 +234,8 @@ export function collisions(s, W, H, phone) {
   if (f.struck === null) say({ name: 'the struck word' }, 'is not in the collation');                                               // 4
   else if (!strike) say({ name: 'the strike-through' }, 'is missing');
   else {
-    const r = strike.raw, adv = ADV * coll.at.size, sx = (r.x1 + r.x2) / 2;
-    if (Math.abs(r.y - (coll.at.y - 0.36 * coll.at.size)) > 2) say(strike, 'is not at the collation’s strike-through height');
+    const r = strike.raw, adv = FACES[coll.at.face].adv * coll.at.size, sx = (r.x1 + r.x2) / 2;
+    if (Math.abs(r.y - (coll.at.y - STRIKE * coll.at.size)) > 2) say(strike, 'is not at the collation’s strike-through height');
     if (f.struck ? Math.abs(r.x1 - (coll.at.x + f.struck.at * adv - 6)) > 1 || Math.abs(r.x2 - (coll.at.x + (f.struck.at + f.struck.n) * adv + 6)) > 1
       : r.x1 + 6 < coll.at.x - 1 || r.x2 - 6 > hull(coll.q).x1 + 1) say(strike, 'does not run through the struck word');
     if (Math.abs(pen.ox - sx) > 1) say(pen, `is not centred on the struck word (${(pen.ox - sx).toFixed(1)} px)`);
@@ -304,7 +307,7 @@ export function slotRules(p, key, value) {
     if (/[<>&]/.test(s)) why.push('<, > or &');
     const max = key === 'data.left' ? phoneCap(p, key) : limitOf(key);
     if (len(s) > max) why.push(`${len(s)}/${max}`);
-    if (!glyphs(a === 'phrase' ? 'nunito' : 'mono', s)) why.push('glyph');
+    if (!glyphs(a === 'phrase' ? 'architects' : a === 'data' ? 'mono' : 'ptMono', s)) why.push('glyph');   // the phrase is pencilled, the access points typed
     if (a === 'see_also' && !isId(seeParts(s)?.[2])) why.push('NAME · ID');
   }
   return why;
@@ -435,8 +438,8 @@ export const swatch = () => null;
 export const GEOM = {
   U: (fmt) => GEOMETRY[fmt].main.def[1] - GEOMETRY[fmt].main.def[0],
   px(key, fmt) {
-    const K = CLASSES(GEOMETRY[fmt]);
-    return { phrase: fmt === 'phone' ? 72 : 136, tracings_subject: K.trs[1], tracings_added: K.tra[1], see_also: K.see[1], data: K.d[1], whoami: K.k[1] }[family(key)] ?? K.trs[1];
+    const K = CLASSES(GEOMETRY[fmt], { phrase: ['', ''] });   // the phone's phrase at its two-line size
+    return { phrase: K.phr[1], tracings_subject: K.trs[1], tracings_added: K.tra[1], see_also: K.see[1], data: K.d[1], whoami: K.k[1] }[family(key)] ?? K.trs[1];
   },
 };
 const slotOf = (s, key) => s.texts.filter((t) => t.slot === key || t.slot?.startsWith(`${key}.`));

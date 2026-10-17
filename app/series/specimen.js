@@ -11,21 +11,27 @@
 //   test ≤44 (a known-answer test) · notes: 2-3 × ≤28 · label (vertical, fixed)
 //   data: { left ≤44, right ≤44 ({handle} = the viewer's) } · phone: { data } overrides, like Cutting Mat's
 import { FORMATS, HANDLE, esc, finish, whoamiLines } from '../render.js';
+import { FACES, fontCSS, fontStack, notice } from '../fonts.js';
 
-const SANS = 'KNunito,Nunito,sans-serif', MONO_FAM = 'KMono,"JetBrains Mono",ui-monospace,monospace';
-const MONO = { asc: 1.02, desc: 0.3, adv: 0.6 };    // vertical metrics per em (hhea = OS/2 typo), as in cutting-mat.js
-const NUNITO = { asc: 0.83, desc: 0.2 };            // ink above / below the baseline (boxes.js INK)
-const WEIGHTS = [800, 600, 400, 300, 200];          // waterfall, anon → root: weight grows with exposure
-const LEFT = 160, HERO_MAX = 1000;                  // hero px cap; 0.705 em cap height puts its top at y≈200
+// The specimen is set in Caslon, as the broadside the series borrows from (William Caslon, 1734): Libre Caslon Text sets
+// the hero (bold, so its capitals stand wide and sturdy), the family name, the waterfall and the charset. JetBrains Mono
+// sets the codes, labels and the house lines.
+export const FONTS = ['caslon', 'mono'];
+const SERIF = fontStack('caslon'), MONO_FAM = fontStack('mono');
+const MONO = FACES.mono;                            // vertical metrics per em (hhea = OS/2 typo), as in cutting-mat.js
+const CASLON = { asc: FACES.caslon.ink[0], desc: FACES.caslon.ink[1] };   // ink above / below the baseline (boxes.js INK)
+const WEIGHTS = [700, 625, 550, 475, 400];          // waterfall, anon → root: weight grows with exposure
+const LEFT = 160, HERO_MAX = 1000, HERO_W = 700;    // hero px cap (0.76 em capitals put its top at y≈144) and weight
+const HERO_PHONE = 362;                             // the phone's cap: capitals as tall as before, clear of the lock-screen clock
 
-// Nunito advances at weight 800, per mille, for A-Z a-z 0-9: the hero is sized from them so that any hero
-// (four wide capitals included, WWWW = 4.48 em) stays left of the waterfall hairline. Anything else counts 1.15 em.
-// The overlap checker (app/boxes.js) adds 0.1 em of kerning margin to every Nunito line, so the size reserves it too.
-const HERO_ADV = '753 695 684 774 605 570 742 780 297 372 688 573 876 753 796 664 796 696 641 632 743 727 1120 685 631 615 557 610 478 610 549 382 615 595 268 273 558 333 889 595 589 610 610 412 492 404 590 534 861 559 533 480 600 600 600 600 600 600 600 600 600 600'
+// Libre Caslon Text advances at 700, per mille, for A-Z a-z 0-9: the hero is sized from them so that any hero
+// (four wide capitals included, WWWW = 4.8 em) stays left of the waterfall hairline. Anything else counts 1.15 em.
+// The overlap checker (app/boxes.js) adds the face's kerning margin to every Caslon line, so the size reserves it too.
+const HERO_ADV = '773 744 804 869 724 677 846 913 420 405 798 692 1062 869 860 686 860 770 640 770 812 773 1200 831 737 722 579 651 551 666 598 418 578 686 356 326 658 352 997 686 636 670 656 489 464 402 662 611 948 650 614 565 637 450 590 565 592 552 598 522 616 596'
   .split(' ').map(Number);
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 const heroEm = s => [...s].reduce((a, ch) => a + (CHARS.includes(ch) ? HERO_ADV[CHARS.indexOf(ch)] / 1000 : 1.15), 0);
-export const heroSize = (s, room, max = HERO_MAX) => Math.floor(Math.min(max, room / (heroEm(s) + 0.1)));
+export const heroSize = (s, room, max = HERO_MAX) => Math.floor(Math.min(max, room / (heroEm(s) + FACES.caslon.kern)));
 
 // geometry per format, px. Left column: hero, family, class, waterfall (labels at lx, text at x, clipped at `clip`), notes.
 // Right column: charset grid, confusables, matrix, test, whoami box. Keep-clear: top 110, bottom-centre 1300×220 (Dock);
@@ -34,7 +40,7 @@ const DESKTOP = {
   R: 3580, clip: 2150, chars: 23, mx: true,
   hero: { x: LEFT, base: 905 }, fam: { size: 84, base: 1010 }, cls: { size: 34, base: 1070 },
   wf: { lx: LEFT, x: 540, sizes: [150, 112, 84, 64, 48], top: 1150, gap: 18, label: 26, inline: true },
-  grid: { x: 2320, y: 190, cols: 6, cw: 210, ch: 196, glyph: 54, code: 24, gy: 108, cy: 162 },
+  grid: { x: 2320, y: 190, cols: 6, cw: 210, ch: 196, glyph: 46, code: 24, gy: 108, cy: 162 },
   conf: { y: 1090, size: 44, code: 24, dy: 50 }, mat: { y: 1265, cell: 64, cap: 24, num: 24, rate: 30 },
   test: { y: 1620, size: 30 }, note: { x: LEFT, y: 1810, dy: 55, size: 26 }, who: { y: 1690, w: 860, size: 26, lh: 38, pad: 28 },
   data: { y: 2000, size: 26 }, vl: { size: 24, ls: .12, top: 190 }, sw: { grid: 2.5, tb: 4, hair: 2.5, guide: 1.5, frame: 3 },
@@ -42,19 +48,20 @@ const DESKTOP = {
 // 16:10 = the same structure, 240px taller: a 5-column grid, the hairline at x≈1950, the right column moves down
 const WIDE = {
   ...DESKTOP, clip: 1950,
-  fam: { size: 84, base: 1030 }, cls: { size: 34, base: 1095 }, wf: { ...DESKTOP.wf, top: 1200 },
+  fam: { size: 84, base: 1030 }, cls: { size: 34, base: 1095 }, wf: { ...DESKTOP.wf, sizes: [150, 112, 84, 64, 46], top: 1200 },
   grid: { x: 2100, y: 190, cols: 5, cw: 296, ch: 196, glyph: 64, code: 24, gy: 112, cy: 166 },
   conf: { ...DESKTOP.conf, y: 1290 }, mat: { ...DESKTOP.mat, y: 1470 }, test: { y: 1830, size: 30 },
   note: { ...DESKTOP.note, y: 1900 }, who: { ...DESKTOP.who, y: 1930 }, data: { ...DESKTOP.data, y: 2240 },
 };
 // phone: 4 waterfall lines with the role above each, a 4×3 grid (11 glyphs + .notdef), no matrix, test or notes:
 // the rating shares a line with the first confusable pair
-// (the smallest line is 42, not 46: a 60-character phrase at weight 200 must end before the hairline at x=1200)
+// (the smallest line is 36: a 64-character phrase in Caslon at 400, up to 29.5 em, must end before the hairline at x=1200;
+// wide's is 46 for the same phrase before its hairline at x=1950)
 const PHONE = {
   R: 1200, clip: 1200, chars: 11, mx: false,
   hero: { x: 90, base: 1240 }, fam: { size: 56, base: 1310 }, cls: { size: 30, base: 1352 },
-  wf: { lx: 90, x: 90, sizes: [110, 84, 62, 42], top: 1385, gap: 10, label: 30, inline: false, drop: 2 },
-  grid: { x: 90, y: 1895, cols: 4, cw: 277.5, ch: 130, glyph: 64, code: 30, gy: 62, cy: 112 },
+  wf: { lx: 90, x: 90, sizes: [104, 80, 58, 36], top: 1385, gap: 10, label: 30, inline: false, drop: 2 },
+  grid: { x: 90, y: 1895, cols: 4, cw: 277.5, ch: 130, glyph: 60, code: 30, gy: 62, cy: 112 },
   conf: { y: 2330, size: 30, code: 30, dx: 210 }, rate: { size: 30 },
   who: { y: 2350, w: 1110, size: 30, lh: 38, pad: 14 },
   data: { y: 2525, size: 30 }, vl: null, sw: { grid: 2, tb: 3.5, hair: 2, guide: 1.2, frame: 2.5 },
@@ -62,7 +69,6 @@ const PHONE = {
 const SPECS = { desktop: DESKTOP, wide: WIDE, phone: PHONE };
 const ROLES = ['bg', 'minor', 'major', 'angle', 'frame', 'rule', 'diag', 'text', 'text2', 'data', 'tb', 'sink', 'chip1', 'chip2', 'chip3'];
 const COLOR = /^(#[0-9a-f]{3,8}|rgba?\([\d.,%\s]+\))$/i;
-const FONT_URL = /^data:[\w/+.-]+;base64,[A-Za-z0-9+/=]*$/;
 const PRE = ' xml:space="preserve"';
 export { SPECS as GEOMETRY, WEIGHTS };
 
@@ -80,16 +86,11 @@ function formatKey(format) {
 }
 
 function style(c, g, hero, fonts) {
-  const face = (fam, url, wght) => {
-    if (!url) return '';
-    if (!FONT_URL.test(url)) throw new Error(`specimen: ${fam} must be a base64 data: URL`);
-    return `@font-face{font-family:${fam};src:url("${url}") format("truetype");font-weight:${wght}}`;
-  };
-  const sans = (cls, size, wght) => `.${cls}{font-family:${SANS};font-weight:${wght};font-size:${size}px}`;
-  return face('KNunito', fonts.nunito, '200 1000') + face('KMono', fonts.jbm, '100 800')
+  const serif = (cls, size, wght) => `.${cls}{font-family:${SERIF};font-weight:${wght};font-size:${size}px}`;
+  return fontCSS(fonts, FONTS, 'specimen')
     + `text{font-family:${MONO_FAM};font-weight:400;font-variant-ligatures:none}`     // no ligatures: !== and -- read as typed
-    + sans('h', hero, 800) + sans('fn', g.fam.size, 300) + sans('g', g.grid.glyph, 300)
-    + g.wf.sizes.map((s, i) => sans(`w${i}`, s, WEIGHTS[i + (g.wf.drop && i >= g.wf.drop ? 1 : 0)])).join('')
+    + `.h{font-family:${SERIF};font-weight:${HERO_W};font-size:${hero}px}` + serif('fn', g.fam.size, 400) + serif('g', g.grid.glyph, 400)
+    + g.wf.sizes.map((s, i) => serif(`w${i}`, s, WEIGHTS[i + (g.wf.drop && i >= g.wf.drop ? 1 : 0)])).join('')
     + `.cl{font-size:${g.cls.size}px}.lb{font-size:${g.wf.label}px;font-weight:300}.cp{font-size:${g.grid.code}px;font-weight:300}`
     + `.cf{font-size:${g.conf.size}px}.k{font-size:${g.who.size}px}.k,.pt{white-space:pre}.d{font-size:${g.data.size}px;font-weight:300}`
     + (g.mx ? `.mx{font-size:${g.mat.num}px;font-weight:300}.mc{font-size:${g.mat.cap}px;font-weight:300}.rt{font-size:${g.mat.rate}px}`
@@ -113,7 +114,7 @@ export function render({ preset: p, colors, format = 'desktop', handle, motto, f
   const mid = ' text-anchor="middle"';
 
   // hero: as large as the column allows, on one baseline
-  const hero = heroSize(p.hero, g.clip - g.hero.x - 40, phone ? 400 : HERO_MAX);
+  const hero = heroSize(p.hero, g.clip - g.hero.x - 40, phone ? HERO_PHONE : HERO_MAX);
   text(g.hero.x, g.hero.base, p.hero, 'h', c.text);
   line(g.hero.x, g.hero.base, g.clip, g.hero.base, c.minor, g.sw.guide);
   text(g.hero.x, g.fam.base, p.family, 'fn', c.text);
@@ -123,12 +124,12 @@ export function render({ preset: p, colors, format = 'desktop', handle, motto, f
   const F = g.wf, roles = p.waterfall.roles, lines = F.sizes.map((size, i) => [size, i + (F.drop && i >= F.drop ? 1 : 0)]);
   let top = F.top, wfTop = top, wfEnd = top;
   lines.forEach(([size, r], i) => {
-    const lab = F.inline ? top + NUNITO.asc * size : top + F.label * .8, base = F.inline ? lab : lab + 12 + NUNITO.asc * size;
+    const lab = F.inline ? top + CASLON.asc * size : top + F.label * .8, base = F.inline ? lab : lab + 12 + CASLON.asc * size;
     const pt = `${size} pt · ${roles[r]}`;
     F.inline ? text(F.lx, base, pt, 'lb', c.rule, PRE) : text(F.lx, lab, pt, 'lb', c.rule, PRE);
     s.push(`<text x="${n(F.x)}" y="${n(base)}" class="wf w${i}" fill="${c.text2}" clip-path="url(#wf)"${PRE}>${esc(p.waterfall.phrase)}</text>`);
     line(g.hero.x, base + 2, g.clip, base + 2, c.minor, g.sw.guide);
-    top = base + NUNITO.desc * size + F.gap; wfEnd = base + NUNITO.desc * size;
+    top = base + CASLON.desc * size + F.gap; wfEnd = base + CASLON.desc * size;
   });
   line(g.clip, wfTop - 10, g.clip, wfEnd + 10, c.major, g.sw.hair);      // the clip hairline
 
@@ -192,9 +193,8 @@ export function render({ preset: p, colors, format = 'desktop', handle, motto, f
     s.push(`<text transform="translate(${n(g.R + 60 + (va - vd) / 2)},${n(V.top + len)}) rotate(-90)" class="vl" fill="${c.text2}">${esc(p.label)}</text>`);
   }
 
-  const oflNotice = '<!-- Embedded fonts: Nunito (SIL OFL 1.1, Copyright 2014 The Nunito Project Authors) and JetBrains Mono (SIL OFL 1.1, Copyright 2020 The JetBrains Mono Project Authors). See fonts/README.md -->';
   const clip = `<defs><clipPath id="wf"><rect x="0" y="${n(wfTop - 20)}" width="${g.clip}" height="${n(wfEnd - wfTop + 40)}"/></clipPath></defs>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`
-    + `<title>${esc(`kernspace · Specimen · ${p.title ?? ''}`)}</title>${oflNotice}<style>${style(c, g, hero, fonts || {})}</style>`
+    + `<title>${esc(`kernspace · Specimen · ${p.title ?? ''}`)}</title>${notice(FONTS)}<style>${style(c, g, hero, fonts || {})}</style>`
     + finish(`<rect width="${W}" height="${H}" fill="${c.bg}"/>${clip}${s.join('')}`, texture) + '</svg>';
 }

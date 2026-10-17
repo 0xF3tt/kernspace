@@ -30,7 +30,7 @@ The topic is shown as a typeface on a specimen sheet. The 'family' is the domain
 
 ## Slots
 
-What a preset provides. Limits are characters (code points: `·` and `→` count once). Every character must exist in the font that draws it: Nunito for the hero, family, waterfall and charset glyphs; JetBrains Mono for everything else (so Greek and Cyrillic confusables are set in mono).
+What a preset provides. Limits are characters (code points: `·` and `→` count once). Every character must exist in the font that draws it: Libre Caslon Text for the hero, the family, the waterfall phrase and the charset glyphs; JetBrains Mono for everything else (so the Greek and Cyrillic confusables are set in mono, which draws each pair with identical outlines).
 
 | Slot (preset key) | Word type | Count | Max chars |
 |---|---|---|---|
@@ -56,15 +56,15 @@ The limits live in one place, `LIMITS` in [`app/series/specimen.rules.js`](../..
 
 ## Layout
 
-**Desktop.** 3840×2160, 160px outer margin. Left column: the hero (Nunito 800, as large as fits left of the hairline, up to 1000px), the family name (Nunito 300, 84px) and the classification (JetBrains Mono, 34px); then the waterfall, five Nunito lines at 150/112/84/64/48px and weights 800/600/400/300/200, clipped by a hairline at x=2150, each with its `pt · role` label (JetBrains Mono, 26px) in the left margin; the margin notes below. Right column: a 6-column grid of 210×196px cells (glyph in Nunito 300, code in mono 24px) closed by the `.notdef` cell, then the confusables, the 4×4 matrix (64px cells) with its rating, the test line and the whoami box. Status lines run along the bottom, and the side label runs up the right edge.
+**Desktop.** 3840×2160, 160px outer margin. Left column: the hero (Libre Caslon Text 700, as large as fits left of the hairline, up to 1000px), the family name (Libre Caslon Text, 84px) and the classification (JetBrains Mono, 34px); then the waterfall, five Libre Caslon Text lines at 150/112/84/64/48px and weights 700/625/550/475/400, clipped by a hairline at x=2150, each with its `pt · role` label (JetBrains Mono, 26px) in the left margin; the margin notes below. Right column: a 6-column grid of 210×196px cells (glyph in Libre Caslon Text 46px, code in mono 24px) closed by the `.notdef` cell, then the confusables, the 4×4 matrix (64px cells) with its rating, the test line and the whoami box. Status lines run along the bottom, and the side label runs up the right edge.
 
-**Wide (16:10).** The same structure 240px taller: a 5-column grid and the hairline at x=1950.
+**Wide (16:10).** The same structure 240px taller: a 5-column grid and the hairline at x=1950, so the smallest waterfall line is 46px, where a 64-character phrase still ends before the hairline.
 
-**Phone.** The top 932px stay empty (lock-screen clock and widgets). The hero (at most 400px), the family and classification, then four waterfall lines at 110/84/62/42px (weights 800/600/300/200; the middle role is dropped) with each role in small caps above its line, all clipped at x=1200; a 4×3 grid (11 glyphs and the `.notdef` cell); one confusable pair and the matrix rating on a single line; the whoami box; one status line, ending by y≈2525 so the bottom 260px stay clear of the flashlight and camera buttons. The phone draws no matrix, test line or notes.
+**Phone.** The top 932px stay empty (lock-screen clock and widgets). The hero (at most 362px, so its capitals stay as tall as the clock allows), the family and classification, then four waterfall lines at 104/80/58/36px (weights 700/625/475/400; the middle role is dropped) with each role in small caps above its line, all clipped at x=1200; a 4×3 grid (11 glyphs and the `.notdef` cell); one confusable pair and the matrix rating on a single line; the whoami box; one status line, ending by y≈2525 so the bottom 260px stay clear of the flashlight and camera buttons. The phone draws no matrix, test line or notes.
 
 **Color.** No palette of its own: the 15 roles of the four palettes carry the sheet. `text`: hero, family and grid glyphs; `text2`: the waterfall and the code points; `rule`: the `pt · role` labels and notes; `data`: status lines; `major`: grid cells and the clip hairline; `minor`: faint guides; `frame`: the whoami box and the matrix outline; `chip1`: the filled matrix cell; `tb`: the `.notdef` cell, the only accent, kept at text-grade contrast (4.5:1).
 
-**Type.** Nunito (variable, 200–800) and JetBrains Mono only; ligatures off. The waterfall weights and the hero's 800 are what the checker measures with: it keeps a Nunito width table for each of 200, 300, 400, 600 and 800.
+**Type.** Caslon, as on the broadside the series borrows from: Libre Caslon Text (variable, 400–700) for the hero, set at 700 so its capitals stand wide and sturdy, and for the family name, the waterfall and the charset, and JetBrains Mono for the rest; ligatures off. The waterfall's weights are what the checker measures with: it keeps a Libre Caslon Text width table for each of 400, 475, 550, 625 and 700, and sizes the hero from Libre Caslon Text's own advances at 700. [fonts/README.md](../../fonts/README.md) has the reasons.
 
 ## Presets
 
@@ -108,4 +108,4 @@ To add a preset:
 
 ## Design notes
 
-Weak lexicons pad a grid with filler, so a vocabulary that cannot fill 18 cells says so instead: Cloud Controls Matrix has exactly 17 domains, NTFS attribute types 17, and those grids stop early. Confusable pairs render identically by design, so their code points are always visible. Nunito has almost no Greek, which is why the confusables are set in mono. A repeated phrase in the waterfall can feel static unless the role labels carry the privilege meaning, so the labels stay legible at every size. Hero words are domain nouns (SID, IV, IOC, JWT), not leetspeak.
+Weak lexicons pad a grid with filler, so a vocabulary that cannot fill 18 cells says so instead: Cloud Controls Matrix has exactly 17 domains, NTFS attribute types 17, and those grids stop early. Confusable pairs render identically by design, so their code points are always visible. Libre Caslon has no Greek or Cyrillic, and JetBrains Mono draws each pair with identical outlines, which is why the confusables are set in mono. A repeated phrase in the waterfall can feel static unless the role labels carry the privilege meaning, so the labels stay legible at every size. Hero words are domain nouns (SID, IV, IOC, JWT), not leetspeak.

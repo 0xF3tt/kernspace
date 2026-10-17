@@ -2,14 +2,14 @@
 // A series' rules module (app/series/<series>.rules.js) rebuilds the boxes of a rendered sheet from these and
 // applies its own rules; app/check.js is the entry point the test and the word editor call.
 //
-// Boxes. Widths come from the bundled fonts' own advances (useMetrics), at the weight the sheet draws:
-// JetBrains Mono is 0.6em for every glyph a sheet uses; a Nunito line is measured glyph by glyph at the
-// font-weight of its class (Cutting Mat's phrase: 300), the file's default instance (200) moved by its HVAR
-// deltas (equal to what Chrome measures). Kerning can also widen a Nunito line: by at most 0.08em over the
-// 3,700 texts the lexicons and presets hold, so every Nunito line gets 0.1em more, whatever its size. Without metrics (first paint in the app) the checker falls
-// back to 0.6em and a conservative 0.56em per character.
-// Vertically a box covers the ink, measured from the glyf bounds of the bundled fonts over ASCII plus · → °:
-// JetBrains Mono 0.87em above the baseline ("$") to 0.18em below ("g"), Nunito 0.83em to 0.20em. Rotated
+// Boxes. Widths come from the bundled fonts' own advances (useMetrics, app/fonts.js), at the weight the sheet draws:
+// a monospaced face (JetBrains Mono, Source Code Pro, PT Mono) has one advance for every glyph a sheet uses; any other face is
+// measured glyph by glyph at the font-weight of its class, the file's default instance moved by its HVAR deltas (equal
+// to what Chrome measures). Kerning can also widen a proportional line, so each face adds its own margin (fonts.js
+// `kern`: the widest gain Chrome measured over the 4,900 texts the lexicons and presets hold; Nunito's is 0.1em), whatever
+// its size. Without metrics (first paint in the app) the checker falls back to a conservative width per character.
+// Vertically a box covers the ink, measured from the glyf bounds of the bundled fonts over ASCII plus · → °
+// (fonts.js `ink`): JetBrains Mono 0.87em above the baseline ("$") to 0.18em below ("g"), Nunito 0.83em to 0.20em. Rotated
 // labels keep their rotation: boxes are quads and the test is a separating-axis test, so a 60° label is not
 // inflated to its axis-aligned hull. Stroked shapes include half their stroke, and so do labels drawn with a
 // halo (a ground-colored stroke under the glyphs), since the halo erases whatever it lands on.
@@ -20,6 +20,8 @@
 //
 // Colors. The sheets are drawn on one synthetic ground that gives each color role its own value, so each mark
 // is told apart by its fill or stroke. Layout never depends on the palette: one pass covers all four.
+import { FACES } from './fonts.js';
+
 export const len = (s) => [...s].length;              // code points: "·" and "→" count once
 const pad2 = (v) => String(v).padStart(2, '0');
 export const fail = (m) => { throw new Error(m); };
@@ -115,12 +117,11 @@ export function advances(bytes, { wght } = {}) {
   }
 }
 
-// the advances the boxes use: { mono, nunito }. mono is a map from advances() (JetBrains Mono at its default);
-// nunito is { [wght]: map }, one advances(bytes, { wght }) per weight a sheet draws (a bare map serves every weight)
-let metrics = { mono: null, nunito: null };
+// the advances the boxes use, per face (app/fonts.js): a monospaced face is one map from advances() at its default;
+// any other is { [wght]: map }, one advances(bytes, { wght }) per weight a sheet draws (a bare map serves every weight)
+let metrics = {};
 export function useMetrics(m) { metrics = { ...metrics, ...m }; }
-const FALLBACK = { mono: 0.6, nunito: 0.56 };
-const KERN = { mono: 0, nunito: 0.1 };                 // em a line may gain from kerning pairs
+const faceOf = (face) => FACES[face] ?? fail(`overlap checker: unknown face "${face}"`);
 const table = (face, wght) => {                        // the nearest weight measured
   const m = metrics[face];
   if (!m || m instanceof Map) return m;
@@ -128,17 +129,17 @@ const table = (face, wght) => {                        // the nearest weight mea
   return ws.length ? m[ws.reduce((a, b) => (Math.abs(b - wght) < Math.abs(a - wght) ? b : a))] : null;
 };
 export const width = (face, s, wght = 300) => {
-  const m = table(face, wght);
-  if (!m) return len(s) * FALLBACK[face];
-  let w = KERN[face];
-  for (const ch of s) w += m.get(ch.codePointAt(0)) ?? FALLBACK[face];
+  const m = table(face, wght), F = faceOf(face);
+  if (!m) return len(s) * F.fallback;
+  let w = F.kern;                                      // em a line may gain from kerning pairs
+  for (const ch of s) w += m.get(ch.codePointAt(0)) ?? F.fallback;
   return w;
 };
-// every character exists in the font that draws it (JetBrains Mono: at its fixed 0.6em)
+// every character exists in the font that draws it (a monospaced face: at its one advance)
 export const glyphs = (face, s) => {
-  const m = table(face, 300);
+  const m = table(face, 300), F = faceOf(face);
   if (!m) return true;
-  for (const ch of s) if (face === 'mono' ? m.get(ch.codePointAt(0)) !== 0.6 : !m.has(ch.codePointAt(0))) return false;
+  for (const ch of s) if (F.adv ? m.get(ch.codePointAt(0)) !== F.adv : !m.has(ch.codePointAt(0))) return false;
   return true;
 };
 
@@ -148,7 +149,7 @@ export const ROLES = ['bg', 'minor', 'major', 'angle', 'frame', 'rule', 'diag', 
 export const PROBE = Object.fromEntries(ROLES.map((r, i) => [r, `#0000${pad2((i + 1).toString(16))}`]));
 export const ROLE = Object.fromEntries(ROLES.map((r) => [PROBE[r], r]));
 export const TOL = 1;
-export const INK = { mono: [0.87, 0.18], nunito: [0.83, 0.2] };     // em above / below the baseline
+export const INK = Object.fromEntries(Object.entries(FACES).map(([k, f]) => [k, f.ink]));     // em above / below the baseline
 const XML_IN = { lt: '<', gt: '>', amp: '&', quot: '"', apos: "'" };
 export const unesc = (s) => s.replace(/&(lt|gt|amp|quot|apos);/g, (_, k) => XML_IN[k]);
 export const attrs = (s) => Object.fromEntries([...s.matchAll(/([\w:-]+)="([^"]*)"/g)].map((m) => [m[1], m[2]]));
@@ -191,17 +192,20 @@ export function reBox(t, str) {
 export const family = (key) => key.split('.')[0];
 export const union = (a, b) => (a && b ? { x0: Math.min(a.x0, b.x0), y0: Math.min(a.y0, b.y0), x1: Math.max(a.x1, b.x1), y1: Math.max(a.y1, b.y1) } : a ?? b);
 
-// the <style> of a rendered sheet, per class: font size, weight, letter spacing, halo (stroke width) and face
+// the <style> of a rendered sheet, per class: font size, weight, letter spacing, halo (stroke width) and face (the
+// class's own font-family, else the one the sheet's `text` rule sets)
+const FACE_OF = Object.fromEntries(Object.entries(FACES).map(([k, f]) => [f.family, k]));
+const famOf = (body) => FACE_OF[body.match(/font-family:([^,;}]+)/)?.[1]];
 export function classes(svg) {
-  const css = {};
-  for (const [, cls, body] of svg.match(/<style>(.*?)<\/style>/s)[1].matchAll(/\.([a-z][a-z\d]*)\{([^}]*)\}/g)) {
+  const css = {}, style = svg.match(/<style>(.*?)<\/style>/s)[1], base = famOf(style.match(/(?:^|})text\{([^}]*)\}/)?.[1] ?? '') ?? 'mono';
+  for (const [, cls, body] of style.matchAll(/\.([a-z][a-z\d]*)\{([^}]*)\}/g)) {
     const c = (css[cls] ??= {}), size = body.match(/font-size:([\d.]+)px/), ls = body.match(/letter-spacing:(-?[\d.]+)em/);
     const halo = body.match(/stroke-width:([\d.]+)px|stroke-width:(0)/), wght = body.match(/font-weight:(\d+)/);
     if (size) c.size = +size[1];
     if (wght) c.wght = +wght[1];
     if (ls) c.ls = +ls[1];
     if (halo) c.halo = +(halo[1] ?? halo[2]);
-    if (body.includes('font-family:KNunito')) c.face = 'nunito';
+    c.face = famOf(body) ?? c.face ?? base;
   }
   return css;
 }

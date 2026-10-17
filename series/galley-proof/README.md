@@ -69,7 +69,7 @@ The limits live in one place, `LIMITS` in [`app/series/galley-proof.rules.js`](.
 
 ## Layout
 
-**Desktop.** The strip runs from x 300 to 1780 and y 150 to 1900, filled with the `minor` tone and no frame. Inside it: the head slug (JetBrains Mono 30) with the initials and a hairline, the headline (Nunito 300, 112px), then up to 12 code lines (JetBrains Mono 48, 88px apart) with their numbers in the gutter outside the strip, and the tally at the foot. The margin starts at x 1840: each mark's matter (mono 36), circled label (Nunito 32) and gloss (Nunito 30), level with its line; the circled notes sit at its head. The key fills the right column from x 2860, two lines an entry, with the `# whoami` box under it. The errata slip (820×250, turned −1.5°, a paste strip on its left edge) is tipped over the strip's lower-right corner. Status lines run along the bottom, the side label up the right edge.
+**Desktop.** The strip runs from x 300 to 1780 and y 150 to 1900, filled with the `minor` tone and no frame. Inside it: the head slug (Source Code Pro 30) with the initials and a hairline, the headline (Source Serif 4, 112px), then up to 12 code lines (Source Code Pro 48, 88px apart) with their numbers in the gutter outside the strip, and the tally at the foot. The margin starts at x 1840: each mark's matter (mono 36), circled label (Handlee 44) and gloss (Handlee 50), pencilled level with its line; the circled notes sit at its head. The key fills the right column from x 2860, two lines an entry, with the `# whoami` box under it. The errata slip (820×250, turned −1.5°, a paste strip on its left edge) is tipped over the strip's lower-right corner. Status lines run along the bottom, the side label up the right edge.
 
 **Wide (16:10).** The same columns, 240px taller: code lines 96px apart, the slip lower.
 
@@ -77,7 +77,7 @@ The limits live in one place, `LIMITS` in [`app/series/galley-proof.rules.js`](.
 
 **Color.** No palette of its own. `minor`: the strip and the paste strip; `text`: code, headline, matter, notes and the slip's fill (the slip is inverse, with `bg` ink); `text2`: slug, glosses, tally, side label; `rule`: gutter, hairlines, key head; `chip1`: every mark, ring and circled label, the one coloured pen; `frame`: the whoami box; `data`: status lines. `major`, `angle`, `diag`, `tb`, `sink` and `chip3` are never drawn, so the strip never reads as Cutting Mat's terminal panel.
 
-**Type.** Nunito 300 and JetBrains Mono (300, 400, 500) only; ligatures off.
+**Type.** Source Serif 4 for the headline and the key's glosses: the Chicago Manual of Style's 18th edition (2024), the book whose marks the margin uses, is set in it. Handlee, the proofreader's pencil, for the circled labels and the glosses in the margin (32px and 34px on the phone): an upright, open print hand. Source Code Pro (300, 400, 500), Source Serif's monospaced sibling, for the file, slug, tally, matter, notes, slip and the house lines, so the whole galley is one family; ligatures off. [fonts/README.md](../../fonts/README.md) has the reasons.
 
 ## Presets
 

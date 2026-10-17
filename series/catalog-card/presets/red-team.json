@@ -8,7 +8,7 @@
   "definition": "Red and blue teams replay a test to see what else attackers could try and how defenders respond.",
   "collation": "red + blue ; ≤10 weeks ; TIBER-EU: optional",
   "correction_struck": "optional", "correction_new": "mandatory",
-  "notes": ["Standard: Reg. (EU) 2025/1190 (Jun 2025).", "Transition: TIBER-EU, May 2018 → Feb 2025."],
+  "notes": ["Standard: Reg. (EU) 2025/1190 (Jun 2025).", "Transition: TIBER-EU, May 2018 to Feb 2025."],
   "drafts": [],
   "tracings_subject": ["Adversary emulation", "Red team", "Assume breach", "DORA TLPT"],
   "tracings_added": ["Control team", "Deconfliction"],
