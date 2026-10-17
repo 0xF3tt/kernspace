@@ -12,9 +12,20 @@
 import { FORMATS, HANDLE, esc, finish, whoamiLines } from '../render.js';
 import { FACES, fontCSS, fontStack, notice } from '../fonts.js';
 
-export const FONTS = ['nunito', 'mono'];           // the guide card's phrase · the card's typing and the house lines
-const SANS = fontStack('nunito'), MONO_FAM = fontStack('mono');
-const ADV = FACES.mono.adv, CAP = FACES.mono.cap, NUN = [0.713, 0.186];   // mono advance and cap height per em; Nunito's real ink above and below the baseline (no font metrics here)
+// The card is typed and pencilled: everything typed on the cards is set in Xanh Mono, a monospaced serif with the narrow
+// pitch of an elite typewriter (12 characters to the inch, against pica's 10), set 1.2 times the size of the mono it
+// replaces so that each character keeps its 0.6 em cell and the x-height grows a half; the cataloger's correction and the
+// guide card's phrase are pencilled in Caveat; the drawer label, the stamps and the house lines are set in JetBrains Mono,
+// whose dotted zero keeps the 0xF3tt stamp honest.
+export const FONTS = ['xanh', 'caveat', 'mono'];
+const FAM = { c: fontStack('xanh'), h: fontStack('caveat') }, MONO_FAM = fontStack('mono');   // a class's family code: m (the default) is mono
+// ADV: the stamps' mono advance; CELL: the advance of each family code, so a typed line and a stamped one share a grid.
+// CAP: the stamp's cap height; HAND: Caveat's real ink above and below the baseline over letters and punctuation (no font
+// metrics here); STRIKE: the strike-through height on a typed line, halfway up Xanh Mono's 0.74 em capitals
+const ADV = FACES.mono.adv, CAP = FACES.mono.cap, HAND = [0.73, 0.23], CELL = { m: ADV, c: FACES.xanh.adv };
+export const STRIKE = 0.37;
+const typed = s => +(s * ADV / FACES.xanh.adv).toFixed(1);   // the typed size whose cell is a JetBrains Mono `s`'s
+export const cell = (K, k) => (CELL[K[k][0]] + (K[k][3] ?? 0)) * K[k][1];   // a class's advance in px
 const AUTHOR = '0xF3tt';                             // the cataloger's credit on the accession stamp: never the handle
 const HEADS = ['SEE ALSO', 'DATE DUE'];
 const ROLES = ['bg', 'minor', 'major', 'angle', 'frame', 'rule', 'diag', 'text', 'text2', 'data', 'tb', 'sink', 'chip1', 'chip2', 'chip3'];
@@ -58,9 +69,9 @@ const DESKTOP = {
   see: { x0: 1970, x1: 2560, top: 300, pad: 34, bases: [56, 116, 170] },
   main: {
     x0: 290, x1: 2610, top: 512, r: 30, pad: 80, gap: 100, body: 'entry', indent: 2, callMax: 12,
-    call: [100, 164, 228], entry: 164, stamp: { base: 100, padX: 14, padY: 12, rot: -1.5 },
+    call: [100, 172, 244], entry: 172, stamp: { base: 100, padX: 14, padY: 12, rot: -1.5 },
     rule: 272, def: [344, 400], pencil: { base: 480, rot: -2 }, coll: 544, notes: [612, 668],
-    tr: { bases: [742, 798], cols: [0, 26, 52], subjCols: 2 }, hole: { cy: 912, r: 80, capGap: 24 }, cover: 1078,
+    tr: { bases: [742, 798], cols: [0, 26, 52], subjCols: 2 }, hole: { cy: 914, r: 80, capGap: 24 }, cover: 1078,
   },
   front: { h: 24 }, phrasePitch: 0,
   holder: { h: 64, pad: 44, plate: 18 },
@@ -88,7 +99,7 @@ const PHONE = {
   see: { x0: 650, x1: 1174, top: 998, pad: 16, bases: [48, 100, 150] },
   main: {
     x0: 100, x1: 1190, top: 1188, r: 22, pad: 34, gap: 24, body: 'pad', indent: 2, callMax: 12,
-    call: [64, 110, 156], entry: 156, stamp: { base: 62, padX: 12, padY: 12, rot: -1.5 },
+    call: [64, 114, 164], entry: 164, stamp: { base: 62, padX: 12, padY: 12, rot: -1.5 },
     rule: 196, def: [254, 302], pencil: { base: 368, rot: -2 }, coll: 424, notes: [482],
     tr: { bases: [548, 596], cols: [0, 26], subjCols: 1 }, hole: { cy: 670, r: 40, capGap: 16 }, cover: 780,
   },
@@ -100,14 +111,14 @@ const PHONE = {
 };
 const GEOMETRY = { desktop: DESKTOP, wide: WIDE, phone: PHONE };
 
-// one class per text kind: [family (m mono, n Nunito), size, weight, letter-spacing em]. The phrase is 136 on desktop and wide; on the phone
+// one class per text kind: [family (m JetBrains Mono, c Xanh Mono, h Caveat), size, weight, letter-spacing em]. The phrase is 136 on desktop and wide; on the phone
 // 96 for one stored line, 72 for two. Scrutiny text (everything on the card but the glance tier) is at least 34; chrome is k, d and vl.
 const CLASSES = (g, p) => {
-  const ph = g.key === 'phone', b = ph ? 34 : 36;
+  const ph = g.key === 'phone', b = ph ? 34 : 36, t = typed(b);
   return {
-    tab: ['m', ph ? 34 : 40, 500], seeh: ['m', 34, 500], see: ['m', b, 400], call: ['m', ph ? 38 : 54, 500], entry: ['m', ph ? 56 : 80, 500],
-    stamp: ['m', 34, 500], def: ['m', b, 400], coll: ['m', b, 400], pen: ['n', ph ? 54 : 64, 300], note: ['m', b, 400], num: ['m', b, 600],
-    trs: ['m', b, 400], tra: ['m', b, 400], cap: ['m', 34, 400], phr: ['n', ph ? (p?.phrase?.length === 2 ? 72 : 96) : 136, 300],
+    tab: ['c', typed(ph ? 34 : 40), 400], seeh: ['c', typed(34), 400], see: ['c', t, 400], call: ['c', typed(ph ? 38 : 54), 400], entry: ['c', typed(ph ? 56 : 80), 400],
+    stamp: ['m', 34, 500], def: ['c', t, 400], coll: ['c', t, 400], pen: ['h', ph ? 54 : 64, 500], note: ['c', t, 400], num: ['c', t, 400],
+    trs: ['c', t, 400], tra: ['c', t, 400], cap: ['c', typed(34), 400], phr: ['h', ph ? (p?.phrase?.length === 2 ? 72 : 96) : 136, 500],
     lab: ['m', ph ? 34 : 40, 500], slh: ['m', 34, 500], date: ['m', b, 400], k: ['m', ph ? 30 : 26, 400], d: ['m', ph ? 30 : 26, 300],
     ...(g.vl ? { vl: ['m', 24, 300, g.vl.ls] } : {}),
   };
@@ -130,7 +141,7 @@ export const view = (p, fmt) => fmt !== 'phone' ? { ...p, def: p.definition, rig
 };
 // the body's columns: the 1st indention (the entry's x on desktop and wide, the call number's on the phone), the 2nd, and the line length in characters
 const column = g => {
-  const M = g.main, K = CLASSES(g), cx0 = M.x0 + M.pad, ex = cx0 + M.callMax * ADV * K.call[1] + M.gap, i1 = M.body === 'entry' ? ex : cx0, d = ADV * K.def[1];
+  const M = g.main, K = CLASSES(g), cx0 = M.x0 + M.pad, ex = cx0 + M.callMax * cell(K, 'call') + M.gap, i1 = M.body === 'entry' ? ex : cx0, d = cell(K, 'def');
   return { cx0, ex, i1, i2: i1 + M.indent * d, bmax: Math.floor((M.x1 - M.pad - i1) / d) };
 };
 // greedy wrap to `max` code points, the first line `indent` shorter (paragraph indention)
@@ -154,7 +165,7 @@ function formatKey(format) {
 function style(K, fonts) {
   return fontCSS(fonts, FONTS, 'catalog-card')
     + `text{font-family:${MONO_FAM};font-weight:400;font-variant-ligatures:none;white-space:pre}`     // no ligatures: the IDs read as typed
-    + Object.entries(K).map(([k, [fam, sz, wt, ls]]) => `.${k}{${fam === 'n' ? `font-family:${SANS};` : ''}font-size:${sz}px;font-weight:${wt}${ls ? `;letter-spacing:${ls}em` : ''}}`).join('');
+    + Object.entries(K).map(([k, [fam, sz, wt, ls]]) => `.${k}{${FAM[fam] ? `font-family:${FAM[fam]};` : ''}font-size:${sz}px;font-weight:${wt}${ls ? `;letter-spacing:${ls}em` : ''}}`).join('');
 }
 
 // preset: parsed presets/<slug>.json · colors: one palette ground · format: FORMATS key · texture: a FINISHES key (a film grain or a paper), or none
@@ -163,7 +174,7 @@ export function render({ preset: p, colors, format = 'desktop', handle, motto, f
   if (!g) throw new Error(`catalog-card: unknown format ${format}`);
   if (!p?.call_number) throw new Error('catalog-card: preset must be a parsed preset object');
   const c = checkColors(colors?.colors ?? colors), L = paper(c), P = view(p, key), K = CLASSES(g, p), sw = g.sw;
-  const s = [], size = k => K[k][1], adv = k => (ADV + (K[k][3] ?? 0)) * size(k), ink = r => c[r] ?? r;
+  const s = [], size = k => K[k][1], adv = k => cell(K, k), ink = r => c[r] ?? r;
   const { w: CW, h: CH } = FORMATS[key], D = g.drawer, G = g.guides, M = g.main, bottom = D.panel[0], T = M.top, LABEL = 'text2';   // the numerals and heads are text2; the header line and the stamp stay rule
   const rect = (x, y, w, h, fill, stroke, wd, rx = 0) =>
     `<rect x="${n(x)}" y="${n(y)}" width="${n(w)}" height="${n(h)}"${rx ? ` rx="${rx}"` : ''} fill="${ink(fill)}"${stroke ? ` stroke="${ink(stroke)}" stroke-width="${wd}"` : ''}/>`;
@@ -187,7 +198,7 @@ export function render({ preset: p, colors, format = 'desktop', handle, motto, f
   tabs.forEach((label, i) => {
     const k = DEPTH.guides.length - rows + i, bodyTop = G.tabTop + G.tabH + i * G.pitch, tx = G.tabX[i], fill = L.guides[k];
     sheet(`<path d="${guidePath(bodyTop, tx)}" fill="${fill}" stroke="${c.angle}" stroke-width="${sw.edge}" stroke-linejoin="round"/>`);
-    text(tx + G.slant + G.pad, bodyTop - G.tabH / 2 + 0.36 * size('tab'), label, 'tab', { fill: i === rows - 1 ? 'text' : 'text2' });
+    text(tx + G.slant + G.pad, bodyTop - G.tabH / 2 + FACES.xanh.cap / 2 * size('tab'), label, 'tab', { fill: i === rows - 1 ? 'text' : 'text2' });
     const y = bodyTop + G.pitch / 2;
     sheet(`<path d="M${G.x0},${bottom} V${n(y)} H${G.x1} V${bottom} Z" fill="${fill}" stroke="${c.major}" stroke-width="${sw.plain}"/>`);
   });
@@ -214,26 +225,26 @@ export function render({ preset: p, colors, format = 'desktop', handle, motto, f
   const coll = P.collation, at = coll.indexOf(P.correction_struck), yb = T + M.coll;
   text(i2, yb, coll, 'coll');
   if (at >= 0) {   // the strike and the pencil above it are the sheet's one accent (a struck word the collation lacks is the checker's to report)
-    const sx0 = i2 + cp(coll.slice(0, at)) * ADV * size('coll'), sx1 = sx0 + cp(P.correction_struck) * adv('coll'), sy = yb - 0.36 * size('coll');
+    const sx0 = i2 + cp(coll.slice(0, at)) * adv('coll'), sx1 = sx0 + cp(P.correction_struck) * adv('coll'), sy = yb - STRIKE * size('coll');
     line(sx0 - 6, sy, sx1 + 6, sy, 'chip1', sw.strike, 'round');
     text((sx0 + sx1) / 2, T + M.pencil.base, P.correction_new, 'pen', { fill: 'chip1', anchor: 'middle', rot: M.pencil.rot });
   }
   P.notes.forEach((t, i) => text(i2, T + M.notes[i], t, 'note', { fill: 'text2' }));
   // tracings on the fixed grid: subject columns (arabic, a 3-character cell), then the added column (roman, 4)
-  const cols = M.tr.cols.map(ch => i1 + ch * ADV * size('trs')), nr = M.tr.bases.length;
+  const cols = M.tr.cols.map(ch => i1 + ch * adv('trs')), nr = M.tr.bases.length;
   P.tracings_subject.forEach((t, i) => {
     const x = cols[Math.floor(i / nr)], y = T + M.tr.bases[i % nr];
     text(x, y, `${i + 1}.`, 'num', { fill: LABEL });
-    text(x + 3 * ADV * size('trs'), y, t, 'trs');
+    text(x + 3 * adv('trs'), y, t, 'trs');
   });
   P.tracings_added.forEach((t, i) => {
     const x = cols.at(-1), y = T + M.tr.bases[i];
     text(x, y, ['I.', 'II.'][i], 'num', { fill: LABEL });
-    text(x + 4 * ADV * size('tra'), y, t, 'tra');
+    text(x + 4 * adv('tra'), y, t, 'tra');
   });
   const Ho = M.hole, hx = (M.x0 + M.x1) / 2, hy = T + Ho.cy, ro = Ho.r + sw.hole / 2;
   s.push(`<circle cx="${n(hx)}" cy="${n(hy)}" r="${Ho.r}" fill="${c.bg}" stroke="${c.frame}" stroke-width="${sw.hole}"/>`);
-  text(hx, hy + ro + Ho.capGap + 0.87 * size('cap'), P.rod_invariant, 'cap', { fill: 'text2', anchor: 'middle' });
+  text(hx, hy + ro + Ho.capGap + FACES.xanh.ink[0] * size('cap'), P.rod_invariant, 'cap', { fill: 'text2', anchor: 'middle' });
 
   // in front: a plain card, then the blank front guide with the phrase, centred optically on its visible face
   let y = T + M.cover;
@@ -241,7 +252,7 @@ export function render({ preset: p, colors, format = 'desktop', handle, motto, f
   y += g.front.h;
   sheet(rect(G.x0, y, G.x1 - G.x0, bottom - y + 40, L.blank, 'angle', sw.edge, 14));
   const ps = size('phr'), lines = key === 'phone' ? P.phrase : [P.phrase.join(' ')], pitch = lines.length > 1 ? g.phrasePitch : 0;
-  const block = NUN[0] * ps + pitch * (lines.length - 1) + NUN[1] * ps, pb = y + (bottom - y - block) / 2 + NUN[0] * ps;
+  const block = HAND[0] * ps + pitch * (lines.length - 1) + HAND[1] * ps, pb = y + (bottom - y - block) / 2 + HAND[0] * ps;
   lines.forEach((t, i) => text(cx0, pb + i * pitch, t, 'phr'));
 
   // the drawer front and the label holder: a plate (metal), the label card (the main card's paper), two rivets

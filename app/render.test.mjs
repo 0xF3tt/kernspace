@@ -15,10 +15,10 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { FINISHES, FORMATS, HANDLE, MOTTO, crc32 as crc, esc, srgbPNG, zip, validHandle, validMotto, whoamiLines } from './render.js';
 import { SERIES } from './series/index.js';
-import { FACES } from './fonts.js';
+import { FACES, faceMetrics, fontStack } from './fonts.js';
 import { GEOMETRY, heroSize } from './series/specimen.js';
 import { AUTHOR, GEOMETRY as GALLEY, KEY, KEY_HEAD, tally, slip } from './series/galley-proof.js';
-import { AUTHOR as CARD_AUTHOR, GEOMETRY as CARD, CLASSES, HEADS, DEPTH, paper, render as renderCard, stamp, view, defLines } from './series/catalog-card.js';
+import { AUTHOR as CARD_AUTHOR, GEOMETRY as CARD, CLASSES, HEADS, DEPTH, cell, paper, render as renderCard, stamp, view, defLines } from './series/catalog-card.js';
 import { ID, SCHEMA, isId } from './series/catalog-card.rules.js';
 import { ROLE } from './boxes.js';
 import { ANGLES, HANDLES, LIMITS, MOTTOS, PROBE, advances, overlaps, prepare, useMetrics } from './check.js';
@@ -26,7 +26,7 @@ import { ANGLES, HANDLES, LIMITS, MOTTOS, PROBE, advances, overlaps, prepare, us
 const file = path => new URL(`../${path}`, import.meta.url);
 const json = path => JSON.parse(readFileSync(file(path), 'utf8'));
 const palettes = ['purple', 'green', 'red', 'blue'].map(slug => json(`palettes/${slug}.json`));
-const fonts = { nunito: 'data:font/ttf;base64,TlVOSVRP', mono: 'data:font/ttf;base64,SkJN' };
+const fonts = Object.fromEntries(Object.keys(FACES).map(k => [k, `data:font/ttf;base64,${Buffer.from(k.toUpperCase()).toString('base64')}`]));   // a stand-in per face
 const ground = (pal, role) => Object.values(pal.grounds).find(g => g.role === role).colors;
 const len = s => [...s].length;                     // code points: "·" and "→" count once
 const pad2 = v => String(v).padStart(2, '0');
@@ -72,10 +72,49 @@ const index = INDEX['cutting-mat'], presets = PRESETS['cutting-mat'];   // the p
 
 // ---------- glyph coverage: every character a preset uses exists in the font that draws it
 
-const MONO_ADV = advances(readFileSync(file('fonts/jetbrains-mono/JetBrainsMono-Variable.ttf')));
-const NUNITO_BYTES = readFileSync(file('fonts/nunito/Nunito-Variable.ttf'));
-const NUNITO_ADV = advances(NUNITO_BYTES, { wght: 300 });   // .ph draws at 300
-useMetrics({ mono: MONO_ADV, nunito: Object.fromEntries([200, 300, 400, 600, 800].map(wght => [wght, wght === 300 ? NUNITO_ADV : advances(NUNITO_BYTES, { wght })])) });   // Specimen draws all five
+// every bundled face's file: its advances at the weights the sheets draw (fonts.js `measure`), as the studio loads them
+const FACE_BYTES = Object.fromEntries(Object.entries(FACES).map(([k, f]) => [k, readFileSync(file(f.file))]));
+useMetrics(Object.fromEntries(Object.keys(FACES).map(k => [k, faceMetrics(k, FACE_BYTES[k], advances)])));
+const FACE_ADV = Object.fromEntries(Object.keys(FACES).map(k => [k, advances(FACE_BYTES[k], { wght: FACES[k].measure?.[0] })]));   // coverage: the cmap
+const MONO_ADV = FACE_ADV.mono, NUNITO_ADV = FACE_ADV.nunito;
+
+// ---------- the faces: fonts.js holds each file's own numbers (hhea, OS/2, the one advance of a mono, the ink)
+
+function fontNumbers(bytes) {
+  const b = new Uint8Array(bytes), v = new DataView(b.buffer, b.byteOffset, b.byteLength), u16 = o => v.getUint16(o), i16 = o => v.getInt16(o), u32 = o => v.getUint32(o), T = {};
+  for (let i = 0; i < u16(4); i++) T[String.fromCharCode(...b.subarray(12 + 16 * i, 16 + 16 * i))] = u32(20 + 16 * i);
+  const upem = u16(T.head + 18), long = i16(T.head + 50), os2 = T['OS/2'], cmap = advances(bytes), adv = [...cmap.values()];
+  const subs = Array.from({ length: u16(T.cmap + 2) }, (_, i) => T.cmap + u32(T.cmap + 8 + 8 * i)), gid = new Map();
+  const t = subs.find(o => u16(o) === 12) ?? subs.find(o => u16(o) === 4);
+  if (u16(t) === 12) { for (let i = 0, o = t + 16; i < u32(t + 12); i++, o += 12) for (let c = u32(o); c <= u32(o + 4); c++) gid.set(c, u32(o + 8) + c - u32(o)); }
+  else {
+    const n = u16(t + 6) / 2, ends = t + 14, starts = ends + 2 * n + 2, deltas = starts + 2 * n, ranges = deltas + 2 * n;
+    for (let i = 0; i < n; i++) for (let c = u16(starts + 2 * i); c <= u16(ends + 2 * i) && c < 0xFFFF; c++) {
+      const r = u16(ranges + 2 * i), raw = r ? u16(ranges + 2 * i + r + 2 * (c - u16(starts + 2 * i))) : c;
+      if (raw) gid.set(c, (raw + i16(deltas + 2 * i)) & 0xFFFF);
+    }
+  }
+  const loca = g => (long ? u32(T.loca + 4 * g) : 2 * u16(T.loca + 2 * g));
+  let up = 0, down = 0;
+  for (const ch of [...Array.from({ length: 95 }, (_, i) => String.fromCharCode(32 + i)), '·', '→', '°']) {
+    const g = gid.get(ch.codePointAt(0));
+    if (g == null || loca(g) === loca(g + 1)) continue;
+    const o = T.glyf + loca(g);
+    up = Math.max(up, i16(o + 8) / upem); down = Math.max(down, -i16(o + 4) / upem);
+  }
+  const ascii = [...'ABCabc0123 .,:;-_/'].map(ch => cmap.get(ch.codePointAt(0)));
+  return { asc: i16(T.hhea + 4) / upem, desc: -i16(T.hhea + 6) / upem, xh: i16(os2 + 86) / upem, cap: i16(os2 + 88) / upem, ink: [up, down], adv: new Set(ascii).size === 1 ? ascii[0] : null, cff: !T.glyf, n: adv.length };
+}
+for (const [k, F] of Object.entries(FACES)) {
+  const f = fontNumbers(FACE_BYTES[k]), at = `fonts.js ${k} (${F.file})`, near = (a, b, d = 0.001) => Math.abs(a - b) <= d;
+  assert.ok(!f.cff && f.n > 0, `${at}: a TrueType file with a cmap`);
+  assert.ok(near(F.asc, f.asc) && near(F.desc, f.desc), `${at}: hhea ${f.asc}/${f.desc}, fonts.js says ${F.asc}/${F.desc}`);
+  assert.ok(near(F.xh, f.xh) && near(F.cap, f.cap), `${at}: x-height ${f.xh} and cap height ${f.cap}, fonts.js says ${F.xh} and ${F.cap}`);
+  assert.ok(F.ink[0] >= f.ink[0] && F.ink[0] - f.ink[0] <= 0.011 && F.ink[1] >= f.ink[1] && F.ink[1] - f.ink[1] <= 0.011, `${at}: ink ${f.ink}, fonts.js rounds it up to ${F.ink}`);
+  assert.equal(F.adv ?? null, F.adv ? f.adv : null, `${at}: one advance ${f.adv}, fonts.js says ${F.adv}`);
+  assert.ok(F.adv || (F.measure.length && F.measure.every(w => w >= F.wght[0] && w <= F.wght[1])), `${at}: the measured weights lie in its range`);
+  assert.ok(F.license.startsWith('SIL OFL 1.1') && existsSync(file(F.file.replace(/[^/]+$/, 'OFL.txt'))), `${at}: an OFL face, with its OFL.txt beside it`);
+}
 const hexCp = ch => `U+${ch.codePointAt(0).toString(16).toUpperCase().padStart(4, '0')}`;
 
 // ---------- every preset against the README slot table
@@ -271,24 +310,24 @@ function cardRender(S, svg, pal, role, fmt, where, p) {
   const K = CLASSES(g, p), css = Object.fromEntries([...svg.match(/<style>([\s\S]*?)<\/style>/)[1].matchAll(/\.([a-z][a-z\d]*)\{([^}]*)\}/g)].map(m => [m[1], m[2]]));
   assert.deepEqual(Object.keys(css).sort(), Object.keys(K).sort(), `${where}: a style per class`);
   for (const [k, [fam, sz, wt, ls]] of Object.entries(K)) {
-    assert.equal(css[k], `${fam === 'n' ? 'font-family:KNunito,Nunito,sans-serif;' : ''}font-size:${sz}px;font-weight:${wt}${ls ? `;letter-spacing:${ls}em` : ''}`, `${where}: .${k}`);
+    assert.equal(css[k], `${{ c: `font-family:${fontStack('xanh')};`, h: `font-family:${fontStack('caveat')};` }[fam] ?? ''}font-size:${sz}px;font-weight:${wt}${ls ? `;letter-spacing:${ls}em` : ''}`, `${where}: .${k}`);
     assert.ok(k === 'k' || k === 'd' ? sz === (fmt === 'phone' ? 30 : 26) : k === 'vl' ? sz === 24 : sz >= 34, `${where}: .${k} is ${sz}px`);
   }
   for (const [, k] of svg.matchAll(/<text[^>]* class="([a-z\d]+)"/g)) assert.ok(k in K, `${where}: class ${k} is in the table`);
   // plan.md's class table, literally (desktop and wide / phone), so a drift in CLASSES itself fails
-  const SZ = { tab: [40, 34], call: [54, 38], entry: [80, 56], pen: [64, 54], k: [26, 30], d: [26, 30], vl: [24, 24], phr: [136, p.phrase.length === 2 ? 72 : 96] };
+  const SZ = { tab: [48, 40.8], call: [64.8, 45.6], entry: [96, 67.2], pen: [64, 54], k: [26, 30], d: [26, 30], vl: [24, 24], phr: [136, p.phrase.length === 2 ? 72 : 96] };   // typed sizes: 1.2 × the mono's, one cell
   for (const [k, [a, b]] of Object.entries(SZ)) if (k in css) assert.match(css[k], new RegExp(`font-size:${fmt === 'phone' ? b : a}px`), `${where}: .${k} is ${fmt === 'phone' ? b : a}px in plan.md's table`);
   // the tracing grid and the fixed indention: x positions from GEOMETRY, never from the words
-  const A_ = 0.6, M = g.main, cx0 = M.x0 + M.pad, i1 = M.body === 'entry' ? cx0 + M.callMax * A_ * K.call[1] + M.gap : cx0, cols = M.tr.cols.map(ch => i1 + ch * A_ * K.trs[1]), nr = M.tr.bases.length;
+  const M = g.main, cx0 = M.x0 + M.pad, i1 = M.body === 'entry' ? cx0 + M.callMax * cell(K, 'call') + M.gap : cx0, cols = M.tr.cols.map(ch => i1 + ch * cell(K, 'trs')), nr = M.tr.bases.length;
   const COLS = fmt === 'phone' ? [134, 664.4] : [858.8, 1420.4, 1982], TERMS = fmt === 'phone' ? [195.2, 746] : [923.6, 1485.2, 2068.4];   // plan.md's grid, literally
   const xs = k => [...svg.matchAll(new RegExp(`<text x="([\\d.]+)" y="[\\d.]+" class="${k}"`, 'g'))].map(m => +m[1]), near = (a, b, w) => assert.ok(Math.abs(a - b) < 0.011, `${where}: ${w} at ${a}, expected ${b}`);
   const want = [...P.tracings_subject.map((_, i) => cols[Math.floor(i / nr)]), ...P.tracings_added.map(() => cols.at(-1))];
   xs('num').forEach((x, i) => { near(x, want[i], `numeral ${i + 1}`); assert.ok(COLS.some(v => Math.abs(x - v) < 0.011), `${where}: numeral at ${x} is off the grid ${COLS}`); });
   [...xs('trs'), ...xs('tra')].forEach(x => assert.ok(TERMS.some(v => Math.abs(x - v) < 0.011), `${where}: tracing at ${x} is off the grid ${TERMS}`));
   near(i1, fmt === 'phone' ? 134 : 858.8, 'first indention');
-  const i2 = i1 + 2 * A_ * K.def[1];   // the definition's paragraph indention: line 1 at i2, the rest at i1
+  const i2 = i1 + 2 * cell(K, 'def');   // the definition's paragraph indention: line 1 at i2, the rest at i1
   xs('def').forEach((x, i) => near(x, i ? i1 : i2, `definition line ${i + 1}`));
-  [...xs('trs'), ...xs('tra')].forEach((x, i) => near(x, want[i] + (i < P.tracings_subject.length ? 3 : 4) * A_ * K.trs[1], `tracing ${i + 1}`));
+  [...xs('trs'), ...xs('tra')].forEach((x, i) => near(x, want[i] + (i < P.tracings_subject.length ? 3 : 4) * cell(K, 'trs'), `tracing ${i + 1}`));
   near(xs('entry')[0] ?? i1, fmt === 'phone' ? 431.6 : 858.8, 'entry');
   const svgStamp = svg.match(/class="stamp"[^>]*>([^<]*)</)[1];
   assert.equal(svgStamp, stamp(p), `${where}: the stamp`);
@@ -307,7 +346,7 @@ for (const [sid, S] of Object.entries(SERIES)) for (const [slug, p] of Object.en
     assert.deepEqual(unexpected(svg, p, fmt), [], `${where}: text the preset does not hold`);
     for (const s of strings(p, fmt)) assert.ok(svg.includes(`>${esc(s)}</text>`), `${where}: missing ${s}`);
     assert.ok(svg.includes(`>${HANDLE} · ${MOTTO}</text>`), `${where}: default whoami`);
-    assert.ok(svg.includes(fonts.nunito) && svg.includes(fonts.mono), `${where}: fonts`);
+    assert.ok(S.fonts.every(k => svg.includes(fonts[k])), `${where}: fonts`);
     assert.ok(svg.includes('text{font-family:KMono') && svg.includes('font-variant-ligatures:none'), where);
     if (sid === 'cutting-mat') assert.ok(svg.includes('.t{font-size:') && /\.t\{[^}]*letter-spacing:0;/.test(svg), `${where}: halo labels need letter-spacing 0 (Safari cuts letters)`);
     assert.ok(!/<foreignObject|<div|<script/i.test(svg), `${where}: SVG text only`);
@@ -496,7 +535,7 @@ assert.ok(evil.includes(`>&lt;b&gt;&amp;&quot;x · ${MOTTO}</text>`), 'handle es
 assert.ok(!evil.includes('<b>'), 'raw handle leaked');
 balanced(evil);
 assert.throws(() => render({ preset: p, colors: { ...colors, bg: 'red"/><script>' }, format: 'desktop', fonts }), /bad color/);
-assert.throws(() => render({ preset: p, colors, format: 'desktop', fonts: { nunito: 'x");}<' } }), /data: URL/);
+assert.throws(() => render({ preset: p, colors, format: 'desktop', fonts: { [SERIES['cutting-mat'].fonts[0]]: 'x");}<' } }), /data: URL/);
 assert.throws(() => render({ preset: p, colors, format: 'square', fonts }), /unknown format/);
 
 // handle rules, whoami lines and the whoami box
@@ -546,8 +585,8 @@ assert.ok(!render({ preset: p, colors, format: 'phone', fonts: null }).includes(
 {
   const S = SERIES.specimen, CM = new Set(index.map(e => e.topic)), sp = PRESETS.specimen;
   const SKEYS = ['series', 'topic', 'title', 'ground', 'hero', 'family', 'class', 'waterfall', 'charset', 'notdef', 'confusables', 'matrix', 'test', 'notes', 'label', 'data', 'phone'];
-  const NUNITO_800 = advances(readFileSync(file('fonts/nunito/Nunito-Variable.ttf')), { wght: 800 });
-  const em = str => [...str].reduce((a, ch) => a + NUNITO_800.get(ch.codePointAt(0)), 0);
+  const DISPLAY = FACE_ADV.caslonDisplay, CASLON = FACE_ADV.caslon;
+  const em = str => [...str].reduce((a, ch) => a + DISPLAY.get(ch.codePointAt(0)), 0);
   for (const e of INDEX.specimen) {
     const p = sp[e.id], at = `specimen ${e.id}.json`, name = e.title.match(TITLE)[2];
     keys(p, SKEYS, at);
@@ -585,9 +624,10 @@ assert.ok(!render({ preset: p, colors, format: 'phone', fonts: null }).includes(
     for (const k of ['left', 'right']) str(p.data[k], 44, `${at} data.${k}`);
     if ('phone' in p) { keys(p.phone, ['data'], `${at} phone`); keys(p.phone.data, ['left', 'right'], `${at} phone.data`); }
     assert.ok(!/ISB-0/.test(JSON.stringify(p)), `${at}: the ISB tags belong to Cutting Mat only`);
-    // glyph coverage: Nunito draws the hero, family and waterfall phrase; JetBrains Mono everything else
-    for (const t of [p.hero, p.family, p.waterfall.phrase, ...p.charset.map(c => c.glyph)]) for (const ch of t)
-      assert.ok(NUNITO_800.has(ch.codePointAt(0)), `${at}: "${ch}" (${hexCp(ch)}) in "${t}" is not a Nunito glyph`);
+    // glyph coverage: Libre Caslon Display draws the hero; Libre Caslon Text the family, waterfall phrase and charset; JetBrains Mono everything else
+    for (const ch of p.hero) assert.ok(DISPLAY.has(ch.codePointAt(0)), `${at}: "${ch}" (${hexCp(ch)}) in hero "${p.hero}" is not a Libre Caslon Display glyph`);
+    for (const t of [p.family, p.waterfall.phrase, ...p.charset.map(c => c.glyph)]) for (const ch of t)
+      assert.ok(CASLON.has(ch.codePointAt(0)), `${at}: "${ch}" (${hexCp(ch)}) in "${t}" is not a Libre Caslon Text glyph`);
     const mono = [p.class, ...p.waterfall.roles, ...p.charset.map(c => c.code), p.notdef, ...p.confusables.flat(), ...p.matrix.axes, p.matrix.rating,
       p.test, ...p.notes, p.label, ...Object.values(p.data), ...Object.values(p.phone?.data ?? {})];
     for (const t of mono) for (const ch of t) assert.equal(MONO_ADV.get(ch.codePointAt(0)), 0.6, `${at}: "${ch}" (${hexCp(ch)}) in "${t}" is not a JetBrains Mono glyph`);
@@ -617,7 +657,7 @@ assert.ok(!render({ preset: p, colors, format: 'phone', fonts: null }).includes(
   // the renderer rejects what it cannot draw, as Cutting Mat's does
   const sp0 = sp[INDEX.specimen[0].id], c0 = ground(palettes[0], sp0.ground);
   assert.throws(() => S.render({ preset: sp0, colors: { ...c0, bg: 'red"/><script>' }, format: 'desktop', fonts }), /bad color/);
-  assert.throws(() => S.render({ preset: sp0, colors: c0, format: 'desktop', fonts: { nunito: 'x");}<' } }), /data: URL/);
+  assert.throws(() => S.render({ preset: sp0, colors: c0, format: 'desktop', fonts: { [S.fonts[0]]: 'x");}<' } }), /data: URL/);
   assert.throws(() => S.render({ preset: sp0, colors: c0, format: 'square', fonts }), /unknown format/);
   const evil = S.render({ preset: sp0, colors: c0, format: 'desktop', handle: '<b>&"x', fonts });
   assert.ok(evil.includes(`>&lt;b&gt;&amp;&quot;x · ${MOTTO}</text>`) && !evil.includes('<b>'), 'specimen: handle escaped');
@@ -630,7 +670,8 @@ assert.ok(!render({ preset: p, colors, format: 'phone', fonts: null }).includes(
 
 {
   const S = SERIES['galley-proof'], GP = PRESETS['galley-proof'], TYPES = Object.keys(KEY), NEEDS_AT = ['dele', 'sub', 'ins', 'wf', 'stet', 'space'];
-  // the preset's drawn strings by font; `to` and the key's mono names are mono, glosses and phrases are Nunito
+  // the preset's drawn strings by font: `to` and the key's mono names are JetBrains Mono, the headline and the key's glosses
+  // Source Serif 4, the margin's marks and glosses the Caveat pencil
   const everyString = (v, out = []) => (typeof v === 'string' ? out.push(v) : v && typeof v === 'object' && Object.values(v).forEach(x => everyString(x, out)), out);
   function checkGalley(p, e, at) {   // every content rule of one preset; throws on the first it breaks
     const name = e.title.match(TITLE)[2];
@@ -677,8 +718,10 @@ assert.ok(!render({ preset: p, colors, format: 'phone', fonts: null }).includes(
     }
     for (const s of [...galleyMono(p, 'desktop'), ...Object.values(p.phone?.data ?? {}), ...p.lines, ...p.marks.flatMap(m => [m.at, m.to, m.phone])].filter(Boolean)) for (const ch of s)
       assert.equal(MONO_ADV.get(ch.codePointAt(0)), 0.6, `${at}: "${ch}" (${hexCp(ch)}) in "${s}" is not a JetBrains Mono glyph`);
-    for (const s of [...p.phrase, ...p.marks.map(m => m.note), ...p.marks.filter(m => m.type === 'query').map(m => m.phone), ...Object.values(KEY).map(k => k[1]), 'tr', 'wf', 'stet', '?']) for (const ch of s)
-      assert.ok(NUNITO_ADV.has(ch.codePointAt(0)), `${at}: "${ch}" (${hexCp(ch)}) in "${s}" is not a Nunito glyph`);
+    for (const s of [...p.phrase, ...Object.values(KEY).map(k => k[1])]) for (const ch of s)
+      assert.ok(FACE_ADV.sourceSerif.has(ch.codePointAt(0)), `${at}: "${ch}" (${hexCp(ch)}) in "${s}" is not a Source Serif 4 glyph`);
+    for (const s of [...p.marks.map(m => m.note), ...p.marks.filter(m => m.type === 'query').map(m => m.phone), 'tr', 'wf', 'stet', '?']) for (const ch of s)
+      assert.ok(FACE_ADV.caveat.has(ch.codePointAt(0)), `${at}: "${ch}" (${hexCp(ch)}) in "${s}" is not a Caveat glyph`);
   }
   for (const e of INDEX['galley-proof']) checkGalley(GP[e.id], e, `galley-proof/${e.id}.json`);
 
@@ -709,7 +752,7 @@ assert.ok(!render({ preset: p, colors, format: 'phone', fonts: null }).includes(
   }
   const g0 = GP.crypto, gc = ground(palettes[0], 'dark'), gargs = { preset: g0, colors: gc, handle: '', fonts };
   assert.throws(() => S.render({ ...gargs, colors: { ...gc, bg: 'red"/><script>' }, format: 'desktop' }), /bad color/);
-  assert.throws(() => S.render({ ...gargs, format: 'desktop', fonts: { nunito: 'x");}<' } }), /data: URL/);
+  assert.throws(() => S.render({ ...gargs, format: 'desktop', fonts: { [S.fonts[0]]: 'x");}<' } }), /data: URL/);
   assert.throws(() => S.render({ ...gargs, format: 'square' }), /unknown format/);
   const gevil = S.render({ ...gargs, format: 'desktop', handle: '<b>&"x' });
   assert.ok(gevil.includes(`>&lt;b&gt;&amp;&quot;x · ${MOTTO}</text>`) && !gevil.includes('<b>'), 'galley-proof: handle escaped');
@@ -915,10 +958,13 @@ const card = { renders: 0, sheets: 0 };   // what this block ran besides the ser
       const pair = `for ${p.correction_struck} read ${p.correction_new}`, gs = slip(galley, pad2(e.vol));
       assert.ok(pair !== gs[1] && pair !== gs[3], `${at}: the correction repeats Galley's "${pair}"`);
     }
-    const mono = [p.drawer_label, ...p.guide_tabs, ...p.call_number, p.main_entry, p.definition, p.phone?.definition, p.collation, ...p.notes, ...p.tracings_subject, ...p.tracings_added, ...p.see_also, p.rod_invariant,
-      ...p.circulation_dates, p.label, ...Object.values(p.data), ...Object.values(p.phone?.data ?? {}), stamp(p), ...HEADS, ...NUMERALS, '1.', '2.', '3.', '4.'].filter(Boolean);
+    // glyph coverage: Xanh Mono types the cards, Caveat pencils the phrase and the correction, JetBrains Mono the rest
+    const typed = [...p.guide_tabs, ...p.call_number, p.main_entry, p.definition, p.phone?.definition, p.collation, ...p.notes, ...p.tracings_subject, ...p.tracings_added, ...p.see_also, p.rod_invariant,
+      HEADS[0], ...NUMERALS, '1.', '2.', '3.', '4.'].filter(Boolean);
+    for (const t of typed) for (const ch of t) assert.equal(FACE_ADV.xanh.get(ch.codePointAt(0)), FACES.xanh.adv, `${at}: "${ch}" (${hexCp(ch)}) in "${t}" is not a Xanh Mono glyph`);
+    const mono = [p.drawer_label, ...p.circulation_dates, p.label, ...Object.values(p.data), ...Object.values(p.phone?.data ?? {}), stamp(p), HEADS[1]].filter(Boolean);
     for (const t of mono) for (const ch of t) assert.equal(MONO_ADV.get(ch.codePointAt(0)), 0.6, `${at}: "${ch}" (${hexCp(ch)}) in "${t}" is not a JetBrains Mono glyph`);
-    for (const t of [...p.phrase, p.correction_new]) for (const ch of t) assert.ok(NUNITO_ADV.has(ch.codePointAt(0)), `${at}: "${ch}" (${hexCp(ch)}) in "${t}" is not a Nunito glyph`);
+    for (const t of [...p.phrase, p.correction_new]) for (const ch of t) assert.ok(FACE_ADV.caveat.has(ch.codePointAt(0)), `${at}: "${ch}" (${hexCp(ch)}) in "${t}" is not a Caveat glyph`);
   }
   // the lexicon rules: the access points are hint-only, and the relation claims stay out of the fixed strings
   const whole = (s, code) => new RegExp(`(?<![\\p{L}\\p{N}])${code.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\p{L}\\p{N}])`, 'u').test(s);
@@ -1010,7 +1056,7 @@ const card = { renders: 0, sheets: 0 };   // what this block ran besides the ser
     assert.deepEqual(unexpected(svg, p, fmt), [], `${where}: text the preset does not hold`);
     for (const t of strings(p, fmt)) assert.ok(svg.includes(`>${esc(t)}</text>`), `${where}: missing ${t}`);
     assert.ok(svg.includes(`>${HANDLE} · ${MOTTO}</text>`), `${where}: default whoami`);
-    assert.ok(svg.includes(fonts.nunito) && svg.includes(fonts.mono) && svg.includes('text{font-family:KMono') && svg.includes('font-variant-ligatures:none'), `${where}: fonts`);
+    assert.ok(S.fonts.every(k => svg.includes(fonts[k])) && svg.includes('text{font-family:KMono') && svg.includes('font-variant-ligatures:none'), `${where}: fonts`);
     balanced(svg);
     onCanvas(svg, w, h, where);
     cardRender(S, svg, pal, role, fmt, where, p);
@@ -1067,7 +1113,7 @@ const card = { renders: 0, sheets: 0 };   // what this block ran besides the ser
   assert.throws(() => S.render({ ...cargs, colors: { ...c0, bg: 'red"/><script>' } }), /bad color/);
   for (const role of ['bg', 'major']) assert.throws(() => S.render({ ...cargs, colors: { ...c0, [role]: '#abc' } }), /bad color/, `catalog-card: a #RGB ${role} cannot be solved into papers`);
   assert.throws(() => S.render({ ...cargs, colors: { ...c0, chip1: 'nope' } }), /bad color/);
-  assert.throws(() => S.render({ ...cargs, fonts: { nunito: 'x");}<' } }), /data: URL/);
+  assert.throws(() => S.render({ ...cargs, fonts: { [S.fonts[0]]: 'x");}<' } }), /data: URL/);
   assert.throws(() => S.render({ ...cargs, format: 'square' }), /unknown format/);
   assert.throws(() => S.render({ ...cargs, preset: null }), /parsed preset/);
   const evil = S.render({ ...cargs, format: 'desktop', handle: '<b>&"x' });
@@ -1121,7 +1167,7 @@ const card = { renders: 0, sheets: 0 };   // what this block ran besides the ser
   assert.ok(S.valid(crypto) && S.valid(MAX) && !S.valid({}) && !S.valid(null) && !S.valid({ ...crypto, drafts: 'x' }) && !S.valid({ ...crypto, tracings_added: undefined }), 'catalog-card: valid()');
   assert.deepEqual(S.chipsOf(crypto, c0), [{ text: 'RSA-2048 → ML-KEM-768', color: c0.chip1 }, { text: 'private key stays private', color: c0.text2 }], 'catalog-card: the findings tape');
   assert.equal(S.swatch(), null); assert.deepEqual([S.GEOM.U('desktop'), S.GEOM.U('wide'), S.GEOM.U('phone')], [56, 60, 48]);
-  assert.deepEqual(['phrase', 'tracings_subject.0', 'see_also.1', 'data.left', 'whoami'].map(k => ['desktop', 'phone'].map(f => S.GEOM.px(k, f))), [[136, 72], [36, 34], [36, 34], [26, 30], [26, 30]], 'catalog-card: GEOM.px');
+  assert.deepEqual(['phrase', 'tracings_subject.0', 'see_also.1', 'data.left', 'whoami'].map(k => ['desktop', 'phone'].map(f => S.GEOM.px(k, f))), [[136, 72], [43.2, 40.8], [43.2, 40.8], [26, 30], [26, 30]], 'catalog-card: GEOM.px');
   const rd = S.READ;
   assert.deepEqual([rd.nav, rd.title, rd.mark, rd.legendHead], ['Read the card', 'Read the card.', 'correction', ['', 'On the card', 'In the body of knowledge']]);
   // the key: the 17 marks, each a term and a line computed from the preset
@@ -1145,7 +1191,7 @@ const card = { renders: 0, sheets: 0 };   // what this block ran besides the ser
     const twin = prepare({ ...crypto, data: { ...crypto.data, left: 'Forward secrecy' } }, 'desktop');
     assert.equal(S.quickFits(twin, 'tracings_subject.1', 'Side-channel attack')?.ok, true, 'catalog-card: a slot is judged on the text of its own family');
     // a hit says what it hit, and why() puts it in the interface's words (one row per kind)
-    const hit = (b, key, v) => S.quickFits(b, key, v).hit, wide = hit(dk, 'see_also.0', 'x'.repeat(25)), col = hit(dk, 'tracings_subject.0', 'x'.repeat(21)), run = hit(ph, 'data.left', 'x'.repeat(44)), gp = hit(dk, 'phrase', 'x'.repeat(33));
+    const hit = (b, key, v) => S.quickFits(b, key, v).hit, wide = hit(dk, 'see_also.0', 'x'.repeat(25)), col = hit(dk, 'tracings_subject.0', 'x'.repeat(21)), run = hit(ph, 'data.left', 'x'.repeat(44)), gp = hit(dk, 'phrase', 'm'.repeat(30));   // wider than the guide card, short of the whoami box
     assert.deepEqual([wide.what, wide.name, S.why(wide)], ['home', 'the see-also card', 'is too wide for the see-also card']);
     assert.deepEqual([col.what, S.why(col)], ['column', 'is too long for its column']);
     assert.deepEqual([run.what, S.why(run)], ['text', 'runs into Prompt line']);
@@ -1216,7 +1262,7 @@ const card = { renders: 0, sheets: 0 };   // what this block ran besides the ser
   cut(crypto, 'desktop', move('pen', 1, 0, 34), /^pencil ".*" comes within -?[\d.]+ px of the strike-through/, 'the pencil on the strike');
   hits({ ...crypto, collation: 'IND-CCA2 ; 1 round trip ; RSA-2049' }, 'desktop', /^the struck word is not in the collation/, 'a struck word the collation lacks');
   // 5: the rod hole
-  cut(crypto, 'desktop', edit(/<circle cx="1450" cy="1424" r="80"/, '<circle cx="1458" cy="1424" r="80"'), /^the rod hole is not centred on the card/, 'the rod hole off centre');
+  cut(crypto, 'desktop', edit(/<circle cx="1450" cy="1426" r="80"/, '<circle cx="1458" cy="1426" r="80"'), /^the rod hole is not centred on the card/, 'the rod hole off centre');
   cut(crypto, 'desktop', move('cap', 1, 30), /^caption ".*" is not centred on the rod hole/, 'the caption off the ring\'s centre');
   cut(crypto, 'desktop', move('cap', 1, 0, 14), /^caption ".*" is [\d.]+ px below the ring, not 24/, 'the caption off its gap');
   cut(crypto, 'desktop', move('trs', 4, 0, 4), /^subject 4 ".*" comes within [\d.]+ px of the rod hole/, 'a tracing within 24 px of the ring');
@@ -1231,7 +1277,7 @@ const card = { renders: 0, sheets: 0 };   // what this block ran besides the ser
   cut(crypto, 'desktop', move('trs', 1, 5), /^subject 1 ".*" is off its grid/, 'a tracing off the grid');
   // 8: a text within 4 px of a mark it does not own
   cut(crypto, 'desktop', move('def', 1, 0, -70), /^def 1 ".*" comes within -?[\d.]+ px of the header rule/, 'a text on the header rule');
-  cut(crypto, 'desktop', move('def', 1, 0, -36.7), /^def 1 ".*" comes within [\d.]+ px of the header rule/, 'a text 2 px off the header rule (near, not touching)');
+  cut(crypto, 'desktop', move('def', 1, 0, -31.3), /^def 1 ".*" comes within [\d.]+ px of the header rule/, 'a text 2 px off the header rule (near, not touching)');
   cut(crypto, 'desktop', move('lab', 1, -140), /^drawer label ".*" comes within -?[\d.]+ px of a rivet/, 'a text on a rivet');
   cut(crypto, 'desktop', move('date', 2, 0, -50), /^date 2 ".*" comes within -?[\d.]+ px of the slip.s rules/, 'a date on the slip\'s rules');
   cut(crypto, 'desktop', move('d', 2, 0, -170), /^status line right ".*" comes within -?[\d.]+ px of the whoami box/, 'a text on the whoami box');
@@ -1258,23 +1304,23 @@ const card = { renders: 0, sheets: 0 };   // what this block ran besides the ser
   struct(edit(/<line x1="330" y1="784"[^>]*\/>/, ''), /sheet structure changed/, 'a missing header rule');
   struct(edit(/<text x="0" y="0" transform="translate\(1550,992\) rotate\(-2\)"[^>]*>[^<]*<\/text>/, ''), /sheet structure changed/, 'a strike without its pencil');
   // M3 gate review: bites at the rule's edge (a looser tolerance or a missing class no longer passes), and the guards with no bite yet
-  cut(crypto, 'desktop', move('def', 1, 0, -35.7), /^def 1 ".*" comes within 3\.0 px of the header rule/, 'a text 3 px off the header rule (between half and the full 4)');
+  cut(crypto, 'desktop', move('def', 1, 0, -30.3), /^def 1 ".*" comes within 3\.0 px of the header rule/, 'a text 3 px off the header rule (between half and the full 4)');
   cut(crypto, 'desktop', strikeX(2), /^the strike-through does not run through the struck word/, 'the strike starting 2 px late');
   cut(crypto, 'desktop', strikeX2(-2), /^the strike-through does not run through the struck word/, 'the strike ending 2 px short');
   cut(crypto, 'desktop', move('note', 1, 750), /^note 1 ".*" does not fit inside the text column/, 'a note 7 px past the pad');
   cut(crypto, 'desktop', move('tra', 1, 0, 370), /^added I\. ".*" is covered by the front card/, 'an added entry under the front card');
   cut(crypto, 'desktop', move('num', 1, 0, -480), /^num 1\. "1\." crosses the header line/, 'a numeral over the header rule');
-  cut(crypto, 'desktop', move('pen', 1, 870), /^pencil ".*" does not fit inside the card/, 'the pencil 5 px past the card\'s side padding');
+  cut(crypto, 'desktop', move('pen', 1, 905.4), /^pencil ".*" does not fit inside the card/, 'the pencil 5 px past the card\'s side padding');
   cut(crypto, 'desktop', edit(/<text x="-224\.4"/, '<text x="-208.4"'), /^stamp ".*" does not fit inside the stamp box/, 'the stamp text 3 px out of its box');
   cut(crypto, 'desktop', edit(/translate\(2305\.6,599\.59\)/g, 'translate(2305.6,748.3)'), /^the accession stamp comes within [\d.]+ px of the header rule/, 'the stamp box 2 px off the rule');
   cut(crypto, 'desktop', move('lab', 1, 125), /^drawer label ".*" comes within -?[\d.]+ px of a rivet/, 'a text on the right rivet');
   cut(crypto, 'desktop', move('slh', 1, 200, -128), /^slip head ".*" comes within -?[\d.]+ px of the clip/, 'a text between the clip\'s wires');
   cut(crypto, 'desktop', edit(/<circle cx="1743" cy="1864"/, '<circle cx="2790" cy="1750"'), /^the whoami box comes within [\d.]+ px of a rivet/, 'the whoami box near a mark');
   cut(crypto, 'phone', edit(/y="2154" width="1210" height="166"/, 'y="2154" width="1210" height="171"'), /^the whoami box comes within 13\.\d px of the drawer front/, 'the whoami box 14 px from the drawer front');
-  cut(crypto, 'phone', move('tab', 1, 0, -40), /^tab 1 ".*" reaches the clock/, 'a text 2 px into the phone clock');
-  cut(crypto, 'desktop', move('call', 1, 0, -458), /^call 1 ".*" reaches the menu bar/, 'a text 3 px into the menu bar');
+  cut(crypto, 'phone', move('tab', 1, 0, -37.8), /^tab 1 ".*" reaches the clock/, 'a text 2 px into the phone clock');
+  cut(crypto, 'desktop', move('call', 1, 0, -449.9), /^call 1 ".*" reaches the menu bar/, 'a text 3 px into the menu bar');
   cut(crypto, 'phone', move('d', 1, 0, 8), /^status line left ".*" reaches the bottom of the screen/, 'a text 2 px into the phone\'s bottom 260 px');
-  cut(crypto, 'desktop', move('cap', 1, 0, 22), /^caption ".*" does not fit inside the text column/, 'the caption 2 px into the 4 px above the front card');
+  cut(crypto, 'desktop', move('cap', 1, 0, 13.3), /^caption ".*" does not fit inside the text column/, 'the caption 2 px into the 4 px above the front card');
   cut(crypto, 'desktop', move('see', 2, 0, 33), /^see-also 2 ".*" does not fit inside the see-also card/, 'a see-also line 1.5 px into the 4 px above the main card');
   cut(crypto, 'desktop', move('phr', 1, 0, 35.5), /^phrase ".*" does not fit inside the blank guide/, 'the phrase 1.5 px into the 4 px above the drawer front');
   cut(crypto, 'desktop', move('k', 2, 40), /^whoami line 2 ".*" does not fit inside the whoami box/, 'a whoami line 3 px past its box');
@@ -1282,8 +1328,9 @@ const card = { renders: 0, sheets: 0 };   // what this block ran besides the ser
   struct(edit(/<circle cx="1743"[^>]*\/>/, ''), /sheet structure changed/, 'a missing rivet');
   struct(edit(/<line x1="2732" y1="1224"[^>]*\/>/, ''), /sheet structure changed/, 'a missing slip rule');
   struct(edit(/<path class="pp" d="M240,1816 V266 H2660 V1816 Z"[^>]*\/>/, '<rect class="pp" x="240" y="266" width="2420" height="1550" fill="#000003"/>'), /sheet structure changed/, 'a plain card drawn as a rect');
-  assert.equal(S.fits(crypto, 'phone', 'phrase', ['W'.repeat(18), 'is secret.'], crypto, f => prepare(crypto, f)).ok, false, 'catalog-card: the phone phrase fails on its first line');
-  assert.equal(S.fits(crypto, 'phone', 'phrase', ['Only the key', 'W'.repeat(18)], crypto, f => prepare(crypto, f)).ok, false, 'catalog-card: the phone phrase fails on its second line');
+  // (Caveat is narrow: any 18 characters fit the phone's guide card, so the overlong line is 30 Ws)
+  assert.equal(S.fits(crypto, 'phone', 'phrase', ['W'.repeat(30), 'is secret.'], crypto, f => prepare(crypto, f)).ok, false, 'catalog-card: the phone phrase fails on its first line');
+  assert.equal(S.fits(crypto, 'phone', 'phrase', ['Only the key', 'W'.repeat(30)], crypto, f => prepare(crypto, f)).ok, false, 'catalog-card: the phone phrase fails on its second line');
   assert.deepEqual(SCHEMA, { phrase: [1, 2, 18], drawer_label: [1, 1, 20], guide_tabs: [4, 4, 14], call_number: [3, 3, 12], main_entry: [1, 1, 20], definition: [1, 1, 110], collation: [1, 1, 44], correction_struck: [1, 1, 18],
     correction_new: [1, 1, 18], notes: [1, 2, 44], rod_invariant: [1, 1, 28], tracings_subject: [2, 4, 20], tracings_added: [1, 2, 20], see_also: [1, 2, 24], circulation_dates: [3, 5, 18], label: [1, 1, 42] }, 'catalog-card: the schema table');
   assert.deepEqual(['A04:2025', 'LLM01:2026', 'API1:2023', 'CWE-327', 'CAPEC-66', 'TA0001', 'T1059.001', 'M1041', 'AML.T0051', 'MASWE-0005', 'MASVS-AUTH-1', 'SP 800-63B-4', 'SP 800-61r3', 'SP 800-227', 'NIST IR 8547', 'FIPS 140-3',

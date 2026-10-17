@@ -8,15 +8,12 @@ import { readFileSync } from 'node:fs';
 import { FORMATS } from './render.js';
 import { LIMITS, advances, get, overlaps, prepare, slotRules, useMetrics } from './check.js';
 import { SERIES } from './series/index.js';
+import { FACES, faceMetrics } from './fonts.js';
 import { FMTS, options, put, slotsOf, wrapPhrase } from './words.js';
 
 const file = (path) => new URL(`../${path}`, import.meta.url);
 const json = (path) => JSON.parse(readFileSync(file(path), 'utf8'));
-const NUNITO = readFileSync(file('fonts/nunito/Nunito-Variable.ttf'));
-useMetrics({
-  mono: advances(readFileSync(file('fonts/jetbrains-mono/JetBrainsMono-Variable.ttf'))),
-  nunito: Object.fromEntries([200, 300, 400, 600, 800].map((wght) => [wght, advances(NUNITO, { wght })])),   // Specimen draws all five
-});
+useMetrics(Object.fromEntries(Object.keys(FACES).map((k) => [k, faceMetrics(k, readFileSync(file(FACES[k].file)), advances)])));   // as the studio loads them
 
 // a fixed pseudo-random order, so the sample is the same on every run
 let seed = 20260929;

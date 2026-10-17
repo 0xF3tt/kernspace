@@ -2,14 +2,14 @@
 // A series' rules module (app/series/<series>.rules.js) rebuilds the boxes of a rendered sheet from these and
 // applies its own rules; app/check.js is the entry point the test and the word editor call.
 //
-// Boxes. Widths come from the bundled fonts' own advances (useMetrics), at the weight the sheet draws:
-// JetBrains Mono is 0.6em for every glyph a sheet uses; a Nunito line is measured glyph by glyph at the
-// font-weight of its class (Cutting Mat's phrase: 300), the file's default instance (200) moved by its HVAR
-// deltas (equal to what Chrome measures). Kerning can also widen a Nunito line: by at most 0.08em over the
-// 3,700 texts the lexicons and presets hold, so every Nunito line gets 0.1em more, whatever its size. Without metrics (first paint in the app) the checker falls
-// back to 0.6em and a conservative 0.56em per character.
-// Vertically a box covers the ink, measured from the glyf bounds of the bundled fonts over ASCII plus · → °:
-// JetBrains Mono 0.87em above the baseline ("$") to 0.18em below ("g"), Nunito 0.83em to 0.20em. Rotated
+// Boxes. Widths come from the bundled fonts' own advances (useMetrics, app/fonts.js), at the weight the sheet draws:
+// a monospaced face (JetBrains Mono, Xanh Mono) has one advance for every glyph a sheet uses; any other face is
+// measured glyph by glyph at the font-weight of its class, the file's default instance moved by its HVAR deltas (equal
+// to what Chrome measures). Kerning can also widen a proportional line, so each face adds its own margin (fonts.js
+// `kern`: the widest gain Chrome measured over the 4,900 texts the lexicons and presets hold; Nunito's is 0.1em), whatever
+// its size. Without metrics (first paint in the app) the checker falls back to a conservative width per character.
+// Vertically a box covers the ink, measured from the glyf bounds of the bundled fonts over ASCII plus · → °
+// (fonts.js `ink`): JetBrains Mono 0.87em above the baseline ("$") to 0.18em below ("g"), Nunito 0.83em to 0.20em. Rotated
 // labels keep their rotation: boxes are quads and the test is a separating-axis test, so a 60° label is not
 // inflated to its axis-aligned hull. Stroked shapes include half their stroke, and so do labels drawn with a
 // halo (a ground-colored stroke under the glyphs), since the halo erases whatever it lands on.

@@ -14,8 +14,11 @@
 import { FORMATS, HANDLE, esc, finish, whoamiLines } from '../render.js';
 import { FACES, fontCSS, fontStack, notice } from '../fonts.js';
 
-export const FONTS = ['nunito', 'mono'];          // the headline and margin · the file, slip and house lines
-const SANS = fontStack('nunito'), MONO_FAM = fontStack('mono');
+// The galley is printed matter marked by hand: the headline and the key are set in Source Serif 4, the face of the
+// Chicago Manual of Style's 18th edition (2024), the book whose proofreader's marks the margin uses; the marks and notes
+// in the margin are pencilled in Caveat; the file under review, the slug, the slip and the house lines are set in JetBrains Mono.
+export const FONTS = ['sourceSerif', 'caveat', 'mono'];
+const SERIF = fontStack('sourceSerif'), HAND = fontStack('caveat'), MONO_FAM = fontStack('mono');
 const MONO = FACES.mono;                            // vertical metrics per em (hhea = OS/2 typo), as in cutting-mat.js
 const ADV = MONO.adv;
 const AUTHOR = '0xF3tt';                            // the proofreader's initials: author credit, never the handle
@@ -26,7 +29,7 @@ const AUTHOR = '0xF3tt';                            // the proofreader's initial
 const DESKTOP = {
   R: 3680, left: 160, strip: [300, 150, 1780, 1900], code: { x: 400, size: 48, base: 620, pitch: 88 }, gut: { x: 255, size: 32 },
   slug: { size: 30, base: 220, rule: 250 }, hl: { size: 112, x: 400, bases: [380, 500] }, foot: { rule: 1810, base: 1860, size: 30, end: 1120 },
-  mar: { x: 1840, mt: 36, ml: 32, gl: 30 }, notes: { size: 30, bases: [300, 400, 500] },
+  mar: { x: 1840, mt: 36, ml: 40, gl: 38 }, notes: { size: 30, bases: [300, 400, 500] },
   slip: { x: 1150, y: 1650, w: 820, h: 250, head: 30, body: 32, bases: [46, 92, 132, 182, 222] },
   key: { x: 2860, nx: 3010, head: 500, y: 620, dy: 176, size: 30, nsize: 36, gsize: 32, lh: 50 },
   who: { y: 1640, w: 820, size: 26, lh: 38, pad: 28 }, data: { y: 2000, size: 26 }, vl: { size: 24, ls: .12, top: 190 },
@@ -40,7 +43,7 @@ const WIDE = {
 const PHONE = {
   R: 1200, left: 90, strip: [110, 960, 890, 2160], code: { x: 150, size: 30, base: 1290, pitch: 60 }, gut: { x: 96, size: 30 },
   slug: { size: 30, base: 1020, rule: 1040 }, hl: { size: 64, x: 150, bases: [1124, 1200] }, foot: { rule: 1990, base: 2030, size: 30, end: 810 },
-  mar: { x: 930, mt: 30, ml: 30, gl: 30 }, notes: null,
+  mar: { x: 930, mt: 30, ml: 32, gl: 34 }, notes: null,
   slip: { x: 330, y: 2070, w: 760, h: 250, head: 30, body: 30, bases: [48, 92, 130, 176, 214] },
   key: null, who: { y: 2340, w: 1110, size: 30, lh: 38, pad: 14 }, data: { y: 2525, size: 30 }, vl: null,
 };
@@ -90,14 +93,15 @@ function formatKey(format) {
 
 function style(g, fonts) {
   const mono = (cls, size, wght) => `.${cls}{font-size:${size}px;font-weight:${wght}}`;
-  const sans = (cls, size) => `.${cls}{font-family:${SANS};font-weight:300;font-size:${size}px}`;
+  const serif = (cls, size) => `.${cls}{font-family:${SERIF};font-weight:400;font-size:${size}px}`;
+  const hand = (cls, size) => `.${cls}{font-family:${HAND};font-weight:500;font-size:${size}px}`;
   return fontCSS(fonts, FONTS, 'galley-proof')
     + `text{font-family:${MONO_FAM};font-weight:400;font-variant-ligatures:none}`     // no ligatures: !== and -- read as typed
-    + mono('sl', g.slug.size, 500) + sans('hl', g.hl.size) + mono('gn', g.gut.size, 400) + mono('cd', g.code.size, 400)
-    + mono('ty', g.foot.size, 300) + mono('mt', g.mar.mt, 400) + sans('ml', g.mar.ml) + mono('eh', g.slip.head, 500) + mono('eb', g.slip.body, 400)
+    + mono('sl', g.slug.size, 500) + serif('hl', g.hl.size) + mono('gn', g.gut.size, 400) + mono('cd', g.code.size, 400)
+    + mono('ty', g.foot.size, 300) + mono('mt', g.mar.mt, 400) + hand('ml', g.mar.ml) + mono('eh', g.slip.head, 500) + mono('eb', g.slip.body, 400)
     + mono('k', g.who.size, 400) + `.k,.cd,.eh,.eb,.mt{white-space:pre}` + mono('d', g.data.size, 300)
-    + (g.notes ? mono('nt', g.notes.size, 400) + sans('gl', g.mar.gl) : '')
-    + (g.key ? mono('kh', g.key.size, 500) + mono('kn', g.key.nsize, 500) + sans('kg', g.key.gsize) : '')
+    + (g.notes ? mono('nt', g.notes.size, 400) + hand('gl', g.mar.gl) : '')
+    + (g.key ? mono('kh', g.key.size, 500) + mono('kn', g.key.nsize, 500) + serif('kg', g.key.gsize) : '')
     + (g.vl ? `.vl{font-size:${g.vl.size}px;letter-spacing:${g.vl.ls}em;font-weight:300}` : '');
 }
 
@@ -139,7 +143,7 @@ export function render({ preset: p, colors, format = 'desktop', handle, motto, f
     s.push(`<text x="${n(x)}" y="${n(y)}" class="${cls}"${fill ? ` fill="${fill}"` : ''}${more}>${esc(str)}</text>`);
   const path = (d, w = 3 * u) => s.push(`<path d="${d}" fill="none" stroke="${c.chip1}" stroke-width="${n(w)}" stroke-linecap="round" stroke-linejoin="round"/>`);
   const circled = (label, x, b, size) => {   // a circled marginal instruction; returns the ring's right edge
-    const rx = cp(label) * .6 * size / 2 + 12 * u;   // 0.6 em per char is a conservative Nunito width: the ring is never short
+    const rx = cp(label) * .6 * size / 2 + 12 * u;   // 0.6 em per char is a conservative Caveat width (0.58 at most): the ring is never short
     path(ring(x + rx, b - .37 * size, rx, .8 * size));
     text(x + rx, b, label, 'ml', c.chip1, mid);
     return x + 2 * rx;

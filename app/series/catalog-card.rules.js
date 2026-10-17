@@ -22,8 +22,9 @@
 // so the editor's fast path and the full checker cannot disagree. Every text is named by class and order (`call 2`, `def 1`, `date 3`,
 // `num II.`), never by string; only the editable texts map to a slot by string. Boxes, tolerance and colors: app/boxes.js.
 import { FORMATS, HANDLE } from '../render.js';
-import { CLASSES, GEOMETRY, HEADS, defLines, render, stamp, view } from './catalog-card.js';
+import { CLASSES, GEOMETRY, HEADS, STRIKE, cell, defLines, render, stamp, view } from './catalog-card.js';
 import { INK, PROBE, ROLE, TOL, attrs, classes, fail, family, glyphs, hits, hull, len, quad, reBox, transform, unesc, union, width, within } from '../boxes.js';
+import { FACES } from '../fonts.js';
 export { poolOf } from './cutting-mat.rules.js';
 
 const ADV = 0.6, APART = 4, ROD = 24, WHO = 16, NOTIF = 2215, NUMERALS = ['I.', 'II.'];
@@ -134,7 +135,7 @@ export function scene(svg, slots) {
   // texts, by class and order
   const K = CLASSES(g), M = g.main, T = P('main').r, S = P('see').r, front = P('front').r, blank = P('blank').r, slip = P('slip').r, drawer = P('panel').r;
   const inMain = box(T.x0 + M.pad, T.y0 + 4, T.x1 - M.pad, front.y0 - 4), seeIn = box(S.x0 + g.see.pad, S.y0 + 4, S.x1 - g.see.pad, T.y0 - 4);
-  const cx0 = M.x0 + M.pad, i1 = M.body === 'entry' ? cx0 + M.callMax * ADV * K.call[1] + M.gap : cx0, cw = ADV * K.trs[1], cols = M.tr.cols.map((c) => i1 + c * cw), nr = M.tr.bases.length;
+  const cx0 = M.x0 + M.pad, i1 = M.body === 'entry' ? cx0 + M.callMax * cell(K, 'call') + M.gap : cx0, cw = cell(K, 'trs'), cols = M.tr.cols.map((c) => i1 + c * cw), nr = M.tr.bases.length;
   const texts = [], seen = {}, nPhr = els.filter((e) => e.tag === 'text' && e.a.class === 'phr').length, sf = slots?.facts ?? {};
   for (const { a, str, tag } of els) {
     if (tag !== 'text') continue;
@@ -231,8 +232,8 @@ export function collisions(s, W, H, phone) {
   if (f.struck === null) say({ name: 'the struck word' }, 'is not in the collation');                                               // 4
   else if (!strike) say({ name: 'the strike-through' }, 'is missing');
   else {
-    const r = strike.raw, adv = ADV * coll.at.size, sx = (r.x1 + r.x2) / 2;
-    if (Math.abs(r.y - (coll.at.y - 0.36 * coll.at.size)) > 2) say(strike, 'is not at the collation’s strike-through height');
+    const r = strike.raw, adv = FACES[coll.at.face].adv * coll.at.size, sx = (r.x1 + r.x2) / 2;
+    if (Math.abs(r.y - (coll.at.y - STRIKE * coll.at.size)) > 2) say(strike, 'is not at the collation’s strike-through height');
     if (f.struck ? Math.abs(r.x1 - (coll.at.x + f.struck.at * adv - 6)) > 1 || Math.abs(r.x2 - (coll.at.x + (f.struck.at + f.struck.n) * adv + 6)) > 1
       : r.x1 + 6 < coll.at.x - 1 || r.x2 - 6 > hull(coll.q).x1 + 1) say(strike, 'does not run through the struck word');
     if (Math.abs(pen.ox - sx) > 1) say(pen, `is not centred on the struck word (${(pen.ox - sx).toFixed(1)} px)`);
@@ -304,7 +305,7 @@ export function slotRules(p, key, value) {
     if (/[<>&]/.test(s)) why.push('<, > or &');
     const max = key === 'data.left' ? phoneCap(p, key) : limitOf(key);
     if (len(s) > max) why.push(`${len(s)}/${max}`);
-    if (!glyphs(a === 'phrase' ? 'nunito' : 'mono', s)) why.push('glyph');
+    if (!glyphs(a === 'phrase' ? 'caveat' : a === 'data' ? 'mono' : 'xanh', s)) why.push('glyph');   // the phrase is pencilled, the access points typed
     if (a === 'see_also' && !isId(seeParts(s)?.[2])) why.push('NAME · ID');
   }
   return why;

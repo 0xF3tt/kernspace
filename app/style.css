@@ -9,6 +9,11 @@
 /* the families the sheets name, for the live proof in the word editor (fonts from here reach its shadow root) */
 @font-face { font-family: "KNunito"; src: url("../fonts/nunito/Nunito-Variable.ttf") format("truetype"); font-weight: 200 1000; font-display: block; }
 @font-face { font-family: "KMono"; src: url("../fonts/jetbrains-mono/JetBrainsMono-Variable.ttf") format("truetype"); font-weight: 100 800; font-display: block; }
+@font-face { font-family: "KCaslon"; src: url("../fonts/libre-caslon-text/LibreCaslonText-Variable.ttf") format("truetype"); font-weight: 400 700; font-display: block; }
+@font-face { font-family: "KCaslonDisplay"; src: url("../fonts/libre-caslon-display/LibreCaslonDisplay-Regular.ttf") format("truetype"); font-weight: 400; font-display: block; }
+@font-face { font-family: "KSourceSerif"; src: url("../fonts/source-serif-4/SourceSerif4-Regular.ttf") format("truetype"); font-weight: 400; font-display: block; }
+@font-face { font-family: "KXanh"; src: url("../fonts/xanh-mono/XanhMono-Regular.ttf") format("truetype"); font-weight: 400; font-display: block; }
+@font-face { font-family: "KCaveat"; src: url("../fonts/caveat/Caveat-Variable.ttf") format("truetype"); font-weight: 400 700; font-display: block; }
 
 :root {
   /* dark first: black, with the near-black tile every sheet lies on */
@@ -667,7 +672,9 @@ body[data-editing] .ruler-y span::after { content: ""; position: absolute; top: 
 @media (hover: hover) { .orow[aria-disabled="true"]:hover { background: transparent; } }
 .ot { font: 400 14px/1.35 var(--data); color: var(--ink); overflow-wrap: anywhere; font-variant-ligatures: none; }
 .ot .lk { color: var(--ink-3); }
-.ot.ph { font: 300 18px/1.2 KNunito, var(--voice); }
+.ot.ph { font: 300 18px/1.2 KNunito, var(--voice); }   /* a phrase option in its series' own face */
+.ot.ph.v-sourceSerif { font: 400 18px/1.2 KSourceSerif, var(--voice); }
+.ot.ph.v-caveat { font: 500 21px/1.15 KCaveat, var(--voice); }
 .orow[aria-disabled="true"] .ot { color: var(--ink-3); }
 .orow .on { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; color: var(--ink-3); white-space: nowrap; }
 .orow .on .tape { padding: 2px 7px; font-size: 10.5px; }

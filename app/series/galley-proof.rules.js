@@ -247,7 +247,7 @@ export function slotRules(p, key, value) {
     if (/[<>&]/.test(s)) why.push('<, > or &');
     const max = key === 'data.left' ? phoneCap(p, key) : a === 'data' && p.phone?.data?.[key.slice(5)] != null ? Math.min(limitOf(key), LIMITS.phone) : limitOf(key);
     if (len(s) > max) why.push(`${len(s)}/${max}`);
-    if (!glyphs(a === 'phrase' ? 'nunito' : 'mono', s)) why.push('glyph');
+    if (!glyphs(a === 'phrase' ? 'sourceSerif' : 'mono', s)) why.push('glyph');
     if (key === 'errata.throughout' && !/^for .+ read .+$/.test(s)) why.push('for X read Y');
   }
   return why;

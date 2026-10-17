@@ -21,6 +21,36 @@ export const FACES = {
     asc: 1.011, desc: 0.353, ink: [0.83, 0.2], xh: 0.484, cap: 0.705, kern: 0.1, fallback: 0.56,
     license: 'SIL OFL 1.1, Copyright 2014 The Nunito Project Authors',
   },
+  caslon: {
+    name: 'Libre Caslon Text', file: 'fonts/libre-caslon-text/LibreCaslonText-Variable.ttf', family: 'KCaslon',
+    stack: '"Libre Caslon Text",Georgia,serif', wght: [400, 700], measure: [400, 475, 550, 625, 700],
+    asc: 0.97, desc: 0.26, ink: [0.87, 0.26], xh: 0.5245, cap: 0.7615, kern: 0.16, fallback: 0.65,
+    license: 'SIL OFL 1.1, Copyright 2018 The Libre Caslon Text Project Authors',
+  },
+  caslonDisplay: {
+    name: 'Libre Caslon Display', file: 'fonts/libre-caslon-display/LibreCaslonDisplay-Regular.ttf', family: 'KCaslonDisplay',
+    stack: '"Libre Caslon Display",Georgia,serif', wght: [400, 400], measure: [400],
+    asc: 0.97, desc: 0.266, ink: [0.84, 0.25], xh: 0.424, cap: 0.69, kern: 0.1, fallback: 0.5,
+    license: 'SIL OFL 1.1, Copyright 2012 The Libre Caslon Display Authors',
+  },
+  sourceSerif: {
+    name: 'Source Serif 4', file: 'fonts/source-serif-4/SourceSerif4-Regular.ttf', family: 'KSourceSerif',
+    stack: '"Source Serif 4",Georgia,serif', wght: [400, 400], measure: [400],
+    asc: 1.036, desc: 0.335, ink: [0.76, 0.25], xh: 0.475, cap: 0.67, kern: 0.06, fallback: 0.56,
+    license: "SIL OFL 1.1, Copyright 2014-2023 Adobe, with Reserved Font Name 'Source'",
+  },
+  xanh: {
+    name: 'Xanh Mono', file: 'fonts/xanh-mono/XanhMono-Regular.ttf', family: 'KXanh',
+    stack: '"Xanh Mono","Courier New",monospace', wght: [400, 400], adv: 0.5,
+    asc: 0.97, desc: 0.22, ink: [0.85, 0.19], xh: 0.54, cap: 0.74, kern: 0, fallback: 0.5,
+    license: 'SIL OFL 1.1, Copyright 2020 The XanhMono Project Authors',
+  },
+  caveat: {
+    name: 'Caveat', file: 'fonts/caveat/Caveat-Variable.ttf', family: 'KCaveat',
+    stack: 'Caveat,cursive', wght: [400, 700], measure: [400, 500, 600, 700],
+    asc: 0.96, desc: 0.3, ink: [0.77, 0.23], xh: 0.4, cap: 0.61, kern: 0.14, fallback: 0.44,
+    license: 'SIL OFL 1.1, Copyright 2014 The Caveat Project Authors',
+  },
 };
 
 const FONT_URL = /^data:[\w/+.-]+;base64,[A-Za-z0-9+/=]*$/;

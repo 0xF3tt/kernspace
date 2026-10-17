@@ -1027,7 +1027,7 @@ function group(id, title, rs) {
 function row(r) {
   const i = ed.shown.push(r) - 1, lock = options(ed.key).lock, dis = !r.ok && !r.applied;
   const body = Array.isArray(r.value)   // the phrase's lines, or a pair (text, code)
-    ? ed.key === 'phrase' ? h('span', { class: 'ot ph', id: `ot-${i}` }, r.value.flatMap((l, k) => (k ? [h('br'), l] : [l])))
+    ? ed.key === 'phrase' ? h('span', { class: `ot ph v-${S.voice}`, id: `ot-${i}` }, r.value.flatMap((l, k) => (k ? [h('br'), l] : [l])))
       : h('span', { class: 'ot', id: `ot-${i}` }, r.value[0], ' ', h('span', { class: 'lk' }, r.value[1]))
     : h('span', { class: 'ot', id: `ot-${i}` }, lock && r.value.startsWith(lock) ? [h('span', { class: 'lk' }, lock), r.value.slice(lock.length)] : r.value);
   const fmts = r.per && !r.ok ? h('span', { class: 'fmts', 'aria-hidden': 'true' }, FMTS.map((f) => h('i', { class: `${f[0]}${r.per[f].ok ? '' : ' bad'}` }))) : null;
