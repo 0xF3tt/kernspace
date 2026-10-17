@@ -1128,7 +1128,7 @@ const card = { renders: 0, sheets: 0 };   // what this block ran besides the ser
   assert.equal(stamp(crypto), 'KS-CC-09 · cat. 0xF3tt'); assert.equal(CARD_AUTHOR, '0xF3tt');
   assert.deepEqual(HEADS, ['SEE ALSO', 'DATE DUE']);
   assert.deepEqual(DEPTH, { guides: [1.05, 1.09, 1.13, 1.18], wall: 1.12, see: 1.20, slip: 1.25, front: 1.31, blank: 1.38, panel: 1.44, main: 1.50, metal: 1.58 }, 'catalog-card: the paper ladder targets');
-  assert.deepEqual(paper(c0), { guides: ['#140D28', '#191030', '#1E1336', '#23163E'], wall: '#1D1235', see: '#251741', slip: '#2A1948', front: '#2F1C4D', blank: '#341F55', panel: '#37215A', main: '#3C2360', metal: '#402666' }, 'catalog-card: the paper on aniline');
+  assert.deepEqual(paper(c0), { guides: ['#140F26', '#1A122F', '#201436', '#24173D'], wall: '#1E1434', see: '#261840', slip: '#2B1B47', front: '#301D4E', blank: '#342054', panel: '#38225A', main: '#3C245F', metal: '#412666' }, 'catalog-card: the paper on aniline');
   assert.deepEqual(Object.values(paper(PROBE)).flat(), Array(12).fill('#000003'), 'catalog-card: under PROBE every paper is a role hex scene() never reads');
   assert.throws(() => paper({ bg: '#abc', major: '#9A86C8' }), /bad color/);
   assert.deepEqual(defLines(crypto, 'desktop').map(len), [72, 31], 'catalog-card: crypto wraps 72 + 31 on desktop (greedy, the first line 2 short of 77)');
