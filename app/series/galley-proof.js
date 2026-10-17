@@ -29,7 +29,7 @@ const AUTHOR = '0xF3tt';                            // the proofreader's initial
 const DESKTOP = {
   R: 3680, left: 160, strip: [300, 150, 1780, 1900], code: { x: 400, size: 48, base: 620, pitch: 88 }, gut: { x: 255, size: 32 },
   slug: { size: 30, base: 220, rule: 250 }, hl: { size: 112, x: 400, bases: [380, 500] }, foot: { rule: 1810, base: 1860, size: 30, end: 1120 },
-  mar: { x: 1840, mt: 36, ml: 40, gl: 38 }, notes: { size: 30, bases: [300, 400, 500] },
+  mar: { x: 1840, mt: 36, ml: 44, gl: 50 }, notes: { size: 30, bases: [300, 400, 500] },
   slip: { x: 1150, y: 1650, w: 820, h: 250, head: 30, body: 32, bases: [46, 92, 132, 182, 222] },
   key: { x: 2860, nx: 3010, head: 500, y: 620, dy: 176, size: 30, nsize: 36, gsize: 32, lh: 50 },
   who: { y: 1640, w: 820, size: 26, lh: 38, pad: 28 }, data: { y: 2000, size: 26 }, vl: { size: 24, ls: .12, top: 190 },
@@ -94,7 +94,7 @@ function formatKey(format) {
 function style(g, fonts) {
   const mono = (cls, size, wght) => `.${cls}{font-size:${size}px;font-weight:${wght}}`;
   const serif = (cls, size) => `.${cls}{font-family:${SERIF};font-weight:400;font-size:${size}px}`;
-  const hand = (cls, size) => `.${cls}{font-family:${HAND};font-weight:500;font-size:${size}px}`;
+  const hand = (cls, size) => `.${cls}{font-family:${HAND};font-weight:500;font-size:${size}px;font-variant-ligatures:contextual}`;   // a hand's repeated letters vary
   return fontCSS(fonts, FONTS, 'galley-proof')
     + `text{font-family:${MONO_FAM};font-weight:400;font-variant-ligatures:none}`     // no ligatures: !== and -- read as typed
     + mono('sl', g.slug.size, 500) + serif('hl', g.hl.size) + mono('gn', g.gut.size, 400) + mono('cd', g.code.size, 400)

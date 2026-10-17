@@ -19,6 +19,7 @@ import { FACES, fontCSS, fontStack, notice } from '../fonts.js';
 // whose dotted zero keeps the 0xF3tt stamp honest.
 export const FONTS = ['xanh', 'caveat', 'mono'];
 const FAM = { c: fontStack('xanh'), h: fontStack('caveat') }, MONO_FAM = fontStack('mono');   // a class's family code: m (the default) is mono
+const FEAT = { h: 'font-variant-ligatures:contextual;' };   // the pencil's repeated letters vary
 // ADV: the stamps' mono advance; CELL: the advance of each family code, so a typed line and a stamped one share a grid.
 // CAP: the stamp's cap height; HAND: Caveat's real ink above and below the baseline over letters and punctuation (no font
 // metrics here); STRIKE: the strike-through height on a typed line, halfway up Xanh Mono's 0.74 em capitals
@@ -165,7 +166,7 @@ function formatKey(format) {
 function style(K, fonts) {
   return fontCSS(fonts, FONTS, 'catalog-card')
     + `text{font-family:${MONO_FAM};font-weight:400;font-variant-ligatures:none;white-space:pre}`     // no ligatures: the IDs read as typed
-    + Object.entries(K).map(([k, [fam, sz, wt, ls]]) => `.${k}{${FAM[fam] ? `font-family:${FAM[fam]};` : ''}font-size:${sz}px;font-weight:${wt}${ls ? `;letter-spacing:${ls}em` : ''}}`).join('');
+    + Object.entries(K).map(([k, [fam, sz, wt, ls]]) => `.${k}{${FAM[fam] ? `font-family:${FAM[fam]};` : ''}${FEAT[fam] ?? ''}font-size:${sz}px;font-weight:${wt}${ls ? `;letter-spacing:${ls}em` : ''}}`).join('');
 }
 
 // preset: parsed presets/<slug>.json · colors: one palette ground · format: FORMATS key · texture: a FINISHES key (a film grain or a paper), or none

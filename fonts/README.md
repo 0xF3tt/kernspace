@@ -30,7 +30,7 @@ Bundled in this repo. Every face is OFL 1.1 and every file came from [google/fon
 | **Libre Caslon Display** | static Regular | OFL 1.1 | [google/fonts librecaslondisplay](https://github.com/google/fonts/tree/main/ofl/librecaslondisplay) | High contrast, for the hero's sizes. Its `.notdef` is blank, which the specimen never shows: it draws its own tofu box |
 | **Source Serif 4** | static Regular, Text optical size | OFL 1.1, Reserved Font Name "Source" | [adobe-fonts/source-serif](https://github.com/adobe-fonts/source-serif) | The static cut avoids the variable file's optical-size axis, which would change advances with the font size |
 | **Xanh Mono** | static Regular | OFL 1.1 | [google/fonts xanhmono](https://github.com/google/fonts/tree/main/ofl/xanhmono) | Lam Bao and Duy Dao (Yellow Type), a monospaced serif. No → glyph, so typed text has no arrows |
-| **Caveat** | variable, 400–700 | OFL 1.1 | [google/fonts caveat](https://github.com/google/fonts/tree/main/ofl/caveat) | Impallari Type's handwriting. Drawn at 500, with ligatures and contextual alternates off like every sheet text |
+| **Caveat** | variable, 400–700 | OFL 1.1 | [google/fonts caveat](https://github.com/google/fonts/tree/main/ofl/caveat) | Impallari Type's handwriting, drawn at 500. Its contextual alternates stay on, so a doubled letter is not drawn twice alike (every other sheet text has ligatures off); they widen a line by 0.11 em at most, inside the checker's 0.14 |
 | **Newsreader** | variable, roman + italic | OFL 1.1 | [productiontype/Newsreader](https://github.com/productiontype/Newsreader) | The site's text face: headings, copy, controls. Not on the sheets |
 
 ## Candidates

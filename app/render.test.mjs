@@ -310,7 +310,7 @@ function cardRender(S, svg, pal, role, fmt, where, p) {
   const K = CLASSES(g, p), css = Object.fromEntries([...svg.match(/<style>([\s\S]*?)<\/style>/)[1].matchAll(/\.([a-z][a-z\d]*)\{([^}]*)\}/g)].map(m => [m[1], m[2]]));
   assert.deepEqual(Object.keys(css).sort(), Object.keys(K).sort(), `${where}: a style per class`);
   for (const [k, [fam, sz, wt, ls]] of Object.entries(K)) {
-    assert.equal(css[k], `${{ c: `font-family:${fontStack('xanh')};`, h: `font-family:${fontStack('caveat')};` }[fam] ?? ''}font-size:${sz}px;font-weight:${wt}${ls ? `;letter-spacing:${ls}em` : ''}`, `${where}: .${k}`);
+    assert.equal(css[k], `${{ c: `font-family:${fontStack('xanh')};`, h: `font-family:${fontStack('caveat')};font-variant-ligatures:contextual;` }[fam] ?? ''}font-size:${sz}px;font-weight:${wt}${ls ? `;letter-spacing:${ls}em` : ''}`, `${where}: .${k}`);
     assert.ok(k === 'k' || k === 'd' ? sz === (fmt === 'phone' ? 30 : 26) : k === 'vl' ? sz === 24 : sz >= 34, `${where}: .${k} is ${sz}px`);
   }
   for (const [, k] of svg.matchAll(/<text[^>]* class="([a-z\d]+)"/g)) assert.ok(k in K, `${where}: class ${k} is in the table`);

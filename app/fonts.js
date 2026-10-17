@@ -5,8 +5,8 @@
 // Per face, in em: asc/desc are the hhea line metrics (what Blink places HTML lines with), ink the glyph bounds above and
 // below the baseline over ASCII plus · → ° (boxes.js covers the ink), xh and cap the OS/2 x-height and cap height. A
 // monospaced face has one advance (`adv`), so the checker asks only whether a glyph exists at it; a proportional face is
-// measured glyph by glyph at each weight in `measure`, plus `kern` em for kerning pairs (the widest gain over the texts
-// the lexicons and presets hold), and `fallback` em a character before its file has loaded. render.test.mjs reads every
+// measured glyph by glyph at each weight in `measure`, plus `kern` em for kerning pairs and contextual alternates (the
+// widest gain Chrome measured over the texts the lexicons and presets hold), and `fallback` em a character before its file has loaded. render.test.mjs reads every
 // file and checks these numbers against it.
 export const FACES = {
   mono: {
