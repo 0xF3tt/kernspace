@@ -12,20 +12,17 @@
 import { FORMATS, HANDLE, esc, finish, whoamiLines } from '../render.js';
 import { FACES, fontCSS, fontStack, notice } from '../fonts.js';
 
-// The card is typed and pencilled: everything typed on the cards is set in Xanh Mono, a monospaced serif with the narrow
-// pitch of an elite typewriter (12 characters to the inch, against pica's 10), set 1.2 times the size of the mono it
-// replaces so that each character keeps its 0.6 em cell and the x-height grows a half; the cataloger's correction and the
-// guide card's phrase are pencilled in Caveat; the drawer label, the stamps and the house lines are set in JetBrains Mono,
-// whose dotted zero keeps the 0xF3tt stamp honest.
-export const FONTS = ['xanh', 'caveat', 'mono'];
-const FAM = { c: fontStack('xanh'), h: fontStack('caveat') }, MONO_FAM = fontStack('mono');   // a class's family code: m (the default) is mono
-const FEAT = { h: 'font-variant-ligatures:contextual;' };   // the pencil's repeated letters vary
-// ADV: the stamps' mono advance; CELL: the advance of each family code, so a typed line and a stamped one share a grid.
-// CAP: the stamp's cap height; HAND: Caveat's real ink above and below the baseline over letters and punctuation (no font
-// metrics here); STRIKE: the strike-through height on a typed line, halfway up Xanh Mono's 0.74 em capitals
-const ADV = FACES.mono.adv, CAP = FACES.mono.cap, HAND = [0.73, 0.23], CELL = { m: ADV, c: FACES.xanh.adv };
-export const STRIKE = 0.37;
-const typed = s => +(s * ADV / FACES.xanh.adv).toFixed(1);   // the typed size whose cell is a JetBrains Mono `s`'s
+// The card is typed and pencilled: everything typed on the cards is set in PT Mono, round letters in the same 0.6 em cell
+// as the stamps' JetBrains Mono, so a typed line and a stamped one share a grid; the cataloger's correction and the guide
+// card's phrase are pencilled in Architects Daughter, a draftsman's hand; the drawer label, the stamps and the house lines
+// are set in JetBrains Mono, whose dotted zero keeps the 0xF3tt stamp honest.
+export const FONTS = ['ptMono', 'architects', 'mono'];
+const FAM = { c: fontStack('ptMono'), h: fontStack('architects') }, MONO_FAM = fontStack('mono');   // a class's family code: m (the default) is mono
+// ADV: the stamps' mono advance; CELL: the advance of each family code. CAP: the stamp's cap height; HAND: Architects
+// Daughter's ink above and below the baseline over letters and punctuation (no font metrics here); STRIKE: the
+// strike-through height on a typed line, halfway up PT Mono's 0.7 em capitals
+const ADV = FACES.mono.adv, CAP = FACES.mono.cap, HAND = [0.88, 0.43], CELL = { m: ADV, c: FACES.ptMono.adv };
+export const STRIKE = 0.35;
 export const cell = (K, k) => (CELL[K[k][0]] + (K[k][3] ?? 0)) * K[k][1];   // a class's advance in px
 const AUTHOR = '0xF3tt';                             // the cataloger's credit on the accession stamp: never the handle
 const HEADS = ['SEE ALSO', 'DATE DUE'];
@@ -112,19 +109,19 @@ const PHONE = {
 };
 const GEOMETRY = { desktop: DESKTOP, wide: WIDE, phone: PHONE };
 
-// one class per text kind: [family (m JetBrains Mono, c Xanh Mono, h Caveat), size, weight, letter-spacing em]. The phrase is 136 on desktop and wide; on the phone
-// 96 for one stored line, 72 for two. Scrutiny text (everything on the card but the glance tier) is at least 34; chrome is k, d and vl.
+// one class per text kind: [family (m JetBrains Mono, c PT Mono, h Architects Daughter), size, weight, letter-spacing em]. The phrase is 114 on desktop and wide;
+// on the phone 81 for one stored line, 60 for two. Scrutiny text (everything on the card but the glance tier) is at least 34; chrome is k, d and vl.
 const CLASSES = (g, p) => {
-  const ph = g.key === 'phone', b = ph ? 34 : 36, t = typed(b);
+  const ph = g.key === 'phone', t = ph ? 34 : 36;
   return {
-    tab: ['c', typed(ph ? 34 : 40), 400], seeh: ['c', typed(34), 400], see: ['c', t, 400], call: ['c', typed(ph ? 38 : 54), 400], entry: ['c', typed(ph ? 56 : 80), 400],
-    stamp: ['m', 34, 500], def: ['c', t, 400], coll: ['c', t, 400], pen: ['h', ph ? 54 : 64, 500], note: ['c', t, 400], num: ['c', t, 400],
-    trs: ['c', t, 400], tra: ['c', t, 400], cap: ['c', typed(34), 400], phr: ['h', ph ? (p?.phrase?.length === 2 ? 72 : 96) : 136, 500],
-    lab: ['m', ph ? 34 : 40, 500], slh: ['m', 34, 500], date: ['m', b, 400], k: ['m', ph ? 30 : 26, 400], d: ['m', ph ? 30 : 26, 300],
+    tab: ['c', ph ? 34 : 40, 400], seeh: ['c', 34, 400], see: ['c', t, 400], call: ['c', ph ? 38 : 54, 400], entry: ['c', ph ? 56 : 80, 400],
+    stamp: ['m', 34, 500], def: ['c', t, 400], coll: ['c', t, 400], pen: ['h', ph ? 46 : 55, 400], note: ['c', t, 400], num: ['c', t, 400],
+    trs: ['c', t, 400], tra: ['c', t, 400], cap: ['c', 34, 400], phr: ['h', ph ? (p?.phrase?.length === 2 ? 60 : 81) : 114, 400],
+    lab: ['m', ph ? 34 : 40, 500], slh: ['m', 34, 500], date: ['m', t, 400], k: ['m', ph ? 30 : 26, 400], d: ['m', ph ? 30 : 26, 300],
     ...(g.vl ? { vl: ['m', 24, 300, g.vl.ls] } : {}),
   };
 };
-export { GEOMETRY, CLASSES, AUTHOR, HEADS, DEPTH, PAIRS };
+export { GEOMETRY, CLASSES, AUTHOR, HEADS, DEPTH, PAIRS, HAND };
 
 const n = v => +v.toFixed(2);                        // short, stable numbers
 const cp = s => [...s].length;
@@ -166,7 +163,7 @@ function formatKey(format) {
 function style(K, fonts) {
   return fontCSS(fonts, FONTS, 'catalog-card')
     + `text{font-family:${MONO_FAM};font-weight:400;font-variant-ligatures:none;white-space:pre}`     // no ligatures: the IDs read as typed
-    + Object.entries(K).map(([k, [fam, sz, wt, ls]]) => `.${k}{${FAM[fam] ? `font-family:${FAM[fam]};` : ''}${FEAT[fam] ?? ''}font-size:${sz}px;font-weight:${wt}${ls ? `;letter-spacing:${ls}em` : ''}}`).join('');
+    + Object.entries(K).map(([k, [fam, sz, wt, ls]]) => `.${k}{${FAM[fam] ? `font-family:${FAM[fam]};` : ''}font-size:${sz}px;font-weight:${wt}${ls ? `;letter-spacing:${ls}em` : ''}}`).join('');
 }
 
 // preset: parsed presets/<slug>.json · colors: one palette ground · format: FORMATS key · texture: a FINISHES key (a film grain or a paper), or none
@@ -199,7 +196,7 @@ export function render({ preset: p, colors, format = 'desktop', handle, motto, f
   tabs.forEach((label, i) => {
     const k = DEPTH.guides.length - rows + i, bodyTop = G.tabTop + G.tabH + i * G.pitch, tx = G.tabX[i], fill = L.guides[k];
     sheet(`<path d="${guidePath(bodyTop, tx)}" fill="${fill}" stroke="${c.angle}" stroke-width="${sw.edge}" stroke-linejoin="round"/>`);
-    text(tx + G.slant + G.pad, bodyTop - G.tabH / 2 + FACES.xanh.cap / 2 * size('tab'), label, 'tab', { fill: i === rows - 1 ? 'text' : 'text2' });
+    text(tx + G.slant + G.pad, bodyTop - G.tabH / 2 + FACES.ptMono.cap / 2 * size('tab'), label, 'tab', { fill: i === rows - 1 ? 'text' : 'text2' });
     const y = bodyTop + G.pitch / 2;
     sheet(`<path d="M${G.x0},${bottom} V${n(y)} H${G.x1} V${bottom} Z" fill="${fill}" stroke="${c.major}" stroke-width="${sw.plain}"/>`);
   });
@@ -245,7 +242,7 @@ export function render({ preset: p, colors, format = 'desktop', handle, motto, f
   });
   const Ho = M.hole, hx = (M.x0 + M.x1) / 2, hy = T + Ho.cy, ro = Ho.r + sw.hole / 2;
   s.push(`<circle cx="${n(hx)}" cy="${n(hy)}" r="${Ho.r}" fill="${c.bg}" stroke="${c.frame}" stroke-width="${sw.hole}"/>`);
-  text(hx, hy + ro + Ho.capGap + FACES.xanh.ink[0] * size('cap'), P.rod_invariant, 'cap', { fill: 'text2', anchor: 'middle' });
+  text(hx, hy + ro + Ho.capGap + FACES.ptMono.ink[0] * size('cap'), P.rod_invariant, 'cap', { fill: 'text2', anchor: 'middle' });
 
   // in front: a plain card, then the blank front guide with the phrase, centred optically on its visible face
   let y = T + M.cover;

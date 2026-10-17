@@ -3,7 +3,7 @@
 // applies its own rules; app/check.js is the entry point the test and the word editor call.
 //
 // Boxes. Widths come from the bundled fonts' own advances (useMetrics, app/fonts.js), at the weight the sheet draws:
-// a monospaced face (JetBrains Mono, Xanh Mono) has one advance for every glyph a sheet uses; any other face is
+// a monospaced face (JetBrains Mono, Source Code Pro, PT Mono) has one advance for every glyph a sheet uses; any other face is
 // measured glyph by glyph at the font-weight of its class, the file's default instance moved by its HVAR deltas (equal
 // to what Chrome measures). Kerning can also widen a proportional line, so each face adds its own margin (fonts.js
 // `kern`: the widest gain Chrome measured over the 4,900 texts the lexicons and presets hold; Nunito's is 0.1em), whatever

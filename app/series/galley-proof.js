@@ -16,10 +16,11 @@ import { FACES, fontCSS, fontStack, notice } from '../fonts.js';
 
 // The galley is printed matter marked by hand: the headline and the key are set in Source Serif 4, the face of the
 // Chicago Manual of Style's 18th edition (2024), the book whose proofreader's marks the margin uses; the marks and notes
-// in the margin are pencilled in Caveat; the file under review, the slug, the slip and the house lines are set in JetBrains Mono.
-export const FONTS = ['sourceSerif', 'caveat', 'mono'];
-const SERIF = fontStack('sourceSerif'), HAND = fontStack('caveat'), MONO_FAM = fontStack('mono');
-const MONO = FACES.mono;                            // vertical metrics per em (hhea = OS/2 typo), as in cutting-mat.js
+// in the margin are pencilled in Handlee; the file under review, the slug, the slip and the house lines are set in Source
+// Code Pro, Source Serif's monospaced sibling, so the whole galley is one family.
+export const FONTS = ['sourceSerif', 'handlee', 'sourceCode'];
+const SERIF = fontStack('sourceSerif'), HAND = fontStack('handlee'), MONO_FAM = fontStack('sourceCode');
+const MONO = FACES.sourceCode;                      // vertical metrics per em (hhea = OS/2 typo), as in cutting-mat.js
 const ADV = MONO.adv;
 const AUTHOR = '0xF3tt';                            // the proofreader's initials: author credit, never the handle
 
@@ -94,7 +95,7 @@ function formatKey(format) {
 function style(g, fonts) {
   const mono = (cls, size, wght) => `.${cls}{font-size:${size}px;font-weight:${wght}}`;
   const serif = (cls, size) => `.${cls}{font-family:${SERIF};font-weight:400;font-size:${size}px}`;
-  const hand = (cls, size) => `.${cls}{font-family:${HAND};font-weight:500;font-size:${size}px;font-variant-ligatures:contextual}`;   // a hand's repeated letters vary
+  const hand = (cls, size) => `.${cls}{font-family:${HAND};font-weight:400;font-size:${size}px}`;
   return fontCSS(fonts, FONTS, 'galley-proof')
     + `text{font-family:${MONO_FAM};font-weight:400;font-variant-ligatures:none}`     // no ligatures: !== and -- read as typed
     + mono('sl', g.slug.size, 500) + serif('hl', g.hl.size) + mono('gn', g.gut.size, 400) + mono('cd', g.code.size, 400)
@@ -143,7 +144,7 @@ export function render({ preset: p, colors, format = 'desktop', handle, motto, f
     s.push(`<text x="${n(x)}" y="${n(y)}" class="${cls}"${fill ? ` fill="${fill}"` : ''}${more}>${esc(str)}</text>`);
   const path = (d, w = 3 * u) => s.push(`<path d="${d}" fill="none" stroke="${c.chip1}" stroke-width="${n(w)}" stroke-linecap="round" stroke-linejoin="round"/>`);
   const circled = (label, x, b, size) => {   // a circled marginal instruction; returns the ring's right edge
-    const rx = cp(label) * .6 * size / 2 + 12 * u;   // 0.6 em per char is a conservative Caveat width (0.58 at most): the ring is never short
+    const rx = cp(label) * .6 * size / 2 + 12 * u;   // 0.6 em per char is a conservative Handlee width (0.5 on average): the ring is never short
     path(ring(x + rx, b - .37 * size, rx, .8 * size));
     text(x + rx, b, label, 'ml', c.chip1, mid);
     return x + 2 * rx;

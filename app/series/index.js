@@ -34,6 +34,6 @@ export const SERIES = {
     name: 'Catalog Card', dir: 'series/catalog-card/presets', hint: 'card', typed: ['catalog-card'],   // by type it offers only the status lines written for it; every heading needs a hint
     glyph: '<path d="M3 4.5V2.5h5v2"/><rect x="1.5" y="4.5" width="15" height="11" rx="1"/><path d="M3.5 8h11"/><circle cx="9" cy="12.8" r="1.3"/>',   // a card with its header rule and rod hole, a guide tab behind
     BAR: ['bg', 'major', 'angle', 'frame', 'rule', 'text', 'text2', 'chip1'],
-    render: renderCard, fonts: cardFonts, voice: 'caveat', ...cardRules,
+    render: renderCard, fonts: cardFonts, voice: 'architects', ...cardRules,
   },
 };

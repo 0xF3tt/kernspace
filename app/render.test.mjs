@@ -310,12 +310,12 @@ function cardRender(S, svg, pal, role, fmt, where, p) {
   const K = CLASSES(g, p), css = Object.fromEntries([...svg.match(/<style>([\s\S]*?)<\/style>/)[1].matchAll(/\.([a-z][a-z\d]*)\{([^}]*)\}/g)].map(m => [m[1], m[2]]));
   assert.deepEqual(Object.keys(css).sort(), Object.keys(K).sort(), `${where}: a style per class`);
   for (const [k, [fam, sz, wt, ls]] of Object.entries(K)) {
-    assert.equal(css[k], `${{ c: `font-family:${fontStack('xanh')};`, h: `font-family:${fontStack('caveat')};font-variant-ligatures:contextual;` }[fam] ?? ''}font-size:${sz}px;font-weight:${wt}${ls ? `;letter-spacing:${ls}em` : ''}`, `${where}: .${k}`);
+    assert.equal(css[k], `${{ c: `font-family:${fontStack('ptMono')};`, h: `font-family:${fontStack('architects')};` }[fam] ?? ''}font-size:${sz}px;font-weight:${wt}${ls ? `;letter-spacing:${ls}em` : ''}`, `${where}: .${k}`);
     assert.ok(k === 'k' || k === 'd' ? sz === (fmt === 'phone' ? 30 : 26) : k === 'vl' ? sz === 24 : sz >= 34, `${where}: .${k} is ${sz}px`);
   }
   for (const [, k] of svg.matchAll(/<text[^>]* class="([a-z\d]+)"/g)) assert.ok(k in K, `${where}: class ${k} is in the table`);
   // plan.md's class table, literally (desktop and wide / phone), so a drift in CLASSES itself fails
-  const SZ = { tab: [48, 40.8], call: [64.8, 45.6], entry: [96, 67.2], pen: [64, 54], k: [26, 30], d: [26, 30], vl: [24, 24], phr: [136, p.phrase.length === 2 ? 72 : 96] };   // typed sizes: 1.2 × the mono's, one cell
+  const SZ = { tab: [40, 34], call: [54, 38], entry: [80, 56], pen: [55, 46], k: [26, 30], d: [26, 30], vl: [24, 24], phr: [114, p.phrase.length === 2 ? 60 : 81] };   // typed sizes: the mono's, one cell
   for (const [k, [a, b]] of Object.entries(SZ)) if (k in css) assert.match(css[k], new RegExp(`font-size:${fmt === 'phone' ? b : a}px`), `${where}: .${k} is ${fmt === 'phone' ? b : a}px in plan.md's table`);
   // the tracing grid and the fixed indention: x positions from GEOMETRY, never from the words
   const M = g.main, cx0 = M.x0 + M.pad, i1 = M.body === 'entry' ? cx0 + M.callMax * cell(K, 'call') + M.gap : cx0, cols = M.tr.cols.map(ch => i1 + ch * cell(K, 'trs')), nr = M.tr.bases.length;
@@ -347,7 +347,7 @@ for (const [sid, S] of Object.entries(SERIES)) for (const [slug, p] of Object.en
     for (const s of strings(p, fmt)) assert.ok(svg.includes(`>${esc(s)}</text>`), `${where}: missing ${s}`);
     assert.ok(svg.includes(`>${HANDLE} · ${MOTTO}</text>`), `${where}: default whoami`);
     assert.ok(S.fonts.every(k => svg.includes(fonts[k])), `${where}: fonts`);
-    assert.ok(svg.includes('text{font-family:KMono') && svg.includes('font-variant-ligatures:none'), where);
+    assert.ok(svg.includes(`text{font-family:${sid === 'galley-proof' ? 'KSourceCode' : 'KMono'}`) && svg.includes('font-variant-ligatures:none'), where);
     if (sid === 'cutting-mat') assert.ok(svg.includes('.t{font-size:') && /\.t\{[^}]*letter-spacing:0;/.test(svg), `${where}: halo labels need letter-spacing 0 (Safari cuts letters)`);
     assert.ok(!/<foreignObject|<div|<script/i.test(svg), `${where}: SVG text only`);
     balanced(svg);
@@ -585,8 +585,8 @@ assert.ok(!render({ preset: p, colors, format: 'phone', fonts: null }).includes(
 {
   const S = SERIES.specimen, CM = new Set(index.map(e => e.topic)), sp = PRESETS.specimen;
   const SKEYS = ['series', 'topic', 'title', 'ground', 'hero', 'family', 'class', 'waterfall', 'charset', 'notdef', 'confusables', 'matrix', 'test', 'notes', 'label', 'data', 'phone'];
-  const DISPLAY = FACE_ADV.caslonDisplay, CASLON = FACE_ADV.caslon;
-  const em = str => [...str].reduce((a, ch) => a + DISPLAY.get(ch.codePointAt(0)), 0);
+  const HERO = advances(FACE_BYTES.caslon, { wght: 700 }), CASLON = FACE_ADV.caslon;   // the hero is Libre Caslon Text at 700
+  const em = str => [...str].reduce((a, ch) => a + HERO.get(ch.codePointAt(0)), 0);
   for (const e of INDEX.specimen) {
     const p = sp[e.id], at = `specimen ${e.id}.json`, name = e.title.match(TITLE)[2];
     keys(p, SKEYS, at);
@@ -624,9 +624,8 @@ assert.ok(!render({ preset: p, colors, format: 'phone', fonts: null }).includes(
     for (const k of ['left', 'right']) str(p.data[k], 44, `${at} data.${k}`);
     if ('phone' in p) { keys(p.phone, ['data'], `${at} phone`); keys(p.phone.data, ['left', 'right'], `${at} phone.data`); }
     assert.ok(!/ISB-0/.test(JSON.stringify(p)), `${at}: the ISB tags belong to Cutting Mat only`);
-    // glyph coverage: Libre Caslon Display draws the hero; Libre Caslon Text the family, waterfall phrase and charset; JetBrains Mono everything else
-    for (const ch of p.hero) assert.ok(DISPLAY.has(ch.codePointAt(0)), `${at}: "${ch}" (${hexCp(ch)}) in hero "${p.hero}" is not a Libre Caslon Display glyph`);
-    for (const t of [p.family, p.waterfall.phrase, ...p.charset.map(c => c.glyph)]) for (const ch of t)
+    // glyph coverage: Libre Caslon Text draws the hero, the family, waterfall phrase and charset; JetBrains Mono everything else
+    for (const t of [p.hero, p.family, p.waterfall.phrase, ...p.charset.map(c => c.glyph)]) for (const ch of t)
       assert.ok(CASLON.has(ch.codePointAt(0)), `${at}: "${ch}" (${hexCp(ch)}) in "${t}" is not a Libre Caslon Text glyph`);
     const mono = [p.class, ...p.waterfall.roles, ...p.charset.map(c => c.code), p.notdef, ...p.confusables.flat(), ...p.matrix.axes, p.matrix.rating,
       p.test, ...p.notes, p.label, ...Object.values(p.data), ...Object.values(p.phone?.data ?? {})];
@@ -670,8 +669,8 @@ assert.ok(!render({ preset: p, colors, format: 'phone', fonts: null }).includes(
 
 {
   const S = SERIES['galley-proof'], GP = PRESETS['galley-proof'], TYPES = Object.keys(KEY), NEEDS_AT = ['dele', 'sub', 'ins', 'wf', 'stet', 'space'];
-  // the preset's drawn strings by font: `to` and the key's mono names are JetBrains Mono, the headline and the key's glosses
-  // Source Serif 4, the margin's marks and glosses the Caveat pencil
+  // the preset's drawn strings by font: `to` and the key's mono names are Source Code Pro, the headline and the key's glosses
+  // Source Serif 4, the margin's marks and glosses the Handlee pencil
   const everyString = (v, out = []) => (typeof v === 'string' ? out.push(v) : v && typeof v === 'object' && Object.values(v).forEach(x => everyString(x, out)), out);
   function checkGalley(p, e, at) {   // every content rule of one preset; throws on the first it breaks
     const name = e.title.match(TITLE)[2];
@@ -717,11 +716,11 @@ assert.ok(!render({ preset: p, colors, format: 'phone', fonts: null }).includes(
       for (const [, a, b, c] of t.matchAll(/\b(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.\d{1,3}\b/g)) assert.ok(+a === 127 || ['192.0.2', '198.51.100', '203.0.113'].includes(`${a}.${b}.${c}`), `${at}: "${t}" holds a real-looking IPv4 address`);
     }
     for (const s of [...galleyMono(p, 'desktop'), ...Object.values(p.phone?.data ?? {}), ...p.lines, ...p.marks.flatMap(m => [m.at, m.to, m.phone])].filter(Boolean)) for (const ch of s)
-      assert.equal(MONO_ADV.get(ch.codePointAt(0)), 0.6, `${at}: "${ch}" (${hexCp(ch)}) in "${s}" is not a JetBrains Mono glyph`);
+      assert.equal(FACE_ADV.sourceCode.get(ch.codePointAt(0)), 0.6, `${at}: "${ch}" (${hexCp(ch)}) in "${s}" is not a Source Code Pro glyph`);
     for (const s of [...p.phrase, ...Object.values(KEY).map(k => k[1])]) for (const ch of s)
       assert.ok(FACE_ADV.sourceSerif.has(ch.codePointAt(0)), `${at}: "${ch}" (${hexCp(ch)}) in "${s}" is not a Source Serif 4 glyph`);
     for (const s of [...p.marks.map(m => m.note), ...p.marks.filter(m => m.type === 'query').map(m => m.phone), 'tr', 'wf', 'stet', '?']) for (const ch of s)
-      assert.ok(FACE_ADV.caveat.has(ch.codePointAt(0)), `${at}: "${ch}" (${hexCp(ch)}) in "${s}" is not a Caveat glyph`);
+      assert.ok(FACE_ADV.handlee.has(ch.codePointAt(0)), `${at}: "${ch}" (${hexCp(ch)}) in "${s}" is not a Handlee glyph`);
   }
   for (const e of INDEX['galley-proof']) checkGalley(GP[e.id], e, `galley-proof/${e.id}.json`);
 
@@ -958,13 +957,13 @@ const card = { renders: 0, sheets: 0 };   // what this block ran besides the ser
       const pair = `for ${p.correction_struck} read ${p.correction_new}`, gs = slip(galley, pad2(e.vol));
       assert.ok(pair !== gs[1] && pair !== gs[3], `${at}: the correction repeats Galley's "${pair}"`);
     }
-    // glyph coverage: Xanh Mono types the cards, Caveat pencils the phrase and the correction, JetBrains Mono the rest
+    // glyph coverage: PT Mono types the cards, Architects Daughter pencils the phrase and the correction, JetBrains Mono the rest
     const typed = [...p.guide_tabs, ...p.call_number, p.main_entry, p.definition, p.phone?.definition, p.collation, ...p.notes, ...p.tracings_subject, ...p.tracings_added, ...p.see_also, p.rod_invariant,
       HEADS[0], ...NUMERALS, '1.', '2.', '3.', '4.'].filter(Boolean);
-    for (const t of typed) for (const ch of t) assert.equal(FACE_ADV.xanh.get(ch.codePointAt(0)), FACES.xanh.adv, `${at}: "${ch}" (${hexCp(ch)}) in "${t}" is not a Xanh Mono glyph`);
+    for (const t of typed) for (const ch of t) assert.equal(FACE_ADV.ptMono.get(ch.codePointAt(0)), FACES.ptMono.adv, `${at}: "${ch}" (${hexCp(ch)}) in "${t}" is not a PT Mono glyph`);
     const mono = [p.drawer_label, ...p.circulation_dates, p.label, ...Object.values(p.data), ...Object.values(p.phone?.data ?? {}), stamp(p), HEADS[1]].filter(Boolean);
     for (const t of mono) for (const ch of t) assert.equal(MONO_ADV.get(ch.codePointAt(0)), 0.6, `${at}: "${ch}" (${hexCp(ch)}) in "${t}" is not a JetBrains Mono glyph`);
-    for (const t of [...p.phrase, p.correction_new]) for (const ch of t) assert.ok(FACE_ADV.caveat.has(ch.codePointAt(0)), `${at}: "${ch}" (${hexCp(ch)}) in "${t}" is not a Caveat glyph`);
+    for (const t of [...p.phrase, p.correction_new]) for (const ch of t) assert.ok(FACE_ADV.architects.has(ch.codePointAt(0)), `${at}: "${ch}" (${hexCp(ch)}) in "${t}" is not an Architects Daughter glyph`);
   }
   // the lexicon rules: the access points are hint-only, and the relation claims stay out of the fixed strings
   const whole = (s, code) => new RegExp(`(?<![\\p{L}\\p{N}])${code.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\p{L}\\p{N}])`, 'u').test(s);
@@ -1167,7 +1166,7 @@ const card = { renders: 0, sheets: 0 };   // what this block ran besides the ser
   assert.ok(S.valid(crypto) && S.valid(MAX) && !S.valid({}) && !S.valid(null) && !S.valid({ ...crypto, drafts: 'x' }) && !S.valid({ ...crypto, tracings_added: undefined }), 'catalog-card: valid()');
   assert.deepEqual(S.chipsOf(crypto, c0), [{ text: 'RSA-2048 → ML-KEM-768', color: c0.chip1 }, { text: 'private key stays private', color: c0.text2 }], 'catalog-card: the findings tape');
   assert.equal(S.swatch(), null); assert.deepEqual([S.GEOM.U('desktop'), S.GEOM.U('wide'), S.GEOM.U('phone')], [56, 60, 48]);
-  assert.deepEqual(['phrase', 'tracings_subject.0', 'see_also.1', 'data.left', 'whoami'].map(k => ['desktop', 'phone'].map(f => S.GEOM.px(k, f))), [[136, 72], [43.2, 40.8], [43.2, 40.8], [26, 30], [26, 30]], 'catalog-card: GEOM.px');
+  assert.deepEqual(['phrase', 'tracings_subject.0', 'see_also.1', 'data.left', 'whoami'].map(k => ['desktop', 'phone'].map(f => S.GEOM.px(k, f))), [[114, 60], [36, 34], [36, 34], [26, 30], [26, 30]], 'catalog-card: GEOM.px');
   const rd = S.READ;
   assert.deepEqual([rd.nav, rd.title, rd.mark, rd.legendHead], ['Read the card', 'Read the card.', 'correction', ['', 'On the card', 'In the body of knowledge']]);
   // the key: the 17 marks, each a term and a line computed from the preset
@@ -1191,7 +1190,7 @@ const card = { renders: 0, sheets: 0 };   // what this block ran besides the ser
     const twin = prepare({ ...crypto, data: { ...crypto.data, left: 'Forward secrecy' } }, 'desktop');
     assert.equal(S.quickFits(twin, 'tracings_subject.1', 'Side-channel attack')?.ok, true, 'catalog-card: a slot is judged on the text of its own family');
     // a hit says what it hit, and why() puts it in the interface's words (one row per kind)
-    const hit = (b, key, v) => S.quickFits(b, key, v).hit, wide = hit(dk, 'see_also.0', 'x'.repeat(25)), col = hit(dk, 'tracings_subject.0', 'x'.repeat(21)), run = hit(ph, 'data.left', 'x'.repeat(44)), gp = hit(dk, 'phrase', 'm'.repeat(30));   // wider than the guide card, short of the whoami box
+    const hit = (b, key, v) => S.quickFits(b, key, v).hit, wide = hit(dk, 'see_also.0', 'x'.repeat(25)), col = hit(dk, 'tracings_subject.0', 'x'.repeat(21)), run = hit(ph, 'data.left', 'x'.repeat(44)), gp = hit(dk, 'phrase', 'm'.repeat(26));   // wider than the guide card, short of the whoami box
     assert.deepEqual([wide.what, wide.name, S.why(wide)], ['home', 'the see-also card', 'is too wide for the see-also card']);
     assert.deepEqual([col.what, S.why(col)], ['column', 'is too long for its column']);
     assert.deepEqual([run.what, S.why(run)], ['text', 'runs into Prompt line']);
@@ -1277,7 +1276,7 @@ const card = { renders: 0, sheets: 0 };   // what this block ran besides the ser
   cut(crypto, 'desktop', move('trs', 1, 5), /^subject 1 ".*" is off its grid/, 'a tracing off the grid');
   // 8: a text within 4 px of a mark it does not own
   cut(crypto, 'desktop', move('def', 1, 0, -70), /^def 1 ".*" comes within -?[\d.]+ px of the header rule/, 'a text on the header rule');
-  cut(crypto, 'desktop', move('def', 1, 0, -31.3), /^def 1 ".*" comes within [\d.]+ px of the header rule/, 'a text 2 px off the header rule (near, not touching)');
+  cut(crypto, 'desktop', move('def', 1, 0, -39.2), /^def 1 ".*" comes within [\d.]+ px of the header rule/, 'a text 2 px off the header rule (near, not touching)');
   cut(crypto, 'desktop', move('lab', 1, -140), /^drawer label ".*" comes within -?[\d.]+ px of a rivet/, 'a text on a rivet');
   cut(crypto, 'desktop', move('date', 2, 0, -50), /^date 2 ".*" comes within -?[\d.]+ px of the slip.s rules/, 'a date on the slip\'s rules');
   cut(crypto, 'desktop', move('d', 2, 0, -170), /^status line right ".*" comes within -?[\d.]+ px of the whoami box/, 'a text on the whoami box');
@@ -1304,31 +1303,31 @@ const card = { renders: 0, sheets: 0 };   // what this block ran besides the ser
   struct(edit(/<line x1="330" y1="784"[^>]*\/>/, ''), /sheet structure changed/, 'a missing header rule');
   struct(edit(/<text x="0" y="0" transform="translate\(1550,992\) rotate\(-2\)"[^>]*>[^<]*<\/text>/, ''), /sheet structure changed/, 'a strike without its pencil');
   // M3 gate review: bites at the rule's edge (a looser tolerance or a missing class no longer passes), and the guards with no bite yet
-  cut(crypto, 'desktop', move('def', 1, 0, -30.3), /^def 1 ".*" comes within 3\.0 px of the header rule/, 'a text 3 px off the header rule (between half and the full 4)');
+  cut(crypto, 'desktop', move('def', 1, 0, -38.2), /^def 1 ".*" comes within 3\.0 px of the header rule/, 'a text 3 px off the header rule (between half and the full 4)');
   cut(crypto, 'desktop', strikeX(2), /^the strike-through does not run through the struck word/, 'the strike starting 2 px late');
   cut(crypto, 'desktop', strikeX2(-2), /^the strike-through does not run through the struck word/, 'the strike ending 2 px short');
   cut(crypto, 'desktop', move('note', 1, 750), /^note 1 ".*" does not fit inside the text column/, 'a note 7 px past the pad');
   cut(crypto, 'desktop', move('tra', 1, 0, 370), /^added I\. ".*" is covered by the front card/, 'an added entry under the front card');
   cut(crypto, 'desktop', move('num', 1, 0, -480), /^num 1\. "1\." crosses the header line/, 'a numeral over the header rule');
-  cut(crypto, 'desktop', move('pen', 1, 905.4), /^pencil ".*" does not fit inside the card/, 'the pencil 5 px past the card\'s side padding');
+  cut(crypto, 'desktop', move('pen', 1, 882.7), /^pencil ".*" does not fit inside the card/, 'the pencil 5 px past the card\'s side padding');
   cut(crypto, 'desktop', edit(/<text x="-224\.4"/, '<text x="-208.4"'), /^stamp ".*" does not fit inside the stamp box/, 'the stamp text 3 px out of its box');
   cut(crypto, 'desktop', edit(/translate\(2305\.6,599\.59\)/g, 'translate(2305.6,748.3)'), /^the accession stamp comes within [\d.]+ px of the header rule/, 'the stamp box 2 px off the rule');
   cut(crypto, 'desktop', move('lab', 1, 125), /^drawer label ".*" comes within -?[\d.]+ px of a rivet/, 'a text on the right rivet');
   cut(crypto, 'desktop', move('slh', 1, 200, -128), /^slip head ".*" comes within -?[\d.]+ px of the clip/, 'a text between the clip\'s wires');
   cut(crypto, 'desktop', edit(/<circle cx="1743" cy="1864"/, '<circle cx="2790" cy="1750"'), /^the whoami box comes within [\d.]+ px of a rivet/, 'the whoami box near a mark');
   cut(crypto, 'phone', edit(/y="2154" width="1210" height="166"/, 'y="2154" width="1210" height="171"'), /^the whoami box comes within 13\.\d px of the drawer front/, 'the whoami box 14 px from the drawer front');
-  cut(crypto, 'phone', move('tab', 1, 0, -37.8), /^tab 1 ".*" reaches the clock/, 'a text 2 px into the phone clock');
-  cut(crypto, 'desktop', move('call', 1, 0, -449.9), /^call 1 ".*" reaches the menu bar/, 'a text 3 px into the menu bar');
+  cut(crypto, 'phone', move('tab', 1, 0, -42.7), /^tab 1 ".*" reaches the clock/, 'a text 2 px into the phone clock');
+  cut(crypto, 'desktop', move('call', 1, 0, -462.8), /^call 1 ".*" reaches the menu bar/, 'a text 3 px into the menu bar');
   cut(crypto, 'phone', move('d', 1, 0, 8), /^status line left ".*" reaches the bottom of the screen/, 'a text 2 px into the phone\'s bottom 260 px');
-  cut(crypto, 'desktop', move('cap', 1, 0, 13.3), /^caption ".*" does not fit inside the text column/, 'the caption 2 px into the 4 px above the front card');
-  cut(crypto, 'desktop', move('see', 2, 0, 33), /^see-also 2 ".*" does not fit inside the see-also card/, 'a see-also line 1.5 px into the 4 px above the main card');
-  cut(crypto, 'desktop', move('phr', 1, 0, 35.5), /^phrase ".*" does not fit inside the blank guide/, 'the phrase 1.5 px into the 4 px above the drawer front');
+  cut(crypto, 'desktop', move('cap', 1, 0, 22), /^caption ".*" does not fit inside the text column/, 'the caption 2 px into the 4 px above the front card');
+  cut(crypto, 'desktop', move('see', 2, 0, 32.3), /^see-also 2 ".*" does not fit inside the see-also card/, 'a see-also line 1.5 px into the 4 px above the main card');
+  cut(crypto, 'desktop', move('phr', 1, 0, 24.9), /^phrase ".*" does not fit inside the blank guide/, 'the phrase 1.5 px into the 4 px above the drawer front');
   cut(crypto, 'desktop', move('k', 2, 40), /^whoami line 2 ".*" does not fit inside the whoami box/, 'a whoami line 3 px past its box');
   struct(edit(/<line x1="2987\.4" y1="638"[^>]*\/>/, ''), /sheet structure changed/, 'a clip with one wire');
   struct(edit(/<circle cx="1743"[^>]*\/>/, ''), /sheet structure changed/, 'a missing rivet');
   struct(edit(/<line x1="2732" y1="1224"[^>]*\/>/, ''), /sheet structure changed/, 'a missing slip rule');
   struct(edit(/<path class="pp" d="M240,1816 V266 H2660 V1816 Z"[^>]*\/>/, '<rect class="pp" x="240" y="266" width="2420" height="1550" fill="#000003"/>'), /sheet structure changed/, 'a plain card drawn as a rect');
-  // (Caveat is narrow: any 18 characters fit the phone's guide card, so the overlong line is 30 Ws)
+  // (at 60px any 18 characters of Architects Daughter fit the phone's guide card, so the overlong line is 30 Ws)
   assert.equal(S.fits(crypto, 'phone', 'phrase', ['W'.repeat(30), 'is secret.'], crypto, f => prepare(crypto, f)).ok, false, 'catalog-card: the phone phrase fails on its first line');
   assert.equal(S.fits(crypto, 'phone', 'phrase', ['Only the key', 'W'.repeat(30)], crypto, f => prepare(crypto, f)).ok, false, 'catalog-card: the phone phrase fails on its second line');
   assert.deepEqual(SCHEMA, { phrase: [1, 2, 18], drawer_label: [1, 1, 20], guide_tabs: [4, 4, 14], call_number: [3, 3, 12], main_entry: [1, 1, 20], definition: [1, 1, 110], collation: [1, 1, 44], correction_struck: [1, 1, 18],

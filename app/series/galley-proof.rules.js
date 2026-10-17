@@ -93,7 +93,7 @@ export function scene(svg, slots) {
         else pend.push({ ...b, row: n - 1 });
       } else if (phase === 'foot' || phase === 'key') pend.push(b); else fail(`overlap checker: unknown path ${at}`);
     } else {
-      const cls = a.class, { size, ls = 0, face = 'mono', wght } = css[cls] ?? {}, kind = cls === 'ml' && phase === 'key' ? 'keyMark' : KIND[cls] ?? fail(`overlap checker: unknown text class "${cls}"`);
+      const cls = a.class, { size, ls = 0, face = 'sourceCode', wght } = css[cls] ?? {}, kind = cls === 'ml' && phase === 'key' ? 'keyMark' : KIND[cls] ?? fail(`overlap checker: unknown text class "${cls}"`);
       if (!size) fail(`overlap checker: no font size for class "${cls}"`);
       if (cls === 'gn') { phase = 'rows'; s.rows.push({ b: +a.y, gut: null, cd: null }); }
       const r = s.rows.length, g = ++grp;
@@ -247,7 +247,7 @@ export function slotRules(p, key, value) {
     if (/[<>&]/.test(s)) why.push('<, > or &');
     const max = key === 'data.left' ? phoneCap(p, key) : a === 'data' && p.phone?.data?.[key.slice(5)] != null ? Math.min(limitOf(key), LIMITS.phone) : limitOf(key);
     if (len(s) > max) why.push(`${len(s)}/${max}`);
-    if (!glyphs(a === 'phrase' ? 'sourceSerif' : 'mono', s)) why.push('glyph');
+    if (!glyphs(a === 'phrase' ? 'sourceSerif' : 'sourceCode', s)) why.push('glyph');
     if (key === 'errata.throughout' && !/^for .+ read .+$/.test(s)) why.push('for X read Y');
   }
   return why;

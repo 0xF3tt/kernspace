@@ -13,24 +13,25 @@
 import { FORMATS, HANDLE, esc, finish, whoamiLines } from '../render.js';
 import { FACES, fontCSS, fontStack, notice } from '../fonts.js';
 
-// The specimen is set in Caslon, as the broadside the series borrows from (William Caslon, 1734): the hero in Libre Caslon
-// Display, cut for large sizes; the family name, the waterfall and the charset in Libre Caslon Text. JetBrains Mono sets
-// the codes, labels and the house lines.
-export const FONTS = ['caslonDisplay', 'caslon', 'mono'];
-const SERIF = fontStack('caslon'), DISPLAY = fontStack('caslonDisplay'), MONO_FAM = fontStack('mono');
+// The specimen is set in Caslon, as the broadside the series borrows from (William Caslon, 1734): Libre Caslon Text sets
+// the hero (bold, so its capitals stand wide and sturdy), the family name, the waterfall and the charset. JetBrains Mono
+// sets the codes, labels and the house lines.
+export const FONTS = ['caslon', 'mono'];
+const SERIF = fontStack('caslon'), MONO_FAM = fontStack('mono');
 const MONO = FACES.mono;                            // vertical metrics per em (hhea = OS/2 typo), as in cutting-mat.js
 const CASLON = { asc: FACES.caslon.ink[0], desc: FACES.caslon.ink[1] };   // ink above / below the baseline (boxes.js INK)
 const WEIGHTS = [700, 625, 550, 475, 400];          // waterfall, anon → root: weight grows with exposure
-const LEFT = 160, HERO_MAX = 1000;                  // hero px cap; 0.69 em cap height puts its top at y≈215
+const LEFT = 160, HERO_MAX = 1000, HERO_W = 700;    // hero px cap (0.76 em capitals put its top at y≈144) and weight
+const HERO_PHONE = 362;                             // the phone's cap: capitals as tall as before, clear of the lock-screen clock
 
-// Libre Caslon Display advances, per mille, for A-Z a-z 0-9: the hero is sized from them so that any hero
-// (four wide capitals included, WWWW = 3.78 em) stays left of the waterfall hairline. Anything else counts 1.15 em.
-// The overlap checker (app/boxes.js) adds 0.1 em of kerning margin to every Caslon Display line, so the size reserves it too.
-const HERO_ADV = '658 615 676 704 614 554 703 731 321 330 656 583 871 734 734 568 734 614 551 665 665 658 945 715 612 587 391 467 406 472 423 263 403 453 229 218 457 223 652 462 476 472 467 315 344 268 443 446 619 460 452 388 622 344 510 516 509 499 512 432 525 511'
+// Libre Caslon Text advances at 700, per mille, for A-Z a-z 0-9: the hero is sized from them so that any hero
+// (four wide capitals included, WWWW = 4.8 em) stays left of the waterfall hairline. Anything else counts 1.15 em.
+// The overlap checker (app/boxes.js) adds the face's kerning margin to every Caslon line, so the size reserves it too.
+const HERO_ADV = '773 744 804 869 724 677 846 913 420 405 798 692 1062 869 860 686 860 770 640 770 812 773 1200 831 737 722 579 651 551 666 598 418 578 686 356 326 658 352 997 686 636 670 656 489 464 402 662 611 948 650 614 565 637 450 590 565 592 552 598 522 616 596'
   .split(' ').map(Number);
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 const heroEm = s => [...s].reduce((a, ch) => a + (CHARS.includes(ch) ? HERO_ADV[CHARS.indexOf(ch)] / 1000 : 1.15), 0);
-export const heroSize = (s, room, max = HERO_MAX) => Math.floor(Math.min(max, room / (heroEm(s) + 0.1)));
+export const heroSize = (s, room, max = HERO_MAX) => Math.floor(Math.min(max, room / (heroEm(s) + FACES.caslon.kern)));
 
 // geometry per format, px. Left column: hero, family, class, waterfall (labels at lx, text at x, clipped at `clip`), notes.
 // Right column: charset grid, confusables, matrix, test, whoami box. Keep-clear: top 110, bottom-centre 1300×220 (Dock);
@@ -88,7 +89,7 @@ function style(c, g, hero, fonts) {
   const serif = (cls, size, wght) => `.${cls}{font-family:${SERIF};font-weight:${wght};font-size:${size}px}`;
   return fontCSS(fonts, FONTS, 'specimen')
     + `text{font-family:${MONO_FAM};font-weight:400;font-variant-ligatures:none}`     // no ligatures: !== and -- read as typed
-    + `.h{font-family:${DISPLAY};font-weight:400;font-size:${hero}px}` + serif('fn', g.fam.size, 400) + serif('g', g.grid.glyph, 400)
+    + `.h{font-family:${SERIF};font-weight:${HERO_W};font-size:${hero}px}` + serif('fn', g.fam.size, 400) + serif('g', g.grid.glyph, 400)
     + g.wf.sizes.map((s, i) => serif(`w${i}`, s, WEIGHTS[i + (g.wf.drop && i >= g.wf.drop ? 1 : 0)])).join('')
     + `.cl{font-size:${g.cls.size}px}.lb{font-size:${g.wf.label}px;font-weight:300}.cp{font-size:${g.grid.code}px;font-weight:300}`
     + `.cf{font-size:${g.conf.size}px}.k{font-size:${g.who.size}px}.k,.pt{white-space:pre}.d{font-size:${g.data.size}px;font-weight:300}`
@@ -113,7 +114,7 @@ export function render({ preset: p, colors, format = 'desktop', handle, motto, f
   const mid = ' text-anchor="middle"';
 
   // hero: as large as the column allows, on one baseline
-  const hero = heroSize(p.hero, g.clip - g.hero.x - 40, phone ? 400 : HERO_MAX);
+  const hero = heroSize(p.hero, g.clip - g.hero.x - 40, phone ? HERO_PHONE : HERO_MAX);
   text(g.hero.x, g.hero.base, p.hero, 'h', c.text);
   line(g.hero.x, g.hero.base, g.clip, g.hero.base, c.minor, g.sw.guide);
   text(g.hero.x, g.fam.base, p.family, 'fn', c.text);

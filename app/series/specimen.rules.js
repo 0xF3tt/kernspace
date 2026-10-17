@@ -20,9 +20,9 @@ import { INK, PROBE, ROLE, TOL, attrs, classes, fail, family, glyphs, hits, hull
 const drawnRight = (s, handle) => s?.replaceAll('{handle}', handle || HANDLE);
 // [pt, role index] per waterfall line; the phone drops one role
 const lines = (g) => g.wf.sizes.map((size, i) => [size, i + (g.wf.drop && i >= g.wf.drop ? 1 : 0)]);
-// the hero's ink: capitals and digits (the tails of J and Q apart) sit on the baseline at 0.69-0.723 em in Libre Caslon
-// Display's own bounds; anything else may rise to an ascender or fall to a descender, and boxes like the widest ink of the face
-const heroInk = (s) => (/^[A-IK-PR-Z0-9]*$/.test(s) ? [0.73, 0.02] : INK.caslonDisplay);
+// the hero's ink: capitals and digits (the tails of J and Q apart) sit on the baseline and reach 0.798 em in Libre Caslon
+// Text's bold bounds; anything else may rise to an ascender or fall to a descender, and boxes like the widest ink of the face
+const heroInk = (s) => (/^[A-IK-PR-Z0-9]*$/.test(s) ? [0.8, 0.034] : INK.caslon);
 
 // drawn string -> { key, name }: which preset field it comes from. key is the editor's slot id (a confusable's two
 // parts are confusables.<i>.0 and .1); name reads well in a message. Editable slots come first, so they win a tie.
@@ -170,7 +170,7 @@ export function withSlot(p, key, value) {
 }
 // why a value breaks the slot table (an empty list: it doesn't). Geometry is overlaps()'s job.
 export function slotRules(p, key, value) {
-  const why = [], a = family(key), pair = a === 'confusables', face = a === 'hero' ? 'caslonDisplay' : a === 'family' || key === 'waterfall.phrase' ? 'caslon' : 'mono';   // the roles are mono labels
+  const why = [], a = family(key), pair = a === 'confusables', face = a === 'hero' || a === 'family' || key === 'waterfall.phrase' ? 'caslon' : 'mono';   // the roles are mono labels
   if (pair && !(Array.isArray(value) && value.length === 2)) return ['text and code'];
   for (const [i, s] of (pair ? value : [value]).entries()) {
     if (typeof s !== 'string' || !s.trim()) return ['empty'];

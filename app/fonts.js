@@ -1,6 +1,7 @@
 // The bundled faces: one table for the renderers (the @font-face rules and font stacks they embed), the overlap checker
 // (widths and ink boxes, app/boxes.js) and the studio (which files to load for a series). Each series draws with its own
-// faces (`FONTS` in its renderer); JetBrains Mono, the house mono, signs every sheet. fonts/README.md has the catalog.
+// faces (`FONTS` in its renderer); JetBrains Mono, the house mono, sets the data on every sheet but Galley Proof's, which is
+// set entirely in Adobe's Source family. fonts/README.md has the catalog.
 //
 // Per face, in em: asc/desc are the hhea line metrics (what Blink places HTML lines with), ink the glyph bounds above and
 // below the baseline over ASCII plus · → ° (boxes.js covers the ink), xh and cap the OS/2 x-height and cap height. A
@@ -27,29 +28,37 @@ export const FACES = {
     asc: 0.97, desc: 0.26, ink: [0.87, 0.26], xh: 0.5245, cap: 0.7615, kern: 0.16, fallback: 0.65,
     license: 'SIL OFL 1.1, Copyright 2018 The Libre Caslon Text Project Authors',
   },
-  caslonDisplay: {
-    name: 'Libre Caslon Display', file: 'fonts/libre-caslon-display/LibreCaslonDisplay-Regular.ttf', family: 'KCaslonDisplay',
-    stack: '"Libre Caslon Display",Georgia,serif', wght: [400, 400], measure: [400],
-    asc: 0.97, desc: 0.266, ink: [0.84, 0.25], xh: 0.424, cap: 0.69, kern: 0.1, fallback: 0.5,
-    license: 'SIL OFL 1.1, Copyright 2012 The Libre Caslon Display Authors',
-  },
   sourceSerif: {
     name: 'Source Serif 4', file: 'fonts/source-serif-4/SourceSerif4-Regular.ttf', family: 'KSourceSerif',
     stack: '"Source Serif 4",Georgia,serif', wght: [400, 400], measure: [400],
     asc: 1.036, desc: 0.335, ink: [0.76, 0.25], xh: 0.475, cap: 0.67, kern: 0.06, fallback: 0.56,
     license: "SIL OFL 1.1, Copyright 2014-2023 Adobe, with Reserved Font Name 'Source'",
   },
-  xanh: {
-    name: 'Xanh Mono', file: 'fonts/xanh-mono/XanhMono-Regular.ttf', family: 'KXanh',
-    stack: '"Xanh Mono","Courier New",monospace', wght: [400, 400], adv: 0.5,
-    asc: 0.97, desc: 0.22, ink: [0.85, 0.19], xh: 0.54, cap: 0.74, kern: 0, fallback: 0.5,
-    license: 'SIL OFL 1.1, Copyright 2020 The XanhMono Project Authors',
+  sourceCode: {
+    name: 'Source Code Pro', file: 'fonts/source-code-pro/SourceCodePro-Variable.ttf', family: 'KSourceCode',
+    stack: '"Source Code Pro",ui-monospace,monospace', wght: [200, 900], adv: 0.6,
+    asc: 0.984, desc: 0.273, ink: [0.76, 0.26], xh: 0.478, cap: 0.66, kern: 0, fallback: 0.6,
+    license: "SIL OFL 1.1, Copyright 2010, 2012 Adobe Systems Incorporated, with Reserved Font Name 'Source'",
   },
-  caveat: {
-    name: 'Caveat', file: 'fonts/caveat/Caveat-Variable.ttf', family: 'KCaveat',
-    stack: 'Caveat,"Bradley Hand","Segoe Print",cursive', wght: [400, 700], measure: [400, 500, 600, 700],
-    asc: 0.96, desc: 0.3, ink: [0.77, 0.23], xh: 0.4, cap: 0.61, kern: 0.14, fallback: 0.44,
-    license: 'SIL OFL 1.1, Copyright 2014 The Caveat Project Authors',
+  // Handlee's OS/2 heights understate its letters (drawn x-height 0.493 em, capitals 0.708): the checker boxes its ink, not these
+  handlee: {
+    name: 'Handlee', file: 'fonts/handlee/Handlee-Regular.ttf', family: 'KHandlee',
+    stack: 'Handlee,"Bradley Hand","Segoe Print",cursive', wght: [400, 400], measure: [400],
+    asc: 0.934, desc: 0.401, ink: [0.81, 0.26], xh: 0.331, cap: 0.438, kern: 0.04, fallback: 0.5,
+    license: 'SIL OFL 1.1, Copyright 2011 Joe Prince, Vissol Ltd., with Reserved Font Name "Handlee"',
+  },
+  ptMono: {
+    name: 'PT Mono', file: 'fonts/pt-mono/PTMono-Regular.ttf', family: 'KPTMono',
+    stack: '"PT Mono","Courier New",monospace', wght: [400, 400], adv: 0.6,
+    asc: 0.885, desc: 0.235, ink: [0.8, 0.23], xh: 0.5, cap: 0.7, kern: 0, fallback: 0.6,
+    license: 'SIL OFL 1.1, Copyright 2011 ParaType Ltd., with Reserved Font Names "PT Sans", "PT Serif", "PT Mono" and "ParaType"',
+  },
+  // no kerning table, so no kerning margin; its OS/2 heights also run low (drawn x-height 0.469 em, capitals 0.714)
+  architects: {
+    name: 'Architects Daughter', file: 'fonts/architects-daughter/ArchitectsDaughter-Regular.ttf', family: 'KArchitects',
+    stack: '"Architects Daughter","Bradley Hand","Segoe Print",cursive', wght: [400, 400], measure: [400],
+    asc: 0.986, desc: 0.403, ink: [0.99, 0.43], xh: 0.4287, cap: 0.6592, kern: 0, fallback: 0.52,
+    license: 'SIL OFL 1.1, Copyright 2010 Kimberly Geswein',
   },
 };
 
