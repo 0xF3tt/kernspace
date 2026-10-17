@@ -47,7 +47,7 @@ export const FACES = {
   },
   caveat: {
     name: 'Caveat', file: 'fonts/caveat/Caveat-Variable.ttf', family: 'KCaveat',
-    stack: 'Caveat,cursive', wght: [400, 700], measure: [400, 500, 600, 700],
+    stack: 'Caveat,"Bradley Hand","Segoe Print",cursive', wght: [400, 700], measure: [400, 500, 600, 700],
     asc: 0.96, desc: 0.3, ink: [0.77, 0.23], xh: 0.4, cap: 0.61, kern: 0.14, fallback: 0.44,
     license: 'SIL OFL 1.1, Copyright 2014 The Caveat Project Authors',
   },
