@@ -17,6 +17,7 @@ import { FACES, fontCSS, fontStack, notice } from '../fonts.js';
 // card's phrase are pencilled in Architects Daughter, a draftsman's hand; the drawer label, the stamps and the house lines
 // are set in JetBrains Mono, whose dotted zero keeps the 0xF3tt stamp honest.
 export const FONTS = ['ptMono', 'architects', 'mono'];
+export const WHO = 'mono';                        // class k is family m: JetBrains Mono, with the stamps
 const FAM = { c: fontStack('ptMono'), h: fontStack('architects') }, MONO_FAM = fontStack('mono');   // a class's family code: m (the default) is mono
 // ADV: the stamps' mono advance; CELL: the advance of each family code. CAP: the stamp's cap height; HAND: Architects
 // Daughter's ink above and below the baseline over letters and punctuation (no font metrics here); STRIKE: the

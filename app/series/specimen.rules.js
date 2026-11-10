@@ -179,7 +179,7 @@ export function slotRules(p, key, value) {
     if (a === 'hero' && /\s/.test(s)) why.push('spaces');
     const max = a === 'data' && p.phone?.data?.[key.slice(5)] != null ? Math.min(limitOf(key, i), LIMITS.phone) : limitOf(key, i);
     if (len(s) > max) why.push(`${len(s)}/${max}`);
-    if (!glyphs(face, s)) why.push('glyph');
+    if (glyphs(face, s) === false) why.push('glyph');   // null: metrics not loaded yet, not a missing glyph
   }
   if (key === 'matrix.rating' && !value.startsWith(p.matrix.cell.join(''))) why.push('rating prefix');
   return why;

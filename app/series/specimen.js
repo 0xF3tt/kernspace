@@ -17,6 +17,7 @@ import { FACES, fontCSS, fontStack, notice } from '../fonts.js';
 // the hero (bold, so its capitals stand wide and sturdy), the family name, the waterfall and the charset. JetBrains Mono
 // sets the codes, labels and the house lines.
 export const FONTS = ['caslon', 'mono'];
+export const WHO = 'mono';                        // the whoami box inherits the sheet's mono (class k)
 const SERIF = fontStack('caslon'), MONO_FAM = fontStack('mono');
 const MONO = FACES.mono;                            // vertical metrics per em (hhea = OS/2 typo), as in cutting-mat.js
 const CASLON = { asc: FACES.caslon.ink[0], desc: FACES.caslon.ink[1] };   // ink above / below the baseline (boxes.js INK)

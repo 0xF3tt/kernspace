@@ -19,7 +19,7 @@ export const esc = s => String(s)
 export const validHandle = s => typeof s === 'string' && /^[A-Za-z0-9._-]{1,20}$/.test(s);
 
 // a whoami line: up to 40 characters, no control characters, no leading or trailing space.
-// Whether every character exists in JetBrains Mono is the caller's check (app/check.js glyphs()).
+// Whether every character exists in the face that draws the whoami box is the caller's check (glyphs(), app/boxes.js).
 export const validMotto = s => typeof s === 'string' && s !== '' && s === s.trim()
   && !/[\u0000-\u001F\u007F-\u009F]/.test(s) && [...s].length <= 40;
 

@@ -1,11 +1,12 @@
 // kernspace · the studio. Everything renders in the browser; nothing is uploaded.
 // Data (presets, palettes, fonts, lexicons) loads from this site; the page builds its nodes with the DOM (strings
 // become text, never markup) and sets styles through CSSOM, so the CSP needs no inline styles or scripts.
-import { FINISHES, FORMATS, HANDLE, MOTTO, srgbPNG, validHandle, validMotto, zip } from './render.js';
+import { FINISHES, FORMATS, HANDLE, MOTTO, srgbPNG, validHandle, zip } from './render.js';
 import { SERIES, bootSeries, isSeries, seriesSwitch } from './series/index.js';
 import { FACES, faceMetrics } from './fonts.js';
 import { DEFAULT, migrate } from './store.js';
-import { advances, family, get, glyphs, hull, len, overlaps, prepare, slotRules, useMetrics } from './check.js';
+import { advances, family, get, hull, len, overlaps, prepare, slotRules, useMetrics } from './check.js';
+import { confirmedMotto, fieldMotto, mottoStatus, mottoToStore } from './whoami.js';
 import { FMTS, changedSlots, guard, linkedNote, options as wordOptions, plain, pool, put, same, slotsOf } from './words.js';
 
 const PALS = ['purple', 'green', 'red', 'blue'];
@@ -149,13 +150,14 @@ const loadOnce = (s) => (loads[s] ??= loadPresets(s).catch((e) => { delete loads
 // a series' faces (app/fonts.js), each fetched once: the data: URL the sheets embed and the metrics the checker measures
 // with, at the weights the series draw; a failed fetch may be tried again
 const faceLoads = {};
+const faceKeys = (R) => [...new Set([...R.fonts, R.whoFace])];   // the whoami face is loaded even if a series' list ever omits it
 const loadFaces = (keys) => Promise.all(keys.map((k) => (faceLoads[k] ??= fontFile(FACES[k].file).then(({ buf, url }) => {
   useMetrics({ [k]: faceMetrics(k, buf, advances) });
   data.fonts = { ...data.fonts, [k]: url };
 }, (e) => { delete faceLoads[k]; throw e; }))));
 async function load() {
   const [, palettes] = await Promise.all([
-    loadFaces(S.fonts),
+    loadFaces(faceKeys(S)),
     Promise.all(PALS.map((p) => json(`palettes/${p}.json`))),
     loadPresets(),
   ]);
@@ -404,7 +406,7 @@ async function chooseSeries(s) {
   el.stage.setAttribute('aria-busy', 'true');
   let dropped = 0;
   try {
-    await Promise.all([loadOnce(s), loadFaces(SERIES[s].fonts)]);
+    await Promise.all([loadOnce(s), loadFaces(faceKeys(SERIES[s]))]);
     if (t === choice) dropped = await (restores[s] ??= restoreLate(s));
   } catch (err) {
     console.error(err);
@@ -454,16 +456,21 @@ function syncDownloads() {
 }
 function readWho() {
   const hv = el.handle.value.trim(), mv = el.motto.value.trim();
-  const hOk = !hv || validHandle(hv), mOk = !mv || (validMotto(mv) && glyphs('mono', mv));
+  const hOk = !hv || validHandle(hv);
+  const status = mottoStatus(mv, S.whoFace);   // the face this series draws the box in, not the house mono
+  const badMotto = status === 'glyph' || status === 'length';
   el.handle.setAttribute('aria-invalid', String(!hOk));
-  el.motto.setAttribute('aria-invalid', String(!mOk));
-  el.who.classList.toggle('bad', !hOk || !mOk);
+  el.motto.setAttribute('aria-invalid', String(badMotto));
+  const bad = !hOk || badMotto;
+  el.who.classList.toggle('bad', bad);
   const msg = !hOk ? 'Your handle can use letters, digits, dots, dashes and underscores, up to 20.'
-    : !mOk ? (validMotto(mv) ? 'Your line uses a character the sheet’s font doesn’t have.' : `Your line can be up to ${S.LIMITS.motto} characters.`)
+    : status === 'glyph' ? 'Your line uses a character the sheet’s font doesn’t have.'
+    : status === 'length' ? `Your line can be up to ${S.LIMITS.motto} characters.`
+    : status === 'pending' ? 'The sheet’s font is still loading.'
     : S.READ.who;
-  el.whoNote.classList.toggle('err', !hOk || !mOk);
+  el.whoNote.classList.toggle('err', bad);
   if (el.whoNote.textContent !== msg) el.whoNote.textContent = msg;   // live region: write only on change
-  const next = { handle: hOk ? hv : state.handle, motto: mOk ? mv : state.motto };
+  const next = { handle: hOk ? hv : state.handle, motto: confirmedMotto(el.motto.value, state.motto, S.whoFace) };
   const changed = next.handle !== state.handle || next.motto !== state.motto;
   Object.assign(state, next);
   syncDownloads();
@@ -1170,7 +1177,8 @@ function persist() {
     if (Object.keys(diff).length) (edits[s] ??= {})[id] = diff;
   }
   try {
-    if (Object.keys(edits).length || state.handle || state.motto || state.series !== DEFAULT) localStorage.setItem(STORE, JSON.stringify({ v: 2, series: state.series, edits, handle: state.handle, motto: state.motto }));
+    const motto = mottoToStore(el.motto.value, state.motto);
+    if (Object.keys(edits).length || state.handle || motto || state.series !== DEFAULT) localStorage.setItem(STORE, JSON.stringify({ v: 2, series: state.series, edits, handle: state.handle, motto }));
     else localStorage.removeItem(STORE);
   } catch {}
 }
@@ -1210,7 +1218,9 @@ async function restoreSaved(saved) {
   if (!saved) return 0;
   // what the viewer typed while the page loaded wins over what was saved
   if (typeof saved.handle === 'string' && validHandle(saved.handle) && !el.handle.value.trim()) { state.handle = saved.handle; el.handle.value = saved.handle; }
-  if (typeof saved.motto === 'string' && validMotto(saved.motto) && glyphs('mono', saved.motto) && !el.motto.value.trim()) { state.motto = saved.motto; el.motto.value = saved.motto; }
+  const mottoField = fieldMotto(saved.motto, el.motto.value);   // show it even when this series cannot draw it
+  if (el.motto.value !== mottoField) el.motto.value = mottoField;
+  readWho();   // confirm it against this series before saved words are checked against the box
   const fits = whoFits();
   let dropped = 0;
   for (const [s, byId] of Object.entries(saved.edits)) {

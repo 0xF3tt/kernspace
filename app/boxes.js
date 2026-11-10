@@ -135,10 +135,11 @@ export const width = (face, s, wght = 300) => {
   for (const ch of s) w += m.get(ch.codePointAt(0)) ?? F.fallback;
   return w;
 };
-// every character exists in the font that draws it (a monospaced face: at its one advance)
+// every character exists in the font that draws it (a monospaced face: at its one advance).
+// null when that face has no metrics yet: a missing table is not a pass.
 export const glyphs = (face, s) => {
   const m = table(face, 300), F = faceOf(face);
-  if (!m) return true;
+  if (!m) return null;
   for (const ch of s) if (F.adv ? m.get(ch.codePointAt(0)) !== F.adv : !m.has(ch.codePointAt(0))) return false;
   return true;
 };

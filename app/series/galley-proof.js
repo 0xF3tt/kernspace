@@ -19,6 +19,7 @@ import { FACES, fontCSS, fontStack, notice } from '../fonts.js';
 // in the margin are pencilled in Handlee; the file under review, the slug, the slip and the house lines are set in Source
 // Code Pro, Source Serif's monospaced sibling, so the whole galley is one family.
 export const FONTS = ['sourceSerif', 'handlee', 'sourceCode'];
+export const WHO = 'sourceCode';                  // the whoami box inherits the sheet's Source Code Pro (class k)
 const SERIF = fontStack('sourceSerif'), HAND = fontStack('handlee'), MONO_FAM = fontStack('sourceCode');
 const MONO = FACES.sourceCode;                      // vertical metrics per em (hhea = OS/2 typo), as in cutting-mat.js
 const ADV = MONO.adv;

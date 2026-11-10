@@ -6,6 +6,7 @@ import { FACES, fontCSS, fontStack, notice } from '../fonts.js';
 
 const AUTHOR = '0xF3tt';                            // side signature: author credit, never the handle
 export const FONTS = ['nunito', 'mono'];          // the phrase · everything else
+export const WHO = 'mono';                        // the whoami box inherits the sheet's mono (class k)
 const SANS = fontStack('nunito'), MONO_FAM = fontStack('mono');
 // vertical metrics per em (hhea = OS/2 typo in both files): place text where the old HTML boxes did
 const NUNITO = FACES.nunito, MONO = FACES.mono;

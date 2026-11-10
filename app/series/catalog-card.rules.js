@@ -307,7 +307,7 @@ export function slotRules(p, key, value) {
     if (/[<>&]/.test(s)) why.push('<, > or &');
     const max = key === 'data.left' ? phoneCap(p, key) : limitOf(key);
     if (len(s) > max) why.push(`${len(s)}/${max}`);
-    if (!glyphs(a === 'phrase' ? 'architects' : a === 'data' ? 'mono' : 'ptMono', s)) why.push('glyph');   // the phrase is pencilled, the access points typed
+    if (glyphs(a === 'phrase' ? 'architects' : a === 'data' ? 'mono' : 'ptMono', s) === false) why.push('glyph');   // the phrase is pencilled, the access points typed; null means the metrics are not loaded yet
     if (a === 'see_also' && !isId(seeParts(s)?.[2])) why.push('NAME · ID');
   }
   return why;
