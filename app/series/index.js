@@ -1,6 +1,8 @@
 // The series registry: each series' renderer and the faces it draws with (app/fonts.js), with its rules (overlap checker,
 // slot table, editor geometry).
 // Callers pick one by `preset.series` (the checker, the word editor) or by the studio's current series (main.js).
+// A series id is an own key. SERIES is a normal object, so a truthiness check would accept inherited names.
+import { DEFAULT } from '../store.js';
 import { render, FONTS as matFonts } from './cutting-mat.js';
 import { render as renderSpecimen, FONTS as specimenFonts } from './specimen.js';
 import { render as renderGalley, FONTS as galleyFonts } from './galley-proof.js';
@@ -37,3 +39,15 @@ export const SERIES = {
     render: renderCard, fonts: cardFonts, voice: 'architects', ...cardRules,
   },
 };
+
+export const isSeries = (id) => typeof id === 'string' && Object.hasOwn(SERIES, id);
+
+// The series a visit opens. A link wins over the series saved in this browser; an id that is not a series
+// opens the default, and a link that names no series does not fall through to the saved one.
+export function bootSeries(link, saved) {
+  const requested = link ? link.series ?? DEFAULT : saved;
+  return isSeries(requested) ? requested : DEFAULT;
+}
+
+// The series a switch may land on. An id that is not a series leaves the current one where it is.
+export const seriesSwitch = (current, requested) => (isSeries(requested) ? requested : current);

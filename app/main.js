@@ -2,7 +2,7 @@
 // Data (presets, palettes, fonts, lexicons) loads from this site; the page builds its nodes with the DOM (strings
 // become text, never markup) and sets styles through CSSOM, so the CSP needs no inline styles or scripts.
 import { FINISHES, FORMATS, HANDLE, MOTTO, srgbPNG, validHandle, validMotto, zip } from './render.js';
-import { SERIES } from './series/index.js';
+import { SERIES, bootSeries, isSeries, seriesSwitch } from './series/index.js';
 import { FACES, faceMetrics } from './fonts.js';
 import { DEFAULT, migrate } from './store.js';
 import { advances, family, get, glyphs, hull, len, overlaps, prepare, slotRules, useMetrics } from './check.js';
@@ -89,7 +89,10 @@ const D = () => data.series[state.series];
 const E = (s = state.series) => (state.edits[s] ??= {});     // edited presets by id
 const vkey = (id, s = state.series) => `${s}:${id}`;         // ids repeat across series: version counters, undo stacks, caches
 const ver = (id) => state.ver[vkey(id)] ?? 0;
-function useSeries(s) { state.series = s; S = SERIES[s]; state.mark = S.READ.mark; }
+function useSeries(s) {
+  if (!isSeries(s)) return;
+  state.series = s; S = SERIES[s]; state.mark = S.READ.mark;
+}
 const asset = (p) => new URL(`../${p}`, import.meta.url);
 
 async function json(p) {
@@ -397,7 +400,7 @@ function goVol(i, reveal) {
 let choice = 0;
 async function chooseSeries(s) {
   const t = ++choice;
-  if (!SERIES[s] || s === state.series) { el.stage.setAttribute('aria-busy', 'false'); return syncSwitch(); }
+  if (seriesSwitch(state.series, s) === state.series) { el.stage.setAttribute('aria-busy', 'false'); return syncSwitch(); }
   el.stage.setAttribute('aria-busy', 'true');
   let dropped = 0;
   try {
@@ -1414,8 +1417,8 @@ async function start() {
   $('#ep-saved').textContent = canStore ? 'Saved in this browser only.' : 'This browser blocks storage, so your words last until you reload.';
   el.stage.setAttribute('aria-busy', 'true');
   const saved = readSaved(), link = readLink();
-  const first = link ? link.series ?? DEFAULT : saved?.series;   // the linked series, else the last one viewed
-  if (SERIES[first]) useSeries(first);
+  const first = bootSeries(link, saved?.series);   // the linked series, else the last one viewed; an id that is not a series opens the default
+  if (first !== state.series) useSeries(first);
   const boot = () => load().then(() => true, (err) => { console.error(err); return false; });
   let ok = await boot();
   if (!ok && state.series !== DEFAULT) { useSeries(DEFAULT); ok = await boot(); }   // the saved series would not load: start on the first

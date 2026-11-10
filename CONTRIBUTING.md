@@ -21,6 +21,7 @@ We welcome contributions to existing topic lexicons (`topics/<topic>.json`):
    node app/words.test.mjs
    node app/lexicon.test.mjs
    node app/palette.test.mjs
+   node app/studio.test.mjs
    ```
    `palette.test.mjs` lints every palette ground: contrast, chip separation for color-blind viewers and lightness of the thin proof marks.
 
