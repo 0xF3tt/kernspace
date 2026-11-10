@@ -81,7 +81,7 @@ The studio itself is covered separately, in Chromium and WebKit. That suite is d
 cd test && npm ci && npx playwright install --with-deps chromium webkit && npm test
 ```
 
-What it covers, which viewports it uses, and why it does not keep pixel snapshots is in [`test/browser/README.md`](test/browser/README.md).
+What it covers, which viewports it uses, and why it does not keep pixel snapshots is in [`test/browser/README.md`](test/browser/README.md). A separate, slow measurement of 15-volume rotation packs (time, ZIP size, JS heap, process RSS) is [`test/pack-memory.md`](test/pack-memory.md); it is not part of CI.
 
 ## Deploy
 

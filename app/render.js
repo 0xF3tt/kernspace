@@ -255,7 +255,10 @@ export function srgbPNG(bytes) {
 }
 
 // A ZIP of files, STORED (a PNG is compressed already): local headers, central directory, end record. 32-bit sizes, UTF-8 names.
-export function zip(files) {
+// `zipParts` does not copy file bytes: each part is a header, a name, or the original byte array.
+// The browser builds `new Blob(zipParts(files))` from those chunks. `zip` concatenates them for callers
+// that want one buffer (the Node checks). That concatenation is the copy the pack used to keep.
+export function zipParts(files) {
   const d = new Date(), time = d.getHours() << 11 | d.getMinutes() << 5 | d.getSeconds() >> 1;
   const date = Math.max(0, d.getFullYear() - 1980) << 9 | (d.getMonth() + 1) << 5 | d.getDate();
   const enc = new TextEncoder(), parts = [], dir = [];
@@ -267,8 +270,15 @@ export function zip(files) {
     dir.push(put(46, [4, 0x02014b50], [2, 20], [2, 20], ...common, [2, 0], [2, 0], [2, 0], [4, 0], [4, at]), nm);   // comment length, disk, internal and external attrs, local header offset
     at += 30 + nm.length + bytes.length;
   }
-  const size = dir.reduce((n, b) => n + b.length, 0), out = new Uint8Array(at + size + 22);
+  const size = dir.reduce((n, b) => n + b.length, 0);
+  return [...parts, ...dir, put(22, [4, 0x06054b50], [2, 0], [2, 0], [2, files.length], [2, files.length], [4, size], [4, at], [2, 0])];
+}
+export function zip(files) {
+  const parts = zipParts(files);
+  let n = 0;
+  for (const b of parts) n += b.length;
+  const out = new Uint8Array(n);
   let o = 0;
-  for (const b of [...parts, ...dir, put(22, [4, 0x06054b50], [2, 0], [2, 0], [2, files.length], [2, files.length], [4, size], [4, at], [2, 0])]) { out.set(b, o); o += b.length; }
+  for (const b of parts) { out.set(b, o); o += b.length; }
   return out;
 }

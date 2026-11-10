@@ -13,7 +13,7 @@ import { spawnSync } from 'node:child_process';
 import { mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { FINISHES, FORMATS, HANDLE, MOTTO, crc32 as crc, esc, srgbPNG, zip, validHandle, validMotto, whoamiLines } from './render.js';
+import { FINISHES, FORMATS, HANDLE, MOTTO, crc32 as crc, esc, srgbPNG, zip, zipParts, validHandle, validMotto, whoamiLines } from './render.js';
 import { SERIES } from './series/index.js';
 import { FACES, faceMetrics, fontStack } from './fonts.js';
 import { GEOMETRY, heroSize } from './series/specimen.js';
@@ -1417,7 +1417,13 @@ for (const [sid, S] of Object.entries(SERIES)) {
 {
   assert.equal(crc(new TextEncoder().encode('123456789')), 0xCBF43926, 'CRC-32 check value');
   const enc = new TextEncoder(), files = [{ name: '01_a.png', bytes: enc.encode('hello zip') }, { name: '02_é.png', bytes: Uint8Array.from({ length: 300 }, (_, i) => i * 7) }];
+  const bytes = files[0].bytes;
+  const parts = zipParts(files);
+  assert.ok(parts.includes(bytes), 'zipParts keeps the original file bytes, it does not copy them');
   const z = zip(files), dv = new DataView(z.buffer), dec = new TextDecoder();
+  let joined = 0;
+  for (const part of parts) joined += part.length;
+  assert.equal(z.length, joined, 'zip is the parts laid end to end');
   const eocd = z.length - 22;
   assert.equal(dv.getUint32(eocd, true), 0x06054b50, 'end record');
   assert.equal(dv.getUint16(eocd + 10, true), 2, 'two entries');

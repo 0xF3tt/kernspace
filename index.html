@@ -245,7 +245,11 @@
       <div class="acts">
         <button class="btn btn-ink" type="button" id="dl-png" aria-label="Download PNG" data-tip="Download PNG" disabled><svg class="dl" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5v8m-3.5-3.5L8 10.5 11.5 7M3 13.5h10"/></svg></button>
         <button class="btn btn-icon" type="button" id="dl-svg" aria-label="Download SVG" data-tip="Download SVG" disabled><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5.5 4-4 4 4 4M10.5 4l4 4-4 4M9 3 7 13"/></svg></button>
-        <button class="btn btn-icon" type="button" id="dl-pack" aria-label="Download all volumes, ZIP" data-tip="Download all volumes (ZIP)" disabled><svg class="dl" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 3.5h10a1 1 0 0 1 1 1V8"/><rect x="2.5" y="6" width="10" height="6" rx="1"/><path d="M15.5 11v6m-2.5-2.5 2.5 2.5 2.5-2.5"/></svg></button>
+        <span class="pack-slot">
+          <button class="btn btn-icon" type="button" id="dl-pack" aria-label="Download all volumes, ZIP" data-tip="Download all volumes (ZIP)" disabled><svg class="dl" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 3.5h10a1 1 0 0 1 1 1V8"/><rect x="2.5" y="6" width="10" height="6" rx="1"/><path d="M15.5 11v6m-2.5-2.5 2.5 2.5 2.5-2.5"/></svg></button>
+          <button class="btn btn-sm" type="button" id="dl-cancel" hidden>Cancel</button>
+        </span>
+        <p class="pack-status" id="pack-status" role="progressbar" aria-valuemin="0" aria-valuenow="0" aria-live="polite" hidden></p>
         <p class="need" id="need" hidden>Fix your whoami to download.</p>
         <p class="fine">Drawn in your browser. Nothing is uploaded.</p>
         <div class="edit-bar" id="edit-bar">

@@ -463,6 +463,9 @@ input:checked ~ .bracket::after, input:checked + .bracket::after { opacity: 1; t
 .btn[aria-busy="true"] .dl { animation: nudge .9s var(--ease) infinite; }
 @keyframes nudge { 50% { transform: translateY(2px); } }
 .fine { grid-column: 1 / -1; font-size: var(--t-13); color: var(--ink-3); }
+.pack-slot { display: grid; }
+.pack-slot > [hidden], .pack-status[hidden] { display: none; }
+.pack-status { grid-column: 1 / -1; margin: 0; font-size: var(--t-13); color: var(--ink-2); }
 
 /* ---------- sections */
 .sec { border-top: 1px solid var(--hair); }
