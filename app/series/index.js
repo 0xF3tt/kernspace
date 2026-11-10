@@ -12,6 +12,44 @@ import * as specimenRules from './specimen.rules.js';
 import * as galleyRules from './galley-proof.rules.js';
 import * as cardRules from './catalog-card.rules.js';
 
+/**
+ * What the studio asks of a series. The value in {@link SERIES} is the renderer
+ * (`render`, `fonts`, `whoFace`) spread together with that series' rules module.
+ * The word editor and the stage call this surface; the overlap tests call the
+ * rules directly. Preset ids, URL keys and saved diffs are not part of it.
+ *
+ * @typedef {Object} SeriesContract
+ * @property {string} name
+ * @property {string} dir Preset directory, relative to the site root.
+ * @property {string} hint Lexicon key holding `{slots, as}` for this series.
+ * @property {string[]} typed Series whose unhinted terms may be offered by word type.
+ * @property {string} glyph Switch icon. Geometry only, never data.
+ * @property {string[]} BAR Palette keys drawn in an ink-row swatch.
+ * @property {(sheet: {preset: object, colors: object, format?: string, handle?: string, motto?: string, fonts?: object|null, texture?: string}) => string} render SVG for one sheet.
+ * @property {string[]} fonts Face keys embedded in the sheet.
+ * @property {string} voice Face key of the phrase.
+ * @property {string} whoFace Face key of the whoami box. A line is checked against this face.
+ * @property {(preset: object) => boolean} valid
+ * @property {(preset: object) => string} lineOf The volume's line, under the sheet.
+ * @property {(preset: object, colors: object) => {text: string, color: string}[]} chipsOf
+ * @property {(preset: object, handle: string) => {id: string, term: string, mean: string, pin: number[], svg: string}[]} marks
+ * @property {Record<string, string>} GLYPH Icon for a mark id.
+ * @property {{nav: string, title: string, intro: string, who: string, mark: string, legendHead: string[]}} READ
+ * @property {[string, string][]} FIXED_LIST Name and what it does, for "Fixed on this sheet".
+ * @property {(key: string) => [string, string]|null} fixedOf A slot a click cannot change.
+ * @property {(preset: object) => string[]} slotsOf Editable slots, in reading order.
+ * @property {(scene: object, preset: object, key: string) => number[][][]} slotQuads Boxes in sheet pixels.
+ * @property {{U: function(string): number, px: function(string, string): number}} GEOM
+ * @property {Record<string, string>} LABEL
+ * @property {(key: string) => string} nameOf
+ * @property {(key: string, colors: object) => {cls: string, color: string}|null|undefined} swatch
+ * @property {(key: string, shipped: object) => string} lockOf
+ * @property {(key: string, index?: number) => number} limitOf
+ * @property {{motto: number, phrase: number}} LIMITS
+ * @property {(preset: object, key: string) => number|undefined} [phoneCap]
+ * @property {(preset: object, key: string) => Set<string>} usedStrings Strings already on the sheet, for the duplicate check.
+ */
+
 export const SERIES = {
   'cutting-mat': {
     name: 'Cutting Mat', dir: 'series/cutting-mat/presets', hint: 'mat',     // hint: the lexicon key holding {slots, as}
