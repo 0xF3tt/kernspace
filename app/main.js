@@ -7,6 +7,7 @@ import { FACES, faceMetrics } from './fonts.js';
 import { DEFAULT, migrate } from './store.js';
 import { advances, family, get, hull, len, overlaps, prepare, slotRules, useMetrics } from './check.js';
 import { confirmedMotto, fieldMotto, mottoStatus, mottoToStore } from './whoami.js';
+import { blobUrlsToRevoke } from './blobs.js';
 import { FMTS, changedSlots, guard, linkedNote, options as wordOptions, plain, pool, put, same, slotsOf } from './words.js';
 
 const PALS = ['purple', 'green', 'red', 'blue'];
@@ -71,12 +72,23 @@ const volName = (e) => e.title.replace(/^Vol\. \d+ · /, '');
 const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isNarrow = () => matchMedia('(max-width: 860px)').matches;   // the CSS breakpoint, so JS and CSS always agree
 const blobUrl = (text) => URL.createObjectURL(new Blob([text], { type: 'image/svg+xml' }));
-// point an <img> at a new blob URL and free the old one once the new one is showing
+// object URLs still shown by an image. `except` is a container about to be discarded.
+const liveBlobUrls = (except) => [...document.querySelectorAll('img[data-u]')].filter((img) => !except?.contains(img)).map((img) => img.dataset.u);
+const revokeBlobUrls = (urls) => { for (const url of urls) URL.revokeObjectURL(url); };
+// point an <img> at a new blob URL and free the old one once the new one is showing,
+// unless another live image still uses it
 function swap(img, url) {
   const old = img.dataset.u;
   img.src = url;
   img.dataset.u = url;
-  if (old) setTimeout(() => URL.revokeObjectURL(old), 1000);
+  if (old && old !== url) setTimeout(() => revokeBlobUrls(blobUrlsToRevoke([old], liveBlobUrls())), 1000);
+}
+// drop a thumbnail container's object URLs before its nodes go
+function releaseThumbs(root) {
+  const drop = [...root.querySelectorAll('img[data-u]')];
+  const gone = blobUrlsToRevoke(drop.map((img) => img.dataset.u), liveBlobUrls(root));
+  for (const img of drop) delete img.dataset.u;
+  revokeBlobUrls(gone);
 }
 
 // ---------- data
@@ -188,6 +200,7 @@ const el = {
 };
 
 function buildStrip() {
+  releaseThumbs(el.strip);
   el.strip.replaceChildren(h('legend', { class: 'sr' }, 'Volume'), ...D().index.map((e, i) => h('label', { class: 'pick frame' },
     h('input', { type: 'radio', name: 'volume', value: String(i), id: `vol-${e.id}`, checked: i === state.i }),
     h('span', { class: 'face bracket' }, h('img', { alt: '', width: 3840, height: 2160 })),
@@ -208,6 +221,7 @@ function buildDrawdown() {
   el.dd.replaceChildren(...kids);
 }
 function buildInkRows() {
+  releaseThumbs(el.inks);
   el.inks.replaceChildren(...PALS.map((p) => h('div', { class: 'ink-row' },
     h('div', {}, h('h3', {}, data.palettes[p].name), h('p', {}, INKS[p])),
     h('div', { class: 'grounds' }, ROLES.map((r) => {

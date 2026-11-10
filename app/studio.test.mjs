@@ -1,6 +1,7 @@
 // Studio regression tests, no browser needed:  node app/studio.test.mjs
 // 0XF-103: a series id is an own key. Inherited names and unknown slugs never open or switch the studio.
 // 0XF-104: a whoami line is checked against the face that series draws it in. Missing metrics are not a pass.
+// 0XF-105: replacing the volume strip or the ink rows revokes thumbnail blob URLs no live image still shows.
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { SERIES, bootSeries, isSeries, seriesSwitch } from './series/index.js';
@@ -8,6 +9,7 @@ import { DEFAULT } from './store.js';
 import { PROBE, advances, classes, glyphs, useMetrics } from './boxes.js';
 import { FACES, faceMetrics } from './fonts.js';
 import { confirmedMotto, fieldMotto, mottoStatus, mottoToStore } from './whoami.js';
+import { blobUrlsToRevoke } from './blobs.js';
 
 const link = (series, extra = {}) => ({ series, vol: null, ink: null, ground: null, format: null, ...extra });
 // names Object.prototype owns. SERIES[name] is truthy, and it has no READ.mark.
@@ -121,4 +123,39 @@ assert.equal(mottoToStore(`hello${GALLEY_ONLY}`, 'hello'), 'hello');
 assert.equal(mottoToStore('', 'hello'), '');
 assert.equal(confirmedMotto(`hello${GALLEY_ONLY}`, 'hello', 'mono'), 'hello');
 
-console.log(`ok · studio 0XF-103/104 · ${Object.keys(SERIES).length} series · ${INHERITED.length} inherited names rejected · whoami faces ${[...new Set(Object.values(SERIES).map((S) => S.whoFace))].join(', ')}`);
+// ---------- 0XF-105 thumbnail blob URLs
+
+assert.deepEqual(blobUrlsToRevoke(['blob:old'], ['blob:new']), ['blob:old'], 'a swap revokes the url the image no longer shows');
+assert.deepEqual(blobUrlsToRevoke(['blob:sheet'], ['blob:sheet', 'blob:read']), [], 'the sheet and the read image keep their urls');
+assert.deepEqual(blobUrlsToRevoke(['blob:preview', 'blob:sheet'], ['blob:sheet', 'blob:preview']), [], 'a preview that still shows the url keeps it');
+assert.deepEqual(blobUrlsToRevoke(['blob:a', 'blob:a', '', null, 0], ['blob:keep']), ['blob:a']);
+
+{
+  const active = new Set();
+  let n = 0;
+  const create = () => { const u = `blob:${++n}`; active.add(u); return u; };
+  const revoke = (urls) => { for (const u of urls) active.delete(u); };
+  const sheet = create(), read = create();
+  let strip = [], inks = [];
+  const replace = (kind, count) => {
+    const removed = kind === 'strip' ? strip : inks;
+    const other = kind === 'strip' ? inks : strip;
+    revoke(blobUrlsToRevoke(removed, [sheet, read, ...other]));
+    const next = Array.from({ length: count }, create);
+    if (kind === 'strip') strip = next; else inks = next;
+  };
+  for (let i = 0; i < 8; i++) { replace('strip', 15); replace('inks', 12); }
+  assert.equal(active.size, 2 + 15 + 12, 'after repeated series changes, active urls are the sheet, the read image and the current thumbnails');
+  assert.ok(active.has(sheet) && active.has(read));
+  const shared = inks[0];
+  const orphan = strip[0];
+  strip = [shared, ...strip.slice(1)];
+  const gone = blobUrlsToRevoke(strip, [sheet, read, ...inks]);
+  assert.equal(gone.length, 14, 'every unshared strip url is revoked');
+  assert.equal(gone.includes(shared), false, 'a thumbnail url still shown by an ink card is not revoked with the strip');
+  assert.equal(gone.includes(sheet) || gone.includes(read) || gone.includes(orphan), false);
+  revoke(gone);
+  assert.ok(active.has(shared) && active.has(sheet) && active.has(read) && active.has(orphan));
+}
+
+console.log(`ok · studio 0XF-103/104/105 · ${Object.keys(SERIES).length} series · ${INHERITED.length} inherited names rejected · whoami faces ${[...new Set(Object.values(SERIES).map((S) => S.whoFace))].join(', ')}`);
