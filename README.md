@@ -68,9 +68,20 @@ node app/render.test.mjs
 node app/words.test.mjs
 node app/lexicon.test.mjs
 node app/palette.test.mjs
+node app/studio.test.mjs
+node app/modules.test.mjs
+node test/headers.test.mjs
 ```
 
-The first renders every preset of every series in every palette, ground and format and runs each series' overlap checker (and checks that the checker fires on broken sheets); the second takes a sample of the words the editor offers for each series, applies them and runs the same checker on each result; the third lints every lexicon (shape, allowed values, length limits, duplicates) so a proposed term can be checked before review; the fourth lints every palette ground (WCAG contrast of text and marks, chip separation in CIEDE2000 under normal and color-blind vision, and lightness for Galley Proof's thin proof marks).
+The first renders every preset of every series in every palette, ground and format and runs each series' overlap checker (and checks that the checker fires on broken sheets); the second takes a sample of the words the editor offers for each series, applies them and runs the same checker on each result; the third lints every lexicon (shape, allowed values, length limits, duplicates) so a proposed term can be checked before review; the fourth lints every palette ground (WCAG contrast of text and marks, chip separation in CIEDE2000 under normal and color-blind vision, and lightness for Galley Proof's thin proof marks); the fifth checks the studio's series ids (an inherited name or an unknown slug never opens or switches the studio), that a whoami line is checked against the face that series draws it in (including when that face's metrics are not loaded yet), and that replacing the volume strip or the ink rows revokes thumbnail blob URLs no live image still shows. `modules.test.mjs` loads the studio's loading, link and editor modules in Node and checks they do not start the app. `headers.test.mjs` checks that the browser-test server copies the header rules in `vercel.json`. None of these need a browser.
+
+The studio itself is covered separately, in Chromium and WebKit. That suite is dev and CI tooling only (Playwright lives in `test/`, not in the site):
+
+```sh
+cd test && npm ci && npx playwright install --with-deps chromium webkit && npm test
+```
+
+What it covers, which viewports it uses, and why it does not keep pixel snapshots is in [`test/browser/README.md`](test/browser/README.md). A separate, slow measurement of 15-volume rotation packs (time, ZIP size, JS heap, process RSS) is [`test/pack-memory.md`](test/pack-memory.md); it is not part of CI.
 
 ## Deploy
 

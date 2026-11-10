@@ -45,8 +45,40 @@ jobs:
       - run: node app/words.test.mjs
       - run: node app/lexicon.test.mjs
       - run: node app/palette.test.mjs
+      - run: node app/studio.test.mjs
+      - run: node app/modules.test.mjs
+      - run: node test/headers.test.mjs
       # a release tag is "v" + version.json: "1.0.0-beta.2" -> v1.0.0-beta.2
       - if: startsWith(github.ref, 'refs/tags/')
         run: |
           want=v$(node -p "require('./version.json').version")
           [ "$GITHUB_REF_NAME" = "$want" ] || { echo "tag $GITHUB_REF_NAME, but version.json says $want"; exit 1; }
+
+  # Dev-only browser suite. The site has no runtime dependency; Playwright is installed in this job.
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+      - name: Install browser-test tooling
+        working-directory: test
+        run: npm ci
+      - name: Install Chromium and WebKit
+        working-directory: test
+        run: npx playwright install --with-deps chromium webkit
+      - name: Browser regression
+        working-directory: test
+        run: npm test
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: failure()
+        with:
+          name: browser-traces
+          path: |
+            test/test-results
+            test/playwright-report
+          if-no-files-found: ignore

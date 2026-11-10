@@ -1,0 +1,14 @@
+{
+  "name": "kernspace-browser-tests",
+  "private": true,
+  "type": "module",
+  "description": "Development and CI browser tests for the kernspace studio. Not part of the static site.",
+  "scripts": {
+    "test": "playwright test",
+    "test:chromium": "playwright test --project=chromium --project=chromium-narrow",
+    "test:webkit": "playwright test --project=webkit"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.0"
+  }
+}

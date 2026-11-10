@@ -21,8 +21,11 @@ We welcome contributions to existing topic lexicons (`topics/<topic>.json`):
    node app/words.test.mjs
    node app/lexicon.test.mjs
    node app/palette.test.mjs
+   node app/studio.test.mjs
+   node app/modules.test.mjs
+   node test/headers.test.mjs
    ```
-   `palette.test.mjs` lints every palette ground: contrast, chip separation for color-blind viewers and lightness of the thin proof marks.
+   `palette.test.mjs` lints every palette ground: contrast, chip separation for color-blind viewers and lightness of the thin proof marks. A change to the studio's behavior in the browser also needs the Playwright suite in [`test/browser/README.md`](test/browser/README.md). That install is dev and CI only; the site itself has no dependencies.
 
 ## Reporting Issues
 - **Security vulnerabilities:** Please do not open public issues. Use GitHub's [Private Vulnerability Reporting](https://github.com/0xF3tt/kernspace/security/advisories/new) as described in [SECURITY.md](SECURITY.md).

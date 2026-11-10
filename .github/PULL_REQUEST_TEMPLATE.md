@@ -16,6 +16,7 @@ Before opening this PR, did you run the local test suites?
 - [ ] `node app/render.test.mjs` passes cleanly.
 - [ ] `node app/words.test.mjs` passes cleanly.
 - [ ] `node app/lexicon.test.mjs` passes cleanly (required if you touched `topics/`).
+- [ ] `node app/studio.test.mjs` passes cleanly.
 - [ ] Code follows existing style (no dependencies, ES modules).
 
 ## Licensing Confirmation

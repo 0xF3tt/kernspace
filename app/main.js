@@ -1,15 +1,23 @@
 // kernspace · the studio. Everything renders in the browser; nothing is uploaded.
-// Data (presets, palettes, fonts, lexicons) loads from this site; the page builds its nodes with the DOM (strings
-// become text, never markup) and sets styles through CSSOM, so the CSP needs no inline styles or scripts.
-import { FINISHES, FORMATS, HANDLE, MOTTO, srgbPNG, validHandle, validMotto, zip } from './render.js';
-import { SERIES } from './series/index.js';
-import { DEFAULT, migrate } from './store.js';
-import { advances, family, get, glyphs, hull, len, overlaps, prepare, slotRules, useMetrics } from './check.js';
-import { FMTS, changedSlots, guard, linkedNote, options as wordOptions, plain, pool, put, same, slotsOf } from './words.js';
+// This module composes the page. Loading, the address bar and saved-words shape, the word editor
+// and the downloads live in their own modules. State and resource ownership: app/state.js.
+// The series the editor and the stage call: app/series/index.js.
+// A render ticket, a series-choice counter and an export snapshot are separate. They do not share
+// a transition object; dropping one does not write the result of another.
+import { createAssets, fetchJSON as json } from './assets.js';
+import { PALS, ROLES, TOPIC } from './catalog.js';
+import { $, blobUrl, fill, h, isNarrow, nameBtn, nice, pad2, reduced, releaseThumbs, setText, svg, swap, volName } from './dom.js';
+import { createEditor } from './editor.js';
+import { bindDownloads } from './export.js';
+import { applyLink, linkQuery, readLink as readLinkParams } from './link.js';
+import { createPersistence } from './persist.js';
+import { FINISHES, FORMATS, validHandle } from './render.js';
+import { SERIES, bootSeries, isSeries, seriesSwitch } from './series/index.js';
+import { createState, versionKey } from './state.js';
+import { DEFAULT } from './store.js';
+import { confirmedMotto, mottoStatus } from './whoami.js';
+import { changedSlots } from './words.js';
 
-const PALS = ['purple', 'green', 'red', 'blue'];
-const ROLES = ['dark', 'mid', 'light'];
-const PRESET_ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;    // ids become file paths and form values
 const INKS = {
   purple: 'Spirit-duplicator inks: red and blue, both sides on one sheet.',
   green: 'The color computing lived in: screen, board and paper, never #00FF00.',
@@ -30,133 +38,51 @@ const NOTES = {
   cyanotype: 'Herschel’s 1842 blueprint process.',
   whiteprint: 'The diazo copy people marked up.',
 };
-const TOPIC = { appsec: 'AppSec', programming: 'Programming', pentest: 'Pentest', mobile: 'Mobile', web: 'Web', 'active-directory': 'Active Directory', 'red-team': 'Red team', 'blue-team': 'Blue team', crypto: 'Crypto', cloud: 'Cloud', reversing: 'Reversing', dfir: 'DFIR', 'ai-security': 'AI security', ctf: 'CTF', infosec: 'InfoSec' };
 const TOTAL = Object.keys(TOPIC).length;       // volumes a full series holds
-const FMT_NAME = { desktop: 'Desktop', wide: 'Wide', phone: 'Phone' };
-
-// ---------- small DOM helpers
-
-const $ = (s) => document.querySelector(s);
-const SVG_NS = 'http://www.w3.org/2000/svg';
-// element builder: class, dataset, style (CSSOM, so the CSP needs no inline styles), attributes, children
-function h(tag, props = {}, ...kids) {
-  const n = document.createElement(tag);
-  for (const [k, v] of Object.entries(props)) {
-    if (v == null || v === false) continue;
-    if (k === 'class') n.className = v;
-    else if (k === 'dataset') Object.assign(n.dataset, v);
-    else if (k === 'style') for (const [p, x] of Object.entries(v)) n.style.setProperty(p, x);
-    else n.setAttribute(k, v === true ? '' : v);
-  }
-  n.append(...kids.flat().filter((x) => x != null && x !== false));
-  return n;
-}
-// an icon or overlay drawn from a fixed SVG string (geometry only, never data)
-function svg(markup, attrs = {}) {
-  const s = document.createElementNS(SVG_NS, 'svg');
-  for (const [k, v] of Object.entries(attrs)) s.setAttribute(k, v);
-  s.innerHTML = markup;
-  return s;
-}
-// replace a node's children, skipping the empty ones (replaceChildren would print "null")
-// an icon-only control: the name for assistive tech, the tip (CSS ::after) for everyone else
-const nameBtn = (b, label, tip = label) => { b.setAttribute('aria-label', label); b.dataset.tip = tip; };
-const fill = (node, ...kids) => node.replaceChildren(...kids.flat().filter((x) => x != null && x !== false));
-const setText = (sel, text) => { const n = $(sel); if (n.textContent !== text) n.textContent = text; };
-const pad2 = (v) => String(v).padStart(2, '0');
-const nice = (slug) => slug.charAt(0).toUpperCase() + slug.slice(1).replace('-', ' ');
-const volName = (e) => e.title.replace(/^Vol\. \d+ · /, '');
-const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
-const isNarrow = () => matchMedia('(max-width: 860px)').matches;   // the CSS breakpoint, so JS and CSS always agree
-const blobUrl = (text) => URL.createObjectURL(new Blob([text], { type: 'image/svg+xml' }));
-// point an <img> at a new blob URL and free the old one once the new one is showing
-function swap(img, url) {
-  const old = img.dataset.u;
-  img.src = url;
-  img.dataset.u = url;
-  if (old) setTimeout(() => URL.revokeObjectURL(old), 1000);
-}
-
-// ---------- data
 
 const data = { series: {}, palettes: {}, fonts: null, lex: {} };     // series[s] = { index, presets, skipped }; lexicons are shared
-const lexLoads = {};
 const lastVol = {};                                      // the volume each series was left on
-const state = { series: DEFAULT, i: 0, ink: 'purple', role: 'mid', finish: '', format: 'desktop', view: 'sheet', handle: '', motto: '', mark: 'taint', edits: {}, ver: {} };
+const restores = {};
+const state = createState();
 let S = SERIES[state.series];                       // the series on the stage: its renderer, slot table and marks
 const D = () => data.series[state.series];
 const E = (s = state.series) => (state.edits[s] ??= {});     // edited presets by id
-const vkey = (id, s = state.series) => `${s}:${id}`;         // ids repeat across series: version counters, undo stacks, caches
+const vkey = (id, s = state.series) => versionKey(s, id);
 const ver = (id) => state.ver[vkey(id)] ?? 0;
-function useSeries(s) { state.series = s; S = SERIES[s]; state.mark = S.READ.mark; }
-const asset = (p) => new URL(`../${p}`, import.meta.url);
+function useSeries(s) {
+  if (!isSeries(s)) return;
+  state.series = s; S = SERIES[s]; state.mark = S.READ.mark;
+}
+const { loadOnce, loadFaces, load: loadSeries, lexicon, loads, faceKeys } = createAssets({ data, seriesOf: (s) => SERIES[s] });
+const load = () => loadSeries(state.series);
 
-async function json(p) {
-  const r = await fetch(asset(p));
-  if (!r.ok) throw new Error(`${p}: HTTP ${r.status}`);
-  return r.json();
+let sayTimer = 0;
+function announce(msg) { clearTimeout(sayTimer); sayTimer = setTimeout(() => { $('#say').textContent = msg; }, 300); }
+function readLink() { return readLinkParams(location.search); }
+function useLink(link) { Object.assign(state, applyLink(state, D().index, link)); }
+function writeLink() {
+  const e = vol(), u = new URL(location.href);
+  u.search = linkQuery({ series: state.series, index: state.i, vol: e.vol, ink: state.ink, role: state.role, format: state.format, volumeGround: e.ground });
+  if (u.href !== location.href) try { history.replaceState(history.state, '', u); } catch {}
 }
-// one font file: its bytes (for the metrics the checker measures with) and a data: URL (an SVG shown as an
-// image, or saved as a file, can't load outside fonts)
-async function fontFile(p) {
-  const r = await fetch(asset(p));
-  if (!r.ok) throw new Error(`font ${p}: HTTP ${r.status}`);
-  const buf = await r.arrayBuffer();
-  const url = await new Promise((ok, fail) => {
-    const fr = new FileReader();
-    fr.onload = () => ok(fr.result);
-    fr.onerror = () => fail(fr.error);
-    fr.readAsDataURL(new Blob([buf], { type: 'font/ttf' }));
-  });
-  return { buf, url };
+function invalidateCaches() {
+  inkKey = '';
+  thumbKeys.clear();
+  editor.cache.clear();
 }
-// well-formed, unique index entries, in file order
-function readIndex(list) {
-  if (!Array.isArray(list)) throw new Error('presets index: not a list');
-  const seen = new Set(), out = [];
-  for (const e of list) {
-    const ok = e && PRESET_ID.test(e.id) && !seen.has(e.id) && Number.isInteger(e.vol) && typeof e.title === 'string'
-      && typeof e.topic === 'string' && PRESET_ID.test(e.topic) && ROLES.includes(e.ground);
-    if (!ok) { console.warn('presets index: skipped entry', e); continue; }
-    seen.add(e.id);
-    out.push(e);
-  }
-  if (!out.length) throw new Error('presets index: no presets');
-  return out;
+function tellUndo(msg) {
+  announce(msg);
+  el.slip.replaceChildren(slipIcon(), h('span', {}, h('b', {}, msg)), h('button', { type: 'button', class: 'linkbtn', id: 'slip-undo' }, 'Undo'));
+  el.slip.inert = false;
+  el.slip.dataset.vol = vol().id;
+  el.slip.classList.add('show');
+  clearTimeout(slipTimer);
+  slipTimer = setTimeout(hideSlip, 5200);
 }
-// a preset that fails to load leaves the strip instead of taking the studio down
-async function loadPresets(s = state.series) {
-  const dir = SERIES[s].dir, d = { index: [], presets: {}, skipped: new Set() };   // index.json lists the presets, in volume order
-  const entries = readIndex(await json(`${dir}/index.json`));
-  const got = await Promise.allSettled(entries.map((e) => json(`${dir}/${e.id}.json`)));
-  d.index = entries.filter((e, i) => {
-    const p = got[i].value;
-    if (SERIES[s].valid(p)) { d.presets[e.id] = p; return true; }
-    console.error(`preset ${e.id}: skipped`, got[i].reason ?? 'malformed');
-    d.skipped.add(e.id);
-    return false;
-  });
-  if (!d.index.length) throw new Error('no preset could be loaded');
-  data.series[s] = d;
-}
-// a series' presets, fetched once (the boot series comes with the page); a failed fetch may be tried again
-const loads = {}, restores = {};
-const loadOnce = (s) => (loads[s] ??= loadPresets(s).catch((e) => { delete loads[s]; throw e; }));
-async function load() {
-  const [fonts, palettes] = await Promise.all([
-    Promise.all(['fonts/nunito/Nunito-Variable.ttf', 'fonts/jetbrains-mono/JetBrainsMono-Variable.ttf'].map(fontFile)),
-    Promise.all(PALS.map((p) => json(`palettes/${p}.json`))),
-    loadPresets(),
-  ]);
-  PALS.forEach((p, i) => { data.palettes[p] = palettes[i]; });
-  useMetrics({ nunito: Object.fromEntries([200, 300, 400, 600, 800].map((wght) => [wght, advances(fonts[0].buf, { wght })])), mono: advances(fonts[1].buf) });   // Cutting Mat's .ph draws at 300, Specimen at all five
-  data.fonts = { nunito: fonts[0].url, jbm: fonts[1].url };
-}
-// a volume's lexicon, fetched once when the editor or a saved word needs it
-function lexicon(topic) {
-  lexLoads[topic] ??= json(`topics/${topic}.json`).then((l) => { data.lex[topic] = l; return l; }, (e) => { delete lexLoads[topic]; throw e; });
-  return lexLoads[topic];
-}
+let persistence;
+function persist() { persistence.persist(); }
+let editor;
+
 
 const vol = () => D().index[state.i];
 const shipped = () => D().presets[vol().id];
@@ -177,6 +103,7 @@ const el = {
 };
 
 function buildStrip() {
+  releaseThumbs(el.strip);
   el.strip.replaceChildren(h('legend', { class: 'sr' }, 'Volume'), ...D().index.map((e, i) => h('label', { class: 'pick frame' },
     h('input', { type: 'radio', name: 'volume', value: String(i), id: `vol-${e.id}`, checked: i === state.i }),
     h('span', { class: 'face bracket' }, h('img', { alt: '', width: 3840, height: 2160 })),
@@ -197,6 +124,7 @@ function buildDrawdown() {
   el.dd.replaceChildren(...kids);
 }
 function buildInkRows() {
+  releaseThumbs(el.inks);
   el.inks.replaceChildren(...PALS.map((p) => h('div', { class: 'ink-row' },
     h('div', {}, h('h3', {}, data.palettes[p].name), h('p', {}, INKS[p])),
     h('div', { class: 'grounds' }, ROLES.map((r) => {
@@ -266,7 +194,7 @@ const insetTop = () => parseFloat(getComputedStyle(probe).paddingTop);
 
 // one stage height for every format, so switching never moves the page
 function fit() {
-  if (ed.on) return fitEdit();
+  if (editor.ed.on) return editor.fitEdit();
   const { w, h: H0 } = FORMATS[state.format], ar = w / H0;
   const cs = getComputedStyle(el.stage), padX = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
   const avail = el.stage.clientWidth - padX, narrow = isNarrow();
@@ -321,7 +249,7 @@ function update() {
   el.sheet.dataset.format = state.format;
   el.sheet.dataset.ground = state.role;
   el.sheet.style.setProperty('--lock', state.role === 'light' ? '#16122A' : '#fff');
-  if (!ed.on && ed.hover) setHover(null);
+  if (!editor.ed.on && editor.ed.hover) editor.setHover(null);
   fit(); rulers();
   const { w, h: H } = FORMATS[state.format];
   $('#slug').replaceChildren(fileName(e, g), h('span', { class: 'dim' }, '.png'));
@@ -350,7 +278,7 @@ function update() {
   writeLink();
   // the sections below the studio redraw at once, or shortly after the last change while editing
   clearTimeout(belowTimer);
-  if (ed.on) { belowTimer = setTimeout(paintBelow, 450); editRefresh(); } else paintBelow();
+  if (editor.ed.on) { belowTimer = setTimeout(paintBelow, 450); editor.editRefresh(); } else paintBelow();
 }
 let belowTimer = 0;
 function paintBelow() {
@@ -378,9 +306,9 @@ function goVol(i, reveal) {
   state.i = i;
   state.role = D().index[i].ground;          // each volume starts on its own ground
   update();
-  if (ed.on && !data.lex[vol().topic]) {   // editing, and this volume's words aren't in yet
+  if (editor.ed.on && !data.lex[vol().topic]) {   // editing, and this volume's words aren't in yet
     const id = vol().id;
-    lexicon(vol().topic).then(() => { if (ed.on && vol().id === id) { cache.clear(); editRefresh(); } },
+    lexicon(vol().topic).then(() => { if (editor.ed.on && vol().id === id) { editor.cache.clear(); editor.editRefresh(); } },
       () => tell('The words for this volume could not be loaded.', 'Check your connection and try again.', false));
   }
   if (reveal) el.strip.querySelector(`input[value="${i}"]`)?.closest('label').scrollIntoView({ block: 'nearest', inline: 'nearest' });
@@ -391,11 +319,11 @@ function goVol(i, reveal) {
 let choice = 0;
 async function chooseSeries(s) {
   const t = ++choice;
-  if (!SERIES[s] || s === state.series) { el.stage.setAttribute('aria-busy', 'false'); return syncSwitch(); }
+  if (seriesSwitch(state.series, s) === state.series) { el.stage.setAttribute('aria-busy', 'false'); return syncSwitch(); }
   el.stage.setAttribute('aria-busy', 'true');
   let dropped = 0;
   try {
-    await loadOnce(s);
+    await Promise.all([loadOnce(s), loadFaces(faceKeys(SERIES[s]))]);
     if (t === choice) dropped = await (restores[s] ??= restoreLate(s));
   } catch (err) {
     console.error(err);
@@ -406,28 +334,28 @@ async function chooseSeries(s) {
   }
   if (t !== choice) return;
   restores[s] = Promise.resolve(0);          // the note below is said once
-  closeEdit();
+  editor.closeEdit();
   hideSlip();
   lastVol[state.series] = state.i;
   useSeries(s);
   state.i = Math.min(lastVol[s] ?? 0, D().index.length - 1);
   state.role = vol().ground;
-  inkKey = ''; thumbKeys.clear(); cache.clear();
+  inkKey = ''; thumbKeys.clear(); editor.cache.clear();
   buildStrip(); buildInkRows(); paintSeries(); readWho();
   if (el.pack.getAttribute('aria-busy') !== 'true') nameBtn(el.pack, ...packLabel());   // the real count
   el.strip.scrollLeft = 0;
   update();
   persist();
   announce(`${S.name}, ${D().index.length} ${D().index.length === 1 ? 'volume' : 'volumes'}. ${vol().title}.`);
-  if (Object.keys(unchecked[s] ?? {}).length) tell('Some saved words could not be checked.', 'They stay saved: reload the page to bring them back.', false);
+  if (Object.keys(persistence.unchecked[s] ?? {}).length) tell('Some saved words could not be checked.', 'They stay saved: reload the page to bring them back.', false);
   else if (dropped) tell(`${dropped} saved ${dropped === 1 ? 'word was' : 'words were'} left out.`, 'They are no longer in the lexicon or no longer fit. Your other words are back.', false);
 }
 // a series that was not loaded at start: its saved words come back the first time it is chosen
 async function restoreLate(s) {
-  const saved = unchecked[s];
+  const saved = persistence.unchecked[s];
   if (!saved) return 0;
-  delete unchecked[s];
-  try { return await restoreSeries(s, saved, whoFits()); } catch (err) { console.error(err); unchecked[s] = saved; delete restores[s]; return 0; }
+  delete persistence.unchecked[s];
+  try { return await persistence.restoreSeries(s, saved); } catch (err) { console.error(err); persistence.unchecked[s] = saved; delete restores[s]; return 0; }
 }
 
 // ---------- your whoami: handle and line, optional. Empty, the sheet keeps the shipped box; typed, it must print
@@ -445,20 +373,25 @@ function syncDownloads() {
 }
 function readWho() {
   const hv = el.handle.value.trim(), mv = el.motto.value.trim();
-  const hOk = !hv || validHandle(hv), mOk = !mv || (validMotto(mv) && glyphs('mono', mv));
+  const hOk = !hv || validHandle(hv);
+  const status = mottoStatus(mv, S.whoFace);   // the face this series draws the box in, not the house mono
+  const badMotto = status === 'glyph' || status === 'length';
   el.handle.setAttribute('aria-invalid', String(!hOk));
-  el.motto.setAttribute('aria-invalid', String(!mOk));
-  el.who.classList.toggle('bad', !hOk || !mOk);
+  el.motto.setAttribute('aria-invalid', String(badMotto));
+  const bad = !hOk || badMotto;
+  el.who.classList.toggle('bad', bad);
   const msg = !hOk ? 'Your handle can use letters, digits, dots, dashes and underscores, up to 20.'
-    : !mOk ? (validMotto(mv) ? 'Your line uses a character the sheet’s font doesn’t have.' : `Your line can be up to ${S.LIMITS.motto} characters.`)
+    : status === 'glyph' ? 'Your line uses a character the sheet’s font doesn’t have.'
+    : status === 'length' ? `Your line can be up to ${S.LIMITS.motto} characters.`
+    : status === 'pending' ? 'The sheet’s font is still loading.'
     : S.READ.who;
-  el.whoNote.classList.toggle('err', !hOk || !mOk);
+  el.whoNote.classList.toggle('err', bad);
   if (el.whoNote.textContent !== msg) el.whoNote.textContent = msg;   // live region: write only on change
-  const next = { handle: hOk ? hv : state.handle, motto: mOk ? mv : state.motto };
+  const next = { handle: hOk ? hv : state.handle, motto: confirmedMotto(el.motto.value, state.motto, S.whoFace) };
   const changed = next.handle !== state.handle || next.motto !== state.motto;
   Object.assign(state, next);
   syncDownloads();
-  syncWho();
+  editor.syncWho();
   return changed;
 }
 let whoTimer = 0;
@@ -469,9 +402,6 @@ function onWho() {
   whoTimer = setTimeout(flushWho, 180);
 }
 function flushWho() { clearTimeout(whoTimer); whoTimer = 0; update(); persist(); }
-
-// ---------- downloads
-
 const slipIcon = () => svg('<path d="m4.5 10.5 3.5 3.5 7.5-8"/>', { viewBox: '0 0 20 20', fill: 'none', stroke: 'currentColor', 'stroke-width': '1.8', 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'aria-hidden': 'true' });
 let slipTimer = 0;
 function hideSlip() { clearTimeout(slipTimer); el.slip.classList.remove('show'); el.slip.inert = true; delete el.slip.dataset.vol; }
@@ -484,84 +414,12 @@ function tell(title, sub, ok = true) {
   clearTimeout(slipTimer);
   slipTimer = setTimeout(hideSlip, 4200);
 }
-const kb = (n) => (n > 1048576 ? `${(n / 1048576).toFixed(1)} MB` : `${Math.round(n / 1024)} KB`);
-function save(blob, file) {
-  const a = h('a', { href: URL.createObjectURL(blob), download: file });
-  document.body.append(a);
-  a.click();
-  a.remove();
-  setTimeout(() => URL.revokeObjectURL(a.href), 10000);
-  tell('Saved', `${file} · ${kb(blob.size)}`);
-}
-// the file matches the controls: a pending redraw finishes first
 async function settled() {
   if (whoTimer) flushWho();
   for (let d; d !== drawing;) await (d = drawing);
   return ready() ? current : null;
 }
-el.svg.addEventListener('click', async () => {
-  const snap = await settled();
-  if (snap) save(new Blob([snap.svg], { type: 'image/svg+xml' }), `${snap.name}.svg`);
-});
-// SVG text -> tagged sRGB PNG bytes, through a canvas (one sheet at a time)
-async function rasterise(text, w, H) {
-  const src = blobUrl(text), cv = h('canvas', { width: w, height: H });
-  try {
-    const img = new Image();
-    img.src = src;
-    await img.decode();
-    await new Promise((r) => setTimeout(r, 60));   // lets embedded fonts settle (Safari)
-    const ctx = cv.getContext('2d');
-    if (!ctx) throw new Error('no 2d context');
-    ctx.drawImage(img, 0, 0, w, H);
-    const png = await new Promise((ok, no) => cv.toBlob((b) => (b ? ok(b) : no(new Error('empty PNG'))), 'image/png'));
-    return srgbPNG(new Uint8Array(await png.arrayBuffer()));   // tagged sRGB, see srgbPNG
-  } finally { URL.revokeObjectURL(src); cv.width = cv.height = 0; }   // frees the backing store now: WebKit caps total canvas memory, and the pack draws 15
-}
-el.png.addEventListener('click', async () => {
-  if (el.png.getAttribute('aria-busy') === 'true') return;
-  el.png.setAttribute('aria-busy', 'true');
-  nameBtn(el.png, 'Drawing PNG');
-  try {
-    const snap = await settled();
-    if (!snap) return;
-    save(new Blob([await rasterise(snap.svg, snap.w, snap.h)], { type: 'image/png' }), `${snap.name}.png`);
-  } catch (err) {
-    console.error(err);
-    tell('The PNG could not be drawn in this browser.', 'Download the SVG instead: it holds the same sheet.', false);
-  } finally {
-    el.png.removeAttribute('aria-busy');
-    nameBtn(el.png, 'Download PNG');
-  }
-});
-// the rotation pack: every volume of the series in the selected ink and ground, one PNG each, for the OS's wallpaper rotation
 const packLabel = () => ['Download all volumes, ZIP', `Download all ${D().index.length} volumes (ZIP)`];
-el.pack.addEventListener('click', async () => {
-  if (el.pack.getAttribute('aria-busy') === 'true') return;
-  const list = D().index, n = list.length;
-  el.pack.setAttribute('aria-busy', 'true');
-  nameBtn(el.pack, 'Preparing the pack');
-  try {
-    const snap = await settled();
-    if (!snap) return;
-    const R = S, d = D(), saved = { ...E() }, { series, ink, role, format, finish, handle, motto } = state;   // the controls stay live for the whole pack: draw from a snapshot
-    const g = ground(ink, role), { w, h: H } = FORMATS[format], tail = `${ink}-${g.slug}${finish ? `_${finish}` : ''}_${w}x${H}`, files = [];
-    announce(`Drawing ${n} sheets for the rotation pack.`);
-    for (const [i, e] of d.index.entries()) {
-      nameBtn(el.pack, `Drawing ${i + 1} of ${n}`);
-      const text = R.render({ preset: saved[e.id] ?? d.presets[e.id], colors: g.colors, format, handle, motto, fonts: data.fonts, texture: finish });
-      files.push({ name: `${pad2(e.vol)}_kernspace_${series}_${e.id}${saved[e.id] ? '_edited' : ''}_${tail}.png`, bytes: await rasterise(text, w, H) });
-    }
-    announce(`${n} sheets drawn.`);
-    save(new Blob([zip(files)], { type: 'application/zip' }), `kernspace_${series}_${tail}_${n}-volumes.zip`);
-  } catch (err) {
-    console.error(err);
-    tell('The pack could not be drawn in this browser.', 'Download the sheets one by one instead.', false);
-  } finally {
-    el.pack.removeAttribute('aria-busy');
-    nameBtn(el.pack, ...packLabel());
-  }
-});
 
 // ---------- the finish: none, or one film grain or paper over the whole sheet (FINISHES in render.js)
 
@@ -623,11 +481,11 @@ let loupeTimer = 0, loupeSlow = false, loupeSeen = false, loupeAt = '';
 const queueLoupe = () => { clearTimeout(loupeTimer); loupeTimer = setTimeout(paintLoupe, loupeSlow ? 1200 : 160); };
 function paintLoupe() {
   const c = current, cv = el.loupe.querySelector('canvas');
-  if (!c?.finish || c.t !== ticket || el.loupe.hidden || !loupeSeen || ed.on) return;
+  if (!c?.finish || c.t !== ticket || el.loupe.hidden || !loupeSeen || editor.ed.on) return;
   const r = devicePixelRatio || 1, w = Math.round(cv.clientWidth * r), H = Math.round(cv.clientHeight * r), at = `${c.t} ${w}x${H}`;
   if (!w || !H || at === loupeAt) return;   // already showing this sheet at this size
   if (cv.width !== w || cv.height !== H) { cv.width = w; cv.height = H; }
-  const b = slotBox('whoami', c.format) ?? { x0: c.w / 2, y0: c.h / 2, y1: c.h / 2 };
+  const b = editor.slotBox('whoami', c.format) ?? { x0: c.w / 2, y0: c.h / 2, y1: c.h / 2 };
   const x = w >= c.w ? (c.w - w) / 2 : Math.min(Math.max(b.x0 - 40, 0), c.w - w), y = Math.min(Math.max((b.y0 + b.y1 - H) / 2, 0), c.h - H);
   const ctx = cv.getContext('2d'), t0 = performance.now();
   ctx.clearRect(0, 0, w, H);
@@ -690,569 +548,22 @@ function flip() {
   while (t - flips[0] > 3000) flips.shift();
   if (flips.length >= 5) { flips.length = 0; tell('Hello, friend.', 'eps1.0_hellofriend.mov'); }
 }
-const ed = { on: false, leaving: false, key: 'phrase', view: null, win: { w: 800, h: 450 }, anim: 0, overview: false, preview: null, active: -1, shown: [], query: '', showBad: false, linked: '', stacks: {}, opener: null, prevView: 'sheet', hover: '', opening: false };
-const live = $('#live'), liveRoot = live.attachShadow({ mode: 'open' }), liveCss = new CSSStyleSheet(), ov = $('#ov'), pin = $('#sheet-pin'), list = $('#ep-list'), rail = $('#rail');
-liveRoot.adoptedStyleSheets = [liveCss];         // the sheet's own rules, set through CSSOM: no inline <style>
-const union = (a, b) => (a && b ? { x0: Math.min(a.x0, b.x0), y0: Math.min(a.y0, b.y0), x1: Math.max(a.x1, b.x1), y1: Math.max(a.y1, b.y1) } : a ?? b);
-const norm = (x) => x.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 
-// scenes and option lists, rebuilt after every edit
-const cache = new Map();
-const memo = (k, f) => { if (!cache.has(k)) cache.set(k, f()); return cache.get(k); };
-const tag = () => `${vkey(vol().id)}:${ver(vol().id)}`;
-const prepared = (fmt) => memo(`${tag()}:prep:${fmt}`, () => prepare(preset(), fmt));
-function options(key) {
-  return memo(`${tag()}:opts:${key}`, () => {
-    const e = vol(), T = TOPIC[e.topic] ?? e.topic;
-    const rows = wordOptions({ entry: e, key, shipped: shipped(), current: preset(), lexicon: data.lex[e.topic], index: D().index, presets: D().presets, prepared });
-    const suggested = rows.some((r) => r.group === 'suggested');
-    const names = { shipped: 'As shipped', suggested: 'Suggested', more: suggested ? `More from ${T}` : `From ${T}`, lexicon: `From the ${T} lexicon`, volumes: 'Other volumes' };
-    return { rows, lock: S.lockOf(key, shipped()), now: get(preset(), key), names };
-  });
-}
+// the editor, the saved words and the downloads. Wired once the nodes exist; none of them run at import of their modules.
+const deps = {
+  state, data, el,
+  series: () => S, vol, preset, shipped, seriesData: D, edits: E, ver, vkey, ground, lexicon,
+  update, tell, announce, setView, ruler, insets, readWho, tellUndo, packLabel, settled,
+  syncClear: () => persistence.syncClear(),
+  editor: () => editor,
+  invalidateCaches,
+  persist: () => persistence.persist(),
+};
+persistence = createPersistence(deps);
+deps.unchecked = persistence.unchecked;
+editor = createEditor(deps);
+bindDownloads(deps);
 
-// one box per slot: its text plus the mark it belongs to, in sheet px
-function slotBox(key, fmt = state.format) {
-  const qs = S.slotQuads(prepared(fmt).s, preset(), key);
-  return qs.length ? hull(qs.flat()) : null;
-}
-function hitAt(x, y, pad) {
-  let best = null, far = Infinity, area = Infinity;   // under the point beats near it; ties go to the smallest box
-  for (const key of [...slotsOf(preset()), ...Object.keys(S.FIXED)]) {
-    const b = slotBox(key);
-    if (!b) continue;
-    const d = Math.max(b.x0 - x, x - b.x1, b.y0 - y, y - b.y1, 0), a = (b.x1 - b.x0) * (b.y1 - b.y0);
-    if (d > pad || d > far || (d === far && a >= area)) continue;
-    far = d; area = a; best = key;
-  }
-  return best;
-}
-
-// the live proof: inline SVG in a shadow root, zoomed through its viewBox
-const liveFonts = () => Promise.all(['300 16px KNunito', '16px KMono'].map((f) => document.fonts.load(f))).catch(() => {});
-let liveQueued = 0;
-function renderLive() {
-  liveQueued = 0;
-  if (!ed.on) return;
-  const p = ed.preview ? put(preset(), ed.key, ed.preview.value, shipped()) : preset();
-  const text = S.render({ preset: p, colors: ground(state.ink, state.role).colors, format: state.format, handle: state.handle, motto: state.motto, fonts: null });
-  liveCss.replaceSync(text.match(/<style>(.*?)<\/style>/s)?.[1] ?? '');
-  liveRoot.innerHTML = text.replace(/<style>.*?<\/style>/s, '').replace(/<title>.*?<\/title>/s, '');
-  const s = liveRoot.firstElementChild;
-  s.setAttribute('width', '100%');
-  s.setAttribute('height', '100%');
-  s.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-  const cur = ed.key === 'whoami' ? `${state.handle || HANDLE} · ${state.motto || MOTTO}` : plain(get(preset(), ed.key));
-  live.setAttribute('aria-label', `${FMT_NAME[state.format]} sheet, ${ed.overview ? 'whole sheet, editing' : 'zoomed to'} ${S.nameOf(ed.key)}: ${cur}${ed.preview ? `, previewing ${plain(ed.preview.value)}` : ''}`);
-  applyView();
-}
-const queueLive = () => { if (!liveQueued) liveQueued = requestAnimationFrame(renderLive); };
-function fitEdit() {
-  const narrow = isNarrow(), cs = getComputedStyle(el.stage), vh = Math.round(window.visualViewport?.height ?? innerHeight);
-  const pinned = narrow && vh - insets() >= 560;   // top bar + stage + rail + edit bar, and at least 180px of options
-  const total = !narrow ? Math.max(460, innerHeight - 224) : pinned ? Math.max(160, Math.min(Math.round(vh * 0.38), vh - 373 - Math.round(insets()))) : 220;
-  el.form.style.setProperty('--stage-h', `${total}px`);
-  document.body.toggleAttribute('data-unpinned', narrow && !pinned);
-  ed.win = {
-    w: Math.max(120, el.stage.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight)),
-    h: Math.max(120, total - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom)),
-  };
-  el.sheet.style.setProperty('--w', `${ed.win.w}px`);
-  el.sheet.style.setProperty('--h', `${ed.win.h}px`);
-}
-function fullView(fmt = state.format) {
-  const { w: W, h: H } = FORMATS[fmt], s = Math.min(ed.win.w / W, ed.win.h / H), w = ed.win.w / s, hh = ed.win.h / s;
-  return { x: (W - w) / 2, y: (H - hh) / 2, w, h: hh };
-}
-// zoom so the slot and every option that fits stay in frame, never below 14 CSS px text (12 on phones), never past 1:1
-function viewFor(key, fmt = state.format) {
-  const { w: W, h: H } = FORMATS[fmt], U = S.GEOM.U(fmt);
-  let b = slotBox(key, fmt);
-  if (!b) return fullView(fmt);
-  if (key !== 'whoami') for (const r of options(key).rows) if (r.ok && r.per[fmt].box) b = union(b, r.per[fmt].box);
-  b = { x0: b.x0 - U, y0: b.y0 - U, x1: b.x1 + U, y1: b.y1 + U };
-  const px = S.GEOM.px(key, fmt);   // drawn text size
-  const floor = (isNarrow() ? 12 : 14) / px, full = Math.min(ed.win.w / W, ed.win.h / H);
-  const s = Math.max(full, Math.min(1, Math.max(floor, Math.min(ed.win.w / (b.x1 - b.x0), ed.win.h / (b.y1 - b.y0)))));
-  const w = ed.win.w / s, hh = ed.win.h / s;
-  const place = (lo, hi, size, lim) => (size >= lim ? (lim - size) / 2 : Math.min(Math.max(hi - lo > size ? lo : (lo + hi - size) / 2, 0), lim - size));
-  return { x: place(b.x0, b.x1, w, W), y: place(b.y0, b.y1, hh, H), w, h: hh };
-}
-function moveView(to, done) {
-  if (ed.hover) setHover(null);
-  cancelAnimationFrame(ed.anim);
-  const from = ed.view ?? to, t0 = performance.now(), D = reduced() ? 0 : 380, ease = (k) => 1 - (1 - k) ** 3;
-  const step = (t) => {
-    const k = D ? Math.max(0, Math.min(1, (t - t0) / D)) : 1, e = ease(k);   // a frame stamped before t0 must not overshoot backwards
-    ed.view = { x: from.x + (to.x - from.x) * e, y: from.y + (to.y - from.y) * e, w: from.w + (to.w - from.w) * e, h: from.h + (to.h - from.h) * e };
-    applyView();
-    if (k < 1) ed.anim = requestAnimationFrame(step); else done?.();
-  };
-  ed.anim = requestAnimationFrame(step);
-}
-function applyView() {
-  const v = ed.view;
-  if (!v || !ed.on) return;
-  const vb = `${v.x} ${v.y} ${v.w} ${v.h}`;
-  liveRoot.firstElementChild?.setAttribute('viewBox', vb);
-  ov.setAttribute('viewBox', vb);
-  drawOverlay();
-  const { w: W, h: H } = FORMATS[state.format];
-  const ticks = (a0, span, lim) => {
-    const st = [20, 40, 60, 80, 120, 160, 240, 320, 480, 640, 960].find((x) => span / x <= 6) ?? 1280, out = [];
-    for (let t = Math.max(0, Math.ceil(a0 / st) * st); t <= Math.min(lim, a0 + span); t += st) out.push([((t - a0) / span) * 100, t]);
-    return out;
-  };
-  ruler($('#ruler-x'), ticks(v.x, v.w, W), 'x');
-  ruler($('#ruler-y'), ticks(v.y, v.h, H), 'y');
-}
-function brackets(b, s, cls) {
-  const pad = 10 / s, l = 16 / s, x0 = b.x0 - pad, y0 = b.y0 - pad, x1 = b.x1 + pad, y1 = b.y1 + pad;
-  return `<path class="${cls}" d="M${x0} ${y0 + l}V${y0}H${x0 + l}M${x1 - l} ${y0}H${x1}V${y0 + l}M${x1} ${y1 - l}V${y1}H${x1 - l}M${x0 + l} ${y1}H${x0}V${y1 - l}"/>`;
-}
-const rect = (b, cls) => `<rect class="${cls}" x="${b.x0}" y="${b.y0}" width="${b.x1 - b.x0}" height="${b.y1 - b.y0}"/>`;
-function drawOverlay() {
-  const v = ed.view;
-  if (!v) return;
-  const s = ed.win.w / v.w;
-  let out = '';
-  if (ed.overview) out += slotsOf(preset()).map((k) => { const b = slotBox(k); return b ? rect(b, 'ghost') : ''; }).join('');
-  const per = ed.preview?.row.per?.[state.format], hit = per && !per.ok ? per.hit : null;
-  if (hit?.box) out += rect(hit.box, hit.what === 'clock' ? 'clock' : 'obst');
-  const box = ed.preview ? union(slotBox(ed.key), per?.box) : slotBox(ed.key);
-  if (box && !ed.overview) out += brackets(box, s, ed.preview ? 'br dash' : 'br');
-  if (ed.hover && ed.hover !== ed.key) { const b = slotBox(ed.hover); if (b) out += brackets(b, s, S.fixedOf(ed.hover) ? 'br fixed' : 'br dash'); }
-  ov.innerHTML = out;
-}
-
-// pointing at the sheet: brackets and a pin; a click opens that word
-const fine = () => matchMedia('(pointer: fine)').matches && !isNarrow();
-function sheetPoint(ev) {
-  const r = (ed.on ? live : el.img).getBoundingClientRect();
-  if (ed.on) {
-    const v = ed.view, s = Math.min(r.width / v.w, r.height / v.h);
-    return { x: v.x + (ev.clientX - r.left - (r.width - v.w * s) / 2) / s, y: v.y + (ev.clientY - r.top - (r.height - v.h * s) / 2) / s, s, v };
-  }
-  const { w: W, h: H } = FORMATS[state.format], s = r.width / W;
-  return { x: (ev.clientX - r.left) / s, y: (ev.clientY - r.top) / s, s, v: { x: 0, y: 0, w: W, h: H } };
-}
-function setHover(key, pt) {
-  ed.hover = key ?? '';
-  el.sheet.classList.toggle('can-edit', !!key && !S.fixedOf(key));
-  if (!key || (ed.on && key === ed.key)) { pin.hidden = true; if (ed.on) drawOverlay(); else ov.replaceChildren(); return; }
-  const b = slotBox(key), fx = S.fixedOf(key);
-  if (ed.on) drawOverlay();
-  else { ov.setAttribute('viewBox', `${pt.v.x} ${pt.v.y} ${pt.v.w} ${pt.v.h}`); ov.innerHTML = brackets(b, pt.s, fx ? 'br fixed' : 'br'); }
-  pin.textContent = fx ? `${fx[0]}: fixed, it ${fx[1]}` : `${S.nameOf(key)} · change`;
-  pin.classList.toggle('fixed', !!fx);
-  pin.style.setProperty('left', `${((b.x0 + b.x1) / 2 - pt.v.x) * pt.s}px`);
-  pin.style.setProperty('top', `${Math.max(14, (b.y0 - pt.v.y) * pt.s - 12)}px`);
-  pin.hidden = false;
-}
-
-// entering, moving and leaving
-async function enterEdit(key) {
-  if (ed.on) return openSlot(key);
-  if (ed.opening) return;
-  ed.opening = true;
-  setHover(null);
-  const s0 = state.series;
-  try {
-    // the volume can change while its words load: load until they match
-    for (let t; t !== vol().topic;) { t = vol().topic; await Promise.all([lexicon(t), liveFonts()]); }
-  } catch (err) {
-    console.error(err);
-    return tell('The words for this volume could not be loaded.', 'Check your connection and try again.', false);
-  } finally { ed.opening = false; }
-  if (state.series !== s0) return;   // the series changed while the words loaded
-  cache.clear();
-  ed.on = true; ed.opener = document.activeElement; ed.prevView = state.view; ed.overview = false; ed.preview = null;
-  setView('sheet');
-  document.body.dataset.editing = '';
-  $(`#ef-${state.format}`).checked = true;
-  fitEdit();
-  ed.view = fullView();
-  renderLive();
-  $('#studio').scrollIntoView({ block: 'start', behavior: reduced() ? 'auto' : 'smooth' });
-  const keys = slotsOf(preset());
-  openSlot(keys.includes(key) ? key : keys[0], true);
-  rail.querySelector('[aria-selected="true"]')?.focus({ preventScroll: true });
-}
-function exitEdit() {
-  if (!ed.on || ed.leaving) return;
-  ed.preview = null; ed.hover = ''; pin.hidden = true; ed.leaving = true;
-  moveView(fullView(), () => {
-    ed.leaving = false; ed.on = false;
-    delete document.body.dataset.editing;
-    document.body.removeAttribute('data-unpinned');
-    setView(ed.prevView);
-    ov.replaceChildren(); ov.removeAttribute('viewBox'); liveRoot.replaceChildren();
-    update();
-    const back = ed.opener && document.contains(ed.opener) && ed.opener !== document.body ? ed.opener : $('#edit-open');
-    back.focus();
-  });
-}
-// leave the editor at once, without the zoom out (a series switch changes the volumes under it)
-function closeEdit() {
-  if (!ed.on) return;
-  cancelAnimationFrame(ed.anim);
-  ed.on = ed.leaving = false; ed.preview = null; ed.hover = ''; pin.hidden = true;
-  delete document.body.dataset.editing;
-  document.body.removeAttribute('data-unpinned');
-  setView(ed.prevView);
-  ov.replaceChildren(); ov.removeAttribute('viewBox'); liveRoot.replaceChildren();
-}
-function openSlot(key, first) {
-  ed.leaving = false;
-  ed.key = key; ed.preview = null; ed.query = ''; ed.showBad = false; ed.active = -1; ed.linked = ''; ed.overview = false;
-  $('#ep-search').value = '';
-  $('#whole').setAttribute('aria-pressed', 'false');
-  buildRail(); renderPanel(); labels(); renderLive();
-  list.scrollTop = 0;
-  if (!first && isNarrow() && !document.body.hasAttribute('data-unpinned')) {   // the page scrolls, not the list: bring the new header back under the rail
-    const dy = $('.ep-head').getBoundingClientRect().top - (parseFloat(getComputedStyle(rail).top) + rail.offsetHeight);   // sticky offsets, not the rail's live rect: a shortened container clamps that
-    if (dy < 0) scrollBy({ top: dy - 8, behavior: 'instant' });
-  }
-  moveView(viewFor(key));
-}
-function stepSlot(d, say) {
-  const keys = slotsOf(preset()), i = keys.indexOf(ed.key), k = keys[(i + d + keys.length) % keys.length];
-  openSlot(k);
-  if (say) announce(`${S.LABEL[k]}, ${keys.indexOf(k) + 1} of ${keys.length}: ${k === 'whoami' ? state.handle || HANDLE : plain(get(preset(), k))}`);
-}
-function toggleOverview() {
-  ed.leaving = false;
-  ed.overview = !ed.overview; ed.preview = null;
-  $('#whole').setAttribute('aria-pressed', String(ed.overview));
-  queueLive();
-  moveView(ed.overview ? fullView() : viewFor(ed.key));
-}
-function labels() {
-  const keys = slotsOf(preset()), e = vol();
-  $('#crumb').replaceChildren(h('span', {}, `Vol. ${pad2(e.vol)} · ${volName(e)}`), h('span', { 'aria-hidden': 'true' }, '›'), h('b', {}, S.LABEL[ed.key]));
-  $('#eb-label').replaceChildren(`${S.LABEL[ed.key]} `, h('span', { class: 'mono' }, `${keys.indexOf(ed.key) + 1}/${keys.length}`));
-}
-function editRefresh() {
-  if (ed.leaving) return;
-  fitEdit(); buildRail(); renderPanel(); labels(); renderLive();
-  moveView(ed.overview ? fullView() : viewFor(ed.key));
-}
-const refit = () => { if (!ed.on || ed.leaving) return; fitEdit(); cancelAnimationFrame(ed.anim); ed.view = ed.overview ? fullView() : viewFor(ed.key); applyView(); keepSearch(); };
-const keepSearch = () => { const q = $('#ep-search'); if (isNarrow() && document.activeElement === q) q.scrollIntoView({ block: 'start' }); };   // typing on a phone: results stay above the keyboard
-
-// the rail: every word on the sheet, in reading order; arrows move focus, Enter or Space opens
-function buildRail() {
-  const p = preset(), g = ground(state.ink, state.role).colors, keys = slotsOf(p), had = rail.contains(document.activeElement);
-  rail.replaceChildren(...keys.map((k) => {
-    const edited = k === 'whoami' ? !!(state.handle || state.motto) : !same(get(p, k), get(shipped(), k));
-    const sw = S.swatch(k, g);
-    return h('button', { type: 'button', role: 'tab', class: `rchip bracket${edited ? ' edited' : ''}`, dataset: { key: k }, id: `tab-${k.replace('.', '-')}`,
-      'aria-selected': String(k === ed.key), tabindex: k === ed.key ? '0' : '-1', 'aria-controls': 'ep', 'aria-label': `${S.LABEL[k]}${edited ? ', edited' : ''}` },
-    sw ? h('i', { class: `sw ${sw.cls}`, style: { '--c': sw.color } }) : null, h('span', {}, S.LABEL[k]));
-  }));
-  const on = rail.querySelector('[aria-selected="true"]');
-  if (on && had) on.focus({ preventScroll: true });
-  if (on) rail.scrollTo({ left: on.offsetLeft - rail.clientWidth / 2 + on.offsetWidth / 2, behavior: reduced() ? 'auto' : 'smooth' });
-}
-
-// the copy desk: one slot's options
-function renderPanel() {
-  const key = ed.key, who = key === 'whoami', st = ed.stacks[vkey(vol().id)], was = document.activeElement;
-  $('#ep-title').textContent = S.LABEL[key];
-  $('#undo').disabled = !st?.undo.length;
-  $('#redo').disabled = !st?.redo.length;
-  $('#restore').disabled = !E()[vol().id];
-  syncClear();
-  if (was?.disabled) (['#undo', '#redo'].map($).find((b) => b !== was && !b.disabled) ?? (list.hidden ? rail.querySelector('[aria-selected="true"]') : list)).focus();
-  $('#ep-linked').hidden = !ed.linked;
-  $('#ep-linked').textContent = ed.linked;
-  $('#ep-who').hidden = !who;
-  list.hidden = who;
-  if (who) {
-    $('#ep-meta').replaceChildren(h('span', {}, 'Drawn in the # whoami box and the prompt under the sheet. Not from the lexicon.'));
-    $('#ep-search-wrap').hidden = true; $('#ep-bad').hidden = true; $('#ep-empty').hidden = true;
-    for (const [a, b] of [['#handle-e', el.handle], ['#motto-e', el.motto]]) if ($(a).value !== b.value) $(a).value = b.value;
-    syncWho();
-    return;
-  }
-  const o = options(key), a = family(key), fits = o.rows.filter((r) => r.ok).length;
-  const now = a === 'data' ? preset().phone?.data?.[key.slice(5)] ?? o.now : o.now, max = a === 'data' ? S.phoneCap?.(preset(), key) ?? S.LIMITS.phone : S.limitOf(key);
-  fill($('#ep-meta'),
-    o.lock ? h('span', { class: 'tape tape-pencil', title: 'Set by the volume' }, o.lock.trim()) : null,
-    h('span', {}, `${fits} ${fits === 1 ? 'option fits' : 'options fit'}`),
-    h('span', { class: 'mono' }, a === 'phrase' ? `${S.LIMITS.phrase} per line` : Array.isArray(now) ? now.map((v, i) => `${len(v)}/${S.limitOf(key, i)}`).join(' · ')   // a pair: text, code
-      : `${len(now)}/${max}${a === 'data' ? ' on the phone' : ''}`));
-  $('#ep-search-wrap').hidden = !(o.rows.length > 12 && a !== 'phrase' && a !== 'data');
-  paintList();
-}
-function paintList() {
-  const o = options(ed.key), q = norm(ed.query.trim()), match = (r) => !q || r.search.includes(q);
-  const good = o.rows.filter((r) => (r.ok || r.applied || r.where) && match(r));
-  const bad = o.rows.filter((r) => !r.ok && !r.applied && !r.where && match(r));
-  ed.shown = [];
-  const groups = [];
-  for (const g of ['shipped', 'suggested', 'more', 'lexicon', 'volumes']) {
-    const rs = good.filter((r) => r.group === g);
-    if (rs.length) groups.push(group(g, o.names[g], rs));
-  }
-  if (ed.showBad && bad.length) groups.push(group('bad', 'Won’t fit', bad));
-  const empty = $('#ep-empty');
-  empty.hidden = ed.shown.length > 0;
-  empty.replaceChildren(...(ed.shown.length ? [] : q
-    ? [`No ${TOPIC[vol().topic] ?? ''} word matches “${ed.query.trim()}”. `, h('button', { type: 'button', class: 'linkbtn', id: 'ep-clear' }, 'Clear the search'), ' or ',
-      h('a', { class: 'linkbtn', href: $('#ep-propose').href, target: '_blank', rel: 'noopener noreferrer' }, 'propose a term'), '.']
-    : [`No other ${family(ed.key) === 'data' ? 'status lines' : 'words'} in the ${TOPIC[vol().topic] ?? ''} lexicon fit here.`]));
-  list.replaceChildren(...groups);
-  $('#ep-count').textContent = q ? `${ed.shown.length} of ${o.rows.length}` : '';
-  if (q) announce(ed.shown.length ? `${ed.shown.length} of ${o.rows.length} words` : `No word matches ${ed.query.trim()}`);
-  const tgl = $('#ep-bad');
-  tgl.hidden = !bad.length;
-  tgl.setAttribute('aria-expanded', String(ed.showBad));
-  tgl.querySelector('span').textContent = bad.length;   // the number is the data; the label is the name
-  nameBtn(tgl, `${ed.showBad ? 'Hide' : 'Show'} ${bad.length} that won’t fit`);
-  setActive(ed.active < ed.shown.length ? ed.active : -1, { preview: false, scroll: false });
-  if (ed.active < 0) preview(null);
-}
-function group(id, title, rs) {
-  return h('div', { role: 'group', 'aria-label': `${title}, ${rs.length} ${rs.length === 1 ? 'option' : 'options'}` },
-    h('div', { class: 'og-h', id: `g-${id}`, 'aria-hidden': 'true' }, title, ' ', h('span', { class: 'mono' }, String(rs.length))),
-    rs.map(row));
-}
-function row(r) {
-  const i = ed.shown.push(r) - 1, lock = options(ed.key).lock, dis = !r.ok && !r.applied;
-  const body = Array.isArray(r.value)   // the phrase's lines, or a pair (text, code)
-    ? ed.key === 'phrase' ? h('span', { class: 'ot ph', id: `ot-${i}` }, r.value.flatMap((l, k) => (k ? [h('br'), l] : [l])))
-      : h('span', { class: 'ot', id: `ot-${i}` }, r.value[0], ' ', h('span', { class: 'lk' }, r.value[1]))
-    : h('span', { class: 'ot', id: `ot-${i}` }, lock && r.value.startsWith(lock) ? [h('span', { class: 'lk' }, lock), r.value.slice(lock.length)] : r.value);
-  const fmts = r.per && !r.ok ? h('span', { class: 'fmts', 'aria-hidden': 'true' }, FMTS.map((f) => h('i', { class: `${f[0]}${r.per[f].ok ? '' : ' bad'}` }))) : null;
-  return h('div', { role: 'option', class: 'orow', id: `opt-${i}`, dataset: { i: String(i) }, 'aria-selected': String(r.applied), 'aria-disabled': dis ? 'true' : null, 'aria-labelledby': `ot-${i}`, 'aria-describedby': `optd-${i}` },
-    body,
-    h('span', { class: 'on', 'aria-hidden': 'true' }, r.code ? h('span', { class: 'tape' }, r.code) : null, fmts, Array.isArray(r.value) ? null : h('span', { class: 'mono' }, String(len(r.value)))),
-    h('span', { class: 'om', id: `optd-${i}` }, dis ? h('span', { class: 'why' }, r.why) : r.meaning ?? '', h('span', { class: 'sr' }, r.ok ? ' Fits desktop, wide and phone.' : '')));
-}
-let sayTimer = 0;
-const announce = (msg) => { clearTimeout(sayTimer); sayTimer = setTimeout(() => { $('#say').textContent = msg; }, 300); };
-function setActive(i, { preview: pv = true, scroll = true } = {}) {
-  ed.active = i;
-  list.querySelector('.orow.is-active')?.classList.remove('is-active');
-  const node = i >= 0 ? $(`#opt-${i}`) : null;
-  for (const owner of [list, $('#ep-search')]) node ? owner.setAttribute('aria-activedescendant', node.id) : owner.removeAttribute('aria-activedescendant');
-  if (node) { node.classList.add('is-active'); if (scroll) node.scrollIntoView({ block: 'nearest' }); }
-  if (pv) preview(node ? ed.shown[i] : null);
-}
-function preview(r) {
-  const next = r && !r.where && !r.applied ? r : null;
-  if ((ed.preview?.row ?? null) === next) return;
-  if (!next) { if (ed.preview) { ed.preview = null; queueLive(); } return; }
-  ed.preview = { row: next, value: next.value };
-  queueLive();
-  if (!next.ok) announce(next.why);
-}
-
-// applying, undo, redo
-function apply(r) {
-  if (!r || r.applied) return;
-  if (!r.ok) { tell('This one can’t go here.', r.why, false); announce(r.why); return; }
-  const before = preset(), next = put(before, ed.key, r.value, shipped());
-  const bad = guard(next, state.handle, state.motto);
-  if (bad.length) { tell('That word does not fit.', bad[0], false); return; }
-  const key = ed.key;
-  commit(next, `${S.LABEL[key]} changed`, before);
-  ed.linked = linkedNote({ key, before, after: preset(), shipped: shipped(), entry: vol(), value: r.value });
-  renderPanel();
-}
-function commit(next, msg, before = preset()) {
-  const st = (ed.stacks[vkey(vol().id)] ??= { undo: [], redo: [] });
-  st.undo.push({ before, after: next, msg });
-  st.redo = [];
-  setPreset(next);
-  tellUndo(msg);
-}
-function setPreset(p) {
-  const id = vol().id;
-  if (same(p, D().presets[id])) delete E()[id]; else E()[id] = p;
-  delete unchecked[state.series]?.[id];
-  state.ver[vkey(id)] = ver(id) + 1;
-  cache.clear();
-  ed.preview = null; ed.active = -1;
-  update();
-  persist();
-  if (ed.on && [list, $('#ep-search')].includes(document.activeElement)) setActive(ed.shown.findIndex((r) => r.applied), { preview: false });
-}
-function undo() { const st = ed.stacks[vkey(vol().id)], x = st?.undo.pop(); if (!x) return; st.redo.push(x); ed.linked = ''; setPreset(x.before); tell('Undone', x.msg); }
-function redo() { const st = ed.stacks[vkey(vol().id)], x = st?.redo.pop(); if (!x) return; st.undo.push(x); ed.linked = ''; setPreset(x.after); tell('Redone', x.msg); }
-function tellUndo(msg) {
-  announce(msg);
-  el.slip.replaceChildren(slipIcon(), h('span', {}, h('b', {}, msg)), h('button', { type: 'button', class: 'linkbtn', id: 'slip-undo' }, 'Undo'));
-  el.slip.inert = false;
-  el.slip.dataset.vol = vol().id;
-  el.slip.classList.add('show');
-  clearTimeout(slipTimer);
-  slipTimer = setTimeout(hideSlip, 5200);
-}
-
-// list, search and editor keys
-function listKeys(ev) {
-  if (ev.target !== list && ev.target.id !== 'ep-search') return;
-  const n = ed.shown.length, fromSearch = ev.target.id === 'ep-search';
-  if (!fromSearch && ev.key.length === 1 && !' []'.includes(ev.key) && !ev.metaKey && !ev.ctrlKey && !ev.altKey && !$('#ep-search-wrap').hidden) { $('#ep-search').focus(); return; }
-  const d = { ArrowDown: 1, ArrowUp: -1, PageDown: 8, PageUp: -8 }[ev.key];
-  if (d != null) { ev.preventDefault(); if (n) setActive(ed.active < 0 ? (d > 0 ? 0 : n - 1) : Math.max(0, Math.min(n - 1, ed.active + d))); return; }
-  if (!fromSearch && (ev.key === 'Home' || ev.key === 'End')) { ev.preventDefault(); if (n) setActive(ev.key === 'Home' ? 0 : n - 1); return; }
-  if (ev.key === 'Enter') { ev.preventDefault(); if (ed.active >= 0) apply(ed.shown[ed.active]); return; }
-  if (ev.key === 'Escape') {
-    if (fromSearch && ed.query) { ev.preventDefault(); ev.stopPropagation(); ev.target.value = ''; ed.query = ''; ed.active = -1; paintList(); return; }
-    if (ed.active >= 0 || ed.preview) { ev.preventDefault(); ev.stopPropagation(); setActive(-1); }
-  }
-}
-function syncWho() {
-  $('#who-e').classList.toggle('bad', el.who.classList.contains('bad'));
-  for (const [a, b] of [['#handle-e', el.handle], ['#motto-e', el.motto]]) $(a).setAttribute('aria-invalid', b.getAttribute('aria-invalid') ?? 'false');
-  const note = $('#who-e-note');
-  note.className = el.whoNote.className;
-  if (note.textContent !== el.whoNote.textContent) note.textContent = el.whoNote.textContent;
-}
-function editKeys(ev) {
-  if (ev.defaultPrevented) return;
-  const t = ev.target, typing = t.matches?.('input[type="text"], input[type="search"], textarea'), mod = ev.metaKey || ev.ctrlKey;
-  if (ev.key === 'Escape' && !mod && !ev.altKey) { ev.preventDefault(); exitEdit(); return; }
-  if (t !== document.body && !t.closest?.('#studio')) return;
-  if (mod && !ev.altKey && ev.key.toLowerCase() === 'z' && !typing) { ev.preventDefault(); (ev.shiftKey ? redo : undo)(); return; }
-  if (mod || ev.altKey) return;
-  if (typing) return;
-  if (ev.key === ']' || ev.key === '[') { ev.preventDefault(); stepSlot(ev.key === ']' ? 1 : -1); return; }
-  if ((ev.key === 'z' || ev.key === 'Z') && t !== list) { ev.preventDefault(); toggleOverview(); }
-}
-
-// ---------- saved words: this browser only; everything still works when storage is blocked
-
-// every saved word: changed slots of each edited volume plus the unchecked ones
-function savedCount() {
-  let words = 0, vols = 0;
-  for (const [s, byId] of Object.entries(state.edits)) for (const [id, p] of Object.entries(byId)) { const n = changedSlots(p, data.series[s].presets[id]).length; if (n) { words += n; vols++; } }
-  for (const byId of Object.values(unchecked)) for (const slots of Object.values(byId)) { const n = Object.keys(slots).length; if (n) { words += n; vols++; } }
-  return { words, vols };
-}
-const syncClear = () => { $('#clear-saved').disabled = !savedCount().words; };
-function clearSaved() {
-  const { words, vols } = savedCount();
-  if (!words || !confirm(`Clear ${words} saved word${words === 1 ? '' : 's'} in ${vols} volume${vols === 1 ? '' : 's'}? Your whoami stays.`)) return;
-  for (const [s, byId] of Object.entries(state.edits)) for (const id of Object.keys(byId)) state.ver[vkey(id, s)] = (state.ver[vkey(id, s)] ?? 0) + 1;
-  for (const k of Object.keys(state.edits)) delete state.edits[k];
-  for (const k of Object.keys(unchecked)) delete unchecked[k];
-  ed.stacks = {}; ed.linked = ''; ed.preview = null; ed.active = -1;
-  inkKey = ''; thumbKeys.clear(); cache.clear();
-  update(); persist(); syncClear();
-  if (ed.on) editRefresh();
-  tell('Saved words cleared', `${words} word${words === 1 ? '' : 's'} in ${vols} volume${vols === 1 ? '' : 's'}`);
-}
-const STORE = 'ks-edits';
-const canStore = (() => { try { localStorage.setItem('ks-probe', '1'); localStorage.removeItem('ks-probe'); return true; } catch { return false; } })();
-// saved words that could not be checked this time, by series and id: a volume whose fetch failed (kept until that
-// volume is edited) or a series that is not loaded (kept as saved)
-const unchecked = {};
-function persist() {
-  if (!canStore) return;
-  const edits = {};
-  for (const [s, byId] of Object.entries(unchecked)) if (Object.keys(byId).length) edits[s] = { ...byId };
-  for (const [s, byId] of Object.entries(state.edits)) for (const [id, p] of Object.entries(byId)) {
-    const s0 = data.series[s].presets[id], diff = {};
-    for (const k of changedSlots(p, s0)) diff[k] = get(p, k);
-    if (Object.keys(diff).length) (edits[s] ??= {})[id] = diff;
-  }
-  try {
-    if (Object.keys(edits).length || state.handle || state.motto || state.series !== DEFAULT) localStorage.setItem(STORE, JSON.stringify({ v: 2, series: state.series, edits, handle: state.handle, motto: state.motto }));
-    else localStorage.removeItem(STORE);
-  } catch {}
-}
-// the sheet on the stage as a link: series, volume, ink, ground and format, each left out at its default. Words and
-// whoami stay in this browser, and the finish starts at none every visit. A link wins over the series saved here.
-const LINK = ['series', 'vol', 'ink', 'ground', 'format'];
-function readLink() {
-  const q = new URLSearchParams(location.search);
-  return LINK.some((k) => q.has(k)) ? Object.fromEntries(LINK.map((k) => [k, q.get(k)])) : null;
-}
-function useLink(link) {
-  const i = D().index.findIndex((e) => e.vol === Number(link?.vol));
-  if (i > 0) state.i = i;
-  state.role = vol().ground;
-  if (!link) return;
-  if (PALS.includes(link.ink)) state.ink = link.ink;
-  if (ROLES.includes(link.ground)) state.role = link.ground;
-  if (Object.hasOwn(FORMATS, link.format)) state.format = link.format;
-}
-// replaceState, not push: picking sheets doesn't fill the back button. Only on a change (Safari caps the calls).
-function writeLink() {
-  const e = vol(), q = new URLSearchParams(), u = new URL(location.href);
-  if (state.series !== DEFAULT) q.set('series', state.series);
-  if (state.i) q.set('vol', e.vol);
-  if (state.ink !== 'purple') q.set('ink', state.ink);
-  if (state.role !== e.ground) q.set('ground', state.role);
-  if (state.format !== 'desktop') q.set('format', state.format);
-  u.search = q;
-  if (u.href !== location.href) try { history.replaceState(history.state, '', u); } catch {}
-}
-function readSaved() {
-  try { return canStore ? migrate(JSON.parse(localStorage.getItem(STORE) ?? 'null')) : null; } catch { return null; }
-}
-// a saved word comes back only if the editor would offer it today: from the lexicon, within the slot rules,
-// not repeating another word on the sheet, clear of every mark. Returns how many were left out.
-async function restoreSaved(saved) {
-  if (!saved) return 0;
-  // what the viewer typed while the page loaded wins over what was saved
-  if (typeof saved.handle === 'string' && validHandle(saved.handle) && !el.handle.value.trim()) { state.handle = saved.handle; el.handle.value = saved.handle; }
-  if (typeof saved.motto === 'string' && validMotto(saved.motto) && glyphs('mono', saved.motto) && !el.motto.value.trim()) { state.motto = saved.motto; el.motto.value = saved.motto; }
-  const fits = whoFits();
-  let dropped = 0;
-  for (const [s, byId] of Object.entries(saved.edits)) {
-    if (!byId || typeof byId !== 'object') continue;
-    if (data.series[s]) dropped += await restoreSeries(s, byId, fits); else unchecked[s] = { ...byId };
-  }
-  return dropped;
-}
-// does a sheet clear every mark with the viewer's own whoami box?
-function whoFits() {
-  const who = { handles: [...new Set(['', state.handle])], mottos: [...new Set(['', state.motto])] };
-  return (q) => FMTS.every((f) => !guardOne(q, f, who));
-}
-// one series' saved words, back onto its presets. Returns how many were left out.
-async function restoreSeries(s, saved, fits) {
-  const R = SERIES[s], { index, presets, skipped } = data.series[s];
-  let dropped = 0;
-  for (const [id, slots] of Object.entries(saved)) {
-    const e = index.find((x) => x.id === id), s0 = presets[id];
-    if (!slots || typeof slots !== 'object') continue;
-    if (!e) { if (skipped.has(id)) (unchecked[s] ??= {})[id] = slots; continue; }
-    let lex = null;
-    try { lex = await lexicon(e.topic); } catch { (unchecked[s] ??= {})[id] = slots; continue; }
-    let p = s0, kept = [];
-    for (const [key, value] of Object.entries(slots)) {
-      const ok = slotsOf(s0).includes(key) && key !== 'whoami'
-        && pool({ entry: e, key, shipped: s0, lexicon: lex, index, presets }).some((r) => same(r.value, value))
-        && !breaksRules(p, key, value, s0);
-      if (ok) { p = put(p, key, value, s0); kept.push([key, value]); } else dropped++;
-    }
-    // no word twice, judged on the whole sheet (a later slot may have given its word away), and clear of every
-    // mark. A dropped word gives its slot back the shipped one, so check again; each pass only drops, so it ends.
-    for (;;) {
-      const dup = kept.filter(([key, value]) => [value].flat().some((l) => R.usedStrings(p, key).has(l)));
-      if (dup.length) {
-        dropped += dup.length;
-        kept = kept.filter((x) => !dup.includes(x));
-        p = kept.reduce((q, [key, value]) => put(q, key, value, s0), s0);
-        continue;
-      }
-      if (fits(p)) break;
-      p = s0;   // rare: something no longer fits, so find it one word at a time
-      kept = kept.filter(([key, value]) => { const q = put(p, key, value, s0); if (!fits(q)) { dropped++; return false; } p = q; return true; });
-    }
-    if (!same(p, s0)) { E(s)[id] = p; state.ver[vkey(id, s)] = 1; }
-  }
-  return dropped;
-}
-const guardOne = (q, f, who) => overlaps(q, f, who).length > 0;
-// the slot rules, except for the shipped status line (longer than the phone's cap on purpose: it brings its own phone line)
-const breaksRules = (p, key, value, s0) => (family(key) === 'data' && same(value, get(s0, key)) ? [] : slotRules(p, key, value)).length > 0;
 
 // ---------- wiring and start
 
@@ -1279,7 +590,7 @@ function wire() {
     } else if (t.name === 'view') {
       setView(t.checked ? 'screen' : 'sheet');
       flip();
-      if (ed.hover && !ed.on) setHover(null);
+      if (editor.ed.hover && !editor.ed.on) editor.setHover(null);
     }
   });
   for (const [id, d, other] of [['#prev', -1, '#next'], ['#next', 1, '#prev']]) {
@@ -1309,73 +620,25 @@ function wire() {
   el.legend.addEventListener('focusin', pickMark);
   el.legend.addEventListener('click', pickMark);
   document.addEventListener('keydown', (ev) => {
-    if (ed.on) return editKeys(ev);
+    if (editor.ed.on) return editor.editKeys(ev);
     if (ev.defaultPrevented || ev.metaKey || ev.ctrlKey || ev.altKey) return;
     const t = ev.target, typing = t.matches?.('input[type="text"], textarea') || (t.matches?.('input[type="radio"]') && t.name !== 'volume');
     if (typing || (ev.key !== 'ArrowLeft' && ev.key !== 'ArrowRight') || t.name === 'volume') return;   // native radio arrows move volumes
     ev.preventDefault();
     goVol(state.i + (ev.key === 'ArrowRight' ? 1 : -1), true);
   });
-  let hoverRaf = 0;
-  el.sheet.addEventListener('pointermove', (ev) => {
-    if (ev.pointerType !== 'mouse' || state.view !== 'sheet' || !fine() || !data.fonts) return;
-    cancelAnimationFrame(hoverRaf);
-    hoverRaf = requestAnimationFrame(() => { const pt = sheetPoint(ev), k = hitAt(pt.x, pt.y, 8 / pt.s); if (k !== ed.hover) setHover(k, pt); });
-  });
-  el.sheet.addEventListener('pointerleave', () => { cancelAnimationFrame(hoverRaf); if (ed.hover) setHover(null); });
-  el.sheet.addEventListener('click', (ev) => {
-    if (state.view !== 'sheet' || ev.target.closest('.ruler') || !data.fonts) return;
-    const pt = sheetPoint(ev), key = hitAt(pt.x, pt.y, (fine() ? 8 : 44) / pt.s), fx = S.fixedOf(key);
-    if (fx) { tell(`The ${fx[0].toLowerCase()} is fixed`, `It ${fx[1]}.`, false); return; }
-    if (!ed.on) { if (key) enterEdit(key); return; }
-    if (key && (key !== ed.key || ed.overview)) openSlot(key);
-  });
-  rail.addEventListener('click', (ev) => { const b = ev.target.closest('.rchip'); if (b && b.dataset.key !== ed.key) openSlot(b.dataset.key); });
-  rail.addEventListener('keydown', (ev) => {
-    const tabs = [...rail.querySelectorAll('[role="tab"]')], n = tabs.length, i = tabs.indexOf(ev.target.closest('[role="tab"]'));
-    const to = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: n - 1 }[ev.key];
-    if (to == null || i < 0) return;
-    ev.preventDefault(); ev.stopPropagation();
-    const t = tabs[(to + n) % n];
-    for (const x of tabs) x.tabIndex = x === t ? 0 : -1;
-    t.focus();
-    t.scrollIntoView({ block: 'nearest', inline: 'nearest' });
-  });
-  list.addEventListener('keydown', listKeys);
-  $('#ep-search').addEventListener('keydown', listKeys);
-  $('#ep-search').addEventListener('focus', keepSearch);
-  $('#ep-search').addEventListener('input', (ev) => { ed.query = ev.target.value; ed.active = -1; paintList(); });
-  list.addEventListener('focus', () => { if (list.matches(':focus-visible') && ed.active < 0 && ed.shown.length) setActive(Math.max(0, ed.shown.findIndex((r) => r.applied))); });
-  list.addEventListener('pointermove', (ev) => {
-    if (ev.pointerType !== 'mouse') return;
-    const node = ev.target.closest('.orow');
-    if (node && +node.dataset.i !== ed.active) setActive(+node.dataset.i, { scroll: false });
-  });
-  list.addEventListener('pointerleave', (ev) => { if (ev.pointerType === 'mouse' && ed.active >= 0) setActive(-1); });
-  list.addEventListener('click', (ev) => { const node = ev.target.closest('.orow'); if (node) apply(ed.shown[+node.dataset.i]); });
-  $('#ep-empty').addEventListener('click', (ev) => { if (ev.target.closest('#ep-clear')) { $('#ep-search').value = ''; ed.query = ''; paintList(); $('#ep-search').focus(); } });
-  $('#ep-bad').addEventListener('click', () => { ed.showBad = !ed.showBad; paintList(); });
-  $('#undo').addEventListener('click', undo);
-  $('#redo').addEventListener('click', redo);
-  $('#restore').addEventListener('click', () => { if (E()[vol().id]) { ed.linked = ''; commit(D().presets[vol().id], 'All words restored'); } });
-  $('#clear-saved').addEventListener('click', clearSaved);
-  $('#edit-open').addEventListener('click', () => enterEdit());
-  $('#edit-done').addEventListener('click', exitEdit);
-  $('#eb-done').addEventListener('click', exitEdit);
-  $('#eb-prev').addEventListener('click', () => stepSlot(-1, true));
-  $('#eb-next').addEventListener('click', () => stepSlot(1, true));
-  $('#whole').addEventListener('click', toggleOverview);
   el.slip.addEventListener('click', (ev) => {
     if (!ev.target.closest('#slip-undo')) return;
     if (el.slip.dataset.vol !== vol().id) return hideSlip();
-    if (ed.on) $('#undo').focus();
-    undo();
+    if (editor.ed.on) $('#undo').focus();
+    editor.undo();
   });
-  addEventListener('resize', () => { fit(); refit(); queueLoupe(); });
+
+  addEventListener('resize', () => { fit(); editor.refit(); queueLoupe(); });
   // a change of pixel ratio alone (the window moved to another screen) fires no resize, and the crop must stay 1:1
   const ratio = () => matchMedia(`(resolution: ${devicePixelRatio}dppx)`).addEventListener('change', () => { queueLoupe(); ratio(); }, { once: true });
   ratio();
-  window.visualViewport?.addEventListener('resize', refit);
+  window.visualViewport?.addEventListener('resize', editor.refit);
 }
 
 // ---------- touch tooltips: a long-press on a [data-tip] control shows its tip and does not fire the control; mouse keeps the hover tip
@@ -1405,11 +668,11 @@ async function start() {
   buildFinish();
   // the release label lives in version.json only; a failed fetch leaves it blank, the studio doesn't need it
   json('version.json').then((v) => document.querySelectorAll('[data-version]').forEach((n) => { n.textContent = v.version; }), () => {});
-  $('#ep-saved').textContent = canStore ? 'Saved in this browser only.' : 'This browser blocks storage, so your words last until you reload.';
+  $('#ep-saved').textContent = persistence.canStore ? 'Saved in this browser only.' : 'This browser blocks storage, so your words last until you reload.';
   el.stage.setAttribute('aria-busy', 'true');
-  const saved = readSaved(), link = readLink();
-  const first = link ? link.series ?? DEFAULT : saved?.series;   // the linked series, else the last one viewed
-  if (SERIES[first]) useSeries(first);
+  const saved = persistence.readSaved(), link = readLink();
+  const first = bootSeries(link, saved?.series);   // the linked series, else the last one viewed; an id that is not a series opens the default
+  if (first !== state.series) useSeries(first);
   const boot = () => load().then(() => true, (err) => { console.error(err); return false; });
   let ok = await boot();
   if (!ok && state.series !== DEFAULT) { useSeries(DEFAULT); ok = await boot(); }   // the saved series would not load: start on the first
@@ -1421,18 +684,18 @@ async function start() {
   useLink(link);
   buildSwitch(); buildStrip(); buildDrawdown(); buildInkRows(); paintSeries();
   nameBtn(el.pack, ...packLabel());   // the real count from first paint
-  const dropped = await restoreSaved(saved);
+  const dropped = await persistence.restoreSaved(saved);
   booted = true;
   readWho();
   update();
   // a linked volume further along: bring it into the strip without moving the page
   const lab = state.i && el.strip.querySelector(`input[value="${state.i}"]`)?.closest('label');
   if (lab) el.strip.scrollLeft += lab.getBoundingClientRect().left - el.strip.getBoundingClientRect().left;
-  if (Object.keys(unchecked[state.series] ?? {}).length) tell('Some saved words could not be checked.', 'They stay saved: reload the page to bring them back.', false);
+  if (Object.keys(persistence.unchecked[state.series] ?? {}).length) tell('Some saved words could not be checked.', 'They stay saved: reload the page to bring them back.', false);
   else if (dropped) tell(`${dropped} saved ${dropped === 1 ? 'word was' : 'words were'} left out.`, 'They are no longer in the lexicon or no longer fit. Your other words are back.', false);
-  if (canStore) persist();
+  if (persistence.canStore) persist();
   (window.requestIdleCallback ?? ((f) => setTimeout(f, 1200)))(() => {
-    liveFonts(); lexicon(vol().topic).catch(() => {});
+    editor.liveFonts(); lexicon(vol().topic).catch(() => {});
     for (const s of Object.keys(SERIES)) loadOnce(s).then(paintLive, () => {});      // the other series' card, and a quick switch
   });
 }

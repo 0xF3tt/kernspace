@@ -12,12 +12,12 @@
 <meta property="og:image" content="https://kernspace.vercel.app/art/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Cybersecurity, typeset. Two desktop wallpapers: an indigo Cutting Mat reading Secure by design, and a near-black navy Specimen with the letters SDD.">
+<meta property="og:image:alt" content="Cybersecurity, typeset. Two desktop wallpapers: an indigo Cutting Mat reading Secure by design, and a near-black navy Specimen with the letters LLM set in Caslon.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="kernspace · Cybersecurity, typeset.">
 <meta name="twitter:description" content="Security wallpapers drawn with the tools of print. Drawn in your browser.">
 <meta name="twitter:image" content="https://kernspace.vercel.app/art/og.png">
-<meta name="twitter:image:alt" content="Cybersecurity, typeset. Two desktop wallpapers: an indigo Cutting Mat reading Secure by design, and a near-black navy Specimen with the letters SDD.">
+<meta name="twitter:image:alt" content="Cybersecurity, typeset. Two desktop wallpapers: an indigo Cutting Mat reading Secure by design, and a near-black navy Specimen with the letters LLM set in Caslon.">
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
@@ -245,7 +245,11 @@
       <div class="acts">
         <button class="btn btn-ink" type="button" id="dl-png" aria-label="Download PNG" data-tip="Download PNG" disabled><svg class="dl" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5v8m-3.5-3.5L8 10.5 11.5 7M3 13.5h10"/></svg></button>
         <button class="btn btn-icon" type="button" id="dl-svg" aria-label="Download SVG" data-tip="Download SVG" disabled><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5.5 4-4 4 4 4M10.5 4l4 4-4 4M9 3 7 13"/></svg></button>
-        <button class="btn btn-icon" type="button" id="dl-pack" aria-label="Download all volumes, ZIP" data-tip="Download all volumes (ZIP)" disabled><svg class="dl" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 3.5h10a1 1 0 0 1 1 1V8"/><rect x="2.5" y="6" width="10" height="6" rx="1"/><path d="M15.5 11v6m-2.5-2.5 2.5 2.5 2.5-2.5"/></svg></button>
+        <span class="pack-slot">
+          <button class="btn btn-icon" type="button" id="dl-pack" aria-label="Download all volumes, ZIP" data-tip="Download all volumes (ZIP)" disabled><svg class="dl" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 3.5h10a1 1 0 0 1 1 1V8"/><rect x="2.5" y="6" width="10" height="6" rx="1"/><path d="M15.5 11v6m-2.5-2.5 2.5 2.5 2.5-2.5"/></svg></button>
+          <button class="btn btn-sm" type="button" id="dl-cancel" hidden>Cancel</button>
+        </span>
+        <p class="pack-status" id="pack-status" role="progressbar" aria-valuemin="0" aria-valuenow="0" aria-live="polite" hidden></p>
         <p class="need" id="need" hidden>Fix your whoami to download.</p>
         <p class="fine">Drawn in your browser. Nothing is uploaded.</p>
         <div class="edit-bar" id="edit-bar">
@@ -333,7 +337,7 @@
       <div class="colo-grid">
         <div>
           <h2 id="colo-title">Colophon</h2>
-          <p>Set in Newsreader and JetBrains Mono. The sheets use Nunito for their large type (the phrase, the hero letters, the waterfall) and JetBrains Mono for everything else, with ligatures off so code reads as typed.</p>
+          <p>Set in Newsreader and JetBrains Mono. Each series sets its sheets in the type of its own trade: Cutting Mat in Nunito, Specimen in Libre Caslon, Galley Proof in Source Serif 4 and its sibling Source Code Pro, Catalog Card in PT Mono, with a pencil in Handlee or Architects Daughter where a hand marks the sheet. Ligatures are off, so code reads as typed; JetBrains Mono sets the data on the other three.</p>
           <p class="colo-aside">A proposal, not a rule: a different way cyber could look.</p>
         </div>
         <div>

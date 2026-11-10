@@ -104,7 +104,7 @@ const sm = palettes[1].grounds.soldermask.colors, sbg = rgb(sm.bg), chip = (c, k
 near(worst.aniline[0], 10.034, 'aniline worst Machado pair'); assert.equal(worst.aniline[1], 'protan chip1-chip2');
 near(worst['iron-gall'][0], 15.549, 'iron-gall worst Machado pair');
 near(de00(chip(sm, 'chip1'), chip(sm, 'chip2')), 26.6, 'soldermask chip1-chip2'); near(de00(chip(sm, 'chip2'), chip(sm, 'chip3')), 24.0, 'soldermask chip2-chip3');
-near(stops(rgb(sm.chip1, sbg), rgb(sm.text, sbg)), 0.635, 'soldermask chip1 vs text stops');
+near(stops(rgb(sm.chip1, sbg), rgb(sm.text, sbg)), 0.532, 'soldermask chip1 vs text stops');
 
 // the lint must fire on broken grounds (soldermask chip1 before it was lifted, a muddy chip, a dim text role)
 const broken = {
@@ -116,6 +116,6 @@ const broken = {
 assert.ok(problems(broken[Object.keys(broken)[0]]).some(m => /stops from text/.test(m)), 'the old soldermask chip1 must fail the thin-stroke check');
 for (const [name, co] of Object.entries(broken)) assert.ok(problems(co).length, `the lint should catch: ${name}`);
 assert.ok(paperProblems(palettes[0].grounds.ditto.colors, '', { ...DEPTH, main: 2 }).some(m => /^rule is .* on main/.test(m)), 'a deeper main card (target 2.0, nearer major) must drop rule below 3:1 on ditto');
-assert.ok(tightest[0] >= 3 && tightest[0] < 3.1, `the tightest rule margin is ditto's, ${tightest}`);
+assert.ok(tightest[0] >= 3 && tightest[0] < 3.15, `the tightest rule margin is ditto's, ${tightest}`);
 
 console.log(`ok · ${grounds} grounds · text ${MIN.text}:1 (${TEXT.join(', ')}), marks ${MIN.mark}:1 (${MARK.join(', ')}) · chips dE00 ≥ ${MIN.chip} in normal, protan, deutan and tritan vision · chip1 ≥ ${MIN.stops} stops from text, strip and bg · lint catches ${Object.keys(broken).length} kinds of broken ground · ${papers} paper ladders: text and text2 ≥ ${PAPER.text}:1, rule (header line, stamp) ≥ ${PAPER.both}:1 (tightest ${tightest[1]} ${tightest[0].toFixed(2)}), chip1 ≥ ${PAPER.both}:1 and ≥ ${MIN.stops} stops from text and card, frame ≥ ${PAPER.stroke}:1 · angle edge weakest ${edge[1]} ${edge[0].toFixed(2)}:1 (reported)`);

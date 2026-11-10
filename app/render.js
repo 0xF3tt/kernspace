@@ -1,4 +1,5 @@
-// Shared helpers for kernspace renderers: formats, escaping, the whoami box, the finishes (film grain and paper) and bundled fonts.
+// Shared helpers for kernspace renderers: formats, escaping, the whoami box and the finishes (film grain and paper).
+// The bundled fonts are in app/fonts.js.
 
 export const FORMATS = {
   desktop: { w: 3840, h: 2160, label: 'Desktop 16:9' },
@@ -18,7 +19,7 @@ export const esc = s => String(s)
 export const validHandle = s => typeof s === 'string' && /^[A-Za-z0-9._-]{1,20}$/.test(s);
 
 // a whoami line: up to 40 characters, no control characters, no leading or trailing space.
-// Whether every character exists in JetBrains Mono is the caller's check (app/check.js glyphs()).
+// Whether every character exists in the face that draws the whoami box is the caller's check (glyphs(), app/boxes.js).
 export const validMotto = s => typeof s === 'string' && s !== '' && s === s.trim()
   && !/[\u0000-\u001F\u007F-\u009F]/.test(s) && [...s].length <= 40;
 
@@ -254,7 +255,10 @@ export function srgbPNG(bytes) {
 }
 
 // A ZIP of files, STORED (a PNG is compressed already): local headers, central directory, end record. 32-bit sizes, UTF-8 names.
-export function zip(files) {
+// `zipParts` does not copy file bytes: each part is a header, a name, or the original byte array.
+// The browser builds `new Blob(zipParts(files))` from those chunks. `zip` concatenates them for callers
+// that want one buffer (the Node checks). That concatenation is the copy the pack used to keep.
+export function zipParts(files) {
   const d = new Date(), time = d.getHours() << 11 | d.getMinutes() << 5 | d.getSeconds() >> 1;
   const date = Math.max(0, d.getFullYear() - 1980) << 9 | (d.getMonth() + 1) << 5 | d.getDate();
   const enc = new TextEncoder(), parts = [], dir = [];
@@ -266,31 +270,15 @@ export function zip(files) {
     dir.push(put(46, [4, 0x02014b50], [2, 20], [2, 20], ...common, [2, 0], [2, 0], [2, 0], [4, 0], [4, at]), nm);   // comment length, disk, internal and external attrs, local header offset
     at += 30 + nm.length + bytes.length;
   }
-  const size = dir.reduce((n, b) => n + b.length, 0), out = new Uint8Array(at + size + 22);
+  const size = dir.reduce((n, b) => n + b.length, 0);
+  return [...parts, ...dir, put(22, [4, 0x06054b50], [2, 0], [2, 0], [2, files.length], [2, files.length], [4, size], [4, at], [2, 0])];
+}
+export function zip(files) {
+  const parts = zipParts(files);
+  let n = 0;
+  for (const b of parts) n += b.length;
+  const out = new Uint8Array(n);
   let o = 0;
-  for (const b of [...parts, ...dir, put(22, [4, 0x06054b50], [2, 0], [2, 0], [2, files.length], [2, files.length], [4, size], [4, at], [2, 0])]) { out.set(b, o); o += b.length; }
+  for (const b of parts) { out.set(b, o); o += b.length; }
   return out;
-}
-
-const FONT_FILES = {
-  nunito: 'fonts/nunito/Nunito-Variable.ttf',
-  jbm: 'fonts/jetbrains-mono/JetBrainsMono-Variable.ttf',
-};
-
-// fetch one font as a data: URL (an SVG shown as an image can't load outside files)
-async function dataURL(url) {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`font ${url}: HTTP ${res.status}`);
-  const blob = new Blob([await res.arrayBuffer()], { type: 'font/ttf' });
-  return new Promise((ok, fail) => {
-    const fr = new FileReader();
-    fr.onload = () => ok(fr.result);
-    fr.onerror = () => fail(fr.error);
-    fr.readAsDataURL(blob);
-  });
-}
-
-export async function loadFonts(base = '') {
-  const [nunito, jbm] = await Promise.all([FONT_FILES.nunito, FONT_FILES.jbm].map(f => dataURL(base + f)));
-  return { nunito, jbm };
 }

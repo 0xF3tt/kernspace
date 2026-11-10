@@ -188,7 +188,7 @@ export function slotRules(p, key, value) {
     if (s !== s.trim()) why.push('stray spaces');
     const max = a === 'data' && p.phone?.data?.[key.slice(5)] != null ? Math.min(limitOf(key), LIMITS.phone) : limitOf(key);
     if (len(s) > max) why.push(`${len(s)}/${max}`);
-    if (!glyphs(a === 'phrase' ? 'nunito' : 'mono', s)) why.push('glyph');
+    if (glyphs(a === 'phrase' ? 'nunito' : 'mono', s) === false) why.push('glyph');   // null: metrics not loaded yet, not a missing glyph
   }
   if (a === 'flows' && !value.startsWith(`${ANGLES[+key.split('.')[1]]}° · `)) why.push('angle prefix');
   return why;
