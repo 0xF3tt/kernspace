@@ -16,3 +16,8 @@ fonts/licensed/
 
 # Local Claude Code config (agents, launch.json)
 .claude/
+
+# Browser-test tooling (dev/CI only; the site has no runtime dependency)
+node_modules/
+test/test-results/
+test/playwright-report/
